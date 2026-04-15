@@ -1,0 +1,1837 @@
+<!DOCTYPE html>
+<html lang="de" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <title>Doppler Echokardiographie Guide | دليل الإيكو دوبلر</title>
+    <style>
+        /* ==================== RESET & BASE ==================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        :root {
+            /* Notion Premium Colors */
+            --notion-bg: #ffffff;
+            --notion-sidebar: #f7f6f3;
+            --notion-text: #37352f;
+            --notion-text-light: #787774;
+            --notion-border: #e9e9e7;
+            --notion-hover: #f1f1ef;
+            --notion-accent: #2383e2;
+            --notion-accent-light: #e8f3fc;
+            --notion-success: #0f7b6c;
+            --notion-warning: #d9730d;
+            --notion-danger: #e03e3e;
+            --notion-purple: #9065b0;
+            --notion-shadow: rgba(15, 15, 15, 0.1);
+            --notion-shadow-lg: rgba(15, 15, 15, 0.15);
+            
+            /* Spacing */
+            --header-height: 56px;
+            --sidebar-width: 280px;
+            --max-content-width: 900px;
+            --spacing-xs: 4px;
+            --spacing-sm: 8px;
+            --spacing-md: 16px;
+            --spacing-lg: 24px;
+            --spacing-xl: 32px;
+            
+            /* Typography */
+            --font-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, 'Apple Color Emoji', Arial, sans-serif, 'Segoe UI Emoji', 'Segoe UI Symbol';
+            --font-mono: 'SF Mono', Monaco, 'Cascadia Code', 'Roboto Mono', Consolas, 'Courier New', monospace;
+        }
+
+        body {
+            font-family: var(--font-sans);
+            font-size: 16px;
+            line-height: 1.6;
+            color: var(--notion-text);
+            background: var(--notion-bg);
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* ==================== HEADER ==================== */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: var(--header-height);
+            background: var(--notion-bg);
+            border-bottom: 1px solid var(--notion-border);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 var(--spacing-md);
+            z-index: 1000;
+            box-shadow: 0 1px 2px var(--notion-shadow);
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: var(--spacing-sm);
+            border-radius: 6px;
+            transition: background 0.2s;
+        }
+
+        .hamburger:hover {
+            background: var(--notion-hover);
+        }
+
+        .hamburger span {
+            width: 20px;
+            height: 2px;
+            background: var(--notion-text);
+            border-radius: 2px;
+            transition: transform 0.3s, opacity 0.3s;
+        }
+
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(6px, -6px);
+        }
+
+        .header-title {
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--notion-text);
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+        }
+
+        .lang-badge {
+            font-size: 11px;
+            padding: 2px 6px;
+            background: var(--notion-accent-light);
+            color: var(--notion-accent);
+            border-radius: 4px;
+            font-weight: 500;
+        }
+
+        /* ==================== SIDEBAR ==================== */
+        .sidebar {
+            position: fixed;
+            top: var(--header-height);
+            left: 0;
+            width: var(--sidebar-width);
+            height: calc(100vh - var(--header-height));
+            background: var(--notion-sidebar);
+            border-right: 1px solid var(--notion-border);
+            overflow-y: auto;
+            padding: var(--spacing-lg) 0;
+            z-index: 999;
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .sidebar-overlay {
+            display: none;
+            position: fixed;
+            top: var(--header-height);
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.4);
+            z-index: 998;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .nav-section {
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .nav-title {
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--notion-text-light);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            padding: 0 var(--spacing-md);
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .nav-link {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+            padding: 6px var(--spacing-md);
+            color: var(--notion-text);
+            text-decoration: none;
+            font-size: 14px;
+            transition: background 0.15s;
+            cursor: pointer;
+            min-height: 40px;
+        }
+
+        .nav-link:hover {
+            background: var(--notion-hover);
+        }
+
+        .nav-link.active {
+            background: var(--notion-accent-light);
+            color: var(--notion-accent);
+            font-weight: 500;
+        }
+
+        .nav-icon {
+            font-size: 16px;
+            width: 20px;
+            text-align: center;
+        }
+
+        /* ==================== MAIN CONTENT ==================== */
+        .main-content {
+            margin-left: var(--sidebar-width);
+            margin-top: var(--header-height);
+            padding: var(--spacing-xl) var(--spacing-lg);
+            min-height: calc(100vh - var(--header-height));
+        }
+
+        .container {
+            max-width: var(--max-content-width);
+            margin: 0 auto;
+        }
+
+        .content-section {
+            margin-bottom: var(--spacing-xl);
+            opacity: 0;
+            transform: translateY(10px);
+            animation: fadeInUp 0.5s forwards;
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* ==================== TYPOGRAPHY ==================== */
+        h1 {
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: var(--spacing-lg);
+            color: var(--notion-text);
+            line-height: 1.2;
+        }
+
+        h2 {
+            font-size: 24px;
+            font-weight: 600;
+            margin: var(--spacing-xl) 0 var(--spacing-md);
+            color: var(--notion-text);
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+        }
+
+        h3 {
+            font-size: 18px;
+            font-weight: 600;
+            margin: var(--spacing-lg) 0 var(--spacing-sm);
+            color: var(--notion-text);
+        }
+
+        p {
+            margin-bottom: var(--spacing-md);
+            color: var(--notion-text);
+        }
+
+        .ar-text {
+            font-family: 'Segoe UI', Tahoma, Arial, sans-serif;
+            direction: rtl;
+            text-align: right;
+            line-height: 1.8;
+        }
+
+        .de-text {
+            direction: ltr;
+            text-align: left;
+        }
+
+        /* ==================== CARDS ==================== */
+        .card {
+            background: var(--notion-bg);
+            border: 1px solid var(--notion-border);
+            border-radius: 8px;
+            padding: var(--spacing-lg);
+            margin-bottom: var(--spacing-md);
+            box-shadow: 0 1px 3px var(--notion-shadow);
+            transition: box-shadow 0.2s, transform 0.2s;
+        }
+
+        .card:hover {
+            box-shadow: 0 4px 12px var(--notion-shadow-lg);
+            transform: translateY(-2px);
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+            margin-bottom: var(--spacing-md);
+            padding-bottom: var(--spacing-sm);
+            border-bottom: 1px solid var(--notion-border);
+        }
+
+        .card-icon {
+            font-size: 20px;
+        }
+
+        .card-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--notion-text);
+            flex: 1;
+        }
+
+        .badge {
+            font-size: 11px;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-weight: 500;
+        }
+
+        .badge-primary {
+            background: var(--notion-accent-light);
+            color: var(--notion-accent);
+        }
+
+        .badge-success {
+            background: #e6f4f1;
+            color: var(--notion-success);
+        }
+
+        .badge-warning {
+            background: #fdecd8;
+            color: var(--notion-warning);
+        }
+
+        /* ==================== CALLOUT ==================== */
+        .callout {
+            display: flex;
+            gap: var(--spacing-md);
+            padding: var(--spacing-md);
+            border-radius: 6px;
+            margin-bottom: var(--spacing-md);
+            border-left: 3px solid;
+        }
+
+        .callout-info {
+            background: #f0f7ff;
+            border-color: var(--notion-accent);
+        }
+
+        .callout-success {
+            background: #e6f4f1;
+            border-color: var(--notion-success);
+        }
+
+        .callout-warning {
+            background: #fdecd8;
+            border-color: var(--notion-warning);
+        }
+
+        .callout-danger {
+            background: #ffe8e8;
+            border-color: var(--notion-danger);
+        }
+
+        .callout-icon {
+            font-size: 20px;
+            flex-shrink: 0;
+        }
+
+        /* ==================== TABLE ==================== */
+        .table-wrapper {
+            overflow-x: auto;
+            margin-bottom: var(--spacing-md);
+            border-radius: 6px;
+            border: 1px solid var(--notion-border);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 14px;
+        }
+
+        thead {
+            background: var(--notion-sidebar);
+        }
+
+        th {
+            padding: 12px;
+            text-align: left;
+            font-weight: 600;
+            color: var(--notion-text);
+            border-bottom: 2px solid var(--notion-border);
+        }
+
+        td {
+            padding: 12px;
+            border-bottom: 1px solid var(--notion-border);
+            color: var(--notion-text);
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        tbody tr:hover {
+            background: var(--notion-hover);
+        }
+
+        /* ==================== CODE ==================== */
+        code {
+            font-family: var(--font-mono);
+            font-size: 13px;
+            background: var(--notion-sidebar);
+            padding: 2px 6px;
+            border-radius: 4px;
+            color: var(--notion-danger);
+        }
+
+        /* ==================== NOTES SYSTEM ==================== */
+        .note-container {
+            position: relative;
+            margin-bottom: var(--spacing-md);
+        }
+
+        .add-note-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 12px;
+            background: var(--notion-accent);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 13px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background 0.2s;
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .add-note-btn:hover {
+            background: #1a6ec9;
+        }
+
+        .note-item {
+            background: #fffbdd;
+            border-left: 3px solid #f7d154;
+            padding: var(--spacing-md);
+            margin-bottom: var(--spacing-sm);
+            border-radius: 6px;
+            position: relative;
+        }
+
+        .note-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .note-timestamp {
+            font-size: 11px;
+            color: var(--notion-text-light);
+        }
+
+        .note-actions {
+            display: flex;
+            gap: var(--spacing-xs);
+        }
+
+        .note-btn {
+            background: none;
+            border: none;
+            padding: 4px 8px;
+            cursor: pointer;
+            border-radius: 4px;
+            font-size: 12px;
+            transition: background 0.2s;
+        }
+
+        .note-btn:hover {
+            background: rgba(0, 0, 0, 0.1);
+        }
+
+        .note-content {
+            font-size: 14px;
+            line-height: 1.6;
+            color: var(--notion-text);
+        }
+
+        .note-input {
+            width: 100%;
+            padding: var(--spacing-sm);
+            border: 1px solid var(--notion-border);
+            border-radius: 6px;
+            font-family: var(--font-sans);
+            font-size: 14px;
+            resize: vertical;
+            min-height: 80px;
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .note-input:focus {
+            outline: none;
+            border-color: var(--notion-accent);
+            box-shadow: 0 0 0 3px var(--notion-accent-light);
+        }
+
+        .note-form-actions {
+            display: flex;
+            gap: var(--spacing-sm);
+        }
+
+        .btn {
+            padding: 8px 16px;
+            border: none;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .btn-primary {
+            background: var(--notion-accent);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #1a6ec9;
+        }
+
+        .btn-secondary {
+            background: var(--notion-hover);
+            color: var(--notion-text);
+        }
+
+        .btn-secondary:hover {
+            background: var(--notion-border);
+        }
+
+        /* ==================== MOBILE RESPONSIVE ==================== */
+        @media (max-width: 768px) {
+            .hamburger {
+                display: flex;
+            }
+
+            .sidebar {
+                transform: translateX(-100%);
+            }
+
+            .sidebar.active {
+                transform: translateX(0);
+            }
+
+            .sidebar-overlay.active {
+                display: block;
+                opacity: 1;
+            }
+
+            .main-content {
+                margin-left: 0;
+            }
+
+            h1 {
+                font-size: 24px;
+            }
+
+            h2 {
+                font-size: 20px;
+            }
+
+            .card {
+                padding: var(--spacing-md);
+            }
+
+            .table-wrapper {
+                border-radius: 0;
+                margin-left: calc(-1 * var(--spacing-md));
+                margin-right: calc(-1 * var(--spacing-md));
+            }
+        }
+
+        @media (max-width: 480px) {
+            .header-title {
+                font-size: 13px;
+            }
+
+            .lang-badge {
+                display: none;
+            }
+        }
+
+        /* ==================== PRINT STYLES ==================== */
+        @media print {
+            .header,
+            .sidebar,
+            .add-note-btn,
+            .note-actions {
+                display: none;
+            }
+
+            .main-content {
+                margin-left: 0;
+                margin-top: 0;
+            }
+
+            .card {
+                page-break-inside: avoid;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- HEADER -->
+    <header class="header">
+        <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <div class="header-title">
+            🫀 Doppler Echokardiographie
+            <span class="lang-badge">DE/AR</span>
+        </div>
+    </header>
+
+    <!-- SIDEBAR OVERLAY -->
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar" id="sidebar">
+        <nav>
+            <div class="nav-section">
+                <div class="nav-title">Doppler Modalitäten</div>
+                <a href="#pw-doppler" class="nav-link">
+                    <span class="nav-icon">📊</span>
+                    PW-Doppler
+                </a>
+                <a href="#cw-doppler" class="nav-link">
+                    <span class="nav-icon">📈</span>
+                    CW-Doppler
+                </a>
+                <a href="#farb-doppler" class="nav-link">
+                    <span class="nav-icon">🎨</span>
+                    Farb-Doppler
+                </a>
+                <a href="#gewebe-doppler" class="nav-link">
+                    <span class="nav-icon">💪</span>
+                    Gewebe-Doppler (TDI)
+                </a>
+            </div>
+
+            <div class="nav-section">
+                <div class="nav-title">Klinische Anwendungen</div>
+                <a href="#mitral-inflow" class="nav-link">
+                    <span class="nav-icon">🔽</span>
+                    Mitralklappen-Inflow
+                </a>
+                <a href="#trikuspidal-inflow" class="nav-link">
+                    <span class="nav-icon">🔽</span>
+                    Trikuspidal-Inflow
+                </a>
+                <a href="#pulmonalvenen" class="nav-link">
+                    <span class="nav-icon">🫁</span>
+                    Pulmonalvenenfluss
+                </a>
+                <a href="#lvot-vti" class="nav-link">
+                    <span class="nav-icon">📐</span>
+                    LVOT & VTI
+                </a>
+                <a href="#kontinuitat" class="nav-link">
+                    <span class="nav-icon">🔄</span>
+                    Kontinuitätsgleichung
+                </a>
+                <a href="#rvot-at" class="nav-link">
+                    <span class="nav-icon">⚡</span>
+                    RVOT & AT
+                </a>
+            </div>
+
+            <div class="nav-section">
+                <div class="nav-title">Pathologien</div>
+                <a href="#stenosen" class="nav-link">
+                    <span class="nav-icon">⚠️</span>
+                    Klappenstenosen
+                </a>
+                <a href="#insuffizienzen" class="nav-link">
+                    <span class="nav-icon">💔</span>
+                    Klappeninsuffizienzen
+                </a>
+                <a href="#spap" class="nav-link">
+                    <span class="nav-icon">🫀</span>
+                    sPAP vs. AT
+                </a>
+            </div>
+        </nav>
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <main class="main-content">
+        <div class="container">
+
+            <!-- INTRO -->
+            <section class="content-section">
+                <h1>🫀 Doppler Echokardiographie Guide</h1>
+                <div class="callout callout-info">
+                    <span class="callout-icon">💡</span>
+                    <div>
+                        <strong>مرحباً يا دكتور!</strong><br>
+                        <p class="ar-text">باش تفهم مليح وقتاش تخدم بكل نوع تاع Doppler في الـ Echokardiographie، لازم نعرفو بلي كل واحد فيهم مخدوم لغرض معين: إما نحوسو على البلاصة بالضبط (Lokalisation) ولا نحوسو على السرعة القصوى (Maximale Geschwindigkeit).</p>
+                    </div>
+                </div>
+
+                <div class="note-container" data-section="intro">
+                    <button class="add-note-btn" onclick="showNoteForm(this)">
+                        ✏️ Notiz hinzufügen
+                    </button>
+                    <div class="notes-list"></div>
+                </div>
+            </section>
+
+            <!-- PW DOPPLER -->
+            <section class="content-section" id="pw-doppler">
+                <h2>📊 PW-Doppler (Pulsed Wave Doppler)</h2>
+                
+                <div class="card">
+                    <div class="card-header">
+                        <span class="card-icon">🎯</span>
+                        <span class="card-title">Prinzip & Eigenschaften</span>
+                        <span class="badge badge-primary">Tiefenselektiv</span>
+                    </div>
+                    
+                    <p class="de-text"><strong>المبدأ تاعو:</strong> يعطيك القدرة باش تخير نقطة محددة بالضبط (Sample Volume) وتقيس سرعة الدم فيها (Tiefenselektivität).</p>
+                    
+                    <div class="callout callout-warning">
+                        <span class="callout-icon">⚠️</span>
+                        <div>
+                            <strong>المشكل تاعو:</strong> ما يقدرش يقيس السرعات العالية. كي تفوت السرعة الحد تاعو (حوالي 1.5 إلى 2 m/s)، يصرى ما يسمى بـ <code>Aliasing-Effekt</code> (المنحنى يتقطع ويتخلط).
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <span class="card-icon">🎯</span>
+                        <span class="card-title">Indikationen</span>
+                    </div>
+                    
+                    <ul style="margin-left: 20px; margin-bottom: 16px;">
+                        <li><strong>LVOT-Messung:</strong> نحطو الـ Sample Volume جيست تحت الصمام الأبهري باش نحسبو الـ VTI</li>
+                        <li><strong>Diastolische Funktion:</strong> نحطو الـ PW عند فتحة الصمام التاجي (E/A-Wellen)</li>
+                        <li><strong>Pulmonalvenenfluss:</strong> باش نزيدو نأكدو تشخيص الـ diastolische Dysfunktion</li>
+                    </ul>
+
+                    <div class="callout callout-success">
+                        <span class="callout-icon">✅</span>
+                        <div>
+                            <strong>الخلاصة للـ PW:</strong> نخدمو بيه كي نحبو نعرفو سرعة الدم العادية في بلاصة محددة.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="note-container" data-section="pw-doppler">
+                    <button class="add-note-btn" onclick="showNoteForm(this)">
+                        ✏️ Notiz hinzufügen
+                    </button>
+                    <div class="notes-list"></div>
+                </div>
+            </section>
+
+            <!-- CW DOPPLER -->
+            <section class="content-section" id="cw-doppler">
+                <h2>📈 CW-Doppler (Continuous Wave Doppler)</h2>
+                
+                <div class="card">
+                    <div class="card-header">
+                        <span class="card-icon">⚡</span>
+                        <span class="card-title">Prinzip & Eigenschaften</span>
+                        <span class="badge badge-warning">Hohe Geschwindigkeiten</span>
+                    </div>
+                    
+                    <p class="ar-text"><strong>المبدأ تاعو:</strong> يقيس قع السرعات لي راهي في طريق خط الـ Ultrasound كامل (مافيهش Tiefenauflösung)، بصح الميزة تاعو الخارقة هي أنه يقدر يقيس سرعات عالية جداً (hohe Geschwindigkeiten) بلا ما يصرى Aliasing.</p>
+
+                    <div class="callout callout-info">
+                        <span class="callout-icon">🔬</span>
+                        <div>
+                            <strong>Technischer Vorteil:</strong> في الـ CW، الـ Probe فيها زوج كريستالات: وحدة تبعت دايماً ووحدة تسمع دايماً. ماكانش وقت انتظار!
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <span class="card-icon">🎯</span>
+                        <span class="card-title">Indikationen</span>
+                    </div>
+                    
+                    <h3>في تضيق الصمامات (Klappenstenosen):</h3>
+                    <ul style="margin-left: 20px;">
+                        <li><strong>Aortenstenose:</strong> نجيبو الـ V<sub>max</sub> ونحسبو الـ Druckgradient (ΔP=4×V²)</li>
+                        <li><strong>Mitralstenose:</strong> نفس المبدأ</li>
+                    </ul>
+
+                    <h3 style="margin-top: 16px;">في ارتجاع الصمامات (Klappeninsuffizienzen):</h3>
+                    <ul style="margin-left: 20px;">
+                        <li><strong>TI:</strong> نقيسو سرعة الـ Jet باش نحسبو ضغط الشريان الرئوي (sPAP)</li>
+                        <li><strong>MI:</strong> نشوفو شكل وكثافة المنحنى (Signaldichte)</li>
+                    </ul>
+                </div>
+
+                <div class="note-container" data-section="cw-doppler">
+                    <button class="add-note-btn" onclick="showNoteForm(this)">
+                        ✏️ Notiz hinzufügen
+                    </button>
+                    <div class="notes-list"></div>
+                </div>
+            </section>
+
+            <!-- FARB-DOPPLER -->
+            <section class="content-section" id="farb-doppler">
+                <h2>🎨 Farb-Doppler (Color Doppler)</h2>
+                
+                <div class="card">
+                    <div class="card-header">
+                        <span class="card-icon">🗺️</span>
+                        <span class="card-title">Das "GPS" der Echokardiographie</span>
+                    </div>
+                    
+                    <p class="ar-text">هذا هو الـ "GPS" تاعنا في الـ Echo. يبينلك اتجاه الدم (أحمر = جاي ليك، أزرق = رايح، حسب قاعدة BART) ويبينلك البلايص لي فيهم turbulenter Fluss.</p>
+
+                    <div class="callout callout-info">
+                        <span class="callout-icon">🎨</span>
+                        <div>
+                            <strong>BART-Regel:</strong><br>
+                            <span style="color: #e03e3e;">● Blue = Away (أزرق = رايح)</span><br>
+                            <span style="color: #e03e3e;">● Red = Toward (أحمر = جاي)</span>
+                        </div>
+                    </div>
+
+                    <h3>Anwendungen:</h3>
+                    <ul style="margin-left: 20px;">
+                        <li>Jets تاع الـ Insuffizienzen visualisieren</li>
+                        <li>Shunts (ASD/VSD) detektieren</li>
+                        <li>Vena contracta messen</li>
+                        <li>PISA-Methode für Schweregrad-Bestimmung</li>
+                    </ul>
+                </div>
+
+                <div class="note-container" data-section="farb-doppler">
+                    <button class="add-note-btn" onclick="showNoteForm(this)">
+                        ✏️ Notiz hinzufügen
+                    </button>
+                    <div class="notes-list"></div>
+                </div>
+            </section>
+
+            <!-- GEWEBE-DOPPLER -->
+            <section class="content-section" id="gewebe-doppler">
+                <h2>💪 Gewebe-Doppler (TDI - Tissue Doppler Imaging)</h2>
+                
+                <div class="card">
+                    <div class="card-header">
+                        <span class="card-icon">🫀</span>
+                        <span class="card-title">Myokardgeschwindigkeiten</span>
+                    </div>
+                    
+                    <p class="ar-text">هذا ما يقيسش سرعة الدم، بل يقيس سرعة حركة عضلة القلب بحد ذاتها (Myokardgeschwindigkeiten). العضلة تتحرك ببطء بصح الإشارة تاعها قوية.</p>
+
+                    <div class="callout callout-success">
+                        <span class="callout-icon">⭐</span>
+                        <div>
+                            <strong>أهم استخدام:</strong> Diastolische Funktion<br>
+                            نحطوه في الـ Mitralklappenring (septal و lateral) باش نقيسو موجة الـ e'. مبعد نقسمو E (تاع الـ PW الدم) على e' (تاع ال TDI العضلة) باش نخرجو الـ <code>E/e' ratio</code>
+                        </div>
+                    </div>
+
+                    <h3>Weitere Anwendungen:</h3>
+                    <ul style="margin-left: 20px;">
+                        <li><strong>E/e' Ratio:</strong> تعطينا فكرة دقيقة على ضغط امتلاء البطين الأيسر (Füllungsdrücke)</li>
+                        <li><strong>RV-Funktion:</strong> قياس موجة s' في الـ Trikuspidalklappenring</li>
+                    </ul>
+                </div>
+
+                <div class="note-container" data-section="gewebe-doppler">
+                    <button class="add-note-btn" onclick="showNoteForm(this)">
+                        ✏️ Notiz hinzufügen
+                    </button>
+                    <div class="notes-list"></div>
+                </div>
+            </section>
+
+            <!-- GOLDENE REGEL -->
+            <section class="content-section">
+                <h2>🌟 Goldene Regel</h2>
+                
+                <div class="card">
+                    <div class="card-header">
+                        <span class="card-icon">💎</span>
+                        <span class="card-title">Entscheidungsmatrix</span>
+                    </div>
+                    
+                    <div class="table-wrapper">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Modalität</th>
+                                    <th>Frage</th>
+                                    <th>Limitation</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>PW</strong></td>
+                                    <td>أين هو الدم؟ (Lokalisation)</td>
+                                    <td>مايقدرش للسرعة العالية</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>CW</strong></td>
+                                    <td>ما هي أقصى سرعة؟ (V<sub>max</sub>)</td>
+                                    <td>مايعرفش البلاصة بالضبط</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Farb</strong></td>
+                                    <td>اتجاه و Turbulenz؟</td>
+                                    <td>Keine quantitative Messung</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>TDI</strong></td>
+                                    <td>Myokard-Bewegung?</td>
+                                    <td>Nur für Gewebe, nicht Blut</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="note-container" data-section="goldene-regel">
+                    <button class="add-note-btn" onclick="showNoteForm(this)">
+                        ✏️ Notiz hinzufügen
+                    </button>
+                    <div class="notes-list"></div>
+                </div>
+            </section>
+
+            <!-- MITRAL INFLOW -->
+            <section class="content-section" id="mitral-inflow">
+                <h2>🔽 Mitralklappen-Inflow</h2>
+                
+                <div class="card">
+                    <div class="card-header">
+                        <span class="card-icon">📉</span>
+                        <span class="card-title">E- und A-Welle</span>
+                        <span class="badge badge-primary">PW-Doppler</span>
+                    </div>
+                    
+                    <p class="ar-text">هنا رانا نشوفو الدم كيفاش يهبط من الأذين الأيسر (LA) للبطين الأيسر (LV) في وقت الانبساط. نحطو الـ PW عند فتحة الصمام في الـ Apikaler 4-Kammerblick.</p>
+
+                    <h3>موجة E (Early filling):</h3>
+                    <p>كي يفتح الصمام التاجي، الدم يهبط بقوة وبسرعة للبطين الأيسر (لخاطر البطين راه فارغ والضغط فيه هابط). في الحالة الطبيعية، هاد الموجة تكون كبيرة.</p>
+
+                    <h3>موجة A (Atrial contraction):</h3>
+                    <p>في نهاية الانبساط، الأذين الأيسر يدير انقباضة باش يعصر الشوية تاع الدم لي بقات فيه. في الحالة الطبيعية، هاد الموجة تكون صغيرة.</p>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <span class="card-icon">⚕️</span>
+                        <span class="card-title">Pathologische Muster</span>
+                    </div>
+                    
+                    <div class="callout callout-warning">
+                        <span class="callout-icon">📊</span>
+                        <div>
+                            <strong>Relaxationsstörung (E < A):</strong><br>
+                            إذا البطين الأيسر ولى يابس وما يترخفش مليح، الدم ما يهبطش بالخف في الأول (الـ E تصغار)، والأذين يولي مضطر يعصر بقوة (الـ A تكبار).
+                        </div>
+                    </div>
+
+                    <div class="callout callout-danger">
+                        <span class="callout-icon">🚨</span>
+                        <div>
+                            <strong>Restriktives Muster (E >> A):</strong><br>
+                            إذا الحالة زادت تعقدت والبطين ولى يابس بزاف والضغط فيه طالع، الدم يضرب بقوة في الأول لخاطر الضغط في الأذين راه عالي بزاف (الـ E تولي ضخمة).
+                        </div>
+                    </div>
+                </div>
+
+                <div class="note-container" data-section="mitral-inflow">
+                    <button class="add-note-btn" onclick="showNoteForm(this)">
+                        ✏️ Notiz hinzufügen
+                    </button>
+                    <div class="notes-list"></div>
+                </div>
+            </section>
+
+            <!-- TRIKUSPIDAL INFLOW -->
+            <section class="content-section" id="trikuspidal-inflow">
+                <h2>🔽 Trikuspidalklappen-Inflow</h2>
+                
+                <div class="card">
+                    <div class="card-header">
+                        <span class="card-icon">🫀</span>
+                        <span class="card-title">Rechtsventrikle Funktion</span>
+                    </div>
+                    
+                    <p class="ar-text">هذا نفس المبدأ 100% تاع الميترال، بصح في الجهة اليمنى تاع القلب. يعني رانا نشوفو الدم كيفاش يهبط من الأذين الأيمن (RA) للبطين الأيمن (RV).</p>
+
+                    <ul style="margin-left: 20px;">
+                        <li><strong>موجة E:</strong> التعبئة السريعة تاع البطين الأيمن</li>
+                        <li><strong>موجة A:</strong> انقباض الأذين الأيمن</li>
+                    </ul>
+
+                    <div class="callout callout-info">
+                        <span class="callout-icon">🔍</span>
+                        <div>
+                            <strong>Klinische Bedeutung:</strong><br>
+                            نستعملوها باش نقيمو الـ Rechtsventrikuläre diastolische Funktion. في حالات Pulmonale Hypertonie ولا Rechtsherzinfarkt، تلقى E < A.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="note-container" data-section="trikuspidal-inflow">
+                    <button class="add-note-btn" onclick="showNoteForm(this)">
+                        ✏️ Notiz hinzufügen
+                    </button>
+                    <div class="notes-list"></div>
+                </div>
+            </section>
+
+            <!-- PULMONALVENENFLUSS -->
+            <section class="content-section" id="pulmonalvenen">
+                <h2>🫁 Pulmonalvenenfluss</h2>
+                
+                <div class="card">
+                    <div class="card-header">
+                        <span class="card-icon">🌊</span>
+                        <span class="card-title">S-, D- und Ar-Welle</span>
+                    </div>
+                    
+                    <p class="ar-text">هنا رانا نرجعو خطوة للوراء. رانا نقيسو سرعة الدم لي راه جاي من الرية وداخل للأذين الأيسر (LA). نحطو الـ PW في الـ Vena pulmonalis (عادة الوريد الرئوي العلوي الأيمن RUPV).</p>
+
+                    <h3>موجة S (Systole):</h3>
+                    <p>في وقت الانقباض تاع البطين (الصمام التاجي مغلوق)، الأذين الأيسر يكون يترخف، تسمى يجبد الدم من الرية. هذي الموجة تكون موجبة (الفوق).</p>
+
+                    <h3>موجة D (Diastole):</h3>
+                    <p>كي يفتح الصمام التاجي، الدم يولي يفوت من الرية، يجوز على الأذين، ويهبط ديريكت للبطين الأيسر. هذي ثاني موجة موجبة.</p>
+
+                    <h3>موجة Ar (Atrial reversal):</h3>
+                    <p>كي الأذين الأيسر ينقبض باش يهبط الدم للبطين، جزء من هاداك الدم يطبع للوراء ويرجع في الأوردة الرئوية. هذي الموجة تجي سالبة (تحت الخط).</p>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <span class="card-icon">⚕️</span>
+                        <span class="card-title">Pathologische Befunde</span>
+                    </div>
+                    
+                    <div class="callout callout-warning">
+                        <span class="callout-icon">📈</span>
+                        <div>
+                            <strong>Diastolische Dysfunktion:</strong><br>
+                            إذا الضغط في البطين الأيسر راه عالي بزاف (erhöhter LVEDP)، تلقى موجة Ar كبيرة بزاف وعريضة في الوقت.
+                        </div>
+                    </div>
+
+                    <div class="callout callout-danger">
+                        <span class="callout-icon">🚨</span>
+                        <div>
+                            <strong>Schwere MI:</strong><br>
+                            في حالة MI شديدة، موجة S تولي سالبة (تحت الخط) - <strong>Systolischer Fluss-Reversal</strong> - علامة خطيرة!
+                        </div>
+                    </div>
+                </div>
+
+                <div class="note-container" data-section="pulmonalvenen">
+                    <button class="add-note-btn" onclick="showNoteForm(this)">
+                        ✏️ Notiz hinzufügen
+                    </button>
+                    <div class="notes-list"></div>
+                </div>
+            </section>
+
+            <!-- LVOT & VTI -->
+            <section class="content-section" id="lvot-vti">
+                <h2>📐 LVOT & VTI (Schlagvolumen-Berechnung)</h2>
+                
+                <div class="card">
+                    <div class="card-header">
+                        <span class="card-icon">📊</span>
+                        <span class="card-title">Velocity Time Integral</span>
+                    </div>
+                    
+                    <p class="ar-text"><strong>واش هو الـ VTI؟</strong> بالعربية هو "تكامل السرعة على الزمن". تخيل حبة تاع دم (Erythrozyt) تخرجت من البطين... الـ VTI يحسبلنا شحال من سنتيمتر مشاتها هاديك الحبة في نبضة وحدة (يسموها Schlagdistanz). عادة تكون بين 18 و 22 cm.</p>
+
+                    <div class="callout callout-success">
+                        <span class="callout-icon">🧮</span>
+                        <div>
+                            <strong>Formel für Schlagvolumen (SV):</strong><br>
+                            <code>SV = Area<sub>LVOT</sub> × VTI<sub>LVOT</sub></code><br><br>
+                            <strong>Herzzeitvolumen (CO):</strong><br>
+                            <code>CO = SV × HF</code>
+                        </div>
+                    </div>
+
+                    <h3>Praktische Schritte:</h3>
+                    <ol style="margin-left: 20px;">
+                        <li>LVOT-Durchmesser messen (PLAX)</li>
+                        <li>Fläche berechnen: π × r²</li>
+                        <li>VTI mit PW-Doppler messen</li>
+                        <li>SV berechnen: Fläche × VTI</li>
+                    </ol>
+                </div>
+
+                <div class="note-container" data-section="lvot-vti">
+                    <button class="add-note-btn" onclick="showNoteForm(this)">
+                        ✏️ Notiz hinzufügen
+                    </button>
+                    <div class="notes-list"></div>
+                </div>
+            </section>
+
+            <!-- KONTINUITÄTSGLEICHUNG -->
+            <section class="content-section" id="kontinuitat">
+                <h2>🔄 Kontinuitätsgleichung</h2>
+                
+                <div class="card">
+                    <div class="card-header">
+                        <span class="card-icon">⚖️</span>
+                        <span class="card-title">Aortenklappenöffnungsfläche (AVA)</span>
+                        <span class="badge badge-warning">Wichtig!</span>
+                    </div>
+                    
+                    <p class="ar-text">هذي أهم معادلة في الكارديولوجيا باش نحسبو مساحة الصمام الأبهري المتضيق (Aortenklappenöffnungsfläche - AVA).</p>
+
+                    <div class="callout callout-info">
+                        <span class="callout-icon">💧</span>
+                        <div>
+                            <strong>Physikalisches Prinzip:</strong><br>
+                            تخيل تيو تاع ماء (Pipe) عريض ومبعد يضيق. كمية الماء لي تجوز في البلاصة العريضة هي نفسها كمية الماء لي تجوز في البلاصة الضيقة. باش يتحقق هاد الشي، الماء لازم يزرب (تزيد سرعتو) كي يلحق للضيق.
+                        </div>
+                    </div>
+
+                    <h3>Gleichung:</h3>
+                    <div style="background: var(--notion-sidebar); padding: 16px; border-radius: 6px; margin: 16px 0;">
+                        <code>Volumen<sub>LVOT</sub> = Volumen<sub>Aortenklappe</sub></code><br><br>
+                        <code>Area<sub>LVOT</sub> × VTI<sub>LVOT</sub> = Area<sub>Aorta</sub> × VTI<sub>Aorta</sub></code><br><br>
+                        <strong>→ AVA = (Area<sub>LVOT</sub> × VTI<sub>LVOT</sub>) / VTI<sub>Aorta</sub></strong>
+                    </div>
+
+                    <h3>Praktische Durchführung:</h3>
+                    <ol style="margin-left: 20px;">
+                        <li>LVOT-Fläche messen (PLAX)</li>
+                        <li>VTI<sub>LVOT</sub> mit <strong>PW</strong> messen</li>
+                        <li>VTI<sub>Aorta</sub> mit <strong>CW</strong> messen (hohe Geschwindigkeit!)</li>
+                        <li>AVA berechnen</li>
+                    </ol>
+
+                    <div class="callout callout-danger">
+                        <span class="callout-icon">⚠️</span>
+                        <div>
+                            <strong>Schwere Stenose:</strong> AVA < 1.0 cm²
+                        </div>
+                    </div>
+                </div>
+
+                <div class="note-container" data-section="kontinuitat">
+                    <button class="add-note-btn" onclick="showNoteForm(this)">
+                        ✏️ Notiz hinzufügen
+                    </button>
+                    <div class="notes-list"></div>
+                </div>
+            </section>
+
+            <!-- RVOT & AT -->
+            <section class="content-section" id="rvot-at">
+                <h2>⚡ RVOT & Akzelerationszeit (AT)</h2>
+                
+                <div class="card">
+                    <div class="card-header">
+                        <span class="card-icon">⏱️</span>
+                        <span class="card-title">Pulmonale Hypertonie Marker</span>
+                    </div>
+                    
+                    <p class="ar-text"><strong>واش هو الـ Akzelerationszeit (AT)؟</strong> هو الوقت لي يستغرقو الدم من بداية خروجو من البطين الأيمن باش يلحق لأقصى سرعة (Peak Velocity).</p>
+
+                    <div class="table-wrapper">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Zustand</th>
+                                    <th>AT-Wert</th>
+                                    <th>Interpretation</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Normal</td>
+                                    <td>> 120 ms</td>
+                                    <td>Normaler pulmonaler Druck</td>
+                                </tr>
+                                <tr>
+                                    <td>Leichte PH</td>
+                                    <td>105-120 ms</td>
+                                    <td>Beginnende pulmonale Hypertonie</td>
+                                </tr>
+                                <tr>
+                                    <td>Schwere PH</td>
+                                    <td>< 105 ms</td>
+                                    <td>Ausgeprägte pulmonale Hypertonie</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <span class="card-icon">📏</span>
+                        <span class="card-title">Praktische Messung</span>
+                    </div>
+                    
+                    <h3>Schritt-für-Schritt Anleitung:</h3>
+                    <ol style="margin-left: 20px;">
+                        <li><strong>Sweep Speed erhöhen:</strong> 100 mm/s (wichtig für Genauigkeit!)</li>
+                        <li>PW-Doppler im RVOT platzieren (PSAX)</li>
+                        <li>Klares Signal gefrieren (Freeze)</li>
+                        <li><strong>Punkt 1:</strong> Beginn der Welle (Basislinie)</li>
+                        <li><strong>Punkt 2:</strong> Peak Velocity (höchster Punkt)</li>
+                        <li>Gerät berechnet AT automatisch</li>
+                    </ol>
+
+                    <div class="callout callout-warning">
+                        <span class="callout-icon">⚡</span>
+                        <div>
+                            <strong>Pro-Tip:</strong> الـ Sweep Speed لـ 100 mm/s باش يكون القياس دقيق. هكذا المنحنى يطوال وتقدر تحدد القمة بالضبط.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <span class="card-icon">📉</span>
+                        <span class="card-title">Mid-systolic Notching</span>
+                        <span class="badge badge-danger">Schwere PH</span>
+                    </div>
+                    
+                    <p class="ar-text">كي يكون الضغط الرئوي عالي بزاف بزاف، الدم يخبط في هاداك الضغط ويرتد شوية. الصمام الرئوي يحب يتغلق في وسط الـ Systole ومبعد يعاود يكمل يفتح!</p>
+
+                    <div class="callout callout-danger">
+                        <span class="callout-icon">⚠️</span>
+                        <div>
+                            <strong>Notching = W-förmige Kurve</strong><br>
+                            هذي ترسمنا دقة (كسرة) في وسط المنحنى شغل حرف W. يعيطولها <strong>Mid-systolic Notching</strong> وهي علامة قاطعة تاع PH قاوية.
+                        </div>
+                    </div>
+
+                    <h3>AT-Messung bei Notching:</h3>
+                    <p>قيس الـ AT دايماً حتى للـ القمة الأولى المبكرة (Erster Peak). ما تروحش للقمة الدوزيام. راح تلقى الـ AT قصير بزاف (عادة أقل من 75 ms).</p>
+                </div>
+
+                <div class="note-container" data-section="rvot-at">
+                    <button class="add-note-btn" onclick="showNoteForm(this)">
+                        ✏️ Notiz hinzufügen
+                    </button>
+                    <div class="notes-list"></div>
+                </div>
+            </section>
+
+            <!-- STENOSEN -->
+            <section class="content-section" id="stenosen">
+                <h2>⚠️ Klappenstenosen (CW-Doppler)</h2>
+                
+                <div class="card">
+                    <div class="card-header">
+                        <span class="card-icon">🧮</span>
+                        <span class="card-title">Bernoulli-Gleichung</span>
+                    </div>
+                    
+                    <div style="background: var(--notion-accent-light); padding: 16px; border-radius: 6px; margin: 16px 0;">
+                        <strong>Vereinfachte Bernoulli-Gleichung:</strong><br><br>
+                        <code style="font-size: 16px;">ΔP = 4 × V²</code><br><br>
+                        <small>ΔP = Druckgradient (mmHg) | V = Maximale Geschwindigkeit (m/s)</small>
+                    </div>
+
+                    <h3>Beispiel Aortenstenose:</h3>
+                    <p>V<sub>max</sub> = 4 m/s → ΔP = 4 × 4² = 4 × 16 = <strong>64 mmHg</strong></p>
+
+                    <div class="callout callout-info">
+                        <span class="callout-icon">📊</span>
+                        <div>
+                            <strong>Wichtig:</strong> الـ Mittlerer Gradient (Mean Gradient) هو الأهم في تقييم خطورة التضيق حسب الـ Leitlinien!
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <span class="card-icon">📋</span>
+                        <span class="card-title">Schweregrad-Einteilung Aortenstenose</span>
+                    </div>
+                    
+                    <div class="table-wrapper">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Schweregrad</th>
+                                    <th>V<sub>max</sub> (m/s)</th>
+                                    <th>Mean Gradient (mmHg)</th>
+                                    <th>AVA (cm²)</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Leicht</td>
+                                    <td>2.6-3.0</td>
+                                    <td>< 25</td>
+                                    <td>> 1.5</td>
+                                </tr>
+                                <tr>
+                                    <td>Mittelgradig</td>
+                                    <td>3.0-4.0</td>
+                                    <td>25-40</td>
+                                    <td>1.0-1.5</td>
+                                </tr>
+                                <tr style="background: #ffe8e8;">
+                                    <td><strong>Schwer</strong></td>
+                                    <td><strong>> 4.0</strong></td>
+                                    <td><strong>> 40</strong></td>
+                                    <td><strong>< 1.0</strong></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="note-container" data-section="stenosen">
+                    <button class="add-note-btn" onclick="showNoteForm(this)">
+                        ✏️ Notiz hinzufügen
+                    </button>
+                    <div class="notes-list"></div>
+                </div>
+            </section>
+
+            <!-- INSUFFIZIENZEN -->
+            <section class="content-section" id="insuffizienzen">
+                <h2>💔 Klappeninsuffizienzen (CW-Doppler)</h2>
+                
+                <div class="card">
+                    <div class="card-header">
+                        <span class="card-icon">🫁</span>
+                        <span class="card-title">Trikuspidalinsuffizienz (TI) → sPAP</span>
+                    </div>
+                    
+                    <p>أهم فايدة هي حساب الـ sPAP (ضغط الشريان الرئوي).</p>
+
+                    <div style="background: var(--notion-sidebar); padding: 16px; border-radius: 6px; margin: 16px 0;">
+                        <strong>Formel:</strong><br><br>
+                        <code>sPAP = 4 × V<sub>TI</sub>² + RAP</code><br><br>
+                        <small>RAP (Right Atrial Pressure) ≈ 5-10 mmHg (je nach IVC-Kollaps)</small>
+                    </div>
+
+                    <div class="callout callout-success">
+                        <span class="callout-icon">✅</span>
+                        <div>
+                            <strong>Normwerte:</strong><br>
+                            sPAP < 35 mmHg = Normal<br>
+                            sPAP 35-45 mmHg = Leichte PH<br>
+                            sPAP > 45 mmHg = Pulmonale Hypertonie
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <span class="card-icon">💔</span>
+                        <span class="card-title">Mitralklappeninsuffizienz (MI)</span>
+                    </div>
+                    
+                    <h3>Beurteilungskriterien:</h3>
+                    <ul style="margin-left: 20px;">
+                        <li><strong>Signaldichte:</strong> نشوفو كثافة المنحنى. إذا أبيض ناصع ومعمر → schwere MI</li>
+                        <li><strong>Jet-Form:</strong> إذا كان فيه حفرة في الوسط (V-wave cutoff) → الأذين ينفجر بالضغط</li>
+                        <li><strong>Farb-Doppler:</strong> Jet-Größe, Vena contracta, PISA</li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <span class="card-icon">🔴</span>
+                        <span class="card-title">Aortenklappeninsuffizienz (AI)</span>
+                    </div>
+                    
+                    <p>نحسبو الـ <strong>Pressure Half Time (PHT)</strong>:</p>
+
+                    <div class="callout callout-danger">
+                        <span class="callout-icon">⚠️</span>
+                        <div>
+                            <strong>Schwere AI:</strong> PHT < 200 ms<br>
+                            معناها الضغوطات تساوات بالخف بين الأبهر والبطين - علامة خطيرة!
+                        </div>
+                    </div>
+                </div>
+
+                <div class="note-container" data-section="insuffizienzen">
+                    <button class="add-note-btn" onclick="showNoteForm(this)">
+                        ✏️ Notiz hinzufügen
+                    </button>
+                    <div class="notes-list"></div>
+                </div>
+            </section>
+
+            <!-- sPAP vs AT -->
+            <section class="content-section" id="spap">
+                <h2>🫀 sPAP vs. AT: Warum beide?</h2>
+                
+                <div class="card">
+                    <div class="card-header">
+                        <span class="card-icon">🤔</span>
+                        <span class="card-title">Komplementäre Information</span>
+                    </div>
+                    
+                    <p class="ar-text">علاش نعيو رواحنا بالـ AT والـ sPAP مع بعض؟ علاش ما نكتفيش بواحد برك؟</p>
+
+                    <p>الجواب هو أنهم يكملو بعضاهم، وكل واحد يعطيك معلومة "مختلفة" من زاوية ثانية.</p>
+
+                    <div class="callout callout-info">
+                        <span class="callout-icon">🌡️</span>
+                        <div>
+                            <strong>Metapher:</strong><br>
+                            sPAP = "Thermometer" (يقولك شحال راهي السخانة)<br>
+                            AT = "Symptome" (يقولك كيفاش الجسم راهو يتعامل مع السخانة)
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <span class="card-icon">📊</span>
+                        <span class="card-title">sPAP - Der Goldstandard</span>
+                    </div>
+                    
+                    <h3>Vorteile:</h3>
+                    <ul style="margin-left: 20px;">
+                        <li>Gibt konkreten Zahlenwert (z.B. 50 mmHg)</li>
+                        <li>Basis für Klassifikation (leicht/mittel/schwer)</li>
+                        <li>Dokumentierbar und vergleichbar</li>
+                    </ul>
+
+                    <div class="callout callout-warning">
+                        <span class="callout-icon">⚠️</span>
+                        <div>
+                            <strong>Limitation:</strong><br>
+                            Benötigt TI (Trikuspidalinsuffizienz) mit gutem Signal. Bei 10-20% der Patienten nicht messbar!
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <span class="card-icon">⏱️</span>
+                        <span class="card-title">AT - Der Lebensretter</span>
+                    </div>
+                    
+                    <h3>Vorteile:</h3>
+                    <ul style="margin-left: 20px;">
+                        <li><strong>Immer messbar:</strong> PW im RVOT funktioniert immer!</li>
+                        <li><strong>Misst PVR:</strong> Pulmonary Vascular Resistance (Gefäßwiderstand)</li>
+                        <li><strong>Notching:</strong> Spezifisches Zeichen für schwere PH</li>
+                    </ul>
+
+                    <div class="callout callout-success">
+                        <span class="callout-icon">🎯</span>
+                        <div>
+                            <strong>Klinischer Wert:</strong><br>
+                            Wenn keine TI vorhanden → AT ist die einzige Methode zur PH-Detektion!
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <span class="card-icon">✅</span>
+                        <span class="card-title">Validation durch Kombination</span>
+                    </div>
+                    
+                    <div class="table-wrapper">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>sPAP</th>
+                                    <th>AT</th>
+                                    <th>Interpretation</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>60 mmHg ↑</td>
+                                    <td>70 ms ↓</td>
+                                    <td>✅ Konsistent: Schwere PH bestätigt</td>
+                                </tr>
+                                <tr>
+                                    <td>60 mmHg ↑</td>
+                                    <td>140 ms (normal)</td>
+                                    <td>❌ Inkonsistent: Messfehler! Wiederholen!</td>
+                                </tr>
+                                <tr>
+                                    <td>Nicht messbar</td>
+                                    <td>75 ms ↓ + Notching</td>
+                                    <td>✅ AT allein diagnostisch für PH</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="callout callout-success">
+                    <span class="callout-icon">💎</span>
+                    <div>
+                        <strong>خلاصة يا دكتور أسامة:</strong><br>
+                        الـ sPAP يعطيك الكمية (Quantity)<br>
+                        الـ AT يعطيك النوعية (Quality) والبديل في حالة غياب الـ TR
+                    </div>
+                </div>
+
+                <div class="note-container" data-section="spap">
+                    <button class="add-note-btn" onclick="showNoteForm(this)">
+                        ✏️ Notiz hinzufügen
+                    </button>
+                    <div class="notes-list"></div>
+                </div>
+            </section>
+
+            <!-- ZUSAMMENFASSUNG -->
+            <section class="content-section">
+                <h2>📚 Klinische Zusammenfassung</h2>
+                
+                <div class="card">
+                    <div class="card-header">
+                        <span class="card-icon">📋</span>
+                        <span class="card-title">Was schreibe ich in den Befund?</span>
+                    </div>
+                    
+                    <div class="table-wrapper">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Tool</th>
+                                    <th>Messung</th>
+                                    <th>Klinische Entscheidung</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>PW</strong></td>
+                                    <td>Mitral E/A</td>
+                                    <td>Diastolische Dysfunktion vorhanden?</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>PW</strong></td>
+                                    <td>Pulmonalvenen</td>
+                                    <td>Sind Füllungsdrücke erhöht?</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>CW</strong></td>
+                                    <td>Aorten V<sub>max</sub>/MG</td>
+                                    <td>Braucht Patient Klappenersatz-OP?</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>CW</strong></td>
+                                    <td>Trikuspidal V<sub>max</sub></td>
+                                    <td>Liegt pulmonale Hypertonie vor?</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>CW</strong></td>
+                                    <td>AI PHT</td>
+                                    <td>Ist Aorteninsuffizienz schwer?</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>PW</strong></td>
+                                    <td>RVOT AT</td>
+                                    <td>Alternative PH-Marker bei fehlender TI</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="callout callout-success">
+                    <span class="callout-icon">🎓</span>
+                    <div class="ar-text">
+                        <strong>يا دكتور، هاد السؤال هو اللي يحولك من مجرد "تكنسيان" يعرف يحرك الـ Probe، إلى طبيب كارديلوجي يعرف يقرأ لغة القلب.</strong><br><br>
+                        الـ Doppler هو الميزان تاعك؛ الـ PW يقيسلك "نوعية التعمار" (Filling/Diastole)، والـ CW يقيسلك "شدة الضغط والمرض" (Pressure/Severity).
+                    </div>
+                </div>
+
+                <div class="note-container" data-section="zusammenfassung">
+                    <button class="add-note-btn" onclick="showNoteForm(this)">
+                        ✏️ Notiz hinzufügen
+                    </button>
+                    <div class="notes-list"></div>
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <script>
+        // ==================== MOBILE NAVIGATION ====================
+        const hamburger = document.getElementById('hamburger');
+        const sidebar = document.getElementById('sidebar');
+        const sidebarOverlay = document.getElementById('sidebarOverlay');
+        const navLinks = document.querySelectorAll('.nav-link');
+
+        function toggleSidebar() {
+            hamburger.classList.toggle('active');
+            sidebar.classList.toggle('active');
+            sidebarOverlay.classList.toggle('active');
+        }
+
+        hamburger.addEventListener('click', toggleSidebar);
+        sidebarOverlay.addEventListener('click', toggleSidebar);
+
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                if (window.innerWidth <= 768) {
+                    toggleSidebar();
+                }
+            });
+        });
+
+        // ==================== SMOOTH SCROLL & ACTIVE NAV ====================
+        navLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                const href = link.getAttribute('href');
+                if (href.startsWith('#')) {
+                    e.preventDefault();
+                    const target = document.querySelector(href);
+                    if (target) {
+                        const headerOffset = 80;
+                        const elementPosition = target.getBoundingClientRect().top;
+                        const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+                        window.scrollTo({
+                            top: offsetPosition,
+                            behavior: 'smooth'
+                        });
+
+                        navLinks.forEach(l => l.classList.remove('active'));
+                        link.classList.add('active');
+                    }
+                }
+            });
+        });
+
+        // ==================== NOTES SYSTEM ====================
+        // Load notes from localStorage
+        let allNotes = JSON.parse(localStorage.getItem('echoNotes') || '{}');
+
+        function saveNotes() {
+            localStorage.setItem('echoNotes', JSON.stringify(allNotes));
+        }
+
+        function formatDate(date) {
+            const d = new Date(date);
+            return d.toLocaleDateString('de-DE', { 
+                day: '2-digit', 
+                month: '2-digit', 
+                year: 'numeric',
+                hour: '2-digit',
+                minute: '2-digit'
+            });
+        }
+
+        function renderNotes(section) {
+            const container = document.querySelector(`[data-section="${section}"] .notes-list`);
+            if (!container) return;
+
+            const sectionNotes = allNotes[section] || [];
+            
+            if (sectionNotes.length === 0) {
+                container.innerHTML = '';
+                return;
+            }
+
+            container.innerHTML = sectionNotes.map((note, index) => `
+                <div class="note-item">
+                    <div class="note-header">
+                        <span class="note-timestamp">${formatDate(note.timestamp)}</span>
+                        <div class="note-actions">
+                            <button class="note-btn" onclick="editNote('${section}', ${index})">✏️ Bearbeiten</button>
+                            <button class="note-btn" onclick="deleteNote('${section}', ${index})">🗑️ Löschen</button>
+                        </div>
+                    </div>
+                    <div class="note-content">${note.content.replace(/\n/g, '<br>')}</div>
+                </div>
+            `).join('');
+        }
+
+        function showNoteForm(button) {
+            const container = button.parentElement;
+            const section = container.dataset.section;
+            
+            // Remove any existing form
+            const existingForm = container.querySelector('.note-form');
+            if (existingForm) {
+                existingForm.remove();
+                return;
+            }
+
+            const form = document.createElement('div');
+            form.className = 'note-form';
+            form.innerHTML = `
+                <textarea class="note-input" placeholder="Ihre Notiz hier eingeben..."></textarea>
+                <div class="note-form-actions">
+                    <button class="btn btn-primary" onclick="saveNote('${section}', this)">💾 Speichern</button>
+                    <button class="btn btn-secondary" onclick="cancelNote(this)">❌ Abbrechen</button>
+                </div>
+            `;
+            
+            button.insertAdjacentElement('afterend', form);
+            form.querySelector('.note-input').focus();
+        }
+
+        function saveNote(section, button) {
+            const form = button.closest('.note-form');
+            const textarea = form.querySelector('.note-input');
+            const content = textarea.value.trim();
+
+            if (!content) {
+                alert('Bitte geben Sie eine Notiz ein.');
+                return;
+            }
+
+            if (!allNotes[section]) {
+                allNotes[section] = [];
+            }
+
+            allNotes[section].unshift({
+                content: content,
+                timestamp: new Date().toISOString()
+            });
+
+            saveNotes();
+            renderNotes(section);
+            form.remove();
+        }
+
+        function cancelNote(button) {
+            button.closest('.note-form').remove();
+        }
+
+        function editNote(section, index) {
+            const note = allNotes[section][index];
+            const container = document.querySelector(`[data-section="${section}"]`);
+            
+            // Remove existing form if any
+            const existingForm = container.querySelector('.note-form');
+            if (existingForm) existingForm.remove();
+
+            const form = document.createElement('div');
+            form.className = 'note-form';
+            form.innerHTML = `
+                <textarea class="note-input">${note.content}</textarea>
+                <div class="note-form-actions">
+                    <button class="btn btn-primary" onclick="updateNote('${section}', ${index}, this)">💾 Aktualisieren</button>
+                    <button class="btn btn-secondary" onclick="cancelNote(this)">❌ Abbrechen</button>
+                </div>
+            `;
+            
+            container.querySelector('.add-note-btn').insertAdjacentElement('afterend', form);
+            form.querySelector('.note-input').focus();
+        }
+
+        function updateNote(section, index, button) {
+            const form = button.closest('.note-form');
+            const textarea = form.querySelector('.note-input');
+            const content = textarea.value.trim();
+
+            if (!content) {
+                alert('Bitte geben Sie eine Notiz ein.');
+                return;
+            }
+
+            allNotes[section][index] = {
+                content: content,
+                timestamp: new Date().toISOString()
+            };
+
+            saveNotes();
+            renderNotes(section);
+            form.remove();
+        }
+
+        function deleteNote(section, index) {
+            if (confirm('Möchten Sie diese Notiz wirklich löschen?')) {
+                allNotes[section].splice(index, 1);
+                if (allNotes[section].length === 0) {
+                    delete allNotes[section];
+                }
+                saveNotes();
+                renderNotes(section);
+            }
+        }
+
+        // Initialize all notes on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('[data-section]').forEach(container => {
+                const section = container.dataset.section;
+                renderNotes(section);
+            });
+        });
+
+        // ==================== INTERSECTION OBSERVER FOR ANIMATIONS ====================
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry, index) => {
+                if (entry.isIntersecting) {
+                    setTimeout(() => {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }, index * 100);
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.content-section').forEach(section => {
+            observer.observe(section);
+        });
+    </script>
+
+<script src="../assets/nav.js"></script>
+</body>
+</html>

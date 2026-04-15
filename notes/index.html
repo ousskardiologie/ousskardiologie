@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>✏️ Meine Notizen — Kardiologie</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;600;700&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #ffffff;
+  --surface: #f7f6f3;
+  --surface2: #eeede9;
+  --border: #e9e9e7;
+  --text: #37352f;
+  --text2: #787774;
+  --text3: #a9a9a6;
+  --accent: #2383e2;
+  --accent-bg: #e8f3fc;
+  --red: #e03e3e;
+  --red-bg: #fdf2f2;
+  --red-border: #fbd5d5;
+  --green: #0f7b6c;
+  --green-bg: #edfaf7;
+  --green-border: #a8e6de;
+  --amber: #d9730d;
+  --amber-bg: #fef3e8;
+  --amber-border: #fcd9b3;
+  --purple: #9065b0;
+  --purple-bg: #f5f0f9;
+  --purple-border: #dfc8ef;
+  --darija-bg: #fef9f3;
+  --darija-border: #f0ddc8;
+  --darija-text: #5c3d1a;
+  --font: 'DM Sans', -apple-system, sans-serif;
+  --font-display: 'Lora', Georgia, serif;
+  --radius: 10px;
+  --shadow: 0 2px 8px rgba(0,0,0,.06);
+  --shadow-md: 0 4px 20px rgba(0,0,0,.08);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { font-family: var(--font); background: var(--bg); color: var(--text); font-size: 15px; line-height: 1.7; }
+
+/* ── TOPNAV ── */
+.topnav {
+  position: sticky; top: 0; z-index: 100; height: 52px;
+  background: rgba(255,255,255,.97); backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  display: flex; align-items: center; padding: 0 2rem; gap: 8px;
+}
+.topnav .brand { font-family: var(--font-display); font-weight: 700; font-size: 17px; color: var(--red); text-decoration: none; margin-right: 6px; }
+.topnav a { display: flex; align-items: center; gap: 6px; padding: 5px 12px; border-radius: 6px; text-decoration: none; color: var(--text2); font-size: 14px; font-weight: 500; transition: background .15s, color .15s; }
+.topnav a:hover { background: var(--surface); color: var(--text); }
+.topnav .active-link { background: var(--amber-bg); color: var(--amber) !important; }
+.topnav .spacer { flex: 1; }
+
+/* ── LAYOUT ── */
+.page { display: flex; min-height: calc(100vh - 52px); }
+
+/* ── SIDEBAR ── */
+.sidebar {
+  width: 260px; flex-shrink: 0;
+  background: var(--surface); border-right: 1px solid var(--border);
+  display: flex; flex-direction: column;
+  position: sticky; top: 52px; height: calc(100vh - 52px); overflow-y: auto;
+}
+.sidebar-header { padding: 1.2rem 1.2rem .8rem; border-bottom: 1px solid var(--border); }
+.sidebar-header h2 { font-family: var(--font-display); font-size: 16px; font-weight: 700; margin-bottom: .3rem; }
+.sidebar-header p { font-size: 12px; color: var(--text3); }
+.new-note-btn {
+  display: flex; align-items: center; justify-content: center; gap: 8px;
+  width: calc(100% - 2rem); margin: .8rem 1rem;
+  padding: .6rem 1rem; background: var(--accent); color: white;
+  border: none; border-radius: 8px; font-size: 14px; font-weight: 600;
+  cursor: pointer; font-family: var(--font); transition: background .15s;
+}
+.new-note-btn:hover { background: #1a6fc4; }
+
+.filter-bar { padding: .4rem 1rem .6rem; display: flex; flex-wrap: wrap; gap: 6px; border-bottom: 1px solid var(--border); }
+.filter-btn { padding: 3px 10px; border-radius: 20px; font-size: 12px; font-weight: 600; border: 1px solid var(--border); background: var(--bg); color: var(--text2); cursor: pointer; transition: all .15s; }
+.filter-btn:hover, .filter-btn.active { background: var(--accent-bg); color: var(--accent); border-color: #bfdbfe; }
+.filter-btn.cat-echo.active { background: var(--accent-bg); color: var(--accent); border-color: #bfdbfe; }
+.filter-btn.cat-doppler.active { background: var(--green-bg); color: var(--green); border-color: var(--green-border); }
+.filter-btn.cat-ekg.active { background: var(--red-bg); color: var(--red); border-color: var(--red-border); }
+.filter-btn.cat-klinik.active { background: var(--purple-bg); color: var(--purple); border-color: var(--purple-border); }
+.filter-btn.cat-darija.active { background: var(--darija-bg); color: var(--darija-text); border-color: var(--darija-border); }
+
+.note-list { flex: 1; overflow-y: auto; padding: .5rem 0; }
+.note-item {
+  padding: .7rem 1.2rem; cursor: pointer; border-left: 3px solid transparent;
+  transition: background .12s, border-color .12s; border-bottom: 1px solid var(--border);
+}
+.note-item:hover { background: var(--surface2); }
+.note-item.active { background: var(--accent-bg); border-left-color: var(--accent); }
+.note-item-title { font-weight: 600; font-size: 14px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; margin-bottom: 3px; }
+.note-item-meta { font-size: 11.5px; color: var(--text3); display: flex; gap: 6px; align-items: center; }
+.note-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+.note-item-photo { font-size: 10px; }
+
+.empty-list { padding: 2rem 1.2rem; text-align: center; color: var(--text3); font-size: 13px; }
+.empty-list .emoji { font-size: 32px; display: block; margin-bottom: .5rem; }
+
+/* ── MAIN ── */
+.main { flex: 1; min-width: 0; }
+
+/* ── EDITOR ── */
+.editor {
+  max-width: 760px; margin: 0 auto; padding: 3rem 3rem 6rem;
+  animation: fadein .3s ease;
+}
+.editor-header { margin-bottom: 2rem; }
+
+.title-input {
+  width: 100%; border: none; outline: none; background: transparent;
+  font-family: var(--font-display); font-size: 2.4rem; font-weight: 700;
+  color: var(--text); line-height: 1.2; margin-bottom: 1rem;
+  resize: none; overflow: hidden; min-height: 60px;
+}
+.title-input::placeholder { color: var(--text3); }
+
+/* color selector */
+.color-row { display: flex; gap: 8px; margin-bottom: 1rem; align-items: center; flex-wrap: wrap; }
+.color-row label { font-size: 12px; font-weight: 600; color: var(--text3); margin-right: 4px; text-transform: uppercase; letter-spacing: .06em; }
+.color-dot {
+  width: 22px; height: 22px; border-radius: 50%; border: 2px solid transparent;
+  cursor: pointer; transition: transform .15s;
+}
+.color-dot:hover, .color-dot.selected { transform: scale(1.2); border-color: var(--text); }
+.color-dot.c-white { background: #fff; border-color: var(--border) !important; }
+.color-dot.c-yellow { background: #fefce8; }
+.color-dot.c-blue { background: #e8f3fc; }
+.color-dot.c-green { background: #edfaf7; }
+.color-dot.c-red { background: #fdf2f2; }
+.color-dot.c-purple { background: #f5f0f9; }
+.color-dot.c-darija { background: var(--darija-bg); }
+
+/* category + effect row */
+.meta-row { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 1.2rem; }
+.meta-select {
+  padding: 5px 10px; border: 1px solid var(--border); border-radius: 6px;
+  background: var(--surface); color: var(--text); font-family: var(--font);
+  font-size: 13px; font-weight: 500; cursor: pointer; outline: none;
+}
+
+/* effect chips */
+.effect-chip {
+  padding: 4px 12px; border-radius: 20px; border: 1px solid var(--border);
+  background: var(--surface); font-size: 12px; font-weight: 600; cursor: pointer;
+  font-family: var(--font); transition: all .15s; color: var(--text2);
+}
+.effect-chip:hover { border-color: var(--accent); color: var(--accent); }
+.effect-chip.on { background: var(--accent-bg); border-color: #bfdbfe; color: var(--accent); }
+
+/* photo area */
+.photo-zone {
+  border: 2px dashed var(--border); border-radius: var(--radius);
+  padding: 1.2rem; text-align: center; cursor: pointer; color: var(--text3);
+  font-size: 14px; transition: border-color .2s, background .2s;
+  margin-bottom: 1.2rem; position: relative;
+}
+.photo-zone:hover { border-color: var(--accent); background: var(--accent-bg); }
+.photo-zone input[type=file] { position: absolute; inset: 0; opacity: 0; cursor: pointer; }
+.photo-grid { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 1.2rem; }
+.photo-thumb { position: relative; width: 120px; height: 90px; border-radius: 8px; overflow: hidden; border: 1px solid var(--border); }
+.photo-thumb img { width: 100%; height: 100%; object-fit: cover; }
+.photo-thumb .del-btn { position: absolute; top: 4px; right: 4px; background: rgba(0,0,0,.5); color: white; border: none; border-radius: 50%; width: 20px; height: 20px; font-size: 12px; cursor: pointer; display: flex; align-items: center; justify-content: center; }
+
+/* text area */
+.note-textarea {
+  width: 100%; min-height: 220px; border: 1px solid var(--border); border-radius: var(--radius);
+  padding: 1rem 1.2rem; font-family: var(--font); font-size: 15px; line-height: 1.75;
+  color: var(--text); background: var(--bg); outline: none; resize: vertical;
+  transition: border-color .2s;
+}
+.note-textarea:focus { border-color: var(--accent); }
+.note-textarea::placeholder { color: var(--text3); }
+
+/* darija toggle */
+.darija-toggle-btn {
+  display: flex; align-items: center; gap: 8px; padding: 6px 14px;
+  background: var(--darija-bg); border: 1px solid var(--darija-border);
+  color: var(--darija-text); border-radius: 20px; font-size: 13px; font-weight: 600;
+  cursor: pointer; font-family: var(--font); transition: background .15s; margin-bottom: 10px;
+}
+.darija-toggle-btn:hover { background: #fdefd8; }
+.darija-area {
+  width: 100%; min-height: 100px; border: 1px solid var(--darija-border); border-radius: var(--radius);
+  padding: 1rem 1.2rem; font-family: var(--font); font-size: 15px; line-height: 1.75;
+  color: var(--darija-text); background: var(--darija-bg); outline: none; resize: vertical;
+  direction: rtl; display: none; margin-bottom: 10px; transition: border-color .2s;
+}
+.darija-area.show { display: block; }
+.darija-area:focus { border-color: var(--darija-text); }
+
+/* action row */
+.action-row { display: flex; gap: 10px; align-items: center; margin-top: 1.2rem; }
+.save-btn {
+  padding: 9px 22px; background: var(--accent); color: white; border: none;
+  border-radius: 8px; font-size: 15px; font-weight: 600; cursor: pointer; font-family: var(--font);
+  transition: background .15s; display: flex; align-items: center; gap: 7px;
+}
+.save-btn:hover { background: #1a6fc4; }
+.save-btn.saved { background: var(--green); }
+.del-note-btn {
+  padding: 9px 16px; background: var(--red-bg); color: var(--red); border: 1px solid var(--red-border);
+  border-radius: 8px; font-size: 14px; font-weight: 600; cursor: pointer; font-family: var(--font);
+  transition: background .15s; margin-left: auto;
+}
+.del-note-btn:hover { background: #fbd5d5; }
+
+/* ── RENDERED NOTE ── */
+.note-rendered {
+  border: 1px solid var(--border); border-radius: 12px; padding: 2rem;
+  margin-bottom: 2rem; transition: box-shadow .2s;
+}
+.note-rendered:hover { box-shadow: var(--shadow-md); }
+.note-rendered h2 { font-family: var(--font-display); font-size: 1.6rem; font-weight: 700; margin-bottom: 1rem; }
+.rendered-body { font-size: 15px; line-height: 1.8; white-space: pre-wrap; }
+.rendered-darija {
+  margin-top: 1rem; background: var(--darija-bg); border: 1px solid var(--darija-border);
+  border-radius: var(--radius); padding: .8rem 1rem; color: var(--darija-text);
+  direction: rtl; font-size: 14.5px; line-height: 1.8; white-space: pre-wrap;
+}
+.rendered-photos { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 1rem; }
+.rendered-photos img { width: 180px; height: 130px; object-fit: cover; border-radius: 8px; border: 1px solid var(--border); cursor: pointer; transition: transform .2s; }
+.rendered-photos img:hover { transform: scale(1.03); }
+.note-meta { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; margin-top: .8rem; }
+.note-meta .tag { display: inline-flex; align-items: center; gap: 4px; padding: 2px 10px; border-radius: 20px; font-size: 11.5px; font-weight: 600; border: 1px solid; }
+.note-meta time { font-size: 12px; color: var(--text3); margin-left: auto; }
+
+/* ── EFFECTS ── */
+.note-rendered.fx-highlight { border-left: 4px solid var(--amber); }
+.note-rendered.fx-important { border: 2px solid var(--red); background: var(--red-bg); }
+.note-rendered.fx-glow { box-shadow: 0 0 0 3px rgba(35,131,226,.15), var(--shadow-md); }
+.note-rendered.fx-starred h2::before { content: "⭐ "; }
+.note-rendered.fx-done h2::before { content: "✅ "; opacity: .8; }
+
+/* ── WELCOME ── */
+.welcome { max-width: 760px; margin: 0 auto; padding: 4rem 3rem; text-align: center; }
+.welcome h2 { font-family: var(--font-display); font-size: 1.8rem; margin-bottom: 1rem; color: var(--text2); }
+.welcome p { color: var(--text3); font-size: 15px; line-height: 1.7; }
+.welcome .big-emoji { font-size: 64px; display: block; margin-bottom: 1rem; animation: float 4s ease-in-out infinite; }
+
+/* ── LIGHTBOX ── */
+.lightbox { display: none; position: fixed; inset: 0; background: rgba(0,0,0,.85); z-index: 9999; align-items: center; justify-content: center; }
+.lightbox.open { display: flex; }
+.lightbox img { max-width: 90vw; max-height: 85vh; border-radius: 8px; }
+.lightbox-close { position: absolute; top: 20px; right: 20px; color: white; font-size: 28px; cursor: pointer; background: none; border: none; }
+
+@keyframes fadein { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+@keyframes float { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
+
+@media (max-width: 680px) {
+  .sidebar { display: none; }
+  .editor { padding: 2rem 1.5rem 4rem; }
+  .title-input { font-size: 1.8rem; }
+}
+</style>
+</head>
+<body>
+
+<!-- TOP NAV -->
+<nav class="topnav">
+  <a href="../index.html" class="brand">🫀 Kardiologie</a>
+  <a href="../echo/index.html">📡 Echo</a>
+  <a href="../doppler/index.html">🔊 Doppler</a>
+  <div class="spacer"></div>
+  <a href="#" class="active-link">✏️ Notizen</a>
+</nav>
+
+<div class="page">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="sidebar-header">
+      <h2>✏️ Meine Notizen</h2>
+      <p id="note-count-label">Lädt…</p>
+    </div>
+    <button class="new-note-btn" onclick="newNote()">＋ Neue Notiz</button>
+    <div class="filter-bar">
+      <button class="filter-btn active" data-cat="all" onclick="setFilter('all',this)">Alle</button>
+      <button class="filter-btn cat-echo" data-cat="Echo" onclick="setFilter('Echo',this)">📡 Echo</button>
+      <button class="filter-btn cat-doppler" data-cat="Doppler" onclick="setFilter('Doppler',this)">🔊 Doppler</button>
+      <button class="filter-btn cat-ekg" data-cat="EKG" onclick="setFilter('EKG',this)">🫀 EKG</button>
+      <button class="filter-btn cat-klinik" data-cat="Klinik" onclick="setFilter('Klinik',this)">🏥 Klinik</button>
+      <button class="filter-btn cat-darija" data-cat="Darija" onclick="setFilter('Darija',this)">🇩🇿 دارجة</button>
+    </div>
+    <div class="note-list" id="note-list"></div>
+  </aside>
+
+  <!-- MAIN -->
+  <main class="main" id="main-area">
+    <div class="welcome" id="welcome-screen">
+      <span class="big-emoji">✏️</span>
+      <h2>Willkommen in deinen Notizen</h2>
+      <p>Erstelle persönliche Lernnotizen mit Text, Fotos, Farben und Effekten.<br>Alles wird direkt in deinem Browser gespeichert.</p>
+      <br><br>
+      <button class="new-note-btn" style="margin:0 auto;max-width:220px" onclick="newNote()">＋ Erste Notiz erstellen</button>
+    </div>
+  </main>
+</div>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox" onclick="closeLightbox()">
+  <button class="lightbox-close" onclick="closeLightbox()">✕</button>
+  <img id="lightbox-img" src="" alt="">
+</div>
+
+<script>
+// ── DATA ──────────────────────────────────────────────────────────────
+const STORAGE_KEY = 'kardi_notes';
+
+function loadNotes() {
+  try { return JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]'); } catch { return []; }
+}
+function saveNotes(arr) {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(arr));
+}
+
+let notes = loadNotes();
+let currentId = null;
+let currentFilter = 'all';
+let editPhotos = []; // base64 strings
+
+// ── RENDER LIST ──────────────────────────────────────────────────────
+function renderList() {
+  const list = document.getElementById('note-list');
+  const count = document.getElementById('note-count-label');
+  const filtered = currentFilter === 'all' ? notes : notes.filter(n => n.category === currentFilter);
+  count.textContent = `${notes.length} Notiz${notes.length !== 1 ? 'en' : ''}`;
+
+  if (filtered.length === 0) {
+    list.innerHTML = '<div class="empty-list"><span class="emoji">📭</span>Keine Notizen gefunden</div>';
+    return;
+  }
+  list.innerHTML = filtered.map(n => {
+    const col = colorLabel(n.color);
+    return `<div class="note-item${n.id === currentId ? ' active' : ''}" onclick="openNote('${n.id}')">
+      <div class="note-item-title">${escHtml(n.title || 'Ohne Titel')}</div>
+      <div class="note-item-meta">
+        <span class="note-dot" style="background:${col}"></span>
+        <span>${n.category || 'Allgemein'}</span>
+        ${n.photos && n.photos.length ? `<span class="note-item-photo">📷 ${n.photos.length}</span>` : ''}
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function colorLabel(c) {
+  const map = { 'c-yellow':'#fef08a','c-blue':'#93c5fd','c-green':'#6ee7b7','c-red':'#fca5a5','c-purple':'#d8b4fe','c-darija':'#fcd9b3','c-white':'#e9e9e7' };
+  return map[c] || '#e9e9e7';
+}
+
+// ── FILTER ───────────────────────────────────────────────────────────
+function setFilter(cat, btn) {
+  currentFilter = cat;
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  renderList();
+}
+
+// ── NEW NOTE ─────────────────────────────────────────────────────────
+function newNote() {
+  const id = 'n' + Date.now();
+  const note = { id, title: '', body: '', darija: '', category: 'Echo', color: 'c-white', effects: [], photos: [], created: new Date().toISOString() };
+  notes.unshift(note);
+  saveNotes(notes);
+  openNote(id);
+}
+
+// ── OPEN NOTE ────────────────────────────────────────────────────────
+function openNote(id) {
+  currentId = id;
+  const note = notes.find(n => n.id === id);
+  if (!note) return;
+  renderList();
+  document.getElementById('welcome-screen')?.remove();
+  renderEditor(note);
+}
+
+function renderEditor(note) {
+  editPhotos = note.photos ? [...note.photos] : [];
+  const main = document.getElementById('main-area');
+  main.innerHTML = `
+  <div class="editor" id="editor">
+    <textarea class="title-input" id="edit-title" placeholder="Titel der Notiz…" rows="1" oninput="autoResize(this)">${escHtml(note.title)}</textarea>
+
+    <div class="color-row">
+      <label>Farbe</label>
+      ${['c-white','c-yellow','c-blue','c-green','c-red','c-purple','c-darija'].map(c =>
+        `<span class="color-dot ${c}${note.color===c?' selected':''}" onclick="selectColor('${c}',this)" title="${c}"></span>`
+      ).join('')}
+    </div>
+
+    <div class="meta-row">
+      <select class="meta-select" id="edit-cat">
+        ${['Echo','Doppler','EKG','Klinik','Darija','Allgemein'].map(c =>
+          `<option${note.category===c?' selected':''}>${c}</option>`
+        ).join('')}
+      </select>
+      <span style="font-size:12px;color:var(--text3);margin:0 4px">Effekte:</span>
+      ${['highlight','important','glow','starred','done'].map(fx =>
+        `<button class="effect-chip${note.effects&&note.effects.includes(fx)?' on':''}" onclick="toggleFx('${fx}',this)">${fxLabel(fx)}</button>`
+      ).join('')}
+    </div>
+
+    <div class="photo-zone" id="photo-zone">
+      📷 Foto hinzufügen — klicken oder Bild ziehen
+      <input type="file" accept="image/*" multiple onchange="addPhotos(event)">
+    </div>
+    <div class="photo-grid" id="photo-grid"></div>
+
+    <textarea class="note-textarea" id="edit-body" placeholder="Schreibe hier deine Notiz auf Deutsch… (Klinik, Messwerte, Zusammenfassung, etc.)">${escHtml(note.body)}</textarea>
+
+    <button class="darija-toggle-btn" onclick="toggleDarija()">🇩🇿 Darija-Notiz hinzufügen / بالدارجة</button>
+    <textarea class="darija-area${note.darija ? ' show':''}" id="edit-darija" placeholder="ملاحظاتك بالدارجة…">${escHtml(note.darija)}</textarea>
+
+    <div class="action-row">
+      <button class="save-btn" id="save-btn" onclick="saveNote()">💾 Speichern</button>
+      <button class="del-note-btn" onclick="deleteNote()">🗑 Löschen</button>
+    </div>
+  </div>`;
+
+  autoResize(document.getElementById('edit-title'));
+  renderPhotoGrid();
+}
+
+function fxLabel(fx) {
+  return { highlight:'🟡 Wichtig', important:'🔴 Kritisch', glow:'✨ Hervorheben', starred:'⭐ Favorit', done:'✅ Erledigt' }[fx] || fx;
+}
+
+function autoResize(el) { el.style.height = 'auto'; el.style.height = el.scrollHeight + 'px'; }
+
+function selectColor(c, el) {
+  document.querySelectorAll('.color-dot').forEach(d => d.classList.remove('selected'));
+  el.classList.add('selected');
+}
+
+function toggleFx(fx, btn) { btn.classList.toggle('on'); }
+
+function toggleDarija() {
+  document.getElementById('edit-darija').classList.toggle('show');
+}
+
+// ── PHOTOS ───────────────────────────────────────────────────────────
+function addPhotos(e) {
+  const files = Array.from(e.target.files);
+  files.forEach(f => {
+    const reader = new FileReader();
+    reader.onload = ev => {
+      editPhotos.push(ev.target.result);
+      renderPhotoGrid();
+    };
+    reader.readAsDataURL(f);
+  });
+}
+
+function renderPhotoGrid() {
+  const grid = document.getElementById('photo-grid');
+  if (!grid) return;
+  grid.innerHTML = editPhotos.map((src, i) => `
+    <div class="photo-thumb">
+      <img src="${src}" alt="Foto ${i+1}">
+      <button class="del-btn" onclick="removePhoto(${i})">✕</button>
+    </div>`).join('');
+}
+
+function removePhoto(i) { editPhotos.splice(i, 1); renderPhotoGrid(); }
+
+// ── SAVE NOTE ────────────────────────────────────────────────────────
+function saveNote() {
+  const note = notes.find(n => n.id === currentId);
+  if (!note) return;
+  note.title = document.getElementById('edit-title').value;
+  note.body = document.getElementById('edit-body').value;
+  note.darija = document.getElementById('edit-darija').value;
+  note.category = document.getElementById('edit-cat').value;
+  note.photos = [...editPhotos];
+  note.updated = new Date().toISOString();
+  // Color
+  const sel = document.querySelector('.color-dot.selected');
+  if (sel) note.color = [...sel.classList].find(c => c.startsWith('c-'));
+  // Effects
+  note.effects = [...document.querySelectorAll('.effect-chip.on')].map(b => {
+    const map = {'🟡 Wichtig':'highlight','🔴 Kritisch':'important','✨ Hervorheben':'glow','⭐ Favorit':'starred','✅ Erledigt':'done'};
+    return map[b.textContent.trim()] || '';
+  }).filter(Boolean);
+
+  saveNotes(notes);
+  renderList();
+  const btn = document.getElementById('save-btn');
+  btn.textContent = '✅ Gespeichert!'; btn.classList.add('saved');
+  setTimeout(() => { btn.textContent = '💾 Speichern'; btn.classList.remove('saved'); }, 1800);
+}
+
+// ── DELETE NOTE ───────────────────────────────────────────────────────
+function deleteNote() {
+  if (!confirm('Diese Notiz wirklich löschen?')) return;
+  notes = notes.filter(n => n.id !== currentId);
+  currentId = null;
+  saveNotes(notes);
+  renderList();
+  const main = document.getElementById('main-area');
+  main.innerHTML = `<div class="welcome" id="welcome-screen">
+    <span class="big-emoji">✏️</span>
+    <h2>Notiz gelöscht</h2>
+    <p>Erstelle eine neue Notiz um weiterzumachen.</p>
+    <br><br>
+    <button class="new-note-btn" style="margin:0 auto;max-width:220px" onclick="newNote()">＋ Neue Notiz</button>
+  </div>`;
+}
+
+// ── LIGHTBOX ─────────────────────────────────────────────────────────
+document.addEventListener('click', e => {
+  if (e.target.closest('.rendered-photos img')) {
+    document.getElementById('lightbox-img').src = e.target.src;
+    document.getElementById('lightbox').classList.add('open');
+  }
+});
+function closeLightbox() { document.getElementById('lightbox').classList.remove('open'); }
+
+// ── HELPERS ───────────────────────────────────────────────────────────
+function escHtml(s) {
+  return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+const COLOR_BG = { 'c-white':'#fff','c-yellow':'#fefce8','c-blue':'#e8f3fc','c-green':'#edfaf7','c-red':'#fdf2f2','c-purple':'#f5f0f9','c-darija':'#fef9f3' };
+
+// ── INIT ──────────────────────────────────────────────────────────────
+renderList();
+if (notes.length > 0) openNote(notes[0].id);
+</script>
+</body>
+</html>
