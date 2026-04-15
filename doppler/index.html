@@ -2,7 +2,7 @@
 <html lang="de" dir="ltr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover, user-scalable=yes">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="default">
     <title>Doppler Echokardiographie Guide | دليل الإيكو دوبلر</title>
@@ -537,55 +537,40 @@
         }
 
         /* ==================== MOBILE RESPONSIVE ==================== */
-        @media (max-width: 768px) {
-            .hamburger {
-                display: flex;
-            }
-
-            .sidebar {
-                transform: translateX(-100%);
-            }
-
-            .sidebar.active {
-                transform: translateX(0);
-            }
-
-            .sidebar-overlay.active {
-                display: block;
-                opacity: 1;
-            }
-
-            .main-content {
-                margin-left: 0;
-            }
-
-            h1 {
-                font-size: 24px;
-            }
-
-            h2 {
-                font-size: 20px;
-            }
-
-            .card {
-                padding: var(--spacing-md);
-            }
-
+        @media (max-width: 1024px) {
+            .hamburger { display: flex; }
+            .sidebar { transform: translateX(-100%); width: min(280px, 85vw); }
+            .sidebar.active { transform: translateX(0); }
+            .sidebar-overlay.active { display: block; opacity: 1; }
+            .main-content { margin-left: 0; }
+            h1 { font-size: 22px; line-height: 1.25; }
+            h2 { font-size: 19px; }
+            h3 { font-size: 16px; }
+            .card { padding: var(--spacing-md); }
+            /* Tables scroll on mobile */
             .table-wrapper {
-                border-radius: 0;
-                margin-left: calc(-1 * var(--spacing-md));
-                margin-right: calc(-1 * var(--spacing-md));
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+                border-radius: var(--radius, 8px);
+                margin-left: 0; margin-right: 0;
             }
+            table { min-width: 420px; font-size: 13.5px; }
+            thead th { padding: 8px 10px; font-size: 12px; }
+            tbody td { padding: 8px 10px; }
+            .main-content { padding: 1.2rem 1rem 5rem; }
+            /* page header padding */
+            .page-header { padding: 1.5rem 1rem 1rem; }
         }
 
         @media (max-width: 480px) {
-            .header-title {
-                font-size: 13px;
-            }
-
-            .lang-badge {
-                display: none;
-            }
+            .header-title { font-size: 12px; }
+            .lang-badge { display: none; }
+            h1 { font-size: 19px; }
+            h2 { font-size: 17px; }
+            body { font-size: 14.5px; }
+            .card { padding: 12px; }
+            table { min-width: 340px; font-size: 13px; }
+            .darija-box, [dir="rtl"] { font-size: 14px; }
         }
 
         /* ==================== PRINT STYLES ==================== */

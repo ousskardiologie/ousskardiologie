@@ -2,7 +2,11 @@
 <html lang="de">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="theme-color" content="#ffffff">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>Vollständiger Echokardiographie-Kurs — Compact Echo Course</title>
 <link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@300;400;500;600;700&family=Google+Sans+Display:wght@400;500;700&family=Google+Sans+Mono&display=swap" rel="stylesheet">
 <style>
@@ -746,20 +750,114 @@
     transform: translateY(0);
   }
 
+  /* ═══ HAMBURGER BUTTON ═══ */
+  .mob-menu-btn {
+    display: none;
+    align-items: center; justify-content: center;
+    width: 40px; height: 40px; border-radius: 8px;
+    background: var(--surface2); border: 1px solid var(--border);
+    cursor: pointer; flex-shrink: 0; position: relative; z-index: 400;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .mob-menu-btn span {
+    display: block; width: 18px; height: 2px;
+    background: var(--text); border-radius: 2px;
+    position: absolute; transition: all .25s;
+  }
+  .mob-menu-btn span:nth-child(1) { transform: translateY(-5px); }
+  .mob-menu-btn span:nth-child(3) { transform: translateY(5px); }
+  .mob-menu-btn.open span:nth-child(1) { transform: rotate(45deg); }
+  .mob-menu-btn.open span:nth-child(2) { opacity: 0; }
+  .mob-menu-btn.open span:nth-child(3) { transform: rotate(-45deg); }
+
+  /* overlay behind open sidebar */
+  .sidebar-overlay {
+    display: none; position: fixed; inset: 0;
+    background: rgba(0,0,0,.35); z-index: 190;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .sidebar-overlay.open { display: block; }
+
   /* ═══ RESPONSIVE ═══ */
   @media (max-width: 1024px) {
-    .sidebar { display: none; }
+    /* Sidebar becomes a slide-in drawer */
+    .sidebar {
+      transform: translateX(-100%);
+      transition: transform .28s cubic-bezier(.4,0,.2,1);
+      top: 0; z-index: 300;
+      width: min(280px, 85vw);
+    }
+    .sidebar.open { transform: translateX(0); }
+
+    .mob-menu-btn { display: flex; }
     .main { margin-left: 0; }
-    .topbar { left: 0; padding: 0 2rem; }
-    .main-inner { padding: 3rem 2rem 6rem; }
+    .topbar { left: 0; padding: 0 1rem; height: 52px; gap: 8px; }
+    .main { padding-top: 52px; }
+    .main-inner { padding: 2rem 1.2rem 6rem; max-width: 100%; }
     .card-grid { grid-template-columns: 1fr; }
-    h1 { font-size: 2.2rem; }
-    h2 { font-size: 1.7rem; }
+    h1 { font-size: 1.9rem; line-height: 1.2; }
+    h2 { font-size: 1.45rem; }
+    h3 { font-size: 1.15rem; }
+    body { font-size: 16px; }
+
+    /* Tables scroll horizontally */
+    .table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; border-radius: var(--radius); }
+    table { min-width: 480px; font-size: 14px; }
+    thead th { padding: 10px 12px; }
+    tbody td { padding: 10px 12px; }
+
+    /* Callouts / darija boxes full width */
+    .callout { padding: 1rem; gap: 10px; }
+    .darija-box { padding: .9rem 1rem; font-size: 15px; }
+
+    /* Pipeline wraps nicely */
+    .pipeline { gap: 8px; }
+    .pipe-box { padding: 6px 12px; font-size: 14px; }
+
+    /* Summary box */
+    .summary-box { padding: 1.4rem 1.2rem; }
+
+    /* Cards */
+    .card { padding: 1.2rem; }
+
+    /* MV grid smaller text */
+    .mv-grid { font-size: 12.5px; }
+    .mv-cell { padding: .6rem .5rem; }
+
+    /* Page icon smaller */
+    .page-icon { font-size: 48px; }
+    .page-header { margin-bottom: 2rem; }
+    .page-subtitle { font-size: 16px; }
+
+    /* Progress bar in sidebar footer */
+    .sidebar-footer { padding: 1rem; }
+
+    /* Accordion touch targets */
+    .accordion-header { padding: 1rem 1.2rem; min-height: 52px; }
+  }
+
+  @media (max-width: 480px) {
+    .main-inner { padding: 1.5rem 1rem 5rem; }
+    h1 { font-size: 1.65rem; }
+    h2 { font-size: 1.3rem; }
+    .topbar .sep, .topbar .time { display: none; }
+    .topbar .current { font-size: 13px; }
+    .summary-box ul li { font-size: 14.5px; }
+    .prose li { font-size: 15px; }
+    .tag { font-size: 12px; padding: 4px 10px; }
+    .badge { font-size: 12px; padding: 4px 10px; }
+    table { min-width: 360px; font-size: 13px; }
+    .card-grid { gap: 10px; }
+    .card { padding: 1rem; }
+    /* Make darija text slightly smaller on tiny screens */
+    .darija-box { font-size: 14.5px; }
+    td.darija-cell { font-size: 14px; }
   }
 </style>
 </head>
 <body>
 
+<div class="sidebar-overlay" id="sidebar-overlay" onclick="closeSidebar()"></div>
 <div class="layout">
 
 <!-- ═══════════════════════════════════════════════════════════════ -->
@@ -818,10 +916,13 @@
 <!-- TOPBAR -->
 <!-- ═══════════════════════════════════════════════════════════════ -->
 <div class="topbar">
-  <span>🫀 Echokardiographie</span>
+  <button class="mob-menu-btn" id="mob-menu-btn" onclick="toggleSidebar()" aria-label="Menü">
+    <span></span><span></span><span></span>
+  </button>
+  <span>🫀 Echo</span>
   <span class="sep">›</span>
-  <span class="current">PSAX & Apikale Ansichten — Komplettkurs</span>
-  <div class="time">⏱ ca. 35 Min.</div>
+  <span class="current">PSAX & Apikale</span>
+  <div class="time">⏱ 35 Min.</div>
 </div>
 
 <!-- ═══════════════════════════════════════════════════════════════ -->
@@ -1914,6 +2015,29 @@ navLinks.forEach(a => {
     e.preventDefault();
     const target = document.querySelector(a.getAttribute('href'));
     if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+});
+
+
+// Mobile sidebar toggle
+function toggleSidebar() {
+  const sidebar = document.querySelector('.sidebar');
+  const overlay = document.getElementById('sidebar-overlay');
+  const btn = document.getElementById('mob-menu-btn');
+  const isOpen = sidebar.classList.contains('open');
+  sidebar.classList.toggle('open', !isOpen);
+  overlay.classList.toggle('open', !isOpen);
+  btn.classList.toggle('open', !isOpen);
+}
+function closeSidebar() {
+  document.querySelector('.sidebar').classList.remove('open');
+  document.getElementById('sidebar-overlay').classList.remove('open');
+  document.getElementById('mob-menu-btn').classList.remove('open');
+}
+// Close sidebar when a nav link is tapped on mobile
+document.querySelectorAll('.sidebar nav a').forEach(a => {
+  a.addEventListener('click', () => {
+    if (window.innerWidth <= 1024) closeSidebar();
   });
 });
 

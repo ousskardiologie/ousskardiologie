@@ -2,7 +2,11 @@
 <html lang="de">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="theme-color" content="#ffffff">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>✏️ Meine Notizen — Kardiologie</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;600;700&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -55,6 +59,12 @@ body { font-family: var(--font); background: var(--bg); color: var(--text); font
 .topnav a:hover { background: var(--surface); color: var(--text); }
 .topnav .active-link { background: var(--amber-bg); color: var(--amber) !important; }
 .topnav .spacer { flex: 1; }
+.mob-notes-btn {
+  display: none; align-items: center; gap: 6px; padding: 5px 12px;
+  background: var(--surface); border: 1px solid var(--border); border-radius: 6px;
+  color: var(--text2); font-size: 14px; font-weight: 600; cursor: pointer;
+  font-family: var(--font);
+}
 
 /* ── LAYOUT ── */
 .page { display: flex; min-height: calc(100vh - 52px); }
@@ -252,11 +262,61 @@ body { font-family: var(--font); background: var(--bg); color: var(--text); font
 @keyframes fadein { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
 @keyframes float { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
 
-@media (max-width: 680px) {
-  .sidebar { display: none; }
-  .editor { padding: 2rem 1.5rem 4rem; }
-  .title-input { font-size: 1.8rem; }
+/* ── RESPONSIVE: Tablet ── */
+@media (max-width: 900px) {
+  .sidebar { width: 220px; }
+  .editor { padding: 2.5rem 2rem 5rem; }
 }
+
+/* ── RESPONSIVE: Mobile ── */
+@media (max-width: 680px) {
+  /* Sidebar becomes overlay drawer */
+  .sidebar {
+    position: fixed; top: 52px; left: 0; bottom: 0; z-index: 300;
+    transform: translateX(-100%);
+    transition: transform .28s cubic-bezier(.4,0,.2,1);
+    box-shadow: 4px 0 20px rgba(0,0,0,.12);
+    width: min(260px, 85vw);
+    height: calc(100vh - 52px);
+  }
+  .sidebar.open { transform: translateX(0); }
+  .mob-sidebar-overlay {
+    display: none; position: fixed; inset: 0; top: 52px;
+    background: rgba(0,0,0,.35); z-index: 290;
+  }
+  .mob-sidebar-overlay.open { display: block; }
+
+  /* Show mobile menu button */
+  .mob-notes-btn { display: flex !important; }
+
+  .page { display: block; }
+  .main { width: 100%; }
+  .editor { padding: 1.5rem 1rem 5rem; }
+  .title-input { font-size: 1.7rem; }
+  .color-row { gap: 6px; }
+  .color-dot { width: 24px; height: 24px; }
+  .meta-row { gap: 6px; }
+  .effect-chip { font-size: 11.5px; padding: 4px 10px; }
+  .photo-thumb { width: 100px; height: 76px; }
+  .action-row { flex-wrap: wrap; }
+  .del-note-btn { margin-left: 0; }
+  .note-textarea { min-height: 180px; font-size: 15px; }
+}
+
+@media (max-width: 420px) {
+  .title-input { font-size: 1.45rem; }
+  .effect-chip { font-size: 11px; padding: 3px 8px; }
+  .save-btn { padding: 8px 16px; font-size: 14px; }
+}
+
+  /* ── iOS / Android Touch Improvements ── */
+  * { -webkit-tap-highlight-color: transparent; }
+  a, button { touch-action: manipulation; }
+  input, textarea, select { font-size: 16px !important; } /* prevents iOS zoom on focus */
+  body { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+  /* Safe area insets for notched phones */
+  body { padding-bottom: env(safe-area-inset-bottom, 0px); }
+
 </style>
 </head>
 <body>
@@ -267,8 +327,10 @@ body { font-family: var(--font); background: var(--bg); color: var(--text); font
   <a href="../echo/index.html">📡 Echo</a>
   <a href="../doppler/index.html">🔊 Doppler</a>
   <div class="spacer"></div>
-  <a href="#" class="active-link">✏️ Notizen</a>
+  <button class="mob-notes-btn" id="mob-notes-btn" onclick="toggleNotesSidebar()">☰ Notizen</button>
+  <a href="#" class="active-link" style="display:none" id="desktop-notes-label">✏️ Notizen</a>
 </nav>
+<div class="mob-sidebar-overlay" id="mob-sidebar-overlay" onclick="closeNotesSidebar()"></div>
 
 <div class="page">
 
@@ -527,6 +589,27 @@ function escHtml(s) {
 }
 
 const COLOR_BG = { 'c-white':'#fff','c-yellow':'#fefce8','c-blue':'#e8f3fc','c-green':'#edfaf7','c-red':'#fdf2f2','c-purple':'#f5f0f9','c-darija':'#fef9f3' };
+
+// ── MOBILE SIDEBAR ───────────────────────────────────────────────────
+function toggleNotesSidebar() {
+  const sidebar = document.querySelector('.sidebar');
+  const overlay = document.getElementById('mob-sidebar-overlay');
+  const isOpen = sidebar.classList.contains('open');
+  sidebar.classList.toggle('open', !isOpen);
+  overlay.classList.toggle('open', !isOpen);
+}
+function closeNotesSidebar() {
+  document.querySelector('.sidebar').classList.remove('open');
+  document.getElementById('mob-sidebar-overlay').classList.remove('open');
+}
+// Show/hide desktop vs mobile nav labels
+function updateNav() {
+  const isMob = window.innerWidth <= 680;
+  document.getElementById('mob-notes-btn').style.display = isMob ? 'flex' : 'none';
+  document.getElementById('desktop-notes-label').style.display = isMob ? 'none' : 'flex';
+}
+window.addEventListener('resize', updateNav);
+updateNav();
 
 // ── INIT ──────────────────────────────────────────────────────────────
 renderList();
