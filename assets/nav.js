@@ -46,6 +46,7 @@
     <a href="${depth}echo/index.html" id="gnav-echo">📡 <span class="gnav-label">Echo</span></a>
     <span class="gnav-sep">›</span>
     <a href="${depth}doppler/index.html" id="gnav-doppler">🔊 <span class="gnav-label">Doppler</span></a>
+    <a href="${depth}ekg/index.html" id="gnav-ekg">📈 <span class="gnav-label">EKG</span></a>
     <div class="gnav-spacer"></div>
     <a href="${depth}notes/index.html" class="gnav-notes" id="gnav-notes">✏️ <span class="gnav-label">Notizen</span></a>
   `;
@@ -55,6 +56,7 @@
   const path = window.location.pathname;
   if (path.includes('/echo/')) document.getElementById('gnav-echo').classList.add('gnav-active');
   else if (path.includes('/doppler/')) document.getElementById('gnav-doppler').classList.add('gnav-active');
+  else if (path.includes('/ekg/')) document.getElementById('gnav-ekg').classList.add('gnav-active');
   else if (path.includes('/notes/')) document.getElementById('gnav-notes').classList.add('gnav-active');
 
   // Push page content down

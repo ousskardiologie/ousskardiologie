@@ -1,0 +1,1010 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="theme-color" content="#ffffff">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>EKG Tachykardie — Kardiologie</title>
+<link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@300;400;500;600;700&family=Google+Sans+Display:wght@400;500;700&family=Google+Sans+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* ════════════════════════════════════════════
+   DESIGN TOKENS — gleich wie Echo/Pathologie
+════════════════════════════════════════════ */
+:root {
+  --bg:#ffffff; --surface:#fafafa; --surface2:#f4f4f2; --surface3:#ececea;
+  --border:#e3e3e0; --border2:#d5d5d0;
+  --text:#2e2e2c; --text2:#616161; --text3:#9e9e9e;
+  --accent:#2563eb; --accent2:#1d4ed8; --accent-bg:#eff6ff; --accent-border:#bfdbfe;
+  --green:#059669; --green-bg:#ecfdf5; --green-border:#a7f3d0;
+  --red:#dc2626; --red-bg:#fef2f2; --red-border:#fecaca;
+  --amber:#d97706; --amber-bg:#fffbeb; --amber-border:#fde68a;
+  --purple:#7c3aed; --purple-bg:#f5f3ff; --purple-border:#ddd6fe;
+  --teal:#0d9488; --teal-bg:#f0fdfa; --teal-border:#99f6e4;
+  --orange:#c2410c; --orange-bg:#fff7ed; --orange-border:#fed7aa;
+  --darija-bg:#fef9f3; --darija-border:#f0ddc8; --darija-text:#5c3d1a;
+  --radius:12px; --radius-lg:16px;
+  --shadow:0 1px 3px rgba(0,0,0,.04),0 1px 2px rgba(0,0,0,.02);
+  --shadow-md:0 4px 16px rgba(0,0,0,.06),0 2px 8px rgba(0,0,0,.03);
+  --shadow-lg:0 10px 40px rgba(0,0,0,.08),0 4px 12px rgba(0,0,0,.04);
+  --font:'Google Sans',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  --font-display:'Google Sans Display','Google Sans',sans-serif;
+  --font-mono:'Google Sans Mono','Courier New',monospace;
+  --nav-h:56px;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;text-size-adjust:100%;}
+body{font-family:var(--font);background:var(--bg);color:var(--text);font-size:16px;line-height:1.7;overflow-x:hidden;-webkit-tap-highlight-color:transparent;padding-bottom:env(safe-area-inset-bottom,12px);}
+a,button{touch-action:manipulation;-webkit-tap-highlight-color:transparent;}
+::-webkit-scrollbar{width:5px;height:5px;}
+::-webkit-scrollbar-track{background:transparent;}
+::-webkit-scrollbar-thumb{background:var(--border2);border-radius:99px;}
+
+/* ═══ LAYOUT ═══ */
+.layout{display:flex;min-height:100vh;}
+
+/* ═══ SIDEBAR ═══ */
+.sidebar{width:260px;flex-shrink:0;background:var(--surface);border-right:1px solid var(--border);position:fixed;top:0;left:0;bottom:0;overflow-y:auto;z-index:200;display:flex;flex-direction:column;}
+.sidebar-header{padding:2rem 1.5rem 1.5rem;border-bottom:1px solid var(--border);}
+.sidebar-course{font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--text3);margin-bottom:8px;}
+.sidebar-title{font-family:var(--font-display);font-size:17px;font-weight:700;color:var(--text);line-height:1.3;margin-bottom:10px;}
+.sidebar-lang{display:flex;gap:6px;margin-top:10px;flex-wrap:wrap;}
+.sidebar-lang span{font-size:11px;padding:3px 10px;border-radius:20px;background:var(--darija-bg);color:var(--darija-text);border:1px solid var(--darija-border);font-weight:500;}
+.sidebar-section{font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--text3);padding:1.2rem 1.5rem .5rem;}
+.sidebar nav a{display:flex;align-items:flex-start;gap:10px;padding:.55rem 1.5rem;font-size:14px;color:var(--text2);text-decoration:none;transition:all .15s;border-left:3px solid transparent;line-height:1.5;min-height:42px;}
+.sidebar nav a:hover{background:var(--surface2);color:var(--text);}
+.sidebar nav a.active{background:var(--accent-bg);color:var(--accent);font-weight:600;border-left-color:var(--accent);}
+.sidebar nav a .num{font-family:var(--font-mono);font-size:11px;color:var(--text3);flex-shrink:0;margin-top:3px;min-width:22px;}
+.sidebar nav a.active .num{color:var(--accent);}
+.sidebar-footer{margin-top:auto;padding:1.2rem 1.5rem;border-top:1px solid var(--border);font-size:11.5px;color:var(--text3);}
+
+/* ═══ HAMBURGER ═══ */
+.mob-menu-btn{display:none;align-items:center;justify-content:center;width:40px;height:40px;border-radius:8px;background:var(--surface2);border:1px solid var(--border);cursor:pointer;flex-shrink:0;position:relative;z-index:400;}
+.mob-menu-btn span{display:block;width:18px;height:2px;background:var(--text);border-radius:2px;position:absolute;transition:all .25s;}
+.mob-menu-btn span:nth-child(1){transform:translateY(-5px);}
+.mob-menu-btn span:nth-child(3){transform:translateY(5px);}
+.mob-menu-btn.open span:nth-child(1){transform:rotate(45deg);}
+.mob-menu-btn.open span:nth-child(2){opacity:0;}
+.mob-menu-btn.open span:nth-child(3){transform:rotate(-45deg);}
+.sidebar-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.35);z-index:190;}
+.sidebar-overlay.open{display:block;}
+
+/* ═══ TOPBAR ═══ */
+.topbar{position:fixed;top:0;left:260px;right:0;height:var(--nav-h);background:rgba(255,255,255,.98);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid var(--border);display:flex;align-items:center;padding:0 2.5rem;z-index:100;gap:10px;font-size:14px;color:var(--text3);}
+.topbar .sep{opacity:.35;}
+.topbar .current{color:var(--text);font-weight:600;}
+.topbar .time{margin-left:auto;}
+
+/* ═══ MAIN ═══ */
+.main{margin-left:260px;flex:1;padding-top:var(--nav-h);min-width:0;}
+.main-inner{max-width:900px;padding:3.5rem 3.5rem 7rem;}
+
+/* ═══ PAGE HEADER ═══ */
+.page-header{margin-bottom:3rem;}
+.breadcrumb{font-size:13px;color:var(--text3);margin-bottom:1.2rem;display:flex;align-items:center;gap:8px;}
+.page-icon{font-size:68px;margin-bottom:1rem;line-height:1;animation:float 4s ease-in-out infinite;}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+h1{font-family:var(--font-display);font-size:2.8rem;font-weight:700;line-height:1.15;color:var(--text);margin-bottom:.8rem;letter-spacing:-.02em;}
+.page-subtitle{font-size:17px;color:var(--text2);line-height:1.65;margin-bottom:1.8rem;}
+.tag-row{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:2.2rem;}
+.tag{padding:4px 13px;border-radius:20px;font-size:12.5px;font-weight:600;border:1px solid;}
+.tag.red{background:var(--red-bg);color:var(--red);border-color:var(--red-border);}
+.tag.blue{background:var(--accent-bg);color:var(--accent2);border-color:var(--accent-border);}
+.tag.green{background:var(--green-bg);color:var(--green);border-color:var(--green-border);}
+.tag.amber{background:var(--amber-bg);color:var(--amber);border-color:var(--amber-border);}
+.tag.purple{background:var(--purple-bg);color:var(--purple);border-color:var(--purple-border);}
+.tag.gray{background:var(--surface2);color:var(--text2);border-color:var(--border);}
+.meta-strip{display:flex;flex-wrap:wrap;gap:2rem;font-size:13.5px;color:var(--text3);padding:1.4rem 0;border-top:1px solid var(--border);border-bottom:1px solid var(--border);}
+
+/* ═══ SECTION HEADINGS ═══ */
+h2{font-family:var(--font-display);font-size:1.9rem;font-weight:700;margin:3rem 0 1.4rem;color:var(--text);line-height:1.2;display:flex;align-items:center;gap:14px;}
+.sec-num{display:inline-flex;align-items:center;justify-content:center;width:36px;height:36px;border-radius:10px;background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;font-size:15px;font-weight:700;flex-shrink:0;box-shadow:0 4px 12px rgba(37,99,235,.25);}
+h3{font-size:1.15rem;font-weight:700;margin:1.8rem 0 .9rem;color:var(--text);}
+h4{font-size:.95rem;font-weight:700;margin-bottom:.5rem;color:var(--text);}
+hr{border:none;border-top:1px solid var(--border);margin:2.8rem 0;}
+
+/* ═══ CALLOUT ═══ */
+.callout{border-radius:var(--radius);padding:1.1rem 1.3rem;margin:1.3rem 0;display:flex;gap:12px;align-items:flex-start;border:1px solid;}
+.callout.info{background:var(--accent-bg);border-color:var(--accent-border);}
+.callout.warn{background:var(--amber-bg);border-color:var(--amber-border);}
+.callout.success{background:var(--green-bg);border-color:var(--green-border);}
+.callout.danger{background:var(--red-bg);border-color:var(--red-border);}
+.callout.purple{background:var(--purple-bg);border-color:var(--purple-border);}
+.callout-icon{font-size:20px;flex-shrink:0;margin-top:2px;}
+.callout-body{font-size:15px;line-height:1.7;}
+
+/* ═══ CRITICAL BOX ═══ */
+.critical-box{border:2px solid var(--red-border);border-radius:var(--radius-lg);background:var(--red-bg);padding:1.3rem 1.5rem;margin:1.4rem 0;position:relative;}
+.critical-box::before{content:'🚨 KRITISCH';position:absolute;top:-12px;left:20px;background:var(--red);color:white;font-size:10px;font-weight:700;letter-spacing:.1em;padding:2px 10px;border-radius:20px;}
+.critical-box p{font-size:15px;line-height:1.7;}
+
+/* ═══ TABS ═══ */
+.tab-row{display:flex;gap:4px;background:var(--surface2);border:1px solid var(--border);border-radius:var(--radius);padding:4px;margin:1.5rem 0 1.8rem;flex-wrap:wrap;}
+.tab-btn{flex:1;min-width:100px;padding:8px 14px;font-family:var(--font);font-size:13px;font-weight:500;border:none;border-radius:8px;background:transparent;color:var(--text2);cursor:pointer;transition:all .15s;display:flex;align-items:center;justify-content:center;gap:5px;min-height:38px;}
+.tab-btn:hover{background:rgba(0,0,0,.05);color:var(--text);}
+.tab-btn.active{background:var(--bg);color:var(--text);font-weight:600;box-shadow:var(--shadow-md);}
+.tab-badge{font-size:10.5px;font-weight:500;background:var(--border);padding:1px 7px;border-radius:20px;color:var(--text3);}
+.tab-btn.active .tab-badge{background:var(--accent-bg);color:var(--accent);}
+
+/* ═══ PAGE PANELS ═══ */
+.page-panel{display:none;}
+.page-panel.active{display:block;animation:fadein .3s ease both;}
+@keyframes fadein{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:none;}}
+
+/* ═══ CARD GRID ═══ */
+.card-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:1.4rem 0 2rem;}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);padding:1.4rem 1.5rem;cursor:pointer;transition:all .2s;box-shadow:var(--shadow);position:relative;overflow:hidden;}
+.card::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;opacity:0;transition:opacity .2s;border-radius:var(--radius-lg) 0 0 var(--radius-lg);}
+.card:hover{box-shadow:var(--shadow-lg);transform:translateY(-2px);border-color:var(--border2);}
+.card:hover::before{opacity:1;}
+.card:active{transform:scale(.98);}
+.card.c-red::before{background:var(--red);}
+.card.c-blue::before{background:var(--accent);}
+.card.c-green::before{background:var(--green);}
+.card.c-amber::before{background:var(--amber);}
+.card.c-purple::before{background:var(--purple);}
+.card.c-orange::before{background:var(--orange);}
+.card h4{font-size:14.5px;font-weight:700;margin-bottom:.4rem;}
+.card p{font-size:13.5px;color:var(--text2);line-height:1.55;}
+.card ul{padding-left:1.2rem;font-size:13.5px;color:var(--text2);}
+.card ul li{margin-bottom:.3rem;}
+.card .card-darija{font-size:13.5px;direction:rtl;text-align:right;color:var(--darija-text);background:var(--darija-bg);padding:8px 12px;border-radius:8px;margin-top:10px;border:1px solid var(--darija-border);}
+.badge{display:inline-flex;align-items:center;padding:2px 9px;border-radius:4px;font-size:11.5px;font-weight:600;margin-bottom:6px;}
+.badge.red{background:var(--red-bg);color:var(--red);}
+.badge.blue{background:var(--accent-bg);color:var(--accent);}
+.badge.green{background:var(--green-bg);color:var(--green);}
+.badge.amber{background:var(--amber-bg);color:var(--amber);}
+.badge.purple{background:var(--purple-bg);color:var(--purple);}
+.badge.orange{background:var(--orange-bg);color:var(--orange);}
+
+/* ═══ DETAIL PANEL ═══ */
+.detail-panel{background:var(--bg);border:1px solid var(--border2);border-radius:var(--radius-lg);overflow:hidden;margin:1.5rem 0;box-shadow:var(--shadow-lg);animation:fadein .3s ease both;}
+.detail-header{padding:1.2rem 1.5rem 1rem;background:linear-gradient(135deg,var(--surface) 0%,var(--bg) 100%);border-bottom:1px solid var(--border);display:flex;align-items:flex-start;gap:14px;}
+.detail-header-icon{width:44px;height:44px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0;box-shadow:var(--shadow);}
+.detail-title{font-family:var(--font-display);font-size:19px;font-weight:700;color:var(--text);margin-bottom:3px;}
+.detail-sub{font-size:13px;color:var(--text2);line-height:1.5;}
+.detail-tabs-row{display:flex;border-bottom:1px solid var(--border);background:var(--surface);padding:0 1.2rem;overflow-x:auto;gap:0;-webkit-overflow-scrolling:touch;}
+.detail-tab{padding:10px 16px;font-size:13px;font-weight:500;color:var(--text2);background:none;border:none;border-bottom:2px solid transparent;cursor:pointer;transition:all .15s;white-space:nowrap;font-family:var(--font);min-height:42px;}
+.detail-tab:hover{color:var(--text);}
+.detail-tab.active{color:var(--accent);border-bottom-color:var(--accent);font-weight:700;}
+.detail-body{padding:1.5rem;}
+.detail-section{display:none;}
+.detail-section.active{display:block;animation:fadein .25s ease both;}
+
+/* ═══ INFO TABLE ═══ */
+.info-table{width:100%;margin:.8rem 0;}
+.info-row{display:grid;grid-template-columns:145px 1fr;gap:8px 16px;padding:9px 0;border-bottom:1px solid var(--border);align-items:start;}
+.info-row:last-child{border-bottom:none;}
+.info-key{font-size:12px;font-weight:600;color:var(--text3);font-family:var(--font-mono);padding-top:2px;letter-spacing:.02em;}
+.info-val{font-size:14px;color:var(--text);line-height:1.65;}
+
+/* ═══ CMP TABLE ═══ */
+.table-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;border-radius:var(--radius);border:1px solid var(--border);margin:.8rem 0;}
+.cmp-table{width:100%;border-collapse:collapse;font-size:13.5px;min-width:360px;}
+.cmp-table th{padding:9px 14px;background:var(--surface2);color:var(--text2);text-align:left;font-weight:700;font-size:11.5px;letter-spacing:.05em;text-transform:uppercase;border-bottom:2px solid var(--border2);}
+.cmp-table td{padding:9px 14px;border-bottom:1px solid var(--border);color:var(--text);vertical-align:top;line-height:1.55;}
+.cmp-table td:first-child{color:var(--text2);font-size:13px;}
+.cmp-table tr:last-child td{border-bottom:none;}
+.cmp-table tr:hover td{background:var(--surface);}
+
+/* ═══ DRUG TABLE ═══ */
+.drug-section-label{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--text3);margin:2rem 0 .8rem;padding-bottom:8px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:10px;}
+.drug-section-label::before{content:'';display:inline-block;width:3px;height:14px;border-radius:2px;}
+.klasse-1::before{background:var(--accent);}
+.klasse-2::before{background:var(--green);}
+.klasse-3::before{background:var(--amber);}
+.klasse-4::before{background:var(--purple);}
+.drug-table{width:100%;border-collapse:collapse;font-size:13.5px;}
+.drug-table thead th{padding:9px 14px;background:var(--surface2);color:var(--text2);text-align:left;font-size:11.5px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;border-bottom:2px solid var(--border2);}
+.drug-table tbody tr{border-bottom:1px solid var(--border);transition:background .15s;}
+.drug-table tbody tr:last-child{border-bottom:none;}
+.drug-table tbody tr:hover{background:var(--surface);}
+.drug-table tbody td{padding:10px 14px;vertical-align:top;line-height:1.55;font-size:13.5px;}
+.drug-table tbody td:first-child{font-weight:700;color:var(--text);}
+.drug-table tbody td:nth-child(2){font-family:var(--font-mono);font-size:12px;color:var(--text2);}
+.drug-note{font-size:11.5px;color:var(--text3);font-style:italic;margin-top:2px;}
+
+/* ═══ STEPS ═══ */
+.steps{display:flex;flex-direction:column;gap:8px;margin:.8rem 0;}
+.step{display:flex;gap:14px;align-items:flex-start;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:10px 14px;transition:all .15s;}
+.step:hover{border-color:var(--border2);background:var(--bg);box-shadow:var(--shadow);}
+.step-num{width:26px;height:26px;flex-shrink:0;border-radius:50%;border:2px solid var(--border2);display:flex;align-items:center;justify-content:center;font-size:11.5px;font-weight:700;color:var(--text2);background:var(--bg);}
+.step-num.danger{border-color:var(--red-border);color:var(--red);background:var(--red-bg);}
+.step-num.success{border-color:var(--green-border);color:var(--green);background:var(--green-bg);}
+.step-text{font-size:14px;color:var(--text);line-height:1.6;}
+.step-sub{font-size:12.5px;color:var(--text2);margin-top:3px;line-height:1.55;}
+
+/* ═══ ALGO SPLIT ═══ */
+.algo-split{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:1rem 0;}
+.algo-box{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);padding:1.2rem 1.4rem;}
+.algo-box-title{font-size:12px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;margin-bottom:.9rem;}
+
+/* ═══ PILL LIST ═══ */
+.pill-list{display:flex;flex-wrap:wrap;gap:7px;margin:.5rem 0;}
+.pill{display:inline-flex;align-items:center;gap:5px;background:var(--bg);border:1px solid var(--border2);border-radius:8px;padding:5px 12px;font-size:12.5px;font-weight:500;}
+.pill-note{color:var(--text3);font-weight:400;font-size:11.5px;}
+
+/* ═══ TOGGLE (accordion) ═══ */
+.toggle-group{border:1px solid var(--border);border-radius:var(--radius-lg);overflow:hidden;margin:.8rem 0;}
+.toggle-item{border-bottom:1px solid var(--border);}
+.toggle-item:last-child{border-bottom:none;}
+.toggle-header{display:flex;align-items:center;gap:10px;padding:11px 16px;cursor:pointer;transition:background .15s;font-size:14px;font-weight:500;min-height:46px;}
+.toggle-header:hover{background:var(--surface2);}
+.toggle-arrow{width:16px;height:16px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:11px;color:var(--text3);transition:transform .25s;margin-left:auto;}
+.toggle-item.open .toggle-arrow{transform:rotate(90deg);}
+.toggle-body{max-height:0;overflow:hidden;transition:max-height .3s cubic-bezier(.4,0,.2,1);background:var(--surface);border-top:1px solid var(--border);}
+.toggle-item.open .toggle-body{max-height:800px;}
+.toggle-content{padding:12px 16px 16px 40px;font-size:14px;line-height:1.7;color:var(--text);}
+
+/* ═══ PROP ROW ═══ */
+.prop-row{display:flex;gap:6px;flex-wrap:wrap;margin:.9rem 0;}
+.prop{display:inline-flex;align-items:center;gap:5px;font-size:12.5px;font-weight:500;padding:4px 12px;border-radius:8px;background:var(--surface2);color:var(--text2);border:1px solid var(--border);}
+
+/* ═══ SUMMARY BOX ═══ */
+.summary-box{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);padding:2rem;margin:2.5rem 0;box-shadow:var(--shadow-lg);position:relative;overflow:hidden;}
+.summary-box::before{content:'';position:absolute;top:0;left:0;right:0;height:5px;background:linear-gradient(90deg,var(--accent) 0%,#60a5fa 30%,var(--teal) 60%,var(--purple) 100%);}
+.summary-box h3{margin-top:.4rem;margin-bottom:1rem;font-size:1.15rem;}
+
+/* ═══ RIPPLE ═══ */
+.ripple-host{position:relative;overflow:hidden;}
+.ripple-circle{position:absolute;border-radius:50%;background:rgba(37,99,235,.1);pointer-events:none;animation:rippleGrow .55s ease-out forwards;transform:scale(0);}
+@keyframes rippleGrow{to{transform:scale(4);opacity:0;}}
+
+/* ═══ FADE IN ═══ */
+.fade-in{opacity:0;transform:translateY(16px);transition:opacity .5s ease,transform .5s ease;}
+.fade-in.visible{opacity:1;transform:translateY(0);}
+
+/* ═══ RESPONSIVE ═══ */
+@media(max-width:1024px){
+  .sidebar{transform:translateX(-100%);transition:transform .28s cubic-bezier(.4,0,.2,1);top:0;z-index:300;width:min(260px,85vw);}
+  .sidebar.open{transform:translateX(0);}
+  .mob-menu-btn{display:flex;}
+  .main{margin-left:0;}
+  .topbar{left:0;padding:0 1rem;height:52px;gap:8px;}
+  .main{padding-top:52px;}
+  .main-inner{padding:1.8rem 1.2rem 5rem;max-width:100%;}
+  h1{font-size:2rem;line-height:1.2;}
+  h2{font-size:1.5rem;}
+  .card-grid{grid-template-columns:1fr;}
+  .algo-split{grid-template-columns:1fr;}
+  table,tbody,thead,tr{font-size:13px;}
+  thead th{padding:8px 10px;}
+  tbody td,.cmp-table td{padding:8px 10px;}
+  .tab-btn{font-size:12px;padding:7px 10px;min-width:80px;}
+}
+@media(max-width:480px){
+  .main-inner{padding:1.4rem .9rem 4.5rem;}
+  h1{font-size:1.7rem;}
+  h2{font-size:1.3rem;}
+  .topbar .sep,.topbar .time{display:none;}
+  .page-subtitle{font-size:15px;}
+  .callout{padding:.9rem 1rem;}
+  .callout-body{font-size:14px;}
+  .detail-body{padding:1rem;}
+  .tab-btn{font-size:11.5px;padding:6px 8px;}
+  .info-row{grid-template-columns:1fr;gap:4px;}
+  .info-key{font-size:11px;}
+  .step{padding:9px 12px;}
+  .step-text{font-size:13.5px;}
+}
+</style>
+</head>
+<body>
+
+<div class="sidebar-overlay" id="sidebar-overlay" onclick="closeSidebar()"></div>
+<div class="layout">
+
+<!-- ═══ SIDEBAR ═══ -->
+<aside class="sidebar">
+  <div class="sidebar-header">
+    <div class="sidebar-course">EKG-Kurs</div>
+    <div class="sidebar-title">Tachykardie-Differenzialdiagnosen</div>
+    <div class="sidebar-lang">
+      <span>🇩🇪 Deutsch</span>
+      <span>🇩🇿 الدارجة</span>
+    </div>
+  </div>
+
+  <div class="sidebar-section">Übersicht</div>
+  <nav>
+    <a href="#" class="active ripple-host" id="snav-overview" onclick="showPanel('overview',this)"><span class="num">⬛</span>Übersicht</a>
+  </nav>
+
+  <div class="sidebar-section">Schmaler QRS ≤120 ms</div>
+  <nav>
+    <a href="#" class="ripple-host" id="snav-svt" onclick="showPanel('schmal',this);schmalSelect('svt')"><span class="num">💓</span>SVT (AVNRT / AVRT)</a>
+    <a href="#" class="ripple-host" id="snav-vhf" onclick="showPanel('schmal',this);schmalSelect('vhf')"><span class="num">〰</span>Vorhofflimmern</a>
+    <a href="#" class="ripple-host" id="snav-vfl" onclick="showPanel('schmal',this);schmalSelect('vfl')"><span class="num">⚡</span>Vorhofflattern</a>
+    <a href="#" class="ripple-host" id="snav-sinust" onclick="showPanel('schmal',this);schmalSelect('sinust')"><span class="num">↑</span>Sinustachykardie</a>
+    <a href="#" class="ripple-host" id="snav-jnkt" onclick="showPanel('schmal',this);schmalSelect('jnkt')"><span class="num">⊙</span>Junktionale Tachy</a>
+  </nav>
+
+  <div class="sidebar-section">Breiter QRS &gt;120 ms</div>
+  <nav>
+    <a href="#" class="ripple-host" id="snav-vt" onclick="showPanel('breit',this);breitSelect('vt')"><span class="num">⚠</span>VT — Ventrikuläre Tachy</a>
+    <a href="#" class="ripple-host" id="snav-vf" onclick="showPanel('breit',this);breitSelect('vf')"><span class="num">🚨</span>Kammerflimmern</a>
+    <a href="#" class="ripple-host" id="snav-svtsb" onclick="showPanel('breit',this);breitSelect('svt-sb')"><span class="num">↔</span>SVT + Schenkelblock</a>
+    <a href="#" class="ripple-host" id="snav-vhfab" onclick="showPanel('breit',this);breitSelect('vhf-ab')"><span class="num">∿</span>VHF + Aberranz</a>
+    <a href="#" class="ripple-host" id="snav-wpw" onclick="showPanel('breit',this);breitSelect('wpw')"><span class="num">△</span>WPW-Syndrom</a>
+    <a href="#" class="ripple-host" id="snav-tdp" onclick="showPanel('breit',this);breitSelect('torsades')"><span class="num">∞</span>Torsades de Pointes</a>
+  </nav>
+
+  <div class="sidebar-section">Therapie</div>
+  <nav>
+    <a href="#" class="ripple-host" id="snav-algo" onclick="showPanel('algo',this)"><span class="num">⟳</span>Algorithmus</a>
+    <a href="#" class="ripple-host" id="snav-drugs" onclick="showPanel('drugs',this)"><span class="num">💊</span>Medikamente</a>
+  </nav>
+
+  <div class="sidebar-footer">EKG Tachykardie · Klinische Referenz</div>
+</aside>
+
+<!-- TOPBAR -->
+<div class="topbar">
+  <button class="mob-menu-btn" id="mob-menu-btn" onclick="toggleSidebar()" aria-label="Menü">
+    <span></span><span></span><span></span>
+  </button>
+  <span>🫀 EKG</span>
+  <span class="sep">›</span>
+  <span class="current" id="topbar-current">Übersicht</span>
+  <div class="time">⏱ 30 Min.</div>
+</div>
+
+<!-- ═══════════════════════════════
+     MAIN CONTENT
+═══════════════════════════════ -->
+<main class="main">
+<div class="main-inner">
+
+<!-- ══════ OVERVIEW ══════ -->
+<div class="page-panel active" id="panel-overview">
+  <div class="page-header fade-in">
+    <div class="breadcrumb">EKG-Kurs <span>›</span> Tachykardien</div>
+    <div class="page-icon">🫀</div>
+    <h1>EKG-Tachykardie Differenzialdiagnosen</h1>
+    <p class="page-subtitle">Schmaler vs. breiter QRS · Therapiealgorithmus · Antiarrhythmika — klinische Referenz auf Deutsch und Darija.</p>
+    <div class="tag-row">
+      <span class="tag red">Notfall</span>
+      <span class="tag blue">Schmaler QRS</span>
+      <span class="tag amber">Breiter QRS</span>
+      <span class="tag green">Algorithmus</span>
+      <span class="tag purple">Medikamente</span>
+      <span class="tag gray">Darija الدارجة</span>
+    </div>
+    <div class="meta-strip">
+      <div>📊 11 Rhythmusstörungen</div>
+      <div>💊 Vaughan-Williams Klassen I–IV</div>
+      <div>🌐 Deutsch + Darija</div>
+    </div>
+  </div>
+
+  <div class="critical-box">
+    <p><strong>Breit-QRS-Tachykardie = Ventrikuläre Tachykardie bis zum Beweis des Gegenteils!</strong><br>
+    Verapamil und Diltiazem bei unklarem Breit-QRS absolut kontraindiziert → Kreislaufkollaps möglich.</p>
+  </div>
+
+  <div class="darija-box" style="background:var(--darija-bg);border:1px solid var(--darija-border);border-radius:var(--radius);padding:1.1rem 1.3rem;margin:1.3rem 0;direction:rtl;text-align:right;">
+    <div style="direction:ltr;text-align:left;font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--darija-text);opacity:.6;margin-bottom:7px;"><span style="background:var(--darija-border);padding:2px 8px;border-radius:4px;">🇩🇿 بالدارجة</span></div>
+    في الـ Tachykardie، أول سؤال هو: الـ QRS ضيق ولا عريض؟ إذا كان عريض (أكثر من 120 مللي ثانية)، نعامله كـ VT حتى نثبت العكس. ما نعطيوش Verapamil ولا Diltiazem في الـ QRS العريض — خطر جداً!
+  </div>
+
+  <h2><span class="sec-num">01</span>Schmaler QRS ≤ 120 ms</h2>
+  <div class="card-grid fade-in">
+    <div class="card c-blue ripple-host" onclick="showPanel('schmal',null);schmalSelect('svt');setNavActive('snav-svt')">
+      <div class="badge blue">AVNRT / AVRT</div>
+      <h4>💓 SVT</h4>
+      <p>150–250/min · regelmäßig · abrupter Beginn/Ende · Adenosin terminiert</p>
+      <div class="card-darija">قلبي يدق بسرعة ويوقف فجأة — Adenosin يوقفو</div>
+    </div>
+    <div class="card c-amber ripple-host" onclick="showPanel('schmal',null);schmalSelect('vhf');setNavActive('snav-vhf')">
+      <div class="badge amber">Absolutarrhythmie</div>
+      <h4>〰 Vorhofflimmern</h4>
+      <p>Unregelmäßig · keine P-Wellen · Flimmerwellen · Schlaganfall-Risiko!</p>
+      <div class="card-darija">ما فيهاش انتظام — الخطر الأكبر هو الجلطة الدماغية</div>
+    </div>
+    <div class="card c-amber ripple-host" onclick="showPanel('schmal',null);schmalSelect('vfl');setNavActive('snav-vfl')">
+      <div class="badge amber">~150/min bei 2:1</div>
+      <h4>⚡ Vorhofflattern</h4>
+      <p>Sägezahnmuster · Vorhof ~300/min · 2:1-Überleitung häufig</p>
+      <div class="card-darija">موجات كيما المنشار في II/III/aVF · الأذين يدق 300/دقيقة</div>
+    </div>
+    <div class="card c-green ripple-host" onclick="showPanel('schmal',null);schmalSelect('sinust');setNavActive('snav-sinust')">
+      <div class="badge green">Reaktiv</div>
+      <h4>↑ Sinustachykardie</h4>
+      <p>Gradueller Beginn · normale P-Wellen · Ursache behandeln</p>
+      <div class="card-darija">تسارع طبيعي ردة فعل: حمى، ألم، فقر الدم، نقص السوائل</div>
+    </div>
+  </div>
+
+  <h2><span class="sec-num">02</span>Breiter QRS &gt; 120 ms</h2>
+  <div class="card-grid fade-in">
+    <div class="card c-red ripple-host" onclick="showPanel('breit',null);breitSelect('vt');setNavActive('snav-vt')">
+      <div class="badge red">NOTFALL</div>
+      <h4>⚠ VT — Ventrikuläre Tachykardie</h4>
+      <p>Regelmäßig · breiter QRS · AV-Dissoziation · Capture Beats · Fusion Beats</p>
+      <div class="card-darija">الأخطر! القلب يدق من البطين مباشرة — قابل للموت المفاجئ</div>
+    </div>
+    <div class="card c-red ripple-host" onclick="showPanel('breit',null);breitSelect('vf');setNavActive('snav-vf')">
+      <div class="badge red">CPR SOFORT</div>
+      <h4>🚨 Kammerflimmern</h4>
+      <p>Keine organisierten QRS · chaotische Wellen · pulslos · Defibrillation sofort!</p>
+      <div class="card-darija">فوضى كاملة في القلب — Defibrillation فوراً + CPR</div>
+    </div>
+    <div class="card c-purple ripple-host" onclick="showPanel('breit',null);breitSelect('wpw');setNavActive('snav-wpw')">
+      <div class="badge purple">WPW</div>
+      <h4>△ WPW-Syndrom</h4>
+      <p>Delta-Welle · kurze PR · keine AV-Blocker! → Flecainid/Procainamid</p>
+      <div class="card-darija">مسار إضافي للتنبيه — AV-Blocker خطر يسرع الـ VF!</div>
+    </div>
+    <div class="card c-orange ripple-host" onclick="showPanel('breit',null);breitSelect('torsades');setNavActive('snav-tdp')">
+      <div class="badge orange">Torsades</div>
+      <h4>∞ Torsades de Pointes</h4>
+      <p>QT-Verlängerung · Spitzen drehen sich um Achse · Mg²⁺ sofort!</p>
+      <div class="card-darija">QT طويل + الـ QRS يتقلب حول الخط — Magnesium هو الحل الأول</div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════ SCHMAL ══════ -->
+<div class="page-panel" id="panel-schmal">
+  <div class="page-header">
+    <div class="page-icon">💓</div>
+    <h1>Schmaler QRS ≤ 120 ms</h1>
+    <p class="page-subtitle">Supraventrikuläre Ursprung · Adenosin als diagnostisches und therapeutisches Werkzeug.</p>
+  </div>
+  <div class="tab-row" id="schmal-tabs">
+    <button class="tab-btn" id="stab-svt" onclick="schmalSelect('svt')">💓 SVT <span class="tab-badge">AVNRT/AVRT</span></button>
+    <button class="tab-btn" id="stab-vhf" onclick="schmalSelect('vhf')">〰 Vorhofflimmern</button>
+    <button class="tab-btn" id="stab-vfl" onclick="schmalSelect('vfl')">⚡ Vorhofflattern</button>
+    <button class="tab-btn" id="stab-sinust" onclick="schmalSelect('sinust')">↑ Sinustachykardie</button>
+    <button class="tab-btn" id="stab-jnkt" onclick="schmalSelect('jnkt')">⊙ Junktional</button>
+  </div>
+  <div id="schmal-detail"></div>
+</div>
+
+<!-- ══════ BREIT ══════ -->
+<div class="page-panel" id="panel-breit">
+  <div class="page-header">
+    <div class="page-icon">🔴</div>
+    <h1>Breiter QRS &gt; 120 ms</h1>
+    <p class="page-subtitle">Ventrikulärer Ursprung bis Beweis des Gegenteils — Verapamil/Diltiazem kontraindiziert!</p>
+  </div>
+  <div class="critical-box" style="margin-bottom:1.5rem;">
+    <p>Breit-QRS-Tachykardie = VT bis das Gegenteil bewiesen ist. <strong>Verapamil und Diltiazem kontraindiziert!</strong></p>
+  </div>
+  <div class="tab-row" id="breit-tabs">
+    <button class="tab-btn" id="btab-vt" onclick="breitSelect('vt')">⚠ VT</button>
+    <button class="tab-btn" id="btab-vf" onclick="breitSelect('vf')">🚨 Kammerflimmern</button>
+    <button class="tab-btn" id="btab-svt-sb" onclick="breitSelect('svt-sb')">↔ SVT+SB</button>
+    <button class="tab-btn" id="btab-vhf-ab" onclick="breitSelect('vhf-ab')">∿ VHF+Aberranz</button>
+    <button class="tab-btn" id="btab-wpw" onclick="breitSelect('wpw')">△ WPW</button>
+    <button class="tab-btn" id="btab-torsades" onclick="breitSelect('torsades')">∞ Torsades</button>
+  </div>
+  <div id="breit-detail"></div>
+</div>
+
+<!-- ══════ ALGORITHMUS ══════ -->
+<div class="page-panel" id="panel-algo">
+  <div class="page-header fade-in">
+    <div class="page-icon">⟳</div>
+    <h1>Therapie-Algorithmus</h1>
+    <p class="page-subtitle">Schrittweise Entscheidungsfindung im Notfall — stabil vs. instabil.</p>
+  </div>
+  <div class="callout info">
+    <div class="callout-icon">📋</div>
+    <div class="callout-body"><strong>Immer zuerst:</strong> Puls tasten · Monitor anlegen · Venöser Zugang · O₂ · Reanimationsbereitschaft sicherstellen!</div>
+  </div>
+
+  <h2><span class="sec-num">01</span>Schritt 1 — Hämodynamik beurteilen</h2>
+  <div class="algo-split fade-in">
+    <div class="algo-box" style="border-top:3px solid var(--red);">
+      <div class="algo-box-title" style="color:var(--red);">⚡ INSTABIL → Sofort elektrisch</div>
+      <div class="steps">
+        <div class="step"><div class="step-num danger">1</div><div><div class="step-text">Sedierung: Midazolam 2–5 mg i.v. (± Propofol)</div></div></div>
+        <div class="step"><div class="step-num danger">2</div><div><div class="step-text"><strong>Synchronisierte Kardioversion 100–200 J biphasisch</strong></div><div class="step-sub">VF/pulslose VT → Defibrillation 200 J (NICHT synchronisiert) + CPR</div></div></div>
+      </div>
+    </div>
+    <div class="algo-box" style="border-top:3px solid var(--green);">
+      <div class="algo-box-title" style="color:var(--green);">✓ STABIL → Systematisch</div>
+      <div class="steps">
+        <div class="step"><div class="step-num success">1</div><div><div class="step-text">12-Kanal-EKG · QRS-Breite messen</div></div></div>
+        <div class="step"><div class="step-num success">2</div><div><div class="step-text">Labor: Elektrolyte · Troponin · TSH · BGA</div></div></div>
+      </div>
+    </div>
+  </div>
+
+  <h2><span class="sec-num">02</span>Schritt 2 — QRS-Breite</h2>
+  <div class="algo-split fade-in">
+    <div class="algo-box" style="border-top:3px solid var(--accent);">
+      <div class="algo-box-title" style="color:var(--accent);">Schmal ≤ 120 ms</div>
+      <div class="steps">
+        <div class="step"><div class="step-num">a</div><div><div class="step-text">Regelmäßig → SVT, Vfl, Sinustachy</div><div class="step-sub">Vagale Manöver → Adenosin 6→12→18 mg i.v.</div></div></div>
+        <div class="step"><div class="step-num">b</div><div><div class="step-text">Unregelmäßig → VHF / Vorhofflattern variabel</div><div class="step-sub">Frequenz- oder Rhythmuskontrolle · Antikoagulation!</div></div></div>
+      </div>
+    </div>
+    <div class="algo-box" style="border-top:3px solid var(--red);">
+      <div class="algo-box-title" style="color:var(--red);">Breit &gt; 120 ms → VT!</div>
+      <div class="steps">
+        <div class="step"><div class="step-num danger">a</div><div><div class="step-text">Regelmäßig → Amiodaron 150 mg i.v.</div><div class="step-sub">Oder Lidocain 1 mg/kg i.v.</div></div></div>
+        <div class="step"><div class="step-num danger">b</div><div><div class="step-text">Unregelmäßig → VHF+Aberranz oder WPW+VHF?</div><div class="step-sub">WPW: KEINE AV-Blocker → Procainamid/Flecainid</div></div></div>
+        <div class="step"><div class="step-num danger">c</div><div><div class="step-text">Pulslos → Defibrillation 200 J + CPR sofort</div></div></div>
+      </div>
+    </div>
+  </div>
+
+  <h2><span class="sec-num">03</span>Schritt 3 — Nach Konversion</h2>
+  <div class="steps fade-in">
+    <div class="step"><div class="step-num">1</div><div><div class="step-text">Ursachenabklärung: Echo · Langzeit-EKG · Elektrophysiologie</div></div></div>
+    <div class="step"><div class="step-num">2</div><div><div class="step-text">Langzeittherapie planen: ICD · Katheterablation · Antiarrhythmikum · Antikoagulation</div></div></div>
+  </div>
+
+  <div class="callout purple">
+    <div class="callout-icon">🔄</div>
+    <div class="callout-body"><strong>4H + 4T — Reversible Ursachen beim Herzstillstand:</strong><br>
+    Hypoxie · Hypovolämie · Hypo/Hyperkaliämie · Hypothermie<br>
+    Thrombose (PE/ACS) · Tamponade · Tension-Pneumothorax · Toxine</div>
+  </div>
+
+  <div style="background:var(--darija-bg);border:1px solid var(--darija-border);border-radius:var(--radius);padding:1.1rem 1.3rem;margin:1.3rem 0;direction:rtl;text-align:right;">
+    <div style="direction:ltr;text-align:left;font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--darija-text);opacity:.6;margin-bottom:7px;"><span style="background:var(--darija-border);padding:2px 8px;border-radius:4px;">🇩🇿 الخوارزمية بالدارجة</span></div>
+    أول سؤال: هل المريض مستقر؟ — مستقر = خذ وقتك وافحص الـ QRS. غير مستقر = Kardioversion الكهربائي مباشرة بعد التخدير. ثاني سؤال: QRS ضيق ولا عريض؟ — ضيق: Adenosin أو Betablocker. عريض: Amiodaron وما تعطيش Verapamil أبداً!
+  </div>
+</div>
+
+<!-- ══════ MEDIKAMENTE ══════ -->
+<div class="page-panel" id="panel-drugs">
+  <div class="page-header fade-in">
+    <div class="page-icon">💊</div>
+    <h1>Antiarrhythmika</h1>
+    <p class="page-subtitle">Dosierungsübersicht nach Vaughan-Williams — Klassen I bis IV plus Sonstige.</p>
+  </div>
+
+  <div class="drug-section-label klasse-1">Klasse I — Natriumkanalblocker</div>
+  <div class="table-wrap">
+    <table class="drug-table">
+      <thead><tr><th>Medikament</th><th>Dosierung</th><th>Indikation</th><th>Cave / KI</th></tr></thead>
+      <tbody>
+        <tr><td>Lidocain (Ib)</td><td>1–1,5 mg/kg i.v. → 1–4 mg/min</td><td>VT (v.a. ischämisch)</td><td>Nicht bei SVT</td></tr>
+        <tr><td>Flecainid (Ic)</td><td>2 mg/kg i.v. / 200–300 mg p.o.</td><td>VHF-Cardioversion · WPW · SVT</td><td class="drug-note">Nur strukturell normales Herz! Pro-arrhythmisch</td></tr>
+        <tr><td>Propafenon (Ic)</td><td>1–2 mg/kg i.v. / 450–600 mg p.o.</td><td>VHF Pill-in-pocket · SVT</td><td class="drug-note">Nur normales Herz · Bronchospasmus</td></tr>
+        <tr><td>Procainamid (Ia)</td><td>10–17 mg/kg i.v. über 20–60 min</td><td>VT · WPW+VHF</td><td class="drug-note">QT↑ · In D kaum verfügbar</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="drug-section-label klasse-2">Klasse II — Betablocker</div>
+  <div class="table-wrap">
+    <table class="drug-table">
+      <thead><tr><th>Medikament</th><th>Dosierung</th><th>Indikation</th><th>Cave / KI</th></tr></thead>
+      <tbody>
+        <tr><td>Metoprolol</td><td>2,5–5 mg i.v. (langsam, bis 3×) / 25–200 mg/d p.o.</td><td>SVT · VHF-Frequenzkontrolle · Sinustachykardie</td><td class="drug-note">AV-Block · Asthma</td></tr>
+        <tr><td>Esmolol</td><td>500 µg/kg Bolus → 50–200 µg/kg/min</td><td>SVT perioperativ · VHF akut</td><td class="drug-note">HWZ 9 min · gut steuerbar</td></tr>
+        <tr><td>Bisoprolol</td><td>2,5–10 mg/d p.o.</td><td>VHF-Frequenzkontrolle chronisch</td><td class="drug-note">Bradykardie · AV-Block</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="drug-section-label klasse-3">Klasse III — Kaliumkanalblocker</div>
+  <div class="table-wrap">
+    <table class="drug-table">
+      <thead><tr><th>Medikament</th><th>Dosierung</th><th>Indikation</th><th>Cave / KI</th></tr></thead>
+      <tbody>
+        <tr><td>Amiodaron</td><td>150 mg i.v./10 min → 1 mg/min ×6h → 0,5 mg/min ×18h · p.o. 600–800 mg/d ×4 Wo → 200 mg/d</td><td>VT · VHF · Breit-QRS unklar · Reanimation (300 mg nach 3. Schock)</td><td class="drug-note">Schilddrüse · Lunge · Leber · QT↑</td></tr>
+        <tr><td>Sotalol</td><td>80–160 mg 2×/d p.o. / 1–1,5 mg/kg i.v.</td><td>VT · VHF-Rezidivprophylaxe</td><td class="drug-note">QT↑ · Niereninsuffizienz · TdP-Risiko</td></tr>
+        <tr><td>Ibutilid</td><td>1 mg i.v./10 min (Wdhl. nach 10 min mögl.)</td><td>VHF/Vfl Cardioversion akut</td><td class="drug-note">Cave: TdP! Monitoring ≥4h</td></tr>
+        <tr><td>Dofetilid</td><td>250–500 µg p.o. 2×/d</td><td>VHF/Vfl Rhythmuskontrolle</td><td class="drug-note">Strenge Nierenkontrolle · QTc-Überwachung</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="drug-section-label klasse-4">Klasse IV + Sonstige</div>
+  <div class="table-wrap">
+    <table class="drug-table">
+      <thead><tr><th>Medikament</th><th>Dosierung</th><th>Indikation</th><th>Cave / KI</th></tr></thead>
+      <tbody>
+        <tr><td>Verapamil</td><td>5 mg i.v. langsam (bis 3×) / 40–120 mg 3×/d p.o.</td><td>SVT (schmaler QRS!) · VHF-Frequenzkontrolle</td><td style="color:var(--red);font-weight:600;">KI: VT · WPW · HFrEF → Kollaps!</td></tr>
+        <tr><td>Diltiazem</td><td>0,25 mg/kg i.v./2 min → 5–15 mg/h</td><td>SVT · VHF/Vfl-Frequenzkontrolle</td><td class="drug-note">Nicht bei HFrEF oder VT</td></tr>
+        <tr><td>Adenosin</td><td>6 mg rapid i.v. + NaCl-Flush → 12 mg → 18 mg</td><td>SVT (1. Wahl!) · Diagnostisch bei Breit-QRS</td><td class="drug-note">HWZ ~10 Sek. · Asthma · Flush/Dyspnoe erwartet</td></tr>
+        <tr><td>Digoxin</td><td>0,5 mg i.v. → 0,25 mg/4h (max. 1 mg) / 0,0625–0,25 mg/d p.o.</td><td>VHF-Frequenzkontrolle (HFrEF, inaktiv)</td><td class="drug-note">Enge therapeutische Breite · Hypokaliämie verstärkt Toxizität</td></tr>
+        <tr><td>Magnesiumsulfat</td><td>2 g i.v./1–2 min → 3–20 mg/min</td><td>Torsades de Pointes (1. Wahl!) · Hypomagnesiämie</td><td class="drug-note">Niereninsuffizienz · Atemkontrolle</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout info" style="margin-top:1.5rem;">
+    <div class="callout-icon">💊</div>
+    <div class="callout-body"><strong>Antikoagulation bei VHF:</strong> DOAK bevorzugt (Apixaban · Rivaroxaban · Dabigatran · Edoxaban) · Phenprocoumon bei mechanischen Klappen / Mitralklappenstenose · CHA₂DS₂-VASc ≥1 (♂) / ≥2 (♀) → Antikoagulation indiziert · Bei Cardioversion ≥48h: ≥3 Wochen vorher oder TEE-Ausschluss Thrombus</div>
+  </div>
+
+  <div style="background:var(--darija-bg);border:1px solid var(--darija-border);border-radius:var(--radius);padding:1.1rem 1.3rem;margin:1.3rem 0;direction:rtl;text-align:right;">
+    <div style="direction:ltr;text-align:left;font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--darija-text);opacity:.6;margin-bottom:7px;"><span style="background:var(--darija-border);padding:2px 8px;border-radius:4px;">🇩🇿 الأدوية بالدارجة</span></div>
+    Adenosin هو الأول في SVT — يوقف الـ QRS الضيق المنتظم في ثوانٍ. Amiodaron هو الأمين في كل حالة VT أو QRS عريض. Verapamil و Diltiazem ما تعطيهمش في QRS عريض ولا في WPW — يقدر يموت المريض. Magnesium هو أول دواء في Torsades de Pointes.
+  </div>
+</div>
+
+</div><!-- end main-inner -->
+</main>
+</div><!-- end layout -->
+
+<script>
+// ═══════════════════════════════════════════════════
+//  DATA — Schmale QRS
+// ═══════════════════════════════════════════════════
+const schmalData = {
+  svt:{title:'SVT — Supraventrikuläre Tachykardie',icon:'💓',iconBg:'var(--accent-bg)',
+    sub:'AVNRT 60% · AVRT 30% · Atriale Tachykardie 10%',tabs:['EKG-Merkmale','Differenzierung','Therapie','Langzeit'],
+    content:{
+      'EKG-Merkmale':`<div class="callout info"><div class="callout-icon">📊</div><div class="callout-body">AVNRT: Pseudo-S in II/III/aVF und Pseudo-R' in V1 (P im QRS) · AVRT: P nach QRS (RP kurz 70–140 ms)</div></div>
+        <div class="info-table">
+          <div class="info-row"><div class="info-key">Herzfrequenz</div><div class="info-val">150–250/min · regelmäßig</div></div>
+          <div class="info-row"><div class="info-key">QRS-Breite</div><div class="info-val">Schmal ≤120 ms (außer bei Aberranz)</div></div>
+          <div class="info-row"><div class="info-key">P-Welle</div><div class="info-val">Retrograd · im oder nach QRS · RP &lt; PR (AVNRT)</div></div>
+          <div class="info-row"><div class="info-key">Beginn / Ende</div><div class="info-val">Abrupt — Reentry-Mechanismus · "Herzrasen beginnt/endet plötzlich"</div></div>
+          <div class="info-row"><div class="info-key">Charakteristisch</div><div class="info-val">Pseudo-S in II, III, aVF · Pseudo-R' in V1 bei AVNRT</div></div>
+        </div>
+        <div style="background:var(--darija-bg);border:1px solid var(--darija-border);border-radius:var(--radius);padding:1rem 1.2rem;margin-top:1rem;direction:rtl;text-align:right;font-size:14px;color:var(--darija-text);">SVT: القلب يتسارع فجأة ويوقف فجأة. الـ P موجود بصح مخبي في ولا بعد الـ QRS مباشرة. الـ Adenosin يوقفو لأنه يمر من الـ AV Node.</div>`,
+      'Differenzierung':`<div class="info-table">
+          <div class="info-row"><div class="info-key">Adenosin-Response</div><div class="info-val">Terminierung → beweist AV-Knoten-Beteiligung (AVNRT, AVRT)</div></div>
+          <div class="info-row"><div class="info-key">AVNRT vs AVRT</div><div class="info-val">AVNRT: RP sehr kurz (P im QRS) · AVRT: P deutlich nach QRS (RP 70–140 ms)</div></div>
+          <div class="info-row"><div class="info-key">DD atriale Tachy</div><div class="info-val">Adenosin: verlangsamt, terminiert aber nicht · P-Morphologie variiert</div></div>
+          <div class="info-row"><div class="info-key">DD Vfl 2:1</div><div class="info-val">HF exakt ~150/min · Sägezahnmuster erkennbar · Adenosin entlarvt Muster</div></div>
+        </div>`,
+      'Therapie':`<div class="callout success"><div class="callout-icon">🖐</div><div class="callout-body">Vagale Manöver zuerst! Valsalva (modifiziert: Beine hoch nach Pressmanöver) → Karotissinusmassage (keine Stenose!)</div></div>
+        <div class="steps">
+          <div class="step"><div class="step-num success">1</div><div><div class="step-text"><strong>Adenosin 6 mg i.v. rapid</strong> + sofortiger NaCl-Bolus (Armvene)</div><div class="step-sub">→ 12 mg → 18 mg bei Misserfolg · HWZ ~10 Sek.</div></div></div>
+          <div class="step"><div class="step-num">2</div><div><div class="step-text"><strong>Verapamil 5 mg i.v.</strong> langsam (nur wenn schmaler QRS gesichert!)</div><div class="step-sub">→ oder Metoprolol 5 mg i.v. · oder Diltiazem i.v.</div></div></div>
+          <div class="step"><div class="step-num danger">!</div><div><div class="step-text">Bei Instabilität: Elektrische Kardioversion 50–100 J synchronisiert</div></div></div>
+        </div>`,
+      'Langzeit':`<div class="info-table">
+          <div class="info-row"><div class="info-key">1. Wahl (kurativ)</div><div class="info-val"><strong>Katheterablation</strong> — Erfolgsrate AVNRT &gt;95%, AVRT &gt;90%</div></div>
+          <div class="info-row"><div class="info-key">Medikamentös</div><div class="info-val">Betablocker · Verapamil/Diltiazem · Flecainid (bei AVRT ohne WPW)</div></div>
+          <div class="info-row"><div class="info-key">Pill-in-pocket</div><div class="info-val">Flecainid 200 mg oder Propafenon 450 mg p.o. bei seltenen Episoden + strukturell normalem Herz</div></div>
+        </div>`
+    }
+  },
+  vhf:{title:'Vorhofflimmern (VHF)',icon:'〰',iconBg:'var(--amber-bg)',
+    sub:'Häufigste anhaltende Herzrhythmusstörung · Schlaganfall-Risiko 5× erhöht',tabs:['EKG-Merkmale','Klassifikation','Therapie','Antikoagulation'],
+    content:{
+      'EKG-Merkmale':`<div class="callout warn"><div class="callout-icon">📊</div><div class="callout-body"><strong>Absolutarrhythmie</strong> = unregelmäßige RR-Abstände ohne erkennbare P-Wellen → Diagnose!</div></div>
+        <div class="info-table">
+          <div class="info-row"><div class="info-key">Herzfrequenz</div><div class="info-val">Variabel · oft 100–160/min bei schneller Überleitung</div></div>
+          <div class="info-row"><div class="info-key">P-Wellen</div><div class="info-val">Fehlen · ersetzt durch Flimmerwellen f (350–600/min) · unregelmäßige Basislinie</div></div>
+          <div class="info-row"><div class="info-key">QRS</div><div class="info-val">Normal schmal · absolut unregelmäßige Abstände (Absolutarrhythmie)</div></div>
+          <div class="info-row"><div class="info-key">Besonderheit</div><div class="info-val">Bei hoher HF + Schenkelblock: breites unregelmäßiges QRS → DD VT beachten!</div></div>
+        </div>
+        <div style="background:var(--darija-bg);border:1px solid var(--darija-border);border-radius:var(--radius);padding:1rem 1.2rem;margin-top:1rem;direction:rtl;text-align:right;font-size:14px;color:var(--darija-text);">VHF: الـ RR متفرقة ومتفاوتة — ما كاينش P موجة واضحة. الخطر الكبير هو جلطة الدماغ. الـ CHA₂DS₂-VASc يحدد الحاجة للـ Antikoagulation.</div>`,
+      'Klassifikation':`<div class="table-wrap"><table class="cmp-table"><tr><th>Typ</th><th>Definition</th><th>Bemerkung</th></tr>
+          <tr><td>Paroxysmales VHF</td><td>&lt;7 Tage · terminiert spontan</td><td>Höchste Konversionsrate</td></tr>
+          <tr><td>Persistierendes VHF</td><td>&gt;7 Tage · nicht spontan</td><td>Kardioversion erforderlich</td></tr>
+          <tr><td>Langanhaltend persistierend</td><td>&gt;1 Jahr</td><td>Ablation weniger erfolgreich</td></tr>
+          <tr><td>Permanentes VHF</td><td>Akzeptiert · Frequenzkontrolle</td><td>Kein Cardioversionsversuch</td></tr>
+        </table></div>`,
+      'Therapie':`<div class="algo-split">
+          <div class="algo-box" style="border-top:3px solid var(--amber);">
+            <div class="algo-box-title" style="color:var(--amber);">Frequenzkontrolle (Ziel &lt;110/min)</div>
+            <div class="pill-list">
+              <div class="pill">Metoprolol <span class="pill-note">1. Wahl</span></div>
+              <div class="pill">Bisoprolol <span class="pill-note">2,5–10 mg/d</span></div>
+              <div class="pill">Diltiazem <span class="pill-note">nicht bei HFrEF</span></div>
+              <div class="pill">Digoxin <span class="pill-note">HFrEF/inaktiv</span></div>
+            </div>
+          </div>
+          <div class="algo-box" style="border-top:3px solid var(--accent);">
+            <div class="algo-box-title" style="color:var(--accent);">Rhythmuskontrolle</div>
+            <div class="pill-list">
+              <div class="pill">Flecainid <span class="pill-note">200–300 mg p.o.</span></div>
+              <div class="pill">Propafenon <span class="pill-note">450 mg p.o.</span></div>
+              <div class="pill">Amiodaron <span class="pill-note">300 mg i.v.</span></div>
+              <div class="pill">Ibutilid <span class="pill-note">1 mg i.v.</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="callout info" style="margin-top:10px;"><div class="callout-icon">⚡</div><div class="callout-body"><strong>Elektrische Kardioversion:</strong> 100–200 J biphasisch synchronisiert · Antikoagulation ≥3 Wochen vorher ODER TEE-Ausschluss Thrombus · Sedierung</div></div>`,
+      'Antikoagulation':`<div class="callout danger"><div class="callout-icon">⚠️</div><div class="callout-body"><strong>CHA₂DS₂-VASc ≥1 (♂) / ≥2 (♀) → Antikoagulation indiziert!</strong></div></div>
+        <div class="info-table">
+          <div class="info-row"><div class="info-key">CHA₂DS₂-VASc</div><div class="info-val">C: Herzinsuffizienz (1) · H: Hypertonie (1) · A: Alter ≥75 (2) · D: Diabetes (1) · S: Schlaganfall/TIA (2) · V: Vaskuläre Erkr. (1) · A: Alter 65–74 (1) · Sc: Weiblich (1)</div></div>
+          <div class="info-row"><div class="info-key">DOAK (bevorzugt)</div><div class="info-val">Apixaban 5 mg 2×/d · Rivaroxaban 20 mg/d · Dabigatran 150 mg 2×/d · Edoxaban 60 mg/d</div></div>
+          <div class="info-row"><div class="info-key">Phenprocoumon</div><div class="info-val">Bei mechanischen Klappen · Mitralklappenstenose · INR-Ziel 2,0–3,0</div></div>
+        </div>`
+    }
+  },
+  vfl:{title:'Vorhofflattern',icon:'⚡',iconBg:'var(--amber-bg)',
+    sub:'Makroreentrant im rechten Vorhof · Kavotrikuspidaler Isthmus',tabs:['EKG-Merkmale','Therapie','Ablation'],
+    content:{
+      'EKG-Merkmale':`<div class="callout warn"><div class="callout-icon">💡</div><div class="callout-body">HF exakt ~150/min bei 2:1-Überleitung → immer an Vorhofflattern denken!</div></div>
+        <div class="info-table">
+          <div class="info-row"><div class="info-key">Vorhoffrequenz</div><div class="info-val">~300/min (280–320) · sägezahnförmige Flatterwellen F</div></div>
+          <div class="info-row"><div class="info-key">Überleitung</div><div class="info-val">2:1 häufigste (HF ~150/min) · 3:1 oder 4:1 möglich · Adenosin entlarvt Muster</div></div>
+          <div class="info-row"><div class="info-key">EKG-Merkmal</div><div class="info-val">Negative Flatterwellen in II, III, aVF · Positive in V1 (typisches Flattern)</div></div>
+        </div>
+        <div style="background:var(--darija-bg);border:1px solid var(--darija-border);border-radius:var(--radius);padding:1rem 1.2rem;margin-top:1rem;direction:rtl;text-align:right;font-size:14px;color:var(--darija-text);">كي تشوف تردد 150/دقيقة، فكر دايماً في Vorhofflattern مع 2:1 Überleitung. الأذين يدق 300 والبطين يشتغل 1 من كل 2.</div>`,
+      'Therapie':`<div class="steps">
+          <div class="step"><div class="step-num danger">1</div><div><div class="step-text">Instabil: Elektrische Kardioversion 50–100 J synchronisiert</div></div></div>
+          <div class="step"><div class="step-num">2</div><div><div class="step-text">Frequenzkontrolle: Betablocker oder Diltiazem i.v.</div></div></div>
+          <div class="step"><div class="step-num">3</div><div><div class="step-text">Rhythmuskontrolle: Ibutilid i.v. · oder Flecainid/Propafenon (nur normales Herz!)</div></div></div>
+          <div class="step"><div class="step-num success">4</div><div><div class="step-text">Antikoagulation wie VHF! Thromboembolie-Risiko gleich hoch.</div></div></div>
+        </div>`,
+      'Ablation':`<div class="callout success"><div class="callout-icon">⭐</div><div class="callout-body"><strong>Katheterablation (1. Wahl)</strong> — Kavotrikuspidaler Isthmus wird abladiert. Erfolgsrate &gt;95%! Kurativ bei typischem Vorhofflattern.</div></div>
+        <div class="info-table">
+          <div class="info-row"><div class="info-key">Erfolgsrate</div><div class="info-val">&gt;95% bei typischem Vorhofflattern (Isthmus-abhängig)</div></div>
+          <div class="info-row"><div class="info-key">Rezidiv</div><div class="info-val">~5% · Oft Entwicklung von VHF nach Ablation</div></div>
+          <div class="info-row"><div class="info-key">Antikoagulation</div><div class="info-val">Weiterführen wie VHF (Thromboembolie-Risiko bleibt!)</div></div>
+        </div>`
+    }
+  },
+  sinust:{title:'Sinustachykardie',icon:'↑',iconBg:'var(--green-bg)',
+    sub:'Reaktive Tachykardie · Immer Ursache behandeln!',tabs:['EKG-Merkmale','Ursachen','Therapie'],
+    content:{
+      'EKG-Merkmale':`<div class="info-table">
+          <div class="info-row"><div class="info-key">Herzfrequenz</div><div class="info-val">&gt;100/min · gradueller Beginn und Ende</div></div>
+          <div class="info-row"><div class="info-key">P-Wellen</div><div class="info-val">Positiv in II, III, aVF · normal morphologisch</div></div>
+          <div class="info-row"><div class="info-key">PR-Intervall</div><div class="info-val">Normal 120–200 ms</div></div>
+          <div class="info-row"><div class="info-key">QRS</div><div class="info-val">Schmal · normal · jeder P gefolgt von QRS</div></div>
+        </div>`,
+      'Ursachen':`<div class="card-grid">
+          <div class="card c-red"><h4>🔴 Akut/Notfall</h4><ul><li>Hypovolämie / Schock</li><li>Lungenembolie</li><li>Herzinsuffizienz</li><li>Sepsis / Fieber</li></ul></div>
+          <div class="card c-amber"><h4>🟡 Kardial / Metabolisch</h4><ul><li>Anämie</li><li>Hyperthyreose</li><li>Schmerz / Angst</li><li>Medikamente (Atropin, Sympathomimetika)</li></ul></div>
+        </div>`,
+      'Therapie':`<div class="callout info"><div class="callout-icon">🎯</div><div class="callout-body"><strong>Ursachentherapie!</strong> Die Sinustachykardie ist ein Symptom, keine Diagnose. Betablocker nur bei symptomatischer Sinustachy ohne Schock.</div></div>
+        <div style="background:var(--darija-bg);border:1px solid var(--darija-border);border-radius:var(--radius);padding:1rem 1.2rem;margin-top:1rem;direction:rtl;text-align:right;font-size:14px;color:var(--darija-text);">Sinustachykardie مش مرض — هي علامة على شيء آخر. اطلب السبب أولاً: تهيج، فقر الدم، الحمى، نقص السوائل... ما تعالجش التردد بدون علاج السبب!</div>`
+    }
+  },
+  jnkt:{title:'Junktionale Tachykardie',icon:'⊙',iconBg:'var(--accent-bg)',
+    sub:'AV-Knoten als Schrittmacher · Selten · meist bei Digitalis-Toxizität',tabs:['EKG-Merkmale','Therapie'],
+    content:{
+      'EKG-Merkmale':`<div class="info-table">
+          <div class="info-row"><div class="info-key">Herzfrequenz</div><div class="info-val">70–130/min · regelmäßig</div></div>
+          <div class="info-row"><div class="info-key">P-Wellen</div><div class="info-val">Fehlen / retrograd / dissoziiert vom QRS</div></div>
+          <div class="info-row"><div class="info-key">QRS</div><div class="info-val">Schmal · normal</div></div>
+          <div class="info-row"><div class="info-key">Ursachen</div><div class="info-val">Digitalis-Toxizität · nach herzchirurgischem Eingriff · Hypokaliämie</div></div>
+        </div>`,
+      'Therapie':`<div class="steps">
+          <div class="step"><div class="step-num">1</div><div><div class="step-text">Digitalis absetzen · Elektrolyte korrigieren</div></div></div>
+          <div class="step"><div class="step-num">2</div><div><div class="step-text">Betablocker oder Kalziumantagonist wenn symptomatisch</div></div></div>
+          <div class="step"><div class="step-num danger">!</div><div><div class="step-text">Keine Kardioversion bei Digitalis-Toxizität (VF-Risiko!)</div></div></div>
+        </div>`
+    }
+  }
+};
+
+// ═══════════════════════════════════════════════════
+//  DATA — Breite QRS
+// ═══════════════════════════════════════════════════
+const breitData = {
+  vt:{title:'Ventrikuläre Tachykardie (VT)',icon:'⚠',iconBg:'var(--red-bg)',
+    sub:'Regelmäßige Breit-QRS-Tachykardie · Ventrikulärer Ursprung',tabs:['EKG-Merkmale','Brugada-Kriterien','Therapie','ICD'],
+    content:{
+      'EKG-Merkmale':`<div class="callout danger"><div class="callout-icon">🚨</div><div class="callout-body">Breit-QRS = VT bis Beweis des Gegenteils. Adenosin NUR bei sicher supraventrikulärem Ursprung. Bei VT hemodynamisch instabil → Defibrillation!</div></div>
+        <div class="info-table">
+          <div class="info-row"><div class="info-key">QRS-Breite</div><div class="info-val">&gt;120 ms · oft &gt;140–160 ms · bizarre Morphologie</div></div>
+          <div class="info-row"><div class="info-key">AV-Dissoziation</div><div class="info-val">P und QRS unabhängig — pathognomonisch für VT wenn erkennbar</div></div>
+          <div class="info-row"><div class="info-key">Capture Beats</div><div class="info-val">Normaler schmaler QRS zwischen VT-Komplexen — sinus erobert kurz den Ventrikel</div></div>
+          <div class="info-row"><div class="info-key">Fusion Beats</div><div class="info-val">Mischform aus Sinus + VT — beweist VT</div></div>
+          <div class="info-row"><div class="info-key">Achse</div><div class="info-val">Nordwestachse (−90° bis ±180°) sehr typisch für VT</div></div>
+        </div>
+        <div style="background:var(--darija-bg);border:1px solid var(--darija-border);border-radius:var(--radius);padding:1rem 1.2rem;margin-top:1rem;direction:rtl;text-align:right;font-size:14px;color:var(--darija-text);">AV-Dissoziation هي الدليل القاطع على VT: الأذين والبطين كل واحد يشتغل لوحدو. Capture Beats و Fusion Beats يثبتو كذلك أنها VT.</div>`,
+      'Brugada-Kriterien':`<div class="callout info"><div class="callout-icon">📐</div><div class="callout-body">Brugada-Algorithmus: 4 Fragen — إذا واحدة من الأربعة "نعم" → VT!</div></div>
+        <div class="steps">
+          <div class="step"><div class="step-num danger">1</div><div><div class="step-text">Fehlen von RS-Komplex in allen Brustwandableitungen? → Ja = VT</div></div></div>
+          <div class="step"><div class="step-num danger">2</div><div><div class="step-text">RS-Intervall &gt;100 ms in einer Brustwandableitung? → Ja = VT</div></div></div>
+          <div class="step"><div class="step-num danger">3</div><div><div class="step-text">AV-Dissoziation erkennbar? → Ja = VT</div></div></div>
+          <div class="step"><div class="step-num danger">4</div><div><div class="step-text">Morphologiekriterien für VT (LBBB/RBBB-Muster) → Ja = VT · Nein = SVT+AB</div></div></div>
+        </div>`,
+      'Therapie':`<div class="algo-split">
+          <div class="algo-box" style="border-top:3px solid var(--red);">
+            <div class="algo-box-title" style="color:var(--red);">Instabil / Pulslos</div>
+            <div class="steps">
+              <div class="step"><div class="step-num danger">1</div><div><div class="step-text">CPR + Defibrillation 200 J (unsynchronisiert)</div></div></div>
+              <div class="step"><div class="step-num danger">2</div><div><div class="step-text">Adrenalin 1 mg i.v. alle 3–5 min · Amiodaron 300 mg nach 3. Schock</div></div></div>
+            </div>
+          </div>
+          <div class="algo-box" style="border-top:3px solid var(--amber);">
+            <div class="algo-box-title" style="color:var(--amber);">Stabil</div>
+            <div class="steps">
+              <div class="step"><div class="step-num">1</div><div><div class="step-text">Amiodaron 150 mg i.v. über 10 min</div></div></div>
+              <div class="step"><div class="step-num">2</div><div><div class="step-text">Oder Lidocain 1 mg/kg i.v.</div></div></div>
+              <div class="step"><div class="step-num success">3</div><div><div class="step-text">Synchronisierte Kardioversion 100–200 J bei Versagen</div></div></div>
+            </div>
+          </div>
+        </div>`,
+      'ICD':`<div class="info-table">
+          <div class="info-row"><div class="info-key">Sekundärprävention</div><div class="info-val">ICD nach überlebtem VF oder hämodynamisch relevanter VT (immer)</div></div>
+          <div class="info-row"><div class="info-key">Primärprävention</div><div class="info-val">ICD bei EF ≤35% (DCM, ischämisch) trotz optimaler Therapie</div></div>
+          <div class="info-row"><div class="info-key">Katheterablation</div><div class="info-val">VT-Fokus abladieren · Adjuvant zum ICD · Reduktion von Schocks</div></div>
+        </div>`
+    }
+  },
+  vf:{title:'Kammerflimmern (VF)',icon:'🚨',iconBg:'var(--red-bg)',
+    sub:'Pulsloser Kreislaufstillstand · Defibrillation sofort!',tabs:['EKG & Notfall','Nach Reanimation'],
+    content:{
+      'EKG & Notfall':`<div class="critical-box"><p><strong>PULSLOSER KREISLAUFSTILLSTAND!</strong> Sofortiger Beginn CPR + Defibrillation 200 J unsynchronisiert</p></div>
+        <div class="info-table">
+          <div class="info-row"><div class="info-key">EKG</div><div class="info-val">Keine organisierten QRS-Komplexe · chaotische unregelmäßige Wellen wechselnder Amplitude und Frequenz</div></div>
+          <div class="info-row"><div class="info-key">CPR-Ablauf</div><div class="info-val">30:2 · Defibrillation sobald verfügbar · Adrenalin 1 mg/3–5 min · Amiodaron 300 mg nach 3. Schock</div></div>
+        </div>
+        <div style="background:var(--darija-bg);border:1px solid var(--darija-border);border-radius:var(--radius);padding:1rem 1.2rem;margin-top:1rem;direction:rtl;text-align:right;font-size:14px;color:var(--darija-text);">VF = الموت المفاجئ إذا ما تدخلناش فوراً. الـ Defibrillation فوراً + CPR. Amiodaron 300 مغ بعد 3 صدمات.</div>`,
+      'Nach Reanimation':`<div class="info-table">
+          <div class="info-row"><div class="info-key">TTM</div><div class="info-val">Targeted Temperature Management 32–36°C für 24h (bei persistierendem Koma)</div></div>
+          <div class="info-row"><div class="info-key">Koronarangio</div><div class="info-val">Sofort wenn ST-Hebungen oder hämodynamische Instabilität nach ROSC</div></div>
+          <div class="info-row"><div class="info-key">ICD</div><div class="info-val">Immer nach überlebtem VF (Sekundärprävention)</div></div>
+        </div>`
+    }
+  },
+  'svt-sb':{title:'SVT mit Schenkelblock',icon:'↔',iconBg:'var(--accent-bg)',
+    sub:'Schmale SVT mit aberranter Überleitung → breiter QRS — wie VT behandeln bis Beweis!',tabs:['EKG-Merkmale','DD zur VT'],
+    content:{
+      'EKG-Merkmale':`<div class="callout info"><div class="callout-icon">ℹ</div><div class="callout-body">SVT + vorbestehender Schenkelblock ODER frequenzabhängige Aberranz → breiter QRS, aber supraventrikulärer Ursprung.</div></div>
+        <div class="info-table">
+          <div class="info-row"><div class="info-key">QRS-Morphologie</div><div class="info-val">Typisches LBBB oder RBBB-Muster · konsistent in allen Zyklen</div></div>
+          <div class="info-row"><div class="info-key">Regulär</div><div class="info-val">Regelmäßig (wie SVT) · kein AV-Dissoziationszeichen</div></div>
+          <div class="info-row"><div class="info-key">Adenosin-Test</div><div class="info-val">Kann SVT terminieren oder verlangsamen → diagnostisch hilfreich</div></div>
+        </div>`,
+      'DD zur VT':`<div class="table-wrap"><table class="cmp-table"><tr><th>Kriterium</th><th>VT</th><th>SVT+SB</th></tr>
+          <tr><td>AV-Dissoziation</td><td style="color:var(--red);font-weight:700;">Ja → VT!</td><td>Nein</td></tr>
+          <tr><td>QRS-Breite</td><td>&gt;140 ms typisch</td><td>Typisches SB-Muster</td></tr>
+          <tr><td>Capture/Fusion Beats</td><td style="color:var(--red);font-weight:700;">Möglich → VT!</td><td>Nein</td></tr>
+          <tr><td>Nordwestachse</td><td style="color:var(--red);font-weight:700;">Typisch für VT</td><td>Ungewöhnlich</td></tr>
+          <tr><td>Vorheriges EKG mit SB</td><td>Gleiche QRS-Morphologie</td><td style="color:var(--green);font-weight:700;">Gleiche Morphologie = SVT!</td></tr>
+        </table></div>`
+    }
+  },
+  'vhf-ab':{title:'VHF mit Aberranz',icon:'∿',iconBg:'var(--amber-bg)',
+    sub:'Vorhofflimmern + funktioneller Schenkelblock → unregelmäßiger Breit-QRS',tabs:['EKG-Merkmale','Therapie'],
+    content:{
+      'EKG-Merkmale':`<div class="callout warn"><div class="callout-icon">⚠️</div><div class="callout-body">Unregelmäßiger Breit-QRS → VHF+Aberranz oder WPW+VHF. Beide sind supraventrikulär, aber WPW erfordert andere Therapie!</div></div>
+        <div class="info-table">
+          <div class="info-row"><div class="info-key">Rhythmus</div><div class="info-val">Absolut unregelmäßig (wie VHF)</div></div>
+          <div class="info-row"><div class="info-key">QRS</div><div class="info-val">Breit · typisches SB-Muster · variiert mit Frequenz (frequenzabhängige Aberranz)</div></div>
+          <div class="info-row"><div class="info-key">DD zu VT</div><div class="info-val">VT ist regelmäßig! Unregelmäßig → VHF+Aberranz wahrscheinlicher</div></div>
+        </div>`,
+      'Therapie':`<div class="callout success"><div class="callout-icon">✓</div><div class="callout-body">Therapie wie VHF: Frequenzkontrolle (Betablocker, Diltiazem wenn kein WPW) + Antikoagulation!</div></div>`
+    }
+  },
+  wpw:{title:'WPW-Syndrom',icon:'△',iconBg:'var(--purple-bg)',
+    sub:'Akzessorische Leitungsbahn (Bundle of Kent) · Delta-Welle · KEINE AV-Blocker!',tabs:['EKG-Merkmale','Gefahr bei VHF','Therapie'],
+    content:{
+      'EKG-Merkmale':`<div class="info-table">
+          <div class="info-row"><div class="info-key">Delta-Welle</div><div class="info-val">Träge Aufstrichphase des QRS (Präexzitation über akzessorische Bahn)</div></div>
+          <div class="info-row"><div class="info-key">PR-Intervall</div><div class="info-val">&lt;120 ms (verkürzt — direkte Überleitung, kein AV-Knoten-Delay)</div></div>
+          <div class="info-row"><div class="info-key">QRS-Breite</div><div class="info-val">Breit durch Fusion aus normaler + akzessorischer Überleitung</div></div>
+        </div>
+        <div style="background:var(--darija-bg);border:1px solid var(--darija-border);border-radius:var(--radius);padding:1rem 1.2rem;margin-top:1rem;direction:rtl;text-align:right;font-size:14px;color:var(--darija-text);">Delta Wave = الـ QRS يبدأ بحركة بطيئة لأن جزء من البطين يتنبه مبكراً عبر المسار الإضافي. PR قصير + Delta Wave = WPW.</div>`,
+      'Gefahr bei VHF':`<div class="critical-box"><p><strong>VHF + WPW = Lebensgefahr!</strong> AV-Blocker (Adenosin, Verapamil, Diltiazem, Betablocker, Digoxin) sind absolut kontraindiziert → beschleunigen Überleitung über akzessorische Bahn → VF!</p></div>
+        <div class="info-table">
+          <div class="info-row"><div class="info-key">EKG-Zeichen</div><div class="info-val">Unregelmäßiger Breit-QRS · extrem schnell (HF &gt;250/min möglich) · präexzitiertes VHF</div></div>
+          <div class="info-row"><div class="info-key">Mechanismus</div><div class="info-val">VHF-Impulse umgehen AV-Knoten-Bremse → direkte schnelle ventrikuläre Stimulation → degeneriert zu VF</div></div>
+        </div>`,
+      'Therapie':`<div class="steps">
+          <div class="step"><div class="step-num danger">1</div><div><div class="step-text">Instabil: Sofortige Kardioversion!</div></div></div>
+          <div class="step"><div class="step-num">2</div><div><div class="step-text">Stabil: Procainamid 10–17 mg/kg i.v. langsam · oder Flecainid 2 mg/kg i.v.</div></div></div>
+          <div class="step"><div class="step-num success">3</div><div><div class="step-text">Kurativ: Katheterablation der akzessorischen Bahn (Erfolgsrate &gt;95%)</div></div></div>
+          <div class="step"><div class="step-num danger">!</div><div><div class="step-text">NIEMALS: Adenosin · Verapamil · Diltiazem · Betablocker · Digoxin bei WPW+VHF!</div></div></div>
+        </div>`
+    }
+  },
+  torsades:{title:'Torsades de Pointes',icon:'∞',iconBg:'var(--orange-bg)',
+    sub:'QT-Verlängerung + polymorphe VT · Magnesiumsulfat sofort!',tabs:['EKG-Merkmale','Ursachen','Therapie'],
+    content:{
+      'EKG-Merkmale':`<div class="info-table">
+          <div class="info-row"><div class="info-key">Charakteristisch</div><div class="info-val">QRS-Spitzen drehen sich um die isoelektrische Linie — "Twisting of the points"</div></div>
+          <div class="info-row"><div class="info-key">QTc-Verlängerung</div><div class="info-val">QTc &gt;500 ms → hohes Risiko · QTc &gt;600 ms → sehr hohes Risiko</div></div>
+          <div class="info-row"><div class="info-key">Auslöser</div><div class="info-val">Kurze Pause (long-short sequence) → dann TdP</div></div>
+        </div>
+        <div style="background:var(--darija-bg);border:1px solid var(--darija-border);border-radius:var(--radius);padding:1rem 1.2rem;margin-top:1rem;direction:rtl;text-align:right;font-size:14px;color:var(--darija-text);">Torsades: الـ QRS يتقلب حول الخط كيما حركة البالون. السبب هو QT طويل. Magnesium 2 غرام في الوريد فوراً!</div>`,
+      'Ursachen':`<div class="card-grid">
+          <div class="card c-red"><h4>💊 Medikamente</h4><ul><li>Amiodaron · Sotalol · Ibutilid</li><li>Erythromycin · Clarithromycin</li><li>Haloperidol · Quetiapin</li><li>Methadon</li></ul></div>
+          <div class="card c-amber"><h4>⚗️ Elektrolyte / Genetisch</h4><ul><li>Hypokaliämie · Hypomagnesiämie</li><li>Hypokalzämie</li><li>Kongenitales Long-QT-Syndrom (Typ 1–3)</li><li>Bradykardie / AV-Block</li></ul></div>
+        </div>`,
+      'Therapie':`<div class="steps">
+          <div class="step"><div class="step-num success">1</div><div><div class="step-text"><strong>Magnesiumsulfat 2 g i.v.</strong> über 1–2 min (1. Wahl!) → Erhaltung 3–20 mg/min</div></div></div>
+          <div class="step"><div class="step-num success">2</div><div><div class="step-text">QT-verlängernde Medikamente sofort absetzen</div></div></div>
+          <div class="step"><div class="step-num success">3</div><div><div class="step-text">Kalium &gt;4,5 mmol/l und Magnesium &gt;1 mmol/l anstreben</div></div></div>
+          <div class="step"><div class="step-num">4</div><div><div class="step-text">Temporärer Schrittmacher 90–100/min (Overdrive-Pacing) · Isoprenalin i.v.</div></div></div>
+          <div class="step"><div class="step-num danger">!</div><div><div class="step-text">Pulslos: Defibrillation 200 J (unsynchronisiert)</div></div></div>
+        </div>
+        <div class="callout purple"><div class="callout-icon">🧬</div><div class="callout-body">Kongenitales LQTS Typ 1+2: Betablocker (Nadolol/Propranolol) · ICD bei hohem Risiko · Sportrestriktion</div></div>`
+    }
+  }
+};
+
+// ═══════════════════════════════════════════════════
+//  NAVIGATION
+// ═══════════════════════════════════════════════════
+const panelNames = {overview:'Übersicht',schmal:'Schmaler QRS',breit:'Breiter QRS',algo:'Algorithmus',drugs:'Medikamente'};
+
+function showPanel(name, navEl){
+  document.querySelectorAll('.page-panel').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.sidebar nav a').forEach(a=>a.classList.remove('active'));
+  document.getElementById('panel-'+name).classList.add('active');
+  if(navEl) navEl.classList.add('active');
+  document.getElementById('topbar-current').textContent = panelNames[name]||name;
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function setNavActive(id){
+  document.querySelectorAll('.sidebar nav a').forEach(a=>a.classList.remove('active'));
+  const el=document.getElementById(id);
+  if(el) el.classList.add('active');
+}
+
+// ═══════════════════════════════════════════════════
+//  DETAIL RENDERER
+// ═══════════════════════════════════════════════════
+function renderDetail(containerId, data){
+  const el=document.getElementById(containerId);
+  const tabBtns=data.tabs.map((t,i)=>`<button class="detail-tab${i===0?' active':''}" onclick="switchDetailTab(this,'${containerId}','${t}')">${t}</button>`).join('');
+  const sections=data.tabs.map((t,i)=>`<div class="detail-section${i===0?' active':''}" data-tab="${t}">${data.content[t]||''}</div>`).join('');
+  el.innerHTML=`<div class="detail-panel">
+    <div class="detail-header">
+      <div class="detail-header-icon" style="background:${data.iconBg}">${data.icon}</div>
+      <div><div class="detail-title">${data.title}</div><div class="detail-sub">${data.sub}</div></div>
+    </div>
+    <div class="detail-tabs-row">${tabBtns}</div>
+    <div class="detail-body">${sections}</div>
+  </div>`;
+  el.scrollIntoView({behavior:'smooth',block:'nearest'});
+}
+
+function switchDetailTab(btn,containerId,tabName){
+  const panel=document.getElementById(containerId).querySelector('.detail-panel');
+  panel.querySelectorAll('.detail-tab').forEach(t=>t.classList.remove('active'));
+  panel.querySelectorAll('.detail-section').forEach(s=>s.classList.remove('active'));
+  btn.classList.add('active');
+  panel.querySelector(`.detail-section[data-tab="${tabName}"]`).classList.add('active');
+}
+
+function schmalSelect(id){
+  document.querySelectorAll('#schmal-tabs .tab-btn').forEach(b=>b.classList.remove('active'));
+  const btn=document.getElementById('stab-'+id);
+  if(btn) btn.classList.add('active');
+  renderDetail('schmal-detail',schmalData[id]);
+}
+
+function breitSelect(id){
+  document.querySelectorAll('#breit-tabs .tab-btn').forEach(b=>b.classList.remove('active'));
+  const btn=document.getElementById('btab-'+id);
+  if(btn) btn.classList.add('active');
+  renderDetail('breit-detail',breitData[id]);
+}
+
+// ═══════════════════════════════════════════════════
+//  SIDEBAR TOGGLE
+// ═══════════════════════════════════════════════════
+function toggleSidebar(){
+  const s=document.querySelector('.sidebar'),o=document.getElementById('sidebar-overlay'),b=document.getElementById('mob-menu-btn'),open=s.classList.contains('open');
+  s.classList.toggle('open',!open);o.classList.toggle('open',!open);b.classList.toggle('open',!open);
+}
+function closeSidebar(){
+  document.querySelector('.sidebar').classList.remove('open');
+  document.getElementById('sidebar-overlay').classList.remove('open');
+  document.getElementById('mob-menu-btn').classList.remove('open');
+}
+document.querySelectorAll('.sidebar nav a').forEach(a=>{
+  a.addEventListener('click',()=>{if(window.innerWidth<=1024)closeSidebar();});
+});
+
+// ═══════════════════════════════════════════════════
+//  RIPPLE
+// ═══════════════════════════════════════════════════
+document.addEventListener('click',function(e){
+  const host=e.target.closest('.ripple-host,.card');
+  if(!host) return;
+  const circle=document.createElement('span');
+  circle.className='ripple-circle';
+  const rect=host.getBoundingClientRect();
+  const size=Math.max(rect.width,rect.height)*2.5;
+  circle.style.cssText=`width:${size}px;height:${size}px;left:${e.clientX-rect.left-size/2}px;top:${e.clientY-rect.top-size/2}px`;
+  host.appendChild(circle);
+  setTimeout(()=>circle.remove(),600);
+});
+
+// Fade-in observer
+const obs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');});
+},{threshold:0.08});
+document.querySelectorAll('.fade-in').forEach(el=>obs.observe(el));
+</script>
+<script src="../assets/nav.js"></script>
+</body>
+</html>
