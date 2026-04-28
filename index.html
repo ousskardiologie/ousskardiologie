@@ -2,298 +2,1073 @@
 <html lang="de">
 <head>
 <meta charset="UTF-8">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="default">
-<meta name="theme-color" content="#ffffff">
-<meta name="mobile-web-app-capable" content="yes">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>🫀 Kardiologie — Mein Lernprojekt</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OUSS Kardiologie</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;500;600;700&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
 :root {
-  --bg:#ffffff; --surface:#f7f6f3; --surface2:#eeede9; --border:#e9e9e7;
-  --text:#37352f; --text2:#787774; --text3:#a9a9a6;
-  --accent:#2383e2; --accent-bg:#e8f3fc;
-  --red:#e03e3e; --red-bg:#fdf2f2; --red-border:#fbd5d5;
-  --green:#0f7b6c; --green-bg:#edfaf7; --green-border:#a8e6de;
-  --amber:#d9730d; --amber-bg:#fef3e8; --amber-border:#fcd9b3;
-  --purple:#9065b0; --purple-bg:#f5f0f9; --purple-border:#dfc8ef;
-  --darija-bg:#fef9f3; --darija-border:#f0ddc8; --darija-text:#5c3d1a;
-  --font:'DM Sans',-apple-system,BlinkMacSystemFont,sans-serif;
-  --font-display:'Lora',Georgia,serif;
-  --shadow:0 2px 8px rgba(0,0,0,.06);
-  --shadow-md:0 4px 20px rgba(0,0,0,.08);
-  --radius:10px; --nav-h:56px;
+  --bg:       #ffffff;
+  --surface:  #f7f5f2;
+  --surface2: #eeecea;
+  --border:   #e5e2de;
+  --text:     #1a1410;
+  --text2:    #6b6460;
+  --text3:    #a09890;
+  --red:      #c8303a;
+  --gold:     #9a7430;
+  --navy:     #0f1528;
+  --blue:     #2563eb;
+  --green:    #0f7b5a;
+  --purple:   #7c3aed;
+  --orange:   #ea580c;
+  --serif:    'Cormorant Garamond', Georgia, serif;
+  --sans:     'DM Sans', system-ui, sans-serif;
+  --r:        10px;
+  --sh:       0 2px 8px rgba(0,0,0,.06);
+  --sh-md:    0 6px 24px rgba(0,0,0,.09);
 }
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
-html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;text-size-adjust:100%;}
-body{font-family:var(--font);background:var(--bg);color:var(--text);font-size:16px;line-height:1.7;overflow-x:hidden;-webkit-tap-highlight-color:transparent;padding-bottom:env(safe-area-inset-bottom,12px);}
-a,button{touch-action:manipulation;-webkit-tap-highlight-color:transparent;}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { font-family: var(--sans); background: var(--bg); color: var(--text); font-size: 15px; line-height: 1.7; overflow-x: hidden; }
 
-/* ── TOP NAV ── */
-.topnav{position:sticky;top:0;z-index:100;height:var(--nav-h);background:rgba(255,255,255,.97);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--border);display:flex;align-items:center;padding:0 1.5rem;gap:6px;}
-.brand{font-family:var(--font-display);font-weight:700;font-size:17px;color:var(--red);text-decoration:none;margin-right:4px;white-space:nowrap;flex-shrink:0;padding:8px 2px;min-height:44px;display:flex;align-items:center;}
-.nav-links{display:flex;align-items:center;gap:2px;}
-.nav-links a{display:flex;align-items:center;gap:5px;padding:8px 10px;min-height:44px;border-radius:8px;text-decoration:none;color:var(--text2);font-size:14px;font-weight:500;transition:background .15s;white-space:nowrap;}
-.nav-links a:hover,.nav-links a:active{background:var(--surface);color:var(--text);}
-.spacer{flex:1;min-width:4px;}
-.notes-link{display:flex;align-items:center;gap:6px;padding:9px 14px;min-height:44px;background:var(--accent);color:white!important;font-weight:600;font-size:14px;border-radius:8px;text-decoration:none;white-space:nowrap;flex-shrink:0;transition:background .15s;}
-.notes-link:hover,.notes-link:active{background:#1a6fc4!important;}
-.ham-btn{display:none;flex-direction:column;justify-content:center;align-items:center;gap:5px;width:44px;height:44px;flex-shrink:0;background:var(--surface);border:1px solid var(--border);border-radius:8px;cursor:pointer;}
-.ham-btn span{display:block;width:18px;height:2px;background:var(--text);border-radius:2px;transition:transform .25s,opacity .25s;}
-.ham-btn.open span:nth-child(1){transform:translateY(7px) rotate(45deg);}
-.ham-btn.open span:nth-child(2){opacity:0;}
-.ham-btn.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
-.drawer-overlay{display:none;position:fixed;inset:0;top:var(--nav-h);background:rgba(0,0,0,.35);z-index:200;}
-.drawer-overlay.open{display:block;}
-.drawer{position:fixed;top:var(--nav-h);right:0;bottom:0;width:min(280px,82vw);background:var(--bg);z-index:201;transform:translateX(110%);transition:transform .28s cubic-bezier(.4,0,.2,1);display:flex;flex-direction:column;border-left:1px solid var(--border);padding:1rem 0;overflow-y:auto;}
-.drawer.open{transform:translateX(0);}
-.drawer a{display:flex;align-items:center;gap:14px;padding:14px 1.5rem;font-size:16px;font-weight:500;color:var(--text);text-decoration:none;min-height:54px;border-bottom:1px solid var(--border);transition:background .15s;}
-.drawer a:hover,.drawer a:active{background:var(--surface);}
-.drawer .d-emoji{font-size:22px;}
-.drawer .drawer-notes{background:var(--accent-bg);color:var(--accent);font-weight:700;border:1px solid #bfdbfe;border-radius:10px;margin:.8rem 1rem 0;border-bottom:1px solid #bfdbfe;}
-
-/* ── HERO ── */
-.hero{max-width:860px;margin:0 auto;padding:4rem 3rem 2.5rem;}
-.hero-badge{display:inline-flex;align-items:center;gap:8px;padding:5px 14px;border-radius:20px;background:var(--darija-bg);border:1px solid var(--darija-border);color:var(--darija-text);font-size:13px;font-weight:600;margin-bottom:1.2rem;animation:fadein .5s ease both;}
-.hero h1{font-family:var(--font-display);font-size:3rem;font-weight:700;line-height:1.15;color:var(--text);margin-bottom:.9rem;letter-spacing:-.02em;animation:fadein .5s ease .1s both;}
-.hero h1 span{color:var(--red);}
-.hero-sub{font-size:17px;color:var(--text2);max-width:580px;line-height:1.75;margin-bottom:2rem;animation:fadein .5s ease .2s both;}
-.hero-darija{background:var(--darija-bg);border:1px solid var(--darija-border);border-radius:var(--radius);padding:1rem 1.2rem;color:var(--darija-text);font-size:15px;line-height:1.85;margin-bottom:2.5rem;direction:rtl;text-align:right;animation:fadein .5s ease .3s both;}
-.hero-darija .label{direction:ltr;text-align:left;font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--darija-text);opacity:.55;margin-bottom:6px;display:block;}
-
-/* ── SECTIONS ── */
-.section-title{max-width:860px;margin:0 auto;padding:0 3rem 1.2rem;font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--text3);}
-.stats{max-width:860px;margin:0 auto;padding:0 3rem 2.5rem;display:grid;grid-template-columns:repeat(4,1fr);gap:12px;}
-.stat{background:var(--surface);border-radius:var(--radius);padding:1.2rem;text-align:center;border:1px solid var(--border);}
-.stat-num{font-family:var(--font-display);font-size:26px;font-weight:700;color:var(--text);line-height:1.2;}
-.stat-label{font-size:11px;color:var(--text3);font-weight:600;margin-top:4px;text-transform:uppercase;letter-spacing:.06em;}
-.cards{max-width:860px;margin:0 auto;padding:0 3rem 2.5rem;display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:14px;}
-.card{border:1px solid var(--border);border-radius:12px;background:var(--bg);padding:1.4rem 1.5rem;text-decoration:none;color:inherit;display:block;transition:box-shadow .2s,transform .2s;animation:fadein .5s ease both;min-height:140px;}
-.card:hover{box-shadow:var(--shadow-md);transform:translateY(-2px);}
-.card:active{transform:scale(.98);box-shadow:none;}
-.card.notes{background:linear-gradient(135deg,#fffdf9,#fff8ee);}
-.card.echo:hover{border-color:#bfdbfe;}.card.doppler:hover{border-color:var(--green-border);}.card.notes:hover{border-color:var(--amber-border);}
-.card-icon{font-size:34px;margin-bottom:.7rem;display:block;}
-.card-title{font-family:var(--font-display);font-size:17px;font-weight:600;margin-bottom:.4rem;line-height:1.3;}
-.card-desc{font-size:13.5px;color:var(--text2);line-height:1.6;margin-bottom:.8rem;}
-.card-meta{display:flex;flex-wrap:wrap;gap:6px;}
-.tag{display:inline-flex;align-items:center;padding:3px 9px;border-radius:20px;font-size:12px;font-weight:600;border:1px solid;}
-.tag.blue{background:var(--accent-bg);color:var(--accent);border-color:#bfdbfe;}
-.tag.green{background:var(--green-bg);color:var(--green);border-color:var(--green-border);}
-.tag.amber{background:var(--amber-bg);color:var(--amber);border-color:var(--amber-border);}
-.tag.red{background:var(--red-bg);color:var(--red);border-color:var(--red-border);}
-.tag.purple{background:var(--purple-bg);color:var(--purple);border-color:var(--purple-border);}
-.tag.darija{background:var(--darija-bg);color:var(--darija-text);border-color:var(--darija-border);}
-.progress-section{max-width:860px;margin:0 auto;padding:0 3rem 3.5rem;}
-.progress-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:1.5rem 1.8rem;}
-.progress-card h3{font-size:13px;font-weight:700;margin-bottom:1.1rem;color:var(--text2);text-transform:uppercase;letter-spacing:.08em;}
-.prog-row{display:flex;align-items:center;gap:12px;margin-bottom:.85rem;}
-.prog-label{font-size:14px;font-weight:500;min-width:170px;flex-shrink:0;}
-.prog-bar{flex:1;height:8px;background:var(--surface2);border-radius:4px;overflow:hidden;}
-.prog-fill{height:100%;border-radius:4px;transition:width 1s cubic-bezier(.16,1,.3,1);}
-.prog-pct{font-size:13px;font-weight:700;min-width:36px;text-align:right;flex-shrink:0;}
-.quote-section{background:var(--surface);border-top:1px solid var(--border);border-bottom:1px solid var(--border);margin:1rem 0;padding:2.5rem 3rem;}
-.quote-inner{max-width:860px;margin:0 auto;}
-.quote-text{font-family:var(--font-display);font-size:20px;line-height:1.65;color:var(--text);font-style:italic;margin-bottom:.9rem;}
-.quote-darija{font-size:15px;color:var(--darija-text);direction:rtl;text-align:right;background:var(--darija-bg);border-radius:var(--radius);padding:.8rem 1rem;border:1px solid var(--darija-border);line-height:1.8;}
-footer{text-align:center;padding:2.5rem 1.5rem;color:var(--text3);font-size:13px;border-top:1px solid var(--border);}
-footer strong{color:var(--red);}
-@keyframes fadein{from{opacity:0;transform:translateY(12px);}to{opacity:1;transform:none;}}
-
-/* ── TABLET ≤ 860px ── */
-@media(max-width:860px){
-  .hero{padding:3rem 1.5rem 2rem;}
-  .hero h1{font-size:2.3rem;}
-  .cards,.stats,.section-title,.progress-section{padding-left:1.5rem;padding-right:1.5rem;}
-  .quote-section{padding:2rem 1.5rem;}
-  .stats{grid-template-columns:repeat(2,1fr);}
-  .cards{grid-template-columns:1fr 1fr;}
-  .ham-btn{display:flex;}
-  .nav-links{display:none;}
+/* ─── NAV ─── */
+.topnav {
+  position: sticky; top: 0; z-index: 200;
+  height: 56px; background: rgba(255,255,255,.97);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border);
+  display: flex; align-items: center;
+  padding: 0 2.5rem; gap: 6px;
+}
+.brand {
+  font-family: var(--serif); font-size: 1.2rem; font-weight: 400;
+  color: var(--text); text-decoration: none;
+  display: flex; align-items: center; gap: 0.5rem;
+  white-space: nowrap; flex-shrink: 0;
+}
+.brand-heart { animation: hb 1.6s ease-in-out infinite; display: inline-block; }
+@keyframes hb {
+  0%,100%{transform:scale(1)} 14%{transform:scale(1.2)} 28%{transform:scale(1)} 42%{transform:scale(1.1)} 56%{transform:scale(1)}
+}
+.nav-links { display: flex; gap: 2px; }
+.nav-links a {
+  padding: 7px 12px; border-radius: 7px; text-decoration: none;
+  color: var(--text2); font-size: .88rem; font-weight: 500;
+  transition: background .15s, color .15s;
+}
+.nav-links a:hover { background: var(--surface); color: var(--text); }
+.spacer { flex: 1; }
+.nav-badge {
+  font-size: .78rem; font-weight: 600;
+  padding: 7px 14px; background: var(--red); color: #fff; border-radius: 7px;
 }
 
-/* ── MOBILE ≤ 600px ── */
-@media(max-width:600px){
-  :root{--nav-h:52px;}
-  .topnav{padding:0 1rem;gap:8px;}
-  .brand{font-size:15px;}
-  .notes-link{padding:8px 12px;font-size:13px;}
-  .hero{padding:2rem 1rem 1.5rem;}
-  .hero h1{font-size:1.85rem;line-height:1.2;}
-  .hero-sub{font-size:15px;margin-bottom:1.5rem;}
-  .hero-darija{font-size:14.5px;padding:.85rem 1rem;margin-bottom:1.8rem;}
-  .hero-badge{font-size:12px;padding:5px 12px;}
-  .cards,.stats,.section-title,.progress-section{padding-left:1rem;padding-right:1rem;}
-  .quote-section{padding:1.8rem 1rem;}
-  .cards{grid-template-columns:1fr;gap:12px;}
-  .card{padding:1.2rem 1.3rem;min-height:auto;}
-  .card-icon{font-size:30px;margin-bottom:.6rem;}
-  .card-title{font-size:16px;}
-  .card-desc{font-size:13px;}
-  .stats{grid-template-columns:repeat(2,1fr);gap:10px;}
-  .stat{padding:.9rem;}
-  .stat-num{font-size:22px;}
-  .stat-label{font-size:10px;}
-  .progress-card{padding:1.1rem 1rem;}
-  .prog-label{font-size:13px;min-width:0;flex:1 1 100%;margin-bottom:4px;}
-  .prog-row{flex-wrap:wrap;gap:6px;margin-bottom:1.1rem;}
-  .prog-bar{flex:1;min-width:0;}
-  .prog-pct{font-size:12px;min-width:30px;}
-  .quote-text{font-size:16px;}
-  .quote-darija{font-size:14px;}
-  footer{padding:1.8rem 1rem;font-size:12px;}
+/* ─── ECG SECTION ─── */
+.ecg-section {
+  background: var(--bg);
+  border-bottom: 1px solid var(--border);
+  padding: 1.4rem 2.5rem 0;
+}
+.ecg-top {
+  display: flex; align-items: flex-end; justify-content: space-between;
+  margin-bottom: 0.5rem;
+}
+.ecg-brand {
+  font-family: var(--serif); font-size: 2.2rem; font-weight: 300;
+  letter-spacing: -.01em;
+}
+.ecg-brand em { font-style: italic; color: var(--red); }
+.ecg-meta {
+  display: flex; align-items: center; gap: 1.2rem;
+  padding-bottom: .4rem;
+}
+.ecg-rhythm-label {
+  font-size: .72rem; font-weight: 700;
+  letter-spacing: .12em; text-transform: uppercase;
+}
+.ecg-hr {
+  font-family: var(--serif); font-size: 1.4rem; font-weight: 300;
+  display: flex; align-items: baseline; gap: .3rem;
+}
+.ecg-hr-unit { font-family: var(--sans); font-size: .68rem; color: var(--text3); }
+.pulse-dot {
+  width: 7px; height: 7px; border-radius: 50%; background: var(--red);
+  animation: blink 1.4s ease-in-out infinite;
+}
+@keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.15} }
+
+#ecg-canvas { width: 100%; height: 96px; display: block; cursor: pointer; }
+
+.ecg-controls {
+  display: flex; align-items: center; gap: 8px;
+  padding: .8rem 0 .8rem;
+  flex-wrap: wrap;
+}
+.rhy-btn {
+  font-family: var(--sans); font-size: .75rem; font-weight: 600;
+  padding: 5px 14px; border-radius: 20px;
+  border: 1.5px solid var(--border);
+  background: var(--surface); color: var(--text2);
+  cursor: pointer; transition: all .2s; white-space: nowrap;
+}
+.rhy-btn:hover { background: var(--surface2); color: var(--text); }
+.rhy-btn.active {
+  color: #fff; border-color: transparent;
+}
+.rhy-btn[data-r="sinus"].active    { background: var(--red); }
+.rhy-btn[data-r="vhf"].active      { background: var(--red); }
+.rhy-btn[data-r="flutter"].active  { background: var(--red); }
+.rhy-btn[data-r="vt"].active       { background: var(--red); }
+.rhy-btn[data-r="tdp"].active      { background: var(--red); }
+
+.ecg-sep { width: 1px; height: 24px; background: var(--border); margin: 0 4px; }
+
+.action-btn {
+  font-family: var(--sans); font-size: .75rem; font-weight: 700;
+  padding: 6px 16px; border-radius: 20px; border: none;
+  cursor: pointer; transition: all .2s; white-space: nowrap;
+  animation: pulse-action 1.5s ease-in-out infinite;
+}
+.action-btn.defib { background: #ef4444; color: #fff; }
+.action-btn.mg    { background: var(--purple); color: #fff; }
+@keyframes pulse-action {
+  0%,100%{box-shadow:0 0 0 0 rgba(200,48,58,.4)}
+  50%{box-shadow:0 0 0 6px rgba(200,48,58,0)}
 }
 
-/* ── SMALL PHONES ≤ 380px ── */
-@media(max-width:380px){
-  .hero h1{font-size:1.55rem;}
-  .hero-sub{font-size:14px;}
-  .notes-text{display:none;}
-  .card-title{font-size:15px;}
-  .stat-num{font-size:20px;}
+/* ─── HERO ─── */
+.hero {
+  padding: 3rem 2.5rem 2.5rem;
+  border-bottom: 1px solid var(--border);
+}
+.hero-eyebrow {
+  font-size: .68rem; font-weight: 700; letter-spacing: .18em;
+  text-transform: uppercase; color: var(--red); margin-bottom: .9rem;
+}
+.hero h1 {
+  font-family: var(--serif);
+  font-size: clamp(2.6rem, 3.5vw, 4.2rem);
+  font-weight: 300; line-height: 1.1;
+  letter-spacing: -.01em; margin-bottom: 1.2rem;
+}
+.hero h1 em { font-style: italic; color: var(--red); }
+.hero-desc { font-size: 1rem; color: var(--text2); max-width: 680px; line-height: 1.85; margin-bottom: 2rem; }
+.hero-actions { display: flex; gap: .75rem; flex-wrap: wrap; }
+.btn-primary {
+  background: var(--red); color: #fff;
+  font-size: .85rem; font-weight: 600;
+  padding: .75rem 1.6rem; border-radius: 8px;
+  text-decoration: none; transition: background .2s;
+  box-shadow: 0 2px 14px rgba(200,48,58,.28);
+}
+.btn-primary:hover { background: #b8242d; }
+.btn-ghost {
+  background: var(--surface); color: var(--text2);
+  font-size: .85rem; font-weight: 500;
+  padding: .75rem 1.6rem; border-radius: 8px;
+  text-decoration: none; border: 1px solid var(--border);
+  transition: background .15s;
+}
+.btn-ghost:hover { background: var(--surface2); color: var(--text); }
+
+/* ─── SECTIONS ─── */
+.section { padding: 2.5rem 2.5rem; border-bottom: 1px solid var(--border); }
+.section-lbl {
+  font-size: .68rem; font-weight: 700; letter-spacing: .14em;
+  text-transform: uppercase; color: var(--text3); margin-bottom: 1.2rem;
+}
+.section-head {
+  display: flex; align-items: baseline; justify-content: space-between;
+  margin-bottom: 1.4rem;
+}
+.section-head h2 {
+  font-family: var(--serif); font-size: clamp(1.5rem, 2.5vw, 2.2rem);
+  font-weight: 300;
+}
+.section-head h2 em { font-style: italic; color: var(--red); }
+
+/* ─── STATS ─── */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 12px;
+}
+.stat-card {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--r); padding: 1.3rem 1.2rem;
+}
+.stat-val {
+  font-family: var(--serif); font-size: 2.2rem; font-weight: 400;
+  line-height: 1; display: block;
+}
+.stat-val.r { color: var(--red); }
+.stat-val.b { color: var(--blue); }
+.stat-lbl {
+  font-size: .68rem; font-weight: 700; text-transform: uppercase;
+  letter-spacing: .08em; color: var(--text3); margin-top: .4rem; display: block;
+}
+
+/* ─── CARDS ─── */
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 14px;
+}
+.kcard {
+  border: 1px solid var(--border); border-radius: 12px;
+  background: var(--bg); padding: 1.5rem;
+  text-decoration: none; color: var(--text);
+  display: flex; flex-direction: column; gap: .55rem;
+  transition: box-shadow .2s, transform .2s;
+  position: relative; overflow: hidden;
+}
+.kcard::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2.5px;
+  transform: scaleX(0); transform-origin: left;
+  transition: transform .38s cubic-bezier(.23,1,.32,1);
+}
+.kcard:hover { box-shadow: var(--sh-md); transform: translateY(-2px); }
+.kcard:hover::before { transform: scaleX(1); }
+.kcard.c-red::before   { background: var(--red); }
+.kcard.c-blue::before  { background: var(--blue); }
+.kcard.c-gold::before  { background: var(--gold); }
+.kcard.c-green::before { background: var(--green); }
+.kcard.c-navy::before  { background: var(--navy); }
+
+.kcard-icon {
+  width: 38px; height: 38px; border-radius: 9px;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.kcard-title {
+  font-family: var(--serif); font-size: 1.3rem; font-weight: 400; line-height: 1.2;
+}
+.kcard-desc { font-size: .82rem; color: var(--text2); line-height: 1.7; flex: 1; }
+.kcard-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: .3rem; }
+.tag {
+  display: inline-flex; align-items: center;
+  padding: 2px 9px; border-radius: 20px;
+  font-size: .71rem; font-weight: 700; border: 1px solid;
+}
+.tag.red    { background: #fdf2f2; color: var(--red);    border-color: #fbd5d5; }
+.tag.blue   { background: #eff6ff; color: var(--blue);   border-color: #bfdbfe; }
+.tag.gold   { background: #fdf8ee; color: var(--gold);   border-color: #e8d5a3; }
+.tag.green  { background: #f0fdf8; color: var(--green);  border-color: #a7f3d0; }
+.tag.navy   { background: #f0f2f8; color: var(--navy);   border-color: #c7cde8; }
+.tag.gray   { background: var(--surface); color: var(--text2); border-color: var(--border); }
+
+/* ─── PROGRESS ─── */
+.prog-card {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: 12px; padding: 1.6rem 2rem;
+}
+.prog-card-title {
+  font-size: .68rem; font-weight: 700; letter-spacing: .1em;
+  text-transform: uppercase; color: var(--text3); margin-bottom: 1.2rem;
+}
+.prog-row { display: flex; align-items: center; gap: 14px; margin-bottom: .9rem; }
+.prog-row:last-child { margin-bottom: 0; }
+.prog-label { font-size: .88rem; font-weight: 500; min-width: 220px; flex-shrink: 0; }
+.prog-bar { flex: 1; height: 7px; background: var(--surface2); border-radius: 4px; overflow: hidden; }
+.prog-fill { height: 100%; border-radius: 4px; width: 0; transition: width 1.3s cubic-bezier(.16,1,.3,1); }
+.prog-pct { font-size: .82rem; font-weight: 700; min-width: 36px; text-align: right; }
+
+/* ─── QUOTE ─── */
+.quote-section {
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  padding: 3rem 2.5rem;
+  text-align: center;
+}
+.quote-text {
+  font-family: var(--serif); font-size: clamp(1.3rem, 2vw, 1.8rem);
+  font-weight: 300; font-style: italic; line-height: 1.6;
+  color: var(--text); margin-bottom: .8rem; max-width: 720px; margin-inline: auto;
+}
+.quote-author { font-size: .72rem; letter-spacing: .14em; text-transform: uppercase; color: var(--text3); }
+
+/* ─── FOOTER ─── */
+footer {
+  padding: 2rem 2.5rem;
+  display: flex; align-items: center; justify-content: space-between;
+  border-top: 1px solid var(--border);
+  font-size: .78rem; color: var(--text3);
+}
+footer strong { color: var(--red); font-weight: 600; }
+
+/* ─── REVEAL ─── */
+.reveal { opacity: 0; transform: translateY(14px); transition: opacity .6s ease, transform .6s ease; }
+.reveal.in { opacity: 1; transform: none; }
+
+/* ─── RESPONSIVE ─── */
+@media (max-width: 860px) {
+  .stats-grid { grid-template-columns: repeat(3,1fr); }
+  .prog-label { min-width: 140px; }
+  .nav-links { display: none; }
+  .nav-badge { display: none; }
+  #ham-mob { display: flex !important; }
+}
+@media (max-width: 600px) {
+  .topnav { padding: 0 1rem; }
+  .ecg-section, .hero, .section { padding-left: 1rem; padding-right: 1rem; }
+  .stats-grid { grid-template-columns: repeat(2,1fr); }
+  .ecg-brand { font-size: 1.5rem; }
+  .quote-section { padding: 2rem 1rem; }
+  footer { flex-direction: column; gap: .5rem; text-align: center; }
 }
 </style>
 </head>
 <body>
 
+<!-- NAV -->
 <nav class="topnav">
-  <a href="index.html" class="brand">🫀 Kardiologie</a>
-  <div class="nav-links">
-    <a href="echo/index.html">📡 Echo-Kurs</a>
-    <a href="doppler/index.html">🔊 Doppler</a>
+  <a href="#" class="brand">
+    <span class="brand-heart">
+      <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+        <path d="M9 15.5C3.5 12.2 1 9 1 6A4 4 0 0 1 9 4.2a4 4 0 0 1 8 1.8C17 9 14.5 12.2 9 15.5Z" fill="var(--red)" opacity=".9"/>
+      </svg>
+    </span>
+    OUSS Kardiologie
+  </a>
+  <div class="nav-links" style="margin-left:.5rem">
+    <a href="#module">Module</a>
+    <a href="echo/index.html">📡 Echo</a>
+    <a href="ekg/index.html">📈 EKG</a>
+    <a href="notes/index.html">✏️ Notizen</a>
+    <a href="#fortschritt">Fortschritt</a>
+    <a href="#leitlinien">Leitlinien</a>
   </div>
   <div class="spacer"></div>
-  <a href="notes/index.html" class="notes-link">✏️ <span class="notes-text">Meine Notizen</span></a>
-  <button class="ham-btn" id="ham-btn" onclick="toggleDrawer()" aria-label="Menü öffnen">
-    <span></span><span></span><span></span>
+  <span class="nav-badge">Weiterbildung DE</span>
+  <button class="ham-mob" id="ham-mob" onclick="mobToggle()" aria-label="Menü" style="display:none;flex-direction:column;justify-content:center;align-items:center;gap:5px;width:40px;height:40px;flex-shrink:0;background:var(--surface);border:1px solid var(--border);border-radius:8px;cursor:pointer;margin-left:4px">
+    <span style="display:block;width:17px;height:2px;background:var(--text);border-radius:2px;transition:transform .25s,opacity .25s"></span>
+    <span style="display:block;width:17px;height:2px;background:var(--text);border-radius:2px;transition:opacity .25s"></span>
+    <span style="display:block;width:17px;height:2px;background:var(--text);border-radius:2px;transition:transform .25s,opacity .25s"></span>
   </button>
 </nav>
+<div id="mob-overlay" onclick="mobClose()" style="display:none;position:fixed;inset:0;top:56px;background:rgba(0,0,0,.35);z-index:499"></div>
+<div id="mob-drawer" style="position:fixed;top:56px;right:0;bottom:0;width:min(260px,80vw);background:#fff;z-index:500;transform:translateX(110%);transition:transform .28s cubic-bezier(.4,0,.2,1);display:flex;flex-direction:column;border-left:1px solid var(--border);padding:.5rem 0;overflow-y:auto;font-family:var(--sans)">
+  <a href="#module" onclick="mobClose()" style="display:flex;align-items:center;gap:12px;padding:13px 1.3rem;font-size:15px;font-weight:500;color:var(--text);text-decoration:none;border-bottom:1px solid var(--border);min-height:50px">📚 Module</a>
+  <a href="echo/index.html" onclick="mobClose()" style="display:flex;align-items:center;gap:12px;padding:13px 1.3rem;font-size:15px;font-weight:500;color:var(--text);text-decoration:none;border-bottom:1px solid var(--border);min-height:50px">📡 Echo-Kurs</a>
+  <a href="echo/pathologie.html" onclick="mobClose()" style="display:flex;align-items:center;gap:12px;padding:13px 1.3rem;font-size:15px;font-weight:500;color:var(--text);text-decoration:none;border-bottom:1px solid var(--border);min-height:50px">🏥 Echo-Pathologien</a>
+  <a href="ekg/index.html" onclick="mobClose()" style="display:flex;align-items:center;gap:12px;padding:13px 1.3rem;font-size:15px;font-weight:500;color:var(--text);text-decoration:none;border-bottom:1px solid var(--border);min-height:50px">📈 EKG-Tachykardien</a>
+  <a href="doppler/index.html" onclick="mobClose()" style="display:flex;align-items:center;gap:12px;padding:13px 1.3rem;font-size:15px;font-weight:500;color:var(--text);text-decoration:none;border-bottom:1px solid var(--border);min-height:50px">🔊 Doppler Guide</a>
+  <a href="notes/index.html" onclick="mobClose()" style="display:flex;align-items:center;gap:12px;padding:13px 1.3rem;font-size:15px;font-weight:500;color:var(--text);text-decoration:none;border-bottom:1px solid var(--border);min-height:50px">✏️ Meine Notizen</a>
+  <a href="#leitlinien" onclick="mobClose()" style="display:flex;align-items:center;gap:12px;padding:13px 1.3rem;font-size:15px;font-weight:500;color:var(--text);text-decoration:none;border-bottom:1px solid var(--border);min-height:50px">📖 Leitlinien</a>
+</div>
+<script>
+function mobToggle(){
+  var d=document.getElementById('mob-drawer'),o=document.getElementById('mob-overlay');
+  var open=d.style.transform==='translateX(0px)'||d.style.transform==='translateX(0)';
+  d.style.transform=open?'translateX(110%)':'translateX(0)';
+  o.style.display=open?'none':'block';
+  document.body.style.overflow=open?'':'hidden';
+}
+function mobClose(){
+  document.getElementById('mob-drawer').style.transform='translateX(110%)';
+  document.getElementById('mob-overlay').style.display='none';
+  document.body.style.overflow='';
+}
+window.addEventListener('resize',function(){if(window.innerWidth>860)mobClose();});
+</script>
 
-<div class="drawer-overlay" id="drawer-overlay" onclick="closeDrawer()"></div>
-<div class="drawer" id="drawer">
-  <a href="echo/index.html" onclick="closeDrawer()"><span class="d-emoji">📡</span> Echo-Kurs</a>
-  <a href="doppler/index.html" onclick="closeDrawer()"><span class="d-emoji">🔊</span> Doppler Guide</a>
-  <a href="notes/index.html" class="drawer-notes" onclick="closeDrawer()"><span class="d-emoji">✏️</span> Meine Notizen</a>
+<!-- ECG SECTION -->
+<div class="ecg-section">
+  <div class="ecg-top">
+    <div class="ecg-brand">OUSS <em>Kardiologie</em></div>
+    <div class="ecg-meta">
+      <div class="pulse-dot" id="ecg-pulse-dot" style="background: rgb(200, 48, 58)"></div>
+      <div>
+        <div class="ecg-rhythm-label" id="ecg-label" style="color: rgb(200, 48, 58)">Sinusrhythmus</div>
+        <div style="font-size:.65rem;letter-spacing:.1em;text-transform:uppercase;color:var(--text3)">Weiterbildung · Deutschland</div>
+      </div>
+      <div class="ecg-hr">
+        <span id="ecg-hr-val">72</span>
+        <span class="ecg-hr-unit">bpm</span>
+      </div>
+    </div>
+  </div>
+  <canvas id="ecg-canvas" title="Klicken zum Wechseln des Rhythmus"></canvas>
+  <div class="ecg-controls">
+    <button class="rhy-btn active" data-r="sinus" style="background-color: rgb(200, 48, 58)">Sinusrhythmus</button>
+    <button class="rhy-btn" data-r="vhf">Vorhofflimmern</button>
+    <button class="rhy-btn" data-r="flutter">VHF-Flattern</button>
+    <button class="rhy-btn" data-r="vt">Ventrikuläre Tachykardie</button>
+    <button class="rhy-btn" data-r="tdp">Torsades de Pointes</button>
+    <div class="ecg-sep"></div>
+    <button class="action-btn defib" id="defib-btn" style="display:none">⚡ Defibrillieren → Sinus</button>
+    <button class="action-btn mg" id="mg-btn" style="display:none">💉 Mg²⁺ i.v. → Sinus</button>
+  </div>
 </div>
 
+<!-- HERO -->
 <section class="hero">
-  <div class="hero-badge">🇩🇿 دارجة + 🇩🇪 Deutsch · Kardiologie-Lernprojekt</div>
-  <h1>Mein Weg durch die <span>Kardiologie</span></h1>
-  <p class="hero-sub">Alles was ich in der Kardiologie gelernt habe — Echokardiographie, Doppler, Messungen und klinische Konzepte — organisiert wie ein persönliches Notion-Notizbuch.</p>
-  <div class="hero-darija">
-    <span class="label">🇩🇿 بالدارجة</span>
-    هذا الموقع هو مشروعي الشخصي في الكارديولوجيا — كل شي تعلمته منظّم هنا. الإيكو، الدوبلر، القياسات، والمفاهيم السريرية. بالدارجة والألمانية مع بعض، باش يكون الفهم أسهل وأقرب.
+  <div class="hero-eyebrow">Persönliche Wissensdatenbank · Innere Medizin &amp; Kardiologie</div>
+  <h1>Mein Weg durch die <em>Kardiologie</em></h1>
+  <p class="hero-desc">
+    Alles was ich während meiner Weiterbildung in Deutschland gelernt habe — systematisch dokumentiert: EKG-Interpretationen, Echokardiographie, echte klinische Fälle und aktuelle ESC-Leitlinien, praxisnah aufbereitet.
+  </p>
+  <div class="hero-actions">
+    <a href="#module" class="btn-primary">Module ansehen</a>
+    <a href="#fortschritt" class="btn-ghost">Lernfortschritt</a>
   </div>
 </section>
 
-<div class="section-title">📊 Überblick</div>
-<div class="stats">
-  <div class="stat"><div class="stat-num">39</div><div class="stat-label">Kapitel</div></div>
-  <div class="stat"><div class="stat-num">4</div><div class="stat-label">Module</div></div>
-  <div class="stat"><div class="stat-num" id="note-count">0</div><div class="stat-label">Notizen</div></div>
-  <div class="stat"><div class="stat-num">🇩🇿🇩🇪</div><div class="stat-label">Sprachen</div></div>
-</div>
-
-<div class="section-title">📚 Lernmodule</div>
-<div class="cards">
-  <a href="echo/index.html" class="card echo" style="animation-delay:.05s">
-    <span class="card-icon">📡</span>
-    <div class="card-title">Echokardiographie-Kurs</div>
-    <div class="card-desc">Vollständiger Kurs: parasternale &amp; apikale Schnitte, Klappen, LV/RV-Funktion, M-Mode und mehr.</div>
-    <div class="card-meta">
-      <span class="tag blue">22 Kapitel</span>
-      <span class="tag darija">بالدارجة</span>
-      <span class="tag green">DE</span>
+<!-- STATS -->
+<div class="section reveal">
+  <div class="section-lbl">Überblick</div>
+  <div class="stats-grid">
+    <div class="stat-card">
+      <span class="stat-val r">9</span>
+      <span class="stat-lbl">Themenmodule</span>
     </div>
-  </a>
-  <a href="doppler/index.html" class="card doppler" style="animation-delay:.1s">
-    <span class="card-icon">🔊</span>
-    <div class="card-title">Doppler Echokardiographie</div>
-    <div class="card-desc">CW, PW, Color Doppler — Messungen, Normalwerte, Stenosen, Insuffizienzen, Füllungsdrücke.</div>
-    <div class="card-meta">
-      <span class="tag green">Guide</span>
-      <span class="tag darija">دليل</span>
-      <span class="tag blue">Messungen</span>
+    <div class="stat-card">
+      <span class="stat-val">39</span>
+      <span class="stat-lbl">Kapitel</span>
     </div>
-  </a>
-  <a href="ekg/index.html" class="card" style="animation-delay:.12s;border-top:3px solid #7c3aed;">
-    <span class="card-icon">📈</span>
-    <div class="card-title">EKG-Tachykardien</div>
-    <div class="card-desc">Schmaler vs. breiter QRS, SVT, VHF, VT, WPW, Torsades — Therapiealgorithmus & Antiarrhythmika.</div>
-    <div class="card-meta">
-      <span class="tag purple">11 Rhythmen</span>
-      <span class="tag blue">Algorithmus</span>
-      <span class="tag amber">Medikamente</span>
+    <div class="stat-card">
+      <span class="stat-val r">∞</span>
+      <span class="stat-lbl">Klinische Fälle</span>
     </div>
-  </a>
-  <a href="echo/pathologie.html" class="card" style="animation-delay:.13s;border-top:3px solid #dc2626;">
-    <span class="card-icon">🏥</span>
-    <div class="card-title">Echo-Pathologien</div>
-    <div class="card-desc">14 Krankheitsbilder: Ischämie, PE, Klappen, Tamponade, HOCM, Amyloidose & mehr.</div>
-    <div class="card-meta">
-      <span class="tag red">14 Kapitel</span>
-      <span class="tag darija">بالدارجة</span>
-      <span class="tag blue">Doppler</span>
+    <div class="stat-card">
+      <span class="stat-val b">ESC</span>
+      <span class="stat-lbl">Leitlinien 2024</span>
     </div>
-  </a>
-  <a href="notes/index.html" class="card notes" style="animation-delay:.15s">
-    <span class="card-icon">✏️</span>
-    <div class="card-title">Meine Notizen</div>
-    <div class="card-desc">Persönliche Notizen mit Text, Fotos, Farben und Effekten. Direkt im Browser gespeichert.</div>
-    <div class="card-meta">
-      <span class="tag amber">Fotos</span>
-      <span class="tag purple">Effekte</span>
-      <span class="tag red">Neu</span>
-    </div>
-  </a>
-</div>
-
-<div class="section-title">📈 Lernfortschritt</div>
-<div class="progress-section">
-  <div class="progress-card">
-    <h3>Module</h3>
-    <div class="prog-row">
-      <div class="prog-label">📡 Echo — Parasternal</div>
-      <div class="prog-bar"><div class="prog-fill" style="width:100%;background:var(--accent)"></div></div>
-      <div class="prog-pct" style="color:var(--accent)">100%</div>
-    </div>
-    <div class="prog-row">
-      <div class="prog-label">📡 Echo — Apikal</div>
-      <div class="prog-bar"><div class="prog-fill" style="width:90%;background:var(--accent)"></div></div>
-      <div class="prog-pct" style="color:var(--accent)">90%</div>
-    </div>
-    <div class="prog-row">
-      <div class="prog-label">🔊 Doppler Guide</div>
-      <div class="prog-bar"><div class="prog-fill" style="width:75%;background:var(--green)"></div></div>
-      <div class="prog-pct" style="color:var(--green)">75%</div>
-    </div>
-    <div class="prog-row">
-      <div class="prog-label">🫀 Pathologie</div>
-      <div class="prog-bar"><div class="prog-fill" style="width:30%;background:var(--amber)"></div></div>
-      <div class="prog-pct" style="color:var(--amber)">30%</div>
+    <div class="stat-card">
+      <span class="stat-val">🇩🇿🇩🇪</span>
+      <span class="stat-lbl">Sprachen</span>
     </div>
   </div>
 </div>
 
+<!-- MODULES -->
+<div class="section" id="module">
+  <div class="section-head reveal">
+    <h2>Klinische <em>Module</em></h2>
+    <span style="font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--text3)">9 Themengebiete</span>
+  </div>
+  <div class="cards-grid">
+
+    <a href="#" class="kcard c-red reveal">
+      <div class="kcard-icon" style="background:#fdf2f2">
+        <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+          <polyline points="0,11 3,11 5.5,11 7,6.5 8.5,11 11,11 12.5,3.5 14,18 15.5,11 18,11 22,11"
+            stroke="var(--red)" stroke-width="1.6" stroke-linejoin="round" fill="none"/>
+        </svg>
+      </div>
+      <h3 class="kcard-title">EKG-Interpretationen</h3>
+      <p class="kcard-desc">Systematische 12-Kanal-Analyse, Rhythmusstörungen, Ischämie-Muster, Schenkelblöcke und seltene EKG-Befunde aus dem klinischen Alltag.</p>
+      <div class="kcard-tags">
+        <span class="tag red">12-Kanal</span>
+        <span class="tag gray">Rhythmus</span>
+        <span class="tag blue">Ischämie</span>
+      </div>
+    </a>
+
+    <a href="#" class="kcard c-navy reveal" style="animation-delay:.06s">
+      <div class="kcard-icon" style="background:#f0f2f8">
+        <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+          <rect x="2" y="3" width="18" height="16" rx="2" stroke="var(--navy)" stroke-width="1.4" fill="none"/>
+          <path d="M6 10h10M6 14h7" stroke="var(--navy)" stroke-width="1.2" stroke-linecap="round"/>
+          <path d="M6 7h4" stroke="var(--navy)" stroke-width="1.2" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <h3 class="kcard-title">Klinische Fälle</h3>
+      <p class="kcard-desc">Echte Patientenfälle aus der Station — vollständiger Diagnoseweg, Differenzialdiagnosen und Therapieentscheidungen dokumentiert.</p>
+      <div class="kcard-tags">
+        <span class="tag navy">Stationsalltag</span>
+        <span class="tag blue">Diagnostik</span>
+        <span class="tag gray">Therapie</span>
+      </div>
+    </a>
+
+    <a href="#" class="kcard c-blue reveal" style="animation-delay:.10s">
+      <div class="kcard-icon" style="background:#eff6ff">
+        <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+          <ellipse cx="11" cy="11" rx="9" ry="6" stroke="var(--blue)" stroke-width="1.4" fill="none"/>
+          <ellipse cx="11" cy="11" rx="4.5" ry="3" stroke="var(--blue)" stroke-width="1.1" stroke-dasharray="2 1.5" fill="none"/>
+          <path d="M2 11Q7 7 11 11Q15 15 20 11" stroke="rgba(37,99,235,0.35)" stroke-width="1" fill="none"/>
+        </svg>
+      </div>
+      <h3 class="kcard-title">Echokardiographie</h3>
+      <p class="kcard-desc">TTE, TEE, Doppler-Analyse, Klappenerkrankungen, LVEF-Berechnung und Wandbewegungsstörungen — Bildgebung aus der Praxis.</p>
+      <div class="kcard-tags">
+        <span class="tag blue">TTE / TEE</span>
+        <span class="tag green">Doppler</span>
+        <span class="tag gray">LVEF</span>
+      </div>
+    </a>
+
+    <a href="#" class="kcard c-gold reveal" style="animation-delay:.14s">
+      <div class="kcard-icon" style="background:#fdf8ee">
+        <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+          <path d="M3 17V8l8-5 8 5.5V17l-8 5z" stroke="var(--gold)" stroke-width="1.4" fill="none"/>
+          <path d="M11 3v14M3 8l8 5 8-5.5" stroke="var(--gold)" stroke-width="1" stroke-dasharray="2 1.5" fill="none"/>
+        </svg>
+      </div>
+      <h3 class="kcard-title">Aktuelle Leitlinien</h3>
+      <p class="kcard-desc">ESC-, DGK- und ACC/AHA-Leitlinien komprimiert — nach Erkrankung geordnet, praxisnah kommentiert und auf aktuellem Stand.</p>
+      <div class="kcard-tags">
+        <span class="tag gold">ESC 2024</span>
+        <span class="tag gray">DGK</span>
+        <span class="tag gray">ACC/AHA</span>
+      </div>
+    </a>
+
+    <a href="#" class="kcard c-green reveal" style="animation-delay:.18s">
+      <div class="kcard-icon" style="background:#f0fdf8">
+        <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+          <circle cx="11" cy="11" r="8" stroke="var(--green)" stroke-width="1.4" fill="none"/>
+          <path d="M11 7v4l3.5 2" stroke="var(--green)" stroke-width="1.4" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <h3 class="kcard-title">Praktische Erfahrungen</h3>
+      <p class="kcard-desc">Tipps aus dem Weiterbildungsalltag — Stationsstruktur, Kommunikation, interdisziplinäre Arbeit und Vorbereitung auf die Facharztprüfung.</p>
+      <div class="kcard-tags">
+        <span class="tag green">Weiterbildung</span>
+        <span class="tag gray">Deutschland</span>
+        <span class="tag navy">Facharzt</span>
+      </div>
+    </a>
+
+    <a href="echo/pathologie.html" class="kcard c-red reveal" style="animation-delay:.22s">
+      <div class="kcard-icon" style="background:#fdf2f2">
+        <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+          <rect x="3" y="3" width="16" height="16" rx="3" stroke="var(--red)" stroke-width="1.4" fill="none"/>
+          <path d="M7 11h8M7 7.5h5M7 14.5h3" stroke="var(--red)" stroke-width="1.2" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <h3 class="kcard-title">Echo-Pathologien</h3>
+      <p class="kcard-desc">14 Krankheitsbilder: Ischämie, PE, Klappenerkrankungen, Tamponade, HOCM, Amyloidose — mit Doppler-Befunden.</p>
+      <div class="kcard-tags">
+        <span class="tag red">14 Kapitel</span>
+        <span class="tag blue">Doppler</span>
+        <span class="tag gray">HOCM</span>
+      </div>
+    </a>
+
+    <a href="ekg/index.html" class="kcard c-blue reveal" style="animation-delay:.26s">
+      <div class="kcard-icon" style="background:#eff6ff">
+        <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+          <polyline points="1,11 4,11 6,6 8,16 10,9 12,13 14,11 17,11 19,8 21,11"
+            stroke="var(--blue)" stroke-width="1.5" stroke-linejoin="round" fill="none"/>
+        </svg>
+      </div>
+      <h3 class="kcard-title">EKG-Tachykardien</h3>
+      <p class="kcard-desc">Schmaler vs. breiter QRS, SVT, VHF, VT, WPW, Torsades — Therapiealgorithmus und Antiarrhythmika im Detail.</p>
+      <div class="kcard-tags">
+        <span class="tag blue">11 Rhythmen</span>
+        <span class="tag navy">Algorithmus</span>
+        <span class="tag gold">Medikamente</span>
+      </div>
+    </a>
+
+    <a href="echo/index.html" class="kcard c-green reveal" style="animation-delay:.30s">
+      <div class="kcard-icon" style="background:#f0fdf8">
+        <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+          <ellipse cx="11" cy="11" rx="9" ry="6" stroke="var(--green)" stroke-width="1.4" fill="none"/>
+          <path d="M2 11Q7 7 11 11Q15 15 20 11" stroke="var(--green)" stroke-width="1" fill="none"/>
+          <circle cx="11" cy="11" r="2.5" stroke="var(--green)" stroke-width="1.1" fill="none"/>
+        </svg>
+      </div>
+      <h3 class="kcard-title">Echo-Kurs (Vollständig)</h3>
+      <p class="kcard-desc">Parasternale &amp; apikale Schnitte, Klappen, LV/RV-Funktion, M-Mode — 22 Kapitel mit Darija-Erklärungen.</p>
+      <div class="kcard-tags">
+        <span class="tag green">22 Kapitel</span>
+        <span class="tag blue">TTE/TEE</span>
+        <span class="tag gray">دارجة</span>
+      </div>
+    </a>
+
+    <a href="doppler/index.html" class="kcard c-navy reveal" style="animation-delay:.34s">
+      <div class="kcard-icon" style="background:#f0f2f8">
+        <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+          <path d="M3 11 Q8 4 11 11 Q14 18 19 11" stroke="var(--navy)" stroke-width="1.5" fill="none"/>
+          <path d="M3 11 Q8 7 11 11 Q14 15 19 11" stroke="var(--navy)" stroke-width=".8" stroke-dasharray="2 2" fill="none"/>
+        </svg>
+      </div>
+      <h3 class="kcard-title">Doppler Echokardiographie</h3>
+      <p class="kcard-desc">CW, PW, Color Doppler — Messungen, Normalwerte, Stenosen, Insuffizienzen und Füllungsdrücke praxisnah erklärt.</p>
+      <div class="kcard-tags">
+        <span class="tag navy">CW / PW</span>
+        <span class="tag green">Messungen</span>
+        <span class="tag gray">Normalwerte</span>
+      </div>
+    </a>
+
+    <a href="notes/index.html" class="kcard c-gold reveal" style="animation-delay:.38s">
+      <div class="kcard-icon" style="background:#fdf8ee">
+        <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+          <rect x="4" y="2" width="14" height="18" rx="2" stroke="var(--gold)" stroke-width="1.4" fill="none"/>
+          <path d="M7 7h8M7 10.5h8M7 14h5" stroke="var(--gold)" stroke-width="1.1" stroke-linecap="round"/>
+          <circle cx="17" cy="17" r="4" fill="var(--gold)"/>
+          <path d="M15.5 17h3M17 15.5v3" stroke="#fff" stroke-width="1.3" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <h3 class="kcard-title">Meine Notizen</h3>
+      <p class="kcard-desc">Persönliche Lernnotizen mit Fotos, Farben und Effekten — direkt im Browser gespeichert. Jederzeit erweiterbar.</p>
+      <div class="kcard-tags">
+        <span class="tag gold">Fotos</span>
+        <span class="tag gray">Lokal</span>
+        <span class="tag red">Neu</span>
+      </div>
+    </a>
+
+  </div>
+</div>
+
+<!-- PROGRESS -->
+<div class="section" id="fortschritt">
+  <div class="section-head reveal">
+    <h2><em>Lern</em>fortschritt</h2>
+    <span style="font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--text3)">Stand April 2026</span>
+  </div>
+  <div class="prog-card reveal">
+    <div class="prog-card-title">Module im Überblick</div>
+    <div class="prog-row">
+      <span class="prog-label">EKG-Interpretationen</span>
+      <div class="prog-bar"><div class="prog-fill" data-w="80" style="background:var(--red)"></div></div>
+      <span class="prog-pct" style="color:var(--red)">80%</span>
+    </div>
+    <div class="prog-row">
+      <span class="prog-label">Echo — Parasternal</span>
+      <div class="prog-bar"><div class="prog-fill" data-w="100" style="background:var(--blue)"></div></div>
+      <span class="prog-pct" style="color:var(--blue)">100%</span>
+    </div>
+    <div class="prog-row">
+      <span class="prog-label">Echo — Apikal</span>
+      <div class="prog-bar"><div class="prog-fill" data-w="90" style="background:var(--blue)"></div></div>
+      <span class="prog-pct" style="color:var(--blue)">90%</span>
+    </div>
+    <div class="prog-row">
+      <span class="prog-label">Echo-Pathologien</span>
+      <div class="prog-bar"><div class="prog-fill" data-w="30" style="background:var(--red)"></div></div>
+      <span class="prog-pct" style="color:var(--red)">30%</span>
+    </div>
+    <div class="prog-row">
+      <span class="prog-label">Doppler Guide</span>
+      <div class="prog-bar"><div class="prog-fill" data-w="75" style="background:var(--green)"></div></div>
+      <span class="prog-pct" style="color:var(--green)">75%</span>
+    </div>
+    <div class="prog-row">
+      <span class="prog-label">Klinische Fälle</span>
+      <div class="prog-bar"><div class="prog-fill" data-w="65" style="background:var(--navy)"></div></div>
+      <span class="prog-pct" style="color:var(--navy)">65%</span>
+    </div>
+    <div class="prog-row">
+      <span class="prog-label">Aktuelle Leitlinien</span>
+      <div class="prog-bar"><div class="prog-fill" data-w="50" style="background:var(--gold)"></div></div>
+      <span class="prog-pct" style="color:var(--gold)">50%</span>
+    </div>
+    <div class="prog-row">
+      <span class="prog-label">Praktische Erfahrungen</span>
+      <div class="prog-bar"><div class="prog-fill" data-w="90" style="background:var(--green)"></div></div>
+      <span class="prog-pct" style="color:var(--green)">90%</span>
+    </div>
+  </div>
+</div>
+
+<!-- LEITLINIEN -->
+<div class="section" id="leitlinien">
+  <div class="section-head reveal">
+    <h2>Aktuelle <em>Leitlinien</em></h2>
+    <span style="font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--text3)">ESC · DGK · ACC/AHA</span>
+  </div>
+  <div class="cards-grid">
+    <a href="#" class="kcard c-gold reveal">
+      <span class="tag gold" style="width:fit-content">ESC 2023</span>
+      <h3 class="kcard-title">NSTE-ACS</h3>
+      <p class="kcard-desc">Akutes Koronarsyndrom ohne ST-Hebung — Diagnostik, Risikostratifizierung, DAPT und invasive Strategie.</p>
+    </a>
+    <a href="#" class="kcard c-gold reveal" style="animation-delay:.05s">
+      <span class="tag gold" style="width:fit-content">ESC 2022</span>
+      <h3 class="kcard-title">Ventrikuläre Arrhythmien</h3>
+      <p class="kcard-desc">VT, Kammerflimmern und plötzlicher Herztod — Prävention, ICD-Indikation und antiarrhythmische Therapie.</p>
+    </a>
+    <a href="#" class="kcard c-gold reveal" style="animation-delay:.10s">
+      <span class="tag gold" style="width:fit-content">ESC 2021</span>
+      <h3 class="kcard-title">Herzinsuffizienz</h3>
+      <p class="kcard-desc">HFrEF, HFmrEF, HFpEF — evidenzbasierte medikamentöse und interventionelle Therapie nach aktuellem Standard.</p>
+    </a>
+    <a href="#" class="kcard c-gold reveal" style="animation-delay:.15s">
+      <span class="tag gold" style="width:fit-content">ESC 2020</span>
+      <h3 class="kcard-title">Vorhofflimmern</h3>
+      <p class="kcard-desc">Antikoagulation, Rhythmus- vs. Frequenzkontrolle, Katheterablation — praktisch zusammengefasst.</p>
+    </a>
+  </div>
+</div>
+
+<!-- QUOTE -->
 <div class="quote-section">
-  <div class="quote-inner">
-    <div class="quote-text">"Das Herz ist nicht nur ein Organ — es ist das Zentrum von allem, was wir in der Medizin tun."</div>
-    <div class="quote-darija">القلب مش بس عضو — هو نقطة البداية لكل شي في الطب. ملي تفهمو بعمق، تفهم نص الطب.</div>
+  <div class="quote-text">
+    „Das Herz ist nicht nur ein Organ — es ist das Zentrum von allem, was wir in der Medizin tun."
   </div>
+  <div class="quote-author">Kardiologie · Weiterbildung Deutschland</div>
 </div>
 
 <footer>
-  Kardiologie-Lernprojekt · Erstellt mit ❤️ · <strong>دارجة + Deutsch</strong> · Hosted auf GitHub Pages
+  <span>OUSS <strong>Kardiologie</strong> · Innere Medizin &amp; Kardiologie · Deutschland</span>
+  <span>Kein Ersatz für medizinischen Rat</span>
 </footer>
 
+<!-- ══════════════ ECG ENGINE ══════════════ -->
 <script>
-try{const n=JSON.parse(localStorage.getItem('kardi_notes')||'[]');document.getElementById('note-count').textContent=n.length;}catch(e){}
-function toggleDrawer(){document.getElementById('drawer').classList.contains('open')?closeDrawer():openDrawer();}
-function openDrawer(){document.getElementById('drawer').classList.add('open');document.getElementById('drawer-overlay').classList.add('open');document.getElementById('ham-btn').classList.add('open');document.body.style.overflow='hidden';}
-function closeDrawer(){document.getElementById('drawer').classList.remove('open');document.getElementById('drawer-overlay').classList.remove('open');document.getElementById('ham-btn').classList.remove('open');document.body.style.overflow='';}
-window.addEventListener('resize',()=>{if(window.innerWidth>860)closeDrawer();});
+(function () {
+  const canvas  = document.getElementById('ecg-canvas');
+  const ctx     = canvas.getContext('2d');
+  const labelEl = document.getElementById('ecg-label');
+  const hrEl    = document.getElementById('ecg-hr-val');
+  const dotEl   = document.getElementById('ecg-pulse-dot');
+  const defibBtn = document.getElementById('defib-btn');
+  const mgBtn    = document.getElementById('mg-btn');
+
+  let W = 0, H = 0, dpr = 1;
+  let currentTime = 0;
+  let lastTs = null;
+
+  // Active rhythm — never changed during a transition, only after it's complete
+  let rhythm = 'sinus';
+
+  // Transition: { fromRhythm, startTime, duration }
+  // During a transition we crossfade from fromRhythm → sinus
+  let transition = null;
+
+  // VHF beat schedule (ever-growing list anchored to real time)
+  let vhfBeats = [];
+
+  const RHYTHMS = {
+    sinus:   { label: 'Sinusrhythmus',           hr: 72,        color: '#c8303a' },
+    vhf:     { label: 'Vorhofflimmern (VHF)',     hr: '~90–120', color: '#c8303a' },
+    flutter: { label: 'VHF-Flattern (2:1)',       hr: 150,       color: '#c8303a' },
+    vt:      { label: 'Ventrikuläre Tachykardie', hr: 158,       color: '#c8303a' },
+    tdp:     { label: 'Torsades de Pointes',      hr: '~200',    color: '#c8303a' },
+  };
+
+  // ─── Waveform primitives ───────────────────────────────────────────
+  function pqrst(p) {
+    // Full normal sinus complex, phase 0–1
+    if (p < .08)  return  .15 * Math.sin(Math.PI * p / .08);          // P
+    if (p < .16)  return  0;
+    if (p < .20)  return -.28 * Math.sin(Math.PI * (p-.16) / .04);    // Q
+    if (p < .26)  return  1.0 * Math.sin(Math.PI * (p-.20) / .06);    // R
+    if (p < .32)  return -.38 * Math.sin(Math.PI * (p-.26) / .06);    // S
+    if (p < .38)  return  0;
+    if (p < .60)  return  .28 * Math.sin(Math.PI * (p-.38) / .22);    // T
+    return 0;
+  }
+  function qrsOnly(p) {
+    // Narrow QRS without P/T (used in VHF)
+    if (p < .12)  return -.28 * Math.sin(Math.PI * p / .12);
+    if (p < .22)  return  1.0 * Math.sin(Math.PI * (p-.12) / .10);
+    if (p < .32)  return -.40 * Math.sin(Math.PI * (p-.22) / .10);
+    if (p < .48)  return  .20 * Math.sin(Math.PI * (p-.32) / .16);
+    return 0;
+  }
+  function wideQRS(p) {
+    // Bizarre wide complex for VT / TdP
+    if (p < .45) return Math.sin(Math.PI * p / .45) * (.7 + .3 * Math.sin(p * Math.PI * 4));
+    if (p < .65) return -.5 * Math.sin(Math.PI * (p-.45) / .20);
+    if (p < .80) return  .25 * Math.sin(Math.PI * (p-.65) / .15);
+    return 0;
+  }
+  function flutterWave(t) {
+    const ph = (t * 5) % 1; // 300/min sawtooth
+    return -.28 * (ph < .7 ? ph / .7 : 1 - (ph-.7) / .3);
+  }
+  function fibNoise(t) {
+    return (
+      Math.sin(t * 2*Math.PI*6.0)       * .050 +
+      Math.sin(t * 2*Math.PI*7.3 + 1.2) * .040 +
+      Math.sin(t * 2*Math.PI*5.1 + 2.1) * .030 +
+      Math.sin(t * 2*Math.PI*9.7 + 0.8) * .025 +
+      Math.sin(t * 2*Math.PI*4.3 + 3.1) * .020
+    );
+  }
+
+  // ─── VHF beat scheduler ────────────────────────────────────────────
+  function ensureVHFBeats(upTo) {
+    if (vhfBeats.length === 0) vhfBeats = [currentTime - 5];
+    while (vhfBeats[vhfBeats.length-1] < upTo) {
+      const i = vhfBeats.length;
+      const r = (Math.sin(i * 127.1 + 311.7) + 1) / 2;
+      vhfBeats.push(vhfBeats[vhfBeats.length-1] + .35 + r * .55);
+    }
+    // Keep only last 20 beats to avoid memory growth
+    if (vhfBeats.length > 60) vhfBeats = vhfBeats.slice(-40);
+  }
+
+  // ─── Core waveform for a given rhythm at time t ────────────────────
+  // This function is STATELESS — works for any t, past or future.
+  // It never uses or mutates 'rhythm' or 'transition'.
+  function waveformFor(r, t) {
+    switch (r) {
+      case 'sinus': {
+        const per = 60 / 72;
+        return pqrst((t % per) / per);
+      }
+      case 'vhf': {
+        // Use pre-generated beat list (read-only here)
+        const noise = fibNoise(t);
+        for (let i = vhfBeats.length - 1; i >= 0; i--) {
+          if (vhfBeats[i] <= t) {
+            const nextBeat = vhfBeats[i+1] || vhfBeats[i] + .65;
+            const interval = nextBeat - vhfBeats[i];
+            const ph = (t - vhfBeats[i]) / interval;
+            if (ph < .40) return qrsOnly(ph / .40) * .85 + noise;
+            return noise;
+          }
+        }
+        return noise;
+      }
+      case 'flutter': {
+        const qrsPer = 60 / 150;
+        const qrsPh  = (t % qrsPer) / qrsPer;
+        const fl = flutterWave(t);
+        if (qrsPh < .32) return qrsOnly(qrsPh / .32) * .9 + fl * (1 - qrsPh / .32);
+        return fl;
+      }
+      case 'vt': {
+        const per = 60 / 158;
+        return wideQRS((t % per) / per) * 1.1;
+      }
+      case 'tdp': {
+        const per = .30;
+        const ph  = (t % per) / per;
+        const env = Math.sin(t * Math.PI / 3);
+        return wideQRS(ph) * Math.abs(env) * 1.3 * (env >= 0 ? 1 : -1);
+      }
+    }
+    return 0;
+  }
+
+  // ─── Main sample function — handles transitions ────────────────────
+  // Returns the ECG value at absolute time t.
+  // CRUCIALLY: for t < transition.startTime it returns the OLD rhythm
+  // (so the canvas history looks correct), for t >= startTime it
+  // crossfades smoothly into sinus.
+  function getECG(t) {
+    if (!transition) {
+      return waveformFor(rhythm, t);
+    }
+
+    const dt = t - transition.startTime;
+
+    if (dt < 0) {
+      // History before the event: show the original rhythm undisturbed
+      return waveformFor(transition.fromRhythm, t);
+    }
+
+    // ── Post-event zones ──────────────────────────────────────────────
+    const FLATLINE  = 0.25;  // brief isoelectric pause (asystole / post-shock)
+    const RECOVER   = 2.0;   // gradual sinus build-up duration
+
+    if (dt < FLATLINE) {
+      // Flat line — heart paused / capacitor discharged
+      // Tiny residual tremor fading fast for realism
+      const tremor = Math.sin(dt * Math.PI * 80) * Math.exp(-dt * 30) * 0.15;
+      return tremor;
+    }
+
+    if (dt < FLATLINE + RECOVER) {
+      // Sinus gradually emerges — amplitude ramps from 0 → 1
+      const age  = dt - FLATLINE;
+      const gain = Math.pow(age / RECOVER, 0.6); // concave-up: slow then faster
+      // Use global currentTime as sinus phase anchor so it's continuous
+      const per  = 60 / 72;
+      return pqrst((t % per) / per) * gain;
+    }
+
+    // Fully recovered — end transition, lock to sinus
+    transition = null;
+    rhythm = 'sinus';
+    updateUI();
+    return waveformFor('sinus', t);
+  }
+
+  // ─── Rendering ────────────────────────────────────────────────────
+  const PPS = 140; // pixels per second
+
+  function resize() {
+    dpr = window.devicePixelRatio || 1;
+    W = Math.round(canvas.parentElement.clientWidth * dpr);
+    H = Math.round(96 * dpr);
+    canvas.width  = W;
+    canvas.height = H;
+    canvas.style.height = '96px';
+  }
+
+  function drawFrame(ts) {
+    if (lastTs !== null) {
+      const dt = Math.min((ts - lastTs) / 1000, .05);
+      currentTime += dt;
+    }
+    lastTs = ts;
+
+    // Keep VHF beats scheduled ahead
+    if (rhythm === 'vhf' || (transition && transition.fromRhythm === 'vhf')) {
+      ensureVHFBeats(currentTime + 5);
+    }
+
+    ctx.clearRect(0, 0, W, H);
+
+    // Grid
+    ctx.strokeStyle = 'rgba(200,48,58,0.08)';
+    ctx.lineWidth = .5 * dpr;
+    for (let i = 0; i <= 24; i++) {
+      ctx.beginPath(); ctx.moveTo(i*W/24, 0); ctx.lineTo(i*W/24, H); ctx.stroke();
+    }
+    for (let j = 0; j <= 3; j++) {
+      ctx.beginPath(); ctx.moveTo(0, j*H/3); ctx.lineTo(W, j*H/3); ctx.stroke();
+    }
+
+    // Trace
+    const amp   = H * .34;
+    const color = '#c8303a';
+    ctx.shadowBlur  = 8 * dpr;
+    ctx.shadowColor = color + '88';
+    ctx.strokeStyle = color;
+    ctx.lineWidth   = 1.7 * dpr;
+    ctx.beginPath();
+    for (let px = 0; px <= W; px++) {
+      const t = currentTime - (W - px) / (PPS * dpr);
+      const y = H/2 - getECG(t) * amp;
+      px === 0 ? ctx.moveTo(px, y) : ctx.lineTo(px, y);
+    }
+    ctx.stroke();
+
+    // Leading dot
+    const dotY = H/2 - getECG(currentTime) * amp;
+    ctx.shadowBlur  = 16 * dpr;
+    ctx.shadowColor = color;
+    ctx.fillStyle   = color;
+    ctx.beginPath();
+    ctx.arc(W - 2*dpr, dotY, 3*dpr, 0, Math.PI*2);
+    ctx.fill();
+    ctx.shadowBlur = 0;
+
+    requestAnimationFrame(drawFrame);
+  }
+
+  // ─── UI ───────────────────────────────────────────────────────────
+  function updateUI() {
+    const rh = RHYTHMS[rhythm] || RHYTHMS.sinus;
+    labelEl.textContent      = rh.label;
+    labelEl.style.color      = rh.color;
+    dotEl.style.background   = rh.color;
+    hrEl.textContent         = rh.hr;
+
+    // Show action buttons only for their arrhythmias
+    defibBtn.style.display = (rhythm === 'vhf' || rhythm === 'flutter' || rhythm === 'vt') ? 'inline-flex' : 'none';
+    mgBtn.style.display    = (rhythm === 'tdp') ? 'inline-flex' : 'none';
+
+    document.querySelectorAll('.rhy-btn').forEach(b => {
+      b.classList.toggle('active', b.dataset.r === rhythm);
+    });
+  }
+
+  function setRhythm(r) {
+    transition = null;
+    rhythm = r;
+    if (r === 'vhf') { vhfBeats = []; ensureVHFBeats(currentTime + 10); }
+    updateUI();
+  }
+
+  // ─── Button listeners ─────────────────────────────────────────────
+  document.querySelectorAll('.rhy-btn').forEach(btn => {
+    btn.addEventListener('click', () => setRhythm(btn.dataset.r));
+  });
+
+  defibBtn.addEventListener('click', () => {
+    if (transition) return; // already transitioning
+    transition = { fromRhythm: rhythm, startTime: currentTime };
+    // Update UI immediately: show sinus label / hide action buttons
+    rhythm = 'sinus';
+    updateUI();
+  });
+
+  mgBtn.addEventListener('click', () => {
+    if (transition) return;
+    transition = { fromRhythm: rhythm, startTime: currentTime };
+    rhythm = 'sinus';
+    updateUI();
+  });
+
+  // Canvas tap cycles rhythms
+  const order = ['sinus','vhf','flutter','vt','tdp'];
+  canvas.addEventListener('click', () => {
+    const idx = (order.indexOf(rhythm) + 1) % order.length;
+    setRhythm(order[idx]);
+  });
+
+  window.addEventListener('resize', resize);
+  resize();
+  updateUI();
+  requestAnimationFrame(drawFrame);
+})();
 </script>
+
+<!-- SCROLL REVEAL -->
+<script>
+(function () {
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        setTimeout(() => e.target.classList.add('in'), i * 55);
+        obs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.08 });
+  document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+  // Progress bars
+  const pObs = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.querySelectorAll('.prog-fill').forEach(f => {
+          f.style.width = f.dataset.w + '%';
+        });
+        pObs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.2 });
+  document.querySelectorAll('.prog-card').forEach(el => pObs.observe(el));
+})();
+</script>
+
+<!-- TWEAKS -->
+<script>
+window.addEventListener('message', function(e) {
+  if (e.data && e.data.type === '__activate_edit_mode')   showTw(true);
+  if (e.data && e.data.type === '__deactivate_edit_mode') showTw(false);
+});
+window.parent.postMessage({type: '__edit_mode_available'}, '*');
+
+const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{"accentColor":"#c8303a"}/*EDITMODE-END*/;
+let tw = {...TWEAK_DEFAULTS};
+function applyTw() { document.documentElement.style.setProperty('--red', tw.accentColor); }
+applyTw();
+
+function showTw(s) { document.getElementById('tw-panel').style.display = s ? 'flex' : 'none'; }
+const panel = document.createElement('div');
+panel.id = 'tw-panel';
+panel.style.cssText = 'display:none;position:fixed;bottom:1.2rem;right:1.2rem;z-index:9999;background:#fff;border:1px solid #e5e2de;padding:1.2rem;width:200px;flex-direction:column;gap:.8rem;font-family:DM Sans,sans-serif;font-size:.82rem;color:#1a1410;box-shadow:0 8px 32px rgba(0,0,0,.1);border-radius:10px';
+panel.innerHTML = `
+  <div style="display:flex;justify-content:space-between;align-items:center">
+    <span style="font-size:.65rem;letter-spacing:.14em;text-transform:uppercase;opacity:.4">Tweaks</span>
+    <button id="tw-x" style="background:none;border:none;cursor:pointer;opacity:.4;font-size:1rem;line-height:1">×</button>
+  </div>
+  <div>
+    <div style="font-size:.65rem;letter-spacing:.1em;text-transform:uppercase;opacity:.4;margin-bottom:.3rem">Akzentfarbe</div>
+    <input type="color" id="tw-red" value="${tw.accentColor}" style="width:100%;height:28px;border:none;background:transparent;cursor:pointer">
+  </div>`;
+document.body.appendChild(panel);
+document.getElementById('tw-x').onclick = () => { showTw(false); window.parent.postMessage({type:'__edit_mode_dismissed'},'*'); };
+document.getElementById('tw-red').oninput = function() {
+  tw.accentColor = this.value; applyTw();
+  window.parent.postMessage({type:'__edit_mode_set_keys', edits:{accentColor:this.value}}, '*');
+};
+</script>
+
 </body>
 </html>

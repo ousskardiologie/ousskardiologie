@@ -318,8 +318,114 @@ body { font-family: var(--font); background: var(--bg); color: var(--text); font
   body { padding-bottom: env(safe-area-inset-bottom, 0px); }
 
 </style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+/* ══ OUSS SHARED NAV STYLES ══ */
+:root {
+  --ouss-red: #c8303a;
+  --ouss-nav-h: 56px;
+}
+.ouss-topnav {
+  position: sticky; top: 0; z-index: 500;
+  height: var(--ouss-nav-h);
+  background: rgba(255,255,255,.97);
+  backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid #e5e2de;
+  display: flex; align-items: center;
+  padding: 0 1.5rem; gap: 6px;
+  font-family: 'DM Sans', system-ui, sans-serif;
+}
+.ouss-brand {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 1.05rem; font-weight: 400;
+  color: #1a1410; text-decoration: none;
+  display: flex; align-items: center; gap: .45rem;
+  white-space: nowrap; flex-shrink: 0;
+}
+.ouss-nav-links { display: flex; gap: 2px; }
+.ouss-nav-links a {
+  padding: 6px 11px; border-radius: 7px; text-decoration: none;
+  color: #6b6460; font-size: .84rem; font-weight: 500;
+  transition: background .15s, color .15s; white-space: nowrap;
+}
+.ouss-nav-links a:hover { background: #f7f5f2; color: #1a1410; }
+.ouss-spacer { flex: 1; }
+.ouss-badge {
+  font-size: .75rem; font-weight: 600;
+  padding: 6px 13px; background: var(--ouss-red); color: #fff; border-radius: 7px;
+  white-space: nowrap;
+}
+.ouss-ham {
+  display: none; flex-direction: column; justify-content: center; align-items: center;
+  gap: 5px; width: 40px; height: 40px; flex-shrink: 0;
+  background: #f7f5f2; border: 1px solid #e5e2de; border-radius: 8px; cursor: pointer;
+}
+.ouss-ham span { display: block; width: 17px; height: 2px; background: #1a1410; border-radius: 2px; transition: transform .25s, opacity .25s; }
+.ouss-ham.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.ouss-ham.open span:nth-child(2) { opacity: 0; }
+.ouss-ham.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+.ouss-drawer-overlay { display: none; position: fixed; inset: 0; top: var(--ouss-nav-h); background: rgba(0,0,0,.35); z-index: 499; }
+.ouss-drawer-overlay.open { display: block; }
+.ouss-drawer {
+  position: fixed; top: var(--ouss-nav-h); right: 0; bottom: 0;
+  width: min(260px, 80vw); background: #fff; z-index: 500;
+  transform: translateX(110%); transition: transform .28s cubic-bezier(.4,0,.2,1);
+  display: flex; flex-direction: column; border-left: 1px solid #e5e2de;
+  padding: .5rem 0; overflow-y: auto; font-family: 'DM Sans', system-ui, sans-serif;
+}
+.ouss-drawer.open { transform: translateX(0); }
+.ouss-drawer a {
+  display: flex; align-items: center; gap: 12px;
+  padding: 13px 1.3rem; font-size: 15px; font-weight: 500;
+  color: #1a1410; text-decoration: none; border-bottom: 1px solid #e5e2de;
+  min-height: 50px; transition: background .15s;
+}
+.ouss-drawer a:hover { background: #f7f5f2; }
+@media (max-width: 860px) { .ouss-nav-links { display: none; } .ouss-ham { display: flex; } .ouss-badge { display: none; } }
+
+</style>
+<style>
+/* Hide original nav elements — replaced by OUSS nav */
+.header, .topnav, nav.topnav, .topbar { display: none !important; }
+.main { margin-left: 260px !important; padding-top: 0 !important; }
+@media (max-width: 1024px) { .main { margin-left: 0 !important; } }
+/* Adjust sidebar top to account for our nav */
+.sidebar { top: 0 !important; height: 100vh !important; padding-top: 0.5rem; }
+body { padding-top: 0 !important; }
+</style>
 </head>
 <body>
+<nav class="ouss-topnav">
+  <a href="../index.html" class="ouss-brand">
+    <svg width="16" height="16" viewBox="0 0 18 18" fill="none" style="flex-shrink:0">
+      <path d="M9 15.5C3.5 12.2 1 9 1 6A4 4 0 0 1 9 4.2a4 4 0 0 1 8 1.8C17 9 14.5 12.2 9 15.5Z" fill="#c8303a" opacity=".9"/>
+    </svg>
+    OUSS Kardiologie
+  </a>
+  <div class="ouss-nav-links">
+    <a href="../index.html">Startseite</a>
+    <a href="../echo/index.html">📡 Echo</a>
+    <a href="../ekg/index.html">📈 EKG</a>
+    <a href="../doppler/index.html">🔊 Doppler</a>
+    <a href="index.html">✏️ Notizen</a>
+  </div>
+  <div class="ouss-spacer"></div>
+  <span class="ouss-badge">Weiterbildung DE</span>
+  <button class="ouss-ham" id="ouss-ham" onclick="oussToggleDrawer()" aria-label="Menü">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+<div class="ouss-drawer-overlay" id="ouss-overlay" onclick="oussCloseDrawer()"></div>
+<div class="ouss-drawer" id="ouss-drawer">
+  <a href="../index.html" onclick="oussCloseDrawer()">🫀 Startseite</a>
+  <a href="../echo/index.html" onclick="oussCloseDrawer()">📡 Echo-Kurs</a>
+  <a href="../echo/pathologie.html" onclick="oussCloseDrawer()">🏥 Echo-Pathologien</a>
+  <a href="../ekg/index.html" onclick="oussCloseDrawer()">📈 EKG-Tachykardien</a>
+  <a href="../doppler/index.html" onclick="oussCloseDrawer()">🔊 Doppler Guide</a>
+  <a href="index.html" onclick="oussCloseDrawer()">✏️ Meine Notizen</a>
+</div>
+
 
 <!-- TOP NAV -->
 <nav class="topnav">
@@ -615,5 +721,26 @@ updateNav();
 renderList();
 if (notes.length > 0) openNote(notes[0].id);
 </script>
+
+<script>
+function oussToggleDrawer() {
+  var d = document.getElementById('ouss-drawer');
+  var o = document.getElementById('ouss-overlay');
+  var h = document.getElementById('ouss-ham');
+  var open = d.classList.contains('open');
+  d.classList.toggle('open', !open);
+  o.classList.toggle('open', !open);
+  h.classList.toggle('open', !open);
+  document.body.style.overflow = open ? '' : 'hidden';
+}
+function oussCloseDrawer() {
+  document.getElementById('ouss-drawer').classList.remove('open');
+  document.getElementById('ouss-overlay').classList.remove('open');
+  document.getElementById('ouss-ham').classList.remove('open');
+  document.body.style.overflow = '';
+}
+window.addEventListener('resize', function(){ if(window.innerWidth > 860) oussCloseDrawer(); });
+</script>
+
 </body>
 </html>
