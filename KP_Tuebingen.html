@@ -95,8 +95,6 @@ strong{font-weight:600}
 .callout.info{background:var(--blue-bg);border-color:var(--blue-border)}
 .callout.warn{background:var(--amber-bg);border-color:var(--amber-border)}
 .callout.success{background:var(--green-bg);border-color:var(--green-border)}
-.callout.danger{background:var(--red-bg);border-color:var(--red-border)}
-.callout.purple{background:var(--purple-bg);border-color:var(--purple-border)}
 .callout.gold{background:var(--gold-bg);border-color:var(--gold-border)}
 .callout-icon{font-size:18px;flex-shrink:0;margin-top:2px}
 .callout-body{font-size:.88rem;line-height:1.7}
@@ -113,10 +111,8 @@ strong{font-weight:600}
 .stat-card-num.red{color:var(--red)}
 .stat-card-num.gold{color:var(--gold)}
 .stat-card-label{font-size:.74rem;color:var(--text3);font-weight:600;text-transform:uppercase;letter-spacing:.06em}
-/* Tübingen special: Fach-pills */
 .fach-cloud{display:flex;flex-wrap:wrap;gap:6px;margin:1rem 0 1.5rem}
 .fach-pill{padding:4px 12px;border-radius:20px;font-size:.73rem;font-weight:600;border:1px solid}
-/* Prüfer grid */
 .pruefer-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:10px;margin:1rem 0 1.5rem}
 .pruefer-card{background:var(--bg);border:1px solid var(--border);border-radius:var(--radius-lg);padding:1rem 1.1rem;display:flex;gap:12px;align-items:flex-start;transition:box-shadow .18s,transform .18s}
 .pruefer-card:hover{box-shadow:var(--shadow-md);transform:translateY(-1px)}
@@ -124,11 +120,11 @@ strong{font-weight:600}
 .pruefer-name{font-family:var(--serif);font-size:.95rem;color:var(--text);margin-bottom:.15rem;line-height:1.3}
 .pruefer-fach{font-size:.75rem;font-weight:700;letter-spacing:.03em;text-transform:uppercase;margin-bottom:.2rem}
 .pruefer-detail{font-size:.78rem;color:var(--text2);line-height:1.45}
-/* Section divider */
 .section-divider{display:flex;align-items:center;gap:14px;margin:2.5rem 0 1.5rem}
 .section-divider-num{display:inline-flex;align-items:center;justify-content:center;width:32px;height:32px;border-radius:9px;background:var(--red);color:#fff;font-size:13px;font-weight:700;flex-shrink:0;box-shadow:0 4px 12px rgba(200,48,58,.3)}
 .section-divider h2{margin:0;font-size:1.55rem}
-/* Protocol */
+.info-section{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);padding:1.4rem;margin-bottom:1.5rem}
+.info-section h3{margin-top:0}
 .protocol-entry{background:var(--bg);border:1px solid var(--border);border-radius:var(--radius-lg);margin-bottom:1rem;overflow:hidden;box-shadow:var(--shadow);scroll-margin-top:calc(var(--nav-h) + 12px);transition:box-shadow .2s}
 .protocol-entry:hover{box-shadow:var(--shadow-md)}
 .protocol-header{display:flex;align-items:center;gap:10px;padding:.85rem 1.2rem;background:var(--surface);border-bottom:1px solid var(--border);cursor:pointer;user-select:none}
@@ -140,12 +136,17 @@ strong{font-weight:600}
 @keyframes fadein{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
 .protocol-toggle{margin-left:6px;color:var(--text3);font-size:.7rem;transition:transform .25s;flex-shrink:0}
 .protocol-entry.open .protocol-toggle{transform:rotate(90deg)}
-.info-section{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);padding:1.4rem;margin-bottom:1.5rem}
-.info-section h3{margin-top:0}
+.proto-images{display:flex;flex-wrap:wrap;gap:10px;margin:1rem 0}
+.proto-images a{display:block;border-radius:8px;overflow:hidden;border:1px solid var(--border);flex:1 1 180px;max-width:300px;transition:box-shadow .2s;text-decoration:none}
+.proto-images a:hover{box-shadow:var(--shadow-md)}
+.proto-images img{width:100%;height:auto;display:block;max-height:220px;object-fit:cover}
+.pdf-btn{display:inline-flex;align-items:center;gap:8px;padding:9px 18px;border-radius:8px;background:var(--red);color:#fff !important;font-size:.85rem;font-weight:600;text-decoration:none !important;transition:background .18s;margin:.5rem 0;box-shadow:0 2px 8px rgba(200,48,58,.25)}
+.pdf-btn:hover{background:#b8242d}
 .search-bar{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);padding:1rem 1.3rem;margin-bottom:1.2rem;display:flex;align-items:center;gap:10px}
 .search-bar input{flex:1;border:none;background:none;font-family:var(--sans);font-size:.9rem;color:var(--text);outline:none}
 .search-bar input::placeholder{color:var(--text3)}
 .search-count{font-size:.76rem;color:var(--text3);white-space:nowrap}
+.new-badge{display:inline-flex;align-items:center;gap:4px;padding:2px 8px;border-radius:20px;font-size:.65rem;font-weight:700;background:#dcfce7;color:#166534;border:1px solid #86efac;margin-left:6px;vertical-align:middle}
 .fade-in{opacity:0;transform:translateY(12px);transition:opacity .5s ease,transform .5s ease}
 .fade-in.visible{opacity:1;transform:translateY(0)}
 @media(max-width:768px){
@@ -185,12 +186,12 @@ strong{font-weight:600}
 <div class="layout">
 <aside class="sidebar" id="sidebar">
   <div class="sidebar-header">
-    <div class="sidebar-course">KP Tübingen · Uniklinikum Tübingen</div>
+    <div class="sidebar-course">KP Tübingen · Uniklinikum · Mai 2026</div>
     <div class="sidebar-title"><em>Kenntnisprüfung</em> Tübingen</div>
     <div class="sidebar-stats">
-      <span class="sidebar-stat total">310 Protokolle</span>
-      <span class="sidebar-stat green">✓ 91</span>
-      <span class="sidebar-stat red">✗ 6</span>
+      <span class="sidebar-stat total">326 Protokolle</span>
+      <span class="sidebar-stat green">✓ 103</span>
+      <span class="sidebar-stat red">✗ 7</span>
     </div>
   </div>
   <div class="sidebar-search">
@@ -208,10 +209,26 @@ strong{font-weight:600}
   </nav>
   <div class="sidebar-section">Prüfungsdaten</div>
   <nav id="sidebarDates">
+<a href="#p-21042026">21.04.2026 </a>
+<a href="#p-18042026">18.04.2026 <span style="color:var(--green);font-size:.75rem">✓</span></a>
+<a href="#p-14042026">14.04.2026 <span style="color:var(--red);font-size:.75rem">✗</span></a>
+<a href="#p-01042026">01.04.2026 <span style="color:var(--green);font-size:.75rem">✓</span></a>
+<a href="#p-24032026">24.03.2026 </a>
+<a href="#p-02032026">02.03.2026 <span style="color:var(--green);font-size:.75rem">✓</span></a>
+<a href="#p-100220261">10.02.2026-1 <span style="color:var(--green);font-size:.75rem">✓</span></a>
+<a href="#p-10022026">10.02.2026 <span style="color:var(--green);font-size:.75rem">✓</span></a>
+<a href="#p-290120261">29.01.2026-1 <span style="color:var(--green);font-size:.75rem">✓</span></a>
+<a href="#p-29012026">29.01.2026 <span style="color:var(--green);font-size:.75rem">✓</span></a>
+<a href="#p-08012026">08.01.2026 <span style="color:var(--green);font-size:.75rem">✓</span></a>
+<a href="#p-08012026">08.01.2026 <span style="color:var(--green);font-size:.75rem">✓</span></a>
+<a href="#p-28122025">28.12.2025 <span style="color:var(--green);font-size:.75rem">✓</span></a>
+<a href="#p-18122025">18.12.2025 </a>
+<a href="#p-041220251">04.12.2025-1 <span style="color:var(--green);font-size:.75rem">✓</span></a>
 <a href="#p-04122025">04.12.2025 <span style="color:var(--red);font-size:.75rem">✗</span></a>
 <a href="#p-021220252">02.12.2025-2 <span style="color:var(--green);font-size:.75rem">✓</span></a>
 <a href="#p-021220251">02.12.2025-1 <span style="color:var(--green);font-size:.75rem">✓</span></a>
 <a href="#p-02122025">02.12.2025 <span style="color:var(--green);font-size:.75rem">✓</span></a>
+<a href="#p-281120253">28.11.2025-3 <span style="color:var(--green);font-size:.75rem">✓</span></a>
 <a href="#p-281120252">28.11.2025-2 <span style="color:var(--green);font-size:.75rem">✓</span></a>
 <a href="#p-281120251">28.11.2025-1 <span style="color:var(--green);font-size:.75rem">✓</span></a>
 <a href="#p-28112025">28.11.2025 <span style="color:var(--green);font-size:.75rem">✓</span></a>
@@ -519,7 +536,7 @@ strong{font-weight:600}
 <a href="#p-04112019">04.11.2019 </a>
 <a href="#p-05062019">05.06.2019 </a>
   </nav>
-  <div class="sidebar-footer">GPLv3 · frei verfügbar · @Linux62 @oussdoc</div>
+  <div class="sidebar-footer">Aktualisiert Mai 2026 · GPLv3 · @Linux62 @oussdoc</div>
 </aside>
 <div class="sidebar-overlay" id="sidebarOverlay"></div>
 
@@ -534,9 +551,10 @@ strong{font-weight:600}
     </div>
     <h1>Kenntnisprüfung <em>(KP)</em> Tübingen</h1>
     <p class="page-subtitle">
-      Prüfungsprotokolle und Erfahrungsberichte für die Kenntnisprüfung am Universitätsklinikum Tübingen.
-      Tübingen hat die <strong>größte Protokollsammlung</strong> in Baden-Württemberg —
-      mit einer besonderen Pharmakologie-Komponente und Neurochirurgie als häufigem Prüfungsfach.
+      Prüfungsprotokolle für die Kenntnisprüfung am Universitätsklinikum Tübingen —
+      die <strong>größte Protokollsammlung</strong> in Baden-Württemberg.
+      Besonderheit: Klinische Pharmakologie (Dr. Mörike) und Neurochirurgie als reguläre Prüfungsfächer.
+      <span class="new-badge">✦ Neu: bis April 2026 aktualisiert</span>
     </p>
     <div class="meta-strip">
       <span>📬 <a href="https://t.me/fspbadenwuttemberg" target="_blank">Telegram-Gruppe</a></span>
@@ -547,15 +565,15 @@ strong{font-weight:600}
 
   <div class="stat-grid fade-in">
     <div class="stat-card">
-      <div class="stat-card-num gold">310</div>
+      <div class="stat-card-num gold">326</div>
       <div class="stat-card-label">Protokolle gesamt</div>
     </div>
     <div class="stat-card">
-      <div class="stat-card-num green">91</div>
+      <div class="stat-card-num green">103</div>
       <div class="stat-card-label">Bestanden</div>
     </div>
     <div class="stat-card">
-      <div class="stat-card-num red">6</div>
+      <div class="stat-card-num red">7</div>
       <div class="stat-card-label">Nicht bestanden</div>
     </div>
   </div>
@@ -583,11 +601,9 @@ strong{font-weight:600}
   <div class="callout gold fade-in">
     <span class="callout-icon">🎓</span>
     <div class="callout-body">
-      <strong>Tübingen-Besonderheit:</strong> Die Kommission besteht regelmäßig aus
-      <strong>Chirurgie</strong>, <strong>Innerer Medizin</strong> und <strong>Klinischer Pharmakologie</strong>
-      — Dr. Mörike (Pharmakologie) ist ein sehr bekannter Prüfer. Häufig kommt auch
-      <strong>Neurochirurgie</strong> (Dr. Will) hinzu. Pharmakologie-Themen wie Bisphosphonate,
-      Opioide, Antikoagulantien und Antibiotika sind sehr prüfungsrelevant.
+      <strong>Tübingen-Besonderheit:</strong> Regelmäßig <strong>Klinische Pharmakologie</strong> (Dr. Mörike)
+      und <strong>Neurochirurgie</strong> (Dr. Will) in der Kommission.
+      Themen wie Bisphosphonate, Opioide, Antikoagulantien und Antibiotika sehr prüfungsrelevant.
     </div>
   </div>
   <div class="fach-cloud fade-in">
@@ -599,47 +615,73 @@ strong{font-weight:600}
     <span class="fach-pill" style="background:var(--blue-bg);color:var(--blue);border-color:var(--blue-border)">Nephrologie</span>
   </div>
   <div class="pruefer-grid fade-in">
-<div class="pruefer-card">
-  <div class="pruefer-dot" style="background:var(--purple)"></div>
-  <div>
-    <div class="pruefer-name">Dr. Ilias Tsiflikas</div>
-    <div class="pruefer-fach" style="color:var(--purple)">Radiologie</div>
-    <div class="pruefer-detail">Kinderradiologie</div>
+    <div class="pruefer-card">
+      <div class="pruefer-dot" style="background:var(--purple)"></div>
+      <div>
+        <div class="pruefer-name">Dr. Ilias Tsiflikas</div>
+        <div class="pruefer-fach" style="color:var(--purple)">Radiologie</div>
+        <div class="pruefer-detail">Kinderradiologie</div>
+      </div>
+    </div>
+    <div class="pruefer-card">
+      <div class="pruefer-dot" style="background:var(--amber)"></div>
+      <div>
+        <div class="pruefer-name">Dr. Klaus Mörike</div>
+        <div class="pruefer-fach" style="color:var(--amber)">Klinische Pharmakologie ⭐</div>
+        <div class="pruefer-detail">Pharmakologie &amp; Toxikologie</div>
+      </div>
+    </div>
+    <div class="pruefer-card">
+      <div class="pruefer-dot" style="background:var(--red)"></div>
+      <div>
+        <div class="pruefer-name">Dr. Christian Thiel</div>
+        <div class="pruefer-fach" style="color:var(--red)">Chirurgie</div>
+        <div class="pruefer-detail">Allgemein- · Viszeral- &amp; Transplantationschirurgie</div>
+      </div>
+    </div>
+    <div class="pruefer-card">
+      <div class="pruefer-dot" style="background:var(--blue)"></div>
+      <div>
+        <div class="pruefer-name">Dr. Ferruh Artunc</div>
+        <div class="pruefer-fach" style="color:var(--blue)">Innere Medizin</div>
+        <div class="pruefer-detail">Nephrologie · Klinischer Wissenschaftler</div>
+      </div>
+    </div>
+    <div class="pruefer-card">
+      <div class="pruefer-dot" style="background:var(--green)"></div>
+      <div>
+        <div class="pruefer-name">Dr. Bernd Erich Will</div>
+        <div class="pruefer-fach" style="color:var(--green)">Neurochirurgie</div>
+        <div class="pruefer-detail">Neurochirurgie</div>
+      </div>
+    </div>
   </div>
-</div>
-<div class="pruefer-card">
-  <div class="pruefer-dot" style="background:var(--amber)"></div>
-  <div>
-    <div class="pruefer-name">Dr. Klaus Mörike</div>
-    <div class="pruefer-fach" style="color:var(--amber)">Klinische Pharmakologie</div>
-    <div class="pruefer-detail">Pharmakologie & Toxikologie</div>
-  </div>
-</div>
-<div class="pruefer-card">
-  <div class="pruefer-dot" style="background:var(--red)"></div>
-  <div>
-    <div class="pruefer-name">Dr. Christian Thiel</div>
-    <div class="pruefer-fach" style="color:var(--red)">Chirurgie</div>
-    <div class="pruefer-detail">Allgemein- · Viszeral- & Transplantationschirurgie</div>
-  </div>
-</div>
-<div class="pruefer-card">
-  <div class="pruefer-dot" style="background:var(--blue)"></div>
-  <div>
-    <div class="pruefer-name">Dr. Ferruh Artunc</div>
-    <div class="pruefer-fach" style="color:var(--blue)">Innere Medizin</div>
-    <div class="pruefer-detail">Nephrologie · Nierenerkrankungen · Klinischer Wissenschaftler</div>
-  </div>
-</div>
-<div class="pruefer-card">
-  <div class="pruefer-dot" style="background:var(--green)"></div>
-  <div>
-    <div class="pruefer-name">Dr. Bernd Erich Will</div>
-    <div class="pruefer-fach" style="color:var(--green)">Neurochirurgie</div>
-    <div class="pruefer-detail">Neurochirurgie</div>
-  </div>
-</div>
-  </div>
+  <div class="info-section fade-in"><hr>
+<ul>
+<li>Dr. <a href="https://web.archive.org/web/20230608174211/https://www.medizin.uni-tuebingen.de/de/das-klinikum/mitarbeiter/profil/1470" target="_blank" rel="noopener">Ilias Tsiflikas</a> Facharzt für <strong>Radiologie</strong> - Schwerpunkt Kinderradiologie &lt;ilias.tsiflikas@med.uni-tuebingen.de&gt;</li>
+</ul>
+<div class="proto-images"><a href="IliasTsiflikas.jpg" target="_blank" rel="noopener"><img src="https://ousskardiologie.github.io/ousskardiologie/Pruefer/IliasTsiflikas.jpg" alt="IliasTsiflikas" loading="lazy"></a></div>
+<hr>
+<ul>
+<li>Dr. <a href="https://web.archive.org/web/20230608175500/https://www.zmk-aktuell.de/infothek/autorenverzeichnis/autor/prof.-dr.-med.-klaus-moerike__12805.html" target="_blank" rel="noopener">Klaus Mörike</a> Facharzt für <strong>Klinische Pharmakologie</strong> &lt;klaus.moerike@med.uni-tuebingen.de&gt;</li>
+</ul>
+<div class="proto-images"><a href="KlausMörike.webp" target="_blank" rel="noopener"><img src="https://ousskardiologie.github.io/ousskardiologie/Pruefer/KlausMoerike.webp" alt="KlausMörike" loading="lazy"></a></div>
+<hr>
+<ul>
+<li>Dr. <a href="https://web.archive.org/web/20230608155508/https://www.aerzte.de/tuebingen/baden-wuerttemberg/fa-fuer-chirurgie/dr-med-christian-thiel-278108" target="_blank" rel="noopener">Christian Thiel</a> Facharzt für <strong>Allgemein- Viszeral- u. Transplantationschirurgie</strong></li>
+</ul>
+<div class="proto-images"><a href="unbekannt.webp" target="_blank" rel="noopener"><img src="https://ousskardiologie.github.io/ousskardiologie/Pruefer/unbekannt.webp" alt="unbekannt.webp" loading="lazy"></a></div>
+<hr>
+<ul>
+<li>Dr. <a href="https://web.archive.org/web/20230608180403/https://www.medizin.uni-tuebingen.de/de/das-klinikum/mitarbeiter/1353" target="_blank" rel="noopener">Ferruh Artunc</a> Facharzt für <strong>Innere Medizin - Nephrologie</strong> - Klinischer Wissenschaftler (Nierenerkrankungen) &lt;ferruh.artunc@med.uni-tuebingen.de&gt;</li>
+</ul>
+<div class="proto-images"><a href="FerruhArtunc.jpeg" target="_blank" rel="noopener"><img src="https://ousskardiologie.github.io/ousskardiologie/Pruefer/FerruhArtunc.jpeg" alt="FerruhArtunc" loading="lazy"></a></div>
+<hr>
+<ul>
+<li>Dr. <a href="https://web.archive.org/web/20230608181112/https://www.arzt-atlas.de/aerzte/tuebingen/priv-doz-dr-med-bernd-erich-will/" target="_blank" rel="noopener">Bernd Erich Will</a> <strong>Neurochirurgie</strong></li>
+</ul>
+<div class="proto-images"><a href="unbekannt.webp" target="_blank" rel="noopener"><img src="https://ousskardiologie.github.io/ousskardiologie/Pruefer/unbekannt.webp" alt="unbekannt.webp" loading="lazy"></a></div>
+<hr></div>
 
   <div id="protokolle" class="section-divider fade-in">
     <div class="section-divider-num">3</div>
@@ -648,16 +690,1371 @@ strong{font-weight:600}
   <div class="callout warn fade-in">
     <span class="callout-icon">⚠️</span>
     <div class="callout-body">
-      Bitte teilen Sie nach Ihrer Prüfung ein Protokoll — jeder Beitrag hilft
-      den nachfolgenden Kolleginnen und Kollegen!
+      Bitte teilen Sie nach Ihrer Prüfung ein Protokoll! Jeder Beitrag hilft den zukünftigen Kandidatinnen und Kandidaten.
     </div>
   </div>
   <div class="search-bar fade-in">
     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
     <input type="search" id="mainSearch" placeholder="Protokolle durchsuchen (Datum, Diagnose, Prüfer, Fach …)" autocomplete="off">
-    <span class="search-count" id="searchCount">310 Protokolle</span>
+    <span class="search-count" id="searchCount">326 Protokolle</span>
   </div>
   <div id="protocolList">
+<section id="p-21042026" class="protocol-entry fade-in">
+  <div class="protocol-header">
+    <div class="protocol-date">📅 21.04.2026</div>
+    <div class="protocol-badges"></div>
+    <span class="protocol-toggle">▶</span>
+  </div>
+  <div class="protocol-body"><p>Hallo, ich habe heute die Kenntnisprüfung erfolgreich abgelegt 21.04.2026.</p>
+<p>Mein Fall handelte von einem Bandscheibenvorfall. Alle Befunde entsprachen dem Protokoll: Die Patientin hatte positive Befunde. Das Lasègue Zeichen war positiv, der Bragard-Test ebenfalls. Das Fersegehen war unmöglich, und sie hatte Parästhesien an der lateralen Unterschenkel, am Fußrücken und im Großzeh. Im zweiten Teil habe ich die Patientin vorgestellt und Fragen zu den weiteren Untersuchungen beantwortet. Ich hatte zuerst an ein Röntgen gedacht, aber der Radiologe meinte, da die Patientin jung ist und kein Trauma vorlag, sei eine Fraktur unwahrscheinlich. Daher wurde direkt ein MRT angeordnet. Ich musste erklären, welche Kontraindikationen ein MRT haben kann und was ich der Patientin vor der Untersuchung aufklären sollte.</p>
+<p>Ich hatte auch Fragen zur körperlichen Untersuchung Zuerst wird das Lasègue Zeichen überprüft danach das Überprüfen des Psoaszeichen, Appendizitis Zeichen und die Herzauskultation und was ein Pulsdefizit ist.</p>
+<p>Im dritten Teil hat der Internist mir drei Bilder gezeigt. Das erste zeigte ein Cushing Syndrom, das zweite war Herpes Simplex, und das dritte eine Riesenzellarteriitis, also eine temporale Arteriitis. Ich musste beschreiben, was ich sehe, und welche Therapie ich vorschlagen würde. Danach zeigte mir der Radiologe ebenfalls Bilder auf seinem Laptop: eine Sonografie der Gallenblase mit Gallensteinen, eine CT-Untersuchung mit Pankreatitis sowie eine CT-Angiografie mit einer LAE . Ich glaube, es gab noch weitere Bilder, die ich leider vergessen habe.</p>
+<p>Dann wieder der Internist</p>
+<p>Was ist Akutes Nierenversagen: die Definition, die Ursachen und Beispiele. Außerdem fragte er nach der Therapie, auch die Indikationen für eine akute Dialyse.</p>
+<p>Der Chirurg fragte mich dann nach den Dialyse Verfahren. Ich sollte erklären, wie eine Peritonealdialyse abläuft und welche Dialyse Arten es gibt. Ich erklärte den Unterschied zwischen kontinuierlicher und intermittierender Dialyse. Wichtig sei, dass der Chirurg vor der Anlage einer Peritonealdialyse Hernien ausschließen muss, da sonst das Dialysat in den Bruchsack gelangen kann und die Prognose verschlechtert wird. Schließlich besprach er mit mir einen Fall von Pankreaskarzinom, die Vorgehensweise und welche Therapie ich vorschlagen würde.</p>
+<p>Und es gibt mehrere Fragen, aber ich habe nicht alle Fragen im Kopf. Der Kommission war sehr nett und freundlich und sie helfen uns die richtige Antwort zu finden.</p>
+<p>Viel Erfolg an alle 💪🏼</p>
+<p>vielen Dank an alle, die ihre Protokolle geteilt haben.</p></div>
+</section>
+<section id="p-18042026" class="protocol-entry fade-in">
+  <div class="protocol-header">
+    <div class="protocol-date">📅 18.04.2026</div>
+    <div class="protocol-badges"><span class="tag green">✓ Bestanden</span></div>
+    <span class="protocol-toggle">▶</span>
+  </div>
+  <div class="protocol-body"><p>Guten Morgen,</p>
+<p>ich habe letzte Woche die Kenntnisprüfung in Tübingen abgelegt und erfolgreich bestanden.</p>
+<p>Im Folgenden liste ich die Fragen auf, an die ich mich erinnern kann.</p>
+<p>Antrag/Warteliste: 11/2025</p>
+<p>Gebührenbescheid: 02/2026</p>
+<p>Prüfungskommission:</p>
+<p>Dr. Thiel sowie ein Radiologe und ein Internist</p>
+<p>⸻</p>
+<p>Teil 1:</p>
+<p>Thema: Bandscheibenvorfall (wie in den bekannten Protokollen)</p>
+<p>+ Arztbrief schreiben (ca. 2,5 Stunden)</p>
+<p>⸻</p>
+<p>Teil 2: (15 Minuten)</p>
+<ul>
+<li>Selbstvorstellung</li>
+<li>Fallpräsentation</li>
+</ul>
+<p>Fragen:</p>
+<ul>
+<li>Verdachtsdiagnose ?</li>
+<li>Weiteres diagnostisches Vorgehen?</li>
+<li>Warum wird ein Röntgen durchgeführt?</li>
+<li>Kontraindikationen für ein MRT?</li>
+<li>Was klären wir den Patienten vor einem MRT auf?</li>
+</ul>
+<p>→ (Erwartet wurde: laute Geräusche während der Untersuchung)</p>
+<ul>
+<li>Bei welchen Patienten ist das besonders wichtig?</li>
+</ul>
+<p>→ (z. B. Patienten mit Klaustrophobie)</p>
+<ul>
+<li>Therapy?</li>
+<li>Schilddrüsenuntersuchung durchführen</li>
+<li>Normale Größe der Schilddrüse bei Männern und Frauen?</li>
+<li>Warum wird die Schilddrüse auskultiert?</li>
+<li>Untersuchung der Atemverschieblichkeit durchführen</li>
+</ul>
+<p>⸻</p>
+<p>Teil 3: (ca. 40 Minuten)</p>
+<p>Internist:</p>
+<p>Bildbeschreibung und Diagnosestellung:</p>
+<ul>
+<li>Rheumaknoten (rheumatoide Knoten)</li>
+<li>Herpes zoster</li>
+<li>Struma</li>
+<li>Zervikale Lymphknotenvergrößerung</li>
+</ul>
+<p>Thema: pAVK</p>
+<ul>
+<li>Ätiologie</li>
+<li>Risikofaktoren</li>
+<li>Einteilung nach Lokalisation</li>
+<li>Stadieneinteilung nach Fontaine</li>
+<li>Therapie</li>
+<li>Bei allgemein maßnahmen Welche körperliche Aktivität empfehlen Sie? → (Gehtraining)</li>
+</ul>
+<p>Medikamentöse Therapie:</p>
+<ul>
+<li>Welche Medikamente?</li>
+<li>Warum Statine?</li>
+<li>LDL-Zielwerte?</li>
+<li>Dosierung von Rosuvastatin?</li>
+<li>⁠Interventionelle Verfahren?</li>
+</ul>
+<p>⸻</p>
+<p>Radiologe</p>
+<p>Der Radiologe stellte mehrere Fälle mit Fragen vor. Wichtig war:</p>
+<p>Zuerst immer das Bild beschreiben, danach die Diagnose stellen.</p>
+<p>Fälle:</p>
+<p>1- Ileus Röntgen Abdomen (a.p., Strahlengang)</p>
+<ul>
+<li>Ursachen?</li>
+<li>Symptome?</li>
+</ul>
+<p>2- CT: thorakale Aortendissektion</p>
+<ul>
+<li>Klassifikation (Stanford)</li>
+<li>Warum Stanford Typ A?</li>
+<li>Therapie?</li>
+<li>Was ist gefährlicher: Typ A oder B?</li>
+<li>Komplikationen von Typ A?</li>
+</ul>
+<p>3- CT Schädel Subduralhämatom (axial und koronar)</p>
+<ul>
+<li>Bei Schädel-Hirn-Trauma: CT mit oder ohne Kontrastmittel? Warum?</li>
+</ul>
+<p>4- Sonographie Appendizitis Längs- und Querschnitt</p>
+<p>⸻</p>
+<p>Chirurg</p>
+<p>Fall 1: Rechtsseitiges Kolonkarzinom</p>
+<ul>
+<li>Vorgehen?</li>
+<li>Staging: T2N1M0 → weiteres Vorgehen?</li>
+<li>Chirurgisches Verfahren erklären → Hemikolektomie rechts</li>
+<li>Welche Anastomose wird durchgeführt?</li>
+<li>Komplikationen nach Entfernung der Ileozökalklappe</li>
+</ul>
+<p>→ (Erwartet: Durchfall)</p>
+<p>Fall 2: Schilddrüsenkarzinom</p>
+<ul>
+<li>Typen: papillär, follikulär etc.</li>
+<li>Schnittführung bei Thyreoidektomie?</li>
+<li>Thyreoidektomie Komplikationen?</li>
+<li>(Er hat selbst viel zur Operation erklärt)</li>
+</ul>
+<p>— Leberanatomie Beschreiben</p>
+<p>(Keine detaillierten Fragen zu Bändern oder sehr tiefer Anatomie)</p>
+<p>13:17</p>
+<p>Lernquellen</p>
+<ul>
+<li>Prüfungsprotokolle (+++)</li>
+<li>Fälle Tübingen (von Daniela) Den Link findet ihr in der Gruppe (geteilt am 29.07.2025)</li>
+<li>AMBOSS (nur für Radiologie ++)</li>
+<li>ChatGPT ( Immer explizit „nach Leitlinien“ anfordern oder selbst eine zuverlässige Quelle angeben, um möglichst korrekte und sichere Antworten zu erhalten)</li>
+<li>Lernkarten</li>
+<li>SOPs Notaufnahme</li>
+</ul>
+<p>13:17</p>
+<p>Persönliche Tipps:</p>
+<p>-Es hilft in der Prüfung sehr, laut zu denken und deinen Gedankengang klar zu zeigen. Anstatt nur zu sagen: ‚Ich mache ein EKG‘, erkläre kurz warum, zum Beispiel: ‚Da die häufigste Ursache von (X) kardiogen ist, mache ich zuerst ein EKG.‘ Solche kleinen Details machen einen großen Unterschied, weil die Kommission genau darauf achtet, wie du denkst und argumentierst.</p>
+<p>-Die Prüfungskommission prüft dich vor allem anhand ihrer eigenen klinischen Erfahrung – nicht streng nach dem, was in Lehrbüchern steht. Zum Beispiel: Eine Erkrankung (X) hat im Buch 10 Komplikationen. Konzentriere dich aber auf die häufigsten 3–4, also auf das, was die Kommission in der Praxis tatsächlich sieht und erwartet.</p>
+<p>-Man merkt, dass Teil 3 der Prüfung die größte Rolle für das Bestehen spielt. Hier solltest du besonders gut vorbereitet sein.</p>
+<p>-In vielen Momenten der Prüfung fühlt es sich eher wie ein Gespräch oder eine fachliche Diskussion an als wie eine klassische Prüfung. Oft wirst du feststellen, dass alles in der prüfung viel einfacher ist, als es beim Lesen von Protokollen.</p>
+<p>Vielen Dank an alle, die ihre Protokolle geteilt haben. Ich wünsche allen Kollegen, die die Prüfung noch vor sich haben, viel Erfolg</p></div>
+</section>
+<section id="p-14042026" class="protocol-entry fade-in">
+  <div class="protocol-header">
+    <div class="protocol-date">📅 14.04.2026</div>
+    <div class="protocol-badges"><span class="tag red">✗ Nicht bestanden</span></div>
+    <span class="protocol-toggle">▶</span>
+  </div>
+  <div class="protocol-body"><p>Protokoll Tübingen: 14.04.2026</p>
+<p>Hallo! Heute habe ich meine Prüfung in Tübingen abgelegt und bin leider durchgefallen.</p>
+<p>Teil 1: Meningitis, genauso wie Protokoll. Habe alles geprüft sowie Hirnnerven und die wichtigsten Zeichen.</p>
+<p>Teil 2: Fragen zu Meningitis und Fall, genauso wie Protokoll. Zudem musste ich Lumbalpunktion und E-FAST demonstrieren.</p>
+<p>Teil 3: Medizin: Bilder von Akromegalie, Herpes und Morbus Basedow gezeigt. EKG von Vorhofflimmern sowie Therapie</p>
+<p>Radiologie: 3 Bilder von Epidurale Hämatom, OSG Fraktur und abdominale Perforation.</p>
+<p>Chirurgie: Body Check und Polytrauma sowie Vorgehen.</p>
+<p>Prüfung ist sehr machbar. Ich war einfach nur aufgrund fehlender Struktur durchgefallen. Ich wünsche euch viel Erfolg!</p></div>
+</section>
+<section id="p-01042026" class="protocol-entry fade-in">
+  <div class="protocol-header">
+    <div class="protocol-date">📅 01.04.2026</div>
+    <div class="protocol-badges"><span class="tag green">✓ Bestanden</span></div>
+    <span class="protocol-toggle">▶</span>
+  </div>
+  <div class="protocol-body"><p>KP Tübingen am 01.04.26</p>
+<p>Ich habe die KP in Tübingen bestanden.</p>
+<p>Ich möchte mein Protokoll mit euch teilen. Vielleicht hilft es den Nächsten.</p>
+<hr>
+<p>Teil 1 – Spontanpneumothorax</p>
+<p>Mein Fall war Spontanpneumothorax.</p>
+<p>Patient: Karl Müller, 25 Jahre alt, beim Volleyballspielen plötzlich starke Thoraxschmerzen, im Verlauf stärker geworden und atemabhängig.</p>
+<p>Nach dieser Info wollte ich die Anamnese kurz unterbrechen und zuerst Vitalparameter und EKG anfordern.</p>
+<p>Dr. Thiel gab mir unauffällige Vitalparameter und ein unauffälliges EKG, dann habe ich mit der Anamnese weitergemacht.</p>
+<p>Sonst anamnestisch nichts Auffälliges:</p>
+<ul>
+<li>keine Vorerkrankungen</li>
+<li>keine Allergien</li>
+<li>keine Dauermedikation</li>
+<li>keine relevante Familienanamnese</li>
+<li>keine Noxen</li>
+</ul>
+<p>Er studiert Kulturwissenschaften.</p>
+<p>Bei der körperlichen Untersuchung habe ich die Lungenuntersuchung vollständig gemacht. Danach habe ich dem Patienten kurz erklärt, wie ich weiter vorgehen würde, also weitere Diagnostik und ggf. Thoraxdrainage.</p>
+<p>Der erste Teil dauerte bei mir ungefähr 8–10 Minuten.</p>
+<p>Dr. Thiel war dabei nicht die ganze Zeit da.</p>
+<p>Arztbrief</p>
+<p>Ich habe meine Muster-Vorlage von zu Hause benutzt.</p>
+<p>Ich habe bewusst nur 2 Seiten geschrieben und keinen langen Roman, weil Dr. Thiel davor wohl warnt.</p>
+<p>Bei der Untersuchung habe ich die erwarteten Befunde notiert, z. B.:</p>
+<ul>
+<li>abgeschwächtes Atemgeräusch</li>
+<li>verminderter Stimmfremitus</li>
+<li>hypersonorer Klopfschall</li>
+</ul>
+<p>👉 Man darf den eigenen Anamnesebogen mitbringen.</p>
+<p>Ich habe einen von Amboss benutzt, war wirklich sehr hilfreich.</p>
+<hr>
+<p>Teil 2</p>
+<p>Ich habe die Anamnese ohne Unterbrechung vorgestellt.</p>
+<p>Danach habe ich BGA, Blutuntersuchungen und das weitere Vorgehen erklärt.</p>
+<p>Radiologie</p>
+<p>Der Radiologe fragte, welche Bildgebung ich machen würde.</p>
+<p>Ich habe direkt Sonographie gesagt und schon von mir aus Seashore-Zeichen und Barcode-Zeichen erklärt.</p>
+<p>Dann fragte er:</p>
+<ul>
+<li>welches weitere Verfahren?</li>
+</ul>
+<p>Ich sagte:</p>
+<ul>
+<li>Röntgen</li>
+</ul>
+<p>Dann fragte er:</p>
+<ul>
+<li>welches Röntgen?</li>
+</ul>
+<p>Ich sagte:</p>
+<ul>
+<li>2 Ebenen, a.p. und Expiration</li>
+</ul>
+<p>Er korrigierte mich und sagte, dass man heutzutage eher Inspiration anschaut. Er war aber sehr nett und sagte am Ende, dass ich das sehr gut gemacht habe.</p>
+<p>Innere</p>
+<p>Dann fragte der Internist am Patienten nach den Punkten für die Drainage.</p>
+<p>Ich nannte:</p>
+<ul>
+<li>Bülau</li>
+<li>Monaldi</li>
+</ul>
+<p>Dann fragte er:</p>
+<ul>
+<li>Zeigen Sie bitte den Monaldi-Punkt</li>
+</ul>
+<p>Das habe ich gezeigt.</p>
+<p>Dann fragte er:</p>
+<ul>
+<li>Können wir hier auch einen Schlauch legen?</li>
+</ul>
+<p>Ich sagte, dass ich diesen Punkt eher nicht bevorzugen würde, sondern eher für die Nadeldekompression in einer Notfallsituation.</p>
+<p>Dann fragte er weiter mit einer anderen Situation, ungefähr mit Herzinsuffizienz und Erguss.</p>
+<p>Ich sagte, dass ich dann eher den Bülau-Punkt nehmen würde. Danach ging es noch weiter, ich sagte etwas wie Pleurapunktion, aber das war nicht das, was er meinte. Er erklärte dann, dass man auch über den Monaldi-Zugang einen Schlauch einlegen und nach kaudal vorschieben kann, um Flüssigkeit mit Vacumgerät zu entlasten. Das wusste ich so nicht.</p>
+<p>Chirurgie</p>
+<p>Dann fragte Dr. Thiel:</p>
+<ul>
+<li>Wie heißt Ileus auf Deutsch?</li>
+</ul>
+<p>Ich sagte:</p>
+<ul>
+<li>Darmverschluss</li>
+</ul>
+<p>Dann fragte er:</p>
+<ul>
+<li>Welche Typen gibt es?</li>
+</ul>
+<p>Ich sagte:</p>
+<ul>
+<li>paralytischer und mechanischer Ileus</li>
+</ul>
+<p>Dann fragte er:</p>
+<ul>
+<li>Was ist die häufigste Ursache des mechanischen Ileus?</li>
+</ul>
+<p>Ich sagte:</p>
+<ul>
+<li>Bridenileus</li>
+</ul>
+<p>Dann:</p>
+<ul>
+<li>Der Patient hat bereits einen Bridenileus diagnostiziert. Welche OP-Verfahren kennen Sie?</li>
+</ul>
+<p>Ich sagte:</p>
+<ul>
+<li>Notfall-OP</li>
+<li>Medianlaparotomie</li>
+<li>oder Laparoskopie</li>
+</ul>
+<p>Dann fragte er:</p>
+<ul>
+<li>Wie verläuft die Schnittführung bei der Medianlaparotomie und warum links am Nabel vorbei?</li>
+</ul>
+<p>Ich sagte:</p>
+<ul>
+<li>um eine Verletzung des Ligamentum teres hepatis zu vermeiden</li>
+</ul>
+<p>Dann fragte er noch:</p>
+<ul>
+<li>Wie kann man bei der Laparoskopie die Kamera einlegen?</li>
+</ul>
+<p>Ich sagte:</p>
+<ul>
+<li>durch den Nabel</li>
+</ul>
+<p>Damit war Teil 2 vorbei.</p>
+<hr>
+<p>Teil 3</p>
+<p>Innere</p>
+<p>Zuerst zeigte mir der Internist Bilder:</p>
+<ul>
+<li>Rheumaknoten an den Händen</li>
+<li>Herpes simplex</li>
+</ul>
+<p>Beides habe ich sofort erkannt, er war zufrieden.</p>
+<p>Dann fragte er:</p>
+<ul>
+<li>Welches Medikament gegen Herpes simplex?</li>
+</ul>
+<p>Ich sagte:</p>
+<ul>
+<li>Aciclovir</li>
+<li>plus orale Dosierung</li>
+</ul>
+<p>Danach kam ein Fall:</p>
+<p>Ein junger Bauarbeiter, ca.</p>
+<p>13:17</p>
+<p>35 Jahre, mit plötzlichen Brustschmerzen.</p>
+<p>Dann bekam ich ein EKG mit inferiorem Myokardinfarkt, also ST-Hebungen in II, III und aVF.</p>
+<p>Dazu Schocksymptomatik.</p>
+<p>Frage:</p>
+<ul>
+<li>Wie gehen Sie in der ZNA vor?</li>
+</ul>
+<p>Ich antwortete:</p>
+<ul>
+<li>Stabilisierung der Vitalparameter</li>
+<li>ASS 300 mg</li>
+<li>Heparin 5000 IE</li>
+<li>Nitrospray (da RR noch über 90 war)</li>
+<li>Morphin 2 mg</li>
+<li>kein Betablocker wegen des niedrigen Blutdrucks</li>
+<li>Anxiolyse</li>
+<li>Herzkatheterlabor anmelden</li>
+</ul>
+<p>Damit war er sehr zufrieden, weil ich schnell, mit Dosierungen und ohne Zögern geantwortet habe.</p>
+<p>Dann fragte er:</p>
+<ul>
+<li>Was bekommt der Patient bei Entlassung nach 2 Stents?</li>
+</ul>
+<p>Ich sagte:</p>
+<ul>
+<li>duale Plättchenhemmung</li>
+<li>ASS 100 mg</li>
+<li>Prasugrel statt Clopidogrel</li>
+</ul>
+<p>Dann fragte er:</p>
+<ul>
+<li>Warum Prasugrel?</li>
+</ul>
+<p>Ich sagte:</p>
+<ul>
+<li>weil der Patient jung ist</li>
+<li>stärkere Wirkung</li>
+<li>gut nach Stentimplantation</li>
+<li>Nachteil: Blutungsneigung</li>
+</ul>
+<p>Dann nannte ich:</p>
+<ul>
+<li>Rosuvastatin 40 mg</li>
+<li>ACE-Hemmer wegen Remodeling</li>
+<li>ggf. Betablocker</li>
+<li>allgemeine Maßnahmen:</li>
+<li>Gewichtsreduktion</li>
+<li>Rauchstopp</li>
+<li>körperliche Aktivität</li>
+</ul>
+<p>Dann fragte er:</p>
+<ul>
+<li>Welche Sportart?</li>
+</ul>
+<p>Ich sagte:</p>
+<ul>
+<li>z. B. Laufen</li>
+</ul>
+<p>Er sagte:</p>
+<ul>
+<li>perfekt</li>
+</ul>
+<p>Dieser Teil dauerte bei mir ungefähr 7 Minuten.</p>
+<p>Es ging sehr schnell, weil ich zügig und mit Dosierungen geantwortet habe.</p>
+<hr>
+<p>Radiologie</p>
+<p>Zuerst fragte er:</p>
+<ul>
+<li>Welche bildgebenden Verfahren kennen Sie?</li>
+</ul>
+<p>Ich sagte:</p>
+<ul>
+<li>Röntgen</li>
+<li>Sonographie</li>
+<li>CT</li>
+<li>MRT</li>
+</ul>
+<p>Dann sagte er:</p>
+<ul>
+<li>Erklären Sie das Prinzip von einem</li>
+</ul>
+<p>Ich erklärte Röntgen:</p>
+<ul>
+<li>Elektronen</li>
+<li>Erhitzung an der Kathode</li>
+<li>Beschleunigung zur Anode</li>
+<li>Bremsstrahlung</li>
+<li>charakteristische Strahlung</li>
+</ul>
+<p>Dann fragte er weiter, wie das Bild entsteht, wenn die Strahlung durch den Körper geht. Ich habe es physikalisch erklärt.</p>
+<p>Bilder</p>
+<p>Danach durfte ich Bilder auswählen:</p>
+<ol>
+<li>CT im Knochenfenster im Bereich der Spine iliaca anterior superior</li>
+</ol>
+<p>Da war ein heller Gegenstand. Ich sagte zuerst vielleicht Messer nach Trauma.</p>
+<p>Er sagte nein. Ich wusste es nicht. Dann erklärte er, dass es sich um eine Biopsienadel handelt. Der Patient hatte Metastasen. Dann fragte er, welche Metastase das sein könnte.</p>
+<p>Ich sagte: Prostatakarzinom</p>
+<ol>
+<li>Humerusschaft – pathologische Fraktur</li>
+</ol>
+<ol>
+<li>Spitzenpneumothorax nach Pleurapunktion</li>
+</ol>
+<ol>
+<li>Grünholzfraktur</li>
+</ol>
+<ol>
+<li>MRT Sellink – Morbus Crohn</li>
+</ol>
+<p>Er gab zuerst keine Zusatzinfos und fragte nur, was ich als pathologisch sehe.</p>
+<ol>
+<li>Mammographie – Mammakarzinom</li>
+</ol>
+<p>👉 Der Radiologe war sehr hilfsbereit, freundlich und hat wirklich eine sehr positive Atmosphäre gemacht. Auch wenn man ein Bild nicht sofort erkennt, sollte man einfach anfangen zu beschreiben. Dann hilft er weiter.</p>
+<hr>
+<p>Chirurgie</p>
+<p>Fall:</p>
+<p>Ein junger Mann, der körperlich schwer arbeitet, schwer hebt und seit ca. 10 Tagen eine Vorwölbung in der Leistenregion hat.</p>
+<p>Ich sagte zuerst:</p>
+<ul>
+<li>Untersuchung im Stehen</li>
+<li>Inspektion</li>
+<li>Palpation</li>
+</ul>
+<p>Ich erklärte die Palpation recht detailliert.</p>
+<p>Dann fragte er:</p>
+<ul>
+<li>Haben Sie das schon einmal selbst gemacht?</li>
+</ul>
+<p>Ich sagte:</p>
+<ul>
+<li>nein</li>
+</ul>
+<p>Er sagte:</p>
+<ul>
+<li>okay ,kein Problem</li>
+</ul>
+<p>Dann fragte er:</p>
+<ul>
+<li>Wie behandeln Sie das?</li>
+</ul>
+<p>Ich sagte:</p>
+<ul>
+<li>zunächst Repositionsversuch</li>
+<li>aber das kann wegen Inkarzeration gefährlich sein</li>
+<li>da die Hernie nicht reponibel war, würde ich operieren</li>
+</ul>
+<p>Dann fragte er:</p>
+<ul>
+<li>Welche OP-Verfahren kennen Sie?</li>
+</ul>
+<p>Ich sagte:</p>
+<ul>
+<li>offene Verfahren</li>
+<li>minimalinvasive Verfahren</li>
+</ul>
+<p>Dann fragte er:</p>
+<ul>
+<li>Was verwendet man bei der Shouldice-Methode?</li>
+</ul>
+<p>Ich sagte:</p>
+<ul>
+<li>nahtbasiert</li>
+</ul>
+<p>Dann fragte er:</p>
+<ul>
+<li>Wie viele Nähte?</li>
+</ul>
+<p>Ich sagte ehrlich, dass ich es nicht sicher weiß. Er meinte dann, das sei nicht so wichtig.</p>
+<p>Dann fragte er zu:</p>
+<ul>
+<li>TAPP</li>
+<li>TEP</li>
+<li>warum man dort Netz verwendet</li>
+<li>wie das Netz funktioniert</li>
+</ul>
+<p>Ich habe es grob erklärt, danach hat er selbst noch weiter erklärt.</p>
+<p>Dann fragte er:</p>
+<ul>
+<li>Was empfehlen Sie dem Patienten bei Entlassung?</li>
+</ul>
+<p>Ich sagte:</p>
+<ul>
+<li>nicht schwer heben</li>
+<li>bei der Arbeit vorsichtig sein</li>
+<li>ggf. krankgeschrieben</li>
+</ul>
+<p>Dann fragte er:</p>
+<ul>
+<li>Was meinen Sie mit schwer?</li>
+</ul>
+<p>Ich sagte spontan etwas Lustiges, dass ich selbst Sport mache und vielleicht kein guter Maßstab bin 😅</p>
+<p>Alle haben gelacht.</p>
+<p>Dann fragte er:</p>
+<ul>
+<li>Haben Sie einen Wert im Kopf?</li>
+</ul>
+<p>Ich sagte:</p>
+<ul>
+<li>5–10 kg</li>
+</ul>
+<p>Er sagte:</p>
+<ul>
+<li>ja, 5 kg sei ein guter Wert.</li>
+</ul>
+<p>Dann fragte er:</p>
+<ul>
+<li>Wie lange soll er darauf achten?</li>
+</ul>
+<p>Ich sagte:</p>
+<ul>
+<li>6 Wochen</li>
+</ul>
+<p>Danach sagten sie:</p>
+<ul>
+<li>super</li>
+</ul>
+<p>Ich wurde kurz nach draußen geschickt und direkt wieder hereingerufen und beglückwünscht 🎉</p>
+<hr>
+<p><strong>Meine Empfehlungen</strong></p>
+<ul>
+<li>Teil 3 war für mich der wichtigste Teil.</li>
+</ul>
+<p>Bei mir dauerte fast 20 Minuten, und ich hatte das Gefühl, dass sie vor allem zufrieden waren, weil ich schnell, strukturiert und mit Dosierungen geantwortet habe.</p>
+<ul>
+<li>Anamnese und Brief wurden meiner Meinung nach nicht so stark gewichtet. Dafür sollte man sich nicht zu sehr stressen.</li>
+</ul>
+<ul>
+<li>Wenn euer Deutsch schnell und sicher ist, ist das ein großer Vorteil, weil die Prüfer teilweise auch schnell sprechen.</li>
+</ul>
+<ul>
+<li>Der Radiologe ist wirklich sehr hilfreich. Auch wenn ihr das Bild nicht direkt erkennt:</li>
+</ul>
+<p>sofort anfangen zu beschreiben:</p>
+<ul>
+<li>welches Verfahren</li>
+<li>welcher Schnitt</li>
+<li>welche anatomischen Strukturen</li>
+<li>was auffällig ist</li>
+</ul>
+<ul>
+<li>Von 4 Personen haben 3 bestanden.</li>
+</ul>
+<p>Dem Kandidaten, der nicht bestanden hat, wurden vor allem Anatomiefragen gestellt, die auch in älteren Protokollen schon vorkamen(08.08.25)</p>
+<ul>
+<li>Die anderen Fälle an dem Tag waren:</li>
+<li>Meningitis</li>
+<li>2x Bandscheibenvorfall</li>
+</ul>
+<p><strong>Wie ich gelernt habe</strong></p>
+<p>Ich habe gelernt mit:</p>
+<ul>
+<li>Amboss</li>
+<li>alten Protokollen</li>
+<li>SOP Notaufnahme</li>
+</ul>
+<p>Für Tübingen finde ich das vollkommen ausreichend.</p>
+<p>Fällebücher halte ich persönlich eher für unnötig. Viel wichtiger ist:</p>
+<ul>
+<li>die Protokolle sehr gut lesen</li>
+<li>die wiederkehrenden Themen mit Amboss gründlich nacharbeiten</li>
+</ul>
+<p>Ich habe die Protokolle ungefähr bis Juni 2024 gelesen und fand das genug.</p>
+<p>Viel Erfolg an alle 🍀</p></div>
+</section>
+<section id="p-24032026" class="protocol-entry fade-in">
+  <div class="protocol-header">
+    <div class="protocol-date">📅 24.03.2026</div>
+    <div class="protocol-badges"></div>
+    <span class="protocol-toggle">▶</span>
+  </div>
+  <div class="protocol-body"><p>Protokoll: 24.03.2024</p>
+<p>Geprüfte Themen:</p>
+<ul>
+<li>Spontanpneumothorax, Spannungspneumothorax, Thoraxdrainage, FAST-/E-FAST-Sonographie, VHF, Antikoagulanzien, Schrittmacher, Röntgenthorax, Schlaganfall, Divertikulitis, operative Behandlung einer Divertikulitis, Kolonkarzinom, Hemikolektomie</li>
+<li>Die andere Prüflinge wurden u. a. Meningitis, Lumbal-Punktion, Untersuchung des Abdomens, Bandscheibenvorfall geprüft</li>
+</ul>
+<p>Teil 1: Anamnese und KU</p>
+<ul>
+<li>Anamnese: Es handelte sich um eine 27-jährige gesunde Studentin mit vor einer Stunde plötzlich erstmalig aufgetretener Dyspnoe beim Laufen ohne Begleitsymptome, die sich in vorgebeugter Sitzhaltung etwas verbessert.</li>
+<li>KU: Tripod-Position, feinblasige basale RG beidseits, abgeschwächter Stimmfremitus auf der linken Seite, 4. Herzton, ansonsten unauffällig.</li>
+<li>Am Ende wurde ich nach der Verdachtsdiagnose und Differenzialdiagnosen gefragt.</li>
+</ul>
+<p>Teil 2: Patientenvorstellung</p>
+<ul>
+<li>Kurze Vorstellung des Prüflings</li>
+<li>Patientenvorstellung</li>
+<li>Gestellte Fragen:</li>
+</ul>
+<p>o Wie unterscheiden sich Spontanpneumothorax und Spannungspneumothorax?</p>
+<p>o Wie erkennt man einen Spannungspneumothorax?</p>
+<p>o Wie ändern sich die Vitalparameter [beim Spannungspneumothorax]?</p>
+<p>o Welche Halsvenen erweitern sich beim Spannungspneumothorax?</p>
+<p>o Erklären Sie die Behandlung eines Spannungspneumothorax?</p>
+<p>o Was ist eine Bülau-Drainage?</p>
+<p>o Zeigen Sie die Durchführung einer FAST-Sonographie [an der simulierten Patientin]</p>
+<p>o Was wird in der E-FAST beurteilt?</p>
+<p>o Welche sonographischen Zeichen sind beim Pneumothorax zu finden?</p>
+<p>o In welchem Mode wird das Barcode-Zeichen gesehen?</p>
+<p>o Wie wird den Schallkopf zur Beurteilung von Lungengleiten platziert?</p>
+<p>Teil 3: Fragen jedes Prüfers</p>
+<ul>
+<li>Internist</li>
+</ul>
+<p>o Ein 70-jähriger Patient stellte sich wegen einer Synkope in der Notaufnahme vor, die beim Laufen aufgetreten sei und ca. 10-20 Sekunden gedauert habe. Wie würden Sie vorgehen?</p>
+<p>o Angenommen, dass der Patient stabil ist, wie ist das diagnostische Vorgehen?</p>
+<p>o Derselbe Patient leidet an aHT, DM, VHF und nimmt Blutverdünner ein. Was wollen Sie noch wissen?</p>
+<p>o [zwecks Antwortfindung] Warum ist es wichtig, den Blutverdünner genau zu identifizieren?</p>
+<p>o Welche Antikoagulanzien kennen Sie?</p>
+<p>o Wissen Sie, wie die DOAKs/NOAKs wirken?</p>
+<p>o Sind Sie mit dem Begriff Bradykardie-Tachykardie-Syndrom vertraut?</p>
+<p>o Der Patient hat ein tachykardes VFH und wird mit β-Blocker behandelt, wie konnte man noch medikamentös behandeln?</p>
+<p>o [zwecks Antwortfindung] Warum muss der Patient antikoaguliert werden?</p>
+<p>o Welche andere Maßnahme zur Behandlung eines tachykarden VFH kennen Sie?</p>
+<p>o Der Patient hat eine Bradyarrhythmia absoluta, wie sieht die Behandlung aus?</p>
+<p>o Wie implantiert man einen Schrittmacher? Haben Sie schon mal dies gesehen?</p>
+<p>o Wissen Sie, wo den Schrittmacher platziert oder über welche Vene implantiert wird?</p>
+<p>o Welche Herzschrittmacherarten kennen Sie?</p>
+<ul>
+<li>Radiologe</li>
+</ul>
+<p>o Ein Röntgen-Thorax eines 10-jährigen auf der Intensivstation wurde gezeigt. Beschreiben Sie das Bild systematisch und nennen Sie jeglichen Befund [Das Ziel war systematisch zu beschreiben und eine fehlplatzierte Magensonde zu erkennen]</p>
+<p>o Ein 70-jähriger kommt zur Notaufnahme in Begleitung seiner Frau wegen brachialbetonter Hemiparese und verschwommener Sprache. Eine cCT wurde gezeigt. Was ist Ihnen auffällig? [Cord-Zeichen]</p>
+<p>o In welcher Arterie befindet sich der Embolus? [Arteria cerebri media]</p>
+<p>o Ein betagter Mann rief den Notruf wegen starker linkseitiger Oberbauchschmerzen [?] und Fieber an. Mehrere derartige Episoden sind in der Vorgeschichte bekannt. Über welches einfache bildgebende Verfahren verfügen wir im Rettungswagen?</p>
+<p>o Ein kurzes Video einer Abdomensonographie wurde gezeigt. Was erkennen Sie? [man sollte ein entzündetes Divertikel erkennen]</p>
+<p>o [zwecks Antwortfindung] Welche Strukturen befinden sich im linken Unterbauch?</p>
+<p>o Wie würden Sie die bildgebende Diagnostik ergänzen?</p>
+<p>o Welche Klassifikation kennen Sie für Divertikulitis bzw. Divertikelkrankheit?</p>
+<p>o Eine CT-Abdomen wurde gezeigt. Wie würden Sie dementsprechend den Patienten einstufen?</p>
+<p>13:17</p>
+<ul>
+<li>Chirurg</li>
+</ul>
+<p>o Was ist der Unterschied zwischen Makroabszess und Mikroabszess?</p>
+<p>o Wie würden Sie den [o. g.] Patienten behandeln?</p>
+<p>o Wie heißt die Anastomose?</p>
+<p>o Welche Art von Anastomose gibt es [nach Form]?</p>
+<p>o Welche Anastomose würden Sie bei diesem Patienten durchführen?</p>
+<p>o Warum bevorzugt man hier eine End-zu-Seit-Anastomose?</p>
+<p>o [zwecks Antwortfindung] Wie ist die Kolon durchblutet?</p>
+<p>o [zwecks Antwortfindung] Was geschieht, wenn das Mesenterium an einer [End-zu-End] Anastomose genäht wird?</p>
+<p>o Welche ist [in diesem Zusammenhang] die häufigste Ursache einer Anastomoseninsuffizienz?</p>
+<p>o Ein Kolonkarzinom im Zökum wurde bei einem alten Mann entdeckt, wie würden Sie vorgehen?</p>
+<p>o Wie führt man das Staging durch?</p>
+<p>o [eine TMN wurde genannt] Wie würden Sie ihn behandeln?</p>
+<p>o Was wird entfernt [von welchem Teil bis zum welchem Teil]?</p>
+<p>o Würden Sie die Bauhin’sche Klappe belassen oder entfernen?</p>
+<p>o Wie heißt die Anastomose?</p>
+<p>o Welche Art von Anastomose würden Sie in diesem Falle bevorzugen?</p>
+<p>o Warum würde man lieber eine Seit-zu-Seit-Anastomose durchführen?</p>
+<p>Ablauf bis Prüfung:</p>
+<ul>
+<li>Antrag auf die KP: 04.11.2025</li>
+<li>Anmeldung auf die KP: 10.11.2025 (laut Ansprechpartnerin aus dem Regierungspräsidium Stuttgart)</li>
+<li>Aufnahme in die Warteliste: 19.11.2025 (laut E-Mail der Ärztekammer)</li>
+<li>Gebührenbescheid: 20.01.2026 (bezahlt am 02.02.2026)</li>
+<li>Inoffizielle Einladung: 03.02.2026</li>
+<li>Offizielle Einladung: 04.03.2026</li>
+<li>Kenntnisprüfung: 24.03.2026</li>
+</ul>
+<p>Kommission:</p>
+<ul>
+<li>Chirurgie (Prof. Dr. med. Christian Thiel), Innere Medizin (Dr. med. Parwez Aidery [?]), Radiologie (PD Dr. med. Ilias Tsiflikas [?])</li>
+</ul>
+<p>Zeitablauf:</p>
+<ul>
+<li>Teil 1: termingemäß um 11:00 (eigentlich früher, da ich dort früher war) Dauer: ca. 15-20 min. Arztbriefverfassung bis kurz vor Anfang des 2. Teiles.</li>
+<li>Teil 2: fängt gegen 12:30 mit dem ersten Prüfling an (für mich erst kurz vor 14:00). Dauer: ca. 15 min.</li>
+<li>Teil 3: fängt gegen 14:30 dem ersten Prüfling an (für mich erst kurz nach 16:00). Dauer: ca. 30-50 min.</li>
+</ul>
+<p>Anmerkungen:</p>
+<ul>
+<li>Dr. Thiel erklärt kurz den Prüfungsablauf sowie die Dauer und eingeschätzte Anfangszeit jeweiligen Prüfungsteiles.</li>
+<li>4 Prüflinge legen die Prüfung der Reihenfolge der Ankunft nach ab – ich war der vierte, wir alle bestanden.</li>
+<li>Man bekomme anfänglich die Vitalparameter, ich bekam sie allerdings nicht.</li>
+<li>Die Befunde bei der KU waren nicht bekannt (passen nicht zum dargestellten Fall), jedoch kann man sie im Brief beschreiben, wenn festgestellt.</li>
+</ul>
+<p>o Die irreführenden Befunde waren völlig unerwartet aber dienten zur Differenzialdiagnostik.</p>
+<ul>
+<li>Die Fragen vertiefen sich im Laufe der Prüfung (muss man nicht alles wissen).</li>
+<li>Empfehlenswert:</li>
+</ul>
+<p>o Vorgehen bzw. Behandlung bei Notfällen auswendig lernen (mindestens eine Frage diesbezüglich kommt immer).</p>
+<p>o Gestellte Fragen mit den anderen Prüflingen teilen bzw. besprechen (wiederholte Fragen).</p>
+<p>o Ruhig bleiben, Frage genau hören, sicher und systematisch Antworten.</p>
+<p>o Möglichst ausführlich antworten, [selbstverständlich] ohne von Thema abzuschweifen. [je mehr man spricht, wenn man sich gut auskennt, desto weniger Zeit zur Abfrage.</p>
+<p>o Bei Bildgebung immer systematisch beschreiben.</p>
+<p>o Immer etwas antworten und idealerweise begründen, selbst wenn man die genaue Antwort nicht weißt (ohnehin wird man zur Antwort geführt).</p>
+<p>o Die Protokollen durchlesen (wiederholte Themen und Fragen).</p></div>
+</section>
+<section id="p-02032026" class="protocol-entry fade-in">
+  <div class="protocol-header">
+    <div class="protocol-date">📅 02.03.2026</div>
+    <div class="protocol-badges"><span class="tag green">✓ Bestanden</span></div>
+    <span class="protocol-toggle">▶</span>
+  </div>
+  <div class="protocol-body"><p>Hallo</p>
+<p>ich habe heute die KP bestanden.</p>
+<p>erste Teil war OSG fraktur. Beim Patientenvorstellun haben sie mir gefragt was ich machen soll wenn mein Patient über Bachsmerzen , also wenn auf der linke Seite gestürzt ist. habe über Ripenfraktur und Milz gespreochen. dann über Fast und der Chirug hat mir über Cullen Zeichen gefragt . habe Pankretstitis geantwortet und dann die Ursachen von Pankreatitis.</p>
+<p>Radiolog hat eine Weber B ( röntegen Bild ) , was mache ich usw.</p>
+<p>Die dritte Teil habe ich Labor bekommen und war eine AML , ich musste darüber sprechen.</p>
+<p>dann hat der Internist ein Paar Bilder mir gezeigt: ein Man mit Exophtalmus, ein Kind mit Herpes, ein von Arthritis Rheumatoid ( beide Hande)</p>
+<p>und ein Bild von ein Finger mit Zyanose wegen Thrombus.</p>
+<p>Radiolog : Bild mit Radiusfraktur, Dibertikulitis ( Sono plus CT)</p>
+<p>dann Frage über Divertikulitis klasifikation und Behandlung bei mein Fall , war unkompliziert.</p>
+<p>dann ein alte Frau mit Bauchmerzen , es war ein Darmperforation wegen ein Tumor. was soll ichh machen und Therapie.</p>
+<p>Habe kurz geschreieben.</p>
+<p>Sie möchten unsere Reaktion , ich habe nicht alles richtig gefunden .deswegen kein Panik , man muss allgemein Wissen haben. kein Profi.</p></div>
+</section>
+<section id="p-100220261" class="protocol-entry fade-in">
+  <div class="protocol-header">
+    <div class="protocol-date">📅 10.02.2026-1</div>
+    <div class="protocol-badges"><span class="tag green">✓ Bestanden</span></div>
+    <span class="protocol-toggle">▶</span>
+  </div>
+  <div class="protocol-body"><p>Ich habe letzte Woche meine Prüfung in Tübingen abgelegt und Alhamdulillah bestanden</p>
+<p>Die Prüfungskommission bestand aus einem sehr netten Radiologen und Dr. Thiel und einem eher anstrengenden Internisten.</p>
+<p>Teil 1 – Praktischer Fall: Bandscheibenvorfall L4/L5</p>
+<p>Ich habe eine gezielte Anamnese durchgeführt mit Fokus auf Schmerzlokalisation, -ausstrahlung, -charakter, Dauer, Verlauf und begleitende neurologische Symptome. Besonders wichtig war das Abfragen der Red Flags, vor allem Reithosenanästhesie sowie Harn- und Stuhlinkontinenz. Diese Fragen darf man auf keinen Fall vergessen. Dann habe ich eine gezielte neurologische Untersuchung gemacht. Dazu gehörten die Kraftprüfung mit Kniehalteversuch und Fußhebung, die Koordination mit dem Knie-Hacken-Versuch, die Sensibilitätsprüfung nach Dermatomen, die Reflexprüfung inklusive Tibialis-posterior-Reflex, die Gangprüfung mit Fersen- und Zehengang sowie die Prüfung der Nervendehnungszeichen nach Lasègue und Bragard.</p>
+<p>Der erste Teil dauerte ungefähr 15–20 Minuten.</p>
+<p>Dr. Thiel betonte, dass wir nur das dokumentieren sollen, was wir selbst untersucht und tatsächlich erhoben haben. Es war ausreichend Zeit vorhanden und alle Hilfsmittel durften benutzt werden.</p>
+<p>Mein persönlicher Eindruck war, dass Teil 1 und Teil 2 eher locker bewertet wird und für das Bestehen nicht so entscheidend ist wie der dritte Teil.</p>
+<p>Teil 2 – Beginn gegen 13 Uhr</p>
+<p>Ich habe mich kurz vorgestellt und anschließend den gesamten Fall strukturiert und zusammenhängend präsentiert.</p>
+<p>Frage: Wie untersucht man die Schilddrüse klinisch?</p>
+<p>Frage: Wie groß ist das normale Schilddrüsenvolumen?</p>
+<p>Bei Frauen beträgt das normale Volumen bis 18 ml, bei Männern bis 25 ml.</p>
+<p>Frage: Was sind die häufigsten Ursachen einer Hyperthyreose?</p>
+<p>Die häufigsten Ursachen sind Morbus Basedow, das autonome Adenom, die iodinduzierte Hyperthyreose zum Beispiel durch Amiodaron oder jodhaltige Kontrastmittel, die Hyperthyreosis factitia durch L-Thyroxin sowie eine passagere Hyperthyreose bei Hashimoto-Thyreoiditis.</p>
+<p>Frage: Wie wirkt Amiodaron auf die Schilddrüse?</p>
+<p>Amiodaron kann sowohl eine Hypothyreose als auch eine Hyperthyreose verursachen.</p>
+<p>Frage: Kann man mit der Sonographie zwischen heißen und kalten Knoten unterscheiden?</p>
+<p>Nein, beide erscheinen in der Sonographie meist hypoechogen. Die sichere Unterscheidung erfolgt mittels Szintigraphie.</p>
+<p>Ein heißer Knoten zeigt einen Technetium-Uptake von mehr als 5 %, während ein kalter Knoten einen Uptake von unter 2 % hat.</p>
+<p>Frage: Wie erkennt man Morbus Basedow klinisch?</p>
+<p>Klinisch erkennt man Morbus Basedow an der Merseburger Trias: Struma, Tachykardie und Exophthalmus.</p>
+<p>Frage: Wie entsteht die endokrine Orbitopathie?</p>
+<p>Sie entsteht durch eine Kreuzreaktion von Autoantikörpern mit retrobulbären Strukturen, was zur Aktivierung von Fibroblasten und Fettzellen führt. Dadurch kommt es zu einem osmotischen Effekt mit Entwicklung eines Exophthalmus.</p>
+<p>Frage: Wie therapiert man die endokrine Orbitopathie?</p>
+<p>Zunächst durch Hochlagerung des Oberkörpers und Einstellung einer Euthyreose mit Thyreostatika. Bei fehlendem Ansprechen erfolgt eine Therapie mit hochdosierten Glukokortikoiden, Immunsuppression oder eine retrobulbäre Bestrahlung.</p>
+<p>Chirurgie :</p>
+<p>Ich musste eine Abdomenuntersuchung durchführen und typische Operationsschnitte zeigen, insbesondere die Schnitte nach Appendektomie und Cholezystektomie.</p>
+<p>Radiologie: Diskussion über den Fall</p>
+<p>Frage: Wie gehen Sie bildgebend bei einem Bandscheibenvorfall vor?</p>
+<p>Zunächst erfolgt ein Röntgen der Lendenwirbelsäule, um Frakturen, Spondylolisthesis, Fehlstellungen oder Tumoren auszuschließen. Eine Ebene ist in der Regel ausreichend, bevorzugt eine Schrägaufnahme, um die Strahlenbelastung möglichst gering zu halten.</p>
+<p>Frage: Wie hoch ist die Strahlenbelastung bei verschiedenen Untersuchungen?</p>
+<p>Beim Röntgen der LWS beträgt sie etwa 1–2 mSv, beim CT des Schädels etwa 2 mSv und beim CT von Thorax und Abdomen etwa 5–10 mSv.</p>
+<p>Frage: Wie kann man die Strahlenbelastung minimieren?</p>
+<p>Durch Anwendung des ALARA-Prinzips und der 5-A-Regel.</p>
+<p>13:17</p>
+<p>Frage: Was sind wichtige Differentialdiagnosen beim Bandscheibenvorfall?</p>
+<p>Wichtige Differentialdiagnosen sind Wirbelkörperfraktur, Spondylolisthesis, Spinalkanalstenose und Tumorerkrankungen.</p>
+<p>Frage: Wie sieht die leitliniengerechte Therapie aus?</p>
+<p>Wenn keine Red Flags vorliegen, beginnt man mit einer konservativen Therapie über sechs Wochen. Diese besteht aus Analgetika nach WHO-Stufenschema, Muskelrelaxanzien, periradikulären Injektionen mit Lokalanästhetika wie Ropivacain + Glukokortikoide, Frühmobilisation und intensiver Physiotherapie(Krankgymnastik )</p>
+<p>Frage: Wann ist ein MRT indiziert?</p>
+<p>Ein MRT ist bei fehlendem Ansprechen auf die konservative Therapie oder bei neurologischen Defiziten indiziert, bevorzugt mit T2-Wichtung.</p>
+<p>Frage: Wann besteht eine OP-Indikation und welche OP wird durchgeführt?</p>
+<p>Bei therapieresistenten Beschwerden oder relevanten neurologischen Ausfällen besteht eine OP-Indikation. In diesem Fall wird in der Regel eine Nukleotomie durchgeführt. Bei jungen Patientinnen handelt es sich häufig um eine Diskusprotrusion und nicht um einen kompletten Prolaps.</p>
+<p>Teil 3 :</p>
+<p>Der dritte Teil war eindeutig der anspruchsvollste und entscheidendste Teil der Prüfung. Der Internist zeigte mir mehrere klinische Bilder, zu denen ich jeweils den Befund beschreiben, eine Diagnose stellen und weiterführende Fragen beantworten sollte.</p>
+<p>Bilddiagnostik :</p>
+<p>Das erste Bild zeigte typische Zeichen eines Cushing-Syndroms.</p>
+<p>Frage: Wie ist das Cushing-Syndrom eingeteilt?</p>
+<p>Man unterscheidet:</p>
+<ul>
+<li>ACTH-abhängiges Cushing-Syndrom</li>
+<li>ACTH-unabhängiges Cushing-Syndrom</li>
+<li>Exogenes Cushing-Syndrom (z. B. durch Glukokortikoidtherapie)</li>
+</ul>
+<p>Frage: Wie erfolgt die Therapie je nach Ursache?</p>
+<ul>
+<li>ACTH-abhängig: transsphenoidale Entfernung eines Hypophysenadenoms</li>
+<li>ACTH-unabhängig:</li>
+<li>Bei Nebennierenadenom → Adrenalektomie</li>
+<li>Bei Nebennierenhyperplasie → primär medikamentöse Therapie</li>
+</ul>
+<p>Frage: Was tun Sie, wenn eine Operation nicht möglich ist?</p>
+<p>Dann erfolgt eine medikamentöse Therapie mit Ketoconazol.</p>
+<p>Das zweite Bild zeigte Herpes zoster.</p>
+<p>Das dritte Bild zeigte typische Zeichen eines Morbus Basedow.</p>
+<p>Das vierte Bild zeigte eine Hunter-Glossitis, typisch bei Vitamin-B12-Mangel.</p>
+<p>Frage: Wie sind die Ursachen der akuten Niereninsuffizienz eingeteilt?</p>
+<p>Die Ursachen werden in prärenal, renal und postrenal eingeteilt.</p>
+<p>Prärenale Ursachen :</p>
+<ul>
+<li>Dehydratation</li>
+<li>Erbrechen</li>
+<li>Ileus</li>
+<li>Pankreatitis</li>
+<li>Hypovolämischer Schock</li>
+<li>Kardiogener Schock</li>
+<li>Makrovaskuläre Ursachen: Nierenarterienstenose, Nierenvenenthrombose</li>
+<li>Mikrovaskuläre Ursachen: HUS, TTP..</li>
+</ul>
+<p>Renale Ursachen :</p>
+<ul>
+<li>Pyelonephritis</li>
+<li>Glomerulonephritis</li>
+<li>Akute tubulointerstitielle Nephritis</li>
+<li>Akute Tubulusnekrose</li>
+<li>Rhabdomyolyse</li>
+<li>Tumorlyse-Syndrom</li>
+</ul>
+<p>Frage: Was sind die häufigsten Glomerulonephritiden?</p>
+<ul>
+<li>IgA-Nephropathie (Morbus Berger)</li>
+<li>Poststreptokokken-Glomerulonephritis</li>
+<li>Granulomatose mit Polyangiitis (Morbus Wegener)</li>
+<li>Goodpasture-Syndrom</li>
+<li>Lupusnephritis</li>
+<li>Rapid progressive Glomerulonephritis (RPGN)</li>
+</ul>
+<p>Frage: Wann ist der CH50-Wert erniedrigt?</p>
+<p>Bei der poststreptokokkenbedingten Glomerulonephritis und bei der Lupusnephritis ist der CH50-Wert erniedrigt.</p>
+<p>Bei der IgA-Nephropathie (Morbus Berger) ist der CH50 normal, da hier das Komplementsystem über den alternativen Weg und nicht über den klassischen Weg aktiviert wird.</p>
+<p>Frage: Wie unterscheidet man prärenale von renalen Ursachen?</p>
+<p>Mit der fraktionellen Natriumexkretion (FeNa).</p>
+<p>Frage: Wie verursacht das multiple Myelom eine akute Niereninsuffizienz?</p>
+<p>Durch Ablagerung von Leichtketten (Bence-Jones-Proteinurie) in den Tubuli sowie durch Nephrokalzinose.</p>
+<p>Frage: Welche Medikamente können eine akute Niereninsuffizienz verursachen?</p>
+<ul>
+<li>NSAR</li>
+<li>Antibiotika (v. a. Aminoglykoside, Vancomycin)</li>
+<li>Statine</li>
+<li>Ciclosporin</li>
+</ul>
+<p>Frage: Warum wird Vancomycin trotz seiner Nephrotoxizität eingesetzt?</p>
+<p>Weil es ein hochwirksames Antibiotikum gegen grampositive Erreger, insbesondere MRSA, ist und deshalb bei schweren Infektionen unverzichtbar bleibt.</p>
+<p>Frage: Was muss man bei der Anwendung von Vancomycin beachten?</p>
+<ul>
+<li>Ausreichende Hydratation</li>
+</ul>
+<p>13:17</p>
+<ul>
+<li>Regelmäßige Talspiegelkontrollen vor der nächsten Dosis</li>
+</ul>
+<p>Frage: Bei welchen weiteren Medikamenten sind Talspiegelkontrollen erforderlich?</p>
+<ul>
+<li>Lithium</li>
+<li>Digoxin</li>
+</ul>
+<p>Postrenale Ursachen :</p>
+<ul>
+<li>Benigne Prostatahyperplasie</li>
+<li>Harnsteine</li>
+<li>Tumoren</li>
+<li>Bei stationären Patienten immer auch an Verstopfung oder Knick des Blasenkatheters denken</li>
+</ul>
+<p>Frage: Wie gehen Sie bei Verdacht auf Katheterverstopfung vor?</p>
+<p>Durch Spülung mit steriler Kochsalzlösung.</p>
+<p>Frage: Wie viel Prozent des Herzzeitvolumens erhalten die Nieren pro Minute?</p>
+<p>Etwa 25 % des gesamten Herzzeitvolumens.</p>
+<p>Frage: Welche Dialyseverfahren kennen Sie?</p>
+<ul>
+<li>Hämodialyse</li>
+<li>Hämofiltration und Hämodiafiltration</li>
+<li>Peritonealdialyse</li>
+</ul>
+<p>Frage: Was ist der Unterschied zwischen Hämodialyse und Hämofiltration?</p>
+<p>Bei der Hämodialyse erfolgt der Stoffaustausch durch Diffusion, bei der Hämofiltration hauptsächlich durch Konvektion.</p>
+<p>Frage: Welches Dialysat verwendet man bei der Peritonealdialyse?</p>
+<p>Ein glukosehaltiges Dialysat.</p>
+<p>Frage: Wie ist das Dialysat bei der Hämodialyse zusammengesetzt?</p>
+<p>Es ist bikarbonatreich und kaliumarm, da die meisten Patienten eine metabolische Azidose und Hyperkaliämie haben.</p>
+<p>Frage: Welche Antikoagulation wird bei der Dialyse verwendet?</p>
+<p>In der Regel Heparin.</p>
+<p>Bei Gerinnungsstörungen oder bei HIT verwendet man Citrat.</p>
+<p>Frage: Wie wirkt Citrat?</p>
+<p>Citrat bindet Calcium, wodurch die Gerinnungskaskade unterbrochen wird.</p>
+<p>Notfallmedizin – EKG :</p>
+<p>Frage: Was zeigte das EKG?</p>
+<p>Eine ventrikuläre Tachykardie.</p>
+<p>Frage: Wie gehen Sie bei ventrikulärer Tachykardie vor?</p>
+<p>Zuerst prüfe ich, ob der Patient pulsfähig und hämodynamisch stabil ist.</p>
+<ul>
+<li>Pulslos: sofortige Defibrillation</li>
+<li>Puls vorhanden, aber instabil: elektrische Kardioversion</li>
+<li>Puls vorhanden und stabil: medikamentöse Therapie mit Amiodaron</li>
+</ul>
+<p>Frage: Welche medikamentösen Alternativen gibt es?</p>
+<p>Lidocain als Antiarrhythmikum der Klasse Ib, Dosierung 1 mg/kgKG.</p>
+<p>Dieser Teil war deutlich anstrengend und sehr intensiv. Nach diesem Abschnitt fiel die Anspannung spürbar ab, da der schwierigste Teil geschafft war.</p>
+<p>Radiologie :</p>
+<p>Frage: Wie funktioniert ein PET-CT?</p>
+<p>Ein PET-CT ist eine Kombination aus Nuklearmedizin und Radiologie.</p>
+<p>Dabei wird meist 18F-Fluordesoxyglukose (FDG) verwendet, die sich in Gewebe mit hohem Stoffwechsel anreichert. Dadurch können metabolisch aktive Prozesse wie Tumoren, Entzündungen oder Metastasen sichtbar gemacht werden.</p>
+<p>Ich bekam viele Bilder gezeigt und sollte zufällig Bilder auswählen und interpretieren. Insgesamt habe ich etwa 15 Bilder besprochen. Der Radiologe half immer, stellte gezielte Fragen und führte einen durch die Befundung. Es war sehr entspannt. Es fühlte sich eher wie eine gemeinsame Diskussion an als wie eine Prüfung.</p>
+<p>Bild 1 : Ein Thorax-Röntgenbild mit Zeichen einer Herzinsuffizienz mit Lungenödem.</p>
+<p>Bild 2 : Eine Spondylolisthesis. Zusätzlich wurde ich nach der Klassifikation nach Meyerding gefragt. Ich nannte die Grade I–V, er erklärte jedoch, dass klassisch meist nur vier Grade verwendet.</p>
+<p>Bild 3 : Ein Röntgenbild mit hochgradiger Gonarthrose.</p>
+<p>Bild 4 : Ein MRT des Knies mit T1- und PD-Wichtung, passend zu einer hinteren Kreuzbandruptur.</p>
+<p>Bild 5 : Ein Abdomen-Röntgen mit Apfelgriebsch-Zeichen, als Hinweis auf ein Kolonkarzinom.</p>
+<p>Bild 6 : Ein normales MRT des Knies zur Demonstration des Unterschieds zwischen T1- und T2-Wichtung.</p>
+<p>Bild 7 : Ein Thorax-Röntgen mit typischen Zeichen einer Tuberkulose.</p>
+<p>Bild 8 : Ein Thorax-Röntgen mit Pleuraerguss.</p>
+<p>Bild 9 : Ein CT-Abdomen im axialen Schnitt mit Zeichen einer akuten Pankreatitis.</p>
+<p>Bild 10 : Eine Sonographie einer transplantierten Niere. Zusätzlich wurde nach dem postoperativen Verlauf gefragt:</p>
+<ul>
+<li>Ureteroneozystostomie</li>
+<li>Anlage eines transurethralen Dauerkatheters</li>
+<li>ggf. suprapubischer Katheter</li>
+<li>Einlage einer Double-J-Schiene zur Entlastung der Anastomose und immer Gabe von Tacrolimus und GCT</li>
+</ul>
+<p>Bild 11 : Eine Schädelsonographie beim Kind (klassische Amboss-Bilder).</p>
+<p>Bild 12 : CTA : Aneurysma der Arteria femoralis</p>
+<p>Bild 13 : Ein Röntgenbild mit Colles-Fraktur.</p>
+<p>Bild 14 : Noch einmal eine Spondylolisthesis.</p>
+<p>13:17</p>
+<p>Bild 15 : Ein CT des Schädels mit Glioblastom, mit der typischen girlandenförmigen Kontrastmittelanreicherung.</p>
+<p>Man sollte immer strukturiert vorgehen:</p>
+<ol>
+<li>Zuerst das Bildgebungsverfahren nennen (Röntgen, CT, MRT, Sono)</li>
+<li>Dann systematisch beschreiben, was man sieht</li>
+<li>Anschließend eine Verdachtsdiagnose nennen</li>
+</ol>
+<p>Und ganz wichtig: Keine Panik. Der Radiologe hilft wirklich sehr viel.</p>
+<p>Chirurgie : Dr Thiel zeigte mir mehrere Bilder auf seinem PC, die ich beschreiben und diagnostisch einordnen sollte.</p>
+<p>Bild 1 : Ein CT-Abdomen mit ausgeprägter Divertikulitis. Anschließend fragte er nach der CDD-Klassifikation und nach dem therapeutischen Vorgehen. Besonders wichtig war ihm der Ablauf der Hartmann-Operation, den ich erklären sollte.</p>
+<p>Bild 2 : Ein großes Hämoperitoneum im CT-Abdomen. Das war für mich das schwierigste Bild.</p>
+<p>Bild 3 : Ein CT-Abdomen mit Kalibersprung im Dünndarm, passend zu einem Dünndarmileus. Ich habe als Dg an Gallensteinileus zuerst und dann Bezoar ( für psychiche Patienten)was war richtig ,er war zufrieden damit.</p>
+<p>Bild 4 : Ein Röntgenbild mit Coxarthrose.</p>
+<p>Bild 5 : Ein Röntgen-Thorax mit Spannungspneumothorax.</p>
+<p>Wir haben ausführlich den Ablauf der Thoraxdrainage besprochen.</p>
+<p>Ich sollte zeigen:</p>
+<ul>
+<li>wo das Safe Triangle liegt</li>
+<li>wie die korrekte Anlage der Thoraxdrainage erfolgt</li>
+<li>welche Schritte man dabei beachten muss</li>
+</ul>
+<p>Bild 6 : CT des Schädels, passend zu einer Subarachnoidalblutung (SAB).</p>
+<p>Frage: Was ist die häufigste Ursache einer Subarachnoidalblutung?</p>
+<p>Die häufigste Ursache ist die Ruptur eines Aneurysmas, insbesondere der Arteria communicans anterior.</p>
+<p>Frage: Welche wichtigen Komplikationen können auftreten?</p>
+<ul>
+<li>Erhöhter Hirndruck durch akuten Hydrozephalus</li>
+<li>Zerebraler Vasospasmus mit Gefahr sekundärer Ischämien deswegen sollte die Gabe von Nimodipin</li>
+</ul>
+<p>Nach diesem Teil wurde ich gebeten, kurz vor der Tür zu warten. Nach wenigen Sekunden wurde ich wieder hereingerufen, mir wurde gratuliert, und man fragte mich noch nach meinen zukünftigen beruflichen Plänen.</p>
+<p>Die Prüfung selbst ist nicht extrem schwer, aber die Vorbereitung ist sehr anstrengend, intensiv und stressig.</p>
+<p>Lernquellen :</p>
+<ul>
+<li>Amboss +++++</li>
+<li>Amboss-Zusammenfassungen und Lernkarten</li>
+<li>Last-Minute-Pharmakologie +++</li>
+<li>EKG-Buch von Isabelle</li>
+<li>Radiologie: Radiopaedia +++ und Amboss</li>
+</ul>
+<p>Protokollen +++</p>
+<p>Vielen Dank an alle, die ihre Prüfungsprotokolle und Erfahrungen geteilt haben.</p>
+<p>Entschuldigung, dass es etwas lang geworden ist – aber ich wollte so viele Details wie möglich teilen, um anderen bei der Vorbereitung zu helfen.</p>
+<p>Ich wünsche allen, die die Kenntnisprüfung noch vor sich haben, viel Erfolg</p>
+<p>Ihr schafft das! 💪</p></div>
+</section>
+<section id="p-10022026" class="protocol-entry fade-in">
+  <div class="protocol-header">
+    <div class="protocol-date">📅 10.02.2026</div>
+    <div class="protocol-badges"><span class="tag green">✓ Bestanden</span></div>
+    <span class="protocol-toggle">▶</span>
+  </div>
+  <div class="protocol-body"><p>10.02.2026</p>
+<p>Hallo alle zusammen! ich habe 10.02 meine Prüfung in Tübingen erfolgreich bestanden. Die Prüfungskommission bestand aus Dr.Thiel, einem Radiologenund einem Internisten. Ich war die 3 Kandidatin. Mein Termin hat um 9.30 Uhr stattgefunden. Antrag:17.08.2025 Rechnung:18.11.2025, Bezahlt29.11.2025Inoffizielle</p>
+<p>Ladung: 10.12.2025 (mit Prüfungsort, ich wohne in der nähe vonTübingen) Offizielle Ladung: 19.01.2026 Teil1 – Mein Prüfungsfall war eineOGB (das ist keine Notfall, Patientin (Schauspielerin) ist stabil.In15 min war ich fertig mit Anamnese und KÜTeil2 – 15minFragen Innere Medizin: H</p>
+<p>g3,8 was machen sie? Was werden Sie im Blut kontrollieren? WerdenSie 1:1 EK und FFP g</p>
+<p>eben? – nein, FFP bei klinische Zeichen, undFragen über BehandlungRadiologie:was werden Sie von unsere Seite machen in diesem Fall? – Rö, was noch? Wie können Sie behandeln? – CT Angio, wie durchführt mandas? was genau machen? Emobilisation, Coling, Draht. Noch? – hatselbst gesagt KleberChirurgie:Sie können immer noch</p>
+<p>nicht die Blutung mit ÖGD stillen was machenSie ? – Adrenalin, Clips , noch – wieder Kleber.Varizenwo bestehen?</p>
+<p>wie werden Sie Ösophagusvarizen Behandeln? Bei Versage?– Sengstaken-Blakemore-Sonde OP auf SD was kann passieren? Wie kön</p>
+<p>nen wir Nervenverlätzungvermeiden? - Neuromonitorin, ja genau? – hat selbst gesagt,EndotrachealerEMG-Tubus Teil3 – 30minInnereMedizin – 3Bilder 1– Riesenzellarteriitis 2– Vergrößerte L/k am Nacken (ALL) 3– Daumenischämie (mansoll Ursache dafür nenne</p>
+<p>n) Fall: Eine Frau wurde von Wespe gestochen, Schocksymptomatik – Vorgehen? Als Notarzt Adrenalin 0,5 mg Dann habe ich Pathophysiologie und Therapie in Intensivstation geklärt. Welche Lösung geben Sie? Voll warumnicht NaCl? - zu viel Na kann M.Azidose verursachen. Dann sollte ich klären, dass 1000ml NaCl anstiegt SerumNa an 1 mmol. Reanimationalles, defibrillierbarerund nicht-defibrillier</p>
+<p>barer Rhythmen.Radiologie– Welche Methode wollen Sie erklären? Rö. (wollte noch etwas kompliziertes von mir hören) Dann musste Ich Bilder wählen.1MRT – T1 Prostatakarzinom 2Rö – Pleuraerguss, Pneumonie nach Mammakarzinom 3Sono – Blasen</p>
+<p>4MRT – T2 Prostatakarzinom 5MRT – Axiallschnittmit dem Konkrement in der Gallenblase. Welche Gewichtung? 6CT – Axiallschnitt Perforation einHohlorgane Chirurgie: AortaAneurys</p>
+<p>ma Klassifikation. Hat mir viel spezifische Fragen über meine Bereich anästhesiologie und zusätzlich Transplantologie gestellt.VieleFragen habe ich über meine Fachrichtung Anästhesie gekriegt. Die Kommission war normal nett aber auch ein bisschen streng. Viel Erfolg an alle!</p></div>
+</section>
+<section id="p-290120261" class="protocol-entry fade-in">
+  <div class="protocol-header">
+    <div class="protocol-date">📅 29.01.2026-1</div>
+    <div class="protocol-badges"><span class="tag green">✓ Bestanden</span></div>
+    <span class="protocol-toggle">▶</span>
+  </div>
+  <div class="protocol-body"><p>ich habe die letzte Woche meine Prüfung in Tübingen und Gott sei Dank bestanden.</p>
+<p>Die Prüfungskommission bestand aus Dr. Thiel, einem Radiologen und einem Internisten.</p>
+<p>Teil 1 – Fallvorstellung</p>
+<p>Mein Prüfungsfall war ein Spontanpneumothorax.</p>
+<p>Patientin:Lea Schneider, 27 Jahre, BMI ca. 21, die während des Joggens plötzlich linksseitige thorakale Schmerzen entwickelte.Keine relevanten Vorerkrankungen, keine Dauermedikation. Anschließend führte ich eine Lungen-Thoraxuntersuchung durch.</p>
+<p>Teil 2 – Fragen zur Diagnostik und Therapie</p>
+<p>Ich habe mich kurz vorgestellt und danach die Patientin strukturiert präsentiert. Ich wurde dabei nicht unterbrochen.</p>
+<p>Diagnose: Spontanpneumothorax</p>
+<p>Gefragt wurde nach:</p>
+<p>Wie kann ich die Diagnose bestätigen?</p>
+<p>(Was sehe/höre ich in der körperlichen Untersuchung?)</p>
+<p>Was sehe ich im Thorax-Ultraschall (POCUS)?</p>
+<p>Warum zuerst Sonografie?</p>
+<p>→ weil sie bettseitig möglich ist und keine Strahlenbelastung verursacht.</p>
+<p>Danach Röntgen-Thorax</p>
+<p>→ aber zuerst Schwangerschaft ausschließen, da die letzte Menstruation vor 2 Wochen war.</p>
+<p>Innere Medizin:</p>
+<p>Der Internist fragte ausführlich nach Therapie, Thoraxdrainage und Klassifikation sowie danach, wie man jeden Typ behandelt.</p>
+<p>Chirurgie (Dr. Thiel):</p>
+<p>Dr. Thiel fragte mich zur Leberzirrhose von A bis Z und wollte außerdem wissen, welche Medikamente/Substanzen eine Leberschädigung bzw. Leberzirrhose begünstigen können.</p>
+<p>Radiologie:</p>
+<p>Der Radiologe fragte, wie man die Atemverschieblichkeit untersucht und wie man Leber und Milz sonografisch misst.</p>
+<p>Teil 3 – Weitere Fälle/Bilder</p>
+<p>Innere Medizin – Fall</p>
+<p>Ein 45-jähriger Mann kam mit seiner Ehefrau wegen Vigilanzminderung; laut Ehefrau war er in letzter Zeit auffällig/verwirrt und war bisher nicht beim Arzt.</p>
+<p>Danach bekam ich Laborwerte:</p>
+<p>Glukose 1200 mg/dl, Kalium 2,3 mmol/l, pH 6,9.</p>
+<p>Gefragt wurde nach:</p>
+<p>Vorgehen als diensthabender Arzt (akutes Management / Struktur)</p>
+<p>Azidose: Ursachen bei diesem Patienten</p>
+<p>Therapie: Was mache ich zuerst?</p>
+<p>→ er wollte klar hören: zuerst Flüssigkeit geben.</p>
+<p>Mechanismus der Exsikkose</p>
+<p>Fragen zu Kalium und zu Calciumglukonat (weil ich es in der Therapie erwähnt hatte)</p>
+<p>Warum sind die Ketone erhöht?</p>
+<p>Handelt es sich eher um DM Typ 1 oder Typ 2?</p>
+<p>Chirurgie (Dr. Thiel)</p>
+<p>Dr. Thiel fragte nach:</p>
+<p>Leberanatomie (Segmente, Lappen, Gefäße)</p>
+<p>Wie man eine Leberresektion plant: wann komplett, wann nur teilweise</p>
+<p>Vorgehen bei HCC (wenn nur ein Teil der Leber betroffen ist)</p>
+<p>Danach: Hernien – von Anatomie bis OP-Verfahren und welche OP bei welchem Patienten</p>
+<p>Radiologie – Bildbefunde</p>
+<p>Es wurden 3 Bilder gezeigt:</p>
+<p>Hiatushernie: Was sehe ich im Röntgen-Thorax und was mache ich diagnostisch als Nächstes?</p>
+<p>MRT-Leber: Fokale noduläre Hyperplasie (FNH) – Befund erklären; außerdem benigne vs. maligne Leberraumforderungen nennen und wie man sie im Sono erkennt.</p>
+<p>cCT Schädel: hyperdenses Mediazeichen rechts (A. cerebri media) – Befund erklären und weitere Fragen zur cCT-Beurteilung.</p>
+<p>Meine Quellen:</p>
+<p>Amboss +++, ChatGPT, Lernkarten zum mündlichen Stex,, Last Minute Pharmakologie, Bildgebende Verfahren, SOP Notaufnahme, Tübinger Fälle von Daniela, Protokolle +++.</p>
+<p>Ich wünsche allen viel Erfolg, die Prüfung noch vor sich haben.</p></div>
+</section>
+<section id="p-29012026" class="protocol-entry fade-in">
+  <div class="protocol-header">
+    <div class="protocol-date">📅 29.01.2026</div>
+    <div class="protocol-badges"><span class="tag green">✓ Bestanden</span></div>
+    <span class="protocol-toggle">▶</span>
+  </div>
+  <div class="protocol-body"><p>Hallo, ich habe Prüfung gestern (29.01.2026) abgelegt und Gott sei Dank bestanden. 😊</p>
+<p>Teil 1: Frau Lea Schneider, 27-jährige Patientin (epigastrische Schmerzen + Melena nach 10 Tagen Ibuprofen ohne Magenschutz)</p>
+<p>Teil 2:</p>
+<p>Patientenvorstellung bis klinischer Befund, dann die Fragen:</p>
+<p>Internist:</p>
+<p>Was ist Ihre Verdachtsdiagnose?</p>
+<p>v. a. obere GI-Blutung im Rahmen von NSAR/Ibuprofen ohne Magenschutz (V. a. Ulkus).</p>
+<p>Und was machen Sie (akut)?</p>
+<p>Notfallmanagement abhängig von der Hämodynamik: Monitoring/Schockraum, Viggo, Blutentnahme (Blutgruppe bestimmen++), BGA (für schnelle Orientierung Hb), Volumen, Sauerstoff, ggf. Schocklagerung.</p>
+<p>PPI 80 mg i.v., notfallmäßige ÖGD, vorher Erythromycin i.v. zur Magenentleerung.</p>
+<p>(Ich habe erwähnt: Nüchternzeit bei der Anamnese abfragen das hatte ich vergessen.)</p>
+<p>Hb 3,5 g/dl was machen Sie?</p>
+<p>Notfallmäßige Bluttransfusion falls der Patient hämodynamisch instabil ist. dann hat er gesagt HF 120/min RR 80/50mmhg Notfallmäßige EK transfundieren + Flüssigkeit. Welche? Jonosteril 1000ml schnell laufen lassen.</p>
+<p>Sollen wir warten auf Labor ? Nein das ist eine Notfall</p>
+<p>Welche Blutgruppe geben Sie im Notfall?</p>
+<p>0 Rh-negativ (Universalspender).</p>
+<p>Radiologe:</p>
+<p>Zeigen Sie FAST-Sono wo macht man das? (mit einem Reflexhammer)</p>
+<p>Morison-Pouch, Koller-Pouch, Becken (Douglas- und Proust-Raum), subxiphoidal.</p>
+<p>Wie macht man E-FAST?</p>
+<p>FAST + parasternal R/L (Pleura/Lunge) zum Ausschluss Pneumothorax.</p>
+<p>Bei welchem Organ muss man beim Ultraschall vorsichtig sein?</p>
+<p>Auge (v. a. Augenlinse).</p>
+<p>(Beim FAST habe ich einmal rechte/ linke Niere verwechselt, weil ich viel Stress hatte der Radiologe hat darüber gelacht und war super nett.)</p>
+<p>Herr Thiel:</p>
+<p>Erweiterte Venen am Bauch was ist das? Caput medusae.</p>
+<p>Woher kommt das? Portale Hypertonie.</p>
+<p>Physiopathologie? Kurz!</p>
+<p>Was kann man noch haben bei portaler Hypertonie? Ösophagusvarizen, Magenvarizen, rektale Varizen.</p>
+<p>Behandlung Ösophagusvarizen-Ruptur? ÖGD mit Gummibandligatur.</p>
+<p>Dann hat er gefragt, ob ich das schon gesehen habe und hat es mit seinem Kittel demonstriert. Ich habe zusätzlich erwähnt: Terlipressin, Antibiotikaprophylaxe (z. B. Ceftriaxon), ggf. Lactulose bei Enzephalopathie.</p>
+<p>Nach Teil 2: Stress kommt runter! Sehr wichtig, weil der erste Eindruck zählt.</p>
+<p>Teil 3:</p>
+<p>Thoraxschmerz (Bauarbeiter, adipös, Raucher)</p>
+<p>Diagnose im EKG? STEMI Vorderwandinfarkt (deutliche ST-Hebung; ich habe P-Wellen gezeigt und RR-Abstand er hat nicht nach der HF gefragt).</p>
+<p>Was tun? (Er wollte Dosierungen hören!)</p>
+<p>ASS 250 mg + Heparin 5000 I.E. Bolus + Morphin 1–5 mg + sofortige Reperfusion PCI</p>
+<p>Welche Zugänge im Katheterlabor?</p>
+<p>A. radialis oder A. femoralis.</p>
+<p>Welche Medikamente geben wir danach als Prophylaxe?</p>
+<p>DAPT (ASS + P2Y12-Hemmer er wollte Prasugrel und clopidogrel Dosis), Statin: ich habe Atorvastatin gesagt (er meinte auch Rosuvastatin). Dann habe ich selbst gesagt: LDL-Ziel &lt;55.</p>
+<p>ACE-Hemmer: Ramipril (ich habe gesagt, wichtig wegen Remodeling) und Risikofaktoren konsequent reduzieren: Rauchstopp, Gewichtsreduktion, Blutdruck- und Diabeteskontrolle, Bewegung, mediterrane Kost, TTE durchführen. Dann meinte er: „Es reicht.“</p>
+<p>Radiologe:</p>
+<ol>
+<li>Bild Röntgen Thorax: typische lobäre Pneumonie. Er fragte: Wo ist der mittlere Lappen? Ich habe zuerst falsch gezeigt, dann hat er es erklärt. Danach fragte er nach einem Zeichen bei Verschattung: Silhouette Zeichen (ich habe kurz darüber erklärt wie wir im Kurs gelernt haben).</li>
+<li>CT Abdomen: Pankreatitis. Er wollte Schnitt und Anatomie hören. Ich habe Leber Milz Niere Pankreas Magen Aorta gezeigt, dann fragte er nach den Ästen. Mann konnte sehr gut Truncus coeliacus sehen die andere Asten habe ich nur erzählt!</li>
+<li>MRT: Glioblastom. Ich habe zuerst den Namen vergessen (keine Panik der Prüfer hilft!). Dann fragte er: Welche Hirntumoren kennen Sie? Ich habe sie nach WHO Klassifikation genannt( er hat nicht darüber gefragt aber ich habe das erzählt um Zeit zu gewinnen) Am Ende fiel mir der</li>
+</ol>
+<p>Name wieder ein. Und hat sehr kurz gedauert mit ihm und er war sehr nett.</p>
+<p>Chirurg:</p>
+<p>Welche Tumoren im Magen kennen Sie? Ich habe Magenkarzinom und Polyp erwähnt. Er wollte GIST hören.</p>
+<p>Ich habe einfach gesagt: Ich hatte noch keinen Patienten mit GIST 😂</p>
+<p>Dann fragte er zur Leistenhernie (Patient mit Vorwölbung): Wie untersuchen Sie? (vom Skrotum bis zum Anulus inguinalis externus mit dem Finger, wie im Chirurgie-Appetizer-Video). Dann Behandlung ich habe selber Netz nach Lichtenstein, Naht nach Schouldice und warum man Sono braucht. Er wollte Minimal invasiv Verfahren ! Alles wie bei Chirurgie Appetizer.</p>
+<p>Das war alles!</p>
+<p>Ich habe Online-Kurs ODAK (+++) gemacht damit habe ich viel gelernt (Chirurgie, Kardiologie ++++, Radiologie ++++). Außerdem Amboss-Videos und Chirurgie-Appetizer (Abo).</p>
+<p>Arbeit hilft sehr für Notfall-Reflexe und Sprache.</p>
+<p>Die Prüfer waren sehr nett. Man muss auch freundlich sein, kleine Witze machen und zeigen, dass man motiviert ist, weiterzulernen, um ein besserer Arzt zu sein.</p>
+<p>Viel Erfolg an alle!</p></div>
+</section>
+<section id="p-08012026" class="protocol-entry fade-in">
+  <div class="protocol-header">
+    <div class="protocol-date">📅 08.01.2026</div>
+    <div class="protocol-badges"><span class="tag green">✓ Bestanden</span></div>
+    <span class="protocol-toggle">▶</span>
+  </div>
+  <div class="protocol-body"><p>Kenntnisprüfung Tübingen (09.01.2026)</p>
+<p>Auf Warteliste gesetzt: 03.09.2025</p>
+<p>Inoffizielle Einladung : 11.11.2025</p>
+<p>Offizielle Einladung : 09.12.2025</p>
+<p>Ich habe am 09.01.2026 meine Kenntnisprüfung in Tübingen erfolgreich bestanden. Die Prüfungskommission bestand aus einem Chirurgen (Dr. Thiel), einem Internisten und einem Radiologen. Wir waren insgesamt vier Prüflinge, die Prüfung wurde im Rotationsprinzip durchgeführt.</p>
+<p>Teil 1 – Simulierter Patientenfall (Schauspieler)</p>
+<p>Mein Fall war eine OSG-Fraktur mit Syndesmosenbeteiligung (entsprechend der Prüfungsprotokolle).</p>
+<p>Teil 2 – Chirurgie: Fallvorstellung &amp; klinische Untersuchung</p>
+<p>Hier wurde ich von Dr. Thiel geprüft.</p>
+<p>Themen:</p>
+<p>Appendizitis Wanderung des Schmerzes McBurney-, Lanz-, Rovsing-, Psoas-, Blumberg Zeichen</p>
+<p>Systematische Bauchuntersuchung (Bitte nicht vergessen die abdominale Auskultation muss vor Palpation und Perkussion erfolgen) . Dann Lymphknoten Untersuchung.</p>
+<p>Teil 3 – Innere Medizin</p>
+<p>Bilddiagnostik ohne Anamnese</p>
+<p>Sklerodermie , Fingerembolie? Morbus Basedow ( Endokrin Orbitopathie)</p>
+<p>Akutes Nierenversagen</p>
+<p>Wie definieren Sie ein akutes Nierenversagen ? Nach KDIGO</p>
+<p>Was ist der Unterschied zwischen prärenalem, renalem und postrenalem Nierenversagen?</p>
+<p>Welche Medikamente sind nephrotoxisch?</p>
+<p>Warum sind Aminoglykoside nierenschädigend?</p>
+<p>Warum gibt man Aminoglykoside trotzdem bei Nierenversagen?</p>
+<p>Wie passen Sie die Dosis bei eingeschränkter Nierenfunktion an?</p>
+<p>Was bedeutet „Talspiegelkontrolle“?</p>
+<p>Dialyse</p>
+<p>Wann ist eine Dialyse indiziert?</p>
+<p>Welche Formen der Dialyse gibt es?</p>
+<p>Was ist der Unterschied zwischen Hämodialyse und Hämofiltration?</p>
+<p>Ab welchem Urämiewert besteht die Indikation für eine Dialyse?</p>
+<p>Morbus Basedow</p>
+<p>Welche Antikörper sind typisch?</p>
+<p>Wie entsteht die Hyperthyreose?</p>
+<p>Warum entstehen Augenveränderungen?</p>
+<p>Radiologie : Woran erkennen Sie eine Weber-C-Fraktur?</p>
+<p>Was ist der Unterschied zwischen Weber A, B und C?</p>
+<p>Wie sieht eine Sinusitis maxillaris im CT aus?</p>
+<p>Welche typischen MRT-Zeichen hat Morbus Crohn?</p>
+<p>Wie erkennt man ein Pneumoperitoneum im Röntgen?</p>
+<p>Wie sieht ein abdominelles Aortenaneurysma im CT aus?</p>
+<p>Chirurgie – Fall: Junge Frau mit Unterbauchschmerzen, schleimigen Durchfällen und schmerzhaften Fisteln (Verdacht auf Morbus Crohn)</p>
+<p>Was spricht in diesem Fall klinisch für Morbus Crohn?</p>
+<p>Wie unterscheiden sich Morbus Crohn und Colitis ulcerosa?</p>
+<p>Welche typischen Lokalisationen hat Morbus Crohn?</p>
+<p>Welche extraintestinalen Manifestationen kennen Sie?</p>
+<p>Fisteln</p>
+<p>Welche Fisteltypen gibt es bei Morbus Crohn?</p>
+<p>Herzchirurgie – CABG (Coronary Artery Bypass Grafting)</p>
+<p>Grundlagen</p>
+<p>Was versteht man unter einer CABG?</p>
+<p>Was ist das Ziel einer Bypass-Operation?</p>
+<p>Was ist der Unterschied zwischen PCI und CABG?</p>
+<p>Indikationen</p>
+<p>Wann ist eine CABG indiziert?</p>
+<p>Welche Koronararterienerkrankungen sprechen.</p>
+<p>Abschließend möchte ich mich herzlich bei allen bedanken, die ihre Erfahrungen und Prüfungsprotokolle geteilt haben. Ohne eure Unterstützung hätte ich die Prüfung nicht erfolgreich bestehen können.</p>
+<p>Ergebnisse: ich und ein weiterer Prüfling haben die Prüfung bestanden; mit den beiden anderen Prüflingen hatte ich während der Prüfung keinen Kontakt.</p>
+<p>Meine Vorbereitung und Ressourcen:</p>
+<p>Freiburg Akademie – Prüfungsvorbereitung</p>
+<p>Kurzlehrmaterialien von AMBOSS</p>
+<p>ChatGPT – strukturierte Fallübungen und Fragen.</p></div>
+</section>
+<section id="p-08012026" class="protocol-entry fade-in">
+  <div class="protocol-header">
+    <div class="protocol-date">📅 08.01.2026</div>
+    <div class="protocol-badges"><span class="tag green">✓ Bestanden</span></div>
+    <span class="protocol-toggle">▶</span>
+  </div>
+  <div class="protocol-body"><p>Tübingen 08.01.2026</p>
+<p>Gestern gab meine Prüfung. Alhamdulillah ich Habe bestanden. Ich war die erste. Mein Termin war um 8.30 Uhr.</p>
+<p>Teil 1: (25-30 min)Mein Fall war Meningitis, Schauspielerin patientin wie im Protokoll. Ich habe Anamnesegespräch und KU durchgeführt. Bei der KU habe ich Meinigitis zeichen, Reflexe, Hirnnerven Untersuchung gemacht. Dr Thiel war den ganzen zeit da . Sieht wie beschäftigt aus aber ich denke er hat alles gehört und angeschaut.</p>
+<p>Teil 2: (15min)Zuerst sellbsvorstellung kurz und dann patient Vorstellung bis Diagnostische maßnahmen.</p>
+<p>Internist: über Lumbalpunktion gefragt. was macht man vor einer lumbalpunktion?-CT . warum? Er fragte ob ich schon eine Lumbalpunktion gemacht habe oder nicht. Ich sagte dass ich schon paar mal gesehen aber nicht selbst gemacht. An Patientin musste ich die punktion stelle zeigen . Was sieht man im liqour ? Welche erreger für Meningitis? 3 Namen von jede typen. wann kann pilze auftreten? Therapie mit dosis.</p>
+<p>Radiologie: Ursachen von erhöhte Hirndruck- ich habe alles gesagt aber er wollte Hirnmetastase horen. welche CT soll man bei meningitis durchführen? mit oder ohne KM -ohne KM habe ich gesagt. vor KM gabe was muss man beachten? - patientin schwanger oder nicht. Was noch? - TSH und kreatinin. Normal werte von denen. TSH 0.15 mU/L was soll man machen? T4 , T3 bestimmen, über latent und menifeste Hyperthyreose gesagt. Was macht man dann wenn diese Pt eine CT mit KM braucht? -Na perchlorate geben . dosis und wie lange ?</p>
+<p>Chirurg hat nichts gefragt.</p>
+<p>Teil 3:( bei mir fast 45 min)</p>
+<p>Internist: zuerst hat der prüfer mich folgende Bilder gezeigt und ich sollte kurz aber schnell beschreiben was ist das und wie erkennt man das usw( ursache, Therapie)</p>
+<p>~Normal schilddrüsen ultraschall (bild beschreiben)</p>
+<p>~Chushing syndrom</p>
+<p>~Akromegalie</p>
+<p>~SLE</p>
+<p>~Riesenzellarteritis</p>
+<p>Dann pt kommt mit Vorhofflimmern- über therapie mit dosis , Unterschied zwischen Kardioversion und Defibrillation, was muss man vor Kardioversion achten?</p>
+<p>Radiologie: Wie funktioniert Röntgen?</p>
+<p>Bild Beschreibung:</p>
+<p>~Intensiv station pt mit Fremkörpern Z.n Sternotomie- Röntgen</p>
+<p>~Sarkoidose-Röntgen</p>
+<p>~Bronchial karzinom-CT</p>
+<p>~Weber B Fraktur- CT</p>
+<p>~Divertikulitis-CT</p>
+<p>~leber mit Gallenblase CT( unauffällig nur die namen von organen gefragt was man aufdem bild sehen)</p>
+<p>~Doppler sono Transplantierte Niere</p>
+<p>~Pathologische Humerus Fraktur(Röntgen)</p>
+<p>~ Prostata karzinom-MRT . Es gab noch ein paar aber ich kann mich leider nicht erinnern.</p>
+<p>Chirurg: (Dr. Thiel)</p>
+<p>Definition von Pathologische Fraktur , Sichere und unsichere Fraktur Zeichen,Typen von Osteosynthese und wo verwendet man bei welche knochenfraktur?</p>
+<p>Prostatakarzinom: Therapie möglichkeiten, komplikationen nach der OP.</p>
+<p>Pt kommt mit rektale Blutung welche ursachen ? wie gehen Sie vor?</p>
+<p>Hämorrhoiden: wie entsteht das? Fragen über Stadien und Therapie.</p>
+<p>Da zwischen gab noch kleine tiefe Fragen aber kann ich nicht alles erinnern. Prüfern geben auch kurz hinweisen. Alles ging so schnell.</p>
+<p>Das war meine 2te Versuch. Erste war in Stuttgart.</p>
+<p>Gestern war nicht eine gute Anfang für dieses neues Jahr. Prüfern waren ein bisschen streng.</p>
+<p>Vielen Lieben Dank an alle für eure Protokkollen . Die waren sehr hilfreich! Vielen Dank Daniela für deine (Fälle Tübingen) Notitzen.</p></div>
+</section>
+<section id="p-28122025" class="protocol-entry fade-in">
+  <div class="protocol-header">
+    <div class="protocol-date">📅 28.12.2025</div>
+    <div class="protocol-badges"><span class="tag green">✓ Bestanden</span></div>
+    <span class="protocol-toggle">▶</span>
+  </div>
+  <div class="protocol-body"><p>Guten Abend,</p>
+<p>ich habe heute 28.12 meine Prüfung in Tübingen erfolgreich bestanden.</p>
+<p>Die Prüfungskommission bestand aus Dr. Thiel, einem Radiologen und einem Internisten.</p>
+<p>Teil 1 – Fallvorstellung</p>
+<p>Mein Prüfungsfall war ein spontaner Pneumothorax.</p>
+<p>Patient:</p>
+<p>25-jähriger Patient, der während eines Volleyballspiels plötzlich rechtsseitige thorakale Schmerzen und Dyspnoe entwickelte.</p>
+<p>Die weitere Anamnese war unauffällig.</p>
+<p>Nach meiner Vorstellung wurde ich vom Internisten unterbrochen mit der Frage nach der Differenzialdiagnose, die ich korrekt beantwortete. Anschließend wurde ich nach den Ursachen eines Pneumothorax gefragt. Ich nannte u. a. COPD.</p>
+<p>Daraufhin fragte der Internist nach dem Pathomechanismus, wie COPD zu einem Pneumothorax führen kann. Die Antwort wusste ich nicht exakt, habe aber dennoch eine Erklärung versucht. Danach wurde das Thema COPD nicht weiter vertieft.</p>
+<p>Anschließend wurde ich gefragt, wie man die Diagnose stellt.</p>
+<p>Ich antwortete: Röntgen-Thorax und eFAST.</p>
+<p>Der Radiologe fragte, ob ich bereits einen Thorax-eFAST durchgeführt habe. Ich verneinte ehrlich, erklärte aber, dass ich es gelernt habe und es demonstrieren könne. Ich habe den eFAST-Thorax daraufhin korrekt gezeigt.</p>
+<p>Danach wurde gefragt, wie der Patient bei der Röntgen-Thorax-Untersuchung positioniert wird, was ich sowohl erklärt als auch mit einem Schauspieler demonstriert habe.</p>
+<p>Weitere Fragen – Chirurgie &amp; Innere</p>
+<p>Der Chirurg fragte nach der Untersuchung einer Nabelhernie und was man macht, wenn sie sehr klein ist.</p>
+<p>Ich antwortete korrekt: tiefes Palpieren im Nabel.</p>
+<p>Der Internist fragte nach den Monaldi- und Bülau-Punkten:</p>
+<p>Lokalisation am Körper</p>
+<p>Verlauf der Gefäße</p>
+<p>Punktionsstelle: Oberrand der unteren Rippe, um Gefäß-Nerven-Bündel zu vermeiden</p>
+<p>Teil 2 – Weitere Fallbeispiele</p>
+<p>Innere Medizin / Notfall</p>
+<p>Ein Notarzt bringt einen Patienten mit Schmerzen in beiden Beinen.</p>
+<p>Ich war zunächst kurz verwirrt und nannte Röntgen, korrigierte mich dann aber richtig auf Farb-Duplex-Sonographie.</p>
+<p>Diagnose: pAVK</p>
+<p>Gefragt wurde nach:</p>
+<p>Fontaine-Klassifikation</p>
+<p>Therapie</p>
+<p>Risikofaktoren</p>
+<p>Radiologie</p>
+<p>Es wurden mehrere Bildbefunde gezeigt:</p>
+<p>Mammakarzinom im Röntgen</p>
+<p>CT einer Lungenembolie + weitere Diagnostik</p>
+<p>Weber-B-Fraktur inkl. Therapie</p>
+<p>Chirurgie</p>
+<p>Themen:</p>
+<p>Analfissur</p>
+<p>Diagnostische Schritte</p>
+<p>Therapie</p>
+<p>Proktoskopie nicht vergessen</p>
+<p>Divertikulitis</p>
+<p>Neue Klassifikation (mir war nur die alte Hansen-Stock bekannt)</p>
+<p>Therapie</p>
+<p>Operative Verfahren</p>
+<p>Frage: Warum ist die Divertikulitis am häufigsten im Sigma?</p>
+<p>→ Antwort: Koprostase (wurde als richtig bestätigt)</p>
+<p>Am Ende wünschten mir die Prüfer viel Erfolg.</p></div>
+</section>
+<section id="p-18122025" class="protocol-entry fade-in">
+  <div class="protocol-header">
+    <div class="protocol-date">📅 18.12.2025</div>
+    <div class="protocol-badges"></div>
+    <span class="protocol-toggle">▶</span>
+  </div>
+  <div class="protocol-body"><p>18.12.2025 Tübingen</p>
+<p>Teil 1. Bandscheibenvorfall</p>
+<p>Teil 2. Fallvorstellung.</p>
+<p>Ich habe zentrale Muskelrelaxans b.B. bei der Therapie erwähnt. Wirkstoffe von dieser Gruppe (Tolperison, Methocarbamol, Baclofen). Warum? –&gt; (nur kurzfristig bei schmerzhafter Muskeverspannung).</p>
+<p>Praktischer Teil.</p>
+<p>Internist: SD Untersuchung. Größe von SD im Normbereich. (18 und 25 ml sind obere Grenzen).</p>
+<p>Radiologe: Abdomen-Untersuchung. Inspektion. Warum erst Auskultation, dann Palpation. Was muss man bei der Verschreibung einer MRT beachten? Implantate und Herzschrittmacher. Absolute und relative Kontraindikationen für MRT. Nicht-MRT-kompatible Herzschrittmacher (absolute) und kompatible (relative). Kann man bei Cochlea Imlantat MRT doch machen und wie? Ja, nur mit festem Kopfverband. Bei älteren Modellen: Magnet muss vor dem MRT operativ entfernt werden.</p>
+<p>Chirurg: Welchen Verdacht haben Sie wenn Sie paraumbilikale Erweiterungen um den Nabel sehen? Caput medusae wegen der portalen Hypertension. Ursachen von Leberzirrhose.</p>
+<p>Teil 3. (Dauer 40 min)</p>
+<p>Innere: Blickdiagnose mit 2 Bildern: 1. eine Frau mit Cushing Syndrom (Symptome aufzählen); 2. eine Frau mit Schmetterlingserythem (SLE).</p>
+<p>Klin. Fall: 75-jähriger Mann 2mal synkopiert. Nimmt Ramipril 5mg 1-0-1 ein. Vorgehen: BE+EKG. EKG mit Vorhofflimmern interpretieren. Therapie (ausführlich Frequenz- und Rhythmusskontrolle). Was ist zu beachten bei Kalziumantagonisten und warum (keine Kombination mit B-Blockern). Herzglykoside, Nebenwirkungen, Wirkstoffe (Digoxin und Digitoxin), ihr Unterschied. Digoxin - renale Elimination, wirkt schneller (Dosisanpassung bei Niereninsuffizienz), Digitoxin - hepatische Elimination, wirkt langsamer (Dosisanpassung bei Leberfunktionsstörung). Welcher von denen ist Mittel der Wahl bei VHF und warum? Digoxin, da schneller wirkt –&gt; schnelle Frequenzkontrolle) Digitoxin: Dosisanpassungen dauern Tage, da er sehr lange wirkt. Amiodaron, Dosierung, Nebenwirkungen (warum SD-Funktionsstörungen -&gt; wegen Jodgehalt).</p>
+<p>Radiologie: 1. Bild Röngten Thorax des Patienten aus Intensivstation, alle Fremdkörper nennen, was ist falschgelagert (nasogastrale Sonde und Tubus für Intubation, wie muss richtig gelagert werden, bis welcher ICR usw., wie und wo liegt die Sonde falsch). 2. Bild: intrazerebrale Blutung (ICB) mit Eindrängen des Blutes ins Ventrikelsystem. Häufigste Ursache der ICB (langjährige arterielle Hypertonie –&gt; mikroaneurysmatische Veränderungen –&gt; Mikroaneurysmenruptur), Therapie. Warum führt diese Blutung zu hohem intrakraniellen Druck (Pathomechanismus: Thrombosenbildung in den Ventrikeln des Gehirns –&gt; Störungen des Abflusses der Zerebrospinalflüssigkeit). 3. Bild: gutartiger Knochentumor des Oberschenkels (Osteochondrom, vermutlich entartet zu einem Chondrosarkom). Welche gutartige und bösartige Knochentumoren gibt es.</p>
+<p>Gutartige: Osteochondrom, Enchondrom, Osteoidosteom, Osteoblastom</p>
+<p>Bösartige: Osteosarkom, Chondrosarkom, Ewing-Sarkom (v. a. Kinder/Jugendliche), Fibrosarkom, Malignes fibröses Histiozytom.</p>
+<p>Weiteres Vorgehen: PET MRT. Warum? Metastasensuche. Mit welchem Isotop? ¹⁸F-FDG (Fluor-18-Fluordesoxyglukose) [hat dann Bild mit PET-MRT gezeigt mit einer Metastase im Humerus].</p>
+<p>Chirurgie: Fall mit einer schlanken jungen Patientin mit perianalem Abszess (Therapie). Verdachts- und Differenzialdiagnose (CED). Vorgehen. Keine DRU. Diagnostik. Komplikationen von Morbus Crohn.</p>
+<p>13:17</p>
+<p>Postskriptum</p>
+<p>Antrag: 27.07.2025</p>
+<p>Rechnung: 04.09.2025</p>
+<p>Mahnung: am 15.10.2025 erhalten, datiert auf den 06.10.2025, mit Frist zur Zahlung bis 20.10.2025.</p>
+<p>Inoffizielle Ladung: 22.10.2025 (Prüfungstermin am 18.12.2025)</p>
+<p>Offizielle Ladung: 02.12.2025</p>
+<p>Der 1. Teil war bei mir wirklich lustig, weil ich wegen des Stresses den Reflexhammer und das Stethoskop vergessen und im Warteraum gelassen habe 🤦🏻‍♀️</p>
+<p>Ich habe Herrn Thiel das nicht gesagt (… wollte es aber. Man hätte mein Gesicht sehen müssen, als ich mitten in der Anamnese plötzlich ihre Abwesenheit bemerkte und mit der Untersuchung beginnen wollte. Der Schauspieler hat das jedoch gesehen).</p>
+<p>Zum Glück brauchte ich sie für meinen Fall (Bandscheibenprolaps) nicht, aber es wäre besser gewesen, die Reflexe doch zu prüfen.</p>
+<p>Ich habe nicht alles beantwortet. Die Frage zu Herzglykosiden beim Internisten habe ich nicht beantwortet. (Mein Fehler war, dass ich sie überhaupt erwähnt habe; Herr Thiel wird mich am Ende noch daran erinnern.) 🙂</p>
+<p>Zum 3. Bild vom Radiologen konnte ich fast gar nichts sagen. Er hat versucht zu helfen, aber ich kannte weder die Knochentumoren noch das radioaktive Tracer-Isotop für PET-MRT.</p>
+<p>Ich habe im Protokoll nur richtige Antworten geschrieben, zur besseren Übersicht für alle.</p>
+<p>Ich habe bestanden, sie haben mir gratuliert. Wir hatten einen Small Talk über meine Pläne und so weiter.</p>
+<p>Sie waren alle sehr nett und freundlich. Aber sie lassen einen nicht so einfach bestehen. Man muss natürlich nicht alles wissen und beantworten, aber für sie ist es wichtig zu verstehen, dass man richtig gut klinisch denken und seine Kenntnisse beweisen kann.</p>
+<p>Dr. Thiel am Ende: „Ein Tipp für Sie für die Zukunft – erwähnen Sie nie, was Sie nicht erklären können.“</p>
+<p>(Das sagte er wegen der Herzglykoside.) :D</p>
+<p>Genau das Gleiche empfehle ich allen, die vor einer Prüfung stehen.</p>
+<p>Viel Erfolg an alle!</p></div>
+</section>
+<section id="p-041220251" class="protocol-entry fade-in">
+  <div class="protocol-header">
+    <div class="protocol-date">📅 04.12.2025-1</div>
+    <div class="protocol-badges"><span class="tag green">✓ Bestanden</span></div>
+    <span class="protocol-toggle">▶</span>
+  </div>
+  <div class="protocol-body"><p>Hallo,</p>
+<p>ich habe am 04.12.25 meine Prüfung KP in Tübingen alhamdulillah bestanden.</p>
+<p>Zuerst kam Teil BSV mit einem Patienten mit Rückenschmerzen und Ausstrahlung seitlich der Knie. Dr. Thil war bei der Anamnese dabei, bis ich den Patienten gefragt habe, ob er Probleme mit Stuhl und Urin hat, und nach einer Reithosenanästhesie gefragt habe. Dann ist er rausgegangen und die körperliche Untersuchung war zu Ende. Bei der körperlichen Untersuchung habe ich gezielte Untersuchungen gemacht: Druck auf der gesamten WS, dann den Patienten auf der Spitze und die Fasern aufstehen lassen, dann den Finger-Boden-Versuch. Dann habe ich den Patienten entkleidet, um die unteren Extremitäten zu untersuchen: Kraft und Sensibilität, Reflexe und Laseg, Kerning und Bragada-Zeichen. Dann habe ich den Fußpuls überprüft. Lunge und Herz habe ich nicht untersucht, da der Patient keine Vor-erkrankungen hatte. Wie schon gesagt, die Empathie zeigen nicht vergessen.</p>
+<ol>
+<li>Teil: Pat. vorstellen, dann wird vom Inntersist unterbrochen: Vorgehen, warum Röntgen, warum MRT: Therapie, vor allem konservativ.</li>
+</ol>
+<p>Schilddrüsenuntersuchung bei Schauspielern: Welche Erkrankungen können auftreten? Welche Größe haben sie bei Männern?</p>
+<p>Dann wollte der Radiologe eine Sonographie der Schilddrüse machen lassen. Ich habe ehrlich gesagt, dass ich das noch nie gemacht habe, aber ich habe es versucht. Ich habe den Schallkopf angelegt und wollte die Strukturen erkennen. Die Carotis communis ist rund, die Vene habe ich komprimiert und gezeigt. Dann hat mir der Radiologe geholfen, den Schallkopf in der Mitte zu positionieren. Ich habe die Schilddrüse, den Ischmus sowie die Trachea gezeigt. Es ging schnell, sie setzen uns unter Druck. In diesem Teil versucht man, ruhig zu bleiben und schnell zu reagieren.</p>
+<ol>
+<li>Teil: Innere: Patient, 46 Jahre, mit Schockindex + Dyspnoe; Raucherin, habe nach Fieber, Husten, Auswurf, Farbe des Auswurfs gefragt, dann habe ich gesagt, nach dem ABCDE-Schema zu untersuchen, Labor wollte detailliert, dann Röntgen Thorax, dann hat mir ein Röntgen von Pneumonie gezeigt, habe ausführlich interpretiert: Penetration, vollständig gebildet, in Inspiration ...</li>
+</ol>
+<p>Dann welche Erreger: Bakterien, Viren, Pilze. Drei Beispiele von jedem. Wann tritt Pilz auf? Welche Antibiotika in diesem Fall? Ich habe gesagt: Ampicillin-Sulbaktam. Was noch? Ich habe gesagt: Makrolid. Ein Beispiel von Makrolid.</p>
+<p>Rad: Ct Abd Pat. schockiert gefunden, was Dgc war, ein bisschen schwierig von mir, 3. Schnitt Bauch schwimmt in Blut, war Aortenruptur, mithilfe von Radiologe habe ich erkannt. Dann Röntgen Thorax Kind mit Fremdkörper, ich habe den Bild Blähung beschrieben.</p>
+<p>Chirurg: Was kennen Sie als CED? Ich habe gesagt: MC/CU, Unterscheidung zwischen detailliert, Komplikationen und Therapie bei MC.</p>
+<p>Wie behandeln CU?</p>
+<p>Dann habe ich gesagt: nicht heilbar, muss entfernt werden.</p>
+<p>Ja, stimmt. Welche OP?</p>
+<p>Ich habe gesagt: Betroffener Darm entfernen und Anastomose.</p>
+<p>Danach hat er die genaue OP selbst erklärt.</p>
+<p>Dann: Akutes Abdomen, Definition. Was könnte es sein? Könnte andere Ursache extra ABD sein?</p>
+<p>2 / 2</p>
+<p>Ja, ACS und Aortenruptur.</p>
+<p>Vorgehen Schritt für Schritt. Patient mit VP.</p>
+<p>Ich musste genau sagen, ob er A-Problem oder B-Problem oder C-Problem hat.</p>
+<p>Dann: Welches Bild verfahren?</p>
+<p>Ich habe gesagt: Abdomenübersicht.</p>
+<p>Er hat gefragt: Was könnte man damit sehen?</p>
+<p>Ich habe erklärt: Spiegelbildung und sichelförmige Luftansammlung.</p>
+<p>Fragt: Wenn man das nicht deutet, dann CT.</p>
+<p>Er meint, das ist nicht falsch, aber in Deutschland macht man direkt CT. Wenn CT nicht deutet, habe ich Laparotomie gesagt. Er hat auch gesagt, dass es nicht falsch ist, aber hier verwendet man Laparoskopie.</p>
+<p>Das ist meine Meinung. Die Prüfer testen nicht nur unsere Kenntnisse, sondern auch unsere Sprache, wie wir im Stress reagieren und wie man ein Arzt-Arzt-Gespräch führt. Sei einfach spontan. Ich war im ersten Teil sehr gestresst, aber als die Fragen im zweiten Teil angefangen haben, habe ich spontan reagiert und war nicht mehr gestresst.</p></div>
+</section>
 <section id="p-04122025" class="protocol-entry fade-in">
   <div class="protocol-header">
     <div class="protocol-date">📅 04.12.2025</div>
@@ -881,6 +2278,115 @@ strong{font-weight:600}
 <p>Lernmaterialien: Simulationen +++++ Zusammenfassungen von AMBOSS, Lernkarten, Radiologie aus AMBOSS.</p>
 <p>Einen Vorbereitungskurs habe ich nicht besucht.</p>
 <p>Ich möchte mich bei meiner Lernpartnerin Labiba herzlich bedanken und wünsche euch allen viel Erfolg!</p></div>
+</section>
+<section id="p-281120253" class="protocol-entry fade-in">
+  <div class="protocol-header">
+    <div class="protocol-date">📅 28.11.2025-3</div>
+    <div class="protocol-badges"><span class="tag green">✓ Bestanden</span></div>
+    <span class="protocol-toggle">▶</span>
+  </div>
+  <div class="protocol-body"><p>Guten Abend zusammen!</p>
+<p>Ich habe die Kenntnisprüfung am 28.11.2025 in Tübingen abgelegt und direkt beim ersten Versuch bestanden. Die Wartezeit auf einen Prüfungstermin beträgt ab Antragstellung ungefähr vier Monate (bei mir waren es fünf, vermutlich wegen der Ferienzeit im August). Ich war der dritte Prüfungskandidat. Die beiden Kandidaten vor mir haben bestanden. Über den vierten weiß ich nichts.</p>
+<p>Mein Prüfungstermin war für 09:30 Uhr angesetzt. Der Prüfungsort war das Büro von TIME. Man muss einen Kittel, ein Stethoskop und einen Reflexhammer mitbringen. Die Prüfung beginnt um 08:30 Uhr, und jeder Teilnehmer hat 20–30 Minuten Zeit zur Anamneseerhebung und zur gezielten körperlichen Untersuchung. Mein Slot war um 09:30 Uhr. Kurz nach meiner Ankunft kam der Vorsitzende der Kommission, Hr. Dr. Thiel, herein und erklärte knapp und präzise den Ablauf. Die Kommission bestand aus einem Chirurgen (Dr. Thiel), einem Internisten und einem Radiologen. Im Raum war Internet vorhanden, zugänglich über einen QR-Code an der Tafel.</p>
+<p>⸻</p>
+<p>⭐ Teil 1</p>
+<p>Der klinische Fall: Cholezystitis.</p>
+<p>Die Patientin stellte sich in der Notaufnahme vor. Unauffällige Anamnese (Frau, ca. 40 Jahre, Schmerzen im rechten Oberbauch, Z. n. 4 Spontangeburten, Hypercholesterinämie). Alles dauerte ca. 20–25 Minuten. Dr. Thiel war anwesend, ging aber gelegentlich kurz hinaus. Die Patientin war in Wirklichkeit eine Schauspielerin, eine junge Frau. Vergesst nicht, bei der körperlichen Untersuchung Handschuhe anzuziehen!</p>
+<p>Bei den anderen Kolleg*innen waren die Fälle: Meningitis, Bandscheibenvorfall, OGI-Blutung.</p>
+<p>⸻</p>
+<p>⭐ Teil 2</p>
+<p>Für diesen Abschnitt hatten wir etwa 2–2,5 Stunden Zeit. Man darf informell alles benutzen (Notizen, Bücher, Internet). Die Zeit reicht gut aus.</p>
+<p>In der zweiten Phase gab es eine Patientenvorstellung. Ich schrieb einen Arztbrief mit erfundenen Befunden (Sono: zwei Konkremente, Wand 1 cm; Labor: erhöhte Entzündungswerte) und stellte den Patienten bis hin zu den Empfehlungen vor. Dann wurde ich unterbrochen und es folgte die mündliche Befragung.</p>
+<p>Der Internist fragte zur klinischen Untersuchung der Schilddrüse (Palpation, Auskultation). Was überprüft man beim Schluckakt? → Verschieblichkeit der Schilddrüse.</p>
+<p>Wann hört man ein Schwirren? → Bei Hyperthyreose (Morbus Basedow).</p>
+<p>Der Radiologe fragte, wie Konkremente im Sono aussehen (hyperechogene Strukturen) und was man sonst noch finden kann (Polypen, Gries).</p>
+<p>Wie unterscheidet man Konkrement von Polyp?</p>
+<ol>
+<li>Polyp wirft keinen Schallschatten, im Gegensatz zum Stein (ein kalkhaltiger Polyp kann jedoch Schatten werfen).</li>
+<li>Patient auf die Seite drehen → Stein bewegt sich, Polyp bleibt fix.</li>
+</ol>
+<p>Der Chirurg:</p>
+<p>Die Schnittführung bei Nabelhernie und die Zugänge bei laparoskopischer Cholezystektomie an der Schauspielerin zeigen.</p>
+<p>Wie wird Gas insuffliert?</p>
+<p>Möglichkeit 1: Schnitt direkt am Nabel bis zur Linea alba, Bauchdecke mit Bochkauz-Zange anheben, Trokar einführen, CO₂ anschließen.</p>
+<p>Möglichkeit 2: Punktion im linken Rippenbogen, Einführen der Veress-Nadel, CO₂ anschließen.</p>
+<p>Frage zum Critical View of Safety (CVS).</p>
+<p>Welche Clips verwendet man für den Ductus cysticus – Polymere (z. B. Lapro-Clip aus Polyglycolsäure) oder metallische (Titan)?</p>
+<p>Ich antwortete: metallische. Er sagte: „Das ist wirtschaftlicher.“</p>
+<p>⸻</p>
+<p>⭐ Teil 3</p>
+<ol>
+<li>Internist</li>
+</ol>
+<p>Klinischer Fall:</p>
+<p>62-jähriger Patient, seit dem Morgen verminderte Vigilanz unklarer Ursache, vom Rettungsdienst gebracht. Mehrere Hämatome am Bauch.</p>
+<p>Vorgehen:</p>
+<p>ABCDE, zwei großlumige Zugänge, Vitalparameter.</p>
+<p>RR 100/60 mmHg, Puls 102/min, SpO₂ 95 % unter 2 L O₂.</p>
+<p>Labor: Hb-Abfall auf ca. 5–6 g/dL, sinkender Hämatokrit, INR 1,6, Quick 32 %, Fibrinogen erniedrigt.</p>
+<p>V. a. akute Blutung bei Lebererkrankung (Zirrhose?).</p>
+<p>Weiter:</p>
+<p>Blutgruppe, AK-Suchtest, zwei EK kreuzen, 0 Rh(–) anfordern, FAST → Ausschluss intraabdomineller Blutung, Beurteilung auf Zirrhosezeichen und portale Hypertension.</p>
+<p>1000 ml Sterofundin, PPSB, Fibrinogen i.v., Vitamin K (Konakion i.v.), FFP bestellen.</p>
+<p>Frage nach Erbrechen → zweimal Hämatemesis.</p>
+<p>Bei V. a.</p>
+<p>OGI-Blutung durch Ösophagusvarizen bei Zirrhose → Notfall-ÖGD mit Blutstillungsverfahren (Adrenalin, Gummibandligatur).</p>
+<p>Vorher: Sengstaken-Blakemore-Sonde, Erythromycin 250 mg i.v. zur Magenentleerung.</p>
+<p>Damit war er zufrieden.</p>
+<ol>
+<li>Radiologe</li>
+</ol>
+<p>Erklärung eines bildgebenden Verfahrens (Röntgen, CT, MRT, Szinti).</p>
+<p>Ich wählte Röntgen, zeichnete eine Röntgenröhre, erklärte das Prinzip.</p>
+<p>Dann zeichnete er einen Bogen mit drei zusätzlichen Peaks – fragte, was das sei. Ich wusste es nicht.</p>
+<p>Es war das Spektrum der Röntgenstrahlung (Bremsstrahlung + charakteristische Peaks).</p>
+<p>Danach Bildbeschreibungen (man zieht zufällig Bilder aus einem Stapel mit &gt;150 Aufnahmen):</p>
+<ol>
+<li>Seitliches Rö des rechten Knies – ausgeprägte retropatellare Gonarthrose, Metallmarker.</li>
+<li>Z. n. Umstellungsosteotomie bei Genu varum.</li>
+<li>CT Abdomen in zwei Ebenen – Double-Bubble-Zeichen.</li>
+</ol>
+<p>Wann tritt es auf? → Pankreaskopfkarzinom oder ampulläre Tumoren.</p>
+<ol>
+<li>Grünholzfraktur des Radius.</li>
+</ol>
+<ol>
+<li>Chirurg</li>
+<li>Vorgehen bei 21-jährigem Patienten mit Gynäkomastie → endokrinologische Abklärung → bland.</li>
+</ol>
+<p>Sono schließt Brustkrebs (ca. 1 % Wahrscheinlichkeit) aus (ich hatte gelesen, dass bei Verdacht Mammographie Methode der 1. Wahl ist).</p>
+<p>Indikation zur OP bei kosmetischer Störung.</p>
+<p>Zugänge: periäreolär, submammär oder über die vordere axilläre Linie.</p>
+<ol>
+<li>Amputationen der unteren Extremität:</li>
+</ol>
+<p>Zehenamputation, Strahlresektion, Vorfußamputationen (transmetatarsal, Chopart, Lisfranc), Unterschenkelamputation (Höhe: eine Handbreit unterhalb des Tibiaplateaus), Oberschenkelamputation (ich sagte „im unteren Drittel“, korrekt ist aber: ca. 10–15 cm oberhalb des Kniegelenks bzw. 12–18 cm distal des Trochanter major).</p>
+<p>Wie wird der Stumpf abgedeckt? Wie heißt die Technik? → Lappentechnik.</p>
+<ol>
+<li>EVAR und TEVAR: kurze Beschreibung, Indikationen, Vorgehen.</li>
+</ol>
+<p>Ich erwähnte TAVI, aber das wollte er nicht hören.</p>
+<ol>
+<li>Lebertransplantation – Reihenfolge der Anastomosen + Begründung:</li>
+<li>V. cava inferior (zur Vermeidung venöser Stauung) – Piggyback wurde erwähnt.</li>
+<li>V. portae (zur Reperfusion der Spenderleber).</li>
+<li>A. hepatica communis (kritisch wichtig wegen der Blutversorgung der Gallengänge).</li>
+<li>Ductus choledochus (Choledocho-Choledochostomie oder Hepaticojejunostomie).</li>
+</ol>
+<p>Er sagte, das sei eine tiefgehende Frage – er wollte sehen, ob ich etwas dazu erzählen kann.</p>
+<p>⸻</p>
+<p>Nach der Befragung wurde ich hinausgebeten. Nach etwa 15 Sekunden rief man mich wieder herein und teilte mir mit, dass ich bestanden habe. Man gratulierte mir, und wir sprachen kurz über meine weiteren Pläne.</p>
+<p>Meiner Meinung nach ist die Kommission streng, aber fair und wohlwollend. Wenn man die Grundlagen kennt, aber einzelne Details nicht weiß, erklären sie diese und korrigieren, mit dem Ziel zu unterrichten, nicht zu kritisieren.</p>
+<p>Natürlich erfordert die Prüfung eine gründliche Vorbereitung. Bei mir dauerte es 1,5 Jahre, da ich parallel als Arzt in Praktikum in der Chirurgie gearbeitet habe und wenig Zeit hatte.</p>
+<p>Meine Ressourcen:</p>
+<p>das Buch „Dein Weg zur Approbation“,</p>
+<p>die Webseite via medici (Thieme) zur KP-Vorbereitung,</p>
+<p>mediknows auf YouTube (Pharmakologie),</p>
+<p>Amboss auf YouTube (klinische Untersuchung),</p>
+<p>ChatGPT,</p>
+<p>Chirurgie APPetizer (selektiv, teilweise zu tief für KP).</p>
+<p>Die Prüfung ist machbar.</p>
+<p>Bereitet euch gut vor – und ihr schafft das. Viel Erfolg an alle</p></div>
 </section>
 <section id="p-281120252" class="protocol-entry fade-in">
   <div class="protocol-header">
@@ -2364,7 +3870,9 @@ strong{font-weight:600}
 <p>Lernquellen: Amboss, Herold, Endspurt, EKG für Isabel, MEX, Karteikarten MEX, Last Minute Pharmakologie, Anamnese Untersuchung Diagnose Springer, Kurs mit Dr. Valentina Johansen.</p>
 <p>Den Kurs zur Vorbereitung der KP vom „FitfürdieFSP“ würde ich auf jeden Fall empfehlen – besonders, wenn man die Themen schon mindestens zweimal durchgearbeitet hat. Er dient hervorragend als Wiederholung, bietet gezielte Fragen und gute Simulationen zur Vorbereitung.</p>
 <p>Das erste Bild sah ein bisschen so aus, anatomisch konnte ich wissen, dass es sich um ein Prostatakarzinom handelte. (Dies ist eine multiparametrische MRT oder so). Er hat aber gesagt, dass das Bild zu schwierig war.</p>
+<div class="proto-images"><a href="Prostatakarzinom-08.08.2025.webp" target="_blank" rel="noopener"><img src="Prostatakarzinom-08.08.2025.webp" alt="Prostatakarzinom-08.08.2025.webp" loading="lazy"></a></div>
 <p>Rö-Bild sah so aus, aber ZVK war rechts. (Es gab auch eine Thoraxdrainage rechts)</p>
+<div class="proto-images"><a href="Thoraxdrainage-ZVK-08.08.2025.webp" target="_blank" rel="noopener"><img src="Thoraxdrainage-ZVK-08.08.2025.webp" alt="Thoraxdrainage-ZVK-08.08.2025.webp" loading="lazy"></a></div>
 <p>Antrag: 28.08.2024</p>
 <ol>
 <li>Gebührenbescheid: 30.12.2024</li>
@@ -6420,7 +7928,8 @@ strong{font-weight:600}
 <p>Das war alles. Sie haben mich gebeten eine sekunde draussen zu warten und dann haben mich gratuliert. Die Vorbereitung ist anstrengend aber die Prüfung ist machbar.</p>
 <p>Ich habe das Gefühl, dass der erste Eindruck, den man bei den ersten 2 Teilen gibt, ist sehr wichtig für Teil 3.</p>
 <p>Ich habe für fast 1 Jahr auf die Innere Medizin gearbeitet.</p>
-<p><strong>Der Fremdkörper war wie eine kleine Münze auf die innere Seite des Oberschenckels, es dient dem Messen der Größe der notdendigen PET</strong>, <strong>So sah es aus</strong></p></div>
+<p><strong>Der Fremdkörper war wie eine kleine Münze auf die innere Seite des Oberschenckels, es dient dem Messen der Größe der notdendigen PET</strong>, <strong>So sah es aus</strong></p>
+<div class="proto-images"><a href="Tuebingen-27.08.2024.webp" target="_blank" rel="noopener"><img src="Tuebingen-27.08.2024.webp" alt="Tuebingen-27.08.2024-1" loading="lazy"></a></div></div>
 </section>
 <section id="p-27082024" class="protocol-entry fade-in">
   <div class="protocol-header">
@@ -7302,7 +8811,8 @@ strong{font-weight:600}
 <p>&gt;</p>
 <blockquote class="md-quote">Die Simulationen waren sehr gut und machten einen großen Unterschied. Man muss einen guten Partner finden und täglich strukturiert üben!</blockquote>
 <p>Vielen Dank an meine Partner: Ze, Madij und Israa.</p>
-<p>EKG-Bilder:</p></div>
+<p>EKG-Bilder:</p>
+<div class="proto-images"><a href="Tuebingen-16.07.2024.webp" target="_blank" rel="noopener"><img src="Tuebingen-16.07.2024.webp" alt="Tuebingen-16.07.2024" loading="lazy"></a></div></div>
 </section>
 <section id="p-27062024" class="protocol-entry fade-in">
   <div class="protocol-header">
@@ -8595,9 +10105,11 @@ strong{font-weight:600}
 <p>Wie kann allergisches Asthma weiter diagnostiziert werden? Bei einer weiteren Vorstellung bei einem Allergologen, wo ein Skin Prick Test über verschiedene Allergene gemacht wird und ein IgE-AK Test durchgeführt wird. Er hat noch etwas gefragt, woran ich mich jetzt nicht erinnere.</p>
 <p><strong>Radiologe:</strong></p>
 <p>Sie haben Atopie mit Neurodermitis bei der Patientin erwähnt, wie und wo ist es präsentiert?</p>
+<div class="proto-images"><a href="2024-01-19_13-52.webp" target="_blank" rel="noopener"><img src="2024-01-19_13-52.webp" alt="2024-01-19_13-52" loading="lazy"></a></div>
 <p>Mit welchen Krankheiten ist es ähnlich, und wo ist der Unterschied: Mit Psoriasis, die am Ellenbogen, Knie (das Gegenteil) auftritt.</p>
 <p>Dann sind wir bei den Patienten aufgestanden. Der Chirurg hat gefragt, was wir bei einer Abdomeninspektion untersuchen?</p>
 <p>Genauso beschrieben:</p>
+<div class="proto-images"><a href="2024-01-19_13-57.webp" target="_blank" rel="noopener"><img src="2024-01-19_13-57.webp" alt="2024-01-19_13-57" loading="lazy"></a></div>
 <p>Dann bei Caput Medusae hat er gefragt, was ist das? Pathophysiologie?</p>
 <p>Und was sehen wir noch bei Leberzirrhose? Spider Naevi, Palmar &amp; Plantar Erythem, er hat mich unterbrochen und hat gefragt, nicht in der Haut - dann habe ich gesagt, Ösophagusvarizen. Was machen wir, wenn es eine Blutung gibt? Endoskopie-&gt; Endoskopische Gummibandligatur</p>
 <p><strong>Allgemeinmediziner:</strong> Schilddrüsenuntersuchung. Da habe ich untersucht und erklärt, alles was ich gemacht habe und warum.</p>
@@ -8617,6 +10129,8 @@ strong{font-weight:600}
 <p>Dann sollte man selbst den Zettel mit Bildern wählen.</p>
 <p>Sonogra: Transplantierte Niere im Unterbauch</p>
 <p>Röntgen Unterarm: <strong>Grünholzfraktur</strong> bei einem Kind</p>
+<div class="proto-images"><a href="2024-01-19_14-01.webp" target="_blank" rel="noopener"><img src="2024-01-19_14-01.webp" alt="2024-01-19_14-01" loading="lazy"></a></div>
+<div class="proto-images"><a href="2024-01-19_14-09.webp" target="_blank" rel="noopener"><img src="2024-01-19_14-09.webp" alt="2024-01-19_14-09" loading="lazy"></a></div>
 <p><strong>Chirurg:</strong></p>
 <p>Ein Patient ist vom 4. Stock gefallen. Was tun Sie? Es handelte sich um einen Polytrauma-Patienten mit GCS 4. Der Patient musste vor Ort intubiert werden, anschließend wurden alle Verfahren bei einem Polytrauma-Patienten durchgeführt, angefangen von einer Vakuummatratze, Immobilisation, Schockraum, FAST-Sono, hämorrhagischem Schock, CCT bis hin zu einem epiduralen Hämatom. Die Therapie umfasste auch einen Hämatothorax. Bei einer o enen Fraktur sollte man diese nur intraoperativ versorgen.</p>
 <p>Dann hat Dr. Thiel gesagt, dass ich nach draußen gehen soll. Nach 20 Sekunden haben sie mich</p>
@@ -8811,9 +10325,11 @@ strong{font-weight:600}
 <p><strong>2. Fall</strong>  67-jähriger Patient mit linksseitigen Unterbauchschmerzen. Was machen sie? Der Fall war Divertikulitis, sie haben die Klassifikation und Therapie gefragt.</p>
 <p><strong>Radiologe:</strong></p>
 <p>3 Bilder: Röntgen des Thorax /Lungenatelektase wegen falsch gelegenem Tubus. Der Tubus hat bis den rechten Hauptbrochus verschobt und verschließt den Brochus/, Abdomen-CT /rupturierte Aortenaneurysma/, MRI des Schädels mit KM /Glioblastoma/</p>
+<div class="proto-images"><a href="Tuebingen.17.11.23_1.webp" target="_blank" rel="noopener"><img src="Tuebingen.17.11.23_1.webp" alt="Tuebingen.17.11.23_1.webp" loading="lazy"></a></div>
 <ol>
 <li>Bild ähnlich, aber Patient war in der Intensivstation, mit EKG-Elektroden, intubiert. </li>
 </ol>
+<div class="proto-images"><a href="Tuebingen.17.11.23_2.webp" target="_blank" rel="noopener"><img src="Tuebingen.17.11.23_2.webp" alt="Tuebingen.17.11.23_2.webp" loading="lazy"></a></div>
 <p>Das Bild ist ähnlich, mit KM-Fühlung in der Peripherie, Verschiebung der Mittellinie.</p>
 <p><strong>Quellen</strong> – Ezplus, Amboss, Herold, M3 Lernkartei, EKG-Kurs für Isabel, mündliche Prüfung Pharmakologie, 150 Falle Innere Medizin, 50 wichtigste Falle Innere Medizin und Chirurgie, 1500 Fragen Innere Medizin</p>
 <p>Youtube – Mediknow, armando hasudungan, Ninja nerd</p>
@@ -10871,6 +12387,7 @@ strong{font-weight:600}
 <p>Dritter Prüfer : Prof. Dr. med. Möhrike (Pharmakologie)</p>
 <p>Metoclopramid (MCP) -Nebenwirkungen und Medikamente von M. Parkinson</p>
 <p>Eine 22-jährige Patientin wurde vor zwei Tagen operiert (Thyreoidektomie) dann hat sie Dystonien von Mund und Hals (komplette Reklination des Kopfs mit geöffnetem Mund) dann hat ein Bild gezeigt.</p>
+<div class="proto-images"><a href="Tuebingen_2022-07_Frage.jpg" target="_blank" rel="noopener"><img src="Tuebingen_2022-07_Frage.jpg" alt="Tuebingen_2022-07_Frage" loading="lazy"></a></div>
 <p>Was machen sie?</p>
 <p>Anamnese KU dann sagte er Anamnese konnte nicht erhoben.</p>
 <p>Dann hat er mich gefragt welche Medikamente werden Post OP wegen der Übelkeit eingenommen?</p>
@@ -11429,7 +12946,9 @@ strong{font-weight:600}
 <p>Chirurg - AVT (Atrioventrikuläre Arrythmie)</p>
 <p>(Arrhythmie mit EKG)+ BEHANDLUNG (amiodaron NW)</p>
 <p>+anderer Arzt - Nieren Transplantation +Chronische Nierenversagen (Intrarenal, Glomerulonephritis) , Milzruptur (wann OP? Impfungen nach OP)</p>
-<p>EKG-Bilder:</p></div>
+<p>EKG-Bilder:</p>
+<div class="proto-images"><a href="Tuebingen_28002021_1.jpg" target="_blank" rel="noopener"><img src="Tuebingen_28002021_1.jpg" alt="Tuebingen_28002021_1" loading="lazy"></a></div>
+<div class="proto-images"><a href="Tuebingen_28002021_2.jpg" target="_blank" rel="noopener"><img src="Tuebingen_28002021_2.jpg" alt="Tuebingen_28002021_2" loading="lazy"></a></div></div>
 </section>
 <section id="p-29012021" class="protocol-entry fade-in">
   <div class="protocol-header">
@@ -15288,7 +16807,8 @@ strong{font-weight:600}
 <li><strong>Autoren:</strong> <em>Telegram:</em> <a href="https://t.me/Linux62" target="_blank" rel="noopener">@Linux62</a>, <a href="https://t.me/oussdoc" target="_blank" rel="noopener">@oussdoc</a> </li>
 <li>Lizenz: GPLv3 [Frei]</li>
 </ul>
-<blockquote class="md-quote"><a href="https://en.wikipedia.org/wiki/Information_wants_to_be_free" target="_blank" rel="noopener">Information wants to be free</a></blockquote></div>
+<blockquote class="md-quote"><a href="https://en.wikipedia.org/wiki/Information_wants_to_be_free" target="_blank" rel="noopener">Information wants to be free</a></blockquote>
+<div class="proto-images"><a href="Billgates.jpg" target="_blank" rel="noopener"><img src="Billgates.jpg" alt="Billgates" loading="lazy"></a></div></div>
 </section>
   </div>
 
@@ -15321,6 +16841,7 @@ strong{font-weight:600}
 <li>Lizenz: GPLv3 [Frei]</li>
 </ul>
 <blockquote class="md-quote"><a href="https://en.wikipedia.org/wiki/Information_wants_to_be_free" target="_blank" rel="noopener">Information wants to be free</a></blockquote>
+<div class="proto-images"><a href="Billgates.jpg" target="_blank" rel="noopener"><img src="Billgates.jpg" alt="Billgates" loading="lazy"></a></div>
     <div class="callout success" style="margin-top:1rem">
       <span class="callout-icon">💬</span>
       <div class="callout-body">
@@ -15368,7 +16889,7 @@ mainSearch.addEventListener('input',()=>{
     if(q&&show){e.classList.add('open');e.querySelector('.protocol-body').classList.add('open')}
     else if(!q){e.classList.remove('open');e.querySelector('.protocol-body').classList.remove('open')}
   });
-  searchCount.textContent=q?vis+' Treffer':'310 Protokolle';
+  searchCount.textContent=q?vis+' Treffer':'326 Protokolle';
 });
 (()=>{
   const sLinks=document.querySelectorAll('#sidebarDates a');

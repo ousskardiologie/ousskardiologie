@@ -9,23 +9,22 @@
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
 :root {
-  --bg:#ffffff; --surface:#f7f5f2; --surface2:#eeecea; --surface3:#e8e5e1;
-  --border:#e5e2de; --border2:#d8d5d0;
-  --text:#1a1410; --text2:#6b6460; --text3:#a09890;
-  --red:#c8303a; --red-bg:#fdf2f2; --red-border:#fbd5d5;
-  --blue:#2563eb; --blue-bg:#eff6ff; --blue-border:#bfdbfe;
-  --green:#0f7b5a; --green-bg:#f0fdf8; --green-border:#a7f3d0;
-  --amber:#d97706; --amber-bg:#fffbeb; --amber-border:#fde68a;
-  --purple:#7c3aed; --purple-bg:#f5f3ff; --purple-border:#ddd6fe;
-  --orange:#c2410c; --orange-bg:#fff7ed; --orange-border:#fed7aa;
-  --teal:#0d9488; --teal-bg:#f0fdfa; --teal-border:#99f6e4;
+  --bg:#ffffff;--surface:#f7f5f2;--surface2:#eeecea;
+  --border:#e5e2de;--border2:#d8d5d0;
+  --text:#1a1410;--text2:#6b6460;--text3:#a09890;
+  --red:#c8303a;--red-bg:#fdf2f2;--red-border:#fbd5d5;
+  --blue:#2563eb;--blue-bg:#eff6ff;--blue-border:#bfdbfe;
+  --green:#0f7b5a;--green-bg:#f0fdf8;--green-border:#a7f3d0;
+  --amber:#d97706;--amber-bg:#fffbeb;--amber-border:#fde68a;
+  --purple:#7c3aed;--purple-bg:#f5f3ff;--purple-border:#ddd6fe;
+  --orange:#c2410c;--orange-bg:#fff7ed;--orange-border:#fed7aa;
+  --teal:#0d9488;--teal-bg:#f0fdfa;--teal-border:#99f6e4;
   --serif:'Cormorant Garamond',Georgia,serif;
   --sans:'DM Sans',system-ui,sans-serif;
-  --nav-h:56px; --sidebar-w:280px;
-  --radius:10px; --radius-lg:14px;
+  --nav-h:56px;--sidebar-w:280px;
+  --radius:10px;--radius-lg:14px;
   --shadow:0 2px 8px rgba(0,0,0,.06);
   --shadow-md:0 6px 24px rgba(0,0,0,.09);
-  --shadow-lg:0 12px 40px rgba(0,0,0,.10);
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
@@ -34,8 +33,6 @@ a{color:var(--blue);text-decoration:none}
 a:hover{text-decoration:underline}
 code{font-family:'Courier New',monospace;font-size:.85em;background:var(--surface2);padding:2px 6px;border-radius:4px}
 ::-webkit-scrollbar{width:5px}::-webkit-scrollbar-track{background:transparent}::-webkit-scrollbar-thumb{background:var(--border2);border-radius:99px}
-
-/* ── NAV ── */
 .ouss-nav{position:sticky;top:0;z-index:600;height:var(--nav-h);background:rgba(255,255,255,.97);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);display:flex;align-items:center;padding:0 1.5rem;gap:10px}
 .ouss-brand{font-family:var(--serif);font-size:1.1rem;font-weight:400;color:var(--text);text-decoration:none;display:flex;align-items:center;gap:.45rem;white-space:nowrap}
 .ouss-brand-heart{animation:hb 1.6s ease-in-out infinite;display:inline-block}
@@ -53,11 +50,7 @@ code{font-family:'Courier New',monospace;font-size:.85em;background:var(--surfac
 .ouss-drawer.open{transform:translateX(0)}
 .ouss-drawer a{display:flex;align-items:center;gap:10px;padding:12px 1.3rem;font-size:14px;font-weight:500;color:var(--text);border-bottom:1px solid var(--border);min-height:48px;transition:background .15s}
 .ouss-drawer a:hover{background:var(--surface);text-decoration:none}
-
-/* ── LAYOUT ── */
 .layout{display:flex;min-height:calc(100vh - var(--nav-h))}
-
-/* ── SIDEBAR ── */
 .sidebar{width:var(--sidebar-w);flex-shrink:0;background:var(--surface);border-right:1px solid var(--border);position:fixed;top:var(--nav-h);left:0;bottom:0;overflow-y:auto;z-index:200;display:flex;flex-direction:column}
 .sidebar-header{padding:1.2rem 1.2rem 1rem;border-bottom:1px solid var(--border)}
 .sidebar-course{font-size:.65rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--text3);margin-bottom:.4rem}
@@ -76,12 +69,8 @@ code{font-family:'Courier New',monospace;font-size:.85em;background:var(--surfac
 .sidebar nav a:hover{background:var(--surface2);color:var(--text)}
 .sidebar nav a.active{background:var(--red-bg);color:var(--red);font-weight:600;border-left-color:var(--red)}
 .sidebar-footer{margin-top:auto;padding:1rem 1.2rem;border-top:1px solid var(--border);font-size:.74rem;color:var(--text3)}
-
-/* ── MAIN ── */
 .main{margin-left:var(--sidebar-w);flex:1;min-width:0}
 .main-inner{max-width:860px;padding:2.5rem 2.5rem 6rem}
-
-/* ── TYPOGRAPHY ── */
 h1{font-family:var(--serif);font-size:clamp(1.9rem,3.5vw,2.6rem);font-weight:300;line-height:1.15;color:var(--text);margin-bottom:.6rem}
 h1 em{font-style:italic;color:var(--red)}
 h2{font-family:var(--serif);font-size:1.65rem;font-weight:300;margin:2.5rem 0 1rem;color:var(--text);line-height:1.2;display:flex;align-items:center;gap:12px}
@@ -93,8 +82,6 @@ li{font-size:.9rem;line-height:1.7;margin-bottom:.15rem}
 hr{border:none;border-top:1px solid var(--border);margin:1.5rem 0}
 blockquote.md-quote{border-left:3px solid var(--border2);padding:.5rem 1rem;color:var(--text2);font-style:italic;margin:.8rem 0;font-size:.88rem}
 strong{font-weight:600}
-
-/* ── TAGS ── */
 .tag{padding:3px 11px;border-radius:20px;font-size:.72rem;font-weight:700;border:1px solid;display:inline-flex;align-items:center;gap:4px}
 .tag.red{background:var(--red-bg);color:var(--red);border-color:var(--red-border)}
 .tag.green{background:var(--green-bg);color:var(--green);border-color:var(--green-border)}
@@ -102,34 +89,26 @@ strong{font-weight:600}
 .tag.amber{background:var(--amber-bg);color:var(--amber);border-color:var(--amber-border)}
 .tag.purple{background:var(--purple-bg);color:var(--purple);border-color:var(--purple-border)}
 .tag.teal{background:var(--teal-bg);color:var(--teal);border-color:var(--teal-border)}
-
-/* ── CALLOUT ── */
 .callout{border-radius:var(--radius);padding:1rem 1.2rem;margin:1rem 0;display:flex;gap:11px;align-items:flex-start;border:1px solid}
 .callout.info{background:var(--blue-bg);border-color:var(--blue-border)}
 .callout.warn{background:var(--amber-bg);border-color:var(--amber-border)}
 .callout.success{background:var(--green-bg);border-color:var(--green-border)}
-.callout.danger{background:var(--red-bg);border-color:var(--red-border)}
-.callout.purple{background:var(--purple-bg);border-color:var(--purple-border)}
 .callout-icon{font-size:18px;flex-shrink:0;margin-top:2px}
 .callout-body{font-size:.88rem;line-height:1.7}
-
-/* ── PAGE HEADER ── */
 .page-icon{font-size:52px;margin-bottom:.7rem;line-height:1;animation:float 4s ease-in-out infinite}
 @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
 .page-subtitle{font-size:.95rem;color:var(--text2);line-height:1.75;margin-bottom:1.4rem}
 .page-header{margin-bottom:2rem}
 .breadcrumb{font-size:.76rem;color:var(--text3);margin-bottom:.8rem;display:flex;align-items:center;gap:6px}
 .meta-strip{display:flex;flex-wrap:wrap;gap:1.5rem;font-size:.82rem;color:var(--text3);padding:1rem 0;border-top:1px solid var(--border);border-bottom:1px solid var(--border);margin-bottom:1.6rem}
-
-/* ── STAT GRID ── */
 .stat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:2rem}
 .stat-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);padding:1.1rem 1.2rem}
 .stat-card-num{font-family:var(--serif);font-size:2.2rem;font-weight:300;color:var(--text);line-height:1;margin-bottom:.2rem}
 .stat-card-num.green{color:var(--green)}
 .stat-card-num.red{color:var(--red)}
 .stat-card-label{font-size:.74rem;color:var(--text3);font-weight:600;text-transform:uppercase;letter-spacing:.06em}
-
-/* ── PRÜFER GRID ── */
+.fach-cloud{display:flex;flex-wrap:wrap;gap:6px;margin:1rem 0 1.5rem}
+.fach-pill{padding:4px 12px;border-radius:20px;font-size:.73rem;font-weight:600;border:1px solid}
 .pruefer-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:10px;margin:1rem 0 1.5rem}
 .pruefer-card{background:var(--bg);border:1px solid var(--border);border-radius:var(--radius-lg);padding:1rem 1.1rem;display:flex;gap:12px;align-items:flex-start;transition:box-shadow .18s,transform .18s}
 .pruefer-card:hover{box-shadow:var(--shadow-md);transform:translateY(-1px)}
@@ -137,17 +116,17 @@ strong{font-weight:600}
 .pruefer-name{font-family:var(--serif);font-size:.95rem;color:var(--text);margin-bottom:.15rem;line-height:1.3}
 .pruefer-fach{font-size:.75rem;font-weight:700;letter-spacing:.03em;text-transform:uppercase;margin-bottom:.2rem}
 .pruefer-detail{font-size:.78rem;color:var(--text2);line-height:1.45}
-
-/* ── FREIBURG FÄCHER BADGES (diversity highlight) ── */
-.fach-cloud{display:flex;flex-wrap:wrap;gap:6px;margin:1rem 0 1.5rem}
-.fach-pill{padding:4px 12px;border-radius:20px;font-size:.73rem;font-weight:600;border:1px solid}
-
-/* ── SECTION DIVIDER ── */
 .section-divider{display:flex;align-items:center;gap:14px;margin:2.5rem 0 1.5rem}
 .section-divider-num{display:inline-flex;align-items:center;justify-content:center;width:32px;height:32px;border-radius:9px;background:var(--red);color:#fff;font-size:13px;font-weight:700;flex-shrink:0;box-shadow:0 4px 12px rgba(200,48,58,.3)}
 .section-divider h2{margin:0;font-size:1.55rem}
-
-/* ── PROTOCOL ENTRY ── */
+.info-section{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);padding:1.4rem;margin-bottom:1.5rem}
+.info-section h3{margin-top:0}
+.proto-images{display:flex;flex-wrap:wrap;gap:10px;margin:1rem 0}
+.proto-images a{display:block;border-radius:8px;overflow:hidden;border:1px solid var(--border);flex:1 1 180px;max-width:300px;transition:box-shadow .2s;text-decoration:none}
+.proto-images a:hover{box-shadow:var(--shadow-md)}
+.proto-images img{width:100%;height:auto;display:block;max-height:220px;object-fit:cover}
+.pdf-btn{display:inline-flex;align-items:center;gap:8px;padding:9px 18px;border-radius:8px;background:var(--red);color:#fff !important;font-size:.85rem;font-weight:600;text-decoration:none !important;transition:background .18s;margin:.5rem 0;box-shadow:0 2px 8px rgba(200,48,58,.25)}
+.pdf-btn:hover{background:#b8242d}
 .protocol-entry{background:var(--bg);border:1px solid var(--border);border-radius:var(--radius-lg);margin-bottom:1rem;overflow:hidden;box-shadow:var(--shadow);scroll-margin-top:calc(var(--nav-h) + 12px);transition:box-shadow .2s}
 .protocol-entry:hover{box-shadow:var(--shadow-md)}
 .protocol-header{display:flex;align-items:center;gap:10px;padding:.85rem 1.2rem;background:var(--surface);border-bottom:1px solid var(--border);cursor:pointer;user-select:none}
@@ -159,55 +138,41 @@ strong{font-weight:600}
 @keyframes fadein{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
 .protocol-toggle{margin-left:6px;color:var(--text3);font-size:.7rem;transition:transform .25s;flex-shrink:0}
 .protocol-entry.open .protocol-toggle{transform:rotate(90deg)}
-
-/* ── INFO SECTION ── */
-.info-section{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);padding:1.4rem;margin-bottom:1.5rem}
-.info-section h3{margin-top:0}
-
-/* ── SEARCH BAR ── */
 .search-bar{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);padding:1rem 1.3rem;margin-bottom:1.2rem;display:flex;align-items:center;gap:10px}
 .search-bar input{flex:1;border:none;background:none;font-family:var(--sans);font-size:.9rem;color:var(--text);outline:none}
 .search-bar input::placeholder{color:var(--text3)}
 .search-count{font-size:.76rem;color:var(--text3);white-space:nowrap}
-
-/* ── FADE IN ── */
+.new-badge{display:inline-flex;align-items:center;gap:4px;padding:2px 8px;border-radius:20px;font-size:.65rem;font-weight:700;background:#dcfce7;color:#166534;border:1px solid #86efac;margin-left:6px;vertical-align:middle}
 .fade-in{opacity:0;transform:translateY(12px);transition:opacity .5s ease,transform .5s ease}
 .fade-in.visible{opacity:1;transform:translateY(0)}
-
-/* ── MOBILE ── */
 @media(max-width:768px){
   .sidebar{display:none}
   .sidebar.mobile-open{display:flex;width:min(300px,88vw)}
+  .sidebar-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.35);z-index:190;top:var(--nav-h)}
+  .sidebar-overlay.open{display:block}
   .main{margin-left:0}
   .main-inner{padding:1.5rem 1.2rem 5rem}
   .stat-grid{grid-template-columns:1fr 1fr}
   .ouss-ham{display:flex}
   .ouss-badge{display:none}
   .pruefer-grid{grid-template-columns:1fr 1fr}
-  .sidebar-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.35);z-index:190;top:var(--nav-h)}
-  .sidebar-overlay.open{display:block}
 }
-@media(max-width:480px){
-  .stat-grid{grid-template-columns:1fr}
-  .pruefer-grid{grid-template-columns:1fr}
-}
+@media(max-width:480px){.stat-grid{grid-template-columns:1fr}.pruefer-grid{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
 
-<!-- NAV -->
 <nav class="ouss-nav">
-  <a href="#" class="ouss-brand"><span class="ouss-brand-heart">🩺</span> OUSS Medizin</a>
+  <a href="KP_index.html" class="ouss-brand"><span class="ouss-brand-heart">🩺</span> OUSS Medizin</a>
   <div class="ouss-spacer"></div>
   <span class="ouss-badge">KP Freiburg</span>
-  <button class="ouss-ham" id="hamBtn" aria-label="Menü öffnen">
-    <span></span><span></span><span></span>
-  </button>
+  <button class="ouss-ham" id="hamBtn" aria-label="Menü öffnen"><span></span><span></span><span></span></button>
 </nav>
 <div class="ouss-overlay" id="navOverlay"></div>
 <div class="ouss-drawer" id="navDrawer">
+  <a href="KP_index.html">🏠 Zurück zum Index</a>
   <a href="#inhalt">📋 Inhalt der KP</a>
-  <a href="#pruefer">👨‍⚕️ Prüfer Uniklinikum Freiburg</a>
+  <a href="#pruefer">👨‍⚕️ Prüfer Freiburg</a>
   <a href="#protokolle">📝 Prüfungsprotokolle</a>
   <a href="#anki">🃏 Anki für die KP</a>
   <a href="#literatur">📚 Literatur</a>
@@ -215,15 +180,13 @@ strong{font-weight:600}
 </div>
 
 <div class="layout">
-
-<!-- SIDEBAR -->
 <aside class="sidebar" id="sidebar">
   <div class="sidebar-header">
-    <div class="sidebar-course">KP Freiburg · Uniklinikum Freiburg</div>
+    <div class="sidebar-course">KP Freiburg · Uniklinikum · Mai 2026</div>
     <div class="sidebar-title"><em>Kenntnisprüfung</em> Freiburg</div>
     <div class="sidebar-stats">
-      <span class="sidebar-stat total">142 Protokolle</span>
-      <span class="sidebar-stat green">✓ 46</span>
+      <span class="sidebar-stat total">161 Protokolle</span>
+      <span class="sidebar-stat green">✓ 59</span>
       <span class="sidebar-stat red">✗ 0</span>
     </div>
   </div>
@@ -232,20 +195,40 @@ strong{font-weight:600}
   </div>
   <div class="sidebar-section">Navigation</div>
   <nav>
+    <a href="KP_index.html">🏠 Index</a>
     <a href="#inhalt">📋 Inhalt der KP</a>
-    <a href="#pruefer">👨‍⚕️ Prüfer Freiburg</a>
+    <a href="#pruefer">👨‍⚕️ Prüfer</a>
     <a href="#protokolle">📝 Alle Protokolle</a>
-    <a href="#anki">🃏 Anki für die KP</a>
+    <a href="#anki">🃏 Anki</a>
     <a href="#literatur">📚 Literatur</a>
     <a href="#feedback">💬 Feedback</a>
   </nav>
   <div class="sidebar-section">Prüfungsdaten</div>
   <nav id="sidebarDates">
+<a href="#p-290420261">29.04.2026-1 </a>
+<a href="#p-29042026">29.04.2026 </a>
+<a href="#p-18032026">18.03.2026 <span style="color:var(--green);font-size:.75rem">✓</span></a>
+<a href="#p-17032026">17.03.2026 <span style="color:var(--green);font-size:.75rem">✓</span></a>
+<a href="#p-11022026">11.02.2026 </a>
+<a href="#p-090220261">09.02.2026-1 <span style="color:var(--green);font-size:.75rem">✓</span></a>
+<a href="#p-09022026">09.02.2026 </a>
+<a href="#p-270120262">27.01.2026-2 <span style="color:var(--green);font-size:.75rem">✓</span></a>
+<a href="#p-270120261">27.01.2026-1 </a>
+<a href="#p-27012026">27.01.2026 <span style="color:var(--green);font-size:.75rem">✓</span></a>
+<a href="#p-26012026">26.01.2026 <span style="color:var(--green);font-size:.75rem">✓</span></a>
+<a href="#p-120120262">12.01.2026-2 <span style="color:var(--green);font-size:.75rem">✓</span></a>
+<a href="#p-120120261">12.01.2026-1 <span style="color:var(--green);font-size:.75rem">✓</span></a>
+<a href="#p-12012026">12.01.2026 <span style="color:var(--green);font-size:.75rem">✓</span></a>
+<a href="#p-161220253">16.12.2025-3 <span style="color:var(--green);font-size:.75rem">✓</span></a>
+<a href="#p-161220252">16.12.2025-2 <span style="color:var(--green);font-size:.75rem">✓</span></a>
+<a href="#p-161220251">16.12.2025-1 <span style="color:var(--green);font-size:.75rem">✓</span></a>
+<a href="#p-16122025">16.12.2025 <span style="color:var(--green);font-size:.75rem">✓</span></a>
 <a href="#p-031220251">03.12.2025-1 <span style="color:var(--green);font-size:.75rem">✓</span></a>
 <a href="#p-03122025">03.12.2025 <span style="color:var(--green);font-size:.75rem">✓</span></a>
 <a href="#p-17112025">17.11.2025 </a>
 <a href="#p-041120251">04.11.2025-1 <span style="color:var(--green);font-size:.75rem">✓</span></a>
 <a href="#p-04112025">04.11.2025 </a>
+<a href="#p-xx102025">xx.10.2025 </a>
 <a href="#p-21102025">21.10.2025 <span style="color:var(--green);font-size:.75rem">✓</span></a>
 <a href="#p-20102025">20.10.2025 <span style="color:var(--green);font-size:.75rem">✓</span></a>
 <a href="#p-091020251">09.10.2025-1 <span style="color:var(--green);font-size:.75rem">✓</span></a>
@@ -384,39 +367,40 @@ strong{font-weight:600}
 <a href="#p-21012020">21.01.2020 </a>
 <a href="#p-11122019">11.12.2019 </a>
   </nav>
-  <div class="sidebar-footer">GPLv3 · frei verfügbar · @Linux62 @oussdoc</div>
+  <div class="sidebar-footer">Aktualisiert Mai 2026 · GPLv3 · @Linux62 @oussdoc</div>
 </aside>
 <div class="sidebar-overlay" id="sidebarOverlay"></div>
 
-<!-- MAIN -->
 <main class="main">
 <div class="main-inner">
 
-  <!-- PAGE HEADER -->
   <div class="page-header fade-in">
     <div class="page-icon">🌲</div>
-    <div class="breadcrumb">OUSS Medizin <span>›</span> Kenntnisprüfung <span>›</span> Freiburg</div>
+    <div class="breadcrumb">
+      <a href="KP_index.html" style="color:var(--text3)">OUSS Medizin</a>
+      <span>›</span> Kenntnisprüfung <span>›</span> Freiburg
+    </div>
     <h1>Kenntnisprüfung <em>(KP)</em> Freiburg</h1>
     <p class="page-subtitle">
-      Prüfungsprotokolle und Erfahrungsberichte für die Kenntnisprüfung am Universitätsklinikum Freiburg.
-      Freiburg hat eine besonders <strong>vielfältige Prüferkommission</strong> — neben Chirurgie und Innerer Medizin
-      kommen regelmäßig Neuroradiologie, Pharmakologie, Mikrobiologie und Allgemeinmedizin vor.
+      Prüfungsprotokolle für die Kenntnisprüfung am Universitätsklinikum Freiburg.
+      Besonders vielfältige Kommission mit 13 bekannten Prüfern aus Neuroradiologie,
+      Pharmakologie, Mikrobiologie, Hämatologie und Allgemeinmedizin.
+      <span class="new-badge">✦ Neu: bis April 2026 aktualisiert</span>
     </p>
     <div class="meta-strip">
       <span>📬 <a href="https://t.me/fspbadenwuttemberg" target="_blank">Telegram-Gruppe</a></span>
-      <span>☕ <a href="https://www.buymeacoffee.com/approbation" target="_blank">Spende (Buy me a coffee)</a></span>
+      <span>☕ <a href="https://www.buymeacoffee.com/approbation" target="_blank">Spende</a></span>
       <span>⚖️ Lizenz: GPLv3</span>
     </div>
   </div>
 
-  <!-- STATS -->
   <div class="stat-grid fade-in">
     <div class="stat-card">
-      <div class="stat-card-num">142</div>
+      <div class="stat-card-num">161</div>
       <div class="stat-card-label">Protokolle gesamt</div>
     </div>
     <div class="stat-card">
-      <div class="stat-card-num green">46</div>
+      <div class="stat-card-num green">59</div>
       <div class="stat-card-label">Bestanden</div>
     </div>
     <div class="stat-card">
@@ -425,7 +409,6 @@ strong{font-weight:600}
     </div>
   </div>
 
-  <!-- INHALT -->
   <div id="inhalt" class="section-divider fade-in">
     <div class="section-divider-num">1</div>
     <h2>Inhalt der Kenntnisprüfung</h2>
@@ -436,31 +419,25 @@ strong{font-weight:600}
 <hr>
     <div class="callout info" style="margin-top:1rem">
       <span class="callout-icon">ℹ️</span>
-      <div class="callout-body">
-        <strong>Rechtsgrundlage:</strong>
+      <div class="callout-body"><strong>Rechtsgrundlage:</strong>
         <a href="https://www.gesetze-im-internet.de/_appro_2002/__37.html" target="_blank">Bundesärzteordnung § 37 Kenntnisprüfung</a>
       </div>
     </div>
   </div>
 
-  <!-- PRÜFER -->
   <div id="pruefer" class="section-divider fade-in">
     <div class="section-divider-num">2</div>
     <h2>Prüfer am Uniklinikum Freiburg</h2>
   </div>
-
   <div class="callout warn fade-in">
     <span class="callout-icon">🎯</span>
     <div class="callout-body">
-      <strong>Freiburg-Besonderheit:</strong> Die Kommission ist in Freiburg besonders vielfältig.
-      Mögliche Fächer: Innere Medizin, Chirurgie, <strong>Neuroradiologie</strong>, <strong>Pharmakologie</strong>,
-      <strong>Mikrobiologie</strong>, <strong>Allgemeinmedizin</strong>, <strong>Hämatologie/Onkologie</strong> und <strong>Herzchirurgie</strong>.
-      Themen wie Helicobacter pylori, Cannabinoide, Neuropharmakologie oder Palliativmedizin
-      können explizit abgefragt werden.
+      <strong>Freiburg-Besonderheit:</strong> Mögliche Fächer: Innere Medizin, Chirurgie,
+      <strong>Neuroradiologie</strong>, <strong>Pharmakologie</strong>, <strong>Mikrobiologie</strong>,
+      <strong>Allgemeinmedizin</strong>, <strong>Hämatologie/Onkologie</strong> und <strong>Herzchirurgie</strong>.
+      Helicobacter pylori, Cannabinoide, Neuropharmakologie oder Palliativmedizin können abgefragt werden.
     </div>
   </div>
-
-  <!-- Fachgebiete cloud -->
   <div class="fach-cloud fade-in">
     <span class="fach-pill" style="background:var(--blue-bg);color:var(--blue);border-color:var(--blue-border)">Innere Medizin</span>
     <span class="fach-pill" style="background:var(--blue-bg);color:var(--blue);border-color:var(--blue-border)">Chirurgie</span>
@@ -473,7 +450,6 @@ strong{font-weight:600}
     <span class="fach-pill" style="background:var(--orange-bg);color:var(--orange);border-color:var(--orange-border)">Unfallchirurgie</span>
     <span class="fach-pill" style="background:var(--red-bg);color:var(--red);border-color:var(--red-border)">Herzchirurgie</span>
   </div>
-
   <div class="pruefer-grid fade-in">
 <div class="pruefer-card">
   <div class="pruefer-dot" style="background:var(--blue)"></div>
@@ -512,7 +488,7 @@ strong{font-weight:600}
   <div>
     <div class="pruefer-name">Dr. Thorsten Hammer</div>
     <div class="pruefer-fach" style="color:var(--orange)">Unfallchirurgie</div>
-    <div class="pruefer-detail">Notfallmedizin · Polytraumamanagement · Traumatologie</div>
+    <div class="pruefer-detail">Notfallmedizin · Polytraumamanagement</div>
   </div>
 </div>
 <div class="pruefer-card">
@@ -520,7 +496,7 @@ strong{font-weight:600}
   <div>
     <div class="pruefer-name">Dr. Manfred Kist</div>
     <div class="pruefer-fach" style="color:var(--teal)">Mikrobiologie</div>
-    <div class="pruefer-detail">Medizinische Mikrobiologie &amp; Hygiene · Helicobacter pylori</div>
+    <div class="pruefer-detail">Medizinische Mikrobiologie &amp; Hygiene · H. pylori</div>
   </div>
 </div>
 <div class="pruefer-card">
@@ -581,28 +557,1200 @@ strong{font-weight:600}
 </div>
   </div>
 
-  <!-- PROTOKOLLE -->
   <div id="protokolle" class="section-divider fade-in">
     <div class="section-divider-num">3</div>
     <h2>Prüfungsprotokolle</h2>
   </div>
-
   <div class="callout warn fade-in">
     <span class="callout-icon">⚠️</span>
     <div class="callout-body">
-      Bitte teilen Sie nach Ihrer Prüfung ein Protokoll! Die Protokolle sind für alle zukünftigen
-      Kandidatinnen und Kandidaten äußerst wertvoll — besonders in Freiburg, wo die Kommission
-      sehr variiert.
+      Bitte teilen Sie nach Ihrer Prüfung ein Protokoll — besonders in Freiburg, wo die Kommission stark variiert.
     </div>
   </div>
-
   <div class="search-bar fade-in">
     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
     <input type="search" id="mainSearch" placeholder="Protokolle durchsuchen (Datum, Diagnose, Prüfer, Fach …)" autocomplete="off">
-    <span class="search-count" id="searchCount">142 Protokolle</span>
+    <span class="search-count" id="searchCount">161 Protokolle</span>
   </div>
-
   <div id="protocolList">
+<section id="p-290420261" class="protocol-entry fade-in">
+  <div class="protocol-header">
+    <div class="protocol-date">📅 29.04.2026-1</div>
+    <div class="protocol-badges"></div>
+    <span class="protocol-toggle">▶</span>
+  </div>
+  <div class="protocol-body"><p>Teil 1 – Pneumonie</p>
+<p>Die Patientin war deutlich verwirrt und erzählte, dass ihr Vater im Alter von 15 Jahren an einem Herzinfarkt verstorben sei. Sie war verwirrt und meinte, dass sie keine stationäre Aufnahme brauche, trotzdem lag die SpO₂ bei 92 % und sie hatte Fieber von 39 °C.</p>
+<p>Ich habe die Patientin beruhigt und ihr die stationäre Aufnahme erklärt.</p>
+<p>Eine Abdomenuntersuchung wurde nicht durchgeführt. Ich habe gesagt, dass eine gezielte körperliche Untersuchung nicht unbedingt gemacht werden musste und habe das in Teil 2 gesagt</p>
+<p>Penicillinallergie.</p>
+<p>Ich habe Levofloxacin 500 mg i.v. gegeben und gesagt, dass bei einer 61-jährigen Patientin ein EKG gemacht werden muss, um die QTc-Zeit zu messen und Herzrhythmusstörungen zu vermeiden.</p>
+<p>Teil 2</p>
+<p>Nur zusätzliche Schilddrüsenuntersuchung.</p>
+<p>Bei der Palpation konnte ich nur etwa 30 % der Knoten tasten.</p>
+<p>Definition von ambulanter und nosokomialer Pneumonie.</p>
+<p>CRB-65-Parameter sowie typische und atypische Pneumonie mit Symptomen und Bildern.</p>
+<p>Dieser Teil hinterlässt einen guten oder schlechten Eindruck, ist aber nicht entscheidend.</p>
+<p>Teil 3 – Herr Kammer</p>
+<p>Ein Patient kam nach einem Fahrradunfall.</p>
+<p>Welche Verletzungen können auftreten: Klavikulafraktur, AC-Gelenksprengung und Schulterluxation.</p>
+<p>Man sollte versuchen, die Klassifikation (Jäger) auswendig zu lernen.</p>
+<p>Anatomie der Schulter und Bänder sind Pluspunkte.</p>
+<p>Ich habe gesagt, dass eine Femurfraktur als Abduktionsfraktur auftreten kann (das war falsch).</p>
+<p>Ich kannte die Häufigkeit der einzelnen Verletzungen nicht.</p>
+<p>Ein Bild wie im Protokoll: akuter arterieller Verschluss.</p>
+<p>Ich habe einen Wattverband erwähnt, aber er sagte, man soll darauf achten, nicht zu viel Druck auszuüben.</p>
+<p>Ätiologie und Therapie nicht vergessen: Analgesie und UFH sowie konventionelle Therapie.</p>
+<p>Bei ihm war es lokale Fibrinolyse mit mechanischer Embolektomie.</p>
+<p>Welches Medikament bei lokaler Fibrinolyse: Alteplase.</p>
+<p>Was ist das: ein rekombinanter Plasminogenaktivator.</p>
+<p>Das Wichtigste bei ihm sind maximal zwei Themen, ähnlich wie in den Protokollen.</p>
+<p>Teil 4 – Herr Duke</p>
+<p>Eine Patientin mit Hb-Abfall auf 3,4 g/dl.</p>
+<p>Man muss die Normwerte von MCV, Hämatokrit, MCH und MCHC kennen.</p>
+<p>Es gab keine Normwerte, es war eine makrozytäre, makrochrome Anämie.</p>
+<p>Danach zwei Laborwerte: Vitamin B12 und Folsäure (ohne Angabe von Normwerten).</p>
+<p>Man muss diese selbst wissen.</p>
+<p>Es war ein Vitamin-B12-Mangel.</p>
+<p>Die Ätiologie des B12-Mangels: Gastritis Typ A und erhöhtes Risiko für Karzinom.</p>
+<p>Er fragte, welche Antikörper im Blut vorhanden sind.</p>
+<p>Ich habe gesagt: Intrinsic-Faktor.</p>
+<p>Teil 5 – Herr Mittler</p>
+<p>Ein Fall: Eine Frau bei der Ausländerbehörde hatte einen Krampfanfall.</p>
+<p>Im Video war ein generalisierter tonisch-klonischer Anfall zu sehen.</p>
+<p>Ich habe direkt das Vorgehen erklärt:</p>
+<p>Erstmaßnahmen: Patientin vor Verletzungen schützen, Atemwege freimachen, i.v.-Zugang (wenn möglich) und Sauerstoffgabe.</p>
+<p>Danach die Therapie, ich habe die Dosis erwähnt bis hin zur Narkose mit Intubation.</p>
+<p>Danach fragte er nach Anästhesie und Medikamenten, nur oberflächlich.</p>
+<p>Zusammenfassung:</p>
+<p>Die Prüfung ist machbar, man sollte laut denken und versuchen, nett zu sein. Die Prüfer waren nett.</p></div>
+</section>
+<section id="p-29042026" class="protocol-entry fade-in">
+  <div class="protocol-header">
+    <div class="protocol-date">📅 29.04.2026</div>
+    <div class="protocol-badges"></div>
+    <span class="protocol-toggle">▶</span>
+  </div>
+  <div class="protocol-body"><a href="https://ousskardiologie.github.io/ousskardiologie/Datein_Kollege/protokol%2027%2004%202026_260427_230117.pdf" target="_blank" rel="noopener" class="pdf-btn">📄 PDF mit Bildern öffnen</a></div>
+</section>
+<section id="p-18032026" class="protocol-entry fade-in">
+  <div class="protocol-header">
+    <div class="protocol-date">📅 18.03.2026</div>
+    <div class="protocol-badges"><span class="tag green">✓ Bestanden</span></div>
+    <span class="protocol-toggle">▶</span>
+  </div>
+  <div class="protocol-body"><p>KP Freiburg 18.3.2026</p>
+<p>Kommission:</p>
+<p>Prof. Kreisel</p>
+<p>Prof. Werzel</p>
+<p>Dr. Mittler</p>
+<p>4/4 bestanden</p>
+<p>Teil 1: STEMİ</p>
+<p>Teil 2:</p>
+<p>Identifikation: DM Typ 1 oder Typ 2</p>
+<p>Alkoholentzugssyndrom</p>
+<p>KU des Knies</p>
+<p>Teil 3:</p>
+<p>Dr. Wertzel: Kolonkarzinom, Wundinfektion, AC-Gelenkssprengung, Klavikulafraktur</p>
+<p>Dr. Mittler: Epistaxis, Asthma Bronchiale</p>
+<p>Prof. Kreisel: Meningitis, CED, Rheumatoide Arthritis</p></div>
+</section>
+<section id="p-17032026" class="protocol-entry fade-in">
+  <div class="protocol-header">
+    <div class="protocol-date">📅 17.03.2026</div>
+    <div class="protocol-badges"><span class="tag green">✓ Bestanden</span></div>
+    <span class="protocol-toggle">▶</span>
+  </div>
+  <div class="protocol-body"><p>Hallo,</p>
+<p>ich habe am 17.03.2026 die Prüfung in Freiburg abgelegt, und 3 von 4 haben bestanden. Ich möchte mich zuerst bei allen bedanken, die ihre Protokolle geteilt haben – das ist für die anderen wirklich sehr hilfreich.</p>
+<p>Die Kommission war sehr nett. Sie bestand aus Dr. Frank Makowiec, Dr. Mayar und einem Internisten, dessen Namen ich leider nicht im Kopf habe (beginnt mit A). Er arbeitet sehr engagiert und mit viel Herz. Er hatte einen A4-Ordner mit vielen Fällen dabei und hat einfach einen davon für jeden Prüfling ausgewählt, mit BGA, EKG oder ausgedruckter Bildgebung.</p>
+<p>Der Verlauf war ähnlich wie von anderen beschrieben. Ich versuche, die genannten Themen von jedem Prüfer stichpunktartig aufzuschreiben.</p>
+<p>🟥 Fragen von Internisten:</p>
+<p>Ursachen für OGB/UGB; im Dünndarm ist Gefäßdysplasie auch häufig</p>
+<p>Wenn ÖGD und Koloskopie unauffällig sind, was kann noch helfen-- CT-Angiographie</p>
+<p>Thrombophlebitis im Unterarm – Therapie (er hat Kühlung, Schmerztherapie, lokale Heparin-Gabe? Genannt, auch abtasten)</p>
+<p>Patient mit Dyspnoe – Vorgehen → EKG interpretieren (SIQIII-Typ, er fragte: häufig? → nein, ca. 10–20%), weiteres Vorgehen -- Anamnese (Immobilisation etc.), nächst? – man bekommt ein CT-Angiographie mit ausgeprägten Embolien beidseits (Reiterembolie), zusätzlich Herzschnitt: rechter Ventrikel vergrößert. Therapie bei schwerem Fall: kathetergestützte Thrombektomie.</p>
+<p>Vorhofflimmern</p>
+<p>Anaphylaktischer Schock</p>
+<p>AECOPD mit GOLD</p>
+<p>🟩 Fragen von Pharmakologie:</p>
+<p>Ein Prüfling ist Anästhesist und hat die Frage bekommen wie Lokalanästhesie mit Adrenalin – wo nicht anwenden? (Ohr, Finger etc.), MAC (Minimum Alveolar Concentration), über N2O.</p>
+<p>andere:</p>
+<p>Euthyreose – Therapie?</p>
+<p>TSH – Funktion</p>
+<p>Hypothyreose – T4 oder T3? Warum? Selen ist dabei auch wichtig.</p>
+<p>Glaukom – Therapie</p>
+<p>Ulkus</p>
+<p>Gicht (Colchicin → Nebenwirkungen, er meinte Darmprobleme)</p>
+<p>Migräne</p>
+<p>Diabetes mellitus</p>
+<p>Osteoporose (Alendronat → Ösophagitis; andere „-dronat“ hat unterschiedliche NW)</p>
+<p>Osteoarthritis</p>
+<p>🟧 Fragen von Chirurgen:</p>
+<p>Der Anästhesist wurde nach post-OP Komplikationen gefragt (Fieber, ↓O₂-Sättigung etc.), ich habe nicht genau zugehört.</p>
+<p>Tumor allgemein (Häufigkeit, Vorsorgeprogramme)</p>
+<p>Prostata (aktive Surveillance, OP, Radiotherapie)</p>
+<p>Am Skelettmodell: häufige Frakturen nennen + Therapie</p>
+<p>(z. B. Tibiakopf-Fraktur, die Wiederherstellung einer stufenfreien Gelenkfläche ist sehr wichtig.)</p>
+<p>Ich finde, die Prüfung ist fair. Die Prüfer wissen auch, dass man aufgrund von Nervosität oder längerer Zeit nach dem Studienabschluss einige Dinge vergessen kann. Man kann die Prüfung bestehen, solange man sich gut vorbereitet – Protokolle sind dabei sehr wichtig. Wenn man bereits in einem bestimmten Bereich gearbeitet hat, sollte man sich auch darauf etwas vorbereiten. Wenn man seine „Fachfrage“ gut beantwortet, gibt das auf jeden Fall Pluspunkte.</p></div>
+</section>
+<section id="p-11022026" class="protocol-entry fade-in">
+  <div class="protocol-header">
+    <div class="protocol-date">📅 11.02.2026</div>
+    <div class="protocol-badges"></div>
+    <span class="protocol-toggle">▶</span>
+  </div>
+  <div class="protocol-body"><p>KP Freiburg – 11.02.2026</p>
+<p>Ich wollte kurz meine Erfahrung teilen, da ich leider vorher keine Zeit hatte zu posten 😊</p>
+<p>Prüfungskommission:</p>
+<p>Vorsitzender Unfallchirurg, ein Internist und ein junger, sehr netter Notarzt.</p>
+<p>⸻</p>
+<p>Teil 1 (Anamnese + Schauspielpatientin):</p>
+<p>Patientin mit Thoraxschmerzen (klassisch). EKG vom Hausarzt mit ST-Hebungen in 2 Ableitungen, aber nur 6 Ableitungen vorhanden → wichtig zu erkennen!</p>
+<p>Sehr entspannte Atmosphäre, die Patientin war freundlich und ich hatte viel Zeit. Konnte eine komplette klinische Untersuchung in Ruhe durchführen.</p>
+<p>Danach genug Zeit für den Arztbrief (alle Materialien erlaubt, Muster kann direkt verwendet werden).</p>
+<p>⸻</p>
+<p>Teil 2 :</p>
+<p>Direkt Fallpräsentation, dann schnell unterbrochen → Diagnose! Warum stabile/instabile Angina Pectoris</p>
+<p>Fragen u.a.:</p>
+<ul>
+<li>Risikofaktoren</li>
+<li>ich hab sofort gesagt dass wir EKG wiederholen müssen (wegen fehlender Ableitungen!)</li>
+<li>EKG Elektroden korrekt anlegen</li>
+<li>Gallenblase + DD Niere (Klopfschmerz)</li>
+<li>Knieuntersuchung (alle Zeichen + Anatomie) → Prüfer hat sogar gezeigt und ich durfte wiederholen</li>
+<li>Schilddrüsenuntersuchung (immer erst aufklären !!)</li>
+<li>Nitrospray: KI und Nebenwirkungen</li>
+</ul>
+<p>→ Teil war etwas stressig, besonders mit dem Internisten.</p>
+<p>⸻</p>
+<p>Teil 3 (Fälle + Theorie):</p>
+<ul>
+<li>EKG: ventrikuläre Tachykardie → Therapie (Amiodaron + Dosierung, langsam i.v.) → Prüfer hat viel gefragt was machen Sie vorher ?? Vollte nur i.v. Zugang zuerst hören 🙃🙃🙃</li>
+<li>unruhiger Patient, erste Maßnahmen (vitalparameter, EKG dann zeigte ein EKG mit VHF (wollte nur die diagnose) → Therapie + Aufklärung des Patienten über Risiken + CHA₂DS₂-VASc</li>
+<li>Hyperkaliämie (7 mmol/l) → Therapie + Komplikationen</li>
+<li>CT Thorax: Aortendissektion (Strukturen, Typen, gefährlich = Aorta ascendens)</li>
+<li>Femurfraktur → Therapie + Osteosynthese + Risiko bei jungen Patienten : Nekrose</li>
+</ul>
+<p>Fragen von Kollegen:</p>
+<p>Diphtherie (Impfung), Divertikulitis/Colon-Präparat, Psoriasis (Therapie), Open-Book-Fraktur, akutes Abdomen, BGA…</p>
+<p>Allgemein:</p>
+<p>Atmosphäre insgesamt entspannt, Prüfer fair und teilweise sehr unterstützend.</p>
+<p>Ich war nach Teil 2 sehr gestresst, aber der Chirurg hat mich extra beruhigt.</p>
+<p>Am Anfang von Teil 3: „Das ist keine Sprechprüfung – sprechen Sie frei!“</p>
+<p>Ergebnis: 3/4 bestanden.</p>
+<p>Fazit:</p>
+<p>Sehr faire Prüfung, viel Zeit im ersten Teil. Wichtig: strukturiert bleiben, laut denken und sich nicht vom Stress blockieren lassen !</p>
+<p>Viel Erfolg euch allen 🍀</p></div>
+</section>
+<section id="p-090220261" class="protocol-entry fade-in">
+  <div class="protocol-header">
+    <div class="protocol-date">📅 09.02.2026-1</div>
+    <div class="protocol-badges"><span class="tag green">✓ Bestanden</span></div>
+    <span class="protocol-toggle">▶</span>
+  </div>
+  <div class="protocol-body"><p>Hallo am 09.02.2026, habe ich die Prüfung in Freiburg abgelegt. Wir waren zu dritt und Gott sei Dank haben alle bestanden.</p>
+<p>Die Kommission war sehr nett. Sie bestand aus Prof. Wertzel, dem Vorsitzenden (Chirurgie), Prof. Nold (Innere Medizin und Notarzt) und Prof. Szabo (Pharmakologie).</p>
+<p>Um 12:00 Uhr habe ich meine Schauspielerin bekommen. Ich musste die Anamnese durchführen. Die Patientin hatte starke Oberbauchschmerzen mit Fieber, die nach einem fetthaltigen Essen aufgetreten sind. Sie hatte vor einer Woche ebenfalls Oberbauchschmerzen, die spontan rückläufig waren, ohne Fieber. Außerdem hat sie einmal erbrochen und ist aktuell übel. Sie hatte zudem einen trockenen Husten und eine Hypercholesterinämie.</p>
+<p>An Vorerkrankungen leidet sie an Hypertonie, behandelt mit Metoprolol 95 mg 1-0-0, und an Diabetes mellitus, behandelt mit Metformin 500 mg 1-0-1. Sie nimmt Pantoprazol 40 mg bei Bedarf ein sowie Atorvastatin 40 mg.</p>
+<p>Wegen der Oberbauchschmerzen hat sie Ibuprofen 400 mg zweimal eingenommen, aber es hat nicht geholfen.</p>
+<p>Sie war 40 Jahre Raucherin, ca. 10 Zigaretten pro Tag, und hat vor einem Jahr aufgehört. Die Patientin trinkt täglich 0,5 L Bier, und am Wochenende trinkt sie Wein und Likör mit Freunden.</p>
+<p>Sie hat eine Allergie gegen Katzenhaare und Hausstaub.</p>
+<p>Ich habe nach vorherigen Labor- und sonografischen Befunden gefragt. Sie hat mir ein Labor und eine abdominelle Sonografie von gestern gezeigt. Es ergab sich eine Erhöhung der Entzündungsparameter (CRP, Leukozytose) sowie Zeichen einer Cholestase mit Erhöhung der AP, der Gamma-GT und des Bilirubins sowie radiologische Nachweise für Gallensteine und eine Wandverdickung der Gallenblase.</p>
+<p>Sie gab an, dass ihre Mutter und Schwester Gallenblasenbeschwerden und Hypercholesterinämie haben, das genaue Krankheitsbild konnte sie nicht sagen. Außerdem ist ihr Bruder vor zwei Jahren an einem Herzinfarkt gestorben.</p>
+<p>Danach habe ich nach Thoraxschmerzen oder einer Schmerzausstrahlung in den Unterkiefer oder den linken Arm gefragt, obwohl ich weiß, dass sich bei Diabetikern eine stumme Ischämie zeigen kann. Sie verneinte dies.</p>
+<p>Anschließend habe ich die körperliche Untersuchung durchgeführt. Es zeigte sich ein positives Murphy-Zeichen sowie ein Druckschmerz im rechten Oberbauch. Danach habe ich den Arztbrief geschrieben.</p>
+<p>Ich habe 40 Minuten gewartet, bis der zweite Teil begann.</p>
+<p>Zweiter Teil:</p>
+<p>Ich habe die Patientin vorgestellt. Dr. Wertzel hat mich gefragt, was meine Verdachtsdiagnose ist. Ich habe gesagt: akute Cholezystitis. Er hat gefragt: Was noch? Ich habe gesagt:</p>
+<p>Rechte basale Pneumonie / Pleuritis, da die Patientin hustet und Fieber hat</p>
+<p>Ulkus / Gastritis, da die Patientin täglich Alkohol trinkt</p>
+<p>Myokardinfarkt, da die Patientin Diabetikerin ist, eine Hypercholesterinämie hat und eine positive Familienanamnese</p>
+<p>Danach hat Prof. Wertzel gefragt: Peritonitis – Definition, Pathophysiologie, Ursachen, was man bei der körperlichen Untersuchung erwartet, Abwehrspannung und deren Pathophysiologie.</p>
+<p>Dr. Nold: Zeigen Sie uns die Untersuchung des Pulsstatus und Lunge sowie Murphy Zeichen</p>
+<p>Dann hat er gefragt: Wenn die Schmerzen in den Flanken wären, was könnte es sein?</p>
+<p>Ich habe gesagt: Nierensteine.</p>
+<p>Er fragte nach dem Vorgehen. Ich habe gesagt: Urinstatus, abdominelle Sonografie, ggf. CT.</p>
+<p>Er fragte: Was findet man als Stigma von Nierensteinen im Urinstatus?</p>
+<p>Prof. Szabo: Was würden Sie der Patientin geben?</p>
+<p>Ich habe gesagt: Metamizol + Butylscopolamin.</p>
+<p>Er fragte nach Wirkmechanismus und Dosis.</p>
+<p>Dann fragte er: Was geben Sie gegen Erbrechen und Übelkeit?</p>
+<p>Ich habe gesagt: Metoclopramid, dann fragte er nach dem Wirkmechanismus.</p>
+<p>Er fragte auch: Welche Erreger sind typisch bei akuter Cholezystitis?</p>
+<p>Und: Welche Antibiotika geben wir mit Dosis?</p>
+<p>Dritter Teil:</p>
+<p>Dr. Wertzel: Ein junger Patient hat plötzlich starke rechte Thoraxschmerzen mit Dyspnoe – Vorgehen.</p>
+<p>11:49</p>
+<p>Ich habe gesagt: schnelle Anamnese, ABCDE-Schema, Vitalparameter messen, dann sofort Nadeldekompression, danach Röntgen und Thoraxdrainage.</p>
+<p>Er zeigte mir ein Röntgen-Thorax mit Pneumothorax, ich musste den Befund beschreiben.</p>
+<p>Er fragte nach der Thoraxdrainage nach Bülau / Monaldi.</p>
+<p>Danach Fragen zu Osteosynthesematerialien und deren Indikationen.</p>
+<p>Anderer Fall: Patient mit rechten Thoraxschmerzen, Differenzialdiagnosen und Vorgehen. Andere Fragen erinnere ich mich leider nicht mehr.</p>
+<p>Dr. Nold:</p>
+<p>Sie sind Assistenzarzt auf einer Station. Eine Krankenschwester ruft Sie an, ein Patient geht es nicht gut wegen Anämie.</p>
+<p>→ Indikationen für Bluttransfusion, Komplikationen, Bedside-Test und Aufklärung.</p>
+<p>Dann anderer Fall: Patient mit Kalium 7,2 mmol/l.</p>
+<p>Wie schätzen Sie die Situation ein?</p>
+<p>Ich habe gesagt: schwere Hyperkaliämie (&gt;6,5 mmol/l).</p>
+<p>Vorgehen:</p>
+<p>Zum Schutz des Herzens vor Rhythmusstörungen sofortige Therapie, EKG, Calciumglukonat 10 % i.v., dann β2-Sympathomimetika (Salbutamol inhalativ) zur intrazellulären Kaliumverschiebung, Furosemid i.v. zur Kaliumausscheidung.</p>
+<p>Bei Versagen dieser Maßnahmen Hämodialyse.</p>
+<p>Andere Fragen erinnere ich mich nicht gut, es ging sehr schnell.</p>
+<p>Prof. Szabo:</p>
+<p>Ein Mann mit metastasiertem Prostatakarzinom und starken Schmerzen.</p>
+<p>→ WHO-Stufentherapie, Wirkmechanismus von Morphin, Nebenwirkungen (er wollte nur Atemdepression und Obstipation hören), andere starke Opioide, warum Fentanyl stärker als Morphin ist, Antidot von Morphin, da der Patient wegen starker Schmerzen suizidal war.</p>
+<p>Dann ein Mann mit Nierenkolik: mögliche Schmerztherapie mit Beispielen und Wirkmechanismus.</p>
+<p>Bei anderen Kollegen:</p>
+<p>Erster Fall: Myokardinfarkt, Pneumonie</p>
+<p>Dritter Teil:</p>
+<p>Chirurgie: KRK Diagnostik, OP- Aufklärung Lungenkarzinom + Röntgen-Thorax, Diagnostik; Colles-Fraktur + Röntgen, Therapie</p>
+<p>Innere Medizin: ANV – KDIGO-Kriterien, Ursachen und Komplikationen; BGA Interpretation ,EKG + Vorhofflimmern + Therapie, Lungenembolie – Diagnostik und Vorgehen</p>
+<p>Pharmakologie: Asthma bronchiale Stufentherapie + Wirkmechanismus, Narkotika – Wirkmechanismus</p>
+<p>Die Kommission war sehr nett und hilfsbereit. Sie wollten nur überprüfen, wie man logisch denkt und als Arzt handelt.</p>
+<p>Immer ruhig bleiben und gut reflektieren, bevor man antwortet. Sie möchten auch hören, wie man denkt, selbst wenn man manchmal die exakte Antwort nicht kennt.</p>
+<p>Niemand kann alles wissen.</p>
+<p>Lernmaterial:</p>
+<p>FIA-Material, Endspurt: Gastroenterologie, Endokrinologie, Hämatologie, Pneumologie, Kardiologie (nur Herzrhythmusstörungen)</p>
+<p>AMBOSS: den Rest</p>
+<p>Last-Minute-Pharmakologie</p>
+<p>Die KP ist absolut machbar. Man sollte die wichtigsten Kapitel gut beherrschen. Die Prüfer sind unterstützend und leiten einen zur richtigen Lösung. Ich wünsche euch allen viel Erfolg</p></div>
+</section>
+<section id="p-09022026" class="protocol-entry fade-in">
+  <div class="protocol-header">
+    <div class="protocol-date">📅 09.02.2026</div>
+    <div class="protocol-badges"></div>
+    <span class="protocol-toggle">▶</span>
+  </div>
+  <div class="protocol-body"><p>Hallo zusammen, hier ist mein Protokoll vom Montag : 09.02.2026</p>
+<p>Kommission:</p>
+<p>Prof.Wertzel(Chirurgie)</p>
+<p>Dr Nold ( Innere/Notfall)</p>
+<p>Prof.Szabo( Farmakologie)</p>
+<p>Teil 1: ACS (inferior Myokardinfarkt) Man kriegt ein EKG und Labor von der Schauspielerin.</p>
+<p>Teil 2: Prof Nold : Therapie von ACS dan Lungenuntersuchung- Auskultation auf Schauspielerin Zeigen.</p>
+<p>Prof Szabo: Medikamenten aus der Anamnese: Metoprolol Ramipril, und Atorvastatin Wirkungsmechanismus erklären und was machen sie wenn die Kritische 90min für PCI abgelaufen ist?</p>
+<p>Prof Wertzel: Schilddrüse Untersuchung Zeigen. Was beachtet man bei Palpation und wie ist Schilddrüse bei Morbus Basedow? (diffuse vergrößert).Was hört man bei Auskultation der Schilddrüse bei M.Basedow? Wie lange machen sie Handdesinfektion? (30s)</p>
+<p>Teil 3:</p>
+<p>Prof Szabo: Definieren Sie HZV und EF mit normale Werten.</p>
+<p>Ihre Patientin hat schon 2 Episoden von ACS und kann nicht mehr Treppe hochsteigen wegen Atemnot und hat geschwollene Beine und häufige nächtliche Wasserlassen. Was könnte das sein? Herzinsuffizienz. Dann fragen über Medikamente für HI alles nennen mit Wirkungsmechanismus und Beispiele von jeder Gruppe. Dann spezifisch Fragen für SGLT2 Hemmer und was bedeutet die Verkürzung, wie wirkt und für Welche Pat würde zuerst Medikament entwickelt? (Diabetiker).Ein Beispiel von dieser Gruppe. (empagliflozin). Dann Ein Fall :bei ein Pat wurde eine Knieprotese wegen Arthrose empfohlen, Welche Anästhesie können Sie empfehlen? Total und spinal. Dann Fragen über Total Anästhesie, Ablauf: Preoxygenierung, Fentanyl Propofol und myiorelaxans z.b Rocuronium. Dann wo wirkt Spinalanästhesie? ( Im Subarachnoidal Raum wollte er hören.)</p>
+<p>Prof Nold:</p>
+<p>Pat mit Palpitationen 75 J alt, diff dg? Dann habe ich Ein EKG gekriegt, VHF. dann alles über VHF Therapie. Nächste Fall: Patient mit geschwollenem Bein und Dyspnoe Vorgehen? Es war LAE. Dann Vorgehen wenn hämodynamisch stabil und was wenn instabil. Dritte Fall war Patient mit erhöhtem Kreatinin, es was Chronische Nieren Insuffizienz. Dann Fragen über Definition und Ursache.</p>
+<p>Prof Wertzel:</p>
+<p>Erste Fall: eine 75j Patientin ist auf der Hüfte hingefallen, diff dg? Hat mit ein Röntgen Bild gegeben,es war SHF..Dann über Therapie welche Möglichkeiten gibts? Fragen über Endoprotese, Dynamische Hüftschraube. Wo nutz man Dynamische Hüftschraube? (Bei Junge Patienten).</p>
+<p>Nächste Fall: Pat mit Hämoptyse diff Dg?</p>
+<p>Dann habe ich ein Rö Thorax bekommen- Lungen Ca. Vorgehen, auch ein Ct vom Lungen Ca zusätzlich. Therapie von Lungen Ca erklären.</p>
+<p>Tipps: FIA KURS</p>
+<p>ENDSPURT</p>
+<p>Protokolle, (besonders für Farmakologie wichtig)</p>
+<p>Bettina Bässler Videos für Radiologie</p>
+<p>Ekg für Isabel</p>
+<p>Last Minute Farmakologie</p>
+<p>Prüfung ist anspruchsvoll, aber machbar, und Professoren haben Geduld und hilfen sehr sehr viel bis man auf Richtige Antwort kommt. Viel Erfolg euch allen, ihr schafft das !</p></div>
+</section>
+<section id="p-270120262" class="protocol-entry fade-in">
+  <div class="protocol-header">
+    <div class="protocol-date">📅 27.01.2026-2</div>
+    <div class="protocol-badges"><span class="tag green">✓ Bestanden</span></div>
+    <span class="protocol-toggle">▶</span>
+  </div>
+  <div class="protocol-body"><p>Datum: 27.01.2026</p>
+<p>Ort: Universität Freiburg</p>
+<p>Ergebnis: 4/4 bestanden – Gott sei Dank</p>
+<p>Prüfungskommission</p>
+<ul>
+<li>Dr. Frank Makowiec (Chirurgie, Vorsitzender / Chef)</li>
+<li>Dr. Mayar (Pharmakologie)</li>
+<li>Dr. Duffner (Innere Medizin / Notfallmedizin)</li>
+</ul>
+<p>Teil 1 – Anamnese, körperliche Untersuchung und Arztbrief:</p>
+<p>Es gab insgesamt zwei Schauspielpatientinnen mit zwei Fällen:</p>
+<ul>
+<li>Pneumonie</li>
+<li>STEMI</li>
+</ul>
+<p>Wir haben uns gegen 11:00 Uhr getroffen und wurden von Dr. Makowiec freundlich begrüßt.</p>
+<p>Offiziell hatten wir:</p>
+<ul>
+<li>45 Minuten für Anamnese und körperliche Untersuchung</li>
+<li>45 Minuten für den Arztbrief</li>
+</ul>
+<p>In der Praxis war die Kommission – besonders Dr. Makowiec – sehr locker mit der Zeit, vor allem bei der Briefschreibung.</p>
+<p>Fall STEMI:</p>
+<p>die Patienten hatten typische Angina pectoris. Man muss nach Vorbefunden fragen, ob sie schon beim Hausarzt wegen der Beschwerden war, damit sie uns die EKG und die Vitalparameter von morgen (Beschwerdenbeginn) gibt. Das EKG hat St-hebung in Ableitungen II, III und aVF gezeigt.</p>
+<p>Ich habe eine fast vollständige körperliche Untersuchung durchgeführt (ohne neurologischen Status), alle Befunde waren unauffällig.</p>
+<p>Nach Teil 1 mussten wir 1–2 Stunden auf Teil 2 warten.</p>
+<p>Teil 2 – Patientenpräsentation &amp; klinische Fragen</p>
+<p>Bei Teil 2 war die gesamte Kommission anwesend.</p>
+<p>Ich stellte die Patientin strukturiert vor.</p>
+<p>Typische Fragen im STEMI-Fall</p>
+<ul>
+<li>Akuttherapie beim STEMI</li>
+</ul>
+<p>o welche Medikamente</p>
+<p>o Dosierungen</p>
+<p>o Wirkmechanismen</p>
+<p>o Kontraindikationen</p>
+<ul>
+<li>Zeitfenster bis zur PCI</li>
+</ul>
+<p>o wann Lysetherapie</p>
+<ul>
+<li>wenn der Notarzt vor Ort EKG geschrieben hat und STEMI hätte, wie viel Zeit hat er bis PCI und wann lyse Therapie? Zählt die Zeit vom Ort in diesem Fall oder ab Behandlung in der Notaufnahme?</li>
+<li>Das OMI/NOMI-Konzept statt STEMI und NSTEMI: (okklusiven (OMI) und nicht-okklusiven Myokardinfarkten (NOMI)). ich wüsste das nicht.</li>
+<li>ASS mechanism of action.</li>
+<li>welche Medikamente sollten bei dieser PAtientin gegen Blutdruck gegeben werden: B-Blocker (besonders weil das Risiko für Arrhythmien bei STEMI besteht) und ACE-Hemmer (um Remodelling des Ventrikl zu verhindern) und kann man Diuretika benutzen.</li>
+<li>körperliche Untersuchung: Dann musste ich zeigen wie die Lungen atemverschieblich sind und wie man Perkussion macht.</li>
+</ul>
+<p>Bei anderen Kandidaten:</p>
+<ul>
+<li>vollständige neurologische Untersuchung</li>
+<li>ABCDE-Schema</li>
+<li>Atemwegsmanagement inkl. Guedel-Tubus</li>
+</ul>
+<p>Teil 3 – Theoretische Prüfung (14 Minuten pro Arzt)</p>
+<p>Es gab eine Pause in der Mitte.</p>
+<p>Dr. Makowiec (Chirurgie) hat 10 Themen.</p>
+<p>man muss eine Nummer von 1 bis 10 aussuchen.</p>
+<p>es gab bei uns: Ileus, pAVK, gastrointestinal Blutung, akutes Abdomen.</p>
+<p>Dr. Mayar (Pharma):</p>
+<ul>
+<li>Vorgehen bei Schilddrüsenknoten</li>
+<li>Unterschied kalte vs. heiße Knoten</li>
+<li>Therapie der Struma bei Iodmangel</li>
+<li>Hyperthyreose</li>
+<li>Therapie</li>
+<li>Wirkmechanismen</li>
+<li>Kontraindikationen</li>
+<li>Warum PTU in der Schwangerschaft?</li>
+<li>warum wird PTU bei Schwangerschaft und bei Stillen benutzt?</li>
+</ul>
+<p>11:49</p>
+<p>Dr. Duffner (Innere Medizin-Notfall):</p>
+<p>es wurde bei ihrer Patientin PCI gemacht, aber es wurde viel Kontrastmittel benutzt, für was ist das ein Risiko? wie kann man akute Niereninschränkung diagnostizieren? 3 Kritieren.</p>
+<p>Anstieg des Serumkreatinins um ≥0,3 mg/dL innerhalb von 48 h</p>
+<p>Anstieg des Serumkreatinins auf das ≥1,5-fache</p>
+<p>Neu aufgetretene Reduktion der Urinmenge auf &lt;0,5 mL/kgKG/h über 6 h</p>
+<p>Dr. Duffner: Ja, aber können sie 0,5 mL/kgKG/h echt rechnen? wenn die PAtientin schon auf der Station mit Dauerkatherter ist, dann kann man einfach gucken, ob der Urinbeutel leer ist.</p>
+<p>Welche Typen gibt es? ich habe bei Intrarenal-typ Glomerulonephritis mit RPGN.</p>
+<p>was ist RGPN und wie kann man es diagnostizieren und was ist die Therapie (Er hat mir gesagt, hätte ich RPGN nicht genannt, hätte er danach nicht gefragt).</p>
+<p>die Patientin hätte dann echt Nierenschädigung und er hat mir BGA gegeben, wo Kalium fast 8 war (erhöht) Hyperkaliämie, was ist vorgehen.</p>
+<p>ich habe EKG geschrieben. er hat gesagt, es gibt schon Veränderungen.</p>
+<p>Calciumglukonat (Kardioprotektion)</p>
+<p>und Insulin mit Glukose und man könnte sogar Salbutamol inhalativ benutzen als akute Therapie.</p>
+<p>was gibt man Insulin mit Glukose? Insulin 10 IE in Glucose 20% 125 mL über 20 min</p>
+<p>Wo ist das Kalium jetzt? intrazellulär, das ist nur akute Therapie.</p>
+<p>es sollte forcierte Diurese benutzen mit Furosemid 40-80 mg i.v.</p>
+<p>dann Chelation therapy (Kationenaustauscher) p.o. könnte benutzt werden und Hämodialyse.</p>
+<p>andre Kollege:</p>
+<p>EKG von Vorhofflattern, Therapie, was sind die SVT?</p>
+<p>bild von Erysipel, D.D., Unterschied zwischen Erysipel und Phlegmone, Ätiologie, Therapie.</p>
+<p>ein Fall mit Bild von Thrombophlebitis wegen venösen Zugangs. vorgehen (Entfernung), Therapie, welche Antibiotika und wie lang, der Patient ist kompliziert, weil er Schrittmacher hat, und deshalb sollte die Therapie bis zu 4 Wochen gegeben werden. was sind Duke Kriterien?</p>
+<p>Die Kommission war super nett und hilfreich.</p>
+<p>es gab dort Wasser und soger Essen.</p>
+<p>Lernquelle:</p>
+<p>AMBOSS (Kp Lernplan)</p>
+<p>ich habe Amboss Podcast gleichzeitig gehört, als ich den Artikel von Amboss gelesen habe.</p>
+<p>für Notfälle: https://sop-notaufnahme.de/ Super hilfreich</p>
+<p>Protokulle +++++++++++</p>
+<p>Ich habe nicht als Arzt in Deutschland gearbeitet und keinen Kurs gemacht.</p>
+<p>Trotzdem ist es absolut machbar.</p></div>
+</section>
+<section id="p-270120261" class="protocol-entry fade-in">
+  <div class="protocol-header">
+    <div class="protocol-date">📅 27.01.2026-1</div>
+    <div class="protocol-badges"></div>
+    <span class="protocol-toggle">▶</span>
+  </div>
+  <div class="protocol-body"><p>Dr Malkoviec hat mich eine Augenuntersuchung durch zu führen ( da ich ein Augenarzt bin) Ich habe Inspektion von Augen erklart, dann Direkt- und Indirektlichtreflexe gezeigt, Augenbewegungen und Akkomodationreflex geprüft. Dann habe ich die Bulbis palpiert. Sie sollen einen Konsistenz wie gekochte Eier haben. beim 3. Teil Internist hat mir ein Bild von einem linken gerötetem,geschwollenem Arm gezeigt. Was sehen Sie hier? Erysipel Was ist Erysipel? Entzündung obersten Hautschichten Was sind die haufigsten Erreger? Staf. Aureus Wie behandel Sie diesen Fall ? mit Ampicillin Gut zielgerichtet Therapie Gibt es aucht eine Entzündung von tieferen Hautschichten? Da habe ich mich einbischen verzweifelt und Fronkel gesagt Sie meinen wahrscheinlich etwas Anderes ? Ja es ist Cellulitis Was ist der Unterschied Erysipel ist scharf begrenzt, hat knotenartige rote konfluierende Flecken und ist leicht geschwollen. Cellulitis hat keine scharfe Grenzen, Haut ist ganz geschwollen und gespannt,ist sehr warm Gut. Dann hat er mir ein EKG gegeben es war eine Ventrikulare Tachykardie Was sehen Sie hier? Ventrikulare Tachykardie Sind Sie sicher? Ja wie geht es dem Patienten Ihrer Meinung nach ? Sehr schlecht hat er Puls? nein . Dann sofort defibrillieren. Wenn er Puls gehabt hatte? dann Kardioversion das ist R triggert . Ja das wollte ich zunachst fragen aber Sie gehen vor. Patient hat keinen Puls und Sie haben defibrilliert und was machen Sie dann? CRP anfangen . Wie lange machen Sie CRP? 2 Minuten Lang Dann? EKG kontrolle wenn kein Sinusrhythmus noch einmall defibrillieren. und CRP weiterführen nach 2 Minuten noch einmal EKG Kontrolle kein Unterschied noch einmal defibrillieren zusatzlich Adrenalin und Amiodaron Wie viel ? 1mg in 9 ml NaCl adrenalin 300 mg Amiodaron aber CPR weiter nach 2 Minuten wieder EKG Kontrolle ES gibt keine Veranderungen . Dann noch einmal defibrillieren und CPR weiter nach 2 Minuten EKG Kontrolle wenn noch VT dann noch einmal defibrillieren noch einmal Adrenalin und Amiodaron aber Amiodaron dieses mal 150 mg. wie lange machen Sie so weiter bis Sinusrhytmus zurückkehrt Gut ich bin nicht sicher dass mein Augenarzt diese Falle so gut behandeln würde. Dr.Mayer sagen Sie uns bitte etwas über die Glaukom Medikamente: Ich habe erst kurz Glaukom beschrieben und dann die abflussfördernde und produktionlindernde Medikamente erklart. Was ist Hagelkorn und Gestenkorn? Chalasion und Hordeolum was ist der Unterschied ? Die entzündeten Drüsen sind Unterschiedlich Erzahlen Sie uns über Arthrose. ich habe Definition, Mechanismus, Therapie erklart. Ist es heilbar ? Nein Oh doch jetzt gibt eine neue Methode in Basel therapiert man Arthrose. Dr Malkoviec Akut Abdomen Befunde Ursachen Therapie von Ulcus Duodenie, Ulcus Ventrikuli ? Nahen Ulcus an Antrum was machen sie ? Biopsieentnahme Warum? Ca Risiko und auch für HP Bestimmung Nimmt man bei Ulcus Ventrikuli auch Biopsie für HP? Nein da sind Gefasse es kann Bluten. Die Gefasse sind weit weg sie können nicht Bluten . Man braucht keine Biopsie weil bei Ulcus Duodeni HP über 90% positiv ist.</p>
+<p>11:49</p>
+<p>Sie haben eine Laporoskopie gemacht und im Unterbauch braune Flüssigkeit gesehen was denken Sie? perforierte Divertikulitis. welche Op würden Sie durchführen wenn der Patient alt ist minimal invasive Sigmaresektion und Kolostoma. Hartmann Op ist sehr leicht aber dann wieder anastomosieren ist sehr schwer, hat viele Komplikationen. Was noch ? Wenn es nicht so schlecht ist direkt Kolorectal anastomose Wissen Sie noch eine Zwischenmethode ? Ja zweizeitige Op. minimal invasive Sigmaresektion kolorectale Anastomose und doppelseitige Ileostoma. Ja für einen Augenarzt sehr gut. Die Prüfer sind sehr net das fühlt man von ıhrer Körpersprache . Ich habe einen Kurs besucht. von Amboss gelernt und viele youtube Videos angeschaut . viel Glück</p></div>
+</section>
+<section id="p-27012026" class="protocol-entry fade-in">
+  <div class="protocol-header">
+    <div class="protocol-date">📅 27.01.2026</div>
+    <div class="protocol-badges"><span class="tag green">✓ Bestanden</span></div>
+    <span class="protocol-toggle">▶</span>
+  </div>
+  <div class="protocol-body"><p>Prüfung am 27.01.2026 – bestanden 🎉</p>
+<p>Kommission: Makowiec-visceral chirurg Johannes -innere medizin, Dr. Mayer Pharmakologe</p>
+<p>Alle 4 von 4 haben bestanden.</p>
+<p>Die Stimmung war insgesamt sehr gut, ruhig und fair. Die Prüfer wollten wirklich, dass man besteht.Vorbereitung mit AMBOSS und Protokollen hat völlig gereicht.</p>
+<p>Mein Fall :Pneumonie.</p>
+<p>Ich habe die Patientin ganz normal vorgestellt (Anamnese, Beschwerden, grober Status). Ich konnte die Patientenvorstellung bis zum Ende machen. Danach kamen allgemeine Fragen zur Pneumonie.</p>
+<p>Gefragt wurde:</p>
+<ul>
+<li>Was ist ambulant erworbene Pneumonie</li>
+<li>Was ist nosokomiale Pneumonie</li>
+<li>Unterschiede zwischen beiden (Erreger, Therapie, Risiko)</li>
+<li>Regeln bei CAP vs. HAP</li>
+<li>CRB-65</li>
+<li>Verwirrtheit</li>
+<li>Atemfrequenz ≥ 30</li>
+<li>Blutdruck niedrig</li>
+<li>Alter ≥ 65</li>
+</ul>
+<p>→ wofür man das benutzt (Schweregrad, stationär ja/nein</p>
+<p>Ramipril</p>
+<p>Die Patientin nahm Ramipril.</p>
+<p>Fragen dazu:</p>
+<ul>
+<li>Warum Ramipril husten als Differenzialdiagnose?</li>
+<li>Unterschied Husten bei Ramipril vs. Pneumonie:</li>
+<li>Ramipril: trockener Reizhusten</li>
+<li>Pneumonie: Husten mit Auswurf, Fieber, Krankheitsgefühl</li>
+<li>Warum macht Ramipril Husten?</li>
+<li>Wegen Bradykinin</li>
+</ul>
+<p>Ist paracetamol oder novalgin besser bei pneumonie und wirkmechanismus von beide</p>
+<p>Röntgen-Thorax</p>
+<p>Der Internist wollte:</p>
+<ul>
+<li>Allgemein erklären, wie man ein Röntgenbild beschreibt</li>
+<li>Wie sieht ein Pneumonie-Röntgen aus (Verschattung, Infiltrat)</li>
+<li>Wie beurteilt man das Herz im Röntgen</li>
+<li>Kardiothorakaler Quotient (Herzbreite &lt; 50 %</li>
+</ul>
+<p>Klinische Untersuchung</p>
+<p>Ich sollte Reflexe prüfen, dann kam:</p>
+<ul>
+<li>Patellarsehnenreflex</li>
+<li>Kurz die Physiologie erklären</li>
+<li>Segment L2–L4</li>
+<li>Eigenreflex</li>
+</ul>
+<p>Drite Teil – Internist</p>
+<p>Er hat einen Fall gemacht:</p>
+<p>Patientin:</p>
+<ul>
+<li>War in Amerika</li>
+<li>12 Stunden Flug</li>
+<li>Nimmt orale Kontrazeptiva</li>
+<li>Jetzt plötzlich Atemnot / Thoraxschmerz</li>
+</ul>
+<p>→ Verdacht auf TVT / Lungenembolie</p>
+<p>Fragen:</p>
+<ul>
+<li>Risikofaktoren</li>
+<li>Differenzialdiagnosen</li>
+<li>Diagnostik</li>
+<li>Therapie (Antikoagulation etc.</li>
+</ul>
+<p>Wells score</p>
+<p>Dann:</p>
+<ul>
+<li>EKG mit Vorhofflattern</li>
+<li>Allgemein:</li>
+<li>Unterschied supraventrikuläre vs. ventrikuläre Tachykardien</li>
+<li>Breit vs. schmal, EKG-Grundlagen</li>
+</ul>
+<p>⸻</p>
+<p>Pharmakologie (Dr. Mayer)</p>
+<ul>
+<li>WHO-Stufenschema</li>
+<li>Unterschiede zwischen Opioiden</li>
+<li>Fentanyl: ca. 100-fach stärker als Morphin</li>
+<li>Pharmakokinetik vs. Pharmakodynamik</li>
+<li>Was passiert, wenn man zwei Medikamente mit gleicher Wirkung nimmt</li>
+</ul>
+<p>→ Wirkungsverstärkung, Nebenwirkungen</p>
+<p>Er hat viel selbst erklärt, sehr entspannt.</p>
+<p>⸻</p>
+<p>Chirurg</p>
+<p>Man musste eine Nummer ziehen.</p>
+<p>Ich hatte Nummer 2: Gastrointestinale Blutung.</p>
+<p>Gefragt wurde:</p>
+<ul>
+<li>Ursachen</li>
+<li>Obere vs. untere GI-Blutung</li>
+<li>Diagnostik</li>
+<li>therapie</li>
+</ul></div>
+</section>
+<section id="p-26012026" class="protocol-entry fade-in">
+  <div class="protocol-header">
+    <div class="protocol-date">📅 26.01.2026</div>
+    <div class="protocol-badges"><span class="tag green">✓ Bestanden</span></div>
+    <span class="protocol-toggle">▶</span>
+  </div>
+  <div class="protocol-body"><p>Die Kommision gestern war: Dr Horst Urbach (Neuroradiologie), Dr Duque Alfonso (Hämatologie - Onkologie) und Dr Makowiec (Allgemeinchirurgie)</p>
+<p>Ich habe die Kenntnisprüfung am 26.01.2025 in Freiburg abgelegt und bestanden! Die Kommission war: Dr Horst Urbach (Neuroradiologie), Dr Duque Alfonso (Hämatologie - Onkologie) und Dr Makowiec (Allgemeinchirurgie). Mein Fall war: Instabile Angina Pectoris - STEMI: Die Schauspielerin war sehr nett und hat ganz deutlich gesprochen. Sie bracht Vitalparameter, Laborwerte und EKG mit. Diese erste Teil fing um 11:45 Uhr bis 15:30 Uhr. Die Zeit reicht, um Anamnese, KU, und Brief zu schreiben.</p>
+<p>Teil 2: um 15:30 Uhr kam der Patient(in) Vorstellung. Ich konnte meine Patientin ohne Unterbrechung vorstellen. Fragen: Wie ist die Klassifikation von ACS? (Akute Myokardinfarkt [NSTEMI, STEMI], Instabile Angina Pectoris). Was bedeutet bezüglich der Herzkranzgefäße eine STEMI? Total Verschluss. Beschreibung von Koronare Gefäße (Ich habe grob beschrieben). Wie würden sie dies Behandeln? (Ich habe die Behandlung wie in Amboss beschrieben). Warum haben sie nicht eine PCI empfohlen? Weil wir außerhalb der Zeitfenster waren. Dann wie würden Sie es behandeln? Ich sagte Lysetherapie, aber Dr Duque Alfonso hat mich gesagt, dass in der Realität man macht ganz selten eine Lyse und man macht trotz des Zeitfensters eine PCI. Welche Gefäße verwendet man für die PCI? Femoral. Aber jetzt nicht mehr… welche andere Gefäße kann man benutzen? Ich sagte Arteria brachialis, aber es war A. Radialis. Bitte zeigen Sie mir wo ist die A. Radialis. Welche Probe macht man bevor diese Verfahren, um die Durchblutung zu überprüfen? Allen Test (ich habe es gezeigt). Bitte beschreibung der Gefäße von A. Radialis bis zum Herz (A. Radialis -&gt; A. Brachialis -&gt; A. Subclavia -&gt; Aortenbogen -&gt; Koronaregefäße). Bitte zeigen Sie mir (auf die Patientin) wo ist die A. tibialis posterior.</p>
+<p>Teil 3: Fragerunde. Jeder Prüfer fragt jeden Prüfling für 15 Minuten. Dr Makowiec: Was ist die häufigste Fraktur wegen Glatteis hier in Deutschland? Distale Radiusfraktur („Colles“ kennt er nicht). Wie ist die Behandlung? Am meistens konservativ. Aber wenn alte Frauen z.B. ausrutschen und auf den Boden seitwärts stürzen? Hüftgelenkfraktur. Wie würden Sie es behandeln am besten? Ich sagte Dynamische Schrauben und danach Plattenostheosynthese, aber er wollte hören Prothese. Die 3 häufigste Krebs bei Männern und Frauen? (Männer: Prostata, Colon, Lunge. Frauen: Mammakarzinom, Colon, Lunge (die Ordnung habe ich falsch gesagt, aber er war ebenfalls zufrieden). Wie viele Frauen entwickeln Brustkrebs in Deutschland? Jede achte bis neunte? Wie viele Männer entwickeln Prostatakrebs? Fast alle. Kolonkarzinom: Welches bildgebende Verfahren zur Diagnose? Coloskopie. Sie nehmen eine Biopsie und bestätigen, dass es sich um ein Kolonkarzinom handelt. Was machen sie danach? Staging, durch CT-Scan des Lebers und Thorax. Jetzt OP, was entfernen Sie? Colon descendens und Sigma. Mit Flexur? Ja. Und Warum eine so weite Entfernung? Dies war ich nicht sicher, aber ich habe gesagt, dass, da das Kolon so vaskularisiert ist, muss man wegen das Gefahr von Metastase viel entfernen (Lymphknoten inklusiv)</p>
+<p>Dr. Urbach (dieser Teil war ganz schlecht): zeite mir ein Bild von einem Ohr mit einem Cholesteatom. Wie heißen diese kleinen Knochen in Mittelohr? Ich habe auf Deutsch nicht bewusst, zum glück konnte ich auf Spanisch antworten, aber der heiße Hammer, Amboss und Steigbügel. Was ist das? – Ein Tumor in Mittelohr. Wie heißt es? Cholesteatom (habe ich nicht genau gewusst). Wie entsteht ein Cholesteatom? Er hat gesagt wegen chronischen Mittelohrentzündungen, aber die Ursachen sind viele. Was ist eine mögliche Komplikation? Meningitis. Danach zeigte er mit ein MRT von eine schöne runde Medulloblastom, die ich nicht erkannt habe. Ich habe ebenfalls eine Raumforderung zwischen das Cerebellum und der Hirnstamm (vierte Ventrikel). Was für ein Tumor ist das (bei Kindern am häufigsten)? Medulloblastom. Was ist eine Komplikation? Wegen Ventrikel Obstruktion: Hydrocephalus. Wo beurteilt man in eine MRT einen Hydrocephalus? Hinterhorn der Seitenventrikeln. Wie behandelt man das? Ich habe nur ein Shunt gesagt. Wo genau? Von Vorderhorn der Lateralventrikeln nach Peritoneum. Bild von eine Ophthalmoskop: Was ist das und warum? Um Zeichen von erhöhte Hirndruck in Augenhintergrund auszuschließen (Papilödem). Fotos von 2 Augenhintergründe: welche hat Papilödem? Danach: Häufigste Ursache in junge Patienten von plötzlich auftretendem verschwommenem Sehen unilateral? Multiple Sklerose. Wie macht man die Diagnose? Lumbalpunktion und MRT. Was sucht man in eine LP? Ich habe nicht gewusst.</p>
+<p>Dr. Duque Alfonso: Kommt ein Patient, 55 J, vor 3 Tage hatte er eine Synkope, und seit 3 Tagen fühle er sich „komisch“ und habe er Dyspnoe beim Treppensteigen. Ich habe Vitalparameter und KU vom Herz gebeten: alles normal, Herztone arrhythmisch auch puls arrhythmisch. Ich habe EKG gebeten: VHF. Wie würden sie das behandeln? Zuerst habe ich (nicht vollständig) die CHA2-DS2-VASc Score genannt, um Thromboseprophylaxe zu beurteilen, aber wegen der 3 Tagen habe ich ebenfalls Antikoagulanzien empfohlen. Welche Antikoagulanzien kennen Sie? Heparinen, DOAKs, Vit-K Antagonisten. Was noch? Rhythmuskontrolle mit Amiodaron. Danach Frequenzkontrolle: ich habe gesagt Metoprolol. Er hat mir gefragt: Wenn es Kontraindikationen für Betablocker gibt, was würden Sie verschreiben? Kalzium-Kanalblocker (Verapamil-Diltiazem). Er war zufrieden.</p>
+<p>Ehrlich gesagt, die Prüfung war weder einfach noch schwierig. Wie schon in vorherigen Protokollen gesagt, die Prüfer wollen, dass wir die KP bestehen. Die geben uns oft Tipps, damit wir die richtige Antwort finden. Und ja, die stellen fachliche Fragen. Aber meine Meinung nach, diese Fragen haben ein Ziel: Unser logisches Denken und unsere Reaktionsfähigkeit zu beurteilen. Meine Empfehlung: Versucht euch, keine Angst zu haben. Vertraut eure Erfahrung als Ärzte und lest die Protokolle, die häufigste Fällen sehr tief und detailliert lernen, und anderen Themen, die nicht so häufig kommen, grob wissen: Symtome, Diagnose, Behandlung.</p>
+<p>Viel Erfolg!</p>
+<p>Quellen:</p>
+<p>50 Wichtigste Fällen usw… ++++</p>
+<p>Amboss: ++++++++</p>
+<p>Lernkarten: 0</p>
+<p>Protokolle: +++++</p></div>
+</section>
+<section id="p-120120262" class="protocol-entry fade-in">
+  <div class="protocol-header">
+    <div class="protocol-date">📅 12.01.2026-2</div>
+    <div class="protocol-badges"><span class="tag green">✓ Bestanden</span></div>
+    <span class="protocol-toggle">▶</span>
+  </div>
+  <div class="protocol-body"><p>Hallo</p>
+<p>Am 13.01.2026 habe ich meine Prüfung in Freiburg abgelegt und Gottseidank bestanden (4/4).</p>
+<p>Die Prüfungskommission bestand aus Dr. Minin(innere Medizin), Dr. Hammer ( Unfallchirurgie), und Dr. Jordan ( Notfallmedizin) .</p>
+<p>Wir wurden in zwei Gruppen eingeteilt ( zwei pneumonie , zwei Angina pectoris)</p>
+<p>Teil 1:</p>
+<p>mein Fall war Pneumonie genau wie im Protokoll .</p>
+<p>Der Schauspieler war sehr hilfreich . Ich habe alle KU bei ihm durchgeführt und er war zufrieden und hat weitergesagt. Also die Anamnese war ein bisschen anders ( der Hausarzt war bei ihm zu Hause und hatte ihm ins Krankenhaus geschickt. Röntgen und Laboruntersuchungen wurden im Krankenhaus gemacht nicht beim Hausarzt)</p>
+<p>Dann habe ich viele zeit um Arztbrief zu schreiben.</p>
+<p>Teil 2 :</p>
+<p>bei mir war um 16:30</p>
+<p>Ich habe mein Fall vorgestellt und dann kommt fragen:</p>
+<ul>
+<li>Dr Hammer : was ist die Therapie ? Warum Moxifloxacin nicht Penicillin? ( Pt hat Penicillin Allergie ) was ist die Komplikation ? Was hören wir bei Auskultation bei Pneumonie , pleuraerguss  ?</li>
+</ul>
+<p>Bitte mach Schilddrüse KU . Habe ich gemacht und war zufrieden.</p>
+<ul>
+<li>Dr. Jordan : du hast gesagt Penicillin Allergie ? Ja , wie viel Leute kommen jeden Tag und Sagen Penicillin Allergie? Ist das richtig? habe ich gesagt nein weil die meisten haben leichte Symptome . Er hat zu gestimmt aber wollte noch tiefer gehen und hat gefragt was ist pleuraerguss? Wie behandelt man das? Pleurapunktion . Dann machen Sie das an den Patienten bitte . Ich habe Pleurapunktion demonstriert.</li>
+</ul>
+<p>Also 1-2 rippen unterhalb der obere Flüssigkeit Grenze. Und alles gesagt bei durchführen. Und kommt fragen Z.B. Wie viel Flüssigkeit maximal?, warum 3 Röhrchen? , um unterschied zwischen was ? , wie kann man wissen ob es Transudate oder Exudate ? Dann habe ich erklärt und über die Light Kriterien gesprochen aber er wusste die Kriterien nicht und wollte nur Eiweiß hören.</p>
+<p>-Dr. Minin : war sehr aggressiv mit mir. 😠</p>
+<p>Hat gefragt über Milz KU und habe ich gemacht aber war gar nicht zufrieden. Er wollte wissen wie kann man bei KU die Milz groß messen wenn die Milz vergrößert ist. Habe ich mit meinem zweiten Hand erklärt aber war sauer . Ich hatte viel Stress diesem Moment und hat mir Dr . Hammer beruhigt und zu meiner Zimmer gebracht und habe ihm ob ich gut gemacht? Hat gesagt alles gut du hast gut gemacht mach kein Stress.</p>
+<p>Nach dem zweiten Teil ich war sehr gestresst und nervös und konnte nicht gut konzentrieren.</p>
+<p>Teil 3:</p>
+<p>Also es ist nicht 15 Minuten bei jeder Prüfer sondern 8 Minuten . Wir haben ungefähr um 17:25 angefangen. Nach 6 Runde ( 48 Minuten) wir haben Pause 10 bis 15 Minuten dann weiter die anderen 6 Runden. Wir haben um 19:35 die Ergebnisse bekommen .</p>
+<ul>
+<li>Dr. Jordan : </li>
+</ul>
+<p>Hat mir EKG mit VHF . Ich habe alles gesagt aber habe bemerkt dass man muss laut sprechen weil viel mal hat er mein Antwort wiederholt und habe ich gesagt ich habe schon gesagt !!! .</p>
+<p>Also er will richtiger interpretieren immer . Alles über VHF ( Ätiologie, therapie wann Doak mit Dosierung von Apixaban ( je nach Gewicht, Alter , GFR ), wann vit k , wann Rhythmus Kontrolle ( wann kardioversion und wann medikamentös ? Wie ? ), wann Frequenz Kontrolle.</p>
+<p>-Dr. Minin :</p>
+<p>Er hat mir ein Photo von 1-jähriger Kind gezeigt mit Bauch und Brust voll mit Exanthem und Fieber seit 3 Tagen , er wollte DD. Hören. Ich habe masern und Varizelle gesagt aber er hat wollte noch andere D.D. hören . Dann hat gefragt über Vorgehen . Ich habe gesagt Anamnese und wichtig die Impfstatus dann hat mir Photo von Impfpass gegeben und habe ich es gelesen ( war Vollständig geimpft ) und noch gewartet auf andere D.D. , also er wollte Scharlach ( Scarlett fever ) hören . Das war neu im Protokolle.</p>
+<p>Dann hat mir noch andere Photo von Herpes Zoster gezeigt, ich habe sofort Herpes Zoster gesagt , und dann Therapie und hat gefragt mit welcher Symptome ist das gefährlich? Wenn Neurologische oder respiratorische Symptome gibt .</p>
+<ul>
+<li>Dr. Hammer : </li>
+</ul>
+<p>Hat mir Photo von Offene Sprunggelenkfraktur mit Talusluxation gezeigt.</p>
+<p>Und er wollte gar nix hören nur eine frage was ist die wichtigste Sache die du im Notfall machen musst? Er wollte sterile zudecken hören.</p>
+<p>Dann andere Bild von CT Aortendissektion war einfach aber er  wollte jeder Organ und Knochen nennen , und dann warum zwei farbe gibt weil falsch und echtes Lumen . Er setzte mich unter Druck und machte mich nervös.</p>
+<p>Dann haben wir ungefähr 3 Minuten Pause dann hat Dr Hammer gesagt dass wir alle haben die Prüfung bestanden.</p>
+<p>Protokoll ++++++++++++</p>
+<p>Amboss+++</p>
+<p>Lernkarten ++</p>
+<p>Viel Erfolg an alle🍀</p></div>
+</section>
+<section id="p-120120261" class="protocol-entry fade-in">
+  <div class="protocol-header">
+    <div class="protocol-date">📅 12.01.2026-1</div>
+    <div class="protocol-badges"><span class="tag green">✓ Bestanden</span></div>
+    <span class="protocol-toggle">▶</span>
+  </div>
+  <div class="protocol-body"><p>Hallo</p>
+<p>Am 13.01.2026 habe ich meine Prüfung in Freiburg abgelegt und bestanden (4/4).</p>
+<p>Die Prüfungskommission bestand aus Dr. Minin, Dr. Hammer sowie einem Facharzt für Notfallmedizin, den Namen erinnere ich mich leider nicht.</p>
+<p>Der Fall war stabile Angina pectoris, wie in den bisherigen Protokollen. Zusätzlich bestand eine Herzinsuffizienz NYHA II. Die Schauspielpatientin war sehr freundlich.</p>
+<p>Die Patientin hatte Unterlagen aus der Hausarztpraxis dabei, darunter ein EKG, Laborbefunde und Vitalparameter. Man musste sie jedoch aktiv danach fragen, damit sie diese Unterlagen aushändigt. Im EKG zeigte sich ein Hinterwand-STEMI, und Troponin erhöht. Es gab ausreichend Zeit, um den Arztbrief zu schreiben, und ich konnte die Patientin vollständig und ohne Unterbrechung vorstellen.</p>
+<p>Der Facharzt für Notfallmedizin fragte, warum die Patientin Husten habe. Ich antwortete, dass dies aufgrund der Herzinsuffizienz sei. (Lungenödem)</p>
+<p>Weitere möglichen Ursachen?</p>
+<p>COPD, da die Patientin raucht, (Befunde bei lungenuntersuchung bei COPD)</p>
+<p>sowie ACE-Hemmer als mögliche Nebenwirkung.</p>
+<p>Als Alternative? AT1-Blocker, zum Beispiel Candesartan.</p>
+<p>Dr. Hammer fragte nach dem Vorgehen bei einem STEMI einschließlich aller Medikamente und der weiteren Therapie.</p>
+<p>Und außerdem die abdominelle Untersuchung durchführen.</p>
+<p>Dr. Minin fragte nach den Dosierungen von Metoprolol, worauf ich 50 mg und 100 mg nannte. Anschließend fragte er nach den verschiedenen Typen?</p>
+<p>Metoprolol Succinat und Tartrat,</p>
+<p>Unterschied zwischen beiden?</p>
+<p>Metoprolol Succinat ist langsamer Wirkstofffreisetzung. Danach fragte er, warum ich gesagt hatte, dass man bei einem STEMI 5 mg Metoprolol gibt. Ich antwortete, es ist intravenös.</p>
+<p>Zusätzlich fragte er nach der Perkussion der Lunge machen und den entsprechenden Befunden.</p>
+<p>Im dritten Teil</p>
+<p>Dr. Minin:</p>
+<p>Harnwegsinfektion, Typen (Kompliziert und nicht kompliziert mit Beispie)</p>
+<p>und der Therapie.</p>
+<p>Außerdem zeigte er ein Foto eines Dekubitus Stadiums?</p>
+<p>Es war 3</p>
+<p>fragte nach der entsprechenden Behandlung.</p>
+<p>Weitere Frage war DD für eine plötzlich auftretende starke Kopfschmerzen bei einer jungen Patientin und Vorgehen,</p>
+<p>die Akuttherapie der Migräne,</p>
+<p>NW Metamizol</p>
+<p>die diagnostische Methode und Therapie der Tuberkulose.</p>
+<p>Dr. Hammer:</p>
+<p>DD bei plötzlich auftretenden Thoraxschmerzen und Dyspnoe</p>
+<p>Diagnose eines Spannungspneumothorax (besonders bei körperlicher Untersuchung)</p>
+<p>Er zeigte mir dazu auch ein Röntgenbild (von Spannungspneumothorax) zu interpretieren.</p>
+<p>Warum muss man nicht Röntgen machen?</p>
+<p>Da die Therapie verzögert.</p>
+<p>Zusätzlich zeigt er mir ein Röntgen</p>
+<p>einer Beckenringfraktur bei einem Kind,</p>
+<p>Warum Kind? da die Epiphysenfugen noch offen sind.</p>
+<p>Der Facharzt für Notfallmedizin:</p>
+<p>stellte eine weitere Frage zu einer älteren Person, die zu Hause eine Synkope hatte. DD? Und Definition von Synkope</p>
+<p>Er zeigt ein EKG zu interpretieren</p>
+<p>ein AV-Block III.</p>
+<p>Auf die Frage nach der Therapie antwortete ich mit Herzschrittmacher. Er fragte weiter, was man tun würde, wenn es Wochenende ist und der Schrittmacher für einige Tage nicht implantiert werden kann. Ich nannte zunächst Atropin, woraufhin er erklärte, dass Atropin bei einem AV-Block III. Grades keine Wirkung hat. Er möchte Katecholamine hören.</p>
+<p>Ich sagte Adrenalin.</p>
+<p>Fragen bei anderen Kollegen:</p>
+<p>Gicht und Pseudogicht, Masern,diabetische Fußsyndrom</p>
+<p>Vorhofflimmern, ventrikuläres Flimmern, Vorhofflattern und der Adenosin-Test, Ileus, Aortendissektion CT</p>
+<p>Ich hoffe, die anderen Kollegen schreiben ebenfalls ihre eigenen Protokolle, da ich mich nicht an alle Fragen erinnern kann.</p>
+<p>Zum Schluss möchte ich sagen: Versucht, während der Prüfung ruhig zu bleiben. Unter Stress kann niemand alle Fragen perfekt beantworten, und die Kommission verhält sich sehr freundlich und möchte euch wirklich auf die richtige Antwort führen. Man muss nur ruhig bleiben.</p>
+<p>Protokoll ++++++</p>
+<p>Amboss+++</p>
+<p>80 Fälle inneremedizin und 60 Fälle Chirurgie ++</p>
+<p>Lernkarten ++</p>
+<p>FIA Kurse ++</p>
+<p>Viel Erfolg an alle🍀</p></div>
+</section>
+<section id="p-12012026" class="protocol-entry fade-in">
+  <div class="protocol-header">
+    <div class="protocol-date">📅 12.01.2026</div>
+    <div class="protocol-badges"><span class="tag green">✓ Bestanden</span></div>
+    <span class="protocol-toggle">▶</span>
+  </div>
+  <div class="protocol-body"><p>Hallo Kollegen,</p>
+<p>ich hatte die Prüfung am 12.01. Nur 1/4 hat bestanden.</p>
+<p>Die Prüfer stellen die Fragen sehr konkret, und man muss herausfinden, was sie eigentlich erwarten. Antworten immer strukturiert geben und realistisch denken: Was würde ich praktisch machen? Es hängt auch stark davon ab, wer in der Kommission sitzt.</p>
+<p>Sie fragen oft: Was würden Sie dem Patienten sagen (Stichwort Aufklärung)?</p>
+<p>Was machen Sie vor einer elektrischen Kardioversion, wenn der Patient stabil ist? → Echo/Sono.</p>
+<p>Im EKG: In V1/V2 sieht man das Septum.</p>
+<p>Teil 1: inferolateraler Infarkt, wie immer werden Befunde abgefragt.</p>
+<p>Teil 2: EKG-Ableitungen, Trickfrage: Was sind präcordiale Ableitungen? → unipolar.</p>
+<p>Schulteruntersuchung kam vor.</p>
+<p>Komplikationen des Infarkts: Was kann eine ST-Hebung maskieren oder falsch verursachen? → Perikarditis. Aber Frage war so gestellt: Was is ST Hebung ?</p>
+<p>Nitroglyzerin: Indikationen, Kontraindikationen, Nebenwirkungen.</p>
+<p>Kopfschmerzen bei Missbrauch oder Anwendung von Nitro: bifrontal.</p>
+<p>Der Kardiologe fragt alle möglichen Arrhythmien, manchmal auch sehr grundlegende Fragen, z.B. was der Hämatokrit ist.</p>
+<p>Außerdem: Status epilepticus, CT-Abbildung mit subduraler Blutung, Polytrauma – alles fallbasiert.</p>
+<p>Viel Erfolg euch allen!</p></div>
+</section>
+<section id="p-161220253" class="protocol-entry fade-in">
+  <div class="protocol-header">
+    <div class="protocol-date">📅 16.12.2025-3</div>
+    <div class="protocol-badges"><span class="tag green">✓ Bestanden</span></div>
+    <span class="protocol-toggle">▶</span>
+  </div>
+  <div class="protocol-body"><p>Prüfungsprotokoll</p>
+<p>Datum: 15.12.2025</p>
+<p>Ergebnis: 4/4 bestanden</p>
+<p>Kommission:</p>
+<ul>
+<li>Faber</li>
+<li>Urbach</li>
+<li>Wertzel</li>
+</ul>
+<p>Teil 1 – Ambulant erworbene Pneumonie</p>
+<p>Klassischer Ablauf. Wichtig: immer nach Vorbefunden fragen, dann erhält man Laborwerte und die Röntgenaufnahme.</p>
+<p>Alles wie erwartet. Der Schauspielpatient war sehr nett und hilfsbereit. Keine Besonderheiten.</p>
+<p>Teil 2</p>
+<p>Vorstellung des Patienten.</p>
+<p>Weitere Fragen: Anlage der EKG-Elektroden (unipolar, bipolar).</p>
+<p>Diskussion: Was passiert, wenn Extremitätenableitungen vertauscht wurden?</p>
+<p>Lungenuntersuchung.</p>
+<p>Währenddessen lesen die Prüfer den Lebenslauf und können dazu Rückfragen stellen.</p>
+<p>Teil 3</p>
+<p>Faber</p>
+<p>EKG 1</p>
+<p>Patientin mit Sehstörung in der Notaufnahme.</p>
+<p>EKG: Vorhofflimmern.</p>
+<p>Verdachtsdiagnose:</p>
+<ul>
+<li>TAA bei VHF</li>
+<li>Thromboembolischer Insult</li>
+</ul>
+<p>Weiteres Vorgehen:</p>
+<ul>
+<li>Thrombektomie? → nein, primär</li>
+<li>Antikoagulation (falls noch nicht vorhanden)</li>
+<li>Patientin war bereits antikoaguliert</li>
+</ul>
+<p>Fragen:</p>
+<ul>
+<li>Um wie viel Prozent senkt Antikoagulation das Thromboembolierisiko? → ca. 60 %</li>
+<li>Welche Medikamente zur Antikoagulation?</li>
+<li>Wo entstehen die Thromben bei VHF? → Vorhofohr</li>
+<li>Was kann man zusätzlich machen? → Vorhofohrverschluss</li>
+<li>Risikoreduktion durch Vorhofohrverschluss → ca. 90 %</li>
+</ul>
+<p>EKG 2 (Monitor-EKG)</p>
+<p>SVT (supraventrikuläre Tachykardie)</p>
+<p>Formen der SVT:</p>
+<ul>
+<li>AVNRT</li>
+<li>AVRT</li>
+<li>Vorhofflattern</li>
+<li>Vorhofflimmern</li>
+<li>Atriale SVT</li>
+<li>Junktionaler Ersatzrhythmus</li>
+</ul>
+<p>Vorgehen:</p>
+<ul>
+<li>BPM: 160</li>
+<li>Hämodynamisch stabil → ja</li>
+</ul>
+<p>Therapie:</p>
+<ul>
+<li>Valsalva-Manöver</li>
+<li>Wirkung: Demaskierung des Vorhofrhythmus und ggf. Unterbrechung der SVT</li>
+<li>Bei Instabilität → elektrische Kardioversion</li>
+<li>Frequenzkontrolle mit geeigneten Medikamenten</li>
+<li>Vorhofflattern: kausale Therapie?</li>
+</ul>
+<p>Urbach</p>
+<p>Bild: Bitemporale Hemianopsie</p>
+<p>Ursache:</p>
+<ul>
+<li>Kompression des Chiasma opticum</li>
+</ul>
+<p>Durch was:</p>
+<ul>
+<li>z. B. Hypophysenadenom</li>
+</ul>
+<p>MRT-Bilder und schematische Darstellung eines Hypophysenadenoms.</p>
+<ul>
+<li>Lokalisation: Adenohypophyse</li>
+<li>Formen: Mikroadenom und Makroadenom</li>
+</ul>
+<p>Bild einer Patientin mit Cushing-Syndrom</p>
+<p>Ursachen:</p>
+<ul>
+<li>Morbus Cushing</li>
+<li>Cushing-Syndrom</li>
+<li>iatrogen</li>
+</ul>
+<p>Warum Morbus Cushing:</p>
+<ul>
+<li>Hypophysenadenom → ACTH</li>
+</ul>
+<p>Zusätzlich:</p>
+<ul>
+<li>Röntgenbild BWS–LWS-Übergang mit Klammern (Fremdmaterial)</li>
+<li>Ursache: Status nach Nebennierenentfernung</li>
+</ul>
+<p>MRT der LWS (sagittal und axial)</p>
+<ul>
+<li>Bandscheibenvorfall</li>
+<li>Wurzelkompression sichtbar</li>
+</ul>
+<p>Höhe und Symptome:</p>
+<ul>
+<li>L5 → Fußheberparese</li>
+<li>L4 → M. quadriceps betroffen</li>
+<li>L3 → entsprechende Ausfälle</li>
+<li>Wie prüft man das?</li>
+</ul>
+<p>Therapie:</p>
+<ul>
+<li>OP bei motorischer Parese indiziert</li>
+<li>Keine OP bei Schmerzen und leichten Sensibilitätsstörungen</li>
+<li>OP-Verfahren: mikrochirurgische Sequestrektomie</li>
+<li>Konservative Optionen ebenfalls diskutiert</li>
+</ul>
+<p>Wertzel</p>
+<p>Neue Fragen, nicht aus bekannten Protokollen.</p>
+<p>Handverletzung (palmar)</p>
+<p>Wichtig:</p>
+<ul>
+<li>Beurteilung der Sehnen</li>
+</ul>
+<p>Vorgehen:</p>
+<ul>
+<li>pDMS (periphere Durchblutung, Motorik, Sensibilität)</li>
+<li>Wie prüft man pDMS?</li>
+<li>Bilder verschiedener Nahttechniken: erkennen und benennen</li>
+</ul>
+<p>Was auch wichtig?</p>
+<p>Impfung: Tetanus</p>
+<ul>
+<li>Vorgehen bei ungeimpften vs. geimpften Patienten</li>
+<li>Passive und aktive Immunisierung</li>
+<li>Impfkalender für Kinder und Erwachsene</li>
+</ul>
+<p>Fragen bei anderen Kollegen</p>
+<p>Faber</p>
+<ul>
+<li>Linksschenkelblock</li>
+<li>Torsade de pointes</li>
+<li>QT-Zeit-Verlängerung</li>
+<li>AV-Block</li>
+<li>Herzschrittmacher (2- und 3-Kammer-Systeme)</li>
+<li>Indikation zur Resynchronisationstherapie</li>
+</ul>
+<p>Wertzel</p>
+<ul>
+<li>Bei anderen Kandidaten alle Fragen aus bekannten Protokollen</li>
+</ul>
+<p>Urbach</p>
+<ul>
+<li>Karpaltunnelsyndrom. Innervation der Hand.</li>
+<li>Horner-Syndrom: Definition, Ursachen, betroffene Strukturen.</li>
+</ul>
+<p>Sympathikus und Parasympathikus. Miosis und Mydriasis.</p>
+<ul>
+<li>Schlaganfall: Symptome, Blutversorgung, Therapieoptionen.</li>
+</ul>
+<p>Bildgebung (vermutlich)</p>
+<ul>
+<li>Bauch mit Caput medusae und erweiterten Venen</li>
+<li>Portalhypertension</li>
+</ul>
+<p>Fragen:</p>
+<ul>
+<li>Ursache</li>
+<li>Therapie</li>
+<li>Portokavale Anastomose</li>
+<li>Durchführung</li>
+</ul>
+<p>Die Prüfung ist machbar, aber psychisch sehr anspruchsvoll.</p>
+<p>Viel Erfolg!!!</p></div>
+</section>
+<section id="p-161220252" class="protocol-entry fade-in">
+  <div class="protocol-header">
+    <div class="protocol-date">📅 16.12.2025-2</div>
+    <div class="protocol-badges"><span class="tag green">✓ Bestanden</span></div>
+    <span class="protocol-toggle">▶</span>
+  </div>
+  <div class="protocol-body"><p>16.12 Freiburg – Kenntnisprüfung (KP) – bestanden (3/3)</p>
+<p>Die Kommission bestand aus Herrn Makowiech (HR), Herrn Dr. Minin und einem jungen Notarzt.</p>
+<ol>
+<li>Teil</li>
+</ol>
+<p>Patientin: Frau Wagner Anna, 60 Jahre. Vorstellung mit stabiler Angina pectoris und trockenem</p>
+<p>Husten.</p>
+<p>Vorerkrankungen: Diabetes mellitus Typ 2, arterielle Hypertonie, Hyperlipidämie.</p>
+<p>Allergie: Knoblauch.</p>
+<p>Die Patientin war sehr freundlich und geduldig, hat alle Maßnahmen gut toleriert. Zusätzlich klagte</p>
+<p>sie über Nachtnocturie sowie über Gewichts- und Größenabnahme, was positiv erwähnt wurde.</p>
+<p>Die Bearbeitungszeit von 45 Minuten war vollkommen ausreichend.</p>
+<p>Ich führte zusätzlich eine Lungen- und Herzuntersuchung durch. Die Patientin berichtete, dass</p>
+<p>beim Hausarzt bereits ein EKG geschrieben wurde und zeigte dieses vor – es handelte sich um ein</p>
+<p>STEMI.</p>
+<ol>
+<li>Teil</li>
+</ol>
+<p>Die Vorstellung habe ich bewusst langsam und detailliert durchgeführt.</p>
+<p>Frage: Wie viel Zeit hat man beim STEMI bis zum Herzkatheterlabor?</p>
+<p>Antwort: 1 Stunde.</p>
+<p>Frage zur Schmerztherapie: Morphin-Dosierung.</p>
+<p>Meine Antwort: 3–5 mg, der Notarzt empfahl 1 mg.</p>
+<p>Dr. Minin fragte nach:</p>
+<ul>
+<li>Untersuchung des Herzspitzenstoßes</li>
+<li>Diabetischer Fuß: neurologische Untersuchung (Sensibilität), Durchblutung,</li>
+</ul>
+<p>Achillessehnenreflex, Kälte-Wärme-Empfinden etc.</p>
+<ol>
+<li>Teil</li>
+</ol>
+<p>Der Notarzt zeigte ein EKG mit ventrikulärer Tachykardie und fragte nach dem Vorgehen.</p>
+<p>Außerdem wurde ein Bild einer Thrombophlebitis gezeigt – Vorgehen und antibiotische</p>
+<p>Therapie wurden besprochen.</p>
+<p>Dr. Minin:</p>
+<ul>
+<li>Therapie der rheumatoiden Arthritis</li>
+<li>NSAR: Wirkmechanismus</li>
+<li>DMARD-Gruppen</li>
+<li>Lyme-Borreliose und Vorgehen nach Zeckenstich</li>
+</ul>
+<p>Dr. Makowiech:</p>
+<ul>
+<li>Cholelithiasis: Diagnostik und Therapie</li>
+<li>ERCP und MRCP</li>
+</ul>
+<p>Anmerkung:</p>
+<p>Die Kommission war insgesamt sehr freundlich. Besonders Herr Makowiech sorgte für eine</p>
+<p>wirklich entspannte Atmosphäre und unterstützte uns psychologisch sehr.</p>
+<p>Empfohlene Lernquellen:</p>
+<ul>
+<li>YouTube: Mediknow, MEX</li>
+<li>Last Minute Pharm</li>
+<li>Kenntnisprüfung erfolgreich bestanden (sehr effektives Buch!)</li>
+</ul>
+<p>Zusätzlich: Im letzten Monat tägliche Simulationen! Absolut empfehlenswert.</p>
+<p>Viel Erfolg an alle!</p></div>
+</section>
+<section id="p-161220251" class="protocol-entry fade-in">
+  <div class="protocol-header">
+    <div class="protocol-date">📅 16.12.2025-1</div>
+    <div class="protocol-badges"><span class="tag green">✓ Bestanden</span></div>
+    <span class="protocol-toggle">▶</span>
+  </div>
+  <div class="protocol-body"><p>KP-Prüfung – Freiburg Protokoll 16.12.2025</p>
+<p>Allgemeine Angaben</p>
+<p>•</p>
+<p>•</p>
+<p>•</p>
+<p>•</p>
+<p>Prüfungsort: Freiburg, Baden-Württemberg</p>
+<p>Teilnehmerinnen: 3 Frauen (alle bestanden)</p>
+<p>Antrag auf Kenntnisprüfung: 14. Juli 2025</p>
+<p>Bezahlung der Prüfungsgebühr: 3. November 2025</p>
+<p>Ladung: 27. November 2025</p>
+<p>TEIL 1 – Innere Medizin (Pneumonie)</p>
+<p>Fallbeschreibung, genau wie protokoll, 45 minuten anamnese und KU. Brief</p>
+<p>schreiben 2 stunden.</p>
+<p>Die 59-jährige Patientin Anna Lobner stellte sich mit seit drei Tagen bestehendem Husten, Fieber,</p>
+<p>Dyspnoe sowie rechtsseitigen thorakalen Schmerzen vor und Verwittheit.</p>
+<p>Zuvor war sie beim Hausarzt in Behandlung, wo feuchte Rasselgeräusche auskultiert sowie eine</p>
+<p>Röntgen-Thorax-Untersuchung und Laboruntersuchungen durchgeführt wurden, woraufhin die</p>
+<p>Überweisung in die Notaufnahme erfolgte.</p>
+<p>arterieller Hypotonie und ist medikamentös mit Ramipril eingestellt.</p>
+<p>Allergien gegen Penicillin, Nickel und Hausstaub.</p>
+<p>Ich habe eine vollständige körperliche Untersuchung gemacht.</p>
+<p>TEIL 2 – Patientenvorstellung / Kommunikation</p>
+<p>Vollständige Patientenvorstellung ohne Unterbrechung. Ich habe seeeeehr langsam und ausführlich</p>
+<p>präsentiert, um Zeit zu gewinnen😁.</p>
+<p>Prüferfragen &amp; kurze Antworten</p>
+<p>•</p>
+<p>•</p>
+<p>•</p>
+<p>•</p>
+<p>Warum Levofloxacin? → Penicillinallergie</p>
+<p>Ist jede Penicillinallergie echt? → Nein</p>
+<p>Wann kann trotzdem Penicillin gegeben werden? → Keine Anaphylaxie in der Vorgeschichte.</p>
+<p>Prufer... Ja, es ist wichtig eine echte Penicillinallergie auszuschliessen. Nicht alle sind wahr...weil</p>
+<p>Penicillin ist eine sehr effektive Medikamentegruppe.</p>
+<p>Welche Impfungen gibt es in Ihrem Heimatland? Ist es genauso wie in Deutschland?</p>
+<p>Fast gleich aber nein, bei uns gibt es zum Beispiel Gelbfieber- und MTB-Impfungen als pflicht...</p>
+<p>Ich habe dann ausführlich über die Sechsfachimpfung in Deutschland gesprochen, um mehr Zeit</p>
+<p>1</p>
+<p>•</p>
+<p>•</p>
+<p>•</p>
+<p>zu nutzen😁: Diphtherie, Pertussis, Tetanus, Polio, Influenza, Hib und andere Hepatitis B,</p>
+<p>einschließlich der jeweiligen Altersangaben und Impfintervalle.</p>
+<p>Sie haben geschrieben... keine Halsvenenstauung? Wie wird sie beurteilt? → Beurteilung des</p>
+<p>jugulären Venendrucks durch Inspektion bei 45° Oberkörperhochlagerung (Minin war nicht ganz</p>
+<p>zufrieden) ich habe Hepatojugularreflex jedoch gezeigt.</p>
+<p>Murphy-Zeichen? → Demonstriert (Notfallmediziner zufrieden)</p>
+<p>Frage von Dr. Minin: Sie haben gesagt, patientin war verwirrt – wie untersucht man ein Delir? →</p>
+<p>Anamnese ist wichtig (Medikamente, OP, Trauma). Prüfer nicht ganz zufrieden, Zeit war jedoch</p>
+<p>um.😂</p>
+<p>Unfallchirurgie (Femurschaftfraktur)</p>
+<p>Dr. Makowiecz zeigte ein Röntgenbild einer Femurschaftfraktur. Der Patient war hämodynamisch stabil.</p>
+<p>Er wollte kein ABCDE-Schema hören und sagte ausdrücklich, dass die Patientin „ganz in Ordnung“ sei.</p>
+<p>Anschließend fragte er: „Was ist jetzt das Wichtigste?“ und erwartete nur ein einziges Wort</p>
+<p>•</p>
+<p>•</p>
+<p>•</p>
+<p>Was machen sie bei KU erstmal: pDMS-Kontrolle (sehr gut)</p>
+<p>Zu überprüfende Pulse zeigen sie mir bitte: A. dorsalis pedis, A. tibialis posterior</p>
+<p>Weitere Untersuchung, nur eine: Duplexsonographie (Prüfer zufrieden)</p>
+<p>TEIL 3 – Mündliche Prüfung</p>
+<p>Gesamtdauer: ca. 45 Minuten pro Prüfling (je 15 Minuten pro Prüfer). 15 MINUTEN SIND SEHR LANG!!</p>
+<p>Dr. Makowiecz – Chirurgie / Orthopädie</p>
+<p>Frakturen</p>
+<p>Es gab eine Skizze puppe im Raum 🩻.</p>
+<p>Frakturarten: Welche kennen Sie? Zeigen sie mir bitte – Radiusfraktur.</p>
+<p>Typische distale Radiusfrakturen: Colles- und Smith-Fraktur.</p>
+<p>„Ist der Frakturverlauf der distalen Radiusfraktur eher vertikal oder horizontal?“<strong> Bitte zeigen Sie mir</strong></p>
+<p>„horizontal“ Falsch, vertikal....</p>
+<p>Therapieprinzipien: Reposition, Retention, Rehabilitation.</p>
+<p>Okay, aber welche definitive Therapie?</p>
+<p>Zunächst: winkelstabile plattenOsteosynthese.</p>
+<p>Errr...Aber was, wenn es eine offene Fraktur ist?</p>
+<p>Ich habe viele Antworten gegeben, aber das wollte er nicht hören.</p>
+<p>Ich war sehr gestresst....er war nicht zufrieden.</p>
+<p>Aber am Ende habe ich mich plötzlich erinnert: externer Fixateur!</p>
+<p>Genau...Super!! Das wollte ich horen.... Er hat ausführlich erklärt, wie man nach einer schmutzigen</p>
+<p>offenen Frakturdistalradius mit einem externen Fixateur auf den Weihnachtsmarkt gehen kann 😂😂🤣</p>
+<p>🤣und die Operation erst im nächsten Jahr erfolgt. Er war wirklich sehr unterstützend!</p>
+<p>Nachste Fall</p>
+<p>2</p>
+<p>Ileus **</p>
+<p>•</p>
+<p>Formen: mechanisch, paralytisch. Häufigste Ursache beim Erwachsenen (Deutschland):</p>
+<p>Adhäsionen</p>
+<p>Ursachen paralytischer Ileus: Elektrolytstörungen (z. B. Hypokaliämie), postoperativ. -</p>
+<p>Leitsymptome: Dünndarmileus: Erbrechen, Dickdarmileus: Stuhl- und Windverhalt. ok aber welches</p>
+<p>erbrechen bei Dickdarm. Miserere: kotiges Erbrechen</p>
+<p>Erste Maßnahme: Magensonde. Zweck: Aspirationsprophylaxe.</p>
+<p>Er war zufrieden in diesem Teil.</p>
+<p>Notfallmediziner</p>
+<p>EKG-Fall</p>
+<p>•</p>
+<p>•</p>
+<p>•</p>
+<p>•</p>
+<p>•</p>
+<p>•</p>
+<p>•</p>
+<p>•</p>
+<p>23-jährige Patientin, stabil kommt in der Notaufnahme mit Herzrasen. Ich hatte ein bisschen</p>
+<p>Angst, ehrlich gesagt weiß ich nicht warum, aber ich konnte zunächst nichts die EKG erkennen.</p>
+<p>Der Prüfer hat mir geholfen. „Okay, was sehen Sie? welche Frequenz?“ Ich habe gesagt, dass ich</p>
+<p>zuerst Papiervorschub brauche, um es berechnen zu können. Mit dieser Antwort war er</p>
+<p>zufrieden. ok Papiervorschub 50 mm/s – welche Frequenz jetzt? 200. Tachykardie, ja. Welcher</p>
+<p>Rhythmus? Kein Sinusrhythmus, keine P-Wellen, schmaler QRS. Also die Diagnose??: SVT. Sehr</p>
+<p>gut.</p>
+<p>EKG: keine P-Wellen, Herzfrequenz ca. 200/min</p>
+<p>Diagnose: Supraventrikuläre Tachykardie (SVT)</p>
+<p>Welche SVT-Formen kennen sie: AVNRT, AVRT, Sinus tachykardie</p>
+<p>Erste Maßnahme: Vagusmanöver. Wirkt nicht. Was noch</p>
+<p>Adenosin. Dose? (6 mg, dann 12 mg)</p>
+<p>Applikation: bevorzugt zentralvenös. warum nicht peripher? kurz HWZ</p>
+<p>Es wirkt nicht, was machen sie patientin jetzt INSTABIL? elektrische Kardioversion. Gut</p>
+<p>Infektionsfall, Hautinfektion bei Diabetikern</p>
+<p>•</p>
+<p>Bild Diagnose: Erysipel, Erreger: Streptokokken, Standardantibiotikum: Penicillin, Alternative bei</p>
+<p>Penicillinallergie: Clindamycin</p>
+<p>•</p>
+<p>Blutzucker: 500 mg/dl. Wichtigste Maßnahme: hab gesagt normalesinsulin iv. ok aber was ist</p>
+<p>wichtiger, Volumentherapie, wie viel?, Jetzt Blutzucker nach eine Stunde, 400mg/dl. Ist das</p>
+<p>gut? Nein, weil der Blutzucker nur um etwa 50 mg/dl pro Stunde gesenkt werden darf, da sonst</p>
+<p>die Gefahr eines Hirnödems besteht. Er war sehr zufrieden mit dieser Antwort...</p>
+<p>Dr. Minin – Innere Medizin</p>
+<p>Rheumatologie</p>
+<p>•</p>
+<p>Akuter Gelenkbefall: Gicht. Oligoarthritis: traumatisch, septisch. Diagnostik septische Arthritis:</p>
+<p>Gelenkpunktion was ist Pseudogicht was ist Takayasu-Arteriitis</p>
+<p>3</p>
+<p>Toxikologie / Pharmakologie</p>
+<p>•</p>
+<p>Serotonin-Syndrom was ist das??, Wirkmechanismus von Benzodiazepinen: GABA-</p>
+<p>Verstärkung, Antidot: Flumazenil</p>
+<p>Neurologie</p>
+<p>•</p>
+<p>•</p>
+<p>•</p>
+<p>Stärke Kopfschmerzen bei junge Frau: Verdachtsdiagnose?Migräne.</p>
+<p>Ok, aber bei den stärksten Kopfschmerzen des Lebens, was denken Sie jetzt?</p>
+<p>Subarachnoidalblutung.</p>
+<p>Erste Diagnostik: CCT nativ.Was noch: er hat mir gezeigt mit hand motion 😂Liquor punktion.</p>
+<p>Gut.</p>
+<p>Migräneprophylaxe medikamentose??: Betablocker, was noch?Antidepressiva. Was noch? wusste</p>
+<p>nicht. Gott sei Dank, Zeit war um...</p>
+<p>Frage von anderen: Krupp vs Pseudokrupp unterschied?? Komplikationen, Kammerflimmern,</p>
+<p>Kammerflattern, VHFlattern, welche 2 Medikamente? Welche beste medikamente bei Staph</p>
+<p>Aureus, Flucloxacillin...Cholelithiasis, wie viel Frauen in Deutschland, Komplikationen?? Lyme</p>
+<p>Borreliose Stadium, Therapie,</p>
+<ol>
+<li>Allgemeiner Eindruck</li>
+</ol>
+<p>Die Prüfung ist machbar. Nicht einfach aber machbar. Die Kommission ist sehr freundlich, besonders Dr.</p>
+<p>Makowiecz. Die Schauspielerinnen sind kooperativ und unterstützend, es handelt sich nicht um echte</p>
+<p>Patientinnen.</p>
+<p>Die Prüfung begann gegen 12:00 Uhr und endete gegen 19:00 Uhr. Es ist normal, aufgeregt zu sein, da</p>
+<p>man oft die Mimik der Prüfer nach einer falschen Antwort schaut. Wichtig ist jedoch, immer ruhig zu</p>
+<p>bleiben. Wenn man richtig antwortet, sollte man diesen Flow nutzen. Wenn nicht, wartet man auf die</p>
+<p>nächste Frage und zeigt ruhig, dass man noch weiteres Wissen hat.</p>
+<p>Die größte Herausforderung bei der Prufung ist der Stress. Entscheidend ist, strukturiert zu denken und</p>
+<p>klinische Kompetenz zu zeigen. deswegen viele ubungen sind wichtig. Dr. Minin und der</p>
+<p>Notfallmediziner waren streng, aber unterstützend.</p>
+<p>Sie fragen in Teil 3 manchmal in Richtung des eigenen Fachgebiets. Deshalb Vorsicht bei dem, was man</p>
+<p>im Lebenslauf schreibt. Auch Hobbys!🤣 Der Lebenslauf liegt immer vor der Kommission!!😎</p>
+<p>Ich bin Berufs Anfängerin mit sehr wenig klinische Erfahrung deswegen hab ich viel gekämpft und</p>
+<p>studiert, hab eine fsp und kp Vorbereitungskurs durchgeführt für 6 Monate. Dann sehr intensiv nach</p>
+<p>dem Kurs für 5 Monate mehr als 6 stunden jeden tag. Simulation war entscheidend. Es ist machbar ,</p>
+<p>nur selbstbewusst und immer immer positiv sein. .</p>
+<ol>
+<li>Vorbereitung</li>
+</ol>
+<p>Lernquellen:</p>
+<p>•</p>
+<p>AMBOSS, Mediknow, Fallbuch Innere Medizin, Fallbuch Chirurgie</p>
+<p>4</p>
+<p>AMBOSS-Deivinson-Zusammenfassung für kleinere Kapitel wie Rheumatologie, Nephrologie,</p>
+<p>Hämatologie, Endokrino) Danke Dr Deivinson 👌👌</p>
+<p>•</p>
+<p>Dr Najeeb videos😊😁(englisch)</p>
+<p>•</p>
+<p>Intensive Simulation über mehrere Monate. Vielen Dank an die KP-Simulationsgruppe!</p>
+<p>•</p>
+<p>Letzter Monat: tägliche Protokollsimulationen mit Prüfungskolleginnen (2–3 Stunden)</p>
+<p>•</p>
+<p>Simulation war der wichtigste Erfolgsfaktor</p>
+<p><strong>Alle Ehre sei Gott – </strong>🙏</p></div>
+</section>
+<section id="p-16122025" class="protocol-entry fade-in">
+  <div class="protocol-header">
+    <div class="protocol-date">📅 16.12.2025</div>
+    <div class="protocol-badges"><span class="tag green">✓ Bestanden</span></div>
+    <span class="protocol-toggle">▶</span>
+  </div>
+  <div class="protocol-body"><p>3/3 bestanden 🔥</p>
+<p>Dr. Makowiec, Dr. Minin, Notarzt (Vielleicht mit</p>
+<p>Schwerpunkt Kardiologie🤷 )</p>
+<p>1 Teil ( wie FSP)</p>
+<p>Frau Wagner stellte sich wegen linksseitiger retrosternaler</p>
+<p>Brustschmerzen vor.</p>
+<p>Die Schmerzen traten unter Belastung auf, strahlten in den linken Arm</p>
+<p>aus und wurden auf der Schmerzskala</p>
+<p>(NRS) mit 8/10 angegeben.</p>
+<p>Eine Besserung trat nach Anwendung von Nitroglycerin-Spray und in</p>
+<p>Ruhe ein.</p>
+<p>Begleitend berichtete die Patientin über Angstsymptomatik, Dyspnoe</p>
+<p>sowie trockenen Husten.</p>
+<p>In der Vorgeschichte bestanden seit etwa einer Woche</p>
+<p>belastungsabhängige thorakale Beschwerden,</p>
+<p>insbesondere beim Treppensteigen über zwei Stockwerke oder bei</p>
+<p>schneller körperlicher Aktivität.</p>
+<p>Vegetative Begleitsymptome: Übelkeit, Müdigkeit.</p>
+<p>Zudem berichtete die Patientin über erhöhten beruflichen Stress.</p>
+<p>Vorerkrankungen / Medikation</p>
+<p>Arterielle Hypertonie (Metoprolol 50 mg 1-0-0, Ramipril 5 mg 1-0-0)</p>
+<p>Diabetes mellitus Typ 2 (Metformin 850 mg 1-0-1)</p>
+<p>ASS 100 mg 1-0-0, Atorvastatin 20 mg 0-0-1</p>
+<p>Bedarfsmedikation: Nitroglycerin-Spray</p>
+<p>Risikofaktoren</p>
+<p>Raucherin (1 Päckchen/Tag seit 30 Jahren)</p>
+<p>Regelmäßiger Alkoholkonsum (täglich ca. 1 l Weinschorle)</p>
+<p>Allergien</p>
+<p>Knoblauch (Exanthem)</p>
+<p>Familienanamnese</p>
+<p>Vater: plötzlicher Herztod; Mutter: Diabetes mellitus, an Schlaganfall</p>
+<p>verstorben; Bruder: Adipositas, Z. n.</p>
+<p>Stentimplantation</p>
+<p>Sozialanamnese</p>
+<p>Verheiratet, Büroangestellteri</p>
+<p>Die Patientin hat ein EKG vom Hausarzt dabei.(Hinterwand STEMI)</p>
+<p>Aber Beschwerden sind mit Verdacht auf stabile Angina pectoris!(bei</p>
+<p>Vorstellung habe ich nur betont)</p>
+<p>Dann 15 Minuten für KU:</p>
+<p>KU: Haut Inspektion , Lungen, Herz, Abdomen</p>
+<p>Untersuchungen + Pulsstatus , LK , Reflexe, Schilddrüsen ( Da</p>
+<p>ausreichend Zeit zur Verfügung stand, wurden diese</p>
+<p>Untersuchungen durchgeführt)</p>
+<p>Tipp ! (Meine Empfehlung ist, dem Patienten jedes Mal zu</p>
+<p>erklären, was man gerade tun wird bei KU. Dieser Punkt</p>
+<p>wurde von meiner Schauspielerin positiv bewertet und als</p>
+<p>wichtig hervorgehoben.)</p>
+<p>Dann—- Brief ca. 1.15 St</p>
+<p>Teil 2</p>
+<p>Vorstellung bis Ende</p>
+<p>Fragen :</p>
+<p>Minin : LK Untersuchung (mit Erklärungen)</p>
+<p>Knie Anatomie + Untersuchung (ich habe nicht alle gezeigt,</p>
+<p>3/4 waren genug )</p>
+<p>Notarzt: TVT Zeichen (Homans-Zeichen, Payr-Zeichen,</p>
+<p>Meyer-Zeichen) + ob diese Zeichen spezifische sind ? -Nein,</p>
+<p>nicht ausreichend zur Diagnosesicherung.</p>
+<p>Makoiwec: Spannungspneumothorax Zeichen, Vorgehen.</p>
+<p>Beschreiben EKG, welche Art. versorgt Hinterwand ? RCA</p>
+<p>Teil 3</p>
+<p>Minin : Echter und pseuder Krupp (Unterschied ,</p>
+<p>Behandlung), Impfungen , Poliomyelitis (Erreger ,</p>
+<p>Komplikationen), HWI (komplizierte /unkomplizierte +</p>
+<p>Behaldlung) Morbus Bechterew (KU,Therapie), Behandlung</p>
+<p>bei Abhängigkeiten - Methadon , partielle Opiode</p>
+<p>-Buprenorphin, was ist das ? Welche. Rezeptoren ?</p>
+<p>Hauptwirkung ?</p>
+<p>Makoiwec: pAVK (Definition, Ätiologie, KU - Knöchel-Arm-</p>
+<p>Index, Ratchow Lagerungsprobe, Klassifikation nach Fontaine,</p>
+<p>Diagnostic, Therapie)</p>
+<p>Hernien ( alle von Anatomy bis Op ) aber kurz, nicht sehr tief.</p>
+<p>Notarzt : EKG - Vorhofflatern , AV Block Mobitz II (+</p>
+<p>Therapie vor Schrittmacher (Atropin , Adrenalin will er hören),</p>
+<p>Endokarditis (Modifizierte Duke-Kriterien ), Akute</p>
+<p>Nierenversagen ( pre, intra, post renal ), Akute Nierenversagen</p>
+<p>auf Grund Sepsis Therapie(Genug Flüssigkeitszufuhr und</p>
+<p>Kontrolle Labor , Diurese).</p>
+<p>Tipp ! Antworten Sie strukturiert, nehmen Sie sich Zeit und</p>
+<p>denken Sie laut. So gewinnen Sie Zeit und bekommen weniger</p>
+<p>Zusatzfragen. Ruhig bleiben und langsam erklären ist immer</p>
+<p>besser.</p>
+<p>Die Atmosphäre war gut, insbesondere dank Herrn Makowec</p>
+<p>❤</p>
+<p>Quelle : Amboss , Herold Innere Medizin, Chirurg Appetizer</p>
+<p>auf YouTube, Chat.</p>
+<p>Protokolle ++++++ sowie Simulationen ( maximal möglich)</p></div>
+</section>
 <section id="p-031220251" class="protocol-entry fade-in">
   <div class="protocol-header">
     <div class="protocol-date">📅 03.12.2025-1</div>
@@ -914,6 +2062,46 @@ strong{font-weight:600}
 <p>Ich habe ehrlich gesagt keinen Kurs gemacht. Ich habe ein Jahr lang mit einer Berufserlaubnis gearbeitet. Zur Vorbereitung habe ich einen Monat und eine halbe mit einem sehr guten Partner mehrere Stunden pro Tag gearbeitet. Wir haben Protokolle erstellt, alles diskutiert: Pharmakologie, Radiologie, EKGs, Last-Minute-Pharmakologie. 80 Fälle waren sehr hilfreich, zusammen mit den Mediknow-Karten.</p>
 <p>Die Prüfer waren sehr zufrieden, und am Ende sagte der Internist zu uns: ‚Ich bin wirklich froh, Sie haben es super gut gemacht.</p>
 <p>Viel Glück!</p></div>
+</section>
+<section id="p-xx102025" class="protocol-entry fade-in">
+  <div class="protocol-header">
+    <div class="protocol-date">📅 xx.10.2025</div>
+    <div class="protocol-badges"></div>
+    <span class="protocol-toggle">▶</span>
+  </div>
+  <div class="protocol-body"><p>Zunächst möchte ich mich entschuldigen, da ich die Prüfung bereits im Oktober abgelegt habe und mir erst jetzt eingefallen ist, dass ich das Protokoll noch nicht mitgeteilt habe.</p>
+<p>Dr. Hammer – Chirurgie</p>
+<p>Dr. Meyer – Pharmakologie</p>
+<p>Dr. Steinfurth - Innere Medizin</p>
+<p>Teil 1:</p>
+<p>Teil 1 begann um 12:30 Uhr.</p>
+<p>Mein Fall war ein Myokardinfarkt ( EKG und Laborwerte zeigte eine STEMI). Die Schauspielpatientin war sehr freundlich und sprach deutlich und klar. Sie erschien mit einem EKG sowie mit Laborwerten, die wir gezielt erfragen mussten. Nach der Anamnese und der körperlichen Untersuchung setzte ich mich daran, den Arztbrief zu verfassen.</p>
+<p>Wir haben vier verschiedene Raum erhalten und bis Teil 3 haben jeder Prüflingen die Raum zu selbst. Wir werden bis 15:30 Uhr nicht gestört werden und konnten während dieser Zeit alle Materialien nutzen.</p>
+<p>Teil 2:</p>
+<p>Teil 2 begann um 15:30 Uhr. Meiner Meinung nach ist dies der wichtigste Teil der Prüfung, da die Prüfer hier unsere Kenntnisse beurteilen und sich einen umfassenden Eindruck von unserem medizinischen Wissen verschaffen konnten.</p>
+<p>Ich stellte meine Patientin vor, anschließend fragte Dr. Hammer nach der Morphin-Dosierung. Die Schauspielpatientin war schlank, und bei solchen Patientinnen sollte die Dosierung entsprechend angepasst werden. Er sprach über die Dosisanpassung von Medikamenten in Abhängigkeit vom Körpergewicht und stellte dazu gezielte Fragen.</p>
+<p>Dr. Steinfurth fragte anschließend nach Dyspnoe und danach, wie ich eine Patientin mit Dyspnoe im Notfall behandeln würde. Zudem wollte er die entsprechenden Differentialdiagnosen hören, insbesondere Herzklappenvitien und Herzinsuffizienz.</p>
+<p>Dr. Meyer stellte Fragen zu Calciumantagonisten und Thrombozytenaggregationshemmern. Er wollte insbesondere neue Medikamente aus dem Bereich der Thrombozytenaggregationshemmung genannt bekommen.</p>
+<p>⸻</p>
+<p>Teil 3:</p>
+<p>Teil 3 begann um 16:30 Uhr.</p>
+<p>Dr. Meyer fragte mich zu Hyperthyreose und Hypothyreose. Er stellte einen klinischen Fall vor und wollte die genaue Therapie besprochen haben. Dabei fragte er nach der Radiojodtherapie, nach Indikationen für eine chirurgische Behandlung sowie nach Situationen, in denen eine Operation nicht angezeigt ist.</p>
+<p>Zusätzlich fragte er nach Jodmangel in bergigen Regionen und nach präventiven Maßnahmen. Ich nannte die Verwendung von jodiertem Salz; später wurde ergänzt, dass auch Meeresfrüchte eine wichtige Jodquelle darstellen. Außerdem stellte er Fragen zum täglichen Jodbedarf.</p>
+<p>Dr. Steinfurth stellte Fragen zum Thema Impfungen. Der Fall lautete: Ein 60-jähriger Mann kommt in die Praxis und möchte sich impfen lassen. Welche Impfungen sind in diesem Alter empfohlen?</p>
+<p>Ich nannte mehrere Impfungen, jedoch wollte er insbesondere die COVID-19-Impfung hören. Anschließend fragte er nach Reiseimpfungen. Dieser Teil war anspruchsvoll, da er genau wissen wollte, welche zeitlichen Abstände zwischen den Impfungen eingehalten werden müssen und wie lange vor einer Reise die Impfungen erfolgen sollten (z. B. Hepatitis A mit einem Impfschema von 0–6 Monaten; eine Reise ist in der Regel bereits einen Monat nach der ersten Impfung möglich).</p>
+<p>Dr. Hammer zeigte mir anschließend ein Röntgenbild des Beckens. Zunächst sollte ich das Bild beschreiben, danach folgten mehrere Fragen im Sinne einer „Rapid-Fire“-Runde. Es handelte sich um eine Beckenfraktur vom „Open-Book“-Typ, und er wollte diese Bezeichnung ausdrücklich hören.</p>
+<p>Der Patient war ein Kind, und Dr. Hammer fragte, was in diesem Fall besonders zu beachten sei. Ich erklärte, dass Kinder ein geringeres Blutvolumen haben und daher schneller in einen Schockzustand geraten können; er wollte jedoch die genaue zugrunde liegende Physiologie erläutert haben.</p>
+<p>Danach zeigte er ein Bild eines Traumas der Kniekehle mit einem Fremdkörper. Es handelte sich um eine Fahrradbremse, die in der Kniekehle steckte. Er fragte, warum es gefährlich sei, diesen Fremdkörper vor einer operativen Versorgung zu entfernen.</p>
+<p>Während der Prüfungstage war ich sehr angespannt und nervös, wodurch es mir zeitweise schwerfiel, klar zu denken.</p>
+<p>11:49</p>
+<p>In dieser Situation habe ich leider einige Fehler gemacht, die weitere, zum Teil schwierigere Fragen nach sich gezogen haben. Dennoch habe ich das Gefühl, dass ein insgesamt guter Eindruck, insbesondere in Teil 2, dazu beitragen kann, Unsicherheiten in Teil 3 auszugleichen und die Prüfung letztlich zu bestehen.</p>
+<p>Protokoll sollte man unbedingt bis 1 Jahr früher machen und danach andere Bücher und Lernmaterial. Für mich hat es sich gelohnt und Gott sei Dank habe ich bestanden.</p>
+<p>3/4 Bestanden</p>
+<p>Protokoll +++++++++</p>
+<p>Amboss +++</p>
+<p>Lernkarten +++++</p>
+<p>Last Minute Pharmakologie ++</p>
+<p>FIA Kurs +++++</p></div>
 </section>
 <section id="p-21102025" class="protocol-entry fade-in">
   <div class="protocol-header">
@@ -5497,12 +6685,15 @@ strong{font-weight:600}
 <p>Abdomen: weiche Bauchdecke, keine Resistenzen, keine Abwehrspannung, rege Darmgeräusche.</p>
 <p>Haut, Hals und Extremitäten: Normaler Hautturgor, keine Exsikkosezeichen, keine obere Einflussstauung, keine Ödeme, regelrechter arterieller Pulsstatus ohne arterielle Strömungsgeräusche.</p>
 <p>Neuro: Grob orientierend unauffällig.</p>
+<div class="proto-images"><a href="Freiburg_20.12.2023_1.webp" target="_blank" rel="noopener"><img src="Freiburg_20.12.2023_1.webp" alt="Freiburg_20.12.2023_1" loading="lazy"></a></div>
+<div class="proto-images"><a href="Freiburg_20.12.2023_2.webp" target="_blank" rel="noopener"><img src="Freiburg_20.12.2023_2.webp" alt="Freiburg_20.12.2023_2" loading="lazy"></a></div>
 <p><strong>Befundhinweis</strong></p>
 <ul>
 <li>Vorhofflimmern mit tachykarder Überleitung</li>
 <li>Linkstyp</li>
 <li>QT-Verlängerung</li>
 </ul>
+<div class="proto-images"><a href="Freiburg_20.12.2023_3.webp" target="_blank" rel="noopener"><img src="Freiburg_20.12.2023_3.webp" alt="Freiburg_20.12.2023_3" loading="lazy"></a></div>
 <p>Name: Schäfle. Dorothee</p>
 <p>Geburtsdatum: 20.07.1949</p>
 <p>Alter: 74 Jahre</p>
@@ -5526,6 +6717,7 @@ strong{font-weight:600}
 <li>Die V. cava inferior kollabiert inspiratorisch unvollständig, ist aber atemmoduliert.</li>
 <li>Aortenbulbus dilatiert. Es zeigt sich eine Ektasie der A. ascendens im einsehbaren Bereich auf ca. 3,6 cm.</li>
 </ul>
+<div class="proto-images"><a href="Freiburg_20.12.2023_4.webp" target="_blank" rel="noopener"><img src="Freiburg_20.12.2023_4.webp" alt="Freiburg_20.12.2023_4" loading="lazy"></a></div>
 <p><strong>Transösophageale Echokardiographie</strong></p>
 <p>Datum der Studie: 21.05.2019</p>
 <p>Schallbedingungen</p>
@@ -5631,6 +6823,7 @@ strong{font-weight:600}
 <p>Dr. Faber: EKG interpretieren</p>
 <p>Bei mir</p>
 <p>Ich habe ein EKG nur mit Ableitung II bekommen, das sieht ungefähr so aus: mit Schreibgeschwindigkeit 25mm/s</p>
+<div class="proto-images"><a href="Freiburg_20.12.2023_5.webp" target="_blank" rel="noopener"><img src="Freiburg_20.12.2023_5.webp" alt="Freiburg_20.12.2023_5" loading="lazy"></a></div>
 <ol>
 <li>Was ist das EKG? Mit welchem gerät können wir das sehen? Monitor-EKG</li>
 <li>Was sehen Sie darauf? (EKG interpretieren)</li>
@@ -5796,6 +6989,7 @@ strong{font-weight:600}
 <li>Abhängig</li>
 <li>Bei V.a.</li>
 </ul>
+<div class="proto-images"><a href="Freiburg_20.12.2023_6.webp" target="_blank" rel="noopener"><img src="Freiburg_20.12.2023_6.webp" alt="Freiburg_20.12.2023_6" loading="lazy"></a></div>
 <p>Tollwut: Postexpositionelle Immunprophylaxe bei Tollwut-Verdacht</p>
 <ol>
 <li>Was machen Sie gegen Infektionen?</li>
@@ -5808,6 +7002,7 @@ strong{font-weight:600}
 <ul>
 <li>1. Wahl Amoxicillin/Clavulansäure</li>
 </ul>
+<div class="proto-images"><a href="Freiburg_20.12.2023_7.webp" target="_blank" rel="noopener"><img src="Freiburg_20.12.2023_7.webp" alt="Freiburg_20.12.2023_7" loading="lazy"></a></div>
 <ol>
 <li>Wie werden Sie eine Sepsis therapieren?</li>
 <li>Woher wissen Sie, dass ein Patient eine Sepsis hat? Was sind die Symptome einer Sepsis?</li>
@@ -5836,6 +7031,7 @@ strong{font-weight:600}
 <ul>
 <li>Die minimale alveoläre Konzentration ist somit ein Maß für die Wirkungsstärke eines Inhalationsnarkotikums. Je niedriger die erforderliche minimale alveoläre Konzentration eines Inhalationsnarkotikums ist, desto potenter ist es.(Doccheck)</li>
 </ul>
+<div class="proto-images"><a href="Freiburg_20.12.2023_8.webp" target="_blank" rel="noopener"><img src="Freiburg_20.12.2023_8.webp" alt="Freiburg_20.12.2023_8" loading="lazy"></a></div>
 <ol>
 <li>Lokalanästhetika: Was verwenden Sie bei einem kleinen chirurgischen Eingriff?</li>
 <li>Wie wirken die Subtanzen? Blockade spannungsabhängiger Natriumkanäle in den Nerven</li>
@@ -5928,6 +7124,7 @@ strong{font-weight:600}
 <li>Wie lösen Sie den Stauchungsschmerz aus? Wie können Sie den Schmerz provozieren? Klopfen auf die Ferse</li>
 </ol>
 <p><strong>Kardiologie</strong></p>
+<div class="proto-images"><a href="Freiburg_20.12.2023_9.webp" target="_blank" rel="noopener"><img src="Freiburg_20.12.2023_9.webp" alt="Freiburg_20.12.2023_9" loading="lazy"></a></div>
 <ol>
 <li>Was für ein EKG ist das?</li>
 <li>Was ist die Diagnose? Sinoatrial Block mit Bradykardie</li>
@@ -6130,6 +7327,7 @@ strong{font-weight:600}
 <li>was machen Sie: Labor, Röntgen thorex und CT</li>
 </ul>
 <p>ich habe ein Bild bekommen das sieht ungefähr so aus:</p>
+<div class="proto-images"><a href="Freiburg08112023CT1.webp" target="_blank" rel="noopener"><img src="Freiburg08112023CT1.webp" alt="Freiburg08112023CT1" loading="lazy"></a></div>
 <p>Beschreiben Sie:</p>
 <ul>
 <li>Diagnose??</li>
@@ -6155,6 +7353,7 @@ strong{font-weight:600}
 </ul>
 <p>Anisokorie. Was bedeutet das: erhörter Druck im Gehirn.</p>
 <p>Die patientin ist stabile jetzt, was machen Sie, Labor, cCT . Hier kommt noch ein Bild</p>
+<div class="proto-images"><a href="Freiburg08112023CT2.webp" target="_blank" rel="noopener"><img src="Freiburg08112023CT2.webp" alt="Freiburg08112023CT2" loading="lazy"></a></div>
 <p>Beschreibung, Diagnose, und Therapie. Ich habe Op gesagt, er hat mir ein perop Bild von einen Gehirn zum beschreiben gezeigt, ich habe Blutung gesagt und er hat gesagt dass war OK</p>
 <p>eine Frau 78 Jahr Alt mit Rückenschmerzen, dann ein Foto: Tannenbaumphänomen, dann alllllles über Osteoporose</p>
 <p>Letzte Frage, eine Patientin mit Suizidgedanken und will nicht stationär aufgenommen werden was machen Sie, ich rufe die Polizei ein, warum...</p>
@@ -6266,6 +7465,7 @@ strong{font-weight:600}
 <li>Ich habe eine EKG bekommen, ohne Einführungen wurde ich gefragt, welche Symptome hat der Patient?</li>
 <li>Die EKG sieht ungefähr so aus:</li>
 </ul>
+<div class="proto-images"><a href="09.10.2023EKGFreiburg.webp" target="_blank" rel="noopener"><img src="09.10.2023EKGFreiburg.webp" alt="09.10.2023EKGFreiburg" loading="lazy"></a></div>
 <ul>
 <li>was soll gemacht werden?</li>
 <li>Warum ein Herzkatheteruntersuchung? Nachdem man das Herz mit dem Katheter erreicht hat, wie geht es weiter?</li>
@@ -6291,6 +7491,7 @@ strong{font-weight:600}
 <li>Wirst du ihn zuerst entlasten oder ein Röntgen-Thorax machen lassen?</li>
 </ul>
 <p>Dann hat mir ein Röntgen-Thorax gegeben.</p>
+<div class="proto-images"><a href="09.10.2023RoentgenFreiburg.webp" target="_blank" rel="noopener"><img src="09.10.2023RoentgenFreiburg.webp" alt="09.10.2023RoentgenFreiburg" loading="lazy"></a></div>
 <p>beschreiben Sie das Bild!</p>
 <ul>
 <li>Welche Art der Drainage passt dem Fall des Patienten besser und warum?</li>
@@ -6318,6 +7519,7 @@ strong{font-weight:600}
 <ul>
 <li>Was ist das als Blickdiagnose? </li>
 </ul>
+<div class="proto-images"><a href="09.10.2023BlickdiagnoseFreiburg.webp" target="_blank" rel="noopener"><img src="09.10.2023BlickdiagnoseFreiburg.webp" alt="09.10.2023BlickdiagnoseFreiburg" loading="lazy"></a></div>
 <p>Der Patient war mit seiner Familie vor drei Wochen im Wald und das Erythem ist seit mehr als einer Woche da, wirst du ihn therapieren? Mit welchem Antibiotikum?</p>
 <ul>
 <li>Wie lange?</li>
@@ -9956,31 +11158,25 @@ strong{font-weight:600}
 <li><strong>Autoren:</strong> <em>Telegram:</em> <a href="https://t.me/Linux62" target="_blank" rel="noopener">@Linux62</a>, <a href="https://t.me/oussdoc" target="_blank" rel="noopener">@oussdoc</a> </li>
 <li>Lizenz: GPLv3 [Frei]</li>
 </ul>
-<blockquote class="md-quote"><a href="https://en.wikipedia.org/wiki/Information_wants_to_be_free" target="_blank" rel="noopener">Information wants to be free</a></blockquote></div>
+<blockquote class="md-quote"><a href="https://en.wikipedia.org/wiki/Information_wants_to_be_free" target="_blank" rel="noopener">Information wants to be free</a></blockquote>
+<div class="proto-images"><a href="Billgates.jpg" target="_blank" rel="noopener"><img src="Billgates.jpg" alt="Billgates" loading="lazy"></a></div></div>
 </section>
   </div>
 
-  <!-- ANKI -->
   <div id="anki" class="section-divider fade-in">
     <div class="section-divider-num">4</div>
     <h2>Anki für die KP</h2>
   </div>
-  <div class="info-section fade-in">
-    <p><a href="https://www.ankizin.de" target="_blank" rel="noopener">Ankizin</a></p>
+  <div class="info-section fade-in"><p><a href="https://www.ankizin.de" target="_blank" rel="noopener">Ankizin</a></p>
 <p>Ankizin ist das größte non-profit, studentisch organisierte Anki-Projekt im deutschsprachigen Raum, das sich zum Ziel gesetzt hat das gesamte notwendige Wissen für alle Staatsexamina in Medizin in Anki umzusetzen.</p>
-<p>Auf Basis der Amboss-Bibliothek und dem 100-Tage-Lernplan haben wir alle Informationen aus den Kapiteln in Anki-Karten umgewandelt.</p>
-  </div>
+<p>Auf Basis der Amboss-Bibliothek und dem 100-Tage-Lernplan haben wir alle Informationen aus den Kapiteln in Anki-Karten umgewandelt.</p></div>
 
-  <!-- LITERATUR -->
   <div id="literatur" class="section-divider fade-in">
     <div class="section-divider-num">5</div>
     <h2>Literatur für die KP</h2>
   </div>
-  <div class="info-section fade-in">
-    
-  </div>
+  <div class="info-section fade-in"></div>
 
-  <!-- FEEDBACK -->
   <div id="feedback" class="section-divider fade-in">
     <div class="section-divider-num">6</div>
     <h2>Feedback und Diskussion</h2>
@@ -9996,6 +11192,7 @@ strong{font-weight:600}
 <li>Lizenz: GPLv3 [Frei]</li>
 </ul>
 <blockquote class="md-quote"><a href="https://en.wikipedia.org/wiki/Information_wants_to_be_free" target="_blank" rel="noopener">Information wants to be free</a></blockquote>
+<div class="proto-images"><a href="Billgates.jpg" target="_blank" rel="noopener"><img src="Billgates.jpg" alt="Billgates" loading="lazy"></a></div>
     <div class="callout success" style="margin-top:1rem">
       <span class="callout-icon">💬</span>
       <div class="callout-body">
@@ -10010,16 +11207,11 @@ strong{font-weight:600}
 </div>
 
 <script>
-// ── NAV HAMBURGER ──
 const ham=document.getElementById('hamBtn'),drawer=document.getElementById('navDrawer'),overlay=document.getElementById('navOverlay');
 ham.addEventListener('click',()=>{const o=drawer.classList.toggle('open');overlay.classList.toggle('open',o);ham.classList.toggle('open',o)});
 overlay.addEventListener('click',()=>{drawer.classList.remove('open');overlay.classList.remove('open');ham.classList.remove('open')});
-
-// ── FADE IN ──
 const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');io.unobserve(e.target)}}),{threshold:0.08});
 document.querySelectorAll('.fade-in').forEach(el=>io.observe(el));
-
-// ── ACCORDION ──
 document.querySelectorAll('.protocol-header').forEach(h=>{
   const entry=h.closest('.protocol-entry'),body=entry.querySelector('.protocol-body');
   h.addEventListener('click',()=>{const o=entry.classList.toggle('open');body.classList.toggle('open',o)});
@@ -10034,32 +11226,22 @@ function openByHash(){
 }
 window.addEventListener('DOMContentLoaded',openByHash);
 window.addEventListener('hashchange',openByHash);
-
-// ── SIDEBAR SEARCH ──
 document.getElementById('sidebarSearch').addEventListener('input',function(){
   const q=this.value.toLowerCase();
-  document.querySelectorAll('#sidebarDates a').forEach(a=>{
-    a.style.display=a.textContent.toLowerCase().includes(q)?'':'none';
-  });
+  document.querySelectorAll('#sidebarDates a').forEach(a=>{a.style.display=a.textContent.toLowerCase().includes(q)?'':'none'});
 });
-
-// ── MAIN SEARCH ──
 const mainSearch=document.getElementById('mainSearch'),searchCount=document.getElementById('searchCount');
 const allProtocols=document.querySelectorAll('.protocol-entry');
 mainSearch.addEventListener('input',()=>{
-  const q=mainSearch.value.toLowerCase().trim();
-  let vis=0;
+  const q=mainSearch.value.toLowerCase().trim();let vis=0;
   allProtocols.forEach(e=>{
-    const m=!q||e.textContent.toLowerCase().includes(q);
-    e.style.display=m?'':'none';
-    if(m)vis++;
-    if(q&&m){e.classList.add('open');e.querySelector('.protocol-body').classList.add('open')}
+    const show=!q||e.textContent.toLowerCase().includes(q);
+    e.style.display=show?'':'none';if(show)vis++;
+    if(q&&show){e.classList.add('open');e.querySelector('.protocol-body').classList.add('open')}
     else if(!q){e.classList.remove('open');e.querySelector('.protocol-body').classList.remove('open')}
   });
-  searchCount.textContent=q?vis+' Treffer':'142 Protokolle';
+  searchCount.textContent=q?vis+' Treffer':'161 Protokolle';
 });
-
-// ── SIDEBAR ACTIVE LINK ──
 (()=>{
   const sLinks=document.querySelectorAll('#sidebarDates a');
   const so=new IntersectionObserver(es=>es.forEach(e=>{
