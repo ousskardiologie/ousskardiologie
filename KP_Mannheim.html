@@ -9,20 +9,20 @@
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
 :root {
-  --bg:#ffffff; --surface:#f7f5f2; --surface2:#eeecea; --surface3:#e8e5e1;
-  --border:#e5e2de; --border2:#d8d5d0;
-  --text:#1a1410; --text2:#6b6460; --text3:#a09890;
-  --red:#c8303a; --red-bg:#fdf2f2; --red-border:#fbd5d5;
-  --blue:#2563eb; --blue-bg:#eff6ff; --blue-border:#bfdbfe;
-  --green:#0f7b5a; --green-bg:#f0fdf8; --green-border:#a7f3d0;
-  --amber:#d97706; --amber-bg:#fffbeb; --amber-border:#fde68a;
-  --purple:#7c3aed; --purple-bg:#f5f3ff; --purple-border:#ddd6fe;
-  --orange:#c2410c; --orange-bg:#fff7ed; --orange-border:#fed7aa;
-  --teal:#0d9488; --teal-bg:#f0fdfa; --teal-border:#99f6e4;
+  --bg:#ffffff;--surface:#f7f5f2;--surface2:#eeecea;--surface3:#e8e5e1;
+  --border:#e5e2de;--border2:#d8d5d0;
+  --text:#1a1410;--text2:#6b6460;--text3:#a09890;
+  --red:#c8303a;--red-bg:#fdf2f2;--red-border:#fbd5d5;
+  --blue:#2563eb;--blue-bg:#eff6ff;--blue-border:#bfdbfe;
+  --green:#0f7b5a;--green-bg:#f0fdf8;--green-border:#a7f3d0;
+  --amber:#d97706;--amber-bg:#fffbeb;--amber-border:#fde68a;
+  --purple:#7c3aed;--purple-bg:#f5f3ff;--purple-border:#ddd6fe;
+  --orange:#c2410c;--orange-bg:#fff7ed;--orange-border:#fed7aa;
+  --teal:#0d9488;--teal-bg:#f0fdfa;--teal-border:#99f6e4;
   --serif:'Cormorant Garamond',Georgia,serif;
   --sans:'DM Sans',system-ui,sans-serif;
-  --nav-h:56px; --sidebar-w:280px;
-  --radius:10px; --radius-lg:14px;
+  --nav-h:56px;--sidebar-w:280px;
+  --radius:10px;--radius-lg:14px;
   --shadow:0 2px 8px rgba(0,0,0,.06);
   --shadow-md:0 6px 24px rgba(0,0,0,.09);
   --shadow-lg:0 12px 40px rgba(0,0,0,.10);
@@ -34,8 +34,6 @@ a{color:var(--blue);text-decoration:none}
 a:hover{text-decoration:underline}
 code{font-family:'Courier New',monospace;font-size:.85em;background:var(--surface2);padding:2px 6px;border-radius:4px}
 ::-webkit-scrollbar{width:5px}::-webkit-scrollbar-track{background:transparent}::-webkit-scrollbar-thumb{background:var(--border2);border-radius:99px}
-
-/* ── NAV ── */
 .ouss-nav{position:sticky;top:0;z-index:600;height:var(--nav-h);background:rgba(255,255,255,.97);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);display:flex;align-items:center;padding:0 1.5rem;gap:10px}
 .ouss-brand{font-family:var(--serif);font-size:1.1rem;font-weight:400;color:var(--text);text-decoration:none;display:flex;align-items:center;gap:.45rem;white-space:nowrap}
 .ouss-brand-heart{animation:hb 1.6s ease-in-out infinite;display:inline-block}
@@ -53,11 +51,7 @@ code{font-family:'Courier New',monospace;font-size:.85em;background:var(--surfac
 .ouss-drawer.open{transform:translateX(0)}
 .ouss-drawer a{display:flex;align-items:center;gap:10px;padding:12px 1.3rem;font-size:14px;font-weight:500;color:var(--text);border-bottom:1px solid var(--border);min-height:48px;transition:background .15s}
 .ouss-drawer a:hover{background:var(--surface);text-decoration:none}
-
-/* ── LAYOUT ── */
 .layout{display:flex;min-height:calc(100vh - var(--nav-h))}
-
-/* ── SIDEBAR ── */
 .sidebar{width:var(--sidebar-w);flex-shrink:0;background:var(--surface);border-right:1px solid var(--border);position:fixed;top:var(--nav-h);left:0;bottom:0;overflow-y:auto;z-index:200;display:flex;flex-direction:column}
 .sidebar-header{padding:1.2rem 1.2rem 1rem;border-bottom:1px solid var(--border)}
 .sidebar-course{font-size:.65rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--text3);margin-bottom:.4rem}
@@ -76,12 +70,8 @@ code{font-family:'Courier New',monospace;font-size:.85em;background:var(--surfac
 .sidebar nav a:hover{background:var(--surface2);color:var(--text)}
 .sidebar nav a.active{background:var(--red-bg);color:var(--red);font-weight:600;border-left-color:var(--red)}
 .sidebar-footer{margin-top:auto;padding:1rem 1.2rem;border-top:1px solid var(--border);font-size:.74rem;color:var(--text3)}
-
-/* ── MAIN ── */
 .main{margin-left:var(--sidebar-w);flex:1;min-width:0}
 .main-inner{max-width:860px;padding:2.5rem 2.5rem 6rem}
-
-/* ── TYPOGRAPHY ── */
 h1{font-family:var(--serif);font-size:clamp(1.9rem,3.5vw,2.6rem);font-weight:300;line-height:1.15;color:var(--text);margin-bottom:.6rem}
 h1 em{font-style:italic;color:var(--red)}
 h2{font-family:var(--serif);font-size:1.65rem;font-weight:300;margin:2.5rem 0 1rem;color:var(--text);line-height:1.2;display:flex;align-items:center;gap:12px}
@@ -93,48 +83,35 @@ li{font-size:.9rem;line-height:1.7;margin-bottom:.15rem}
 hr{border:none;border-top:1px solid var(--border);margin:1.5rem 0}
 blockquote.md-quote{border-left:3px solid var(--border2);padding:.5rem 1rem;color:var(--text2);font-style:italic;margin:.8rem 0;font-size:.88rem}
 strong{font-weight:600}
-
-/* ── TAGS ── */
 .tag{padding:3px 11px;border-radius:20px;font-size:.72rem;font-weight:700;border:1px solid;display:inline-flex;align-items:center;gap:4px}
 .tag.red{background:var(--red-bg);color:var(--red);border-color:var(--red-border)}
 .tag.green{background:var(--green-bg);color:var(--green);border-color:var(--green-border)}
 .tag.blue{background:var(--blue-bg);color:var(--blue);border-color:var(--blue-border)}
 .tag.amber{background:var(--amber-bg);color:var(--amber);border-color:var(--amber-border)}
 .tag.purple{background:var(--purple-bg);color:var(--purple);border-color:var(--purple-border)}
-
-/* ── CALLOUT ── */
 .callout{border-radius:var(--radius);padding:1rem 1.2rem;margin:1rem 0;display:flex;gap:11px;align-items:flex-start;border:1px solid}
 .callout.info{background:var(--blue-bg);border-color:var(--blue-border)}
 .callout.warn{background:var(--amber-bg);border-color:var(--amber-border)}
 .callout.success{background:var(--green-bg);border-color:var(--green-border)}
 .callout.danger{background:var(--red-bg);border-color:var(--red-border)}
-.callout.purple{background:var(--purple-bg);border-color:var(--purple-border)}
 .callout-icon{font-size:18px;flex-shrink:0;margin-top:2px}
 .callout-body{font-size:.88rem;line-height:1.7}
-
-/* ── PAGE HEADER ── */
 .page-icon{font-size:52px;margin-bottom:.7rem;line-height:1;animation:float 4s ease-in-out infinite}
 @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
 .page-subtitle{font-size:.95rem;color:var(--text2);line-height:1.75;margin-bottom:1.4rem}
 .page-header{margin-bottom:2rem}
 .breadcrumb{font-size:.76rem;color:var(--text3);margin-bottom:.8rem;display:flex;align-items:center;gap:6px}
 .meta-strip{display:flex;flex-wrap:wrap;gap:1.4rem;font-size:.82rem;color:var(--text3);padding:1rem 0;border-top:1px solid var(--border);border-bottom:1px solid var(--border);margin-bottom:1.6rem}
-
-/* ── STAT GRID ── */
 .stat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:2rem}
 .stat-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);padding:1.1rem 1.2rem}
 .stat-card-num{font-family:var(--serif);font-size:2.2rem;font-weight:300;color:var(--text);line-height:1;margin-bottom:.2rem}
 .stat-card-num.green{color:var(--green)}
 .stat-card-num.red{color:var(--red)}
 .stat-card-label{font-size:.74rem;color:var(--text3);font-weight:600;text-transform:uppercase;letter-spacing:.06em}
-
-/* ── MANNHEIM ALERT banner ── */
 .mannheim-alert{background:linear-gradient(135deg,#fff7ed,#fef9f0);border:1px solid var(--amber-border);border-left:4px solid var(--amber);border-radius:var(--radius-lg);padding:1.2rem 1.4rem;margin:1rem 0;display:flex;gap:12px;align-items:flex-start}
 .mannheim-alert-icon{font-size:22px;flex-shrink:0}
 .mannheim-alert-body{font-size:.88rem;line-height:1.7;color:var(--text)}
 .mannheim-alert-body strong{color:var(--orange)}
-
-/* ── PRÜFER GRID ── */
 .pruefer-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:10px;margin:1rem 0 1.5rem}
 .pruefer-card{background:var(--bg);border:1px solid var(--border);border-radius:var(--radius-lg);padding:1rem 1.1rem;display:flex;gap:12px;align-items:flex-start;transition:box-shadow .18s,transform .18s}
 .pruefer-card:hover{box-shadow:var(--shadow-md);transform:translateY(-1px)}
@@ -142,20 +119,14 @@ strong{font-weight:600}
 .pruefer-name{font-family:var(--serif);font-size:.95rem;color:var(--text);margin-bottom:.15rem;line-height:1.3}
 .pruefer-fach{font-size:.75rem;font-weight:700;letter-spacing:.03em;text-transform:uppercase;margin-bottom:.2rem}
 .pruefer-detail{font-size:.78rem;color:var(--text2);line-height:1.45}
-
-/* ── MANNHEIM TIPS grid ── */
 .tips-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:1rem 0 1.5rem}
 .tip-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);padding:1rem 1.1rem}
 .tip-card-icon{font-size:1.4rem;margin-bottom:.4rem}
 .tip-card-title{font-size:.78rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--text2);margin-bottom:.35rem}
 .tip-card p{font-size:.82rem;color:var(--text);margin-bottom:0;line-height:1.6}
-
-/* ── SECTION DIVIDER ── */
 .section-divider{display:flex;align-items:center;gap:14px;margin:2.5rem 0 1.5rem}
 .section-divider-num{display:inline-flex;align-items:center;justify-content:center;width:32px;height:32px;border-radius:9px;background:var(--red);color:#fff;font-size:13px;font-weight:700;flex-shrink:0;box-shadow:0 4px 12px rgba(200,48,58,.3)}
 .section-divider h2{margin:0;font-size:1.55rem}
-
-/* ── PROTOCOL ENTRY ── */
 .protocol-entry{background:var(--bg);border:1px solid var(--border);border-radius:var(--radius-lg);margin-bottom:1rem;overflow:hidden;box-shadow:var(--shadow);scroll-margin-top:calc(var(--nav-h) + 12px);transition:box-shadow .2s}
 .protocol-entry:hover{box-shadow:var(--shadow-md)}
 .protocol-header{display:flex;align-items:center;gap:10px;padding:.85rem 1.2rem;background:var(--surface);border-bottom:1px solid var(--border);cursor:pointer;user-select:none}
@@ -167,22 +138,15 @@ strong{font-weight:600}
 @keyframes fadein{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
 .protocol-toggle{margin-left:6px;color:var(--text3);font-size:.7rem;transition:transform .25s;flex-shrink:0}
 .protocol-entry.open .protocol-toggle{transform:rotate(90deg)}
-
-/* ── INFO SECTION ── */
 .info-section{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);padding:1.4rem;margin-bottom:1.5rem}
 .info-section h3{margin-top:0}
-
-/* ── SEARCH BAR ── */
 .search-bar{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);padding:1rem 1.3rem;margin-bottom:1.2rem;display:flex;align-items:center;gap:10px}
 .search-bar input{flex:1;border:none;background:none;font-family:var(--sans);font-size:.9rem;color:var(--text);outline:none}
 .search-bar input::placeholder{color:var(--text3)}
 .search-count{font-size:.76rem;color:var(--text3);white-space:nowrap}
-
-/* ── FADE IN ── */
+.new-badge{display:inline-flex;align-items:center;gap:4px;padding:2px 8px;border-radius:20px;font-size:.65rem;font-weight:700;background:#dcfce7;color:#166534;border:1px solid #86efac;margin-left:6px;vertical-align:middle}
 .fade-in{opacity:0;transform:translateY(12px);transition:opacity .5s ease,transform .5s ease}
 .fade-in.visible{opacity:1;transform:translateY(0)}
-
-/* ── MOBILE ── */
 @media(max-width:768px){
   .sidebar{display:none}
   .sidebar.mobile-open{display:flex;width:min(300px,88vw)}
@@ -196,25 +160,20 @@ strong{font-weight:600}
   .ouss-badge{display:none}
   .pruefer-grid{grid-template-columns:1fr 1fr}
 }
-@media(max-width:480px){
-  .stat-grid{grid-template-columns:1fr}
-  .pruefer-grid{grid-template-columns:1fr}
-}
+@media(max-width:480px){.stat-grid{grid-template-columns:1fr}.pruefer-grid{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
 
-<!-- NAV -->
 <nav class="ouss-nav">
-  <a href="#" class="ouss-brand"><span class="ouss-brand-heart">🩺</span> OUSS Medizin</a>
+  <a href="KP_index.html" class="ouss-brand"><span class="ouss-brand-heart">🩺</span> OUSS Medizin</a>
   <div class="ouss-spacer"></div>
   <span class="ouss-badge">KP Mannheim</span>
-  <button class="ouss-ham" id="hamBtn" aria-label="Menü öffnen">
-    <span></span><span></span><span></span>
-  </button>
+  <button class="ouss-ham" id="hamBtn" aria-label="Menü öffnen"><span></span><span></span><span></span></button>
 </nav>
 <div class="ouss-overlay" id="navOverlay"></div>
 <div class="ouss-drawer" id="navDrawer">
+  <a href="KP_index.html">🏠 Zurück zum Index</a>
   <a href="#inhalt">📋 Inhalt der KP</a>
   <a href="#pruefer">👨‍⚕️ Prüfer UMM Mannheim</a>
   <a href="#tipps">💡 Prüfungstipps</a>
@@ -225,15 +184,13 @@ strong{font-weight:600}
 </div>
 
 <div class="layout">
-
-<!-- SIDEBAR -->
 <aside class="sidebar" id="sidebar">
   <div class="sidebar-header">
-    <div class="sidebar-course">KP Mannheim · UMM Universitätsmedizin</div>
+    <div class="sidebar-course">KP Mannheim · UMM · Aktualisiert Mai 2026</div>
     <div class="sidebar-title"><em>Kenntnisprüfung</em> Mannheim</div>
     <div class="sidebar-stats">
-      <span class="sidebar-stat total">112 Protokolle</span>
-      <span class="sidebar-stat green">✓ 40</span>
+      <span class="sidebar-stat total">122 Protokolle</span>
+      <span class="sidebar-stat green">✓ 48</span>
       <span class="sidebar-stat red">✗ 0</span>
     </div>
   </div>
@@ -242,16 +199,27 @@ strong{font-weight:600}
   </div>
   <div class="sidebar-section">Navigation</div>
   <nav>
+    <a href="KP_index.html">🏠 Index</a>
     <a href="#inhalt">📋 Inhalt der KP</a>
-    <a href="#pruefer">👨‍⚕️ Prüfer Mannheim</a>
-    <a href="#tipps">💡 Prüfungstipps</a>
+    <a href="#pruefer">👨‍⚕️ Prüfer</a>
+    <a href="#tipps">💡 Tipps</a>
     <a href="#protokolle">📝 Alle Protokolle</a>
-    <a href="#anki">🃏 Anki für die KP</a>
+    <a href="#anki">🃏 Anki</a>
     <a href="#literatur">📚 Literatur</a>
     <a href="#feedback">💬 Feedback</a>
   </nav>
   <div class="sidebar-section">Prüfungsdaten</div>
   <nav id="sidebarDates">
+<a href="#p-220420262">22.04.2026-2 <span style="color:var(--green);font-size:.75rem">✓</span></a>
+<a href="#p-220420261">22.04.2026-1 <span style="color:var(--green);font-size:.75rem">✓</span></a>
+<a href="#p-22042026">22.04.2026 <span style="color:var(--green);font-size:.75rem">✓</span></a>
+<a href="#p-03032026">03.03.2026 <span style="color:var(--green);font-size:.75rem">✓</span></a>
+<a href="#p-03032026">03.03.2026 </a>
+<a href="#p-16022026">16.02.2026 <span style="color:var(--green);font-size:.75rem">✓</span></a>
+<a href="#p-211120253">21.11.2025-3 </a>
+<a href="#p-211120252">21.11.2025-2 <span style="color:var(--green);font-size:.75rem">✓</span></a>
+<a href="#p-211120251">21.11.2025-1 <span style="color:var(--green);font-size:.75rem">✓</span></a>
+<a href="#p-21112025">21.11.2025 <span style="color:var(--green);font-size:.75rem">✓</span></a>
 <a href="#p-11112025">11.11.2025 <span style="color:var(--green);font-size:.75rem">✓</span></a>
 <a href="#p-101120253">10.11.2025-3 </a>
 <a href="#p-101120252">10.11.2025-2 <span style="color:var(--green);font-size:.75rem">✓</span></a>
@@ -365,22 +333,24 @@ strong{font-weight:600}
 <a href="#p-16112021">16.11.2021 </a>
 <a href="#p-14122021">14.12.2021 </a>
   </nav>
-  <div class="sidebar-footer">GPLv3 · frei verfügbar · @Linux62 @oussdoc</div>
+  <div class="sidebar-footer">Aktualisiert Mai 2026 · GPLv3 · @Linux62 @oussdoc</div>
 </aside>
 <div class="sidebar-overlay" id="sidebarOverlay"></div>
 
-<!-- MAIN -->
 <main class="main">
 <div class="main-inner">
 
-  <!-- PAGE HEADER -->
   <div class="page-header fade-in">
     <div class="page-icon">🏙️</div>
-    <div class="breadcrumb">OUSS Medizin <span>›</span> Kenntnisprüfung <span>›</span> Mannheim</div>
+    <div class="breadcrumb">
+      <a href="KP_index.html" style="color:var(--text3)">OUSS Medizin</a>
+      <span>›</span> Kenntnisprüfung <span>›</span> Mannheim
+    </div>
     <h1>Kenntnisprüfung <em>(KP)</em> Mannheim</h1>
     <p class="page-subtitle">
       Prüfungsprotokolle und Erfahrungsberichte für die Kenntnisprüfung an der
       Universitätsmedizin Mannheim (UMM). Kommission: Innere Medizin, Chirurgie und Radiologie.
+      <span class="new-badge">✦ Neu: bis April 2026 aktualisiert</span>
     </p>
     <div class="meta-strip">
       <span>📬 <a href="https://t.me/fspbadenwuttemberg" target="_blank">Telegram-Gruppe BW</a></span>
@@ -390,14 +360,13 @@ strong{font-weight:600}
     </div>
   </div>
 
-  <!-- STATS -->
   <div class="stat-grid fade-in">
     <div class="stat-card">
-      <div class="stat-card-num">112</div>
+      <div class="stat-card-num">122</div>
       <div class="stat-card-label">Protokolle gesamt</div>
     </div>
     <div class="stat-card">
-      <div class="stat-card-num green">40</div>
+      <div class="stat-card-num green">48</div>
       <div class="stat-card-label">Bestanden</div>
     </div>
     <div class="stat-card">
@@ -406,17 +375,16 @@ strong{font-weight:600}
     </div>
   </div>
 
-  <!-- Mannheim-spezifische Warnung -->
   <div class="mannheim-alert fade-in">
     <div class="mannheim-alert-icon">⚠️</div>
     <div class="mannheim-alert-body">
-      <strong>Wichtiger Hinweis:</strong> In den letzten Monaten hat es in Mannheim häufige Wechsel in der Prüfungskommission gegeben.
-      Mehrere Prüflinge teilen ihre Protokolle nicht, was die Vorhersagbarkeit der Prüfung erschwert.
-      Bitte teilen Sie nach Ihrer Prüfung unbedingt ein Protokoll — auf Telegram <a href="https://t.me/ProtokolleBW" target="_blank">@ProtokolleBW</a>.
+      <strong>Wichtiger Hinweis:</strong> In Mannheim gibt es häufige Wechsel in der Prüfungskommission.
+      Mehrere Prüflinge teilen ihre Protokolle nicht, was die Vorhersagbarkeit erschwert.
+      Bitte teilen Sie nach Ihrer Prüfung unbedingt ein Protokoll auf
+      <a href="https://t.me/ProtokolleBW" target="_blank">Telegram @ProtokolleBW</a>.
     </div>
   </div>
 
-  <!-- INHALT -->
   <div id="inhalt" class="section-divider fade-in">
     <div class="section-divider-num">1</div>
     <h2>Inhalt der Kenntnisprüfung</h2>
@@ -427,14 +395,12 @@ strong{font-weight:600}
 <hr>
     <div class="callout info" style="margin-top:1rem">
       <span class="callout-icon">ℹ️</span>
-      <div class="callout-body">
-        <strong>Rechtsgrundlage:</strong>
+      <div class="callout-body"><strong>Rechtsgrundlage:</strong>
         <a href="https://www.gesetze-im-internet.de/_appro_2002/__37.html" target="_blank">Bundesärzteordnung § 37 Kenntnisprüfung</a>
       </div>
     </div>
   </div>
 
-  <!-- PRÜFER -->
   <div id="pruefer" class="section-divider fade-in">
     <div class="section-divider-num">2</div>
     <h2>Prüfer an der UMM Mannheim</h2>
@@ -442,9 +408,9 @@ strong{font-weight:600}
   <div class="callout info fade-in">
     <span class="callout-icon">🏥</span>
     <div class="callout-body">
-      Die Kommission besteht in Mannheim standardmäßig aus <strong>Innerer Medizin</strong>, <strong>Chirurgie</strong>
-      und <strong>Radiologie</strong>. Die unten aufgeführten Prüfer sind bekannte, jedoch kann
-      die Zusammensetzung variieren — aktuelle Protokolle geben den besten Hinweis.
+      Die Kommission besteht standardmäßig aus <strong>Innerer Medizin</strong>, <strong>Chirurgie</strong>
+      und <strong>Radiologie</strong>. Die Zusammensetzung kann variieren —
+      aktuelle Protokolle geben den besten Hinweis.
     </div>
   </div>
   <div class="pruefer-grid fade-in">
@@ -490,7 +456,6 @@ strong{font-weight:600}
 </div>
   </div>
 
-  <!-- TIPPS -->
   <div id="tipps" class="section-divider fade-in">
     <div class="section-divider-num">3</div>
     <h2>Prüfungstipps für Mannheim</h2>
@@ -499,17 +464,17 @@ strong{font-weight:600}
     <div class="tip-card">
       <div class="tip-card-icon">🎯</div>
       <div class="tip-card-title">Selbstsicheres Auftreten</div>
-      <p>Niemals „wahrscheinlich" oder „vielleicht" sagen — Prüfer werten das als unsichere Antwort. Klar und direkt formulieren, auch wenn man nicht 100 % sicher ist.</p>
+      <p>Niemals „wahrscheinlich" oder „vielleicht" sagen — Prüfer werten das als unsichere Antwort. Klar und direkt formulieren.</p>
     </div>
     <div class="tip-card">
       <div class="tip-card-icon">🏥</div>
       <div class="tip-card-title">Krankenhauspraktikum</div>
-      <p>Mindestens ein Krankenhauspraktikum vor der Prüfung absolvieren — für Teil 1 (Patientenvorstellung) und Teil 2 (körperliche Untersuchung) unbedingt empfohlen.</p>
+      <p>Mindestens ein Praktikum vor der Prüfung absolvieren — für Patientenvorstellung und körperliche Untersuchung unbedingt empfohlen.</p>
     </div>
     <div class="tip-card">
       <div class="tip-card-icon">🩻</div>
       <div class="tip-card-title">Bildgebung früh üben</div>
-      <p>Radiologie- und EKG-Interpretation nicht auf den letzten Moment verschieben. In Mannheim kommen sehr viele Röntgen- und CT-Bilder vor.</p>
+      <p>In Mannheim kommen sehr viele Röntgen- und CT-Bilder vor. EKG- und Bildgebungsinterpretation nicht auf den letzten Moment verschieben.</p>
     </div>
     <div class="tip-card">
       <div class="tip-card-icon">📝</div>
@@ -520,14 +485,13 @@ strong{font-weight:600}
   <div class="callout warn fade-in">
     <span class="callout-icon">📋</span>
     <div class="callout-body">
-      <strong>Häufige Themen in Mannheim:</strong>
-      Ileus · Aortenaneurysma · Appendektomie-Komplikationen · Frakturen (Weber-Klassifikation, Schulterluxation) ·
-      Vorhofflimmern + CHA₂DS₂-VA-Score · Synkope + AV-Block · Ikterus · Schilddrüse ·
-      Röntgen-Qualitätskriterien · Pneumoperitoneum · Spannungspneumothorax
+      <strong>Häufige Themen:</strong>
+      Ileus · Aortenaneurysma · Appendektomie-Komplikationen · Frakturen (Weber A/B/C) ·
+      Vorhofflimmern + CHA₂DS₂-VA-Score · Synkope + AV-Block · Ikterus ·
+      Schilddrüse · Pneumoperitoneum · Spannungspneumothorax · Bandscheibenvorfall
     </div>
   </div>
 
-  <!-- PROTOKOLLE -->
   <div id="protokolle" class="section-divider fade-in">
     <div class="section-divider-num">4</div>
     <h2>Prüfungsprotokolle</h2>
@@ -537,17 +501,1116 @@ strong{font-weight:600}
     <div class="callout-body">
       Bitte teilen Sie nach Ihrer Prüfung ein Protokoll auf
       <a href="https://t.me/ProtokolleBW" target="_blank">Telegram @ProtokolleBW</a>!
-      In Mannheim werden besonders wenige Protokolle geteilt — jeder Beitrag ist wertvoll.
     </div>
   </div>
-
   <div class="search-bar fade-in">
     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
     <input type="search" id="mainSearch" placeholder="Protokolle durchsuchen (Datum, Diagnose, Prüfer, Fach …)" autocomplete="off">
-    <span class="search-count" id="searchCount">112 Protokolle</span>
+    <span class="search-count" id="searchCount">122 Protokolle</span>
   </div>
-
   <div id="protocolList">
+<section id="p-220420262" class="protocol-entry fade-in">
+  <div class="protocol-header">
+    <div class="protocol-date">📅 22.04.2026-2</div>
+    <div class="protocol-badges"><span class="tag green">✓ Bestanden</span></div>
+    <span class="protocol-toggle">▶</span>
+  </div>
+  <div class="protocol-body"><p>22.04.2026</p>
+<p>KP in Mannheim Uni abgelegt und Alhamdulillah bestanden.</p>
+<p>3/4 bestanden.</p>
+<p>28.10.2025 - Aufnahme in die Warteliste</p>
+<p>08.01.2026 - Rechnung</p>
+<p>13.02.2026 - Bezahlt</p>
+<p>24.02.2026 - Inoffizielle Einladung</p>
+<p>18.03.2026 - Offizielle Einladung</p>
+<p>Die Kommission bestand aus:</p>
+<p>einer Internistin (Prüfungsleiterin)</p>
+<p>einer Chirurgin</p>
+<p>einem Radiologen</p>
+<p>Die Prüfung sowie das Bericht schreiben fand in Alte Brauerei statt.</p>
+<p>Ich war um 10:15 eingeladen worden aber an dem Tag bisschen früh erschien.</p>
+<p>Nach dem Erklärung des Prüfungsablaufs bin ich gebeten den ersten Teil anzufangen.</p>
+<p>Teil.1</p>
+<p>Pyelonephritis.</p>
+<p>15 min für ein Anamnesegespräch.</p>
+<p>Eine sehr nette Schauspielerin als Patientin kam mit seit 4 Tagen bestehenden, plötzlich auftretenden rechtsseitigen Flankenschmerzen, Schmerzen im Unterbauch und brennen beim Wasserlassen vor.</p>
+<p>Temperature wurde zuhause gemessen: 38,6 C</p>
+<p>Es gab gleiche Beschwerden auch früher, aber hat sich in einem Tag ohne Therapie zurückgebildet.</p>
+<p>Chron.Erk: aHT</p>
+<p>Med: Beloc Zok 1-0-0</p>
+<p>15 min für eine Körperliche Untersuchung</p>
+<ol>
+<li>Vital Parameter</li>
+<li>Nierenklopfschmerz positiv</li>
+<li>Abdomen Untersuchung mit Leber und Milz</li>
+<li>Herz inspektion mit Auskultation</li>
+<li>Komplette Lunge Untersuchung dann die Zeit war um.</li>
+</ol>
+<p>Teil.2</p>
+<p>1 stunde habe ich den Bericht geschrieben, ich könnte meinen vorbereiteten Exemplar benutzen. Die Zeit war für mich bisschen knapp, weil ich nicht zu viel üben könnte.</p>
+<p>Teil.3</p>
+<p>Es gab circa halbe Stunde Pause.</p>
+<p>Als ich rein kam, die frau Ursula Hoffman war beim lesen meines Berichts. Ich dachte Sie lesen das nicht, aber doch, Sie lesen. Und nach der kurzen Vorstellung und kompletten Patientenvorstellung (ohne Unterbrechung) ihre erste Frage war: Sie haben bei der körperlichen Untersuchung die Untere extremitäten nicht untersucht, warum?</p>
+<p>Ich: weil die Zeit war um.</p>
+<p>Sie: Okay zeigen Sie bitte uns, wie führen sie das durch?</p>
+<p>Ich: alle mögliche Untersuchungen habe ich gemacht, dann gab paare fragen von Chirurgin, deren Antwort an dem Moment mir nicht gekommen sind, aber sie hat mir geholfen.</p>
+<p>Es gab keine Fragen von Radiologen.</p>
+<p>Teil.4</p>
+<p>Es gab circa 2 Sunde Pause.</p>
+<p>Der Radiologe hat mir 6-7 stück Bilder gezeigt, ein musste ich komplett beschreiben nach ABCDE schema, andere nur sagen, was auffällig ist.</p>
+<ol>
+<li>Aortenaneurysma</li>
+<li>Hochlorganperforation beim älteren Patienten</li>
+<li>Weber B Fraktur</li>
+<li>Trochanter - Femurfraktur</li>
+<li>ich wusste nicht was das ist und er hat auch nix gesagt</li>
+<li>Pneumonie und alle mögliche Fragen über Erreger, Klassifikation, Therapie von Radiologen.</li>
+</ol>
+<p>Mit der Chirurgin haben wir weiter über Aneurysma gesprochen, sie hat mir ein Bild: liksseitige falsche Leisten aneurysma, über Ursachen und Therapie gesprochen.</p>
+<p>Dann kamm ein Fall über Abdomen Aortenaneurysma: was sieht man im Röntgen und CT, was sind die Therapiemöglichkeiten. Noch paar fragen bezüglich Blutgerinnung habe ich leider vergessen.</p>
+<p>Die Prüfungsleiterin Frau Dr.Ursula Hoffman zeigte mir ein Bild: Petechien, sie wollte alle Ursachen, Typen von Thrombozytopenie und vorgehen hören.</p>
+<p>Dann ein Fall mit Beschwerden von Herzinsuffizienz ein Bild von Pleuraerguss : vorgehen, Therapie (medikamentös sowie operativ)</p>
+<p>Ein EKG: Vorhofflimmern und alles mögliches darüber. Von Diagnose bis Komplikationen.</p>
+<p>Am Ende ein EKG Bild: Kammerflimmern, vorgehen und Therapie.</p>
+<p>Zusammenfassung:</p>
+<p>Die Prüfern sind echt mega nett. Ich hatte ein Gefühl dass ich in einem kollegialen Gespräch bin. Die helfen viel und orientieren uns. Obwohl ich nicht alle Fragen antworten könnte (circa 80% geantwortet) habe ich die Prüfung bestanden.</p>
+<p>Vorbereitung:</p>
+<p>Simulationen ++++</p>
+<p>Protokolle ++++</p>
+<p>Chatgpt plus ++++</p>
+<p>SOP Notaufnahme ++++</p>
+<p>Amboss +++(Nur wichtigste Themen)</p>
+<p>Medi Know EKG kurse gekauft ++ (für Innere Medizin)</p>
+<p>Notfall Medizin You Tube Kanal ++</p>
+<p>MEX ++</p>
+<p>80 Fälle Innere und Chirurgie ++</p>
+<p>Bildgebende Verfahren in der Medizin ++</p>
+<p>Last minute Pharmakologie ++</p>
+<p>Appetizer You tube Mitgliedschaft ++ (für Chirurgie)</p>
+<p>PD Dr. Med Bettina Baeßler You tube Kanal ++ (für Radiologie)</p>
+<p>Ich habe eine kleine Telegramm gruppe erstellt und die Lute gefunden die nur in Mannheim im April Prüfung ablegen. Das war echt mega hilfreich, ich habe sehr viel von denen gelernt und noch andere zwei Kollegen die mit uns waren an dem Tag bestanden. Es ist sehr empfehlenswert.</p>
+<p>Dank meinem Arbeitgeber habe ich fast vier Wochen vor der Prüfung einen Urlaub gehabt und den ganzen Tag in der Bibliothek vorbereiten könnte.</p>
+<p>Erstmal habe ich alle Protokolle 2024-2026 mit Chatgpt plus komplett gearbeitet und in einem PDF organisiert, ausgedrückt dann bei Simulationen am Ende benutzt.</p>
+<p>Ich bedanke mich ganz herzlich den Kollegen, die ihre Protokolle weiter geschrieben haben und den allen Kollegen, die bei meiner Vorbereitung mit Simulationen geholfen haben.</p>
+<p>Und wünsche ich weiterhin viel Erfolg, die noch Prüfung haben.</p>
+<p>Keine Angst. Ihr schafft das😎🫡</p>
+<p>Ps. Ohne KI geschrieben</p></div>
+</section>
+<section id="p-220420261" class="protocol-entry fade-in">
+  <div class="protocol-header">
+    <div class="protocol-date">📅 22.04.2026-1</div>
+    <div class="protocol-badges"><span class="tag green">✓ Bestanden</span></div>
+    <span class="protocol-toggle">▶</span>
+  </div>
+  <div class="protocol-body"><p>Hallo zusammen 👋</p>
+<p>ich habe am 22. April die Kenntnisprüfung (KP) in Mannheim bestanden (1. Versuch) 🙏</p>
+<p>Ich möchte meine Erfahrung möglichst vollständig teilen, damit ihr genau wisst:</p>
+<p>👉 wie die Prüfung abläuft</p>
+<p>👉 was konkret gefragt wird (inkl. klinischer Kontexte + Antworten)</p>
+<hr>
+<p>⚡ PRÜFUNGSORT</p>
+<p>📌 Röntgenstraße 7 (Alte Brauerei)</p>
+<p>⚠️ Wichtig:</p>
+<ul>
+<li>Eingang auf der Rückseite</li>
+<li>Direkt gegenüber der Uniklinik Mannheim</li>
+<li>Nicht in die Uniklinik gehen!</li>
+</ul>
+<hr>
+<p>⚡ VORBEREITUNG</p>
+<ul>
+<li>Einladung (auch digital möglich)</li>
+<li>Ausweis</li>
+<li>Wasser wird gestellt</li>
+<li>Empfehlung: etwas Süßes mitnehmen</li>
+</ul>
+<hr>
+<p>⚡ ABLAUF DER PRÜFUNG</p>
+<p>Die Prüfung besteht aus 4 Teilen:</p>
+<hr>
+<p>⚡ ANAMNESE + KÖRPERLICHE UNTERSUCHUNG (30 Minuten)</p>
+<ul>
+<li>Mit Schauspielpatient/in</li>
+<li>In meinem Fall: Pyelonephritis</li>
+</ul>
+<p>💡 Häufige Fälle:</p>
+<ul>
+<li>Pyelonephritis</li>
+<li>Divertikulitis</li>
+<li>Cholezystitis</li>
+<li>Bandscheibenvorfall</li>
+<li>Hyperthyreose</li>
+</ul>
+<p>👉 Wichtig:</p>
+<ul>
+<li>Strukturierte Anamnese</li>
+<li>Vitalparameter messen:</li>
+<li>Blutdruck</li>
+<li>Herzfrequenz</li>
+<li>Atemfrequenz</li>
+<li>Sauerstoffsättigung</li>
+</ul>
+<p>👉 Untersuchung (fallorientiert):</p>
+<ul>
+<li>Abdomen</li>
+<li>Klopfschmerz (Giordano-Zeichen positiv)</li>
+</ul>
+<p>⏱ Zeit ist ausreichend</p>
+<hr>
+<p>⚡ ARZTBRIEF (60 Minuten)</p>
+<p>👉 Strategie:</p>
+<p>Ich hatte Arztbriefe für alle Fälle vorbereitet und habe sie nur angepasst.</p>
+<p>👉 Zusätzlich:</p>
+<p>Ich habe meine Patientenvorstellung vorgeschrieben.</p>
+<hr>
+<p>⚡ PATIENTENVORSTELLUNG + FALLFRAGEN (15–20 Minuten)</p>
+<p>👉 Danach Fragen zum Fall:</p>
+<hr>
+<p>⚡ PYELONEPHRITIS – FRAGEN &amp; ANTWORTEN</p>
+<hr>
+<p>Frage: Häufigster Erreger?</p>
+<p>Antwort: Escherichia coli</p>
+<hr>
+<p>Frage: Was untersucht der Urinstix?</p>
+<p>Antwort:</p>
+<ul>
+<li>Leukozyten</li>
+<li>Nitrit</li>
+<li>Erythrozyten</li>
+<li>Protein</li>
+<li>Glukose</li>
+<li>pH-Wert</li>
+</ul>
+<hr>
+<p>Frage: Was bedeuten die Farben bei den Leukozyten im Urinstix?</p>
+<p>Antwort:</p>
+<p>Der Urinstix misst die Leukozytenesterase (semiquantitativ):</p>
+<ul>
+<li>+ → ca. 10/µl</li>
+<li>++ → ca. 75/µl</li>
+<li>+++ → ca. 500/µl</li>
+</ul>
+<p>👉 Entspricht klinisch einer signifikanten Leukozyturie (~10⁵–10⁶/ml)</p>
+<hr>
+<p>Frage: Erste Bildgebung?</p>
+<p>Antwort: Sonographie der Nieren</p>
+<hr>
+<p>Frage: Zweite Bildgebung?</p>
+<p>Antwort: CT Abdomen ohne Kontrastmittel</p>
+<p>Warum ohne Kontrast?</p>
+<ul>
+<li>Steine besser sichtbar</li>
+<li>Schonung der Niere</li>
+<li>schnelle Diagnostik bei kompliziertem Verlauf</li>
+</ul>
+<hr>
+<p>Frage: Komplikationen?</p>
+<p>Antwort:</p>
+<ul>
+<li>Abszess</li>
+<li>Urosepsis</li>
+<li>Papillennekrose</li>
+</ul>
+<hr>
+<p>⚡ PRAKTISCHER TEIL</p>
+<p>Man kann aufgefordert werden, erneut zu untersuchen.</p>
+<p>👉 Bei mir: untere Extremitäten</p>
+<ul>
+<li>Inspektion</li>
+<li>Palpation</li>
+<li>Pulse:</li>
+<li>A. femoralis</li>
+<li>A. poplitea</li>
+<li>A. tibialis posterior</li>
+<li>A. dorsalis pedis</li>
+</ul>
+<hr>
+<p>⚡ FACHFRAGEN (40–50 Minuten)</p>
+<p>👉 Der wichtigste Teil:</p>
+<p>Die Prüfer geben einen klinischen Kontext + Bild und stellen dann Fragen.</p>
+<hr>
+<p>⚡ RADIOLOGIE</p>
+<hr>
+<p>⚡ Fall 1 – Thorax-Röntgen</p>
+<p>Kontext:</p>
+<p>Junge Patientin mit ungewolltem Gewichtsverlust</p>
+<p>Frage: Was sehen Sie?</p>
+<p>Antwort:</p>
+<p>Thoraxaufnahme p.a. mit multiplen Rundherden → pulmonale Metastasen</p>
+<hr>
+<p>Frage: Häufige Primärtumoren?</p>
+<p>Antwort:</p>
+<ul>
+<li>Mammakarzinom</li>
+<li>Bronchialkarzinom</li>
+<li>Kolorektales Karzinom</li>
+<li>Nierenzellkarzinom</li>
+</ul>
+<hr>
+<hr>
+<p>⚡ Fall 2 – Thorax-Röntgen</p>
+<p>Kontext:</p>
+<p>Patient mit Dyspnoe und bekannter Herzinsuffizienz</p>
+<p>Frage: Diagnose?</p>
+<p>Antwort:</p>
+<p>Kardiales Lungenödem</p>
+<hr>
+<p>Frage: Therapie?</p>
+<p>Antwort:</p>
+<ul>
+<li>Sauerstoff</li>
+<li>Furosemid</li>
+<li>Nitrate</li>
+</ul>
+<hr>
+<hr>
+<p>⚡ Fall 3 – Zerebrale Blutungen</p>
+<p>Kontext:</p>
+<p>Akut einsetzender Kopfschmerz</p>
+<p>Frage: Häufigste Ursache der Subarachnoidalblutung?</p>
+<p>Antwort:</p>
+<p>Ruptur eines sakkulären Aneurysmas</p>
+<hr>
+<p>Frage: Epiduralblutung – Ursache?</p>
+<p>Antwort:</p>
+<p>Ruptur der A. meningea media (typisch nach Trauma)</p>
+<hr>
+<hr>
+<p>⚡ Fall 4 – MRT LWS</p>
+<p>Kontext:</p>
+<p>Rückenschmerzen</p>
+<p>Frage: Diagnose?</p>
+<p>Antwort:</p>
+<p>Spondylolisthesis</p>
+<hr>
+<p>Frage: Unterschied T1 / T2?</p>
+<p>Antwort:</p>
+<ul>
+<li>T1: Fett hell</li>
+<li>T2: Flüssigkeit hell</li>
+</ul>
+<hr>
+<hr>
+<p>⚡ Fall 5 – Pleuraerguss</p>
+<p>Kontext:</p>
+<p>Dyspnoe, einseitig abgeschwächtes Atemgeräusch</p>
+<p>Frage: Vorgehen?</p>
+<p>Antwort:</p>
+<ul>
+<li>Sonographie</li>
+<li>Pleurapunktion</li>
+<li>Ursachenklärung</li>
+</ul>
+<hr>
+<hr>
+<p>⚡ CHIRURGIE</p>
+<hr>
+<p>⚡ Fall 6 – Ileus</p>
+<p>Kontext:</p>
+<p>Patient mit Voroperation (Appendektomie) und Bauchschmerzen</p>
+<p>Frage: Ursache?</p>
+<p>Antwort:</p>
+<p>Adhäsionen</p>
+<hr>
+<p>Frage: Mechanisch vs. paralytisch?</p>
+<p>Antwort:</p>
+<ul>
+<li>mechanisch → Hindernis</li>
+<li>paralytisch → fehlende Peristaltik</li>
+</ul>
+<hr>
+<p>Frage: Röntgenbefund?</p>
+<p>Antwort:</p>
+<p>Luft-Flüssigkeitsspiegel</p>
+<hr>
+<p>Frage: Therapie?</p>
+<p>Antwort:</p>
+<ul>
+<li>konservativ</li>
+<li>operativ bei Komplikationen</li>
+</ul>
+<hr>
+<hr>
+<p>⚡ Fall 7 – Mesenterialischämie</p>
+<p>Kontext:</p>
+<p>Akuter Bauch, starke Schmerzen</p>
+<p>Frage: Ursache?</p>
+<p>Antwort:</p>
+<p>Embolie oder Thrombose</p>
+<hr>
+<p>Frage: Prognose?</p>
+<p>Antwort:</p>
+<p>Sehr hohe Mortalität</p>
+<hr>
+<hr>
+<p>⚡ Fall 8 – Aortenaneurysma</p>
+<p>Kontext:</p>
+<p>CT zeigt ein abdominelles Aortenaneurysma</p>
+<p>Frage: Diagnose?</p>
+<p>Antwort:</p>
+<p>AAA</p>
+<hr>
+<p>Frage: Zweite Situation: Patient kommt mit Schock → was passiert?</p>
+<p>Antwort:</p>
+<p>Ruptur des Aneurysmas → hypovolämischer Schock</p>
+<hr>
+<hr>
+<p>⚡ Fall 9 – Beckenfraktur</p>
+<p>Kontext:</p>
+<p>Trauma</p>
+<p>Frage: Einteilung?</p>
+<p>Antwort:</p>
+<ul>
+<li>Typ A → stabil</li>
+<li>Typ B → teilweise instabil</li>
+<li>Typ C → instabil</li>
+</ul>
+<hr>
+<p>Frage: Therapie?</p>
+<p>Antwort:</p>
+<ul>
+<li>stabil → konservativ</li>
+<li>instabil → operativ</li>
+</ul>
+<hr>
+<hr>
+<p>⚡ Fall 10 – Pertrochantäre Fraktur</p>
+<p>Kontext:</p>
+<p>Älterer Patient nach Sturz</p>
+<p>Frage: Therapie?</p>
+<p>Antwort:</p>
+<p>Operativ (DHS oder Marknagel)</p>
+<hr>
+<p>Frage: Komplikationen?</p>
+<p>Antwort:</p>
+<ul>
+<li>Thrombose</li>
+<li>Embolie</li>
+<li>Infektion</li>
+</ul>
+<hr>
+<hr>
+<p>⚡ Fall 11 – Schenkelhalsfraktur</p>
+<p>Kontext:</p>
+<p>Älterer Patient, verkürztes und außenrotiertes Bein</p>
+<p>Frage: Therapie?</p>
+<p>Antwort:</p>
+<ul>
+<li>jung → Osteosynthese</li>
+<li>alt → Endoprothese</li>
+</ul>
+<hr>
+<p>Frage: Komplikation?</p>
+<p>Antwort:</p>
+<p>Hüftkopfnekrose</p>
+<hr>
+<hr>
+<p>⚡ INNERE MEDIZIN</p>
+<hr>
+<p>⚡ Fall 12 – Petechien</p>
+<p>Kontext:</p>
+<p>Patient mit Hautblutungen</p>
+<p>Frage: Ursachen?</p>
+<p>Antwort:</p>
+<ul>
+<li>Thrombozytopenie</li>
+<li>Gerinnungsstörungen</li>
+<li>Infektionen</li>
+</ul>
+<hr>
+<hr>
+<p>⚡ Fall 13 – Blutbild</p>
+<p>Kontext:</p>
+<p>Leukozytose + Anämie + Thrombozytopenie</p>
+<p>Frage: Diagnose?</p>
+<p>Antwort:</p>
+<p>Verdacht auf Leukämie</p>
+<hr>
+<p>Frage: Nächster Schritt?</p>
+<p>Antwort:</p>
+<p>Peripherer Blutausstrich</p>
+<hr>
+<p>Frage: Danach?</p>
+<p>Antwort:</p>
+<p>Knochenmarkpunktion</p>
+<hr>
+<hr>
+<p>⚡ EKG</p>
+<hr>
+<p>⚡ Fall 14 – Kammerflimmern</p>
+<p>Frage: Therapie?</p>
+<p>Antwort:</p>
+<ul>
+<li>sofortige Defibrillation</li>
+<li>CPR</li>
+<li>Adrenalin</li>
+<li>Amiodaron</li>
+</ul>
+<hr>
+<hr>
+<p>⚡ Fall 15 – Vorhofflimmern</p>
+<p>Frage: Therapie?</p>
+<p>Antwort:</p>
+<ul>
+<li>Frequenzkontrolle</li>
+<li>Antikoagulation</li>
+<li>ggf. Kardioversion</li>
+</ul>
+<hr>
+<hr>
+<p>⚡Fall 16 – Vorderwandinfarkt</p>
+<p>Frage: Diagnose?</p>
+<p>Antwort:</p>
+<p>ST-Hebungen V1–V4</p>
+<hr>
+<p>Frage: Therapie?</p>
+<p>Antwort:</p>
+<ul>
+<li>sofortige PCI</li>
+<li>ASS + Heparin</li>
+</ul>
+<hr>
+<hr>
+<p>⚡ ZEIT</p>
+<ul>
+<li>30 min</li>
+<li>60 min</li>
+<li>15–20 min</li>
+<li>40–50 min</li>
+</ul>
+<p>👉 Gesamt: ca. 5–6 Stunden</p>
+<hr>
+<p>⚡ FAZIT</p>
+<p>👉 Sehr klinisch orientiert</p>
+<p>👉 Fokus auf strukturiertes Denken</p>
+<p>Ich habe 10 Monate gelernt und beim ersten Versuch bestanden</p>
+<p>👉 Es ist absolut machbar 💪</p>
+<p>Viel GLÜCK 🍀</p></div>
+</section>
+<section id="p-22042026" class="protocol-entry fade-in">
+  <div class="protocol-header">
+    <div class="protocol-date">📅 22.04.2026</div>
+    <div class="protocol-badges"><span class="tag green">✓ Bestanden</span></div>
+    <span class="protocol-toggle">▶</span>
+  </div>
+  <div class="protocol-body"><p>Ich habe am 22.04.2026 die Prüfung abgelegt und Gott sei Dank bestanden.</p>
+<p>Die Prüfung fand in der Alte Brauerei statt, auch das Briefschreiben war dort.</p>
+<p>Die Kommission bestand aus:</p>
+<p>einer Internistin (Kommissionschefin)</p>
+<p>einer Chirurgin</p>
+<p>einem Radiologen</p>
+<p>Teil 1: Divertikulitis</p>
+<p>Frau Keller, linksseitige Unterbauchschmerzen, begleitet von: Fieber bis 37,9 °C, Insomnie, Inappetenz, gelegentlicher Obstipation.</p>
+<p>Eine Koloskopie wurde vor zwei Jahren durchgeführt und zeigte eine Divertikulose.</p>
+<p>Sie hat Hypertonie und nimmt Beloc ZOK.</p>
+<p>Untersuchung: Vitalparameter (RR, Puls, AF),</p>
+<p>Abdomenuntersuchung, Herzauskultation (laut Patientin besteht bereits eine bekannte Herzrhythmusstörung, die Kommission wusste Bescheid und es war nicht prüfungsrelevant, trotzdem habe ich ein systolisches Geräusch über der Mitralklappe gehört und im Brief erwähnt),</p>
+<p>Lungenauskultation, Pulsstatus, neurologische Untersuchung (nur Kraft und Sensibilität), Schilddrüse (nur Schlucken).</p>
+<p>Die Zeit war ausreichend.</p>
+<p>Danach hatte ich eine Stunde Zeit, um den Brief zu schreiben.</p>
+<p>(Laut Sekretärin darf man kein Handy benutzen, daher sollte man ein Muster vorbereiten, falls man ohne Handy Schwierigkeiten hat.)</p>
+<p>Teil 2</p>
+<p>Patientenvorstellung bis zur Therapie ohne Unterbrechung.</p>
+<p>Warum ist der Beruf wichtig?</p>
+<p>Weil er ein Risikofaktor für manche Krankheiten sein kann.</p>
+<p>Bei älteren Frauen: welche Maßnahmen?</p>
+<p>Mammographie und Zervixabstrich ab 50 Jahren.</p>
+<p>Alkoholzeichen am Körper</p>
+<p>(der Radiologe meinte Leberzirrhosezeichen wie Ikterus, Caput medusae, etc.).</p>
+<p>Blutdruckmessung (wie im Amboss-Video).</p>
+<p>Teil 3</p>
+<p>Chirurgin:</p>
+<p>Alles über Divertikulitis (Labor, apparative Diagnostik, was sieht man bei Perforation im Röntgen, Behandlung bei Perforation, Operationsoptionen, Ileostoma-Komplikationen – prärenale Niereninsuffizienz).</p>
+<p>Radiologe:</p>
+<p>Bei Polytrauma: welche Untersuchungen (eFAST und Ganzkörper-CT).</p>
+<p>Bilder:</p>
+<p>🔴Röntgen Becken: Beckenfraktur (wo genau ist die Fraktur? Im Sitzbeinbereich beidseits. Ist es ein Polytrauma? Behandlung?)</p>
+<p>🔴Röntgen Thorax: junge Frau mit Gewichtsverlust (laut ihm schwer zu erkennen; bei mir war das Röntgen unauffällig, CT zeigte einen mediastinalen Tumor (Lymphom). MRT: welche Typen kennen Sie? Diagnose: Resektion, Biopsie, Staging. Ann-Arbor-Klassifikation.)</p>
+<p>🔴Röntgen Halsbereich: Patient mit Dysphagie, dann CT → retropharyngealer Abszess.</p>
+<p>Ich habe versucht, Differenzialdiagnosen zu nennen, konnte aber keine sichere Blickdiagnose stellen.</p>
+<p>Internistin:</p>
+<p>🔴Laborwerte: Leukozytose (36.000), Anämie (Hb 9), Thrombozytopenie (~70.000–90.000), keine Referenzwerte → Diagnose: Leukämie. Weitere Maßnahmen: Blutausstrich und Knochenmarkbiopsie.</p>
+<p>🔴TVT: Patientin nach Operation, Bild mit einseitiger Beinschwellung. Score? Wells-Score. Diagnostik bei hoher Wahrscheinlichkeit: Farbduplex (sie meinte auch, D-Dimere sind günstig und schnell). Therapie: Welche NMH und DOAK kennen Sie?</p>
+<p>🔴Thoraxschmerzen: Differenzialdiagnosen? Welche Laborwerte? Dann EKG → Myokardinfarkt ventrolateral. Therapie mit Dosierung und PCI.</p>
+<p>🔴Kammerflimmern im EKG und Behandlung (Defibrillation): Das Bild war eine ventrikuläre Tachykardie, aber laut ihr war es Kammerflimmern.</p>
+<p>Antrag: 25/11/2025</p>
+<p>Beschtätigung: 18/12/2025</p>
+<p>Rechnung: 28/01/2026</p>
+<p>Bezahlen: 10/02/2026</p>
+<p>Inoffizielle Einladung: 25/02/2026</p>
+<p>Offizielle Einladung: 18/03/2026</p>
+<p>Prüfung: 22.04.2026</p></div>
+</section>
+<section id="p-03032026" class="protocol-entry fade-in">
+  <div class="protocol-header">
+    <div class="protocol-date">📅 03.03.2026</div>
+    <div class="protocol-badges"><span class="tag green">✓ Bestanden</span></div>
+    <span class="protocol-toggle">▶</span>
+  </div>
+  <div class="protocol-body"><p>KP am 03.03.2026 in Mannheim</p>
+<p>(3 Prüflinge: 2 bestanden. Der letzte weiß ich nicht)</p>
+<ol>
+<li>Teil: Divertikulitis (Schauspielerin)</li>
+</ol>
+<p>30 Minuten für die Anamnese und körperliche Untersuchung.</p>
+<p>1 Stunde für den Brief</p>
+<ol>
+<li>Teil: Fallvorstellung (mit der Patientin)</li>
+</ol>
+<p>Fragen über Divertikulitis (Kriteria für Aufnahme, Antibiotika, Komplikationen, was sucht man in einer CT)</p>
+<p>Allan-Test (mit Patientin)</p>
+<p>Pulsen in den Extremitäten (mit Patientin)</p>
+<ol>
+<li>Teil (wichtigste)</li>
+</ol>
+<ul>
+<li>Radiologie:</li>
+</ul>
+<ol>
+<li>Aortendissektion Stanford A, Anatomie der Aorta, Differenz zwischen Stanford A und B, anatomische Grenze der Aorta zwischen Stanford A und B)</li>
+</ol>
+<ol>
+<li>Hämatopneumothorax (Spannungspneumothorax)</li>
+</ol>
+<p>Beschreibung von einem Röntgen.</p>
+<p>Therapie (Monaldi und Bülau)</p>
+<p>Komplikationen: Tamponade</p>
+<p>Komplikationen von KM</p>
+<ul>
+<li>Chirurgie: Radiusparese, Dermatomen im Hand, Schweigepflicht (alle die wichtige Info)</li>
+</ul>
+<ul>
+<li>Innere: STEMI (EKG mit ST-Hebungen V1 bis V4), Kammerflimmern (EKG),</li>
+</ul>
+<p>Thoraxschmerzen (Procedere in der ZNA und Differenzialdiagnosen),</p>
+<p>Blickdiagnose von einer Hautkrankheit in einem Kind (Petechien),</p>
+<p>Metformin und Risiko vor einer OP (warum)</p>
+<p>Alle sind seeeeeehr freundlich und wollen uns helfen....</p>
+<p>Lernmaterial:</p>
+<ol>
+<li>Amboss 100 Tage Plan (https://support.amboss.com/hc/de/articles/360033497192-100-Tage-Lernplan-M2) +++</li>
+<li>Amboss Audios</li>
+<li>Protokolle +++</li>
+<li>SOP Notaufnahme (einige Themen)</li>
+<li>Ankizin.de ++</li>
+</ol>
+<p>Tipp: Frau Ursula Hoffmann in Mannheim hat mehrere EKGs schon vorbereitet.</p>
+<p>Sie bekommt einen sehr guten Eindruck, wenn man SCHNELL die EKG interpretieren kann.</p>
+<ol>
+<li>EKG:</li>
+</ol>
+<p>Linkslagetyp, ST-Senkungen in III.</p>
+<p>...innerhalb 2 Sekunden habe ich auch ST-Hebungen von V1 bis V4 bemerkt! (RIVA)</p>
+<p>Diagnose: STEMI</p>
+<ol>
+<li>EKG: </li>
+</ol>
+<p>ich habe innerhalb 3 Sekunden eine ventrikuläre Fibrillation in der EKG erkennt. Sie war seeehr zufrieden! 💘</p>
+<p>Ich habe ~20 Monaten mit Berufserlaubnis gearbeitet. Die letzte 12 Monate in der Innere Medizin.</p></div>
+</section>
+<section id="p-03032026" class="protocol-entry fade-in">
+  <div class="protocol-header">
+    <div class="protocol-date">📅 03.03.2026</div>
+    <div class="protocol-badges"></div>
+    <span class="protocol-toggle">▶</span>
+  </div>
+  <div class="protocol-body"><p>Ich habe gestern die Prüfung abgelegt. (03.03.26)</p>
+<p>Teil 1: Cholezystitis (andere Kollege hatte Divertikulitis)</p>
+<p>30 Mi.</p>
+<p>Teil 2: Brief (1 Std.)</p>
+<p>Teil 3: Komission aus Kardiologen, Chirurg und eine Frau (ich habe nicht gut verstanden welche Fach hatte sie, da sie mit einer Maske war)</p>
+<p>Fall Vorstellung, Karotiden und Herz Auskultation.</p>
+<p>Warum muss Man Puls während Herz Auskultation tasten?</p>
+<p>Welche Fokus ist für Mitralklappe? Wenn Man keine VAG rechts basal hört, was kann sein? Sie wollte Pleuraerguß hören</p>
+<p>Teil 4:</p>
+<p>Internist:</p>
+<p>-Sonographische Befunde bei Cholezystitis. Wast bedeutet die doppelflinten Phänomen? Er wollte auch über die Double Duct Sign und wo soll der Stein liegen, damit zu dieser Zeichen führen kann. (Hier wusste ich nicht, was er hören wollte, so ich habe über die Anatomie der Gallenwege erklärt)</p>
+<p>-Rö Thorax: Aortendissektion descendens. (Hier habe ich systematisch beschrieben, DD von einer Mediastinal Verbreitung gesagt und es gabt Klammer im Bild bei Z.n Bypass Op, so ich wurde danach gefragt)</p>
+<p>-Klassifikation von Aortendissektion und welche ist die wichtigste (typ A)</p>
+<p>CHirurg: viel über Antikoagulazion besprochen, Antidot, wie kontrolliert Man , welche Werte muss Man beachten.</p>
+<p>Wenn die Patientin unter Marcumar wäre, und Sie notfallmäßig operiert werden muss, was kann Man geben? Wie lange bis das Effekt von Vit K wirkt? Wenn wir nicht so lange warten können? PLasma Transfusion und in 2 Std. Kann Man operieren.</p>
+<p>Zudem habe ich über vWillebrand Sd erklärt und Faktor V Leiden.</p>
+<p>Frau: Bild von TVT gezeigt (alles besprochen bis zur Therapie, Dosierung, Dauer, Kompressionstherapie und Hochöagerung) (Gewicht für Heparin Dosierung wichtig!)</p>
+<p>Bild von Petechien gezeigt, über Ursachen für Thrombozytopenie besprochen, und Hit 1 und 2.</p>
+<p>Bild mit Kammerflimmern, Therapie .</p>
+<p>Ich war die erste, ich habe um 9 Uhr angefangen und um 14 Uhr war ich fertig. Zwischen 10 und 12 Uhr hatte ich frei, da Teil 1 und 2 finden vormittags sttat. Und Nachmittags Teil 3 und 4.</p>
+<p>Die Komission war locker, freundlich und empatisch.</p>
+<p>Teil 4 fühlte wie ein kollegiales Gespräch.</p>
+<p>Die Prüfung war nicht einfach, aber ist fair und Sie verstehen in welche Situation sind wir.</p>
+<p>Sie merken, dass Man weist und unterstützen bei die Antwort.</p>
+<p>Sie wollen schauen, dass Man weist, sie suchen nicht nach die richtige Antwort auf einmal.</p>
+<p>für die nächste Kollegen: bitte teil die Protokolle. Das war total hilfreich bei der Vorbereitung</p></div>
+</section>
+<section id="p-16022026" class="protocol-entry fade-in">
+  <div class="protocol-header">
+    <div class="protocol-date">📅 16.02.2026</div>
+    <div class="protocol-badges"><span class="tag green">✓ Bestanden</span></div>
+    <span class="protocol-toggle">▶</span>
+  </div>
+  <div class="protocol-body"><p>Hallo,</p>
+<p>ich habe heute meine Kenntnisprüfung in Mannheim bestanden.</p>
+<p>2/4 Kandidaten haben bestanden.</p>
+<p>Die Kommission bestand aus einem Chirurgen, einer Labormedizinerin und einem Internisten.</p>
+<p>Ich war die dritte Kandidatin. Wir waren erste 3 Kandidaten früh da, deshalb begann die Prüfung auch früher.</p>
+<p>Im ersten Teil haben wir im Seminarraum den Arztbrief geschrieben. Draußen war es wegen anderer Seminare ziemlich laut.</p>
+<p>Mein Fall war Pyelonephritis, beim anderen Kandidaten Divertikulitis.</p>
+<p>Für die Anamnese und die körperliche Untersuchung hatten wir 30 Minuten Zeit.</p>
+<p>Danach hatten wir eine Stunde Zeit für den Arztbrief.</p>
+<p>Wir haben alle gleichzeitig im Raum geschrieben.</p>
+<p>Ich empfehle auf jeden Fall, vorher ein Muster für den Arztbrief vorzubereiten.</p>
+<p>Der zweite Teil war sehr kurz – es wurde nur eine Frage zum Wirkmechanismus der ACE-Hemmer gestellt. Ich sollte keine Körperliche Untersuchung machen beim 2. Teil.</p>
+<p>Im dritten Teil:</p>
+<p>Der Chirurg zeigte ein Foto von einer Platzwunde. Ich sollte erklären, wie ich vorgehen würde. Danach kamen Fragen zur GCS-Beurteilung, zum Tetanus-Impfstatus, zu Besonderheiten bei Schwangeren, zur Wundversorgung, zur Nahttechnik und dazu, wie lange die Fäden verbleiben.</p>
+<p>Die Labormedizinerin zeigte ein Foto mit gelber Sklera. Ich sollte das beschreiben und alles zum Ikterus erklären, Ursache. Labor . Dann Cholestase- und Hämolyse-Parameter. Danach zeigte sie einen Laborbefund und fragte nach akutem Leberversagen und seinen Ursachen.</p>
+<p>Bei einer Intoxikation mit unbekanntem Toxin fragte sie, wie ich vorgehen würde – zum Beispiel Kontaktaufnahme mit dem Giftnotruf- Freiburg</p>
+<p>Der Internist fragte: Bewusstlose Patientin auf der Straße – wie gehen Sie vor? Die Patientin hatte Kammerflimmern → Reanimation. Außerdem: Wie gehen Sie im Schockraum vor?</p>
+<p>Zusätzlich ein Fall mit Arrhythmie-Symptomen und anschließend ein EKG mit Vorhofflimmern – inklusive Therapie.</p>
+<p>Veilen Dank an alle, die ihre Prüfungsprotokolle geteilt hatten.</p>
+<p>Viel Erfolg 🍀</p></div>
+</section>
+<section id="p-211120253" class="protocol-entry fade-in">
+  <div class="protocol-header">
+    <div class="protocol-date">📅 21.11.2025-3</div>
+    <div class="protocol-badges"></div>
+    <span class="protocol-toggle">▶</span>
+  </div>
+  <div class="protocol-body"><p>Kenntnisprüfung Mannheim – Protokoll</p>
+<p>📍 Mannheim</p>
+<p>📅 21.01.2026</p>
+<p>Kommission:</p>
+<ul>
+<li>Internist</li>
+<li>Chirurgin</li>
+<li>Radiologe</li>
+</ul>
+<p>🔹 TEIL 1 – Anamnese &amp; Untersuchung</p>
+<p>Leitfall: Bandscheibenvorfall (LWS)</p>
+<p>Setting:</p>
+<ul>
+<li>Schauspielpatientin</li>
+<li>Wenig verbal, aber typische Symptomatik → gut erkennbarer Fall</li>
+</ul>
+<p>Leitsymptome</p>
+<ul>
+<li>Akute, starke Rückenschmerzen</li>
+<li>Radikuläre Ausstrahlung ins linke Bein</li>
+<li>Schmerzcharakter: schlagartig</li>
+<li>Bewegungsabhängige Schmerzverstärkung</li>
+<li>Gangunsicherheit</li>
+</ul>
+<p>Pflicht-Anamnese (Red Flags!)</p>
+<p>⚠️ Immer aktiv abfragen:</p>
+<ul>
+<li>Reithosenanästhesie</li>
+<li>Blasen-/Mastdarmstörung</li>
+<li>Harn- oder Stuhlretention / Inkontinenz</li>
+<li>Progrediente Paresen</li>
+<li>Zunehmende Parese bei gleichzeitig rückläufigen Schmerzen</li>
+</ul>
+<p>→ ⚠️ Hinweis auf Nervenwurzeluntergang</p>
+<p>➡️ Ziel: Ausschluss eines Cauda-Equina-Syndroms</p>
+<p>Körperliche Untersuchung (fokussiert!)</p>
+<p>❗ Nicht breit, sondern verdachtsorientiert</p>
+<ol>
+<li>Neurostatus (immer!)</li>
+</ol>
+<ul>
+<li>Muskelkraft</li>
+<li>Sensibilität</li>
+<li>Reflexe</li>
+</ul>
+<ol>
+<li>Nervendehnungszeichen</li>
+</ol>
+<ul>
+<li>Lasègue-Zeichen</li>
+<li>Bragard-Zeichen</li>
+</ul>
+<ol>
+<li>Dermatome</li>
+</ol>
+<ul>
+<li>L5 und S1 sind prüfungsrelevant</li>
+</ul>
+<p>o L5: Großzehe, Fußrücken, Fußheber</p>
+<p>o S1: lateraler Fußrand, Plantarflexion, Achillessehnenreflex</p>
+<p>Merkschema</p>
+<p>Rückenschmerz + Radikulopathie → Neurostatus → Red Flags → MRT → primär konservativ</p>
+<p>📌 CAVE:</p>
+<p>In Mannheim sehr häufige Alternativfälle:</p>
+<ul>
+<li>Bandscheibenvorfall</li>
+<li>Pyelonephritis</li>
+</ul>
+<p>Epikrise / Arztbrief</p>
+<ul>
+<li>Genügend Zeit</li>
+<li>Hilfsmittel erlaubt (Tablet, Handy)</li>
+<li>Empfehlung: Musterbrief vorbereiten</li>
+<li>ChatGPT eignet sich gut für Sprach- und Stilkorrektur, nicht für Inhalte</li>
+</ul>
+<p>🔹 TEIL 2 – Fallvorstellung (ohne Unterbrechung)</p>
+<p>Struktur (unbedingt automatisieren!)</p>
+<ol>
+<li>Eigene Vorstellung</li>
+<li>Patientendaten</li>
+<li>Hauptsymptom (präzise!)</li>
+<li>Begleitsymptome</li>
+<li>Vegetative Anamnese</li>
+<li>Vorerkrankungen / Medikation</li>
+</ol>
+<p>➡️ Reihenfolge ist frei, aber Konstanz ist entscheidend</p>
+<p>📌 CAVE:</p>
+<p>Struktur ähnlich wie bei der FSP</p>
+<p>Zusatzfragen</p>
+<ul>
+<li>Welche Befunde stützen Ihre Diagnose?</li>
+</ul>
+<p>→ Lasègue, Bragard</p>
+<ul>
+<li>Rückenschmerz + Fieber → DD: Meningitis</li>
+<li>Betroffenes Dermatom? → L5</li>
+<li>Befund bei S1-Läsion?</li>
+</ul>
+<p>o ↓ Plantarflexion</p>
+<p>o ↓ Achillessehnenreflex</p>
+<p>o Sensibilitätsstörung lateraler Fußrand</p>
+<ul>
+<li>Welche Bewegung ist nicht möglich?</li>
+</ul>
+<p>→ Zehenspitzenstand</p>
+<ul>
+<li>Goldstandard Diagnostik: MRT der Wirbelsäule</li>
+</ul>
+<p>Praktische Aufgaben</p>
+<ul>
+<li>Lasègue &amp; Bragard demonstrieren</li>
+<li>Pulsstatus der unteren Extremitäten</li>
+</ul>
+<p>🔹 TEIL 3 – Fachfragen</p>
+<p>🟦 Internist – Nebenschilddrüsen &amp; Kalzium</p>
+<p>Funktion der Nebenschilddrüsen</p>
+<ul>
+<li>Regulation des Kalzium- und Phosphathaushalts</li>
+<li>Über Parathormon (PTH)</li>
+</ul>
+<p>Hypoparathyreoidismus</p>
+<ul>
+<li>→ Hypokalzämie</li>
+</ul>
+<p>Hyperparathyreoidismus</p>
+<ul>
+<li>→ Hyperkalzämie</li>
+<li>Erwünscht zu nennen:</li>
+</ul>
+<p>o Nephrolithiasis</p>
+<p>o Pankreatitis</p>
+<p>Klinik der Hypokalzämie</p>
+<ul>
+<li>Neuromuskulär:</li>
+</ul>
+<p>o Hyperreflexie</p>
+<p>o Tetanie</p>
+<p>o Chvostek-Zeichen (+)</p>
+<p>o Trousseau-Zeichen (+)</p>
+<ul>
+<li>Gastrointestinal:</li>
+</ul>
+<p>o Obstipation bis Ileus</p>
+<ul>
+<li>EKG:</li>
+</ul>
+<p>o QT-Zeit verlängert</p>
+<p>➡️ Analoge Fragen zur Hyperkalzämie möglich</p>
+<p>📌 CAVE Mannheim:</p>
+<p>Kalziumstörungen werden überdurchschnittlich häufig geprüft</p>
+<p>→ Grundzüge der Therapie kennen!</p>
+<p>🟦 Radiologe</p>
+<p>Fall 1 – Pneumonie</p>
+<ul>
+<li>Symptome: Dyspnoe, Husten mit Auswurf, Fieber</li>
+<li>Verdachtsdiagnose: ambulant erworbene Pneumonie</li>
+</ul>
+<p>Röntgen-Thorax</p>
+<ul>
+<li>Bakteriell: fokale Konsolidierungen</li>
+<li>Viral: diffuse, oft bilaterale Infiltrate</li>
+</ul>
+<p>Fall 2 – CT-Angio Untere Extremität</p>
+<ul>
+<li>Befund: nicht normal</li>
+<li>Gefäßverschluss: A. femoralis</li>
+<li>Gefäßachse (grob):</li>
+</ul>
+<p>o Aorta → Iliaca → Femoralis → Poplitea</p>
+<p>Fall 3 – CT-Abdomen</p>
+<p>Raumforderung Leber</p>
+<p>Differenzialdiagnosen</p>
+<ul>
+<li>Leberabszess</li>
+<li>Lebermetastase</li>
+<li>Hepatozelluläres Karzinom</li>
+<li>Zyste</li>
+</ul>
+<p>Beschreibung beachten</p>
+<ul>
+<li>Begrenzung</li>
+<li>Wand</li>
+<li>Kalzifikationen</li>
+<li>KM-Verhalten</li>
+</ul>
+<p>🟦 Chirurgin – Appendizitis &amp; OP-Grundlagen</p>
+<p>Klinik</p>
+<ul>
+<li>McBurney-Punkt</li>
+<li>Lanz-Punkt</li>
+</ul>
+<p>Komplikationen</p>
+<ul>
+<li>Früh: Perforation, Abszess</li>
+<li>Spät: Adhäsionen (wichtig!)</li>
+</ul>
+<p>Appendektomie</p>
+<ul>
+<li>Offen</li>
+<li>Laparoskopisch</li>
+</ul>
+<p>Vorteile laparoskopisch</p>
+<ul>
+<li>Schnellere Mobilisation</li>
+<li>Kürzerer stationärer Aufenthalt</li>
+<li>Weniger Blutverlust</li>
+</ul>
+<p>Kontraindikationen</p>
+<ul>
+<li>Schwere COPD (wichtiges Detail!)</li>
+</ul>
+<p>Postoperative Komplikationen</p>
+<ul>
+<li>TVT</li>
+</ul>
+<p>Prophylaxe</p>
+<ul>
+<li>NMH (z. B. Enoxaparin, prophylaktisch)</li>
+<li>Frühmobilisation</li>
+</ul>
+<p>Sonstige Fragen</p>
+<ul>
+<li>Warum ist der Beruf</li>
+</ul>
+<p>relevant?</p>
+<p>→ Berufskrankheiten</p>
+<p>🔹 ALLGEMEINE EMPFEHLUNGEN</p>
+<ul>
+<li>Prüfung entspricht stark den bekannten Protokollen</li>
+<li>Fokus auf häufige Themen je Standort</li>
+<li>Breites Grundlagenwissen, keine Detailtiefe</li>
+<li>Meist keine Dosierungen</li>
+<li>Medikamente oft als Substanzgruppe ausreichend</li>
+<li>Kurz, klar, strukturiert antworten</li>
+<li>Nur vertiefen, wenn explizit gefragt</li>
+</ul>
+<p>✅ FAZIT</p>
+<p>Die Prüfung ist gut machbar, praxisnah und fair.</p>
+<p>Struktur, Sicherheit und klinisches Denken sind wichtiger als Detailwissen.</p>
+<p>Viel Erfolg an alle kommenden Kandidatinnen und Kandidaten! 🍀</p></div>
+</section>
+<section id="p-211120252" class="protocol-entry fade-in">
+  <div class="protocol-header">
+    <div class="protocol-date">📅 21.11.2025-2</div>
+    <div class="protocol-badges"><span class="tag green">✓ Bestanden</span></div>
+    <span class="protocol-toggle">▶</span>
+  </div>
+  <div class="protocol-body"><p>Ich habe am 20.01.2026 meine Kenntnisprüfung in Mannheim abgelegt und Hamdoulah erfolgreich bestanden.</p>
+<p>Die Kommission bestand aus:</p>
+<p>-Einer Chirurgin, einer Gynäkologin</p>
+<ul>
+<li>Einem Radiologe</li>
+<li>Einem Internisten mit kardiologischem Schwerpunkt.</li>
+</ul>
+<p>Teil 1 Hyperthyreose</p>
+<p>Teil 2 Patientenvorstellung</p>
+<p>Fragen :</p>
+<p>1-warum ich bei der Schilddrüsenpalpation einen Druckschmerz erwähnt habe, erklärte ich, dass dies an eine subakute Thyreoiditis de Quervain denken lässt.</p>
+<p>2-Ich beschrieb anschließend die strukturierte Untersuchung der Schilddrüse unter Betonung der Händedesinfektion.</p>
+<p>3-Der Radiologe fragte, wie ich bei der Notwendigkeit einer CT-Untersuchung mit Kontrastmittel bei einem hyperthyreoten Patienten vorgehen würde.</p>
+<p>Ich erläuterte die Risiko-Nutzen-Abwägung und erklärte, dass bei zwingender Indikation eine Prämedikation mit:</p>
+<p>Natriumperchlorat, Thiamazol und Propranolol erfolgen muss, unter Verwendung einer möglichst niedrigen Kontrastmitteldosis, ausreichender Hydrierung und engmaschiger Überwachung wegen des Risikos einer thyreotoxischen Krise.</p>
+<p>Teil 3</p>
+<p>** Chirurgin: wurde eine Patientin mit plötzlich einsetzenden Bauchschmerzen in der Notaufnahme simuliert.</p>
+<p>Ich ging strukturiert vor, beurteilte zunächst die Vitalparameter, den Schockindex und den Allgemeinzustand und leitete eine Stabilisierung ein. Nach Bestätigung der Stabilität erhob ich eine gezielte Anamnese nach dem SAMPLER-Schema. Die Schmerzen waren im rechten Unterbauch lokalisiert, weshalb ich zunächst eine Schwangerschaft EUG ausschloss und eine Bestimmung des Beta-HCG sowie eine vaginale Sonographie vorschlug. Nach negativem Beta-HCG diskutierte ich gynäkologische Ursachen wie eine Ovarial- oder Tubentorsion sowie gastrointestinale Ursachen, insbesondere eine Appendizitis.</p>
+<p>Da Sonographie und Labor keinen Hinweis auf eine Appendizitis ergaben, führte ich Morbus Crohn als Differenzialdiagnose an und erklärte, dass Calprotectin und Lactoferrin im Stuhl nur Hinweise liefern, während die Diagnosesicherung durch eine Ileokoloskopie mit Stufenbiopsien erfolgt, mit typischen transmuralen Entzündungen, Pflastersteinrelief und bevorzugter Beteiligung des terminalen Ileums. Auf Nachfrage stellte ich die Unterschiede zwischen Colitis ulcerosa und Morbus Crohn dar und erläuterte, dass die Proktokolektomie mit ileoanaler Pouch-Anastomose eine kurative Therapie bei Colitis ulcerosa darstellt.</p>
+<p>**Radiologe: wurden radiologische Bilder gezeigt. Spannungspneumothorax und erklärte die sofortige Therapie mittels Nadeldekompression. In einer CT-Angiographie erkannte ich eine Lungenarterienembolie. In einer CT-Thoraxaufnahme identifizierte ich einen gut begrenzten, verkalkten Lungenrundherd ohne Malignitätszeichen und Radiologe hat gesagt das ist ein Hamartom .</p>
+<p>In einer MRT beschrieb ich systematisch die Bildgebung und Das war eine Raumforderung bei duraler Nähe, radiologe hat gesagt ja Herd welches, wo liegt genau, hab ich Meningeom gesagt ( sehr atypisch man muss nur beschreiben was du siehst++) Sprunggelenksaufnahme unauffällig fragt nach Seitenaufnahme ich erkannte eine Weber-B-Fraktur.</p>
+<p>**der Kardiologe zeigt EKGs mit einem</p>
+<p>AV-Block II typ Mobitz mit 2:1-Überleitung</p>
+<p>sowie eine monomorphe VT ventrikuläre Tachykardie mit breiten QRS-Komplex.</p>
+<p>Am Ende wurde mir mitgeteilt, dass meine Vorgehensweise strukturiert, reaktiv und klinisch sicher war und ich die Prüfung bestanden habe.</p>
+<p>Bemerkung:</p>
+<p>Ich habe noch nicht in DE gearbeitet zusätzlich wohne in Frankreich...</p>
+<p>Das Bestehen ist nicht wegen:</p>
+<p>❌ Sprache</p>
+<p>❌ Deutschland-Erfahrung</p>
+<p>Sondern wegen:</p>
+<p>✅ Struktur</p>
+<p>✅ Protokolle</p>
+<p>✅ Reaktionsgeschwindigkeit</p>
+<p>✅ klinischem Denken</p>
+<p>KP prüft keinen Muttersprachler – sondern einen sicheren Arzt.</p>
+<p>📚 Vorbereitung</p>
+<p>AMBOSS ++++</p>
+<p>80 Fälle Innere</p>
+<p>60 Fälle Chirurgie</p>
+<p>SOP Notaufnahme</p>
+<p>Appentizer (YouTube)</p>
+<p>Lernkarten</p>
+<p>Protokolle = Zeitersparnis 💯</p>
+<p>Der kostenpflichtige ChatGPT ++</p>
+<p>Vielen Dank an alle, die ihre Erfahrungen geteilt haben. Sie haben mir sehr geholfen. Ich wünsche allen anderen viel Erfolg bei der Vorbereitung und der Prüfung, sie können es schaffen inch&#x27;Allah 🙏</p></div>
+</section>
+<section id="p-211120251" class="protocol-entry fade-in">
+  <div class="protocol-header">
+    <div class="protocol-date">📅 21.11.2025-1</div>
+    <div class="protocol-badges"><span class="tag green">✓ Bestanden</span></div>
+    <span class="protocol-toggle">▶</span>
+  </div>
+  <div class="protocol-body"><p>Ich habe heute 21.1.26 meine KP in Mannheim abgelegt und Gott sei Dank bestanden.</p>
+<p>Die Prüfungskommission bestand aus einem Hausarzt, einem Radiologen und einer Chirurgin.</p>
+<p>Teil 1: Pyelonephritis</p>
+<p>⸻</p>
+<p>Teil 2:</p>
+<p>Chirurgin: Beruf der Patientin ,Warum ist es wichtig zu wissen, was die Patientin arbeitet? (Risikofaktoren)</p>
+<p>Hausarzt: Urin-Stix: Was sieht man im Urin-Stix. Dann: Glukose im Urin – was bedeutet das? Diabetes, Weitere mögliche : OAD mit Glukoseausscheidung im Urin SGLT-2-Inhibitoren</p>
+<p>Radiologe: Was suchen Sie in der Sonographie? Diagnosesicherung, Komplikationen, Ausschluss von Differenzialdiagnosen. Welche Komplikationen kann man sehen? Nierenabszess</p>
+<p>⸻</p>
+<p>Teil 3:</p>
+<p>Hausarzt: Patient mit Juckreiz, alles zum Ikterus.</p>
+<p>Radiologe:</p>
+<p>Kolorektales Karzinom Prävention (Lebensstil) , Screening: was, wann, wie?Mammakarzinom-Screening</p>
+<p>Bildgebung:</p>
+<p>-Röntgen-Thorax → Lungenfibrose (zunächst schwer erkennbar), danach CT , Ursachen .</p>
+<p>-MRT mit Spondylodiszitis , häufigster Erreger, Tuberkulose</p>
+<p>Chirurgin:</p>
+<p>-Cholelithiasis / Cholezystitis (Diagnostik, Therapie)</p>
+<p>-Biliäre Pankreatitis</p>
+<p>-CT mit abdominellem Aortenaneurysma:</p>
+<p>Wann operieren, wann konservativ?, Warum sollte man operieren?Wie erklärt man das dem Patienten? Name des Verfahrens</p>
+<p>⸻</p>
+<p>📌Briefe schreiben findet nicht mehr in der Bibliothek statt, sondern in der Alten Bauerei (dort, wo auch die Prüfung stattfindet; zwei Zimmer vom Prüfungsraum entfernt)</p></div>
+</section>
+<section id="p-21112025" class="protocol-entry fade-in">
+  <div class="protocol-header">
+    <div class="protocol-date">📅 21.11.2025</div>
+    <div class="protocol-badges"><span class="tag green">✓ Bestanden</span></div>
+    <span class="protocol-toggle">▶</span>
+  </div>
+  <div class="protocol-body"><p>Hallo,</p>
+<p>Meine Freundin hat ihre Prüfung am 20.02 bestanden.</p>
+<p><strong> </strong></p>
+<p>Protokoll meiner Kenntnisprüfung</p>
+<p>Bestanden am 20.02.2026 Alhamdulillah.</p>
+<p>Antrag 11.10.2025, in die Warteliste am 22.10.2025</p>
+<p>Rechnung 16.12.2025 am 17.12.2025 bezahlt</p>
+<p>Inoffizielle Ladung 22.12.2025</p>
+<p>Offizielle Ladung 02.02.2026</p>
+<p>Die Kommission bestand aus : ein Internist, eine Radiologin und eine Chirurgin</p>
+<ol>
+<li>Teil: Schauspielpatientin</li>
+</ol>
+<p>Die Patientin war eine 66-jährige Frau. Als ich den Raum betrat, hielt sie sich die rechte Flanke und sagte mehrfach: „Ai, ai“. Zunächst war ich unsicher, ob die Schmerzen im Rücken, in der Flanke oder im Oberbauch lokalisiert waren.</p>
+<p>Die Patientin wirkte etwas unruhig und angespannt. Sie klagte über sehr starke Schmerzen. Laut Fallbeschreibung hatte sie seit heute Nacht Flankenschmerzen sowie seit 3 Tagen epigastrische Schmerzen. Hier Reaktion</p>
+<p>In der Anamnese ergab sich ein Zustand nach Appendektomie. Ich habe die Operationsnarbe bei der körperlichen Untersuchung leider nicht kontrolliert, total vergessen aber später nicht darüber gesprochen.</p>
+<p>Die Patientin berichtete außerdem, dass sie vor einigen Tagen Dysurie und Pollakisurie hatte. Und vor einpaar Jahren ein HWI hatte</p>
+<ol>
+<li>Teil: Gespräch mit den Prüfern</li>
+</ol>
+<p>Selbstvorstellung kurz</p>
+<p>Vorstellung der Patientin ohne Unterbrechung</p>
+<p>Fragen :</p>
+<p>Die Chirurgin sagte, dass ein Bandscheibenvorfall in diesem Fall keine geeignete Differentialdiagnose sei, insbesondere wegen des Fiebers.</p>
+<p>Radiologin</p>
+<p>Die Radiologin fragte, welche weiter Untersuchungen ich veranlassen köne</p>
+<p>Ich antwortete zunächst: Röntgen. Ja aber was noch ?  CT Sie fragte, ob mit oder ohne Kontrastmittel ; Antwort : Ohne</p>
+<p>Internistische Diskussion – wann Stationär und wann ambulant</p>
+<p>Ich erklärte den Unterschied zwischen komplizierter und nicht komplizierter Pyelonephritis, milde und schwerer Verlauf sowie die Indikationen für eine stationäre bzw. ambulante Therapie inklusive oraler Antibiotikatherapie.</p>
+<p>Prüfer :  Was machen Sie bei einem CRP von 120 mg/l und Leukozytose?</p>
+<p>Ich antwortete: stationäre Aufnahme.</p>
+<p>Prüfer: Wenn die Entzündungswerte nur leicht erhöht sind, die Nierenwerte normal sind und der Urinstix Nitrit positiv zeigt</p>
+<p>ich habe ihn zunächst missverstanden, weil ich dachte, es gehe noch weiter um eine Pyelonephritis.</p>
+<p>Ich sagte, die erste Wahl sei ein Fluorchinolon, und dann habe ich verstanden und mit Fosfomycin geantwortet.</p>
+<p>Prüfer : welche schnelle Untersuchung machen Sie bei diesen Beschwerden : Urisitix. Was sieht man in Uristix : leukozytose, Erythromycin und Nitrit , Frage : immer Nitrit ? , Antwort : nein bei Enterokokken : Nitrit negativ</p>
+<p>Teil 3:</p>
+<p>Chirurgie : Unfallpatient – Thoraxtrauma , Sturz von der Leiter, Alter speilt keine Rolle hat sie gesagt aber er ist 45 JA , er ist stabile , SpO2 normal und dann hat mir ein Röntgen Thorax gezeigt.</p>
+<p>„Was sehen Sie?“,</p>
+<p>Ich habt über einen deutlichen subkutan Emphysem begonnen.</p>
+<p>Frage : woran denken Sie wenn eine subkutan Emphysem gibt? Rippen Fraktur , ja</p>
+<p>Was sehen Sie im Bild ; es war ein Spitze Pneumothorax zu sehen</p>
+<p>„Was müssen wir jetzt machen?“</p>
+<p>Ich antwortete zunächst:</p>
+<p>Stationäre Aufnahme zu Beobachtung</p>
+<p>Frage : in welchem Abstand ? ich wusste nicht ich habe gesagt jede Stunde , hat gesagt die Schwester können das nicht Sie haben viel zut un, Sie hat gefragt wie können Sie den Patienten beobachten , ich habe gesagt mit Monitoring hat sie gesagt ja und dann wo den Pateiten aufnehmen, ich habe gesagt Intensiv Station..</p>
+<p>Zweites Röntgenbild mit Pfort Katheter</p>
+<p>Ich dachte zunächst an einen Spannungspneumothorax.</p>
+<p>Sie fragte:</p>
+<p>„Was sieht man bei einem Spannungspneumothorax zusätzlich im Röntgenbild?“</p>
+<p>Ich antwortete:</p>
+<p>Mediastinalverlagerung. Im gezeigten Bild war jedoch keine Mediastinalverlagerung zu erkennen.</p>
+<p>Sie fragte weiter nach Pfort Katheter : was ist ein Pfort Katheter, wozu dient er ? wie kommt es zu einer Pneumothorax , in welchem Gefäß liegt man ein Pfort Katheter ?</p>
+<p>Ich habe statt Vena Subklavia  Arteria subklavia geagt  , ich habe mein Fehler nicht bemerkt dann hat sie gesagt nein , ich hab gesagt Vena Jugularis interna hat sie gesagt : Vena subklavia. Wegen Stress habe ich Arteria statt Vena gexagt ?</p>
+<p>Anschließend fragte sie weiter zur Drainagetherapie:</p>
+<p>Welche Drainageform würden Sie wählen? Wo ? Büllau Drainage</p>
+<p>„Welche andere Drainage kennen Sie?“ Ich nannte die Monaldi-Drainage.</p>
+<p>Wann macht man eine Monaldi-Drainage? Präklinisch Bei Notfällen, insbesondere bei Spannungspneumothorax (Entlastungspunktion).</p>
+<p>Radiologin : sehr nette junge Frau</p>
+<p>Fall 1: Sie hat über eine Frau die hat eine lange Reise gehabt erzählt , die eine Dyspnö hat und klinische zeichen einer TVT ?</p>
+<p>Woran denken Sie ? Lungenembolie</p>
+<p>Hat mir ein Ct Thorax gezeigt und hat mir gebeten zu interpretieren (ct Angio thorax, mit Kontrastmittel, axial Schnitt, KM Ausparung …)</p>
+<p>Wie kann man an eine Lungen Embolie denken : Wahrscheinlichkeit bei Wells Score (Wells Score gesagt)</p>
+<p>In diesem Fall vor einer CT Angio zu machen was sollen wir wissen : Nierenwerte, TSH, und Schwangerschaft</p>
+<p>„Was kann man bei einer Lungenembolie im CT zusätzlich sehen?“</p>
+<p>Ich antwortete: Zeichen der Rechtsherzbelastung.</p>
+<p>Anschließend zeigte sie mir ein CT-Bild mit Rechtsherzbelastung</p>
+<p>Fall 2: Röntgenbild des Sprunggelenks.</p>
+<p>Es war eine deutliche Frakturlinie zu sehen, passend zu einer Weber-C-Fraktur.</p>
+<p>Aber wichtig ist strukturiert zu beantworten</p>
+<p>Sie fragte:</p>
+<p>„Welche Ander Bildgebung machen Sie jetzt?“</p>
+<p>Sie erklärte, dass man bei einer solchen Fraktur unbedingt auch eine Röntgenaufnahme der proximalen Fibula durchführen muss, um eine zusätzliche Fraktur ( Maisonneuve-Fraktur) auszuschließen.</p>
+<p>Fall 3 : Frau, Dyspnö, Ödeme in Extremitäten</p>
+<p>Röntgen des Thorax :</p>
+<p>Strukturiert interpretieren</p>
+<p>Pleura erguss, lungen Stauung</p>
+<p>Woran denken Sie : Kardiale Dekompensation</p>
+<p>Fall 4 : Die Radiologin zeigte mir ein kraniales CT eines Patienten mit Schädeltrauma.</p>
+<p>es handele sich um ein epidurales Hämatom und bat mich, den Befund zu beschreiben. strukturiert gehen.</p>
+<p>Dann fragte sie:</p>
+<p>„Welches Gefäß ist typischerweise verletzt?“ : Arteria meningea media</p>
+<p>„Können wir hier abwarten?“</p>
+<p>Nein. Es ist ein Notfall neurochirurgischer Entlastung.</p>
+<p>Danach zeigte sie mir ein weiteres CT mit Knochen Fenster:</p>
+<p>„Was sehen Sie?“Fraktur der Schädelkalotte</p>
+<p>Innere Medizin : der Fall war : metabolisches Syndrom</p>
+<p>Der Prüfer hat mir 2 Blätter mit Daten gegeben. Zwei männliche Patienten (einer 50–der andere 45 Jahre alt : junge Männer) kommen zum Check-up, sonst total gesund</p>
+<p>Beide haben: BMI erhöht, RR war geschrieben, beide hoch</p>
+<p>Der Prüfer fragte: „Was fällt Ihnen auf?“</p>
+<p>Arterielle Hypertonie , was machen Sie ?</p>
+<p>Ich habe zuerst gesagt dass muss man wieder in Rauhe messen und beidseits, und dann ein Langzeit RR machen, hat mir gesagt es ist schon gemacht und bstätigt</p>
+<p>Ich habe gesfragt ob andere Beschwerden gibt, hat gesagt nein</p>
+<p>Dann hat mir zwei EKG s gezeigt aber war die Rythmus Kontrolle nicht gemeint, „Sind die beiden EKGs gleich?“ja</p>
+<p>er wolte unbedingt die Lage Typ wissen, war ein Linkes Typ,  ich hab gesagt ein Linkes Typ kann normal sein,  hat mir gsagt ja bei diesen Patienten was könnte sein : ich hab gesgt : Hypertrophie des linken Ventrikel ; das bedeutet das aHT ist schon seit langem da.</p>
+<p>Was empfehlen Sie : Lebensstyl Änderung, eine Antihypertensive Therapie beginne  mit zweiwach Therapie</p>
+<p>Dann hat mir ein Labor gezeigt : was sehen Sie ?</p>
+<p>HbA1c war hoch : Was sind die Komplikationen des Diabetes mellitus?“</p>
+<p>Wie kann man eine Diabetische Nephropathie früh erkennen : Proteinurie, welche Protein : Albumin</p>
+<p>(Mikroalbuminurie)</p>
+<p>LDL hoch, HDL niedrig : metabolisches Syndrom</p>
+<p>Wie hoch ist die Prävalenz des Diabetes mellitus bei jungeren Patienten aktuell in Deutschland?“</p>
+<p>Ich : 15 %. Prüfer : ja 12 %</p>
+<p>Die Prüfung ist sehr machbar, die Fragen sind nicht so tief, unter Stress fehlen einem jedoch manchmal die richtigen Worte. Aber keine Sorge die Prüfer sind da und helfen weiter.</p>
+<p>Viel Erfolg an alle, vielen Dank an die Kolleginnen und Kollegen, die ihre Erfahrung aufgeschrieben haben</p>
+<p>Quelle : Amboss Zusammenfassung 444+ Amboss (Algorythmus , Anatomie Schema und Therapie Aktualisierung) Lernkarten, SOP+++++, ich empfehle wenn man alle Themen gelesen hat, Simulationen mit Fälle Innere und Chirurgie (sehr hilfreich) , Pharmakologie Mediknow youtube, EKG youtube, Radiologie Bilder Amboss, frau Bettina Beaßler youtube</p>
+<p>Das Wichtigste für mich war der Kurs in der ODAK Akademie. Dort lernt man die Prüfungsstrategie anhand sehr strukturierter Kurse und der Fragen, die in den Protokollen am häufigsten vorkommen. Außerdem lernt man, besser mit Stress umzugehen, und man lernt tolle Lernpartner kennen.</p></div>
+</section>
 <section id="p-11112025" class="protocol-entry fade-in">
   <div class="protocol-header">
     <div class="protocol-date">📅 11.11.2025</div>
@@ -5968,27 +7031,20 @@ strong{font-weight:600}
 </section>
   </div>
 
-  <!-- ANKI -->
   <div id="anki" class="section-divider fade-in">
     <div class="section-divider-num">5</div>
     <h2>Anki für die KP</h2>
   </div>
-  <div class="info-section fade-in">
-    <p><a href="https://www.ankizin.de" target="_blank" rel="noopener">Ankizin</a></p>
+  <div class="info-section fade-in"><p><a href="https://www.ankizin.de" target="_blank" rel="noopener">Ankizin</a></p>
 <p>Ankizin ist das größte non-profit, studentisch organisierte Anki-Projekt im deutschsprachigen Raum, das sich zum Ziel gesetzt hat das gesamte notwendige Wissen für alle Staatsexamina in Medizin in Anki umzusetzen.</p>
-<p>Auf Basis der Amboss-Bibliothek und dem 100-Tage-Lernplan haben wir alle Informationen aus den Kapiteln in Anki-Karten umgewandelt.</p>
-  </div>
+<p>Auf Basis der Amboss-Bibliothek und dem 100-Tage-Lernplan haben wir alle Informationen aus den Kapiteln in Anki-Karten umgewandelt.</p></div>
 
-  <!-- LITERATUR -->
   <div id="literatur" class="section-divider fade-in">
     <div class="section-divider-num">6</div>
     <h2>Literatur für die KP</h2>
   </div>
-  <div class="info-section fade-in">
-    
-  </div>
+  <div class="info-section fade-in"></div>
 
-  <!-- FEEDBACK -->
   <div id="feedback" class="section-divider fade-in">
     <div class="section-divider-num">7</div>
     <h2>Feedback und Diskussion</h2>
@@ -6018,16 +7074,11 @@ strong{font-weight:600}
 </div>
 
 <script>
-// ── NAV HAMBURGER ──
 const ham=document.getElementById('hamBtn'),drawer=document.getElementById('navDrawer'),overlay=document.getElementById('navOverlay');
 ham.addEventListener('click',()=>{const o=drawer.classList.toggle('open');overlay.classList.toggle('open',o);ham.classList.toggle('open',o)});
 overlay.addEventListener('click',()=>{drawer.classList.remove('open');overlay.classList.remove('open');ham.classList.remove('open')});
-
-// ── FADE IN ──
 const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');io.unobserve(e.target)}}),{threshold:0.08});
 document.querySelectorAll('.fade-in').forEach(el=>io.observe(el));
-
-// ── ACCORDION ──
 document.querySelectorAll('.protocol-header').forEach(h=>{
   const entry=h.closest('.protocol-entry'),body=entry.querySelector('.protocol-body');
   h.addEventListener('click',()=>{const o=entry.classList.toggle('open');body.classList.toggle('open',o)});
@@ -6042,32 +7093,22 @@ function openByHash(){
 }
 window.addEventListener('DOMContentLoaded',openByHash);
 window.addEventListener('hashchange',openByHash);
-
-// ── SIDEBAR SEARCH ──
 document.getElementById('sidebarSearch').addEventListener('input',function(){
   const q=this.value.toLowerCase();
-  document.querySelectorAll('#sidebarDates a').forEach(a=>{
-    a.style.display=a.textContent.toLowerCase().includes(q)?'':'none';
-  });
+  document.querySelectorAll('#sidebarDates a').forEach(a=>{a.style.display=a.textContent.toLowerCase().includes(q)?'':'none'});
 });
-
-// ── MAIN SEARCH ──
 const mainSearch=document.getElementById('mainSearch'),searchCount=document.getElementById('searchCount');
 const allProtocols=document.querySelectorAll('.protocol-entry');
 mainSearch.addEventListener('input',()=>{
-  const q=mainSearch.value.toLowerCase().trim();
-  let vis=0;
+  const q=mainSearch.value.toLowerCase().trim();let vis=0;
   allProtocols.forEach(e=>{
     const show=!q||e.textContent.toLowerCase().includes(q);
-    e.style.display=show?'':'none';
-    if(show)vis++;
+    e.style.display=show?'':'none';if(show)vis++;
     if(q&&show){e.classList.add('open');e.querySelector('.protocol-body').classList.add('open')}
     else if(!q){e.classList.remove('open');e.querySelector('.protocol-body').classList.remove('open')}
   });
-  searchCount.textContent=q?vis+' Treffer':'112 Protokolle';
+  searchCount.textContent=q?vis+' Treffer':'122 Protokolle';
 });
-
-// ── SIDEBAR ACTIVE LINK ──
 (()=>{
   const sLinks=document.querySelectorAll('#sidebarDates a');
   const so=new IntersectionObserver(es=>es.forEach(e=>{
