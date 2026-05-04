@@ -342,6 +342,28 @@ body {
 /* ─── HIGHLIGHT (search) ─── */
 mark { background: #fef08a; border-radius: 2px; padding: 0 1px; }
 
+/* ─── PRAXIS-ANLEITUNG ─── */
+.praxis-box {
+  background: #0f1528; color: #e8eaf6;
+  border-radius: 10px; padding: 1rem 1.1rem;
+  margin-top: .8rem; font-size: .82rem; line-height: 1.75;
+}
+.praxis-box-title {
+  font-size: .65rem; font-weight: 800; letter-spacing: .16em;
+  text-transform: uppercase; color: #7986cb;
+  margin-bottom: .55rem; display: flex; align-items: center; gap: 6px;
+}
+.praxis-box ol { padding-left: 1.3rem; margin: 0; }
+.praxis-box li { margin-bottom: .25rem; }
+.praxis-box strong { color: #ffcc80; }
+.praxis-box .pa-warn { color: #ef9a9a; font-weight: 600; }
+.praxis-box .pa-tip  { color: #a5d6a7; }
+.praxis-box .pa-step { color: #90caf9; }
+
+@media (max-width: 600px) {
+  .drug-grid { grid-template-columns: 1fr; }
+}
+
 /* ─── MOBILE HAMBURGER ─── */
 #ham-mob {
   display: none; flex-direction: column; justify-content: center;
@@ -399,6 +421,9 @@ footer strong { color: var(--red); font-weight: 600; }
     <a href="../notes/index.html">✏️ Notizen</a>
   </div>
   <div class="spacer"></div>
+  <a href="notfallmedikamente.html" style="display:inline-flex;align-items:center;gap:7px;padding:7px 13px;background:var(--navy);color:#fff;border-radius:8px;text-decoration:none;font-size:.82rem;font-weight:600;white-space:nowrap;flex-shrink:0;">
+    💊 Medikamenten-Referenz
+  </a>
   <span class="nav-badge">Notfall · ZNA</span>
   <button id="ham-mob" onclick="mobToggle()" aria-label="Menü">
     <span class="hbar"></span><span class="hbar"></span><span class="hbar"></span>
@@ -513,6 +538,16 @@ footer strong { color: var(--red); font-weight: 600; }
             </div>
           </div>
         </div>
+        <div class="praxis-box">
+          <div class="praxis-box-title">⚡ Praxis — Was mache ich in den ersten 2 Minuten?</div>
+          <ol>
+            <li><span class="pa-step">O₂ sofort</span> → Maske 4–8 L/min, SpO₂ ans Monitoring anschließen.</li>
+            <li><span class="pa-step">Nitrospray</span> (kein Aufziehen nötig) → <strong>1–2 Hub sublingual</strong>. <span class="pa-warn">Vorher RR messen! Systolisch &gt;110 mmHg notwendig.</span></li>
+            <li><span class="pa-step">Furosemid (Lasix):</span> Ampulle <strong>10 mg/ml (Standard 2 ml = 20 mg oder 4 ml = 40 mg)</strong> → unverdünnt, als Bolus i.v. über 1–2 min.</li>
+            <li><span class="pa-step">Urapidil (Ebrantil):</span> Ampulle <strong>25 mg/5 ml (= 5 mg/ml)</strong> → 12,5 mg = 2,5 ml unverdünnt, sehr langsam i.v. → 5 min Pause → RR messen → ggf. wiederholen.</li>
+            <li><span class="pa-tip">Monitoren: RR alle 3 min, SpO₂ kontinuierlich, Atemfrequenz, Re-Auskultation nach 15 min. Urinmenge notieren!</span></li>
+          </ol>
+        </div>
       </div>
     </div>
   </div>
@@ -583,6 +618,17 @@ footer strong { color: var(--red); font-weight: 600; }
             </div>
           </div>
         </div>
+        <div class="praxis-box">
+          <div class="praxis-box-title">⚡ Praxis — Was mache ich in den ersten 2 Minuten?</div>
+          <ol>
+            <li><span class="pa-step">ASS 250 mg i.v.:</span> Pulver-Amp (500 mg/Fl) + beigefügtes Wasser → 5 ml Lösung → <strong>2,5 ml = 250 mg</strong> langsam i.v. Alternativ: Aspirin 300 mg Tablette zerkauen lassen.</li>
+            <li><span class="pa-step">UFH (Heparin) 5.000 IE:</span> Standard-Amp <strong>5.000 IE/ml</strong> → <strong>1 ml unverdünnt</strong> als schnellen Bolus i.v.</li>
+            <li><span class="pa-step">Morphin 2–3 mg i.v.:</span> Ampulle <strong>10 mg/ml</strong> → auf 10 ml mit NaCl aufziehen (= 1 mg/ml) → <strong>2–3 ml langsam</strong> i.v. <span class="pa-warn">BtM-Protokoll ausfüllen!</span></li>
+            <li><span class="pa-step">MCP (Metoclopramid) 10 mg i.v.:</span> Ampulle <strong>10 mg/2 ml</strong> → unverdünnt oder in 10 ml NaCl, langsam i.v. Immer zeitgleich mit Morphin!</li>
+            <li><span class="pa-warn">STEMI → sofort 12-Kanal-EKG + Oberarzt anrufen: "STEMI – Kath-Labor aktivieren!"</span></li>
+            <li><span class="pa-tip">Monitoren: EKG-Monitor, SpO₂, RR, i.v.-Zugang kalibrieren. Patient nüchtern halten!</span></li>
+          </ol>
+        </div>
       </div>
     </div>
   </div>
@@ -639,6 +685,15 @@ footer strong { color: var(--red); font-weight: 600; }
             </div>
           </div>
         </div>
+        <div class="praxis-box">
+          <div class="praxis-box-title">⚡ Praxis — Was mache ich in den ersten 2 Minuten?</div>
+          <ol>
+            <li><span class="pa-step">Metoprolol (Beloc) i.v.:</span> Ampulle <strong>5 mg/5 ml (= 1 mg/ml)</strong> → <strong>2,5–5 ml = 2,5–5 mg</strong> unverdünnt, sehr langsam i.v. (über 3–5 min). HF + RR dabei laufend am Monitor überwachen.</li>
+            <li><span class="pa-step">Amiodaron (Cordarex) bei HFrEF:</span> Ampulle <strong>150 mg/3 ml</strong> → <strong>2 Ampullen (= 300 mg)</strong> in <strong>250 ml G5%</strong> (NICHT NaCl!) → als Kurzinfusion über 20–30 min laufen lassen.</li>
+            <li><span class="pa-warn">Amiodaron NIE in NaCl 0,9% → Ausfällung! Nur G5%!</span></li>
+            <li><span class="pa-tip">Monitoren: EKG-Monitor (HF-Ziel 80–100/min), RR alle 5 min, auf Hypotonie achten. 12-Kanal-EKG nach Therapie dokumentieren.</span></li>
+          </ol>
+        </div>
       </div>
     </div>
   </div>
@@ -690,6 +745,15 @@ footer strong { color: var(--red); font-weight: 600; }
             </div>
           </div>
         </div>
+        <div class="praxis-box">
+          <div class="praxis-box-title">⚡ Praxis — Was mache ich in den ersten 2 Minuten?</div>
+          <ol>
+            <li><span class="pa-step">Urapidil (Ebrantil) aufziehen:</span> Ampulle <strong>25 mg/5 ml (= 5 mg/ml)</strong> → <strong>12,5 mg = 2,5 ml</strong> unverdünnt, langsam i.v. → 5 min warten → RR messen → bei Bedarf weitere 2,5 ml.</li>
+            <li><span class="pa-step">Clonidin (Catapresan) alternativ:</span> Ampulle <strong>0,15 mg/ml (1 ml)</strong> → halbe Ampulle = <strong>0,075 mg = 0,5 ml</strong>, auf 5 ml NaCl aufziehen, langsam i.v. oder s.c.</li>
+            <li><span class="pa-warn">Ziel: RR in 1–2 h um max. 25% senken. Nicht zu schnell → Schlaganfall-Risiko!</span></li>
+            <li><span class="pa-tip">Monitoren: RR alle 5 min, Neurologischer Status prüfen (Sprache, Motorik). Patient liegend lassen nach Clonidin!</span></li>
+          </ol>
+        </div>
       </div>
     </div>
   </div>
@@ -736,6 +800,15 @@ footer strong { color: var(--red); font-weight: 600; }
               <div class="med-note">2. Wahl wenn Novalgin nicht ausreicht. Immer mit etwas NaCl verdünnen oder sehr langsam spritzen.</div>
             </div>
           </div>
+        </div>
+        <div class="praxis-box">
+          <div class="praxis-box-title">⚡ Praxis — Was mache ich in den ersten 2 Minuten?</div>
+          <ol>
+            <li><span class="pa-step">Metamizol (Novalgin) aufziehen:</span> Ampulle <strong>500 mg/ml (2 ml = 1 g)</strong> → <strong>2 ml</strong> in <strong>100 ml NaCl 0,9%</strong> → Kurzinfusion über <strong>15 min</strong>. NIEMALS als Bolus!</li>
+            <li><span class="pa-step">Piritramid (Dipidolor) bei Bedarf:</span> Ampulle <strong>15 mg/2 ml (= 7,5 mg/ml)</strong> → für 3 mg = <strong>0,4 ml</strong> auf 5 ml NaCl aufziehen → sehr langsam i.v. <span class="pa-warn">BtM-Protokoll!</span></li>
+            <li><span class="pa-warn">Piritramid = Opioid (BtM-pflichtig) → Antagonist Naloxon (Narcanti) bereithalten.</span></li>
+            <li><span class="pa-tip">Monitoren: RR + SpO₂ bei Novalgin-Infusion, Schmerzskala (NRS) vor und 20 min nach Gabe. Bei Piritramid: Atemfrequenz + SpO₂ engmaschig!</span></li>
+          </ol>
         </div>
       </div>
     </div>
@@ -797,6 +870,16 @@ footer strong { color: var(--red); font-weight: 600; }
             </div>
           </div>
         </div>
+        <div class="praxis-box">
+          <div class="praxis-box-title">⚡ Praxis — Was mache ich in den ersten 2 Minuten?</div>
+          <ol>
+            <li><span class="pa-step">Dimetinden (Fenistil) i.v.:</span> Ampulle <strong>1 mg/ml (4 ml = 4 mg)</strong> → 4 ml unverdünnt oder in 10 ml NaCl, langsam i.v. Alternativ Clemastin (Tavegil) 1 Amp.</li>
+            <li><span class="pa-step">Prednisolon 250 mg i.v.:</span> Trockensubstanz-Ampulle → mit beigefügtem Lösungsmittel auflösen → als Bolus i.v.</li>
+            <li><span class="pa-step">Adrenalin (Suprarenin) i.m. bei Schock/Atemnot:</span> Ampulle <strong>1 mg/ml</strong> → <strong>0,5 ml = 0,5 mg</strong> mit langer Nadel (mind. 25 mm) in den <strong>anterolateralen Oberschenkel i.m.</strong></li>
+            <li><span class="pa-warn">Adrenalin i.v. NUR bei Reanimation, NICHT als Erstmaßnahme bei Anaphylaxie (sonst Kammerflimmern-Risiko)!</span></li>
+            <li><span class="pa-tip">Monitoren: RR + HF kontinuierlich, SpO₂, auf Biphasic reaction achten (Symptome nach 1–8 h wieder möglich) → Patient 24 h beobachten!</span></li>
+          </ol>
+        </div>
       </div>
     </div>
   </div>
@@ -849,6 +932,16 @@ footer strong { color: var(--red); font-weight: 600; }
               <div class="med-note">Dosis nach HF und RR titrieren. Bis Schrittmacher verfügbar.</div>
             </div>
           </div>
+        </div>
+        <div class="praxis-box">
+          <div class="praxis-box-title">⚡ Praxis — Was mache ich in den ersten 2 Minuten?</div>
+          <ol>
+            <li><span class="pa-step">Atropin aufziehen:</span> Ampulle <strong>0,5 mg/ml (1 ml)</strong> → <strong>1 ml = 0,5 mg</strong> unverdünnt als schnellen Bolus i.v. Nach 3–5 min wiederholen. Max. 3 mg gesamt.</li>
+            <li><span class="pa-warn">Bei AV-Block III: Atropin wirkt oft nicht (infranodaler Block) → direkt zum Adrenalin-Perfusor!</span></li>
+            <li><span class="pa-step">Adrenalin-Perfusor bei Atropin-Versagen:</span> <strong>1 mg Adrenalin (1 ml Suprarenin 1 mg/ml)</strong> in <strong>49 ml NaCl</strong> → Perfusor, Start mit 2–5 µg/min = 6–15 ml/h. Nach HF titrieren.</li>
+            <li><span class="pa-warn">Sofort Oberarzt anrufen → transkutaner Schrittmacher vorbereiten. Patient defibrillierbereit halten!</span></li>
+            <li><span class="pa-tip">Monitoren: EKG-Monitor, RR alle 3 min, SpO₂, Bewusstsein. Schrittmacher-Vorbereitung parallel.</span></li>
+          </ol>
         </div>
       </div>
     </div>
@@ -910,6 +1003,16 @@ footer strong { color: var(--red); font-weight: 600; }
             </div>
           </div>
         </div>
+        <div class="praxis-box">
+          <div class="praxis-box-title">⚡ Praxis — Was mache ich in den ersten 2 Minuten?</div>
+          <ol>
+            <li><span class="pa-step">CPR sofort!</span> 30 Kompressionen : 2 Beatmungen (oder kontinuierlich bei Tubus). Qualität: 5–6 cm tief, 100–120/min.</li>
+            <li><span class="pa-step">Adrenalin (Suprarenin) 1 mg:</span> Ampulle <strong>1 mg/1 ml</strong> → unverdünnt als <strong>schnellen Bolus i.v.</strong> → sofort 20 ml NaCl-Flush + Arm hochhalten. Bei Asystolie/PEA: sofort nach Zugang. Bei VF/pVT: nach 3. Schock.</li>
+            <li><span class="pa-step">Amiodaron (Cordarex) 300 mg bei VF:</span> 2 Ampullen à 150 mg (3 ml) → <strong>unverdünnt als schnellen Bolus i.v.</strong> (NICHT als Kurzinfusion bei Reanimation!) → sofort 20 ml NaCl-Flush.</li>
+            <li><span class="pa-warn">Adrenalin alle 3–5 min wiederholen (= nach jedem 2. Zyklus). 4H/4T nicht vergessen (Hypovolämie, Hypoxie, Hyper-/Hypokaliämie, Hypothermie, Thrombose, Tamponade, Tension, Toxin).</span></li>
+            <li><span class="pa-tip">Monitoren: EKG-Rhythmus bei jeder Pause (max. 2 sec), etCO₂ wenn verfügbar (Ziel &gt;10 mmHg = gute CPR). Teamrollen klar verteilen!</span></li>
+          </ol>
+        </div>
       </div>
     </div>
   </div>
@@ -962,6 +1065,16 @@ footer strong { color: var(--red); font-weight: 600; }
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
           <span><strong>Instabil (RR &lt;90 mmHg / Schock)?</strong> → Thrombolyse mit Alteplase (Actilyse) — Entscheidung durch Oberarzt! Actilyse vorbereiten.</span>
         </div>
+        <div class="praxis-box">
+          <div class="praxis-box-title">⚡ Praxis — Was mache ich in den ersten 2 Minuten?</div>
+          <ol>
+            <li><span class="pa-step">O₂ bei SpO₂ &lt;90%</span> → Nasensonde 2–4 L/min oder Maske.</li>
+            <li><span class="pa-step">UFH Bolus berechnen:</span> 80 IE/kg KG → Beispiel 75 kg = 6.000 IE. Standard-Amp <strong>5.000 IE/ml</strong> → 6.000 IE = <strong>1,2 ml unverdünnt i.v. als Bolus</strong>. Dann Perfusor: 18 IE/kg/h (75 kg = 1.350 IE/h = ca. 17 ml/h bei 5.000 IE/5 ml).</li>
+            <li><span class="pa-step">Perfusor vorbereiten:</span> 25.000 IE UFH in 50 ml NaCl (= 500 IE/ml) → Start bei 2,7 ml/h für 1.350 IE/h.</li>
+            <li><span class="pa-warn">aPTT nach 6 h kontrollieren! Ziel 60–80 sec. Blutungszeichen beobachten (Hämatome, Hämaturie).</span></li>
+            <li><span class="pa-tip">Monitoren: RR + HF + SpO₂ kontinuierlich, Rechtsherzbelastungs-Zeichen im EKG (S1Q3T3), Echo veranlassen.</span></li>
+          </ol>
+        </div>
       </div>
     </div>
   </div>
@@ -1012,6 +1125,15 @@ footer strong { color: var(--red); font-weight: 600; }
             </div>
           </div>
         </div>
+        <div class="praxis-box">
+          <div class="praxis-box-title">⚡ Praxis — Was mache ich in den ersten 2 Minuten?</div>
+          <ol>
+            <li><span class="pa-step">Oral (1. Wahl wenn möglich):</span> Kalinor Brausetabletten → 2 Tabletten = 40 mmol K⁺ → in Wasser auflösen, trinken lassen. Sicher und einfach.</li>
+            <li><span class="pa-step">Kalium i.v. (wenn oral nicht möglich):</span> KCl-Ampulle <strong>7,45% = 1 mmol/ml (10 ml = 10 mmol)</strong> → für 20 mmol = <strong>20 ml KCl</strong> in <strong>500 ml Sterofundin/VEL</strong> mischen → Infusion über <strong>mind. 1h</strong> laufen lassen.</li>
+            <li><span class="pa-warn">NIEMALS KCl unverdünnt i.v.! NIEMALS schneller als 20 mmol/h! Immer EKG-Monitor bei i.v. Gabe!</span></li>
+            <li><span class="pa-tip">Monitoren: K⁺ nach 4–6 h kontrollieren, EKG auf U-Wellen / QT-Verlängerung, Urinproduktion (schlechte Niere = langsamere Gabe).</span></li>
+          </ol>
+        </div>
       </div>
     </div>
   </div>
@@ -1060,6 +1182,16 @@ footer strong { color: var(--red); font-weight: 600; }
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
           <span><strong>ACHTUNG O₂ bei COPD:</strong> Ziel SpO₂ <strong>88–92%</strong>, NICHT 100%! Zu viel O₂ hebt den Atemantrieb auf (hypoxischer Atemantrieb)!</span>
         </div>
+        <div class="praxis-box">
+          <div class="praxis-box-title">⚡ Praxis — Was mache ich in den ersten 2 Minuten?</div>
+          <ol>
+            <li><span class="pa-warn">O₂ bei COPD: Ziel SpO₂ 88–92%! Nasensonde 1–2 L/min beginnen. NICHT Maske mit hohem Flow!</span></li>
+            <li><span class="pa-step">Salbutamol + Ipratropium (Atrovent) inhalativ:</span> Fertigampulle (z.B. Combivent resp.) in Vernebler-Maschine (PariNeb) geben. Sauerstoff-getrieben (6–8 L O₂) über Atemmaske inhalieren lassen. Dauer ca. 10–15 min.</li>
+            <li><span class="pa-step">Prednisolon 50 mg i.v.:</span> Trockensubstanz-Amp → in mitgeliefertem Wasser lösen → als Bolus i.v. oder p.o. wenn möglich.</li>
+            <li><span class="pa-warn">SpO₂ &gt;94% unter O₂ → O₂-Flow reduzieren! Patient einschläfern lassen = Atemantrieb-Verlust.</span></li>
+            <li><span class="pa-tip">Monitoren: SpO₂ kontinuierlich, Atemfrequenz, Blutgasanalyse (BGA) nach 30 min, auf CO₂-Retention achten (pCO₂ &gt;50 mmHg → NIV-Einleitung!)</span></li>
+          </ol>
+        </div>
       </div>
     </div>
   </div>
@@ -1104,6 +1236,16 @@ footer strong { color: var(--red); font-weight: 600; }
               </div>
             </div>
           </div>
+        </div>
+        <div class="praxis-box">
+          <div class="praxis-box-title">⚡ Praxis — Was mache ich in den ersten 2 Minuten?</div>
+          <ol>
+            <li><span class="pa-step">Vagusmanöver zuerst:</span> 20-ml-Spritze aufziehen → Patient bläst so stark er kann → hält 15 sec an → dann sofort Beine hochlagern (Modified Valsalva). 50% Erfolgsrate!</li>
+            <li><span class="pa-step">Adenosin (Adrekar) aufziehen:</span> Ampulle <strong>6 mg/2 ml (= 3 mg/ml)</strong> → <strong>2 ml = 6 mg</strong> in eine 2-ml-Spritze. Zweite Spritze: <strong>20 ml NaCl 0,9%</strong> bereithalten.</li>
+            <li><span class="pa-step">Adenosin injizieren:</span> Zugang so proximal wie möglich (antekubital). Adenosin als <strong>schnellstmöglichen Bolus</strong> → sofort 20 ml NaCl-Flush → Arm hochhalten. EKG läuft durch!</li>
+            <li><span class="pa-warn">Patient VORHER aufklären: "Sie werden kurz Herzrasen und Angstgefühl spüren — das geht nach 10–20 Sekunden weg!" Bei Asthma/COPD: Adenosin kontraindiziert!</span></li>
+            <li><span class="pa-tip">Monitoren: EKG-Streifen laufen lassen → Rhythmusumwandlung dokumentieren. Kein Ansprechen → 12 mg Adenosin (= 4 ml) als 2. Dosis.</span></li>
+          </ol>
         </div>
       </div>
     </div>
@@ -1158,6 +1300,16 @@ footer strong { color: var(--red); font-weight: 600; }
             </div>
           </div>
         </div>
+        <div class="praxis-box">
+          <div class="praxis-box-title">⚡ Praxis — Was mache ich in den ersten 2 Minuten?</div>
+          <ol>
+            <li><span class="pa-warn">Antikoagulation sofort stoppen: alle Blutverdünner in Kurve vermerken + pausieren!</span></li>
+            <li><span class="pa-step">Großlumiger PVK (mind. 16 G) × 2 legen</span> → Blutabnahme (BB, Gerinnung, Kreuzprobe!) parallel.</li>
+            <li><span class="pa-step">Pantoprazol (Pantozol) 80 mg Bolus:</span> Trockensubstanz-Amp → in 10 ml Wasser für Injektion lösen → als Bolus i.v. Dann Perfusor: 8 mg/h (40 mg Pantoprazol in 50 ml NaCl = 0,8 mg/ml → 10 ml/h).</li>
+            <li><span class="pa-step">Volumen (Sterofundin) bei RR-Abfall:</span> Druckinfusion anlegen, schnell einlaufen lassen. Kreuzprobe anfordern!</li>
+            <li><span class="pa-tip">Monitoren: RR + HF kontinuierlich, Hb-Kontrolle in 4–6 h, Urinmenge. Sofort Endoskopie-Dienst anrufen!</span></li>
+          </ol>
+        </div>
       </div>
     </div>
   </div>
@@ -1196,6 +1348,16 @@ footer strong { color: var(--red); font-weight: 600; }
               </div>
             </div>
           </div>
+        </div>
+        <div class="praxis-box">
+          <div class="praxis-box-title">⚡ Praxis — Was mache ich in den ersten 2 Minuten?</div>
+          <ol>
+            <li><span class="pa-step">Bewusster Patient:</span> Traubenzucker, Saft, Orangensaft oral geben → BZ nach 15 min kontrollieren. Einfach und sicher!</li>
+            <li><span class="pa-step">Bewusstloser Patient → G40 i.v.:</span> Ampulle <strong>40% Glucose (10 ml = 4 g Glucose)</strong> → PVK aspirieren (Rückfluss kontrollieren!) → <strong>1–2 Ampullen (10–20 ml) langsam i.v.</strong> → sofort mit 10 ml NaCl nachspülen.</li>
+            <li><span class="pa-warn">G40 ist hochkonzentriert → bei Paravasat sofort stoppen, NaCl-Spülung. Nekrose-Risiko! Besser über proximale Vene geben.</span></li>
+            <li><span class="pa-step">BZ nach 15 min messen</span> → Ziel &gt;80 mg/dl. Falls weiterhin niedrig → 2. Ampulle G40 + dann G10%-Infusion zur Stabilisierung.</li>
+            <li><span class="pa-tip">Monitoren: BZ alle 15–30 min bis stabil, Ursache klären (zu viel Insulin? Mahlzeit vergessen?), Insulin-/Antidiabetika-Schema anpassen.</span></li>
+          </ol>
         </div>
       </div>
     </div>
@@ -1254,11 +1416,20 @@ footer strong { color: var(--red); font-weight: 600; }
             </div>
           </div>
         </div>
+        <div class="praxis-box">
+          <div class="praxis-box-title">⚡ Praxis — Was mache ich in den ersten 2 Minuten?</div>
+          <ol>
+            <li><span class="pa-step">Melperon 25 mg p.o.:</span> Tabletten oder <strong>Saft (5 mg/ml → 5 ml = 25 mg)</strong>. Oral wenn schluckfähig. 1. Wahl bei Älteren!</li>
+            <li><span class="pa-step">Haloperidol (Haldol) bei schwererer Agitation:</span> Amp <strong>5 mg/ml</strong> → 0,5 mg = 0,1 ml → auf 2 ml NaCl aufziehen → langsam i.v. <span class="pa-warn">Immer EKG davor! QTc &gt;450 ms = Kontraindikation.</span></li>
+            <li><span class="pa-step">Pipamperon (Dipiperon) zur Nacht:</span> Tropfen 40 mg/ml → 20–40 mg = 0,5–1 ml. Gut verträglich, keine starke anticholinerge Wirkung.</li>
+            <li><span class="pa-tip">Monitoren: Sturzrisiko! Sitzwache/Bettgitter, QTc-Kontrolle nach Haldol, Ursache klären (Infekt? Schmerz? Harnverhalt?).</span></li>
+          </ol>
+        </div>
       </div>
     </div>
   </div>
 
-  <!-- ⑯ Übelkeit & Erbrechen -->
+  <!-- ⑯ Übelkeit &amp; Erbrechen -->
   <div class="scard reveal" data-cat="schmerz" data-keywords="übelkeit erbrechen nausea emesis antiemese vomex ondansetron zofran metoclopramid mcp">
     <div class="scard-head" onclick="toggleCard(this)">
       <span class="scard-num">16</span>
@@ -1312,6 +1483,15 @@ footer strong { color: var(--red); font-weight: 600; }
               </div>
             </div>
           </div>
+        </div>
+        <div class="praxis-box">
+          <div class="praxis-box-title">⚡ Praxis — Was mache ich in den ersten 2 Minuten?</div>
+          <ol>
+            <li><span class="pa-step">Ondansetron (Zofran) — Mittel der Wahl:</span> Amp <strong>4 mg/2 ml (= 2 mg/ml)</strong> → <strong>2 ml = 4 mg</strong> unverdünnt oder in 10 ml NaCl → langsam i.v. Kein Schlafen, kein RR-Abfall.</li>
+            <li><span class="pa-step">Dimenhydrinat (Vomex) alternativ:</span> Amp <strong>62 mg/10 ml</strong> → in 50 ml NaCl → Kurzinfusion über 15–20 min. <span class="pa-warn">Macht müde! Patient muss liegen bleiben.</span></li>
+            <li><span class="pa-warn">MCP (Metoclopramid): bei jungen Frauen/Jugendlichen vermeiden! Extrapyramidale Störungen möglich. Im Zweifel lieber Ondansetron.</span></li>
+            <li><span class="pa-tip">Monitoren: RR nach Vomex, Sturzgefahr bei Sedierung. Ursache der Übelkeit klären!</span></li>
+          </ol>
         </div>
       </div>
     </div>
@@ -1374,6 +1554,16 @@ footer strong { color: var(--red); font-weight: 600; }
             </div>
           </div>
         </div>
+        <div class="praxis-box">
+          <div class="praxis-box-title">⚡ Praxis — Was mache ich in den ersten 2 Minuten?</div>
+          <ol>
+            <li><span class="pa-step">Schritt 1 — Membranstabilisierung (SOFORT):</span> Calciumgluconat 10% Amp <strong>10 ml = 2,25 mmol Ca</strong> → unverdünnt <strong>langsam i.v. über 2–3 min</strong>. Schützt Herz, senkt K⁺ nicht! Wirkt in 3 min.</li>
+            <li><span class="pa-step">Schritt 2 — K⁺ in Zellen verschieben:</span> Altinsulin <strong>10 IE</strong> + <strong>50 ml G40%</strong> → i.v. Infusion. Parallel Salbutamol zur Inhalation geben (4–8 Hübe Inhalator).</li>
+            <li><span class="pa-warn">BZ vor und alle 30 min nach Insulin-Gabe messen! Hypoglykämie-Risiko. G40 bereithalten.</span></li>
+            <li><span class="pa-step">Schritt 3 — K⁺ ausscheiden:</span> Furosemid i.v. wenn Niere noch funktioniert. Dialyse-Indikation diskutieren (Oberarzt!).</li>
+            <li><span class="pa-tip">Monitoren: EKG-Monitor kontinuierlich (Kammerflimmern droht!), K⁺-Kontrolle nach 1–2 h, BZ alle 30 min.</span></li>
+          </ol>
+        </div>
       </div>
     </div>
   </div>
@@ -1421,6 +1611,16 @@ footer strong { color: var(--red); font-weight: 600; }
               <div class="med-note">Positiv inotrop → verbessert Pumpfunktion wenn Herz versagt. Kombiniert mit Norepinephrin bei kardiogenem Schock.</div>
             </div>
           </div>
+        </div>
+        <div class="praxis-box">
+          <div class="praxis-box-title">⚡ Praxis — Was mache ich in den ersten 2 Minuten?</div>
+          <ol>
+            <li><span class="pa-step">Norepinephrin (Arterenol) Perfusor:</span> <strong>4 mg Arterenol (4 Amp à 1 mg/ml)</strong> in <strong>46 ml NaCl = 50 ml gesamt (= 0,08 mg/ml = 80 µg/ml)</strong>. Start: 0,1 µg/kg/min → für 80 kg = ca. 6 ml/h. Titrieren bis RR systolisch ≥90 mmHg.</li>
+            <li><span class="pa-warn">Norepinephrin über ZVK (zentralvenösen Katheter) — peripherer PVK nur temporär im Notfall! Nekrosen bei Paravasat!</span></li>
+            <li><span class="pa-step">Dobutamin Perfusor (bei Herzversagen):</span> <strong>250 mg Dobutamin in 50 ml NaCl (= 5 mg/ml)</strong> → Start 2 µg/kg/min = für 80 kg ca. 2 ml/h. Titrieren nach Klinik.</li>
+            <li><span class="pa-warn">Dobutamin erhöht Herzfrequenz! Bei Tachykardie &gt;120/min → Dosis reduzieren.</span></li>
+            <li><span class="pa-tip">Monitoren: Arterieller Zugang für invasive RR-Messung, Urinmenge (Ziel &gt;0,5 ml/kg/h), Laktat, ZVD. Intensivstation-Bett organisieren!</span></li>
+          </ol>
         </div>
       </div>
     </div>
@@ -1483,6 +1683,16 @@ footer strong { color: var(--red); font-weight: 600; }
             </div>
           </div>
         </div>
+        <div class="praxis-box">
+          <div class="praxis-box-title">⚡ Praxis — Was mache ich in den ersten 2 Minuten?</div>
+          <ol>
+            <li><span class="pa-warn">Blutkulturen ZUERST — bevor jede Antibiose! 2 Pärchen (4 Flaschen: aerob + anaerob) von 2 verschiedenen Punktionsstellen.</span></li>
+            <li><span class="pa-step">Piperacillin/Tazobactam (Tazobac) 4,5 g:</span> Pulver-Fl → in <strong>100 ml NaCl 0,9%</strong> lösen → als Kurzinfusion über 30 min. Uhr stellen: innerhalb 1h nach Diagnose!</li>
+            <li><span class="pa-step">Volumen (Sterofundin) bei Schock:</span> 30 ml/kg = 2.000–2.500 ml → als Druckinfusion schnell einlaufen. <span class="pa-warn">Cave HFrEF → langsamer und Lunge auskultieren!</span></li>
+            <li><span class="pa-step">Bei Schock trotz Volumen:</span> Norepinephrin-Perfusor vorbereiten (siehe Szenario 18).</li>
+            <li><span class="pa-tip">Monitoren: RR + HF + Temp kontinuierlich, Laktat (Ziel &lt;2 mmol/l nach 2h), Urinmenge &gt;0,5 ml/kg/h, qSOFA wiederholen.</span></li>
+          </ol>
+        </div>
       </div>
     </div>
   </div>
@@ -1538,6 +1748,17 @@ footer strong { color: var(--red); font-weight: 600; }
               <div class="med-note">Wenn Benzos nicht wirken → 2. Linie, Oberarzt informieren</div>
             </div>
           </div>
+        </div>
+        <div class="praxis-box">
+          <div class="praxis-box-title">⚡ Praxis — Was mache ich in den ersten 2 Minuten?</div>
+          <ol>
+            <li><span class="pa-step">Seitenlage, Uhr starten, Atemweg freihalten.</span> Kein Löffel in den Mund! Kein Festhalten!</li>
+            <li><span class="pa-step">Lorazepam (Tavor) i.v.:</span> Amp <strong>2 mg/ml (1 ml)</strong> → <strong>2–4 mg = 1–2 ml</strong> langsam i.v. über 1–2 min. 1. Wahl wenn PVK vorhanden. <span class="pa-warn">BtM-pflichtig!</span></li>
+            <li><span class="pa-step">Midazolam (Dormicum) ohne i.v.-Zugang:</span> Amp <strong>5 mg/ml</strong> → 5–10 mg = 1–2 ml → i.m. in Oberschenkel ODER intranasal per MAD-Aufsatz. Wirkt auch so zuverlässig!</li>
+            <li><span class="pa-step">Levetiracetam (Keppra) 2. Linie:</span> <strong>500 mg/5 ml Konzentrat</strong> → 1–2 g in <strong>100 ml NaCl</strong> → Kurzinfusion über <strong>15 min</strong>. Oberarzt informieren!</li>
+            <li><span class="pa-warn">Alle Benzos → Atemdepression-Risiko! Sauerstoff bereithalten, Ambu-Beutel ans Bett. Sauerstoff-Sättigung monitoren.</span></li>
+            <li><span class="pa-tip">Monitoren: Uhr laufen lassen (Status = &gt;5 min), SpO₂, BZ messen (Hypoglykämie ausschließen!), Pupillen beurteilen.</span></li>
+          </ol>
         </div>
       </div>
     </div>
@@ -1597,6 +1818,16 @@ footer strong { color: var(--red); font-weight: 600; }
             </div>
           </div>
         </div>
+        <div class="praxis-box">
+          <div class="praxis-box-title">⚡ Praxis — Was mache ich in den ersten 2 Minuten?</div>
+          <ol>
+            <li><span class="pa-step">Creatinin prüfen!</span> Gutes Kreatinin → NSAID (Ibuprofen 400–600 mg p.o. oder Diclofenac 50 mg p.o.) mit Magenschutz (PPI).</li>
+            <li><span class="pa-step">Colchicin p.o.:</span> <strong>1 mg als Ladedosis</strong>, nach 1 Stunde <strong>0,5 mg</strong>. Tabletten ganz schlucken. Wirkt gut, aber Magen-Darm-Nebenwirkungen möglich (Durchfall!).</li>
+            <li><span class="pa-step">Prednisolon bei Niereninsuffizienz oder NSAID-KI:</span> <strong>20–30 mg p.o.</strong> für 3–5 Tage. Sicher, wirksam.</li>
+            <li><span class="pa-warn">Keine Allopurinol-Gabe im akuten Anfall! Diuretikum (Torasemid) prüfen — macht Harnsäure ↑ → ggf. temporär pausieren nach Oberarzt-Rücksprache.</span></li>
+            <li><span class="pa-tip">Kühlen (Eispack mit Tuch) wirkt zusätzlich schmerzlindernd. Hochlagerung des Gelenks.</span></li>
+          </ol>
+        </div>
       </div>
     </div>
   </div>
@@ -1644,6 +1875,16 @@ footer strong { color: var(--red); font-weight: 600; }
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
           <span><strong>Lyse-Entscheidung = Oberarzt/Facharzt!</strong> Als Assistenzarzt: Actilyse vorbereiten, Zugang sichern, Patient monitoren — dann Entscheider informieren.</span>
         </div>
+        <div class="praxis-box">
+          <div class="praxis-box-title">⚡ Praxis — Was mache ich in den ersten 2 Minuten?</div>
+          <ol>
+            <li><span class="pa-warn">Oberarzt/Facharzt SOFORT anrufen: "LAE mit Schock, RR unter 90 mmHg, Lyse-Indikation?" → Entscheidung durch Facharzt!</span></li>
+            <li><span class="pa-step">Alteplase (Actilyse) vorbereiten (parallel):</span> Konzentrat-Fl <strong>50 mg</strong> + Lösungsmittelflasche → auflösen. Für 10 mg Bolus = <strong>10 ml</strong> aufziehen. Restliche 90 mg in Perfusor über 2h.</li>
+            <li><span class="pa-step">UFH-Perfusor nach Lyse:</span> Kein Heparin-Bolus während Alteplase! UFH erst nach Lyse-Ende starten.</li>
+            <li><span class="pa-warn">Nach Lyse: Keine Punktionen, kein ZVK-Legen für 24h! Blutungszeichen beobachten (Hämaturie, Hämoptoe, Kopfschmerz → Hirnblutung!)</span></li>
+            <li><span class="pa-tip">Monitoren: RR + HF kontinuierlich, SpO₂, EKG, Bewusstsein. Intensivbett organisieren. Reanimations-Bereitschaft!</span></li>
+          </ol>
+        </div>
       </div>
     </div>
   </div>
@@ -1690,6 +1931,16 @@ footer strong { color: var(--red); font-weight: 600; }
               <div class="med-note">Dauer: 4–6 Wochen parenteral! → TEE zur Vegetationssuche dringend veranlassen.</div>
             </div>
           </div>
+        </div>
+        <div class="praxis-box">
+          <div class="praxis-box-title">⚡ Praxis — Was mache ich in den ersten 2 Minuten?</div>
+          <ol>
+            <li><span class="pa-warn">Blutkulturen ZUERST — zwingend 3 Pärchen (6 Flaschen) von 3 verschiedenen Punktionsstellen, bevor jede Antibiose!</span></li>
+            <li><span class="pa-step">Punktion korrekt:</span> Hautdesinfektion 2 min einwirken lassen, Gummistopfen desinfizieren. Je 10 ml Blut in aerobe und anaerobe Flasche. Beschriften mit Uhrzeit + Entnahmeort.</li>
+            <li><span class="pa-step">Antibiose erst nach BKs:</span> Ampicillin/Sulbactam (Unacid) 3 g in 100 ml NaCl → Kurzinfusion über 30 min. + Gentamicin 3–5 mg/kg in 100 ml NaCl über 30 min.</li>
+            <li><span class="pa-warn">Gentamicin: Nierenfunktion prüfen! Talspiegel kontrollieren. Nicht bei Niereninsuffizienz ohne Spiegelkontrolle.</span></li>
+            <li><span class="pa-tip">TEE (transösophageales Echo) dringend anmelden für Vegetationssuche. Duke-Kriterien dokumentieren. Oberarzt/Infektiologie einbeziehen.</span></li>
+          </ol>
         </div>
       </div>
     </div>
@@ -1743,6 +1994,16 @@ footer strong { color: var(--red); font-weight: 600; }
             </div>
           </div>
         </div>
+        <div class="praxis-box">
+          <div class="praxis-box-title">⚡ Praxis — Was mache ich in den ersten 2 Minuten?</div>
+          <ol>
+            <li><span class="pa-step">Kreatinin + eGFR prüfen.</span> eGFR &lt;30 ml/min = CIN-Prophylaxe obligat. eGFR &lt;15 = Nephrologie informieren.</li>
+            <li><span class="pa-step">NaCl 0,9% Infusion:</span> 1 ml/kg KG/h → für 80 kg = 80 ml/h → <strong>ab 12h vor dem Eingriff starten</strong> → 12h danach weiterlaufen lassen. Zugang frühzeitig legen!</li>
+            <li><span class="pa-warn">Bei HFrEF/Herzinsuffizienz: Volumen langsam (0,5 ml/kg/h), Lunge häufig auskultieren! RR überwachen.</span></li>
+            <li><span class="pa-step">Metformin pausieren:</span> In der Kurve vermerken + Pflege informieren. <strong>48h vor und 48h nach Eingriff pausieren.</strong> Laktat-Azidose-Risiko bei KM + Metformin!</li>
+            <li><span class="pa-tip">Kreatinin 48h nach Eingriff kontrollieren (CIN-Definition: Anstieg &gt;0,5 mg/dl oder &gt;25% in 48h). Ausreichende Diurese sicherstellen.</span></li>
+          </ol>
+        </div>
       </div>
     </div>
   </div>
@@ -1757,6 +2018,8 @@ footer strong { color: var(--red); font-weight: 600; }
   </div>
 
 </div><!-- /notfall-list -->
+
+
 
 <!-- FOOTER -->
 <footer>

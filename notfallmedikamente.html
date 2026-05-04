@@ -1,0 +1,728 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Notfallmedikamente – Praxis-Referenz · OUSS Kardiologie</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg:       #ffffff;
+  --surface:  #f7f5f2;
+  --surface2: #eeecea;
+  --border:   #e5e2de;
+  --text:     #1a1410;
+  --text2:    #6b6460;
+  --text3:    #a09890;
+  --red:      #c8303a;
+  --gold:     #9a7430;
+  --navy:     #0f1528;
+  --blue:     #2563eb;
+  --green:    #0f7b5a;
+  --purple:   #7c3aed;
+  --orange:   #ea580c;
+  --serif:    'Cormorant Garamond', Georgia, serif;
+  --sans:     'DM Sans', system-ui, sans-serif;
+  --r:        10px;
+  --sh:       0 2px 8px rgba(0,0,0,.06);
+  --sh-md:    0 6px 24px rgba(0,0,0,.09);
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--sans); background: var(--bg);
+  color: var(--text); font-size: 15px; line-height: 1.7;
+  overflow-x: hidden;
+}
+
+/* ─── NAV ─── */
+.topnav {
+  position: sticky; top: 0; z-index: 200;
+  height: 56px; background: rgba(255,255,255,.97);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border);
+  display: flex; align-items: center;
+  padding: 0 2.5rem; gap: 6px;
+}
+.brand {
+  font-family: var(--serif); font-size: 1.2rem; font-weight: 400;
+  color: var(--text); text-decoration: none;
+  display: flex; align-items: center; gap: 0.5rem;
+  white-space: nowrap; flex-shrink: 0;
+}
+.brand-heart { animation: hb 1.6s ease-in-out infinite; display: inline-block; }
+@keyframes hb {
+  0%,100%{transform:scale(1)} 14%{transform:scale(1.2)}
+  28%{transform:scale(1)} 42%{transform:scale(1.1)} 56%{transform:scale(1)}
+}
+.nav-links { display: flex; gap: 2px; margin-left: .5rem; }
+.nav-links a {
+  padding: 7px 12px; border-radius: 7px; text-decoration: none;
+  color: var(--text2); font-size: .88rem; font-weight: 500;
+  transition: background .15s, color .15s;
+}
+.nav-links a:hover { background: var(--surface); color: var(--text); }
+.nav-links a.active { background: #fdf2f2; color: var(--red); }
+.spacer { flex: 1; }
+.nav-badge {
+  font-size: .78rem; font-weight: 600;
+  padding: 7px 14px; background: var(--navy); color: #fff; border-radius: 7px;
+}
+
+/* ─── PAGE HEADER ─── */
+.page-header {
+  border-bottom: 1px solid var(--border);
+  padding: 2rem 2.5rem 1.8rem;
+  background: var(--surface);
+}
+.page-eyebrow {
+  font-size: .68rem; font-weight: 700; letter-spacing: .18em;
+  text-transform: uppercase; color: var(--navy); margin-bottom: .7rem;
+}
+.page-header h1 {
+  font-family: var(--serif);
+  font-size: clamp(2rem, 4vw, 3.2rem);
+  font-weight: 300; line-height: 1.15; letter-spacing: -.01em;
+}
+.page-header h1 em { font-style: italic; color: var(--navy); }
+.page-header p {
+  color: var(--text2); margin-top: .6rem; font-size: .92rem; line-height: 1.8;
+  max-width: 680px;
+}
+
+/* ─── BACK LINK ─── */
+.back-link {
+  display: inline-flex; align-items: center; gap: 8px;
+  margin-top: 1rem;
+  font-size: .82rem; font-weight: 600;
+  color: var(--navy); text-decoration: none;
+  padding: 6px 14px; border: 1.5px solid var(--navy);
+  border-radius: 8px; transition: background .15s, color .15s;
+}
+.back-link:hover { background: var(--navy); color: #fff; }
+
+/* ─── SEARCH ─── */
+.search-wrap {
+  position: sticky; top: 56px; z-index: 190;
+  background: rgba(255,255,255,.97);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  padding: .85rem 2.5rem;
+  display: flex; align-items: center; gap: 10px;
+}
+.search-icon { color: var(--text3); flex-shrink: 0; }
+#search {
+  flex: 1; border: none; outline: none;
+  font-family: var(--sans); font-size: .95rem;
+  background: transparent; color: var(--text);
+  caret-color: var(--navy);
+}
+#search::placeholder { color: var(--text3); }
+.search-clear {
+  display: none; background: var(--surface2); border: none; cursor: pointer;
+  width: 22px; height: 22px; border-radius: 50%;
+  color: var(--text2); font-size: .8rem; line-height: 22px; text-align: center;
+}
+.search-clear:hover { background: var(--border); }
+.search-count {
+  font-size: .75rem; color: var(--text3); white-space: nowrap;
+  font-weight: 600; letter-spacing: .05em;
+}
+.no-results {
+  text-align: center; padding: 4rem 2rem;
+  color: var(--text3); font-size: .95rem; display: none;
+}
+
+/* ─── DRUG REFERENCE SECTION ─── */
+.drug-ref-section {
+  background: var(--surface); border-top: 2px solid var(--border);
+  padding: 2rem 2.5rem 3rem;
+}
+.drug-ref-title {
+  font-family: var(--serif); font-size: clamp(1.5rem,3vw,2.2rem);
+  font-weight: 300; margin-bottom: .4rem;
+}
+.drug-ref-title em { color: var(--navy); font-style: italic; }
+.drug-ref-sub {
+  color: var(--text2); font-size: .88rem; margin-bottom: 2rem; max-width: 680px;
+}
+.drug-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  gap: 16px;
+}
+.drug-card {
+  background: var(--bg); border: 1px solid var(--border);
+  border-radius: 12px; overflow: hidden;
+}
+.drug-card-header {
+  background: var(--navy); color: #fff;
+  padding: .7rem 1rem .6rem;
+  display: flex; align-items: baseline; gap: 10px;
+}
+.drug-card-header h3 {
+  font-size: .95rem; font-weight: 700; margin: 0;
+}
+.drug-card-header .dg-generic {
+  font-size: .75rem; color: #90caf9; font-weight: 400;
+}
+.drug-card-body { padding: .85rem 1rem; font-size: .81rem; line-height: 1.7; }
+.drug-card-body table { width: 100%; border-collapse: collapse; }
+.drug-card-body td {
+  padding: .25rem .2rem;
+  vertical-align: top;
+  border-bottom: 1px solid var(--border);
+}
+.drug-card-body td:first-child {
+  color: var(--text3); font-weight: 700; font-size: .7rem;
+  letter-spacing: .06em; text-transform: uppercase;
+  white-space: nowrap; padding-right: .8rem; width: 90px;
+}
+.drug-card-body tr:last-child td { border-bottom: none; }
+.drug-cave {
+  margin-top: .6rem; background: #fdf2f2;
+  border: 1px solid #fbd5d5; border-left: 3px solid var(--red);
+  border-radius: 6px; padding: .45rem .7rem;
+  font-size: .78rem; color: #991b1b; line-height: 1.55;
+}
+.drug-cave strong { color: #7f1d1d; }
+.btm-tag {
+  display: inline-block; background: var(--purple); color: #fff;
+  font-size: .65rem; font-weight: 800; letter-spacing: .1em;
+  text-transform: uppercase; padding: 1px 7px; border-radius: 4px;
+  margin-left: 6px; vertical-align: middle;
+}
+
+.drug-ref-section { border-top: none; padding: 1.5rem 2.5rem 3rem; }
+
+/* ─── FOOTER ─── */
+footer {
+  padding: 1.6rem 2.5rem;
+  display: flex; align-items: center; justify-content: space-between;
+  border-top: 1px solid var(--border);
+  font-size: .78rem; color: var(--text3);
+}
+footer strong { color: var(--navy); font-weight: 600; }
+
+@media (max-width: 860px) {
+  .nav-links { display: none; }
+  .nav-badge { display: none; }
+}
+@media (max-width: 600px) {
+  .topnav { padding: 0 1rem; }
+  .page-header, .search-wrap, .drug-ref-section { padding-left: 1rem; padding-right: 1rem; }
+  .drug-grid { grid-template-columns: 1fr; }
+  footer { flex-direction: column; gap: .5rem; text-align: center; }
+}
+</style>
+</head>
+<body>
+
+<nav class="topnav">
+  <a href="notfall_erweitert.html" class="brand">
+    <span class="brand-heart">
+      <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+        <path d="M9 15.5C3.5 12.2 1 9 1 6A4 4 0 0 1 9 4.2a4 4 0 0 1 8 1.8C17 9 14.5 12.2 9 15.5Z" fill="var(--navy)" opacity=".9"/>
+      </svg>
+    </span>
+    OUSS Kardiologie
+  </a>
+  <div class="nav-links">
+    <a href="notfall_erweitert.html">🚨 Notfallszenarien</a>
+    <a href="notfallmedikamente.html" class="active">💊 Medikamente</a>
+  </div>
+  <div class="spacer"></div>
+  <span class="nav-badge">Medikamenten-Referenz</span>
+</nav>
+
+<div class="page-header">
+  <div class="page-eyebrow">Medikamenten-Referenz · Deutschland-spezifisch</div>
+  <h1>Praxis-<em>Nachschlagewerk</em><br>Notfallmedikamente</h1>
+  <p>Wie es im deutschen Krankenhaus wirklich gemacht wird — Ampulle, Aufziehen, Verdünnen, Geben, Cave. Für den schnellen Zugriff im Dienst.</p>
+  <a href="notfall_erweitert.html" class="back-link">
+    ← Zurück zu den Notfallszenarien
+  </a>
+</div>
+
+<div class="search-wrap">
+  <svg class="search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+  <input id="search" type="search" placeholder="Medikament suchen… z.B. Adrenalin, Heparin, Amiodaron" autocomplete="off" spellcheck="false">
+  <button class="search-clear" id="search-clear" onclick="clearSearch()" title="Löschen">×</button>
+  <span class="search-count" id="search-count"></span>
+</div>
+
+<div class="drug-ref-section" id="medikamente">
+  <div class="drug-grid" id="drug-grid">
+
+
+    <!-- Furosemid -->
+    <div class="drug-card">
+      <div class="drug-card-header">
+        <h3>Furosemid</h3>
+        <span class="dg-generic">Lasix®</span>
+      </div>
+      <div class="drug-card-body">
+        <table>
+          <tr><td>Ampulle</td><td><strong>10 mg/ml</strong> — Standard: 2 ml (20 mg) oder 4 ml (40 mg)</td></tr>
+          <tr><td>Notfall-Dosis</td><td>20–40 mg i.v. (bei Lungenödem)</td></tr>
+          <tr><td>Aufziehen</td><td>2 ml = 20 mg · 4 ml = 40 mg — kein Verdünnen nötig</td></tr>
+          <tr><td>Verdünnung</td><td>Keine — unverdünnt als Bolus i.v.</td></tr>
+          <tr><td>Applikation</td><td>Langsam i.v. über 1–2 min</td></tr>
+        </table>
+        <div class="drug-cave">⚠️ <strong>Cave:</strong> Hypokaliämie, Hypovolämie, Ototoxizität bei schneller Hochdosisgabe. RR + K⁺ überwachen!</div>
+      </div>
+    </div>
+
+    <!-- Urapidil -->
+    <div class="drug-card">
+      <div class="drug-card-header">
+        <h3>Urapidil</h3>
+        <span class="dg-generic">Ebrantil®</span>
+      </div>
+      <div class="drug-card-body">
+        <table>
+          <tr><td>Ampulle</td><td><strong>5 mg/ml</strong> — Standard: 5 ml (25 mg) oder 10 ml (50 mg)</td></tr>
+          <tr><td>Notfall-Dosis</td><td>12,5–25 mg fraktioniert i.v.</td></tr>
+          <tr><td>Aufziehen</td><td>12,5 mg = 2,5 ml · 25 mg = 5 ml</td></tr>
+          <tr><td>Verdünnung</td><td>Keine — unverdünnt</td></tr>
+          <tr><td>Applikation</td><td>Sehr langsam i.v., 5 min warten, dann RR messen</td></tr>
+        </table>
+        <div class="drug-cave">⚠️ <strong>Cave:</strong> Hypotonie! Nicht bei systolisch &lt;100 mmHg. RR kontinuierlich monitoren.</div>
+      </div>
+    </div>
+
+    <!-- Adrenalin / Suprarenin -->
+    <div class="drug-card">
+      <div class="drug-card-header">
+        <h3>Adrenalin</h3>
+        <span class="dg-generic">Suprarenin® / Epinephrin</span>
+      </div>
+      <div class="drug-card-body">
+        <table>
+          <tr><td>Ampulle</td><td><strong>1 mg/ml</strong> (1:1.000) — 1-ml-Amp</td></tr>
+          <tr><td>Reanimation</td><td>1 mg = 1 ml unverdünnt i.v., alle 3–5 min</td></tr>
+          <tr><td>Anaphylaxie</td><td>0,5 mg = 0,5 ml i.m. (anterolateral Oberschenkel)</td></tr>
+          <tr><td>Perfusor</td><td>1 mg in 49 ml NaCl (= 20 µg/ml) → Start 2–10 µg/min</td></tr>
+          <tr><td>Applikation</td><td>Reanimation: schneller Bolus + Flush. Anaphylaxie: i.m.</td></tr>
+        </table>
+        <div class="drug-cave">⚠️ <strong>Cave:</strong> Herzrhythmusstörungen, Hypertonie, Tachykardie. i.v.-Gabe nur mit Monitor! Anaphylaxie: i.m., NICHT i.v. ohne Monitor!</div>
+      </div>
+    </div>
+
+    <!-- Atropin -->
+    <div class="drug-card">
+      <div class="drug-card-header">
+        <h3>Atropin</h3>
+        <span class="dg-generic">Atropinsulfat</span>
+      </div>
+      <div class="drug-card-body">
+        <table>
+          <tr><td>Ampulle</td><td><strong>0,5 mg/ml</strong> — 1 ml = 0,5 mg</td></tr>
+          <tr><td>Notfall-Dosis</td><td>0,5–1 mg i.v. (= 1–2 ml), alle 3–5 min</td></tr>
+          <tr><td>Aufziehen</td><td>1 ml = 0,5 mg · 2 ml = 1 mg</td></tr>
+          <tr><td>Verdünnung</td><td>Keine — unverdünnt als Bolus</td></tr>
+          <tr><td>Applikation</td><td>Schneller i.v. Bolus. Max. 3 mg gesamt.</td></tr>
+        </table>
+        <div class="drug-cave">⚠️ <strong>Cave:</strong> Bei AV-Block III oft wirkungslos (infranodal)! Tachykardie, Harnverhalt, Mydriasis. Max. 3 mg gesamt nicht überschreiten!</div>
+      </div>
+    </div>
+
+    <!-- Amiodaron -->
+    <div class="drug-card">
+      <div class="drug-card-header">
+        <h3>Amiodaron</h3>
+        <span class="dg-generic">Cordarex®</span>
+      </div>
+      <div class="drug-card-body">
+        <table>
+          <tr><td>Ampulle</td><td><strong>50 mg/ml</strong> — 3 ml = 150 mg</td></tr>
+          <tr><td>Notfall-Dosis</td><td>300 mg (= 2 Amp) bei VHF/Reanimation</td></tr>
+          <tr><td>Aufziehen</td><td>300 mg = 6 ml Konzentrat</td></tr>
+          <tr><td>Verdünnung</td><td>VHF stabil: in <strong>250 ml G5%</strong> · Reanimation: unverdünnt Bolus</td></tr>
+          <tr><td>Applikation</td><td>VHF: Kurzinfusion 20–30 min. Reanimation: schneller Bolus i.v.</td></tr>
+        </table>
+        <div class="drug-cave">⚠️ <strong>Cave:</strong> <strong>NUR in G5% (Glucose 5%)!</strong> In NaCl → Ausfällung! QT-Verlängerung, Hypotonie, Bradykardie. Schilddrüse (bei Dauertherapie).</div>
+      </div>
+    </div>
+
+    <!-- Metoprolol -->
+    <div class="drug-card">
+      <div class="drug-card-header">
+        <h3>Metoprololtartrat</h3>
+        <span class="dg-generic">Beloc® i.v.</span>
+      </div>
+      <div class="drug-card-body">
+        <table>
+          <tr><td>Ampulle</td><td><strong>1 mg/ml</strong> — 5 ml = 5 mg</td></tr>
+          <tr><td>Notfall-Dosis</td><td>2,5–5 mg i.v. langsam</td></tr>
+          <tr><td>Aufziehen</td><td>2,5 mg = 2,5 ml · 5 mg = 5 ml</td></tr>
+          <tr><td>Verdünnung</td><td>Keine — unverdünnt, aber sehr langsam!</td></tr>
+          <tr><td>Applikation</td><td>Langsam i.v. über 3–5 min unter EKG-Monitor</td></tr>
+        </table>
+        <div class="drug-cave">⚠️ <strong>Cave:</strong> KI bei HFrEF (akute Herzinsuffizienz), Asthma, AV-Block II–III, Bradykardie. RR + HF während Injektion beobachten!</div>
+      </div>
+    </div>
+
+    <!-- Adenosin -->
+    <div class="drug-card">
+      <div class="drug-card-header">
+        <h3>Adenosin</h3>
+        <span class="dg-generic">Adrekar®</span>
+      </div>
+      <div class="drug-card-body">
+        <table>
+          <tr><td>Ampulle</td><td><strong>3 mg/ml</strong> — 2 ml = 6 mg</td></tr>
+          <tr><td>Notfall-Dosis</td><td>6 mg Bolus → bei Versagen: 12 mg</td></tr>
+          <tr><td>Aufziehen</td><td>6 mg = 2 ml · 12 mg = 4 ml</td></tr>
+          <tr><td>Verdünnung</td><td>Keine — unverdünnt, als schnellsten Bolus möglich!</td></tr>
+          <tr><td>Applikation</td><td>Schnellster i.v. Bolus + sofort 20 ml NaCl-Flush + Arm hoch</td></tr>
+        </table>
+        <div class="drug-cave">⚠️ <strong>Cave:</strong> HWZ &lt;10 Sek — Patienten vorwarnen! KI bei Asthma/COPD (Bronchospasmus), WPW-Syndrom (Cave Vorhofflimmern). Transiente Asystolie normal!</div>
+      </div>
+    </div>
+
+    <!-- Morphin -->
+    <div class="drug-card">
+      <div class="drug-card-header">
+        <h3>Morphin <span class="btm-tag">BtM</span></h3>
+        <span class="dg-generic">Morphinsulfat</span>
+      </div>
+      <div class="drug-card-body">
+        <table>
+          <tr><td>Ampulle</td><td><strong>10 mg/ml</strong> — 1 ml = 10 mg</td></tr>
+          <tr><td>Notfall-Dosis</td><td>2–3 mg i.v. bei ACS (titriert)</td></tr>
+          <tr><td>Aufziehen</td><td>1 Amp (10 mg) + 9 ml NaCl = 1 mg/ml → 2–3 ml = 2–3 mg</td></tr>
+          <tr><td>Verdünnung</td><td>Auf 10 ml NaCl aufziehen (= 1 mg/ml) — einfacher zu titrieren</td></tr>
+          <tr><td>Applikation</td><td>Langsam i.v. titrieren, fraktioniert 1 mg</td></tr>
+        </table>
+        <div class="drug-cave">⚠️ <strong>Cave:</strong> <strong>BtM-pflichtig</strong> (Protokoll ausfüllen!). Atemdepression, Hypotonie, Übelkeit. Antagonist Naloxon (Narcanti) bereithalten. Bei ACS: nur bei starken Schmerzen!</div>
+      </div>
+    </div>
+
+    <!-- Piritramid -->
+    <div class="drug-card">
+      <div class="drug-card-header">
+        <h3>Piritramid <span class="btm-tag">BtM</span></h3>
+        <span class="dg-generic">Dipidolor®</span>
+      </div>
+      <div class="drug-card-body">
+        <table>
+          <tr><td>Ampulle</td><td><strong>7,5 mg/ml</strong> — 2 ml = 15 mg</td></tr>
+          <tr><td>Notfall-Dosis</td><td>3–7,5 mg i.v. titriert</td></tr>
+          <tr><td>Aufziehen</td><td>3 mg = 0,4 ml → auf 5 ml NaCl aufziehen für einfache Gabe</td></tr>
+          <tr><td>Verdünnung</td><td>Auf NaCl aufziehen oder sehr langsam unverdünnt</td></tr>
+          <tr><td>Applikation</td><td>Sehr langsam i.v., titriert</td></tr>
+        </table>
+        <div class="drug-cave">⚠️ <strong>Cave:</strong> <strong>BtM-pflichtig!</strong> Atemdepression (langsamer als Morphin, aber vorhanden). SpO₂ monitoren. Antagonist Naloxon bereithalten.</div>
+      </div>
+    </div>
+
+    <!-- Metamizol -->
+    <div class="drug-card">
+      <div class="drug-card-header">
+        <h3>Metamizol</h3>
+        <span class="dg-generic">Novalgin®</span>
+      </div>
+      <div class="drug-card-body">
+        <table>
+          <tr><td>Ampulle</td><td><strong>500 mg/ml</strong> — 2 ml = 1 g</td></tr>
+          <tr><td>Notfall-Dosis</td><td>1 g (= 2 ml) als Kurzinfusion</td></tr>
+          <tr><td>Aufziehen</td><td>2 ml Novalgin in 100 ml NaCl 0,9%</td></tr>
+          <tr><td>Verdünnung</td><td><strong>IMMER in 100 ml NaCl</strong> — niemals Bolus!</td></tr>
+          <tr><td>Applikation</td><td>Kurzinfusion über <strong>15 min</strong></td></tr>
+        </table>
+        <div class="drug-cave">⚠️ <strong>Cave:</strong> Hypotonie bei Bolus-Gabe! Agranulozytose (selten, aber lebensbedrohlich bei Dauergebrauch). Kontraindiziert bei Agranulozytose-Anamnese + G6PD-Mangel.</div>
+      </div>
+    </div>
+
+    <!-- Prednisolon -->
+    <div class="drug-card">
+      <div class="drug-card-header">
+        <h3>Prednisolon</h3>
+        <span class="dg-generic">Solu-Decortin H® / Urbason®</span>
+      </div>
+      <div class="drug-card-body">
+        <table>
+          <tr><td>Ampulle</td><td>Trockensubstanz: <strong>25 mg / 50 mg / 250 mg / 500 mg</strong></td></tr>
+          <tr><td>Anaphylaxie</td><td>250 mg i.v. Bolus</td></tr>
+          <tr><td>COPD/Asthma</td><td>50 mg i.v. oder p.o.</td></tr>
+          <tr><td>Verdünnung</td><td>In beigefügtem Wasser auflösen → Bolus i.v. möglich</td></tr>
+          <tr><td>Applikation</td><td>i.v. Bolus oder p.o.</td></tr>
+        </table>
+        <div class="drug-cave">⚠️ <strong>Cave:</strong> Hyperglykämie (BZ-Kontrolle bei Diabetikern!), Immunsuppression, Magenblutung (PPI-Schutz bei Dauergebrauch). Wirkung bei Anaphylaxie verzögert (~1h)!</div>
+      </div>
+    </div>
+
+    <!-- Lorazepam -->
+    <div class="drug-card">
+      <div class="drug-card-header">
+        <h3>Lorazepam <span class="btm-tag">BtM</span></h3>
+        <span class="dg-generic">Tavor®</span>
+      </div>
+      <div class="drug-card-body">
+        <table>
+          <tr><td>Ampulle</td><td><strong>2 mg/ml</strong> — 1 ml = 2 mg</td></tr>
+          <tr><td>Notfall-Dosis</td><td>2–4 mg i.v. beim Status epilepticus</td></tr>
+          <tr><td>Aufziehen</td><td>2 mg = 1 ml · 4 mg = 2 ml</td></tr>
+          <tr><td>Verdünnung</td><td>Unverdünnt oder in NaCl — langsam i.v.</td></tr>
+          <tr><td>Applikation</td><td>Langsam i.v. über 1–2 min</td></tr>
+        </table>
+        <div class="drug-cave">⚠️ <strong>Cave:</strong> <strong>BtM-pflichtig!</strong> Atemdepression → SpO₂ + Atemfrequenz überwachen, Ambu-Beutel bereithalten. Kühlkette beachten (Kühlschrank)!</div>
+      </div>
+    </div>
+
+    <!-- Midazolam -->
+    <div class="drug-card">
+      <div class="drug-card-header">
+        <h3>Midazolam <span class="btm-tag">BtM</span></h3>
+        <span class="dg-generic">Dormicum®</span>
+      </div>
+      <div class="drug-card-body">
+        <table>
+          <tr><td>Ampulle</td><td><strong>5 mg/ml</strong> — 1 ml = 5 mg oder <strong>1 mg/ml</strong> (10 ml)</td></tr>
+          <tr><td>Notfall-Dosis</td><td>5–10 mg i.m. oder intranasal</td></tr>
+          <tr><td>Aufziehen</td><td>5 mg/ml-Amp: 5 mg = 1 ml · 10 mg = 2 ml</td></tr>
+          <tr><td>Verdünnung</td><td>i.m./intranasal: unverdünnt. i.v.: auf NaCl aufziehen</td></tr>
+          <tr><td>Applikation</td><td>i.m. Oberschenkel ODER intranasal mit MAD-Aufsatz</td></tr>
+        </table>
+        <div class="drug-cave">⚠️ <strong>Cave:</strong> <strong>BtM-pflichtig!</strong> Atemdepression, Atemstillstand möglich. Antagonist: Flumazenil (Anexate). Intranasal wirkt gut wenn kein i.v. Zugang!</div>
+      </div>
+    </div>
+
+    <!-- Calciumgluconat -->
+    <div class="drug-card">
+      <div class="drug-card-header">
+        <h3>Calciumgluconat 10%</h3>
+        <span class="dg-generic">Calcium-Gluconat 10%</span>
+      </div>
+      <div class="drug-card-body">
+        <table>
+          <tr><td>Ampulle</td><td><strong>100 mg/ml</strong> (10%) — 10 ml = 1 g = 2,25 mmol Ca²⁺</td></tr>
+          <tr><td>Notfall-Dosis</td><td>10 ml (1 Amp) i.v. bei Hyperkaliämie</td></tr>
+          <tr><td>Aufziehen</td><td>10 ml = 1 Ampulle unverdünnt</td></tr>
+          <tr><td>Verdünnung</td><td>Keine — unverdünnt</td></tr>
+          <tr><td>Applikation</td><td>Langsam i.v. über 2–3 min unter EKG-Monitor</td></tr>
+        </table>
+        <div class="drug-cave">⚠️ <strong>Cave:</strong> Nicht zusammen mit Bikarbonat (Ausfällung!). Bradykardie bei schneller Gabe. Extravasat → Gewebsnekrose. Senkt K⁺ NICHT — schützt nur das Herz!</div>
+      </div>
+    </div>
+
+    <!-- UFH / Heparin -->
+    <div class="drug-card">
+      <div class="drug-card-header">
+        <h3>Heparin (UFH)</h3>
+        <span class="dg-generic">Heparin-Natrium</span>
+      </div>
+      <div class="drug-card-body">
+        <table>
+          <tr><td>Ampulle</td><td><strong>5.000 IE/ml</strong> — 1 ml = 5.000 IE oder 25.000 IE/5 ml</td></tr>
+          <tr><td>ACS Bolus</td><td>5.000 IE = 1 ml unverdünnt i.v.</td></tr>
+          <tr><td>LAE Bolus</td><td>80 IE/kg KG → 75 kg = 6.000 IE = 1,2 ml i.v.</td></tr>
+          <tr><td>Perfusor</td><td>25.000 IE in 50 ml NaCl (= 500 IE/ml) → 18 IE/kg/h titrieren</td></tr>
+          <tr><td>Applikation</td><td>Bolus i.v., dann Perfusor nach Schema</td></tr>
+        </table>
+        <div class="drug-cave">⚠️ <strong>Cave:</strong> HIT (Heparin-induzierte Thrombozytopenie) → Thrombozyten nach 5–10 Tagen prüfen! Blutungsrisiko. aPTT überwachen (Ziel 60–80 sec). Antagonist: Protamin.</div>
+      </div>
+    </div>
+
+    <!-- Norepinephrin -->
+    <div class="drug-card">
+      <div class="drug-card-header">
+        <h3>Norepinephrin</h3>
+        <span class="dg-generic">Arterenol® / Noradrenalin</span>
+      </div>
+      <div class="drug-card-body">
+        <table>
+          <tr><td>Ampulle</td><td><strong>1 mg/ml</strong> — 1 ml = 1 mg</td></tr>
+          <tr><td>Notfall-Dosis</td><td>Start 0,1 µg/kg/min, titrieren nach RR</td></tr>
+          <tr><td>Perfusor Standard</td><td>4 mg (4 Amp) in 46 ml NaCl = <strong>80 µg/ml (0,08 mg/ml)</strong></td></tr>
+          <tr><td>Laufrate (80 kg)</td><td>0,1 µg/kg/min = ca. 6 ml/h → titrieren</td></tr>
+          <tr><td>Applikation</td><td>Perfusor i.v. — idealerweise über ZVK!</td></tr>
+        </table>
+        <div class="drug-cave">⚠️ <strong>Cave:</strong> Nekrose bei Paravasat (ZVK bevorzugen!). Tachykardie, Hypertonie. Reflex-Bradykardie möglich. Niemals als Bolus!</div>
+      </div>
+    </div>
+
+    <!-- Dobutamin -->
+    <div class="drug-card">
+      <div class="drug-card-header">
+        <h3>Dobutamin</h3>
+        <span class="dg-generic">Dobutamin Hexal®</span>
+      </div>
+      <div class="drug-card-body">
+        <table>
+          <tr><td>Ampulle</td><td><strong>250 mg/20 ml</strong> (= 12,5 mg/ml)</td></tr>
+          <tr><td>Notfall-Dosis</td><td>Start 2–5 µg/kg/min, max. 20 µg/kg/min</td></tr>
+          <tr><td>Perfusor Standard</td><td>250 mg in 50 ml NaCl (= 5 mg/ml)</td></tr>
+          <tr><td>Laufrate (80 kg)</td><td>2 µg/kg/min = 80 kg × 2 / 5.000 × 60 = ca. 2 ml/h</td></tr>
+          <tr><td>Applikation</td><td>Perfusor i.v., titriert nach Klinik</td></tr>
+        </table>
+        <div class="drug-cave">⚠️ <strong>Cave:</strong> Tachykardie häufig (bei HF &gt;120/min Dosis reduzieren). Arrhythmien. Kombiniert mit Norepinephrin bei kardiogenem Schock. Nicht bei Aortenstenose!</div>
+      </div>
+    </div>
+
+    <!-- Alteplase -->
+    <div class="drug-card">
+      <div class="drug-card-header">
+        <h3>Alteplase</h3>
+        <span class="dg-generic">Actilyse®</span>
+      </div>
+      <div class="drug-card-body">
+        <table>
+          <tr><td>Flasche</td><td><strong>50 mg</strong> Lyophilisat + 50 ml Lösungsmittel</td></tr>
+          <tr><td>LAE Dosis</td><td>10 mg Bolus über 1–2 min + 90 mg über 2 h (bei KG &gt;65 kg)</td></tr>
+          <tr><td>Aufziehen</td><td>Pulver + Lösungsmittel → 1 mg/ml. 10 mg = 10 ml Bolus</td></tr>
+          <tr><td>Verdünnung</td><td>Im mitgelieferten Lösungsmittel — nicht in NaCl</td></tr>
+          <tr><td>Applikation</td><td>10 mg Bolus i.v. → Rest über Perfusor 2 h</td></tr>
+        </table>
+        <div class="drug-cave">⚠️ <strong>Cave:</strong> <strong>Facharzt-Entscheidung!</strong> Absolute KI: aktive Blutung, Stroke &lt;3 Mo, Schädel-OP. Nach Lyse: keine Punktionen 24h, Blutungszeichen beobachten. Kein Heparin-Bolus während Lyse!</div>
+      </div>
+    </div>
+
+    <!-- Dimetinden / Clemastin -->
+    <div class="drug-card">
+      <div class="drug-card-header">
+        <h3>Dimetinden / Clemastin</h3>
+        <span class="dg-generic">Fenistil® / Tavegil®</span>
+      </div>
+      <div class="drug-card-body">
+        <table>
+          <tr><td>Fenistil Amp</td><td><strong>1 mg/ml</strong> — 4 ml = 4 mg Dimetinden</td></tr>
+          <tr><td>Tavegil Amp</td><td><strong>1 mg/ml</strong> — 2 ml = 2 mg Clemastin</td></tr>
+          <tr><td>Notfall-Dosis</td><td>1 Ampulle i.v. (Fenistil: 4 mg, Tavegil: 2 mg)</td></tr>
+          <tr><td>Verdünnung</td><td>Unverdünnt oder in 10 ml NaCl, langsam i.v.</td></tr>
+          <tr><td>Applikation</td><td>Langsam i.v. über 1–2 min</td></tr>
+        </table>
+        <div class="drug-cave">⚠️ <strong>Cave:</strong> Sedierung, Hypotonie möglich. Patient liegend halten. Antihistaminika allein NICHT ausreichend bei Anaphylaxie mit Schock → Adrenalin i.m. ist Priorität!</div>
+      </div>
+    </div>
+
+    <!-- Clonidin -->
+    <div class="drug-card">
+      <div class="drug-card-header">
+        <h3>Clonidin</h3>
+        <span class="dg-generic">Catapresan®</span>
+      </div>
+      <div class="drug-card-body">
+        <table>
+          <tr><td>Ampulle</td><td><strong>0,15 mg/ml</strong> — 1 ml = 0,15 mg</td></tr>
+          <tr><td>Notfall-Dosis</td><td>0,075 mg = ½ Ampulle (= 0,5 ml)</td></tr>
+          <tr><td>Aufziehen</td><td>0,5 ml Clonidin + 4,5 ml NaCl → 5 ml = 0,075 mg</td></tr>
+          <tr><td>Verdünnung</td><td>Auf 5 ml NaCl aufziehen, dann langsam i.v.</td></tr>
+          <tr><td>Applikation</td><td>Langsam i.v. oder s.c. — Patient muss danach liegen!</td></tr>
+        </table>
+        <div class="drug-cave">⚠️ <strong>Cave:</strong> Starke Sedierung, Bradykardie, Reboundhypertonie bei abruptem Absetzen. Patient nach Gabe liegend halten (Sturz!). Nicht mit anderen Sedativa kombinieren ohne Monitoring.</div>
+      </div>
+    </div>
+
+    <!-- Ondansetron -->
+    <div class="drug-card">
+      <div class="drug-card-header">
+        <h3>Ondansetron</h3>
+        <span class="dg-generic">Zofran®</span>
+      </div>
+      <div class="drug-card-body">
+        <table>
+          <tr><td>Ampulle</td><td><strong>2 mg/ml</strong> — 2 ml = 4 mg</td></tr>
+          <tr><td>Notfall-Dosis</td><td>4 mg i.v. (= 2 ml)</td></tr>
+          <tr><td>Aufziehen</td><td>2 ml unverdünnt oder in 10 ml NaCl</td></tr>
+          <tr><td>Verdünnung</td><td>Keine nötig — direkt i.v.</td></tr>
+          <tr><td>Applikation</td><td>Langsam i.v. über 30 sec–2 min</td></tr>
+        </table>
+        <div class="drug-cave">⚠️ <strong>Cave:</strong> QT-Verlängerung bei hohen Dosen. Kardiologie: EKG-Kontrolle bei bekannter QTc-Verlängerung. Kein starker RR-Abfall. Gut verträglich.</div>
+      </div>
+    </div>
+
+    <!-- Pantoprazol -->
+    <div class="drug-card">
+      <div class="drug-card-header">
+        <h3>Pantoprazol</h3>
+        <span class="dg-generic">Pantozol® i.v.</span>
+      </div>
+      <div class="drug-card-body">
+        <table>
+          <tr><td>Flasche</td><td><strong>40 mg</strong> Lyophilisat</td></tr>
+          <tr><td>Notfall-Dosis</td><td>80 mg Bolus (= 2 Fl) → dann 8 mg/h Perfusor</td></tr>
+          <tr><td>Aufziehen</td><td>40 mg Fl + 10 ml NaCl lösen → Bolus i.v.</td></tr>
+          <tr><td>Perfusor</td><td>4 Fl (160 mg) in 50 ml NaCl → 8 mg/h = 2,5 ml/h</td></tr>
+          <tr><td>Applikation</td><td>Bolus i.v., dann Dauerinfusion</td></tr>
+        </table>
+        <div class="drug-cave">⚠️ <strong>Cave:</strong> Hypomagnesämie bei Langzeitgabe. Clostridium-difficile-Risiko. Wechselwirkung mit Clopidogrel (klinische Relevanz unklar, aber beachten).</div>
+      </div>
+    </div>
+
+    <!-- Glucose 40% -->
+    <div class="drug-card">
+      <div class="drug-card-header">
+        <h3>Glucose 40%</h3>
+        <span class="dg-generic">G40 — Glukose 40%</span>
+      </div>
+      <div class="drug-card-body">
+        <table>
+          <tr><td>Ampulle</td><td><strong>40%</strong> — 10 ml = 4 g Glucose</td></tr>
+          <tr><td>Notfall-Dosis</td><td>10–20 ml (1–2 Amp) i.v. bei Hypoglykämie</td></tr>
+          <tr><td>Aufziehen</td><td>1–2 Ampullen unverdünnt → langsam i.v.</td></tr>
+          <tr><td>Verdünnung</td><td>Keine — aber Paravasat sofort stoppen!</td></tr>
+          <tr><td>Applikation</td><td>Langsam i.v. über 1–2 min, PVK aspirieren vorher!</td></tr>
+        </table>
+        <div class="drug-cave">⚠️ <strong>Cave:</strong> <strong>Venennekrose bei Paravasat!</strong> Vor Injektion aspirieren. Nach Injektion mit 10 ml NaCl spülen. BZ nach 15 min kontrollieren. G40 nicht in kleine Handvenen!</div>
+      </div>
+    </div>
+
+    <!-- KCl -->
+    <div class="drug-card">
+      <div class="drug-card-header">
+        <h3>Kaliumchlorid</h3>
+        <span class="dg-generic">KCl 7,45% — Infusionszusatz</span>
+      </div>
+      <div class="drug-card-body">
+        <table>
+          <tr><td>Ampulle</td><td><strong>7,45% = 1 mmol K⁺/ml</strong> — 10 ml = 10 mmol</td></tr>
+          <tr><td>Notfall-Dosis</td><td>Max. 20 mmol/h i.v. verdünnt</td></tr>
+          <tr><td>Aufziehen</td><td>20 mmol = 20 ml KCl in 500 ml Sterofundin/VEL</td></tr>
+          <tr><td>Verdünnung</td><td><strong>IMMER verdünnen!</strong> Min. 500 ml Lösung</td></tr>
+          <tr><td>Applikation</td><td>Infusion über mind. 1 Stunde. EKG-Monitor!</td></tr>
+        </table>
+        <div class="drug-cave">⚠️ <strong>Cave: LEBENSBEDROHLICH wenn unverdünnt i.v.!</strong> Herzstillstand! Nie als Bolus! Nie pur! Immer in Infusionslösung verdünnen. Immer EKG-Monitor bei i.v.-Gabe!</div>
+      </div>
+    </div>
+
+  
+  </div>
+  <div class="no-results" id="no-results">Kein Medikament gefunden für <strong id="no-results-term"></strong>.</div>
+</div>
+
+<footer>
+  <span>OUSS Kardiologie · Medikamenten-Referenz · Weiterbildung DE</span>
+  <strong>Klinisches Hilfsmittel — kein Ersatz für ärztliches Urteil</strong>
+</footer>
+
+<script>
+var searchEl = document.getElementById('search');
+var clearBtn = document.getElementById('search-clear');
+var countEl  = document.getElementById('search-count');
+var noRes    = document.getElementById('no-results');
+var noResTerm = document.getElementById('no-results-term');
+
+searchEl.addEventListener('input', applyFilter);
+function clearSearch() { searchEl.value = ''; applyFilter(); searchEl.focus(); }
+
+function applyFilter() {
+  var q = searchEl.value.trim().toLowerCase();
+  clearBtn.style.display = q ? 'block' : 'none';
+  var cards = document.querySelectorAll('.drug-card');
+  var visible = 0;
+  cards.forEach(function(card) {
+    var match = !q || card.textContent.toLowerCase().includes(q);
+    card.style.display = match ? '' : 'none';
+    if (match) visible++;
+  });
+  countEl.textContent = q ? visible + ' Medikamente' : '';
+  noRes.style.display = visible === 0 ? 'block' : 'none';
+  if (visible === 0) noResTerm.textContent = '"' + q + '"';
+}
+</script>
+
+</body>
+</html>
