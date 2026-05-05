@@ -1,0 +1,788 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kardiometabolische Medizin — OUSS Kardiologie</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#ffffff;--surface:#f7f5f2;--surface2:#eeecea;--border:#e5e2de;--text:#1a1410;--text2:#6b6460;--text3:#a09890;--red:#c8303a;--gold:#9a7430;--navy:#0f1528;--blue:#2563eb;--green:#0f7b5a;--purple:#7c3aed;--orange:#ea580c;--cyan:#0e7490;--teal:#0d9488;--serif:'Cormorant Garamond',Georgia,serif;--sans:'DM Sans',system-ui,sans-serif;--sh:0 2px 8px rgba(0,0,0,.06);--sh-md:0 6px 24px rgba(0,0,0,.09)}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}
+body{font-family:var(--sans);background:var(--bg);color:var(--text);font-size:15px;line-height:1.7;overflow-x:hidden}
+.topnav{position:sticky;top:0;z-index:200;height:56px;background:rgba(255,255,255,.97);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);display:flex;align-items:center;padding:0 2.5rem;gap:6px}
+.brand{font-family:var(--serif);font-size:1.2rem;font-weight:400;color:var(--text);text-decoration:none;display:flex;align-items:center;gap:.5rem;white-space:nowrap;flex-shrink:0}
+.brand-heart{animation:hb 1.6s ease-in-out infinite;display:inline-block}
+@keyframes hb{0%,100%{transform:scale(1)}14%{transform:scale(1.2)}28%{transform:scale(1)}42%{transform:scale(1.1)}56%{transform:scale(1)}}
+.nav-links{display:flex;gap:2px;margin-left:.5rem}
+.nav-links a{padding:7px 12px;border-radius:7px;text-decoration:none;color:var(--text2);font-size:.88rem;font-weight:500;transition:background .15s,color .15s}
+.nav-links a:hover{background:var(--surface);color:var(--text)}
+.nav-links a.active{background:#f0fdfa;color:var(--teal)}
+.spacer{flex:1}
+.nav-badge{font-size:.78rem;font-weight:600;padding:7px 14px;background:var(--teal);color:#fff;border-radius:7px;white-space:nowrap}
+.page-header{border-bottom:1px solid var(--border);padding:2rem 2.5rem 1.8rem;background:var(--surface)}
+.page-eyebrow{font-size:.68rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--teal);margin-bottom:.7rem}
+.page-header h1{font-family:var(--serif);font-size:clamp(2rem,4vw,3.2rem);font-weight:300;line-height:1.15}
+.page-header h1 em{font-style:italic;color:var(--teal)}
+.page-header p{color:var(--text2);margin-top:.6rem;font-size:.92rem;line-height:1.8;max-width:760px}
+.filter-wrap{display:flex;flex-wrap:wrap;gap:6px;padding:.85rem 2.5rem;border-bottom:1px solid var(--border);background:var(--bg);position:sticky;top:56px;z-index:190;backdrop-filter:blur(12px)}
+.chip{padding:5px 13px;border-radius:20px;border:1.5px solid var(--border);background:var(--surface);color:var(--text2);font-size:.78rem;font-weight:600;cursor:pointer;transition:background .15s,color .15s,border-color .15s;letter-spacing:.03em}
+.chip:hover{background:var(--surface2);color:var(--text)}
+.chip.active{background:var(--navy);color:#fff;border-color:var(--navy)}
+.chip[data-cat="akut"].active{background:var(--red);border-color:var(--red)}
+.chip[data-cat="fuss"].active{background:var(--orange);border-color:var(--orange)}
+.chip[data-cat="insulin"].active{background:var(--teal);border-color:var(--teal)}
+.chip[data-cat="diagnose"].active{background:var(--blue);border-color:var(--blue)}
+.chip[data-cat="oads"].active{background:var(--purple);border-color:var(--purple)}
+.chip[data-cat="praev"].active{background:var(--green);border-color:var(--green)}
+.chip[data-cat="gerin"].active{background:var(--gold);border-color:var(--gold)}
+.sop-list{padding:1.5rem 2.5rem 3rem;display:flex;flex-direction:column;gap:10px}
+.scard{border:1px solid var(--border);border-radius:12px;background:var(--bg);overflow:hidden;transition:box-shadow .2s}
+.scard:hover{box-shadow:var(--sh-md)}
+.scard-head{display:flex;align-items:flex-start;gap:14px;padding:1rem 1.2rem;cursor:pointer;user-select:none;transition:background .15s}
+.scard-head:hover{background:var(--surface)}
+.scard-num{font-family:var(--serif);font-size:1.35rem;font-weight:300;color:var(--text3);min-width:28px;flex-shrink:0;padding-top:2px}
+.scard-icon{width:38px;height:38px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0}
+.scard-info{flex:1;min-width:0}
+.scard-title{font-family:var(--serif);font-size:1.12rem;font-weight:400;line-height:1.3}
+.scard-badges{display:flex;flex-wrap:wrap;gap:5px;margin-top:5px}
+.badge{font-size:.68rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:2px 8px;border-radius:5px;border:1px solid transparent;white-space:nowrap}
+.badge.red{background:#fdf2f2;color:var(--red);border-color:#fbd5d5}
+.badge.blue{background:#eff6ff;color:var(--blue);border-color:#bfdbfe}
+.badge.gold{background:#fdf8ee;color:var(--gold);border-color:#e8d5a3}
+.badge.green{background:#f0fdf8;color:var(--green);border-color:#a7f3d0}
+.badge.navy{background:#f0f2f8;color:var(--navy);border-color:#c7cde8}
+.badge.gray{background:var(--surface);color:var(--text2);border-color:var(--border)}
+.badge.orange{background:#fff7ed;color:var(--orange);border-color:#fed7aa}
+.badge.purple{background:#f5f3ff;color:var(--purple);border-color:#ddd6fe}
+.badge.teal{background:#f0fdfa;color:var(--teal);border-color:#99f6e4}
+.badge.esc-i{background:#f0fdf8;color:#065f46;border-color:#6ee7b7;font-weight:800}
+.badge.esc-iia{background:#fdf8ee;color:#92400e;border-color:#fcd34d;font-weight:800}
+.badge.esc-iii{background:#fdf2f2;color:#991b1b;border-color:#fca5a5;font-weight:800}
+.scard-chevron{color:var(--text3);transition:transform .25s;flex-shrink:0;margin-top:8px}
+.scard.open .scard-chevron{transform:rotate(180deg)}
+.scard-inner{display:none;padding:0 1.2rem 1.2rem;border-top:1px solid var(--border)}
+.scard.open .scard-inner{display:block}
+.sop-section{margin-top:1rem}
+.sop-section-title{font-size:.65rem;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:var(--text3);margin-bottom:.6rem;display:flex;align-items:center;gap:6px}
+.sop-section-title::after{content:'';flex:1;height:1px;background:var(--border)}
+.crit-table{width:100%;border-collapse:collapse;font-size:.83rem}
+.crit-table th{text-align:left;font-size:.68rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--text3);padding:.35rem .5rem .35rem 0;border-bottom:1px solid var(--border)}
+.crit-table td{padding:.4rem .5rem .4rem 0;vertical-align:top;border-bottom:1px solid var(--surface2);line-height:1.55}
+.crit-table tr:last-child td{border-bottom:none}
+.crit-table td:first-child{font-weight:600;color:var(--text);white-space:nowrap;padding-right:1rem;font-size:.8rem}
+.crit-table .val{color:var(--text2)}.crit-table .highlight{color:var(--navy);font-weight:700}
+.ind-row{display:flex;gap:10px;align-items:flex-start;padding:.55rem .7rem;border:1px solid var(--border);border-radius:8px;margin-bottom:6px;background:var(--bg);font-size:.83rem;line-height:1.55;transition:border-color .15s}
+.ind-row:hover{border-color:var(--text3)}
+.ind-row .ind-txt{flex:1;color:var(--text2)}.ind-row .ind-txt strong{color:var(--text)}
+.algo-box{background:var(--navy);color:#e8eaf6;border-radius:10px;padding:1rem 1.1rem;margin-top:.8rem;font-size:.82rem;line-height:1.75}
+.algo-box-title{font-size:.63rem;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:#7986cb;margin-bottom:.5rem}
+.algo-box ol,.algo-box ul{padding-left:1.2rem;margin:0}.algo-box li{margin-bottom:.25rem}
+.algo-box strong{color:#ffcc80}.algo-box .algo-warn{color:#ef9a9a;font-weight:600}.algo-box .algo-ok{color:#a5d6a7}.algo-box .algo-step{color:#90caf9}.algo-box .algo-note{color:#b0bec5;font-size:.78rem}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:.6rem}
+.score-box{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:.75rem;font-size:.8rem}
+.score-box-title{font-size:.65rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--text3);margin-bottom:.5rem}
+.score-box table{width:100%;border-collapse:collapse}.score-box td{padding:.22rem 0;border-bottom:1px solid var(--border);font-size:.8rem}.score-box tr:last-child td{border-bottom:none}.score-box td:last-child{text-align:right;font-weight:700;color:var(--navy)}
+.tip-box{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:.55rem .8rem;font-size:.8rem;color:var(--text2);display:flex;gap:8px;align-items:flex-start;line-height:1.5;margin-top:.6rem}
+.tip-box svg{flex-shrink:0;margin-top:2px}
+.tip-box.danger{background:#fdf2f2;border-color:#fbd5d5;color:#7f1d1d}
+.tip-box.warn{background:#fff7ed;border-color:#fed7aa;color:#7c2d12}
+.tip-box.ok{background:#f0fdf8;border-color:#a7f3d0;color:#064e3b}
+.pill{display:inline-block;font-size:.72rem;font-weight:700;padding:1px 8px;border-radius:4px;margin:0 2px}
+.pill-green{background:#dcfce7;color:#166534}.pill-red{background:#fee2e2;color:#991b1b}.pill-gold{background:#fef9c3;color:#854d0e}.pill-navy{background:#e0e7ff;color:#1e40af}.pill-gray{background:var(--surface2);color:var(--text2)}.pill-teal{background:#ccfbf1;color:#134e4a}.pill-orange{background:#ffedd5;color:#9a3412}
+.ins-table{width:100%;border-collapse:collapse;font-size:.81rem;margin-top:.4rem}
+.ins-table th{background:var(--navy);color:#fff;font-size:.67rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase;padding:.45rem .6rem;text-align:left}
+.ins-table td{padding:.4rem .6rem;border-bottom:1px solid var(--surface2);vertical-align:top;line-height:1.5;color:var(--text2)}
+.ins-table tr:last-child td{border-bottom:none}.ins-table td:first-child{font-weight:700;color:var(--text)}.ins-table tr:nth-child(even) td{background:var(--surface)}
+.ins-table .onset{color:var(--green);font-weight:700}.ins-table .peak{color:var(--orange);font-weight:700}.ins-table .dur{color:var(--blue);font-weight:700}
+.perf-table{width:100%;border-collapse:collapse;font-size:.8rem;margin-top:.4rem}
+.perf-table th{background:var(--red);color:#fff;font-size:.67rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase;padding:.4rem .5rem;text-align:left}
+.perf-table td{padding:.35rem .5rem;border-bottom:1px solid var(--surface2);color:var(--text2);line-height:1.4}
+.perf-table td:first-child{font-weight:700;color:var(--text);white-space:nowrap}.perf-table tr:last-child td{border-bottom:none}.perf-table tr:nth-child(even) td{background:var(--surface)}
+.rf-card{border:1px solid var(--border);border-radius:9px;margin-bottom:7px;overflow:hidden}
+.rf-head{display:flex;align-items:center;gap:10px;padding:.6rem .9rem;background:var(--surface);font-size:.83rem;font-weight:600;border-bottom:1px solid var(--border)}
+.rf-body{padding:.6rem .9rem;font-size:.81rem;color:var(--text2);line-height:1.65}
+.rf-body ul{padding-left:1.1rem;margin:0}.rf-body li{margin-bottom:.2rem}.rf-body li strong{color:var(--text)}
+.rf-danger{border-left:3px solid var(--red)}.rf-warn{border-left:3px solid var(--orange)}
+.no-results{text-align:center;padding:4rem 2rem;color:var(--text3);font-size:.95rem;display:none}
+footer{padding:1.6rem 2.5rem;display:flex;align-items:center;justify-content:space-between;border-top:1px solid var(--border);font-size:.78rem;color:var(--text3)}
+footer strong{color:var(--navy);font-weight:600}
+@media(max-width:860px){.nav-links{display:none}.nav-badge{display:none}}
+@media(max-width:600px){.topnav{padding:0 1rem}.page-header,.filter-wrap,.sop-list{padding-left:1rem;padding-right:1rem}.scard-head{padding:.9rem 1rem}.scard-inner{padding:0 1rem 1rem}.two-col{grid-template-columns:1fr}footer{flex-direction:column;gap:.5rem;text-align:center}}
+</style>
+</head>
+<body>
+<nav class="topnav">
+  <a href="index.html" class="brand">
+    <span class="brand-heart"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M9 15.5C3.5 12.2 1 9 1 6A4 4 0 0 1 9 4.2a4 4 0 0 1 8 1.8C17 9 14.5 12.2 9 15.5Z" fill="var(--teal)" opacity=".9"/></svg></span>
+    OUSS Kardiologie
+  </a>
+  <div class="nav-links">
+    <a href="notfall_erweitert.html">🚨 Notfall</a>
+    <a href="notfallmedikamente.html">💊 Medikamente</a>
+    <a href="kardiologie_sop.html">📋 SOPs</a>
+    <a href="kardiometabolik.html" class="active">🩺 Kardiometabolik</a>
+  </div>
+  <div class="spacer"></div>
+  <span class="nav-badge">DDG · ESC · ADA 2024</span>
+</nav>
+
+<div class="page-header">
+  <div class="page-eyebrow">Kardiometabolische Medizin &amp; Diabetologie · DDG / ESC / ADA 2024</div>
+  <h1>Kardiometabolik <em>&amp; Diabetologie</em></h1>
+  <p>Cheat Sheet für Visite und ZNA — akute Entgleisungen, Insulintherapie, OAD-Fallstricke, Lipide, Hypertonie und perioperatives Gerinnungsmanagement. Doppel-Facharzt-Standard: Kardiologie + Diabetologie.</p>
+</div>
+
+<div class="filter-wrap">
+  <button class="chip active" data-cat="all">Alle</button>
+  <button class="chip" data-cat="akut">🔥 Akute Entgleisungen</button>
+  <button class="chip" data-cat="fuss">🦶 Diabetischer Fuß</button>
+  <button class="chip" data-cat="insulin">💉 Insulin-Meisterschaft</button>
+  <button class="chip" data-cat="diagnose">📊 Diagnose &amp; Ziele</button>
+  <button class="chip" data-cat="oads">⚠️ OAD Red Flags</button>
+  <button class="chip" data-cat="praev">❤️ Lipide &amp; Hypertonie</button>
+  <button class="chip" data-cat="gerin">🩸 Gerinnung periop.</button>
+</div>
+
+<div class="sop-list" id="sop-list">
+<!-- 01 DKA -->
+<div class="scard" data-cat="akut">
+  <div class="scard-head" onclick="toggle(this)">
+    <span class="scard-num">01</span>
+    <div class="scard-icon" style="background:#fdf2f2">🔥</div>
+    <div class="scard-info">
+      <div class="scard-title">Diabetische Ketoazidose (DKA)</div>
+      <div class="scard-badges"><span class="badge red">Notfall</span><span class="badge gray">pH &lt;7,3 · β-HB &gt;3 · BZ &gt;200</span><span class="badge gray">Typ-1 · ggf. SGLT2i</span></div>
+    </div>
+    <svg class="scard-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+  </div>
+  <div class="scard-inner">
+    <div class="sop-section">
+      <div class="sop-section-title">Pathophysiologie</div>
+      <div class="ind-row" style="border-left:3px solid var(--navy)">
+        <div class="ind-txt">Absoluter/relativer <strong>Insulinmangel</strong> → unkontrollierte Lipolyse → hepatische <strong>Ketogenese</strong> (β-Hydroxybutyrat, Acetoacetat, Aceton) → metabolische Azidose mit erhöhter Anionenlücke. Parallel: Hyperglykämie → osmotische Diurese → <strong>Dehydratation + K⁺/Na⁺/Phosphat-Verluste</strong>. Trigger: Infektion (50%), Typ-1-Erstmanifestation, Non-Compliance, SGLT2i (→ euDKA, BZ normal!).</div>
+      </div>
+    </div>
+    <div class="sop-section">
+      <div class="sop-section-title">Diagnosekriterien</div>
+      <table class="crit-table">
+        <tr><td>BZ</td><td class="highlight">&gt;200 mg/dl (11 mmol/l). Cave: euDKA unter SGLT2i: BZ normal!</td></tr>
+        <tr><td>pH arteriell</td><td class="highlight">&lt;7,3 (leicht) · &lt;7,2 (moderat) · &lt;7,1 (schwer)</td></tr>
+        <tr><td>Bikarbonat</td><td class="highlight">&lt;15 mmol/l (leicht) · &lt;10 (mod.) · &lt;5 (schwer)</td></tr>
+        <tr><td>β-Hydroxybutyrat</td><td class="highlight">&gt;3 mmol/l venös (oder Ketonurie 3+)</td></tr>
+        <tr><td>Anionenlücke</td><td class="val">Na⁺ − (Cl⁻ + HCO₃⁻) &gt;12 mEq/l. Bei Hypoalbuminämie korrigieren.</td></tr>
+      </table>
+    </div>
+    <div class="sop-section">
+      <div class="sop-section-title">Therapie — Die 3 Säulen</div>
+      <div class="algo-box">
+        <div class="algo-box-title">① Flüssigkeit</div>
+        <ol>
+          <li><strong>NaCl 0,9%: 1000 ml in Stunde 1</strong>. Dann 500 ml/h × 4h, dann 250–500 ml/h.</li>
+          <li>Bei Na⁺ &gt;145: auf <span class="algo-ok">NaCl 0,45%</span> wechseln. Bei BZ &lt;250 mg/dl: <span class="algo-ok">Glucose 5% parallel</span> + Insulin weiterführen!</li>
+          <li><span class="algo-note">Gesamtvolumen 24h: 4–6 L. Cave bei Herzinsuffizienz!</span></li>
+        </ol>
+      </div>
+      <div class="algo-box" style="margin-top:.5rem">
+        <div class="algo-box-title">② Insulin — Perfusor</div>
+        <ol>
+          <li><span class="algo-warn">KEIN Bolus initial! Zuerst K⁺ prüfen! Bei K⁺ &lt;3,5 → erst Kalium auffüllen, dann Insulin!</span></li>
+          <li>K⁺ &gt;3,5: <strong>Insulin-Perfusor 0,1 IE/kg/h</strong> (50 IE Normal-Ins. auf 50 ml NaCl = 1ml/h = 1 IE).</li>
+          <li>Ziel BZ-Abfall: <strong>3–5 mmol/l/h</strong> (50–90 mg/dl/h).</li>
+          <li>Perfusor NIE stoppen bis Azidose korrigiert (pH &gt;7,3, HCO₃ &gt;15, Ketonkörper negativ).</li>
+          <li>Bei BZ &lt;250 mg/dl: Rate reduzieren auf <strong>0,05 IE/kg/h</strong> + Glucose parallel.</li>
+          <li><span class="algo-ok">Übergang s.c.: erst wenn Patient isst + pH &gt;7,3. Erste s.c.-Gabe 30–60 min VOR Perfusor-Stop!</span></li>
+        </ol>
+      </div>
+      <div class="algo-box" style="margin-top:.5rem">
+        <div class="algo-box-title">③ Kalium — Kritisch!</div>
+        <ol>
+          <li>K⁺ <strong>&lt;3,5</strong>: <span class="algo-warn">Kein Insulin! 20–40 mmol KCl/h → K⁺ auf &gt;3,5 heben, dann Insulin starten.</span></li>
+          <li>K⁺ <strong>3,5–5,5</strong>: 20–30 mmol KCl/h parallel (K⁺ fällt obligat unter Insulintherapie!).</li>
+          <li>K⁺ <strong>&gt;5,5</strong>: Kein Kalium. Kontrolle alle 2h.</li>
+          <li><span class="algo-warn">Bikarbonat kontraindiziert (außer pH &lt;6,9 + hämodynamische Instabilität) → paradoxe ZNS-Azidose + Hypokaliämie-Risiko!</span></li>
+        </ol>
+      </div>
+    </div>
+    <div class="sop-section">
+      <div class="sop-section-title">Monitoring</div>
+      <table class="crit-table">
+        <tr><td>BZ</td><td class="val">Stündlich</td></tr>
+        <tr><td>K⁺ + BGA</td><td class="val">2-stündlich initial, dann 4-stündlich bei Stabilisierung</td></tr>
+        <tr><td>β-HB (Ketonkörper)</td><td class="val">Alle 2h bis &lt;0,6 mmol/l (negativ)</td></tr>
+        <tr><td>EKG-Monitor</td><td class="val">Kontinuierlich! Hypokaliämie-Zeichen: flache T-Wellen, U-Wellen</td></tr>
+      </table>
+    </div>
+  </div>
+</div>
+<!-- 02 HHS -->
+<div class="scard" data-cat="akut">
+  <div class="scard-head" onclick="toggle(this)">
+    <span class="scard-num">02</span>
+    <div class="scard-icon" style="background:#fdf8ee">⚡</div>
+    <div class="scard-info">
+      <div class="scard-title">Hyperosmolares Hyperglykämisches Syndrom (HHS)</div>
+      <div class="scard-badges"><span class="badge red">Notfall · Mortalität 10–20%</span><span class="badge gray">BZ &gt;600 · Osmol &gt;320 · Kein Keton</span><span class="badge gray">Typ-2 · ältere Patienten</span></div>
+    </div>
+    <svg class="scard-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+  </div>
+  <div class="scard-inner">
+    <div class="sop-section">
+      <div class="sop-section-title">Pathophysiologie &amp; Unterschied zur DKA</div>
+      <div class="ind-row" style="border-left:3px solid var(--navy)">
+        <div class="ind-txt">Relativer Insulinmangel (Typ-2, Restsekretion reicht zur Ketogenese-Hemmung) → extreme Hyperglykämie → osmotische Diurese → <strong>massiver Flüssigkeitsverlust 10–20 L!</strong> → Hyperosmolalität → ZNS-Dysfunktion. <strong>Keine/minimale Ketose</strong> = entscheidender Unterschied. Trigger: ältere Pat. mit eingeschränktem Durstgefühl, Infektion, Diuretika, Kortison.</div>
+      </div>
+    </div>
+    <div class="sop-section">
+      <div class="sop-section-title">Diagnosekriterien</div>
+      <table class="crit-table">
+        <tr><td>BZ</td><td class="highlight">&gt;600 mg/dl (33 mmol/l)</td></tr>
+        <tr><td>Effektive Osmolalität</td><td class="highlight">&gt;320 mOsm/kg [= 2×(Na⁺+K⁺) + BZ/18]</td></tr>
+        <tr><td>pH</td><td class="val">&gt;7,3 (keine Azidose — Mischbild DKA+HHS möglich!)</td></tr>
+        <tr><td>Ketonkörper</td><td class="val">Negativ oder Spuren</td></tr>
+        <tr><td>Neurologie</td><td class="val">Stupor → Koma. Krampfanfälle. Fokal-neurol. Ausfälle möglich.</td></tr>
+      </table>
+    </div>
+    <div class="sop-section">
+      <div class="sop-section-title">Therapiealgorithmus</div>
+      <div class="algo-box">
+        <div class="algo-box-title">① Flüssigkeit — LANGSAM! Vorsichtige Rehydratation!</div>
+        <ol>
+          <li>Stunde 1: <strong>NaCl 0,9% 1000 ml</strong> (Kreislaufstabilisierung).</li>
+          <li>Dann: <strong>NaCl 0,45%</strong> (Pat. hyperosmolar!) 300–500 ml/h.</li>
+          <li><span class="algo-warn">Osmolalität max. 3–4 mOsm/kg/h senken! Zu rasch → Hirnödem, zentrale pontine Myelinolyse!</span></li>
+          <li>Gesamtvolumen 24–48h: <strong>10–15 L</strong>. Intensivstation!</li>
+        </ol>
+      </div>
+      <div class="algo-box" style="margin-top:.5rem">
+        <div class="algo-box-title">② Insulin — Zurückhaltender als DKA!</div>
+        <ol>
+          <li><span class="algo-step">Insulin erst nach ausreichender Volumengabe</span> (Schock-Risiko durch Osmolalitäts-Abfall).</li>
+          <li>Start: <strong>0,05 IE/kg/h</strong> (Hälfte DKA-Dosis!). BZ-Abfall Ziel: 3–4 mmol/l/h.</li>
+          <li><span class="algo-warn">Hohes TVT/PE-Risiko! → NMH-Prophylaxe obligat!</span></li>
+        </ol>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 03 Laktatazidose + euDKA -->
+<div class="scard" data-cat="akut">
+  <div class="scard-head" onclick="toggle(this)">
+    <span class="scard-num">03</span>
+    <div class="scard-icon" style="background:#f5f3ff">⚗️</div>
+    <div class="scard-info">
+      <div class="scard-title">Laktatazidose &amp; Euglykämische DKA (euDKA)</div>
+      <div class="scard-badges"><span class="badge red">Notfall</span><span class="badge gray">Metformin · Nierenversagen · Kontrastmittel</span><span class="badge purple">SGLT2i · euDKA · BZ normal!</span></div>
+    </div>
+    <svg class="scard-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+  </div>
+  <div class="scard-inner">
+    <div class="sop-section">
+      <div class="sop-section-title">Laktatazidose — Metformin-induziert</div>
+      <div class="ind-row" style="border-left:3px solid var(--purple)">
+        <div class="ind-txt">Metformin hemmt mitochondrialen Komplex I → <strong>anaerobe Glykolyse ↑ → Laktat-Akkumulation</strong>. Bei normaler Nierenfunktion extrem selten. Risiko: <strong>Akutes Nierenversagen → Metformin-Akkumulation</strong>. Trigger: KM-Nephropathie, Sepsis, Dekompensation HI, große OP, Kontrastmittel.</div>
+      </div>
+      <table class="crit-table" style="margin-top:.6rem">
+        <tr><td>Definition</td><td class="highlight">Laktat &gt;5 mmol/l + pH &lt;7,35</td></tr>
+        <tr><td>Klinik</td><td class="val">Übelkeit, Erbrechen, Bauchschmerzen, Kussmaul-Atmung, Bewusstseinsänderung. BZ oft NORMAL!</td></tr>
+        <tr><td>Therapie</td><td class="val"><strong>1. Metformin sofort stoppen.</strong> 2. NaCl 0,9% Volumen. 3. Bikarbonat bei pH &lt;7,1. 4. <strong>Hämodialyse</strong> bei schwerem Verlauf (Metformin dialysierbar!).</td></tr>
+      </table>
+      <div class="tip-box warn">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
+        <span><strong>Metformin-Pausierregeln:</strong> eGFR &lt;30 → KI (stopp!). eGFR 30–45 → Dosisreduktion, kein jodhaltiges KM. eGFR 45–60 + KM → 48h vorher pausieren, 48h nachher + Re-Krea. NYHA III/IV → stopp!</span>
+      </div>
+    </div>
+    <div class="sop-section">
+      <div class="sop-section-title">Euglykämische Ketoazidose (euDKA) — SGLT2i-Falle!</div>
+      <div class="ind-row" style="border-left:3px solid var(--red);background:#fdf2f2">
+        <div class="ind-txt"><strong>Gefürchtet: BZ NUR 100–250 mg/dl — klassische DKA-Diagnose wird NICHT erfüllt! Diagnose wird verzögert!</strong> Mechanism: SGLT2i → Glucosurie ↑ → Insulin ↓ → Glukagon ↑ → Ketogenese ↑. Trotzdem: pH &lt;7,3 + Ketonkörper positiv = euDKA!</div>
+      </div>
+      <table class="crit-table" style="margin-top:.6rem">
+        <tr><td>BZ euDKA</td><td class="highlight">Oft NUR 100–250 mg/dl!</td></tr>
+        <tr><td>Trigger</td><td class="val">Fasten, KH-arme Diät, perioperative Nüchternheit, Infektion, Alkohol, reduzierte Insulindosis</td></tr>
+        <tr><td>pH + Ketonkörper</td><td class="highlight">pH &lt;7,3 + β-HB &gt;3 mmol/l</td></tr>
+      </table>
+      <div class="algo-box" style="margin-top:.6rem">
+        <div class="algo-box-title">Therapie euDKA</div>
+        <ol>
+          <li><strong>SGLT2i sofort stoppen</strong> (min. 3 Monate pausieren).</li>
+          <li>Gleicher Algorithmus wie DKA: Flüssigkeit + Insulin-Perfusor + Kalium.</li>
+          <li><span class="algo-warn">Höhere Glucose-Infusionsrate nötig! Start mit Glucose 10% parallel zum Insulin (BZ bereits niedrig!).</span></li>
+          <li><span class="algo-ok">Prävention: SGLT2i 3 Tage vor elektiver OP pausieren! (ESC HF 2023-Update)</span></li>
+        </ol>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- 04 DIABETISCHER FUSS -->
+<div class="scard" data-cat="fuss">
+  <div class="scard-head" onclick="toggle(this)">
+    <span class="scard-num">04</span>
+    <div class="scard-icon" style="background:#fff7ed">🦶</div>
+    <div class="scard-info">
+      <div class="scard-title">Diabetisches Fußsyndrom — Ischämisch vs. Neuropathisch</div>
+      <div class="scard-badges"><span class="badge orange">Diabetischer Fuß</span><span class="badge gray">Wagner 0–5</span><span class="badge gray">Neuropathisch · Angiopathisch · Gemischt</span></div>
+    </div>
+    <svg class="scard-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+  </div>
+  <div class="scard-inner">
+    <div class="sop-section">
+      <div class="sop-section-title">Klinische Differenzierung</div>
+      <table class="crit-table">
+        <tr>
+          <th style="width:28%">Parameter</th>
+          <th style="width:36%">Neuropathisches Ulkus</th>
+          <th style="width:36%">Ischämisches Ulkus (pAVK)</th>
+        </tr>
+        <tr>
+          <td>Lokalisation</td>
+          <td class="val">Druckpunkte plantar: Metatarsalköpfchen, Ferse, Interdigitalräume</td>
+          <td class="val">Akren: Zehenspitzen, Zehennägel, Fersenkante</td>
+        </tr>
+        <tr>
+          <td>Wundcharakter</td>
+          <td class="val">Hornhautwall (Kallus), warm, granulierend, gerötete Umgebung</td>
+          <td class="val">Atrophisch, blass/zyanotisch, kalt, pergamentartige Haut</td>
+        </tr>
+        <tr>
+          <td>Schmerz</td>
+          <td class="val"><strong>Oft schmerzlos!</strong> (sensorischer Ausfall) — gefährlich!</td>
+          <td class="val"><strong>Sehr schmerzhaft</strong>, nachts im Liegen, Hochlagerung verschlechtert!</td>
+        </tr>
+        <tr>
+          <td>ABI / Pulse</td>
+          <td class="val">Normal (ABI 0,9–1,3). Pulse tastbar.</td>
+          <td class="val"><strong>ABI &lt;0,9</strong>. Cave: Mediasklerose (DM) → TBI nötig! Pulse fehlend.</td>
+        </tr>
+        <tr>
+          <td>Neurologie</td>
+          <td class="val"><strong>Sensibilität ↓↓</strong> (Stimmgabeltest, 10g-Monofilament), Vibration ↓</td>
+          <td class="val">Primär keine Neuropathie (außer Mischbild)</td>
+        </tr>
+        <tr>
+          <td>Therapieprinzip</td>
+          <td class="val">Druckentlastung (TCC = Total Contact Cast!), Débridement, BZ-Optimierung</td>
+          <td class="val"><strong>Revaskularisation zuerst!</strong> PTA/Bypass — ohne Durchblutung keine Heilung.</td>
+        </tr>
+      </table>
+    </div>
+    <div class="sop-section">
+      <div class="sop-section-title">Wagner-Klassifikation</div>
+      <table class="crit-table">
+        <tr><td>Wagner 0</td><td class="val">Intakte Haut, Risikofuß (Neuropathie, Deformitäten) → Prävention + Schulung</td></tr>
+        <tr><td>Wagner 1</td><td class="val">Oberflächliches Ulkus (Epidermis/Dermis) → ambulant, Druckentlastung</td></tr>
+        <tr><td>Wagner 2</td><td class="val">Ulkus bis Sehne/Kapsel/Knochen → stationär, MRT Fuß, Gefäßstatus</td></tr>
+        <tr><td>Wagner 3</td><td class="val">Tiefes Ulkus + Osteomyelitis/Abszess → <strong>stationär, i.v. Antibiotika, Orthopädie, chir. Konsil</strong></td></tr>
+        <tr><td>Wagner 4</td><td class="val">Nekrose/Gangrän eines Fußteils → Revaskularisation + chir. Sanierung</td></tr>
+        <tr><td>Wagner 5</td><td class="val">Gangrän des Gesamtfußes → <strong>Majoramputation</strong></td></tr>
+      </table>
+      <div class="tip-box">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
+        <span><strong>Osteomyelitis:</strong> "Probe-to-Bone"-Test (Metallsonde erreicht Knochen = hochwahrscheinlich Osteomyelitis). MRT = Goldstandard. Knochen-Biopsie vor Antibiotikatherapie für Erregernachweis (Chirurgie!).</span>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- 05 INSULIN-MEISTERSCHAFT -->
+<div class="scard" data-cat="insulin">
+  <div class="scard-head" onclick="toggle(this)">
+    <span class="scard-num">05</span>
+    <div class="scard-icon" style="background:#f0fdfa">💉</div>
+    <div class="scard-info">
+      <div class="scard-title">Insulin-Meisterschaft — Profile · ICT · Perfusor · Periop.</div>
+      <div class="scard-badges"><span class="badge teal">Insulin-SOP</span><span class="badge gray">ICT · Korrekturschema · Perfusor</span><span class="badge gray">Perioperativ · Nüchtern-Patient</span></div>
+    </div>
+    <svg class="scard-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+  </div>
+  <div class="scard-inner">
+    <div class="sop-section">
+      <div class="sop-section-title">Insulinarten — Pharmakologische Profile</div>
+      <table class="ins-table">
+        <tr><th>Insulin</th><th>Handelsnamen (DE)</th><th>Wirkeintritt</th><th>Peak</th><th>Wirkdauer</th><th>Einsatz</th></tr>
+        <tr><td>Normalinsulin</td><td>Actrapid®, Humulin R®</td><td class="onset">30–60 min</td><td class="peak">2–4 h</td><td class="dur">6–8 h</td><td>Perfusor ICU, perioperativ. Einziges Insulin i.v.-tauglich!</td></tr>
+        <tr><td>Insulin Lispro (RAA)</td><td>Humalog®</td><td class="onset">10–15 min</td><td class="peak">1–2 h</td><td class="dur">3–5 h</td><td>Mahlzeiten-Bolus ICT. Direkt zu/nach Mahlzeit.</td></tr>
+        <tr><td>Insulin Aspart (RAA)</td><td>NovoRapid®</td><td class="onset">10–15 min</td><td class="peak">1–2 h</td><td class="dur">3–5 h</td><td>Bolus ICT. Auch i.v. (Äquivalenz zu Normal-Ins. belegt).</td></tr>
+        <tr><td>Insulin Glulisin (RAA)</td><td>Apidra®</td><td class="onset">10–15 min</td><td class="peak">1–1,5 h</td><td class="dur">3–4 h</td><td>Bolus ICT. Kürzeste Wirkdauer der RAAs.</td></tr>
+        <tr><td>NPH-Insulin (Intermediär)</td><td>Protaphane®, Insulatard®</td><td class="onset">1–2 h</td><td class="peak">4–8 h</td><td class="dur">12–16 h</td><td>Basal 2×/d oder nachts. Ausgeprägter Peak → Nacht-Hypoglykämie-Risiko!</td></tr>
+        <tr><td>Glargin 100 (LA)</td><td>Lantus®, Abasaglar®</td><td class="onset">2–4 h</td><td class="peak">kein Peak</td><td class="dur">20–24 h</td><td>Basal 1×/d, abends. Gold-Standard. Nur s.c.!</td></tr>
+        <tr><td>Glargin 300 (LA)</td><td>Toujeo®</td><td class="onset">4–6 h</td><td class="peak">kein Peak</td><td class="dur">30–36 h</td><td>Basal 1×/d. Flacheres Profil. Weniger Hypoglykämien vs. Glargin 100.</td></tr>
+        <tr><td>Detemir (LA)</td><td>Levemir®</td><td class="onset">1–2 h</td><td class="peak">minimal</td><td class="dur">16–22 h</td><td>Basal 1–2×/d. Weniger Gewichtszunahme vs. NPH.</td></tr>
+        <tr><td>Degludec (Ultra-LA)</td><td>Tresiba®</td><td class="onset">1–2 h</td><td class="peak">kein Peak</td><td class="dur">&gt;42 h</td><td>1×/d (flexibel ±8h!). Stabil nach 3 Tagen. Wenigste Hypoglykämien.</td></tr>
+      </table>
+    </div>
+    <div class="sop-section">
+      <div class="sop-section-title">Basis-Bolus-Therapie (ICT) — Stationseinstellung</div>
+      <div class="algo-box">
+        <div class="algo-box-title">ICT-Einstellungsschema Neueinstellung auf Station</div>
+        <ol>
+          <li><strong>Tagesgesamtdosis (TGD):</strong> 0,3–0,5 IE/kg KG/d (konservativ starten). Beispiel 80 kg: TGD 24–40 IE.</li>
+          <li><strong>50% als Basal</strong> (Glargin 1× abends) + <strong>50% als Bolus</strong> (3 Mahlzeiten: 40%/30%/30%).</li>
+          <li>BZ-Kontrolle 4×/d: nüchtern + 2h nach Frühstück + vor Mittag + vor Abendessen.</li>
+          <li>Ziel nüchtern: <strong>80–130 mg/dl</strong>. Postprandial: &lt;180 mg/dl.</li>
+          <li><span class="algo-ok">Basalinsulin-Titration: Nüchtern BZ &gt;130 → Basal um 2 IE erhöhen (alle 3 Tage). Nüchtern BZ &lt;80 → Basal um 2 IE reduzieren.</span></li>
+        </ol>
+      </div>
+    </div>
+    <div class="sop-section">
+      <div class="sop-section-title">Standardisiertes Korrekturschema (Richtwerte Typ-2)</div>
+      <table class="perf-table">
+        <tr><th>BZ (mg/dl)</th><th>Korrektur</th><th>Aktion</th></tr>
+        <tr><td>&lt;70</td><td>KEIN Insulin!</td><td>20g KH oral oder Glucose 40% 50 ml i.v. → Arzt!</td></tr>
+        <tr><td>70–150</td><td>0 IE</td><td>Zielbereich</td></tr>
+        <tr><td>151–200</td><td>+1–2 IE</td><td>Zum Bolus addieren</td></tr>
+        <tr><td>201–250</td><td>+2–4 IE</td><td>Ursache suchen (Infektion?)</td></tr>
+        <tr><td>251–300</td><td>+4–6 IE</td><td>Ketonkörper prüfen!</td></tr>
+        <tr><td>&gt;300</td><td>+6–8 IE</td><td>Arzt informieren, DKA ausschließen</td></tr>
+      </table>
+    </div>
+    <div class="sop-section">
+      <div class="sop-section-title">Insulin-Perfusor — ICU / ZNA</div>
+      <div class="algo-box">
+        <div class="algo-box-title">Standard: 50 IE Normal-Insulin auf 50 ml NaCl → 1 ml/h = 1 IE/h</div>
+        <ol>
+          <li>Start bei BZ &gt;180: <strong>1–2 IE/h</strong>. Bei BZ &gt;300: 3–4 IE/h.</li>
+          <li>BZ-Ziel ICU: <span class="algo-ok">140–180 mg/dl</span> (NICE-SUGAR: Intensiv-Kontrolle 80–110 → Mortalität ↑!).</li>
+          <li>BZ stündlich. Abfall &gt;100 mg/dl/h → Rate halbieren.</li>
+          <li>BZ &lt;100 → Perfusor stoppen + Glucose 40% 20 ml i.v. → Restart nach 30 min.</li>
+        </ol>
+      </div>
+      <table class="perf-table" style="margin-top:.5rem">
+        <tr><th>BZ (mg/dl)</th><th>Perfusor-Rate (IE/h)</th><th>Maßnahme</th></tr>
+        <tr><td>&lt;100</td><td>Stop</td><td>Glucose 40% 20 ml i.v. → Restart nach 30 min</td></tr>
+        <tr><td>100–140</td><td>0,5</td><td>Kontrolle alle 30 min</td></tr>
+        <tr><td>141–180</td><td>1–2</td><td>Zielbereich — stündlich</td></tr>
+        <tr><td>181–240</td><td>2–3</td><td>Anpassen nach Verlauf</td></tr>
+        <tr><td>241–300</td><td>3–4</td><td>Ursache suchen</td></tr>
+        <tr><td>&gt;300</td><td>4–6</td><td>Arzt informieren, DKA/HHS ausschließen</td></tr>
+      </table>
+    </div>
+    <div class="sop-section">
+      <div class="sop-section-title">Perioperatives Management — Nüchtern-Patient vor HKU / Schrittmacher-OP</div>
+      <div class="algo-box">
+        <div class="algo-box-title">SOP Tag der Operation</div>
+        <ol>
+          <li><span class="algo-step">Basalinsulin (Glargin/Detemir):</span> Vorabend: volle Dosis. OP-Morgen: <strong>80% der üblichen Dosis</strong> s.c. Degludec: volle Dosis (kein Peak-Risiko).</li>
+          <li><span class="algo-step">Bolusinsulin:</span> Am OP-Morgen <strong>KEIN Bolus</strong> (nüchtern!). Erst nach erstem Essen postoperativ.</li>
+          <li><span class="algo-step">Metformin:</span> OP-Morgen pausieren. Re-Start: stabile Nierenfunktion + orale Ernährung.</li>
+          <li><span class="algo-step">SGLT2i:</span> <span class="algo-warn">3 Tage VOR OP stoppen! (euDKA-Risiko unter Nüchternheit!)</span></li>
+          <li><span class="algo-step">Sulfonylharnstoffe:</span> OP-Tag pausieren (Hypoglykämie-Gefahr unter Nüchternheit!).</li>
+          <li><span class="algo-step">GLP-1-RA:</span> Wöchentlich (Semaglutid): 1 Woche vor OP stoppen (Magenentleerung ↓ → Aspirationsrisiko!).</li>
+          <li>BZ-Ziel perioperativ: <strong>140–180 mg/dl</strong>. Stündliche Kontrollen intraoperativ. BZ &lt;100 → Glucose i.v.</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- 06 DIAGNOSE & ZIELWERTE -->
+<div class="scard" data-cat="diagnose">
+  <div class="scard-head" onclick="toggle(this)">
+    <span class="scard-num">06</span>
+    <div class="scard-icon" style="background:#eff6ff">📊</div>
+    <div class="scard-info">
+      <div class="scard-title">Diagnosekriterien &amp; Therapieziele Diabetes</div>
+      <div class="scard-badges"><span class="badge blue">DDG 2023</span><span class="badge gray">HbA1c · Nüchtern-BZ · oGTT</span><span class="badge gray">Ziel-HbA1c nach Patientenprofil</span></div>
+    </div>
+    <svg class="scard-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+  </div>
+  <div class="scard-inner">
+    <div class="sop-section">
+      <div class="sop-section-title">Diagnosekriterien Diabetes mellitus</div>
+      <table class="crit-table">
+        <tr><th>Parameter</th><th>Diabetes</th><th>Prä-Diabetes</th><th>Normal</th></tr>
+        <tr><td>HbA1c</td><td class="highlight">≥ 6,5% (48 mmol/mol)</td><td class="val">5,7–6,4% (39–47)</td><td class="val">&lt;5,7%</td></tr>
+        <tr><td>Nüchtern-BZ (≥8h)</td><td class="highlight">≥ 126 mg/dl (7,0 mmol/l)</td><td class="val">100–125 mg/dl (IFG)</td><td class="val">&lt;100 mg/dl</td></tr>
+        <tr><td>2h-oGTT (75g)</td><td class="highlight">≥ 200 mg/dl (11,1 mmol/l)</td><td class="val">140–199 mg/dl (IGT)</td><td class="val">&lt;140 mg/dl</td></tr>
+        <tr><td>Gelegenheits-BZ</td><td class="highlight">≥ 200 mg/dl + Symptome</td><td class="val">—</td><td class="val">—</td></tr>
+      </table>
+      <div class="tip-box">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
+        <span><strong>Diagnoseregeln:</strong> Mit Symptomen: 1× pathologisch = Diagnose. Ohne Symptome: 2× an unterschiedlichen Tagen. HbA1c falsch-niedrig: Hämolyse, Blutungsanämie, Hämoglobinopathie, Dialyse → Fruktosamin verwenden!</span>
+      </div>
+    </div>
+    <div class="sop-section">
+      <div class="sop-section-title">Ziel-HbA1c nach Patientenprofil (DDG 2023)</div>
+      <table class="crit-table">
+        <tr><td>Junger/fitter Patient, kurze DM-Dauer, kein KV-Risiko</td><td class="highlight">HbA1c &lt; 6,5–7,0% (≤53 mmol/mol)</td></tr>
+        <tr><td>Patient mit KHK / Sekundärprävention (Z.n. MI, Stent)</td><td class="highlight">HbA1c &lt; 7,0% (53 mmol/mol). Kein Hypo-Risiko!</td></tr>
+        <tr><td>Älterer Patient (&gt;70 J.), selbstständig, wenig KoMo</td><td class="val"><strong>HbA1c &lt; 7,5%</strong> (58 mmol/mol)</td></tr>
+        <tr><td>Multimorbid/gebrechlich, Pflegeheim, Demenz, Sturzrisiko</td><td class="val"><strong>HbA1c &lt; 8,0–8,5%</strong> (64–69 mmol/mol). <span class="pill pill-red">Hypoglykämien unbedingt vermeiden!</span></td></tr>
+        <tr><td>Dialyse-Patient</td><td class="val">HbA1c wenig verlässlich → <strong>Fruktosamin oder Glykiertes Albumin</strong>. Ziel individuell.</td></tr>
+      </table>
+      <div class="tip-box danger">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+        <span><strong>ACCORD-Trial-Warnung:</strong> Intensivierte BZ-Senkung (HbA1c-Ziel &lt;6,0%) bei Hochrisiko-Typ-2-DM → erhöhte Gesamtmortalität! Hypoglykämien durch SH/Insulin → kardiale Ereignisse ↑. <strong>Alte, multimorbide Patienten: lieber HbA1c etwas zu hoch als Hypoglykämien riskieren!</strong></span>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- 07 OAD RED FLAGS -->
+<div class="scard" data-cat="oads">
+  <div class="scard-head" onclick="toggle(this)">
+    <span class="scard-num">07</span>
+    <div class="scard-icon" style="background:#f5f3ff">⚠️</div>
+    <div class="scard-info">
+      <div class="scard-title">OAD Red Flags — Kardiologe &amp; ZNA</div>
+      <div class="scard-badges"><span class="badge purple">Antidiabetika NW &amp; KI</span><span class="badge red">ZNA-kritisch</span><span class="badge gray">Metformin · SH · SGLT2i · GLP-1 · DPP-4</span></div>
+    </div>
+    <svg class="scard-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+  </div>
+  <div class="scard-inner">
+    <div class="sop-section">
+      <div class="sop-section-title">Red-Flag-Karten</div>
+
+      <div class="rf-card rf-warn">
+        <div class="rf-head">💊 Metformin — Laktatazidose-Risiko</div>
+        <div class="rf-body"><ul>
+          <li><strong>KI absolut:</strong> eGFR &lt;30, akutes Nierenversagen, kardiale/hepatische Dekompensation, Sepsis, respiratorische Insuffizienz</li>
+          <li><strong>Jodhaltiges Kontrastmittel:</strong> eGFR 30–60 → 48h vorher pausieren + Re-Krea 48h nachher. eGFR &gt;60 → OP-Tag pausieren + 48h danach</li>
+          <li><strong>NYHA III/IV:</strong> Stopp! (verminderte Organperfusion → Laktat↑)</li>
+          <li><strong>Große OP:</strong> Vorabend oder OP-Morgen stoppen. Erst bei stabiler Niere + oraler Ernährung re-starten</li>
+          <li><strong>Vorteile:</strong> Gewichtsneutral, kein Hypoglykämie-Risiko, günstiger kardiovaskulärer Schutz (UKPDS), kostengünstig</li>
+        </ul></div>
+      </div>
+
+      <div class="rf-card rf-danger">
+        <div class="rf-head">🚨 Sulfonylharnstoffe (Glimepirid, Glibenclamid) — Protrahierte Hypoglykämie!</div>
+        <div class="rf-body"><ul>
+          <li><strong>Hauptrisiko: schwere, protrahierte Hypoglykämie!</strong> Glibenclamid HWZ 10–24h (aktive Metaboliten bis zu 36h!) → stationäre Aufnahme obligat!</li>
+          <li><strong>KI: eGFR &lt;30</strong> (Glimepirid, Glibenclamid kumulieren)</li>
+          <li>Hochrisikogruppen: Ältere, unregelmäßige Mahlzeiten, Niereninsuffizienz, Alkohol, Wechselwirkungen (Fluconazol, Ciprofloxacin → Wirkungsverstärkung!)</li>
+          <li><strong>ZNA-SOP:</strong> Glucose 40% 50 ml i.v. → stationäre Aufnahme → Überwachung ≥24–48h. <span style="color:var(--red);font-weight:700">NIEMALS nach einmaliger Korrektur entlassen!</span></li>
+          <li>Von DDG als nachrangige Substanzklasse eingestuft (Hypo-Risiko + Gewichtszunahme)</li>
+        </ul></div>
+      </div>
+
+      <div class="rf-card rf-danger">
+        <div class="rf-head">⚡ SGLT2i (Dapagliflozin, Empagliflozin, Canagliflozin) — euDKA + weitere Risiken</div>
+        <div class="rf-body"><ul>
+          <li><strong>Euglykämische DKA (euDKA):</strong> BZ normal/leicht erhöht, trotzdem pH &lt;7,3 + Ketone! Diagnose wird verschleppt — klassische ZNA-Falle!</li>
+          <li><strong>Perioperativ:</strong> <span style="color:var(--red);font-weight:700">3 Tage vor OP stoppen!</span></li>
+          <li><strong>Genitale Mykosen (Candida):</strong> häufig (Glucosurie). Harnwegsinfekte leicht erhöht</li>
+          <li><strong>Volumenmangel/Hypotonie:</strong> osmotische Diurese → AKI, RR-Abfall (besonders bei Senioren + Diuretika)</li>
+          <li><strong>Fournier-Gangrän:</strong> selten, aber schwer. Genitalschmerzen/Schwellung → sofortige Aufnahme!</li>
+          <li><strong>Vorteile (Kardiologe):</strong> HI-Hospitalisierung ↓ (DAPA-HF, EMPEROR), Nierenschutz (CREDENCE, DAPA-CKD), Gewicht ↓</li>
+        </ul></div>
+      </div>
+
+      <div class="rf-card rf-warn">
+        <div class="rf-head">💉 GLP-1-Rezeptor-Agonisten (Semaglutid, Liraglutid, Dulaglutid, Exenatid)</div>
+        <div class="rf-body"><ul>
+          <li><strong>GI-Nebenwirkungen dominant:</strong> Übelkeit, Erbrechen, Diarrhö (v.a. Therapiebeginn/Titration) → wöchentliches Aufdosieren!</li>
+          <li><strong>Aspirationsrisiko perioperativ:</strong> Magenentleerung ↓. Semaglutid wöchentlich: <span style="color:var(--red);font-weight:700">1 Woche vor OP stoppen!</span> Tägliche GLP-1-RA: OP-Tag pausieren.</li>
+          <li><strong>Pankreatitis:</strong> KI bei Pankreatitis-Anamnese. Absolute KI: familiäres medulläres Schilddrüsen-Ca (MEN 2).</li>
+          <li><strong>Vorteile:</strong> MACE-Reduktion (LEADER, SUSTAIN-6, REWIND), Gewichtsreduktion ↓↓ (Wegovy/Ozempic für Adipositas), kein Hypo-Risiko als Monotherapie</li>
+        </ul></div>
+      </div>
+
+      <div class="rf-card rf-warn">
+        <div class="rf-head">🔬 DPP-4-Inhibitoren (Sitagliptin, Saxagliptin, Alogliptin, Linagliptin)</div>
+        <div class="rf-body"><ul>
+          <li><strong>Saxagliptin (Onglyza®):</strong> SAVOR-TIMI-53 → <span style="color:var(--red);font-weight:700">Herzinsuffizienz-Hospitalisierung ↑27%!</span> Bei HFrEF kontraindiziert!</li>
+          <li><strong>Alogliptin:</strong> Ähnliches Signal (EXAMINE-Trial, nicht signifikant). Vorsicht bei HI.</li>
+          <li><strong>Sitagliptin, Linagliptin:</strong> HI-sicher (TECOS, CARMELINA). Bevorzuge diese wenn DPP-4i nötig.</li>
+          <li><strong>Linagliptin-Vorteil:</strong> Renal kaum eliminiert → keine Dosisanpassung bei Niereninsuffizienz! Einziger DPP-4i ohne Dosisanpassung.</li>
+          <li>Kein Hypo-Risiko als Monotherapie. Gewichtsneutral. Gut verträglich.</li>
+        </ul></div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- 08 LIPIDE & HYPERTONIE -->
+<div class="scard" data-cat="praev">
+  <div class="scard-head" onclick="toggle(this)">
+    <span class="scard-num">08</span>
+    <div class="scard-icon" style="background:#f0fdf8">❤️</div>
+    <div class="scard-info">
+      <div class="scard-title">Lipidmanagement &amp; Hypertonie bei Diabetes</div>
+      <div class="scard-badges"><span class="badge green">Präventive Kardiometabolik · ESC 2019/2021</span><span class="badge gray">LDL &lt;55 · PCSK9i · Statin</span><span class="badge gray">ACE-I · RR &lt;130/80</span></div>
+    </div>
+    <svg class="scard-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+  </div>
+  <div class="scard-inner">
+    <div class="sop-section">
+      <div class="sop-section-title">LDL-Zielwerte nach kardiovaskulärem Risiko (ESC 2019)</div>
+      <table class="crit-table">
+        <tr>
+          <td>Sehr hohes KV-Risiko<br><span style="font-size:.74rem;color:var(--text3)">KHK, Z.n. MI, Schlaganfall, pAVK, DM + Endorganschaden, eGFR &lt;30</span></td>
+          <td><span class="badge esc-i">Klasse I</span> <strong style="color:var(--red)">LDL &lt; 55 mg/dl (1,4 mmol/l)</strong> UND &gt;50% Ausgangsreduktion</td>
+        </tr>
+        <tr>
+          <td>Hohes KV-Risiko<br><span style="font-size:.74rem;color:var(--text3)">DM ohne Endorganschaden &gt;10 J., eGFR 30–59, SCORE ≥5%</span></td>
+          <td><span class="badge esc-iia">Klasse IIa</span> <strong>LDL &lt; 70 mg/dl (1,8 mmol/l)</strong> UND &gt;50% Reduktion</td>
+        </tr>
+        <tr>
+          <td>Moderates Risiko<br><span style="font-size:.74rem;color:var(--text3)">DM &lt;10 J., jung, keine anderen RF</span></td>
+          <td>LDL &lt; 100 mg/dl (2,6 mmol/l)</td>
+        </tr>
+        <tr>
+          <td>2. KV-Ereignis trotz max. Statin-Therapie (innerhalb 2 J.)</td>
+          <td><span class="badge esc-iia">Klasse IIa</span> LDL-Ziel <strong>&lt; 40 mg/dl (1,0 mmol/l)</strong> erwägen</td>
+        </tr>
+      </table>
+    </div>
+    <div class="sop-section">
+      <div class="sop-section-title">Stufenschema Lipidtherapie</div>
+      <div class="algo-box">
+        <div class="algo-box-title">Eskalationsleiter LDL-Senkung</div>
+        <ol>
+          <li><strong>Stufe 1 — Hochpotentes Statin maximal:</strong> <span class="algo-ok">Rosuvastatin 20–40 mg/d (~55% LDL-Senkung) oder Atorvastatin 40–80 mg/d (~50%). Max. tolerierte Dosis!</span></li>
+          <li><strong>Stufe 2 — Ezetimib addieren:</strong> 10 mg/d. Additive LDL-Senkung ca. 20%. Immer in Kombination mit Statin (keine Outcomedaten als Monotherapie).</li>
+          <li><strong>Stufe 3 — PCSK9-Inhibitor:</strong> Evolocumab (Repatha® 140 mg s.c. alle 2W) oder Alirocumab (Praluent® 75–150 mg s.c. alle 2W). LDL ↓ 50–65% additiv! <span class="algo-warn">Cave: Restriktive GKV-Erstattung (§35a/GBA)!</span></li>
+          <li><strong>Alternative Stufe 3 — Bempedoinsäure:</strong> 180 mg/d p.o. Bei Statin-Unverträglichkeit (Myopathie). LDL ↓18–25%. CLEAR-Outcomes: kardiovaskulärer Benefit nachgewiesen.</li>
+          <li><strong>Inclisiran (siRNA):</strong> 300 mg s.c. alle 6 Monate. Maximale Compliance (nur 2×/Jahr).</li>
+        </ol>
+      </div>
+    </div>
+    <div class="sop-section">
+      <div class="sop-section-title">Arterielle Hypertonie bei Diabetes — Ziele &amp; First-Line</div>
+      <table class="crit-table">
+        <tr><td>Ziel-RR</td><td class="highlight">&lt;130/80 mmHg (sofern verträglich). Untere Grenze: systolisch &gt;120, diastolisch &gt;70 (J-Kurve!).</td></tr>
+        <tr>
+          <td>First-Line absolut</td>
+          <td class="val"><span class="pill pill-green">ACE-Hemmer ODER Sartan (ARB)</span> — nephroprotektiv! Mikroalbuminurie-Reduktion (RENAAL, IDNT). <span class="pill pill-red">ACE-I + Sartan kombinieren VERBOTEN!</span> (ONTARGET: AKI + Hyperkaliämie ↑↑)</td>
+        </tr>
+        <tr>
+          <td>Beste Kombination (2-fach)</td>
+          <td class="val"><strong>ACE-I/ARB + Calciumantagonist (Amlodipin)</strong> (ACCOMPLISH: überlegen vs. ACE-I + HCT). Oder: ACE-I/ARB + Thiazid-like (Chlortalidon, Indapamid bevorzugt).</td>
+        </tr>
+        <tr>
+          <td>Betablocker bei Diabetes</td>
+          <td class="val">Nicht First-Line. Indiziert bei: KHK, HFrEF, VHF-Frequenzkontrolle. <span class="pill pill-red">Nicht-selektive BB maskieren Hypoglykämie-Symptome!</span> → kardioselektive BB bevorzugen (Bisoprolol, Metoprolol).</td>
+        </tr>
+        <tr>
+          <td>Thiazide bei Diabetes</td>
+          <td class="val">Erhöhen BZ leicht. Als 3rd-Line vertretbar. Chlortalidon/Indapamid &gt; Hydrochlorothiazid (mildere metabolische NW).</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>
+<!-- 09 PERIOPERATIVES GERINNUNGSMANAGEMENT -->
+<div class="scard" data-cat="gerin">
+  <div class="scard-head" onclick="toggle(this)">
+    <span class="scard-num">09</span>
+    <div class="scard-icon" style="background:#fdf8ee">🩸</div>
+    <div class="scard-info">
+      <div class="scard-title">Perioperatives Gerinnungsmanagement — DOAK · VKA · HKU · SM-OP</div>
+      <div class="scard-badges"><span class="badge gold">Gerinnung periop.</span><span class="badge gray">DOAK: kein Bridging!</span><span class="badge gray">VKA: INR-Grenzen · SM-OP</span></div>
+    </div>
+    <svg class="scard-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+  </div>
+  <div class="scard-inner">
+    <div class="sop-section">
+      <div class="sop-section-title">DOAKs — Pausier-Regeln (KEIN Heparin-Bridging!)</div>
+      <div class="tip-box ok" style="margin-bottom:.8rem">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        <span><strong>Goldene Regel DOAKs: KEIN Bridging!</strong> BRIDGE-Trial: Heparin-Bridging erhöht Blutungsrisiko ohne Schutz vor Thromboembolie. Einfach pausieren + re-starten genügt!</span>
+      </div>
+      <table class="crit-table">
+        <tr><th>DOAK</th><th>HWZ</th><th>Niedriges Blutungsrisiko</th><th>Hohes Blutungsrisiko</th></tr>
+        <tr><td>Apixaban (Eliquis®)</td><td class="val">8–15 h</td><td class="val"><strong>24h vor Eingriff</strong></td><td class="val"><strong>48h vor Eingriff</strong></td></tr>
+        <tr><td>Rivaroxaban (Xarelto®)</td><td class="val">7–11 h</td><td class="val"><strong>24h vor Eingriff</strong></td><td class="val"><strong>48h vor Eingriff</strong></td></tr>
+        <tr><td>Edoxaban (Lixiana®)</td><td class="val">10–14 h</td><td class="val"><strong>24h vor Eingriff</strong></td><td class="val"><strong>48h vor Eingriff</strong></td></tr>
+        <tr>
+          <td>Dabigatran (Pradaxa®)</td>
+          <td class="val">12–17 h (renal 80%!)</td>
+          <td class="val">eGFR &gt;50: <strong>24h</strong><br>eGFR 30–50: <strong>48h</strong></td>
+          <td class="val">eGFR &gt;50: <strong>48h</strong><br>eGFR 30–50: <strong>72–96h</strong><br><span class="pill pill-red">eGFR &lt;30: KI!</span></td>
+        </tr>
+      </table>
+      <div class="tip-box">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
+        <span><strong>Re-Start nach Eingriff:</strong> Niedriges Blutungsrisiko → <strong>6–8h postop.</strong> Hohes Blutungsrisiko → <strong>48–72h postop.</strong> Bei unvollständiger Hämostase: NMH-Überbrückung bis DOAK wirksam.</span>
+      </div>
+    </div>
+    <div class="sop-section">
+      <div class="sop-section-title">DOAK-Risikoklassifikation Eingriffe</div>
+      <div class="two-col">
+        <div class="score-box">
+          <div class="score-box-title">🟢 Niedriges Blutungsrisiko — 24h Pause</div>
+          <table>
+            <tr><td>HKU transradial</td><td></td></tr>
+            <tr><td>HKU transfemoral</td><td></td></tr>
+            <tr><td>SM-/ICD-Implantation*</td><td></td></tr>
+            <tr><td>Endoskopie ohne Biopsie</td><td></td></tr>
+            <tr><td>Kleine Hauteingriffe, Zahnextraktion</td><td></td></tr>
+          </table>
+          <div style="font-size:.73rem;color:var(--text3);margin-top:.4rem">*BRUISE-CONTROL-2: Bei VHF + SM/ICD: DOAK sogar ohne Pausierung implantierbar — Pocket-Hämatom kein Unterschied!</div>
+        </div>
+        <div class="score-box">
+          <div class="score-box-title">🔴 Hohes Blutungsrisiko — 48h Pause</div>
+          <table>
+            <tr><td>CABG / Herzklappen-OP</td><td></td></tr>
+            <tr><td>Neurochirurgie (elektiv)</td><td></td></tr>
+            <tr><td>Nierenbiopsie</td><td></td></tr>
+            <tr><td>Große viszeralchirurgische OP</td><td></td></tr>
+            <tr><td>Kolonoskopie mit Polypektomie</td><td></td></tr>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div class="sop-section">
+      <div class="sop-section-title">VKA (Marcumar / Phenprocoumon) — INR-Grenzen</div>
+      <table class="crit-table">
+        <tr>
+          <td>HKU <strong>transradial</strong></td>
+          <td class="val">Durchführbar bei <strong>INR bis 3,5</strong> — direkte Kompression möglich. <span class="pill pill-green">Kein Absetzen nötig!</span></td>
+        </tr>
+        <tr>
+          <td>HKU <strong>transfemoral</strong></td>
+          <td class="val">INR sollte <strong>&lt;2,0–2,5</strong> sein. INR &gt;2,5 → erhöhtes Retroperitoneal-Hämatom-Risiko. Absetzen oder Vitamin K.</td>
+        </tr>
+        <tr>
+          <td>SM-/ICD-Implantation</td>
+          <td class="val"><strong>VKA-Fortsetzung unter INR 2,0–3,0 möglich und bevorzugt!</strong> BRUISE-CONTROL-1: Kein Bridging → weniger Pocket-Hämatome als Heparin-Bridging! <span class="pill pill-green">Kein Bridging!</span></td>
+        </tr>
+        <tr>
+          <td>Herzklappen-OP / CABG elektiv</td>
+          <td class="val">INR präop. <strong>&lt;1,5</strong> erforderlich. Absetzen 5–7 Tage vorher (HWZ Phenprocoumon 5–7d). <strong>Bridging nur bei mechanischer Klappe</strong> oder sehr hohem Thrombose-Risiko: UFH i.v. (kein NMH!).</td>
+        </tr>
+      </table>
+      <div class="tip-box danger">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+        <span><strong>Bridging VKA — die echten Ausnahmen:</strong> Mechanische Mitralklappe, mechanische Aortenklappe + weiterer RF, VHF + Mitralstenose (rheumatisch), VTE &lt;3 Monate, Antiphospholipid-Syndrom. <strong>Bei mechanischer Klappe: UFH i.v. — KEIN NMH!</strong> (ACCP-Empfehlung)</span>
+      </div>
+    </div>
+    <div class="sop-section">
+      <div class="sop-section-title">Notfall-Antagonisierung</div>
+      <table class="crit-table">
+        <tr><td>Dabigatran</td><td class="val"><strong>Idarucizumab (Praxbind® 5g i.v.)</strong> — spezifischer Antagonist, sofortige vollständige Antagonisierung. ~2.300€.</td></tr>
+        <tr><td>Apixaban / Rivaroxaban / Edoxaban</td><td class="val"><strong>Andexanet alfa (Ondexxya®)</strong> — Bolus + Infusion. Zugelassen, sehr teuer (~15.000–20.000€). Alternative: <strong>PPSB 25–50 IE/kg i.v.</strong> (günstiger, off-label, klinisch etabliert).</td></tr>
+        <tr><td>Phenprocoumon (VKA)</td><td class="val"><strong>Vitamin K 10 mg i.v.</strong> (langsam, Cave: Anaphylaxie) + <strong>PPSB 25–50 IE/kg i.v.</strong> (sofortige Faktor-Substitution: II, VII, IX, X + Protein C/S).</td></tr>
+        <tr><td>UFH</td><td class="val"><strong>Protaminsulfat:</strong> 1 mg neutralisiert ~100 IE UFH. Max. 50 mg i.v. langsam (Hypotonie-Risiko!).</td></tr>
+      </table>
+    </div>
+  </div>
+</div>
+
+<div class="no-results" id="no-results">
+  <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg><br>
+  Keine Einträge in dieser Kategorie.
+</div>
+
+</div><!-- /sop-list -->
+
+<footer>
+  <span>OUSS Kardiologie · Kardiometabolische Medizin &amp; Diabetologie · DDG / ESC / ADA 2024</span>
+  <strong>Klinisches Hilfsmittel — kein Ersatz für ärztliches Urteil · Dosierungen ärztlich validieren</strong>
+</footer>
+
+<script>
+function toggle(h){h.parentElement.classList.toggle('open')}
+document.querySelectorAll('.chip').forEach(function(c){
+  c.addEventListener('click',function(){
+    document.querySelectorAll('.chip').forEach(function(x){x.classList.remove('active')});
+    c.classList.add('active');
+    var cat=c.dataset.cat,n=0;
+    document.querySelectorAll('.scard').forEach(function(s){
+      var show=cat==='all'||s.dataset.cat===cat;
+      s.style.display=show?'':'none';if(show)n++;
+    });
+    document.getElementById('no-results').style.display=n===0?'block':'none';
+  });
+});
+var f=document.querySelector('.scard');if(f)f.classList.add('open');
+</script>
+</body>
+</html>

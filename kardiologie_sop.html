@@ -1,0 +1,1137 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kardiologie SOPs — OUSS Kardiologie</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg:#ffffff; --surface:#f7f5f2; --surface2:#eeecea; --border:#e5e2de;
+  --text:#1a1410; --text2:#6b6460; --text3:#a09890;
+  --red:#c8303a; --gold:#9a7430; --navy:#0f1528; --blue:#2563eb;
+  --green:#0f7b5a; --purple:#7c3aed; --orange:#ea580c; --cyan:#0e7490;
+  --serif:'Cormorant Garamond',Georgia,serif; --sans:'DM Sans',system-ui,sans-serif;
+  --r:10px; --sh:0 2px 8px rgba(0,0,0,.06); --sh-md:0 6px 24px rgba(0,0,0,.09);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);background:var(--bg);color:var(--text);font-size:15px;line-height:1.7;overflow-x:hidden}
+
+/* NAV */
+.topnav{position:sticky;top:0;z-index:200;height:56px;background:rgba(255,255,255,.97);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);display:flex;align-items:center;padding:0 2.5rem;gap:6px}
+.brand{font-family:var(--serif);font-size:1.2rem;font-weight:400;color:var(--text);text-decoration:none;display:flex;align-items:center;gap:.5rem;white-space:nowrap;flex-shrink:0}
+.brand-heart{animation:hb 1.6s ease-in-out infinite;display:inline-block}
+@keyframes hb{0%,100%{transform:scale(1)}14%{transform:scale(1.2)}28%{transform:scale(1)}42%{transform:scale(1.1)}56%{transform:scale(1)}}
+.nav-links{display:flex;gap:2px;margin-left:.5rem}
+.nav-links a{padding:7px 12px;border-radius:7px;text-decoration:none;color:var(--text2);font-size:.88rem;font-weight:500;transition:background .15s,color .15s}
+.nav-links a:hover{background:var(--surface);color:var(--text)}
+.nav-links a.active{background:#eff6ff;color:var(--blue)}
+.spacer{flex:1}
+.nav-badge{font-size:.78rem;font-weight:600;padding:7px 14px;background:var(--blue);color:#fff;border-radius:7px;white-space:nowrap}
+
+/* PAGE HEADER */
+.page-header{border-bottom:1px solid var(--border);padding:2rem 2.5rem 1.8rem;background:var(--surface)}
+.page-eyebrow{font-size:.68rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--blue);margin-bottom:.7rem}
+.page-header h1{font-family:var(--serif);font-size:clamp(2rem,4vw,3.2rem);font-weight:300;line-height:1.15;letter-spacing:-.01em}
+.page-header h1 em{font-style:italic;color:var(--blue)}
+.page-header p{color:var(--text2);margin-top:.6rem;font-size:.92rem;line-height:1.8;max-width:720px}
+
+/* FILTER CHIPS */
+.filter-wrap{display:flex;flex-wrap:wrap;gap:6px;padding:.85rem 2.5rem;border-bottom:1px solid var(--border);background:var(--bg);position:sticky;top:56px;z-index:190;backdrop-filter:blur(12px)}
+.chip{padding:5px 13px;border-radius:20px;border:1.5px solid var(--border);background:var(--surface);color:var(--text2);font-size:.78rem;font-weight:600;cursor:pointer;transition:background .15s,color .15s,border-color .15s;letter-spacing:.03em}
+.chip:hover{background:var(--surface2);color:var(--text)}
+.chip.active{background:var(--navy);color:#fff;border-color:var(--navy)}
+.chip[data-cat="klappen"].active{background:var(--blue);border-color:var(--blue)}
+.chip[data-cat="khk"].active{background:var(--red);border-color:var(--red)}
+.chip[data-cat="herzinsuff"].active{background:var(--green);border-color:var(--green)}
+.chip[data-cat="rhythmus"].active{background:var(--purple);border-color:var(--purple)}
+.chip[data-cat="device"].active{background:var(--orange);border-color:var(--orange)}
+.chip[data-cat="pavk"].active{background:var(--gold);border-color:var(--gold)}
+
+/* MAIN */
+.sop-list{padding:1.5rem 2.5rem 3rem;display:flex;flex-direction:column;gap:10px}
+
+/* CARDS */
+.scard{border:1px solid var(--border);border-radius:12px;background:var(--bg);overflow:hidden;transition:box-shadow .2s}
+.scard:hover{box-shadow:var(--sh-md)}
+.scard-head{display:flex;align-items:flex-start;gap:14px;padding:1rem 1.2rem;cursor:pointer;user-select:none;transition:background .15s}
+.scard-head:hover{background:var(--surface)}
+.scard-num{font-family:var(--serif);font-size:1.35rem;font-weight:300;color:var(--text3);min-width:28px;flex-shrink:0;padding-top:2px}
+.scard-icon{width:38px;height:38px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0}
+.scard-info{flex:1;min-width:0}
+.scard-title{font-family:var(--serif);font-size:1.12rem;font-weight:400;line-height:1.3}
+.scard-badges{display:flex;flex-wrap:wrap;gap:5px;margin-top:5px}
+.badge{font-size:.68rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:2px 8px;border-radius:5px;border:1px solid transparent;white-space:nowrap}
+.badge.red{background:#fdf2f2;color:var(--red);border-color:#fbd5d5}
+.badge.blue{background:#eff6ff;color:var(--blue);border-color:#bfdbfe}
+.badge.gold{background:#fdf8ee;color:var(--gold);border-color:#e8d5a3}
+.badge.green{background:#f0fdf8;color:var(--green);border-color:#a7f3d0}
+.badge.navy{background:#f0f2f8;color:var(--navy);border-color:#c7cde8}
+.badge.gray{background:var(--surface);color:var(--text2);border-color:var(--border)}
+.badge.orange{background:#fff7ed;color:var(--orange);border-color:#fed7aa}
+.badge.purple{background:#f5f3ff;color:var(--purple);border-color:#ddd6fe}
+.badge.cyan{background:#ecfeff;color:var(--cyan);border-color:#a5f3fc}
+/* ESC Empfehlungsklassen */
+.badge.esc-i{background:#f0fdf8;color:#065f46;border-color:#6ee7b7;font-weight:800}
+.badge.esc-iia{background:#fdf8ee;color:#92400e;border-color:#fcd34d;font-weight:800}
+.badge.esc-iib{background:#fff7ed;color:var(--orange);border-color:#fed7aa;font-weight:800}
+.badge.esc-iii{background:#fdf2f2;color:#991b1b;border-color:#fca5a5;font-weight:800}
+.scard-chevron{color:var(--text3);transition:transform .25s;flex-shrink:0;margin-top:8px}
+.scard.open .scard-chevron{transform:rotate(180deg)}
+.scard-inner{display:none;padding:0 1.2rem 1.2rem;border-top:1px solid var(--border)}
+.scard.open .scard-inner{display:block}
+
+/* INNER LAYOUT */
+.sop-section{margin-top:1rem}
+.sop-section-title{font-size:.65rem;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:var(--text3);margin-bottom:.6rem;display:flex;align-items:center;gap:6px}
+.sop-section-title::after{content:'';flex:1;height:1px;background:var(--border)}
+
+/* CRITERIA TABLE */
+.crit-table{width:100%;border-collapse:collapse;font-size:.83rem}
+.crit-table th{text-align:left;font-size:.68rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--text3);padding:.35rem .5rem .35rem 0;border-bottom:1px solid var(--border)}
+.crit-table td{padding:.4rem .5rem .4rem 0;vertical-align:top;border-bottom:1px solid var(--surface2);line-height:1.55}
+.crit-table tr:last-child td{border-bottom:none}
+.crit-table td:first-child{font-weight:600;color:var(--text);white-space:nowrap;padding-right:1rem;font-size:.8rem}
+.crit-table .val{color:var(--text2)}
+.crit-table .highlight{color:var(--navy);font-weight:700}
+
+/* INDIKATION ROWS */
+.ind-row{display:flex;gap:10px;align-items:flex-start;padding:.55rem .7rem;border:1px solid var(--border);border-radius:8px;margin-bottom:6px;background:var(--bg);font-size:.83rem;line-height:1.55;transition:border-color .15s}
+.ind-row:hover{border-color:var(--text3)}
+.ind-row .ind-cls{flex-shrink:0;min-width:80px}
+.ind-row .ind-txt{flex:1;color:var(--text2)}
+.ind-row .ind-txt strong{color:var(--text)}
+.ind-row.cls-i{border-left:3px solid var(--green)}
+.ind-row.cls-iia{border-left:3px solid var(--gold)}
+.ind-row.cls-iib{border-left:3px solid var(--orange)}
+.ind-row.cls-iii{border-left:3px solid var(--red)}
+
+/* ALGO BOX */
+.algo-box{background:var(--navy);color:#e8eaf6;border-radius:10px;padding:1rem 1.1rem;margin-top:.8rem;font-size:.82rem;line-height:1.75}
+.algo-box-title{font-size:.63rem;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:#7986cb;margin-bottom:.5rem}
+.algo-box ol,.algo-box ul{padding-left:1.2rem;margin:0}
+.algo-box li{margin-bottom:.2rem}
+.algo-box strong{color:#ffcc80}
+.algo-box .algo-warn{color:#ef9a9a;font-weight:600}
+.algo-box .algo-ok{color:#a5d6a7}
+.algo-box .algo-step{color:#90caf9}
+
+/* TWO-COL */
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:.6rem}
+.score-box{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:.75rem;font-size:.8rem}
+.score-box-title{font-size:.65rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--text3);margin-bottom:.5rem}
+.score-box table{width:100%;border-collapse:collapse}
+.score-box td{padding:.2rem 0;border-bottom:1px solid var(--border)}
+.score-box tr:last-child td{border-bottom:none}
+.score-box td:last-child{text-align:right;font-weight:700;color:var(--navy)}
+
+/* TIP BOX */
+.tip-box{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:.55rem .8rem;font-size:.8rem;color:var(--text2);display:flex;gap:8px;align-items:flex-start;line-height:1.5;margin-top:.5rem}
+.tip-box svg{flex-shrink:0;margin-top:2px}
+
+/* PILLS */
+.pill{display:inline-block;font-size:.72rem;font-weight:700;padding:1px 8px;border-radius:4px;margin:0 2px}
+.pill-green{background:#dcfce7;color:#166534}
+.pill-red{background:#fee2e2;color:#991b1b}
+.pill-gold{background:#fef9c3;color:#854d0e}
+.pill-navy{background:#e0e7ff;color:#1e40af}
+.pill-gray{background:var(--surface2);color:var(--text2)}
+
+/* NO RESULTS */
+.no-results{text-align:center;padding:4rem 2rem;color:var(--text3);font-size:.95rem;display:none}
+
+/* FOOTER */
+footer{padding:1.6rem 2.5rem;display:flex;align-items:center;justify-content:space-between;border-top:1px solid var(--border);font-size:.78rem;color:var(--text3)}
+footer strong{color:var(--navy);font-weight:600}
+
+/* RESPONSIVE */
+@media(max-width:860px){.nav-links{display:none}.nav-badge{display:none}}
+@media(max-width:600px){
+  .topnav{padding:0 1rem}
+  .page-header,.filter-wrap,.sop-list{padding-left:1rem;padding-right:1rem}
+  .scard-head{padding:.9rem 1rem}
+  .scard-inner{padding:0 1rem 1rem}
+  .two-col{grid-template-columns:1fr}
+  footer{flex-direction:column;gap:.5rem;text-align:center}
+}
+</style>
+</head>
+<body>
+
+<nav class="topnav">
+  <a href="index.html" class="brand">
+    <span class="brand-heart">
+      <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+        <path d="M9 15.5C3.5 12.2 1 9 1 6A4 4 0 0 1 9 4.2a4 4 0 0 1 8 1.8C17 9 14.5 12.2 9 15.5Z" fill="var(--blue)" opacity=".9"/>
+      </svg>
+    </span>
+    OUSS Kardiologie
+  </a>
+  <div class="nav-links">
+    <a href="notfall_erweitert.html">🚨 Notfall</a>
+    <a href="notfallmedikamente.html">💊 Medikamente</a>
+    <a href="kardiologie_sop.html" class="active">📋 SOPs</a>
+  </div>
+  <div class="spacer"></div>
+  <span class="nav-badge">DGK / ESC 2021–2024</span>
+</nav>
+
+<div class="page-header">
+  <div class="page-eyebrow">Standard Operating Procedures · DGK / ESC Leitlinien 2021–2024</div>
+  <h1>Kardiologie <em>SOPs</em> &amp; Leitlinien</h1>
+  <p>Strikte Indikationen, Echo-Schwellenwerte, OP-Zugänge, Scores und Algorithmen — aufbereitet auf Oberarzt-Niveau für den täglichen Stationseinsatz.
+  <strong style="color:var(--green)">■ Klasse I = Grün</strong> &nbsp;·&nbsp;
+  <strong style="color:var(--gold)">■ IIa = Gelb</strong> &nbsp;·&nbsp;
+  <strong style="color:var(--orange)">■ IIb = Orange</strong> &nbsp;·&nbsp;
+  <strong style="color:var(--red)">■ Klasse III = Rot</strong></p>
+</div>
+
+<div class="filter-wrap">
+  <button class="chip active" data-cat="all">Alle Themen</button>
+  <button class="chip" data-cat="klappen">🫀 Klappenvitien</button>
+  <button class="chip" data-cat="khk">🩸 KHK &amp; CABG</button>
+  <button class="chip" data-cat="herzinsuff">💧 Herzinsuffizienz</button>
+  <button class="chip" data-cat="rhythmus">⚡ Rhythmus &amp; VHF</button>
+  <button class="chip" data-cat="device">🔋 Device-Therapie</button>
+  <button class="chip" data-cat="pavk">🦵 pAVK</button>
+</div>
+
+<div class="sop-list" id="sop-list">
+
+<!-- ════════════════════════════════════════════════
+     01 — AORTENKLAPPENSTENOSE
+     ════════════════════════════════════════════════ -->
+<div class="scard" data-cat="klappen">
+  <div class="scard-head" onclick="toggle(this)">
+    <span class="scard-num">01</span>
+    <div class="scard-icon" style="background:#eff6ff">🫀</div>
+    <div class="scard-info">
+      <div class="scard-title">Aortenklappenstenose (AS)</div>
+      <div class="scard-badges">
+        <span class="badge blue">Klappenvitium</span>
+        <span class="badge gray">TAVI · SAVR</span>
+        <span class="badge gray">STS-Score · EuroSCORE II</span>
+      </div>
+    </div>
+    <svg class="scard-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+  </div>
+  <div class="scard-inner">
+
+    <div class="sop-section">
+      <div class="sop-section-title">Klinik &amp; Auskultation</div>
+      <table class="crit-table">
+        <tr><td>Symptomtrias</td><td class="val"><strong>Angina pectoris · Synkope · Herzinsuffizienz</strong> — Auftreten der Trias = schlechte Prognose, mittlere Überlebenszeit 1–3 Jahre ohne Intervention</td></tr>
+        <tr><td>Auskultation</td><td class="val">Raues, spindelförmiges Systolikum <strong>2. ICR rechts</strong>, Fortleitung in Karotiden. A₂ abgeschwächt/fehlend. Pulsus parvus et tardus. Paradoxe Spaltung S2 bei LBBB.</td></tr>
+        <tr><td>EKG</td><td class="val">LVH-Zeichen (Sokolow-Lyon &gt;3,5 mV), ST-Senkungen lateral, ggf. LSB</td></tr>
+      </table>
+    </div>
+
+    <div class="sop-section">
+      <div class="sop-section-title">Echo-Parameter — Schwere AS (alle 3 Kriterien)</div>
+      <table class="crit-table">
+        <tr><td>Mittlerer Gradient</td><td class="highlight">&gt; 40 mmHg</td></tr>
+        <tr><td>Vmax (Jet-Geschwindigkeit)</td><td class="highlight">&gt; 4,0 m/s</td></tr>
+        <tr><td>AVA (Aortenklappenöffnungsfläche)</td><td class="highlight">&lt; 1,0 cm² (indexiert &lt; 0,6 cm²/m²)</td></tr>
+        <tr><td>Low-flow / Low-gradient AS</td><td class="val">AVA &lt;1,0 cm² + Gradient &lt;40 mmHg + SVI &lt;35 ml/m² → <strong>Dobutamin-Stressecho</strong> (echter Schweregrad vs. Pseudostenose)</td></tr>
+        <tr><td>Paradoxe Low-flow AS</td><td class="val">LVEF &gt;50%, AVA &lt;1,0, Gradient &lt;40 mmHg, kleiner LV (LVEDV &lt;100 ml) → häufig bei Frauen + Hypertonie</td></tr>
+      </table>
+    </div>
+
+    <div class="sop-section">
+      <div class="sop-section-title">Interventionsindikationen — ESC 2021</div>
+      <div class="ind-row cls-i">
+        <div class="ind-cls"><span class="badge esc-i">Klasse I</span></div>
+        <div class="ind-txt"><strong>Schwere symptomatische AS</strong> (Angina / Synkope / HI) → Intervention unabhängig vom OP-Risiko. Heart-Team entscheidet: TAVI oder SAVR.</div>
+      </div>
+      <div class="ind-row cls-i">
+        <div class="ind-cls"><span class="badge esc-i">Klasse I</span></div>
+        <div class="ind-txt"><strong>Schwere AS + LVEF &lt;50%</strong>, auch asymptomatisch → Intervention.</div>
+      </div>
+      <div class="ind-row cls-i">
+        <div class="ind-cls"><span class="badge esc-i">Klasse I</span></div>
+        <div class="ind-txt">Schwere AS + elektiver Begleit-Eingriff (CABG, Aorta) → simultane Aortenklappenintervention.</div>
+      </div>
+      <div class="ind-row cls-iia">
+        <div class="ind-cls"><span class="badge esc-iia">Klasse IIa</span></div>
+        <div class="ind-txt">Schwere asymptomatische AS + <strong>Belastungstest positiv</strong> (Symptome oder RR-Abfall &gt;20 mmHg) → Intervention erwägen.</div>
+      </div>
+      <div class="ind-row cls-iia">
+        <div class="ind-cls"><span class="badge esc-iia">Klasse IIa</span></div>
+        <div class="ind-txt">Sehr schwere AS (<strong>Vmax &gt;5,5 m/s</strong>) asymptomatisch + niedriges OP-Risiko → Intervention erwägen.</div>
+      </div>
+    </div>
+
+    <div class="sop-section">
+      <div class="sop-section-title">TAVI vs. SAVR — Heart-Team-Entscheid</div>
+      <table class="crit-table">
+        <tr>
+          <td><span class="pill pill-navy">TAVI bevorzugt</span></td>
+          <td class="val">Hohes/inoperables Risiko (STS-PROM &gt;8% oder EuroSCORE II &gt;4%), Alter &gt;75 J., Frailty, Porzellanaorta, Zustand nach Thorax-OP, COPD Gold III/IV. Zugang: <strong>transfemoral (Methode der Wahl)</strong> &gt; transaxillär &gt; transapikal (chirurgisch) &gt; direkt aortal.</td>
+        </tr>
+        <tr>
+          <td><span class="pill pill-green">SAVR bevorzugt</span></td>
+          <td class="val">Niedriges Risiko (STS &lt;4%, EuroSCORE II &lt;2%), Alter &lt;65 J., bikuspide Klappe, ungünstige TAVI-Anatomie, Begleit-OP nötig (CABG, Aszendensersatz). Zugang: <strong>mediane Sternotomie</strong> oder minimalinvasiv (<strong>J-Sternotomie, rechtslaterale Minithorakotomie im 2. ICR</strong>).</td>
+        </tr>
+      </table>
+      <div class="tip-box">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
+        <span><strong>Vor jeder Heart-Team-Besprechung obligat:</strong> STS-PROM (sts.org/tools/sts-risk-calculator) + EuroSCORE II (euroscore.org) + TAVR-CT (Annulusgröße, Zugangsgefäße, Koronarabstand). Bikuspide Klappe → TAVI nur in erfahrenen Zentren (erhöhtes Paravalvulärleck-Risiko).</span>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════════
+     02 — AORTENKLAPPENINSUFFIZIENZ
+     ════════════════════════════════════════════════ -->
+<div class="scard" data-cat="klappen">
+  <div class="scard-head" onclick="toggle(this)">
+    <span class="scard-num">02</span>
+    <div class="scard-icon" style="background:#f0fdf8">🔵</div>
+    <div class="scard-info">
+      <div class="scard-title">Aortenklappeninsuffizienz (AI)</div>
+      <div class="scard-badges">
+        <span class="badge blue">Klappenvitium</span>
+        <span class="badge gray">SAVR · David-OP · Bentall</span>
+        <span class="badge gray">LVEDD / LVESD</span>
+      </div>
+    </div>
+    <svg class="scard-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+  </div>
+  <div class="scard-inner">
+
+    <div class="sop-section">
+      <div class="sop-section-title">Klinik &amp; Auskultation</div>
+      <table class="crit-table">
+        <tr><td>Chronische AI</td><td class="val">Lange asymptomatisch (kompensierte LV-Dilatation). Dann: <strong>Belastungsdyspnoe, Palpitationen, Angina pectoris</strong> (durch erhöhten LVEDP)</td></tr>
+        <tr><td>Akute AI</td><td class="val">Lungenödem, kardiogener Schock → <strong>Notfall-OP!</strong> Ursachen: Endokarditis, Aortendissektion Typ A, Trauma</td></tr>
+        <tr><td>Auskultation</td><td class="val">Hochfrequentes, <strong>decrescendo-förmiges frühdiastolisches Geräusch</strong> im 3. ICR links parasternal. Austin-Flint-Geräusch (funktionelle Mitralstenose bei großem Regurgitations-Jet).</td></tr>
+        <tr><td>Periphere Zeichen</td><td class="val">Quincke-Kapillarpuls, Corrigan-Puls (Pulsus celer et altus), Pulsdruck &gt;80 mmHg, Duroziez-Zeichen, musikalisches diastolisches Geräusch (A. femoralis)</td></tr>
+      </table>
+    </div>
+
+    <div class="sop-section">
+      <div class="sop-section-title">Echo-Parameter — Schwere AI</div>
+      <table class="crit-table">
+        <tr><td>Vena contracta</td><td class="highlight">&gt; 6 mm</td></tr>
+        <tr><td>EROA (proximale Regurgitationsfläche)</td><td class="highlight">&gt; 30 mm²</td></tr>
+        <tr><td>Regurgitationsvolumen</td><td class="highlight">&gt; 60 ml/Schlag</td></tr>
+        <tr><td>LVEDD (LV enddiastolischer Diameter)</td><td class="highlight">&gt; 70 mm</td></tr>
+        <tr><td>LVESD (LV endsystolischer Diameter)</td><td class="highlight">&gt; 50 mm (oder indexiert &gt;25 mm/m²)</td></tr>
+        <tr><td>PHT (Pressure Half-Time)</td><td class="val">&lt;200 ms = schwere AI</td></tr>
+      </table>
+    </div>
+
+    <div class="sop-section">
+      <div class="sop-section-title">Interventionsindikationen — ESC 2021</div>
+      <div class="ind-row cls-i">
+        <div class="ind-cls"><span class="badge esc-i">Klasse I</span></div>
+        <div class="ind-txt"><strong>Schwere AI + Symptome (NYHA II–IV)</strong> + LVEF &gt;20% → SAVR. Zugang: <strong>mediane Sternotomie</strong>; bei dilatierter Aortenwurzel/Ascendens: <strong>Bentall-OP</strong> (Klappenersatz + Ascendensersatz) oder klappenerhaltend <strong>David-OP</strong> (Reimplantation) in erfahrenen Zentren.</div>
+      </div>
+      <div class="ind-row cls-i">
+        <div class="ind-cls"><span class="badge esc-i">Klasse I</span></div>
+        <div class="ind-txt"><strong>Schwere AI + LVEF &lt;50%</strong>, auch asymptomatisch → SAVR.</div>
+      </div>
+      <div class="ind-row cls-iia">
+        <div class="ind-cls"><span class="badge esc-iia">Klasse IIa</span></div>
+        <div class="ind-txt">Schwere AI asymptomatisch + LVEF &gt;50% + <strong>LVEDD &gt;70 mm</strong> oder <strong>LVESD &gt;50 mm</strong> (oder LVESD &gt;25 mm/m²) → Operation erwägen.</div>
+      </div>
+      <div class="ind-row cls-iii">
+        <div class="ind-cls"><span class="badge esc-iii">Klasse III</span></div>
+        <div class="ind-txt"><strong>TAVI bei isolierter AI</strong> — keine CE-Zulassung (kein Verkalkungssubstrat, instabiler Landeplatz). Off-label nur in absoluten Ausnahmefällen an Hochvolumenzentren (compassionate use).</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════════
+     03 — MITRALKLAPPENINSUFFIZIENZ
+     ════════════════════════════════════════════════ -->
+<div class="scard" data-cat="klappen">
+  <div class="scard-head" onclick="toggle(this)">
+    <span class="scard-num">03</span>
+    <div class="scard-icon" style="background:#fff7ed">🔴</div>
+    <div class="scard-info">
+      <div class="scard-title">Mitralklappeninsuffizienz (MI)</div>
+      <div class="scard-badges">
+        <span class="badge blue">Klappenvitium</span>
+        <span class="badge gray">MitraClip · TEER</span>
+        <span class="badge gray">Primär vs. Sekundär · EROA</span>
+      </div>
+    </div>
+    <svg class="scard-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+  </div>
+  <div class="scard-inner">
+
+    <div class="sop-section">
+      <div class="sop-section-title">Primäre (degenerative) vs. Sekundäre (funktionelle) MI</div>
+      <table class="crit-table">
+        <tr><td>Primäre MI</td><td class="val">Struktureller Klappendefekt: Myxomatöse Degeneration (Barlow-Syndrom), fibroelastischer Defekt, Chordae-ruptur. <strong>Chirurgische Rekonstruktion bevorzugt (Zielrate &gt;95% in Expertenzentren).</strong> Klappenersatz nur wenn Rekonstruktion nicht möglich.</td></tr>
+        <tr><td>Sekundäre MI</td><td class="val">Strukturell intakte Klappe, dilatativer/ischämischer LV → Anulus-Dilatation + Tethering der Segelspitzen. <strong>Primär: optimale GDMT (HI-Therapie). Erst dann Intervention wenn weiterhin symptomatisch.</strong></td></tr>
+      </table>
+    </div>
+
+    <div class="sop-section">
+      <div class="sop-section-title">Echo-Parameter — Schwere MI</div>
+      <table class="crit-table">
+        <tr><td>EROA primäre MI</td><td class="highlight">&gt; 40 mm²</td></tr>
+        <tr><td>EROA sekundäre MI</td><td class="highlight">&gt; 20 mm² (bereits prognostisch bedeutsam!)</td></tr>
+        <tr><td>Regurgitationsvolumen</td><td class="highlight">&gt; 60 ml/Schlag (primär) · &gt; 30 ml/Schlag (sekundär)</td></tr>
+        <tr><td>Vena contracta</td><td class="highlight">&gt; 7 mm</td></tr>
+        <tr><td>LVESD</td><td class="highlight">&gt; 45 mm → OP-Indikation auch asymptomatisch (primäre MI)</td></tr>
+        <tr><td>Auskultation</td><td class="val">Holosystolisches Geräusch über der Herzspitze, Fortleitung in Axilla. Bei Segelprolog: Mittelklick + spätsystolisches Geräusch.</td></tr>
+      </table>
+    </div>
+
+    <div class="sop-section">
+      <div class="sop-section-title">Interventionsindikationen — ESC 2021</div>
+      <div class="ind-row cls-i">
+        <div class="ind-cls"><span class="badge esc-i">Klasse I</span></div>
+        <div class="ind-txt"><strong>Primäre schwere MI + Symptome + LVEF &gt;30%</strong> → <strong>chirurgische Rekonstruktion</strong> (rechtslaterale Minithorakotomie [MIC] oder mediane Sternotomie). Klappenersatz nur wenn keine Rekonstruktion möglich.</div>
+      </div>
+      <div class="ind-row cls-i">
+        <div class="ind-cls"><span class="badge esc-i">Klasse I</span></div>
+        <div class="ind-txt"><strong>Primäre schwere MI, asymptomatisch + LVESD &gt;45 mm</strong> oder LVEF &lt;60% → OP in Zentrum mit hoher Rekonstruktionsrate (&gt;95%).</div>
+      </div>
+      <div class="ind-row cls-iia">
+        <div class="ind-cls"><span class="badge esc-iia">Klasse IIa</span></div>
+        <div class="ind-txt"><strong>Sekundäre schwere MI + LVEF &gt;30%</strong>, unter optimaler GDMT ≥3 Monate symptomatisch, OP-geeignet → chirurgischer Klappenersatz oder Anuloplastie (simultane CABG wenn KHK vorhanden).</div>
+      </div>
+      <div class="ind-row cls-iia">
+        <div class="ind-cls"><span class="badge esc-iia">Klasse IIa</span></div>
+        <div class="ind-txt"><strong>MitraClip (TEER, transseptaler transfeminaler Zugang)</strong> bei sekundärer MI + LVEF 20–50%, unter GDMT symptomatisch, für OP nicht geeignet, anatomisch geeignet (COAPT-Kriterien: EROA ≥0,3 cm², LVESV ≤70 ml/m²).</div>
+      </div>
+    </div>
+
+    <div class="sop-section">
+      <div class="sop-section-title">Checkliste vor Intervention bei sekundärer MI</div>
+      <div class="algo-box">
+        <div class="algo-box-title">GDMT vollständig vor Heart-Team?</div>
+        <ol>
+          <li><span class="algo-step">ARNI/ACE-I:</span> maximal titriert?</li>
+          <li><span class="algo-step">Betablocker:</span> maximal titriert (HF &lt;70/min)?</li>
+          <li><span class="algo-step">MRA + SGLT2i:</span> gegeben?</li>
+          <li><span class="algo-step">CRT geprüft:</span> LSB &gt;150 ms + LVEF &lt;35% → CRT-Implantation VOR Klappenintervention!</li>
+          <li><span class="algo-warn">Erst nach ≥3 Monaten optimaler GDMT: Re-Echokardiographie + Heart-Team-Besprechung. Nicht voreilig intervenieren!</span></li>
+        </ol>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════════
+     04 — MITRALKLAPPENSTENOSE
+     ════════════════════════════════════════════════ -->
+<div class="scard" data-cat="klappen">
+  <div class="scard-head" onclick="toggle(this)">
+    <span class="scard-num">04</span>
+    <div class="scard-icon" style="background:#f5f3ff">🟣</div>
+    <div class="scard-info">
+      <div class="scard-title">Mitralklappenstenose (MS)</div>
+      <div class="scard-badges">
+        <span class="badge blue">Klappenvitium</span>
+        <span class="badge gray">PTMC · Wilkins-Score</span>
+        <span class="badge gray">Rheumatisch</span>
+      </div>
+    </div>
+    <svg class="scard-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+  </div>
+  <div class="scard-inner">
+
+    <div class="sop-section">
+      <div class="sop-section-title">Klinik &amp; Auskultation</div>
+      <table class="crit-table">
+        <tr><td>Hauptursache</td><td class="val">Rheumatisches Fieber (Fibrose + Fusion der Kommissuren). Selten: kongenital, medikamentös (Methysergid), Karzinoid</td></tr>
+        <tr><td>Symptome</td><td class="val">Belastungsdyspnoe, Hämoptoe (Bronchialvenenruptur), Vorhofflimmern (häufig!), Rechtsherzinsuffizienz bei pulmonal. Hypertonie, systemische Embolie bei LA-Thrombus</td></tr>
+        <tr><td>Auskultation</td><td class="val">Lauter S₁, Mitralöffnungston (MOT, nach S₂), <strong>rumpelndes diastolisches Decrescendo-Geräusch</strong> (präsystolische Akzentuierung nur im Sinusrhythmus). PM: Herzspitze.</td></tr>
+        <tr><td>Röntgen-Thorax</td><td class="val">Linksatriale Vergrößerung (Doppelkontur, Aufstellung des linken Hauptbronchus, Mitralform des Herzens)</td></tr>
+      </table>
+    </div>
+
+    <div class="sop-section">
+      <div class="sop-section-title">Echo-Parameter</div>
+      <table class="crit-table">
+        <tr><td>MVA moderat</td><td class="val">1,5–2,0 cm²</td></tr>
+        <tr><td>MVA schwer</td><td class="highlight">&lt; 1,5 cm²</td></tr>
+        <tr><td>MVA sehr schwer</td><td class="highlight">&lt; 1,0 cm²</td></tr>
+        <tr><td>Mittlerer Gradient schwer</td><td class="highlight">&gt; 10 mmHg</td></tr>
+        <tr><td>sPAP</td><td class="val">&gt;50 mmHg = pulmonal-arterielle Hypertonie → verschlechterte Prognose, erhöhtes OP-Risiko</td></tr>
+        <tr><td>Wilkins-Score</td><td class="val">0–16 Punkte (Mobilität, Verdickung, Kalk, subvalvulär). <strong>≤8 Punkte = günstige Anatomie für PTMC</strong>. &gt;8 = eher chirurgisch.</td></tr>
+      </table>
+    </div>
+
+    <div class="sop-section">
+      <div class="sop-section-title">Interventionsindikationen — ESC 2021</div>
+      <div class="ind-row cls-i">
+        <div class="ind-cls"><span class="badge esc-i">Klasse I</span></div>
+        <div class="ind-txt"><strong>Schwere symptomatische MS (MVA ≤1,5 cm²) + günstige Anatomie (Wilkins ≤8, kein LA-Thrombus, MI ≤Grad 2+)</strong> → <strong>PTMC (perkutane Mitralkommissurotomie / Inoue-Ballon)</strong>. Zugang: transseptal, transfemoral.</div>
+      </div>
+      <div class="ind-row cls-i">
+        <div class="ind-cls"><span class="badge esc-i">Klasse I</span></div>
+        <div class="ind-txt"><strong>Schwere MS + PTMC kontraindiziert oder Anatomie ungünstig (Wilkins &gt;8)</strong> → <strong>chirurgische offene Kommissurotomie</strong> oder <strong>Mitralklappenersatz</strong> (mechanisch &lt;65 J. / biologisch &gt;65 J. oder Antikoagulation abgelehnt). Zugang: mediane Sternotomie.</div>
+      </div>
+      <div class="ind-row cls-iia">
+        <div class="ind-cls"><span class="badge esc-iia">Klasse IIa</span></div>
+        <div class="ind-txt">Schwere asymptomatische MS + neue VHF-Episode oder sPAP &gt;50 mmHg in Ruhe → PTMC wenn Anatomie geeignet.</div>
+      </div>
+      <div class="tip-box">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
+        <span><strong>PTMC-KI absolut:</strong> LA-Thrombus (TEE obligat!), MI &gt;Grad 2+, bikommissurale Kalkspangen (Wilkins Submorphologie &gt;10). <strong>Medikamentös:</strong> Antikoagulation bei VHF (DOAC kontraindiziert bei mechanischer Klappe / MS → Phenprocoumon!), Betablocker zur Frequenzkontrolle.</span>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════════
+     05 — TRIKUSPIDALKLAPPEN-ERKRANKUNGEN
+     ════════════════════════════════════════════════ -->
+<div class="scard" data-cat="klappen">
+  <div class="scard-head" onclick="toggle(this)">
+    <span class="scard-num">05</span>
+    <div class="scard-icon" style="background:#fdf8ee">🟡</div>
+    <div class="scard-info">
+      <div class="scard-title">Trikuspidalklappenerkrankungen (TI / TS)</div>
+      <div class="scard-badges">
+        <span class="badge blue">Klappenvitium</span>
+        <span class="badge gray">Trikuspidal-Insuffizienz</span>
+        <span class="badge gray">TEER · Trialign · Tricento</span>
+      </div>
+    </div>
+    <svg class="scard-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+  </div>
+  <div class="scard-inner">
+
+    <div class="sop-section">
+      <div class="sop-section-title">Klinik</div>
+      <table class="crit-table">
+        <tr><td>Ursache TI (sekundär, 80%)</td><td class="val">Pulmonal-arterielle Hypertonie, Linksherzerkrankung → RV-Dilatation → Anulus-Dilatation. <strong>Behandle zunächst die Grunderkrankung!</strong></td></tr>
+        <tr><td>Ursache TI (primär)</td><td class="val">Endokarditis (i.v. Drogenabusus!), Karzinoidsyndrom (Plaque-Bildung), Ebstein-Anomalie, Trauma, Iatrogenisch (SM-Sonde)</td></tr>
+        <tr><td>Symptome TI</td><td class="val">Rechtsherzstauung: Halsvenenstauung (HVS) mit Cv-Wellen, hepatojugulärer Reflux, Hepatomegalie, pulsatile Leber, Aszites, periphere Ödeme, Kachexie</td></tr>
+        <tr><td>Auskultation TI</td><td class="val">Systolisches Geräusch <strong>4. ICR links parasternal</strong>. <strong>Carvallo-Zeichen: Verstärkung bei Inspiration</strong> (↑ venöser Rückstrom rechts). Kann fehlen bei hochgradiger TI!</td></tr>
+      </table>
+    </div>
+
+    <div class="sop-section">
+      <div class="sop-section-title">Echo-Parameter — Schwere TI</div>
+      <table class="crit-table">
+        <tr><td>Vena contracta</td><td class="highlight">&gt; 7 mm</td></tr>
+        <tr><td>EROA</td><td class="highlight">&gt; 40 mm²</td></tr>
+        <tr><td>Regurgitationsvolumen</td><td class="highlight">&gt; 45 ml/Schlag</td></tr>
+        <tr><td>Trikuspidal-Anulus-Diameter</td><td class="highlight">&gt; 40 mm (Dilatation)</td></tr>
+        <tr><td>TAPSE</td><td class="val">&lt;17 mm = RV-Dysfunktion → schlechtere Prognose, erhöhtes OP-Risiko</td></tr>
+        <tr><td>RV/RA</td><td class="val">Dilatiert, RA-Druck erhöht (IVC &gt;2,1 cm + keine Kollaps bei Schnüffelmanöver)</td></tr>
+      </table>
+    </div>
+
+    <div class="sop-section">
+      <div class="sop-section-title">Interventionsindikationen — ESC 2021</div>
+      <div class="ind-row cls-i">
+        <div class="ind-cls"><span class="badge esc-i">Klasse I</span></div>
+        <div class="ind-txt"><strong>Schwere TI bei ohnehin geplanter Linksherz-OP (Mitral/Aorta) + Anulus &gt;40 mm</strong> → simultane <strong>Trikuspidalanuloplastie</strong> (Ring-Anuloplastie). "Never leave the tricuspid behind!"</div>
+      </div>
+      <div class="ind-row cls-iia">
+        <div class="ind-cls"><span class="badge esc-iia">Klasse IIa</span></div>
+        <div class="ind-txt">Schwere symptomatische <strong>primäre TI</strong> ohne schwere RV-Dysfunktion (TAPSE &gt;14 mm) → <strong>chirurgischer Klappenersatz</strong> (biologisch bevorzugt, da trikuspidale Antikoagulation kompliziert). Zugang: mediane Sternotomie.</div>
+      </div>
+      <div class="ind-row cls-iia">
+        <div class="ind-cls"><span class="badge esc-iia">Klasse IIa</span></div>
+        <div class="ind-txt"><strong>Interventionelle TEER (MitraClip-analog: Tricento/Trialign/CLASP TR)</strong> bei schwerer symptomatischer TI, hohes OP-Risiko, anatomisch geeignet, unter optimaler Medikamententherapie. <strong>Zugang: transjugulär oder transfemoral-transseptal</strong>.</div>
+      </div>
+      <div class="tip-box">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
+        <span><strong>Trikuspidalstenose (TS):</strong> Selten. Meist rheumatisch (immer zusammen mit MS). MVA-Analogon: TVA &lt;1,0 cm² = schwer. Mittlerer Gradient &gt;5 mmHg. Therapie: PTMC (wie MS, selten) oder OP-Klappenersatz.</span>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════════
+     06 — KHK & CABG
+     ════════════════════════════════════════════════ -->
+<div class="scard" data-cat="khk">
+  <div class="scard-head" onclick="toggle(this)">
+    <span class="scard-num">06</span>
+    <div class="scard-icon" style="background:#fdf2f2">🩸</div>
+    <div class="scard-info">
+      <div class="scard-title">KHK &amp; CABG — Revaskularisationsindikation</div>
+      <div class="scard-badges">
+        <span class="badge red">KHK</span>
+        <span class="badge gray">SYNTAX-Score</span>
+        <span class="badge gray">3-Gefäß · Diabetes · CABG vs. PCI</span>
+      </div>
+    </div>
+    <svg class="scard-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+  </div>
+  <div class="scard-inner">
+
+    <div class="sop-section">
+      <div class="sop-section-title">CABG vs. PCI — Entscheidungsmatrix (ESC 2018/2023)</div>
+      <table class="crit-table">
+        <tr>
+          <td><span class="pill pill-green">CABG Kl. I</span></td>
+          <td class="val">
+            <strong>3-Gefäß-Erkrankung + Diabetes mellitus</strong> (FREEDOM-Trial: CABG signifikant überlegen)<br>
+            <strong>3-Gefäß + LVEF &lt;35%</strong> (STICH-Trial: Überlebensvorteil nach 10 Jahren)<br>
+            <strong>Hauptstammstenose &gt;50% + SYNTAX &gt;32</strong> oder + Begleit-OP<br>
+            <strong>SYNTAX-Score &gt;22</strong> + 3-Gefäß-Erkrankung (PCI gleichwertig oder unterlegen)
+          </td>
+        </tr>
+        <tr>
+          <td><span class="pill pill-navy">PCI Kl. I</span></td>
+          <td class="val">
+            1–2-Gefäß-Erkrankung ohne komplexe Anatomie (SYNTAX ≤22)<br>
+            Hauptstammstenose + SYNTAX ≤22 + günstige Anatomie + kein Diabetes<br>
+            Prohibitives OP-Risiko (STS &gt;10%) — PCI als einzige Option
+          </td>
+        </tr>
+        <tr>
+          <td><span class="pill pill-gold">Heart-Team</span></td>
+          <td class="val">SYNTAX 23–32: individuell nach Heart-Team-Entscheid. <strong>Immer bei Hauptstamm + 3-Gefäß: Herzteam-Besprechung obligat!</strong></td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="sop-section">
+      <div class="sop-section-title">CABG-Indikationen — ESC 2018</div>
+      <div class="ind-row cls-i">
+        <div class="ind-cls"><span class="badge esc-i">Klasse I</span></div>
+        <div class="ind-txt"><strong>Hauptstammstenose &gt;50%</strong> + SYNTAX &gt;32 → CABG. (SYNTAX ≤22 + keine KI → PCI alternativ möglich)</div>
+      </div>
+      <div class="ind-row cls-i">
+        <div class="ind-cls"><span class="badge esc-i">Klasse I</span></div>
+        <div class="ind-txt"><strong>3-Gefäß-Erkrankung + Diabetes mellitus</strong> → CABG (FREEDOM-Trial: MACE-Reduktion -26% vs. PCI)</div>
+      </div>
+      <div class="ind-row cls-i">
+        <div class="ind-cls"><span class="badge esc-i">Klasse I</span></div>
+        <div class="ind-txt"><strong>3-Gefäß + LVEF &lt;35%</strong> → CABG (STICH-Trial: 10-J.-Überlebensvorteil)</div>
+      </div>
+      <div class="ind-row cls-iii">
+        <div class="ind-cls"><span class="badge esc-iii">Klasse III</span></div>
+        <div class="ind-txt">CABG bei 1-Gefäß-Erkrankung ohne proximale LAD-Beteiligung — PCI gleichwertig und weniger invasiv. <strong>CABG nicht bevorzugt.</strong></div>
+      </div>
+    </div>
+
+    <div class="sop-section">
+      <div class="sop-section-title">CABG — Zugangswege &amp; OP-Techniken</div>
+      <table class="crit-table">
+        <tr><td>Mediane Sternotomie<br><span style="font-size:.75rem">(Standard)</span></td><td class="val">Komplette Revaskularisation aller Gefäßterritorien möglich. On-pump (HLM + Kardioplegie, blutleeres Feld) oder <strong>OPCAB (off-pump, kein HLM, weniger Neuroembolien)</strong>. OPCAB kontraindiziert bei hämodynamischer Instabilität, intramyokardialem LAD.</td></tr>
+        <tr><td>MIDCAB<br><span style="font-size:.75rem">(Minimalinvasiver direkter CABG)</span></td><td class="val">Linkslaterale Minithorakotomie, 4. ICR. <strong>Ausschließlich LIMA → proximaler LAD</strong>. Off-pump. Kein Sternum-Split. Geeignet für isolierte LAD-Stenose (proximaler LAD).</td></tr>
+        <tr><td>Hybrid</td><td class="val">MIDCAB (LIMA→LAD, minimalinvasiv) + PCI (RCA, RCx) in einer oder zwei Sitzungen. Kombiniert die Vorteile beider Methoden. Ideal bei LAD proximal + PCI-tauglichen Nicht-LAD-Stenosen.</td></tr>
+        <tr><td>OPCAB</td><td class="val">Off-pump über mediane Sternotomie. Reduktion von Schlaganfall, Nierenversagen, Transfusionsbedarf. Komplette Revaskularisation möglich (vs. MIDCAB).</td></tr>
+      </table>
+    </div>
+
+    <div class="sop-section">
+      <div class="sop-section-title">Graft-Material — Hierarchie &amp; Evidenz</div>
+      <div class="algo-box">
+        <div class="algo-box-title">Graft-Wahl — Empfehlungen</div>
+        <ol>
+          <li><strong>LIMA (linke A. thoracica interna) → LAD:</strong> <span class="algo-ok">Goldstandard, 10-J.-Offenheitsrate &gt;90%. IMMER wenn technisch möglich — Überlebensvorteil nachgewiesen!</span></li>
+          <li><strong>RIMA (rechte A. thoracica interna):</strong> 2. arterielle Graft, besonders bei Patienten &lt;70 J. Skelettoniert (höhere Länge) oder in-situ. <span class="algo-warn">Cave: BIMA (bilateral IMA) bei schlechtem eingestelltem Diabetes mellitus → erhöhtes Risiko sternaler Wundheilungsstörung (Omentumplastik präventiv).</span></li>
+          <li><strong>Arteria radialis:</strong> Exzellente Langzeitoffenheit wenn Zielstenose &gt;70% (kein Wettbewerbsfluss). <span class="algo-warn">Präop. Allen-Test obligat! Bei pathologischem Allen-Test: absolute KI.</span></li>
+          <li><strong>Vena saphena magna (VSM):</strong> Venöser Graft, 10-J.-Offenheitsrate 50–60%. No-touch-Technik (mit umgebendem Fettgewebe) verbessert Offenheitsrate. Postop. obligat: ASS 100 mg + Statin.</li>
+        </ol>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════════
+     07 — HERZINSUFFIZIENZ HFrEF
+     ════════════════════════════════════════════════ -->
+<div class="scard" data-cat="herzinsuff">
+  <div class="scard-head" onclick="toggle(this)">
+    <span class="scard-num">07</span>
+    <div class="scard-icon" style="background:#f0fdf8">💧</div>
+    <div class="scard-info">
+      <div class="scard-title">Herzinsuffizienz HFrEF — Diagnostik &amp; Fantastic Four</div>
+      <div class="scard-badges">
+        <span class="badge green">HFrEF · EF &lt;40%</span>
+        <span class="badge gray">ARNI · BB · MRA · SGLT2i</span>
+        <span class="badge gray">ESC HF 2021</span>
+      </div>
+    </div>
+    <svg class="scard-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+  </div>
+  <div class="scard-inner">
+
+    <div class="sop-section">
+      <div class="sop-section-title">Diagnostik &amp; Klassifikation</div>
+      <table class="crit-table">
+        <tr><td>HFrEF</td><td class="highlight">LVEF &lt; 40% + Symptome + strukturelle/funktionelle Herzerkrankung</td></tr>
+        <tr><td>HFmrEF</td><td class="val">LVEF 40–49% — Therapie analog HFrEF sinnvoll (alle 4 Substanzklassen)</td></tr>
+        <tr><td>HFpEF</td><td class="val">LVEF ≥50% + Symptome + erhöhte LV-Füllungsdrücke. SGLT2i (Empagliflozin, EMPEROR-Preserved) + Diuretika + Grundkrankheit behandeln</td></tr>
+        <tr><td>BNP / NT-proBNP</td><td class="val">Ambulant: BNP &gt;35 pg/ml oder NT-proBNP &gt;125 pg/ml → sensitiv für HI. Akut: NT-proBNP &gt;300 pg/ml (stationär). <strong>Cave: Falsch-niedrig bei Adipositas, Falsch-hoch bei Niereninsuffizienz.</strong></td></tr>
+        <tr><td>Echo-Basisparameter</td><td class="val">LVEF (biplan Simpson), LV-Volumina, LAVI (&gt;34 ml/m² = LA-Dilatation), E/e' (&gt;15 = erhöhte Füllungsdrücke), TAPSE (&lt;17 mm = RV-Dysfunktion), GLS (Global Longitudinal Strain, &lt;-20% pathologisch)</td></tr>
+      </table>
+    </div>
+
+    <div class="sop-section">
+      <div class="sop-section-title">Die Fantastic Four — Start- und Zieldosen (ESC HF 2021)</div>
+      <div class="ind-row cls-i" style="flex-direction:column;align-items:flex-start">
+        <div style="display:flex;gap:10px;align-items:center;margin-bottom:.4rem">
+          <span class="badge esc-i">Klasse I</span>
+          <strong>① ARNI: Sacubitril/Valsartan (Entresto®)</strong>
+        </div>
+        <div class="ind-txt" style="padding-left:0">
+          Start: <strong>2×24/26 mg/d</strong> → Verdopplung alle 2–4 Wochen → Ziel: <strong>2×97/103 mg/d</strong><br>
+          Von ACE-I umstellen: 36h Wash-out! Von ARB: keine Wash-out-Zeit.<br>
+          <span class="pill pill-red">KI: ACE-I gleichzeitig (Angioödem!), eGFR &lt;30, K⁺ &gt;5,4, Schwangerschaft, Angioödem-Anamnese</span>
+        </div>
+      </div>
+      <div class="ind-row cls-i" style="flex-direction:column;align-items:flex-start">
+        <div style="display:flex;gap:10px;align-items:center;margin-bottom:.4rem">
+          <span class="badge esc-i">Klasse I</span>
+          <strong>② Betablocker (Carvedilol / Bisoprolol / Metoprolol CR)</strong>
+        </div>
+        <div class="ind-txt" style="padding-left:0">
+          Carvedilol: Start <strong>2×3,125 mg</strong> → Ziel <strong>2×25–50 mg</strong><br>
+          Bisoprolol: Start <strong>1,25 mg/d</strong> → Ziel <strong>10 mg/d</strong><br>
+          Metoprolol CR/XL: Start <strong>12,5–25 mg/d</strong> → Ziel <strong>200 mg/d</strong><br>
+          <span class="pill pill-red">KI: AV-Block II–III, schweres Asthma, akute dekompensierte HI (erst stabilisieren!)</span>
+        </div>
+      </div>
+      <div class="ind-row cls-i" style="flex-direction:column;align-items:flex-start">
+        <div style="display:flex;gap:10px;align-items:center;margin-bottom:.4rem">
+          <span class="badge esc-i">Klasse I</span>
+          <strong>③ MRA: Spironolacton / Eplerenon</strong>
+        </div>
+        <div class="ind-txt" style="padding-left:0">
+          Spironolacton: Start <strong>25 mg/d</strong> → Ziel <strong>50 mg/d</strong> (Gynäkomastie!)<br>
+          Eplerenon (weniger Nebenwirkungen): Start <strong>25 mg/d</strong> → Ziel <strong>50 mg/d</strong><br>
+          <span class="pill pill-red">KI: K⁺ &gt;5,0 mmol/l, eGFR &lt;30, gleichzeitig ACE-I + ARB</span>
+        </div>
+      </div>
+      <div class="ind-row cls-i" style="flex-direction:column;align-items:flex-start">
+        <div style="display:flex;gap:10px;align-items:center;margin-bottom:.4rem">
+          <span class="badge esc-i">Klasse I</span>
+          <strong>④ SGLT2-Inhibitor: Dapagliflozin / Empagliflozin</strong>
+        </div>
+        <div class="ind-txt" style="padding-left:0">
+          Dapagliflozin: <strong>10 mg/d</strong> (DAPA-HF-Trial: -26% kardiovaskulärer Tod + HI-Hospitalisierung)<br>
+          Empagliflozin: <strong>10 mg/d</strong> (EMPEROR-Reduced-Trial)<br>
+          Kein Dosistitrieren nötig. Unabhängig von Diabetesstatus!<br>
+          <span class="pill pill-red">KI: Typ-1-Diabetes, eGFR &lt;20, rezidivierende Harnwegsinfekte/Mykosen</span><br>
+          <span class="pill pill-green">Vorteil: Renaler Schutz, Kardialer Nutzen auch bei eGFR 20–29!</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="sop-section">
+      <div class="sop-section-title">Titrations-Monitoring &amp; Therapieziele</div>
+      <div class="algo-box">
+        <div class="algo-box-title">Checkliste je Visite (alle 2–4 Wochen während Titration)</div>
+        <ol>
+          <li>RR systolisch: <strong>Ziel &gt;90 mmHg</strong>. Bei Hypotonie: ARNI/ACE-I zuerst reduzieren, dann Diuretikum.</li>
+          <li>HF im SR: <strong>Ziel ≤70/min</strong>. Bei HF &gt;70/min + LVEF &lt;35% trotz BB-Maximaldosis → <strong>Ivabradin (Procoralan) 2×5 mg → Ziel 2×7,5 mg</strong> ergänzen.</li>
+          <li>K⁺: <strong>Ziel 4,0–5,0 mmol/l</strong>. K⁺ &gt;5,0 → MRA pausieren. K⁺ &lt;3,5 → supplementieren (oral bevorzugt).</li>
+          <li>Kreatinin/eGFR: Kontrolle nach jeder Dosisänderung (2 Wochen). Kreatinin-Anstieg ≤30% = tolerierbar.</li>
+          <li>NT-proBNP: nach 3–6 Monaten. Abfall &gt;30% = gutes Therapieansprechen.</li>
+          <li><span class="algo-warn">Echo-Kontrolle nach 3–6 Monaten GDMT: LVEF verbessert? → Device-Indikation (ICD/CRT) neu prüfen! LVEF &gt;35% → ICD-Indikation entfällt!</span></li>
+        </ol>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════════
+     08 — VORHOFFLIMMERN
+     ════════════════════════════════════════════════ -->
+<div class="scard" data-cat="rhythmus">
+  <div class="scard-head" onclick="toggle(this)">
+    <span class="scard-num">08</span>
+    <div class="scard-icon" style="background:#f5f3ff">⚡</div>
+    <div class="scard-info">
+      <div class="scard-title">Vorhofflimmern — Antikoagulation &amp; Rhythmuskontrolle</div>
+      <div class="scard-badges">
+        <span class="badge purple">VHF · ESC 2020</span>
+        <span class="badge gray">CHA₂DS₂-VASc · HAS-BLED</span>
+        <span class="badge gray">PVI · EAST-AFNET 4</span>
+      </div>
+    </div>
+    <svg class="scard-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+  </div>
+  <div class="scard-inner">
+
+    <div class="sop-section">
+      <div class="sop-section-title">CHA₂DS₂-VASc-Score — Antikoagulationsindikation</div>
+      <div class="two-col">
+        <div class="score-box">
+          <div class="score-box-title">CHA₂DS₂-VASc</div>
+          <table>
+            <tr><td>Herzinsuffizienz / LVEF &lt;40% (C)</td><td>1</td></tr>
+            <tr><td>Hypertonie (H)</td><td>1</td></tr>
+            <tr><td>Alter ≥75 J. (A₂)</td><td><strong>2</strong></td></tr>
+            <tr><td>Diabetes mellitus (D)</td><td>1</td></tr>
+            <tr><td>Stroke / TIA / Embolie (S₂)</td><td><strong>2</strong></td></tr>
+            <tr><td>Vaskuläre Erkrankung (V)</td><td>1</td></tr>
+            <tr><td>Alter 65–74 J. (A)</td><td>1</td></tr>
+            <tr><td>Weibliches Geschlecht (Sc)</td><td>1</td></tr>
+          </table>
+        </div>
+        <div class="score-box">
+          <div class="score-box-title">OAK-Entscheid</div>
+          <table>
+            <tr><td>Männer ≥2 / Frauen ≥3</td><td><span class="pill pill-green">OAK Kl. I</span></td></tr>
+            <tr><td>Männer 1 / Frauen 2</td><td><span class="pill pill-gold">OAK IIa</span></td></tr>
+            <tr><td>Männer 0 / Frauen 1</td><td><span class="pill pill-red">Kein OAK</span></td></tr>
+          </table>
+          <div style="margin-top:.6rem;font-size:.78rem;color:var(--text2)">
+            <strong>DOAC bevorzugt</strong> (Apixaban, Rivaroxaban, Edoxaban, Dabigatran).<br>
+            <span class="pill pill-red">Ausnahmen: Mechanische Klappe + MS (rheumatisch) → Phenprocoumon zwingend! DOAC kontraindiziert!</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sop-section">
+      <div class="sop-section-title">HAS-BLED — Blutungsrisiko (kein Grund OAK abzusetzen!)</div>
+      <table class="crit-table">
+        <tr><td>H — Hypertonie (RR syst. &gt;160)</td><td class="val">1 Pkt</td></tr>
+        <tr><td>A — Abnorm. Nieren- oder Leberfunktion</td><td class="val">je 1 Pkt (max. 2)</td></tr>
+        <tr><td>S — Schlaganfall in Anamnese</td><td class="val">1 Pkt</td></tr>
+        <tr><td>B — Blutung (Anamnese / Prädisposition)</td><td class="val">1 Pkt</td></tr>
+        <tr><td>L — Labile INR (TTR &lt;60%, nur bei VKA)</td><td class="val">1 Pkt</td></tr>
+        <tr><td>E — Elderly (&gt;65 Jahre)</td><td class="val">1 Pkt</td></tr>
+        <tr><td>D — Drugs (Antikoagulanzien/NSAR, Alkohol)</td><td class="val">je 1 Pkt (max. 2)</td></tr>
+        <tr><td><strong>Score ≥3</strong></td><td class="val"><span class="pill pill-red">Hohes Blutungsrisiko</span> → <strong>kein Grund OAK abzusetzen!</strong> Stattdessen: korrigierbare Risikofaktoren beheben (RR &lt;140, NSAR absetzen, Alkohol reduzieren, INR stabilisieren).</td></tr>
+      </table>
+    </div>
+
+    <div class="sop-section">
+      <div class="sop-section-title">Frequenz- vs. Rhythmuskontrolle</div>
+      <div class="ind-row cls-i">
+        <div class="ind-cls"><span class="badge esc-i">Klasse I</span></div>
+        <div class="ind-txt"><strong>Frühe Rhythmuskontrolle (&lt;1 Jahr VHF-Dauer)</strong> + kardiovaskuläre Risikofaktoren → signifikante Reduktion kardiovaskulärer Ereignisse (EAST-AFNET 4-Trial 2020). Methode: <strong>ECV (elektrische Kardioversion) oder Antiarrhythmikum</strong> (Flecainid/Propafenon bei strukturell normalem Herz; Amiodaron bei HI/HFrEF; Dronedaron bei stabiler HFmrEF/HFpEF).</div>
+      </div>
+      <div class="ind-row cls-i">
+        <div class="ind-cls"><span class="badge esc-i">Klasse I</span></div>
+        <div class="ind-txt"><strong>Katheterablation (PVI, Pulmonalvenenisolation)</strong>: Nach Versagen ≥1 Antiarrhythmikum + symptomatisches VHF. Oder Erstlinien-Therapie bei paroxysmalem VHF auf Patientenwunsch. <strong>Bei HFrEF + VHF: PVI verbessert LVEF signifikant (CASTLE-AF-Trial).</strong></div>
+      </div>
+      <div class="ind-row cls-i">
+        <div class="ind-cls"><span class="badge esc-i">Klasse I</span></div>
+        <div class="ind-txt"><strong>Frequenzkontrolle</strong> (wenn Rhythmuskontrolle nicht möglich/gewünscht): Ziel-HF &lt;110/min in Ruhe. Betablocker (bei HFrEF first!) oder Calciumantagonisten (Verapamil/Diltiazem) bei HFpEF. <span class="pill pill-red">Verapamil/Diltiazem bei HFrEF: absolut kontraindiziert!</span></div>
+      </div>
+      <div class="tip-box">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
+        <span><strong>ECV-Antikoagulationsregel:</strong> VHF &gt;48h oder unbekannte Dauer → <strong>mind. 3 Wochen therapeutische OAK VOR ECV</strong> ODER TEE zum Thrombus-Ausschluss. Nach ECV: mind. <strong>4 Wochen OAK</strong> — unabhängig von CHA₂DS₂-VASc-Score (Betäubungsphänomen des LA). Cave: Ibutilid/Vernakalant zur pharmakologischen Kardioversion nur bei VHF &lt;48h ohne Herzinsuffizienz.</span>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════════
+     09 — AV-BLOCKIERUNGEN
+     ════════════════════════════════════════════════ -->
+<div class="scard" data-cat="rhythmus">
+  <div class="scard-head" onclick="toggle(this)">
+    <span class="scard-num">09</span>
+    <div class="scard-icon" style="background:#ecfeff">🔌</div>
+    <div class="scard-info">
+      <div class="scard-title">AV-Blockierungen Grad I – III</div>
+      <div class="scard-badges">
+        <span class="badge cyan">Bradykardie</span>
+        <span class="badge gray">Wenckebach · Mobitz II</span>
+        <span class="badge gray">Schrittmacher-Indikation ESC 2021</span>
+      </div>
+    </div>
+    <svg class="scard-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+  </div>
+  <div class="scard-inner">
+
+    <div class="sop-section">
+      <div class="sop-section-title">Klassifikation &amp; EKG-Kriterien</div>
+      <table class="crit-table">
+        <tr>
+          <td>AVB I°</td>
+          <td class="val"><strong>PQ-Intervall &gt;200 ms</strong>, jede P-Welle übergeleitet. Benigne. Kein Handlungsbedarf. Medikamentöse Ursachen ausschließen (Betablocker, Digitalis, Amiodaron, Verapamil).</td>
+        </tr>
+        <tr>
+          <td>AVB II° Typ I<br>(Wenckebach / Mobitz I)</td>
+          <td class="val">Progrediente PQ-Verlängerung → QRS-Ausfall → Reset. <strong>Nodaler Block (AV-Knoten).</strong> Oft benigne (v.a. bei Sportlern/nachts). Bei Inferiordinfarkt: RCA-Ischämie des AV-Knotens. Atropin wirkt! Meist selbstlimitierend.</td>
+        </tr>
+        <tr>
+          <td>AVB II° Typ II<br>(Mobitz II)</td>
+          <td class="val">Konstantes PQ-Intervall → plötzlicher QRS-Ausfall ohne Vorwarnung. Oft mit breitem QRS (LSB/RSB). <strong>Infranodaler Block (His/Tawara).</strong> Hohes Progressionsrisiko zu AVB III. <span class="pill pill-red">Permanenter SM obligat!</span> Atropin oft wirkungslos!</td>
+        </tr>
+        <tr>
+          <td>2:1-Block</td>
+          <td class="val">Nur jede 2. P-Welle übergeleitet. Typ I oder II nicht direkt aus Standard-EKG unterscheidbar! → Langer EKG-Streifen, Karotissinusdruck, HV-Intervall im His-Bündel-EKG.</td>
+        </tr>
+        <tr>
+          <td>AVB III°<br>(Kompletter AV-Block)</td>
+          <td class="val">Vollständige AV-Dissoziation. P-Wellen und QRS völlig unabhängig (Dissoziation). Escape-Rhythmus: <strong>Nodal</strong> (schmal, 40–60/min, relativ stabil) oder <strong>Ventrikulär</strong> (breit, 20–40/min, instabil → Synkope/Reanimationsrisiko). <span class="pill pill-red">Immer SM-Indikation!</span></td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="sop-section">
+      <div class="sop-section-title">Schrittmacher-Indikationen (ESC 2021)</div>
+      <div class="ind-row cls-i">
+        <div class="ind-cls"><span class="badge esc-i">Klasse I</span></div>
+        <div class="ind-txt"><strong>AVB III</strong> → Permanenter SM — unabhängig von Symptomen. Bei reversibler Ursache (akuter STEMI, Hyperkaliämie, Medikament) → erst Ursache behandeln, dann Re-Evaluation.</div>
+      </div>
+      <div class="ind-row cls-i">
+        <div class="ind-cls"><span class="badge esc-i">Klasse I</span></div>
+        <div class="ind-txt"><strong>AVB II° Typ II (Mobitz II)</strong> — mit oder ohne Symptome → Permanenter SM.</div>
+      </div>
+      <div class="ind-row cls-i">
+        <div class="ind-cls"><span class="badge esc-i">Klasse I</span></div>
+        <div class="ind-txt"><strong>Symptomatische Sinusknotendysfunktion</strong> (Schwindel, Synkope, Chronotrope Inkompetenz) → Permanenter SM (DDD bevorzugt, AAI-R bei isolierter Sinusknotendysfunktion ohne AV-Block).</div>
+      </div>
+      <div class="ind-row cls-iii">
+        <div class="ind-cls"><span class="badge esc-iii">Klasse III</span></div>
+        <div class="ind-txt"><strong>AVB I° ohne Symptome</strong> → kein SM. <strong>AVB II° Typ I (Wenckebach) ohne Symptome, tagsüber</strong> → kein SM. Bei Sportlern oft physiologisch (Vagotonus).</div>
+      </div>
+    </div>
+
+    <div class="sop-section">
+      <div class="sop-section-title">Notfallalgorithmus AVB II Typ II / AVB III</div>
+      <div class="algo-box">
+        <div class="algo-box-title">Sofortmaßnahmen</div>
+        <ol>
+          <li><span class="algo-step">EKG-Monitor</span> + i.v.-Zugang + O₂ + Atropin 0,5–1 mg i.v. (Max. 3 mg). Bei infranodalem Block: Atropin oft ineffektiv!</li>
+          <li><span class="algo-step">Adrenalin-Perfusor Überbrückung:</span> 1 mg in 49 ml NaCl → Start 2–10 µg/min titrieren nach HF.</li>
+          <li><span class="algo-step">Transkutaner Schrittmacher</span> (Elektroden sofort anlegen, Patient sedieren: Midazolam 2–5 mg i.v. + Analgesie). Frequenz 70/min, Energie bis Capture (meist 60–80 mA).</li>
+          <li><span class="algo-warn">Transvenöse temporäre SM-Sonde (V. subclavia / V. jug. int. → RV-Apex) unter Durchleuchtung oder Echo-Guidance. Sofort bei hämodynamischer Instabilität!</span></li>
+          <li>Permanenter SM nach Stabilisierung + Ausschluss reversibler Ursachen. SM-Typ: DDD-R bei AVB + intaktem Sinus. VVI-R bei VHF + AVB.</li>
+        </ol>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════════
+     10 — DEVICE-THERAPIE
+     ════════════════════════════════════════════════ -->
+<div class="scard" data-cat="device">
+  <div class="scard-head" onclick="toggle(this)">
+    <span class="scard-num">10</span>
+    <div class="scard-icon" style="background:#fff7ed">🔋</div>
+    <div class="scard-info">
+      <div class="scard-title">Device-Therapie — SM · ICD · CRT</div>
+      <div class="scard-badges">
+        <span class="badge orange">Device</span>
+        <span class="badge gray">ICD Primär-/Sekundärprävention</span>
+        <span class="badge gray">CRT: LSB · QRS ≥150 ms · LVEF ≤35%</span>
+      </div>
+    </div>
+    <svg class="scard-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+  </div>
+  <div class="scard-inner">
+
+    <div class="sop-section">
+      <div class="sop-section-title">ICD — Indikationen (ESC 2022)</div>
+      <div class="ind-row cls-i">
+        <div class="ind-cls"><span class="badge esc-i">Klasse I</span></div>
+        <div class="ind-txt"><strong>Sekundärprävention:</strong> Überlebter plötzlicher Herztod (VF/hämodynamisch instabile VT) + ELW &gt;1 J. + nicht-reversibler Auslöser → ICD-Implantation.</div>
+      </div>
+      <div class="ind-row cls-i">
+        <div class="ind-cls"><span class="badge esc-i">Klasse I</span></div>
+        <div class="ind-txt"><strong>Primärprävention KHK:</strong> LVEF ≤35% + Myokardinfarkt &gt;40 Tage zurück + optimale GDMT ≥3 Monate + NYHA II–III + ELW &gt;1 J. → ICD.</div>
+      </div>
+      <div class="ind-row cls-i">
+        <div class="ind-cls"><span class="badge esc-i">Klasse I</span></div>
+        <div class="ind-txt"><strong>Primärprävention nicht-ischämische DCM:</strong> LVEF ≤35% + optimale GDMT ≥3 Monate + NYHA II–III + ELW &gt;1 J. → ICD (DANISH-Trial: Gesamtmortalität nicht signifikant reduziert, aber SCD ↓; bei Jüngeren &lt;70 J. Vorteil stärker).</div>
+      </div>
+      <div class="ind-row cls-iii">
+        <div class="ind-cls"><span class="badge esc-iii">Klasse III</span></div>
+        <div class="ind-txt">ICD bei LVEF ≤35% <strong>innerhalb 40 Tage nach Myokardinfarkt</strong> — kein Nutzen (DINAMIT/IRIS). <strong>Abwarten! Re-Evaluation nach 3 Monaten GDMT + Echo obligat.</strong></div>
+      </div>
+      <div class="ind-row cls-iii">
+        <div class="ind-cls"><span class="badge esc-iii">Klasse III</span></div>
+        <div class="ind-txt">ICD bei NYHA IV ohne Transplantations-/VAD-Eignung — kein Nutzen, keine Entlassung aus Klinik zu erwarten. Palliative Ausrichtung besprechen.</div>
+      </div>
+    </div>
+
+    <div class="sop-section">
+      <div class="sop-section-title">CRT — Kardiale Resynchronisationstherapie (ESC HF 2021)</div>
+      <div class="ind-row cls-i">
+        <div class="ind-cls"><span class="badge esc-i">Klasse I</span></div>
+        <div class="ind-txt"><strong>HFrEF (LVEF ≤35%) + NYHA II–III + Linksschenkelblock (LSB) + QRS ≥150 ms + Sinusrhythmus</strong> → CRT-D (oder CRT-P bei hohem Alter / kein ICD-Nutzen). Stärkste Evidenz: LVEF-Verbesserung +10–15%, Mortalitätsreduktion.</div>
+      </div>
+      <div class="ind-row cls-iia">
+        <div class="ind-cls"><span class="badge esc-iia">Klasse IIa</span></div>
+        <div class="ind-txt">HFrEF (LVEF ≤35%) + LSB + QRS <strong>130–149 ms</strong> + Sinusrhythmus → CRT erwägen.</div>
+      </div>
+      <div class="ind-row cls-iia">
+        <div class="ind-cls"><span class="badge esc-iia">Klasse IIa</span></div>
+        <div class="ind-txt">HFrEF + <strong>Nicht-LSB</strong> + QRS ≥150 ms + Sinusrhythmus → CRT erwägen (schwächere Evidenz).</div>
+      </div>
+      <div class="ind-row cls-iia">
+        <div class="ind-cls"><span class="badge esc-iia">Klasse IIa</span></div>
+        <div class="ind-txt">HFrEF + Schrittmacher-Abhängigkeit (hohe RV-Stimulation) → Upgrade auf CRT-D/P erwägen (LVEF-Verschlechterung durch RV-Pacing).</div>
+      </div>
+      <div class="ind-row cls-iii">
+        <div class="ind-cls"><span class="badge esc-iii">Klasse III</span></div>
+        <div class="ind-txt">CRT bei <strong>QRS &lt;130 ms</strong> — kein Nutzen, potenziell schädlich (EchoCRT-Trial: Mortalität ↑). <strong>Absolute Kontraindikation!</strong></div>
+      </div>
+      <div class="tip-box">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
+        <span><strong>CRT-Non-Responder (ca. 30%):</strong> Optimierung AV-Delay + VV-Delay (Echo-gesteuert). Elektroden-Lage prüfen (posterolateral LV optimal, Narbengebiet vermeiden). GDMT maximal ausschöpfen. His-Bündel-Pacing / Left Bundle Branch Pacing (LBBP) als Alternative erwägen.</span>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════════
+     11 — pAVK
+     ════════════════════════════════════════════════ -->
+<div class="scard" data-cat="pavk">
+  <div class="scard-head" onclick="toggle(this)">
+    <span class="scard-num">11</span>
+    <div class="scard-icon" style="background:#fdf8ee">🦵</div>
+    <div class="scard-info">
+      <div class="scard-title">Periphere arterielle Verschlusskrankheit (pAVK)</div>
+      <div class="scard-badges">
+        <span class="badge gold">pAVK · ESC 2017/2024</span>
+        <span class="badge gray">Fontaine · Rutherford · ABI</span>
+        <span class="badge gray">Cross-over · PTA · Bypass</span>
+      </div>
+    </div>
+    <svg class="scard-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+  </div>
+  <div class="scard-inner">
+
+    <div class="sop-section">
+      <div class="sop-section-title">Stadieneinteilung Fontaine / Rutherford</div>
+      <table class="crit-table">
+        <tr><th>Fontaine</th><th>Rutherford</th><th>Klinik</th></tr>
+        <tr><td>I</td><td class="val">0 / 1</td><td class="val">Asymptomatisch / minimale Claudicatio</td></tr>
+        <tr><td>IIa</td><td class="val">2</td><td class="val">Claudicatio intermittens <strong>&gt;200 m</strong> Gehstrecke</td></tr>
+        <tr><td>IIb</td><td class="val">3</td><td class="val">Claudicatio <strong>&lt;200 m</strong> (schwere Claudicatio)</td></tr>
+        <tr><td>III</td><td class="val">4</td><td class="val"><strong>Ruheschmerz</strong> (besonders nachts, im Liegen) = Kritische Extremitätenischämie (CLI)</td></tr>
+        <tr><td>IV</td><td class="val">5 / 6</td><td class="val"><strong>Trophische Läsionen (5) / Gangrän (6)</strong> = CLI. Amputationsrisiko hoch!</td></tr>
+      </table>
+    </div>
+
+    <div class="sop-section">
+      <div class="sop-section-title">Diagnostik</div>
+      <table class="crit-table">
+        <tr><td>ABI (Knöchel-Arm-Index)</td><td class="val">Normal: 1,0–1,4. <strong>pAVK: &lt;0,9</strong>. CLI: &lt;0,4 oder Knöcheldruck &lt;50 mmHg / Zehendruck &lt;30 mmHg.</td></tr>
+        <tr><td>ABI &gt;1,4</td><td class="val">Mediasklerose (Diabetes, Niereninsuffizienz) → ABI falsch hoch! → <strong>Zehendruck-Messung (TBI) oder Duplexsonographie</strong> obligat.</td></tr>
+        <tr><td>Duplex-Sonographie</td><td class="val">Erstbildgebung. PSV-Ratio &gt;2,0 = Stenose &gt;50%. Lokalisation + Hämodynamik, kein Strahlenschutz.</td></tr>
+        <tr><td>CTA</td><td class="val">Präinterventionelle Gefäßdarstellung. Schnell, hochauflösend. Nachteil: Kontrastmittel + Strahlung, Kalk-Artefakte.</td></tr>
+        <tr><td>MRA</td><td class="val">Kein Jod-KM. Schlechter bei starker Verkalkung. Überschätzt gelegentlich Stenosegrad.</td></tr>
+        <tr><td>DSA</td><td class="val">Goldstandard. Simultane Therapie (PTA/Stent) möglich.</td></tr>
+      </table>
+    </div>
+
+    <div class="sop-section">
+      <div class="sop-section-title">Interventionsindikationen (ESC 2017)</div>
+      <div class="ind-row cls-i">
+        <div class="ind-cls"><span class="badge esc-i">Klasse I</span></div>
+        <div class="ind-txt"><strong>Alle Stadien — Basistherapie:</strong> Statin (LDL &lt;1,4 mmol/l + &gt;50% Reduktion), Clopidogrel 75 mg/d (CAPRIE: überlegen vs. ASS), antihypertensive Therapie (RR &lt;130/80), Nikotinabstinenz, strukturiertes Gehtraining (Fontaine IIa/IIb: gleichwertig zu PTA!).</div>
+      </div>
+      <div class="ind-row cls-i">
+        <div class="ind-cls"><span class="badge esc-i">Klasse I</span></div>
+        <div class="ind-txt"><strong>Fontaine IIb:</strong> Revaskularisation wenn Lebensqualität trotz Gehtraining + GDMT eingeschränkt + anatomisch geeignet (TASC-II A/B: endovaskulär bevorzugt).</div>
+      </div>
+      <div class="ind-row cls-i">
+        <div class="ind-cls"><span class="badge esc-i">Klasse I</span></div>
+        <div class="ind-txt"><strong>Fontaine III–IV (CLI):</strong> Sofortige Revaskularisation (endovaskulär oder offen) zur Extremitätenerhaltung. Stationäre Aufnahme + Schmerztherapie + Wundmanagement parallel.</div>
+      </div>
+    </div>
+
+    <div class="sop-section">
+      <div class="sop-section-title">Zugangswege &amp; Techniken</div>
+      <table class="crit-table">
+        <tr>
+          <td>Ipsilateral antegrad</td>
+          <td class="val">Perkutaner Zugang: A. femoralis communis ipsilateral (Punktion in Leistenbeuge), antegrade Richtung. Standard für PTA/Stent der Femoralis-/Poplitea-Etage. Direkter Kraftschluss, kein Übersteigen der Bifurkation.</td>
+        </tr>
+        <tr>
+          <td>Cross-over kontralateral</td>
+          <td class="val">Punktion A. femoralis communis kontralateral → langer Katheter über Aortenbifurkation ("Kissing") → ipsilaterale Iliakal-/Oberschenkelgefäße. Standard bei <strong>Iliakal-Intervention</strong>, Adipositas, schlechter Zugangssituation ipsilateral. Zugang: Seldinger-Technik + 45-cm-Introducer-Schleuse.</td>
+        </tr>
+        <tr>
+          <td>Retrograd popliteal / pedal</td>
+          <td class="val">A. poplitea (kniend, 3. Segment) oder A. dorsalis pedis / A. tibialis posterior retrograd punktiert. Für lange Femoralis-Okklusionen bei frustraner antegradem Versuch. Kombination mit antergradem Zugang ("SAFARI-Technik").</td>
+        </tr>
+        <tr>
+          <td>Femoro-poplitealer Bypass</td>
+          <td class="val">Chirurgisch: V. saphena magna (VSM) über/unterhalb Knie. <strong>VSM = Methode der Wahl</strong> besonders unterhalb der Kniegelenkslinie (Offenheitsrate &gt;PTFE/Dacron). PTFE oberhalb Knie akzeptabel. No-touch VSM-Entnahme verbessert Offenheitsrate.</td>
+        </tr>
+        <tr>
+          <td>Femoro-cruraler Bypass</td>
+          <td class="val">Bei CLI ohne endovaskuläre Option: VSM auf A. tibialis anterior/posterior oder A. fibularis. Herausforderung: langer Graft, hohe Anforderung an Anastomosenqualität.</td>
+        </tr>
+        <tr>
+          <td>Hybrideingriff</td>
+          <td class="val">PTA der Iliakalstrombahn + chirurgische Endarterektomie der A. femoralis communis in einer Sitzung. Sinnvoll bei mehreren Etagen-Erkrankung.</td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="sop-section">
+      <div class="sop-section-title">Medikamentöse Therapie — pAVK-Standard</div>
+      <div class="algo-box">
+        <div class="algo-box-title">Basistherapie (alle Stadien, alle Patienten)</div>
+        <ol>
+          <li><strong>Statin:</strong> Atorvastatin 40–80 mg/d. Ziel LDL &lt;1,4 mmol/l UND &gt;50% LDL-Senkung.</li>
+          <li><strong>TAH:</strong> Clopidogrel 75 mg/d (<span class="algo-ok">CAPRIE: Clopidogrel bei pAVK gegenüber ASS bevorzugt</span>) oder ASS 100 mg/d.</li>
+          <li><strong>Rivaroxaban 2×2,5 mg + ASS 100 mg:</strong> Bei Patienten mit hohem ischämischem Risiko + niedriges Blutungsrisiko (COMPASS-Trial: MACE -28%). Cave: HAS-BLED &gt;3!</li>
+          <li><strong>RR &lt;130/80 mmHg:</strong> ACE-I/ARNI bevorzugt (Ramipril: HOPE-Trial, Reduktion kardiovaskulärer Ereignisse bei pAVK). <span class="algo-warn">Betablocker bei pAVK nicht kontraindiziert (Mythos!) — bei HFrEF/KHK weiter geben!</span></li>
+          <li><strong>Nikotinabstinenz:</strong> Stärkste Einzelmaßnahme zur Progressionshemmung. Vareniclin + NRT kombinieren. Verlauf: jede Visite ansprechen!</li>
+          <li><strong>Strukturiertes Gehtraining (Fontaine I–IIb):</strong> Mind. 3×/Woche, 30–45 min, supervisioniert. Gleichwertig zu PTA bei Claudicatio (CLEVER-Trial)!</li>
+        </ol>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- NO RESULTS -->
+<div class="no-results" id="no-results">
+  <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg><br>
+  Kein Thema in dieser Kategorie.
+</div>
+
+</div><!-- /sop-list -->
+
+<footer>
+  <span>OUSS Kardiologie · SOPs · DGK / ESC Leitlinien 2021–2024</span>
+  <strong>Klinisches Hilfsmittel — kein Ersatz für ärztliches Urteil · Validierung durch FA obligat</strong>
+</footer>
+
+<script>
+/* ACCORDION */
+function toggle(head) {
+  head.parentElement.classList.toggle('open');
+}
+
+/* FILTER */
+document.querySelectorAll('.chip').forEach(function(chip) {
+  chip.addEventListener('click', function() {
+    document.querySelectorAll('.chip').forEach(function(c){ c.classList.remove('active'); });
+    chip.classList.add('active');
+    var cat = chip.dataset.cat;
+    var cards = document.querySelectorAll('.scard');
+    var n = 0;
+    cards.forEach(function(card) {
+      var show = cat === 'all' || card.dataset.cat === cat;
+      card.style.display = show ? '' : 'none';
+      if (show) n++;
+    });
+    document.getElementById('no-results').style.display = n === 0 ? 'block' : 'none';
+  });
+});
+
+/* Auto-open first */
+var first = document.querySelector('.scard');
+if (first) first.classList.add('open');
+</script>
+</body>
+</html>
