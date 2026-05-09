@@ -29,9 +29,19 @@ body{font-family:var(--sans);background:var(--bg);color:var(--text);font-size:15
 .page-header h1 em{font-style:italic;color:var(--navy)}
 .page-header p{color:var(--text2);margin-top:.6rem;font-size:.92rem;line-height:1.8;max-width:760px}
 
-/* FILTER BAR */
-.filter-wrap{display:flex;flex-wrap:wrap;gap:6px;padding:.85rem 2.5rem;border-bottom:1px solid var(--border);background:var(--bg);position:sticky;top:56px;z-index:190;backdrop-filter:blur(12px)}
-.chip{padding:5px 13px;border-radius:20px;border:1.5px solid var(--border);background:var(--surface);color:var(--text2);font-size:.78rem;font-weight:600;cursor:pointer;transition:all .15s;letter-spacing:.03em}
+/* SEARCH BAR */
+.search-wrap{position:sticky;top:56px;z-index:195;background:rgba(255,255,255,.97);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:.7rem 2.5rem;display:flex;align-items:center;gap:10px}
+.search-icon{color:var(--text3);flex-shrink:0}
+#search{flex:1;border:none;outline:none;font-family:var(--sans);font-size:.95rem;background:transparent;color:var(--text);caret-color:var(--navy);-webkit-appearance:none}
+#search::placeholder{color:var(--text3)}
+.search-clear{display:none;background:var(--surface2);border:none;cursor:pointer;width:24px;height:24px;border-radius:50%;color:var(--text2);font-size:.9rem;line-height:24px;text-align:center;transition:background .15s;flex-shrink:0}
+.search-clear:hover{background:var(--border)}
+.search-count{font-size:.73rem;color:var(--text3);white-space:nowrap;font-weight:700;letter-spacing:.05em}
+mark{background:#fef08a;border-radius:2px;padding:0 1px}
+
+/* FILTER BAR — below search */
+.filter-wrap{display:flex;flex-wrap:wrap;gap:6px;padding:.75rem 2.5rem;border-bottom:1px solid var(--border);background:var(--bg);position:sticky;top:106px;z-index:190;backdrop-filter:blur(12px);-webkit-overflow-scrolling:touch}
+.chip{padding:5px 13px;border-radius:20px;border:1.5px solid var(--border);background:var(--surface);color:var(--text2);font-size:.78rem;font-weight:600;cursor:pointer;transition:all .15s;letter-spacing:.03em;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
 .chip:hover{background:var(--surface2);color:var(--text)}
 .chip.active{background:var(--navy);color:#fff;border-color:var(--navy)}
 .chip[data-cat="hi"].active{background:#2563eb;border-color:#2563eb}
@@ -43,10 +53,10 @@ body{font-family:var(--sans);background:var(--bg);color:var(--text);font-size:15
 .chip[data-cat="komplikation"].active{background:var(--orange);border-color:var(--orange)}
 
 /* LAYOUT */
-.page-wrap{display:grid;grid-template-columns:260px 1fr;min-height:calc(100vh - 130px)}
+.page-wrap{display:grid;grid-template-columns:260px 1fr;min-height:calc(100vh - 170px)}
 
 /* TOC SIDEBAR */
-.toc-sidebar{border-right:1px solid var(--border);padding:1.5rem 1.2rem 3rem;position:sticky;top:112px;height:calc(100vh - 112px);overflow-y:auto;background:var(--surface)}
+.toc-sidebar{border-right:1px solid var(--border);padding:1.5rem 1.2rem 3rem;position:sticky;top:160px;height:calc(100vh - 160px);overflow-y:auto;background:var(--surface)}
 .toc-title{font-size:.62rem;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:var(--text3);margin-bottom:.9rem;padding-bottom:.5rem;border-bottom:1px solid var(--border)}
 .toc-group{margin-bottom:1rem}
 .toc-group-label{font-size:.63rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--text3);margin-bottom:.35rem;margin-top:.6rem}
@@ -57,13 +67,14 @@ body{font-family:var(--sans);background:var(--bg);color:var(--text);font-size:15
 .toc-link:hover .toc-num,.toc-link.active-toc .toc-num{color:inherit;opacity:.7}
 
 /* MAIN CONTENT */
-.main-content{padding:1.5rem 2.5rem 4rem}
+.main-content{padding:1.5rem 2.5rem 4rem;min-width:0}
 
 /* DISEASE CARDS */
-.dcard{border:1px solid var(--border);border-radius:12px;background:var(--bg);overflow:hidden;transition:box-shadow .2s;margin-bottom:12px;scroll-margin-top:130px}
+.dcard{border:1px solid var(--border);border-radius:12px;background:var(--bg);overflow:hidden;transition:box-shadow .2s;margin-bottom:12px;scroll-margin-top:170px}
 .dcard:hover{box-shadow:var(--sh-md)}
-.dcard-head{display:flex;align-items:flex-start;gap:14px;padding:1rem 1.2rem;cursor:pointer;user-select:none;transition:background .15s}
+.dcard-head{display:flex;align-items:flex-start;gap:14px;padding:1rem 1.2rem;cursor:pointer;user-select:none;transition:background .15s;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
 .dcard-head:hover{background:var(--surface)}
+.dcard-head:active{background:var(--surface2)}
 .dcard-num{font-family:var(--serif);font-size:1.35rem;font-weight:300;color:var(--text3);min-width:32px;flex-shrink:0;padding-top:2px}
 .dcard-icon{width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.15rem;flex-shrink:0}
 .dcard-info{flex:1;min-width:0}
@@ -118,7 +129,7 @@ body{font-family:var(--sans);background:var(--bg);color:var(--text);font-size:15
 .template-wrap{position:relative}
 .template-label{font-size:.62rem;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:var(--text3);margin-bottom:.5rem;display:flex;align-items:center;justify-content:space-between;gap:8px}
 .template-label::before{content:'📋 ARZTBRIEF-VORLAGE';flex:1}
-.copy-btn{font-size:.7rem;font-weight:700;padding:3px 10px;border-radius:5px;border:1px solid var(--border);background:var(--bg);color:var(--text3);cursor:pointer;transition:all .15s;white-space:nowrap}
+.copy-btn{font-size:.7rem;font-weight:700;padding:6px 12px;border-radius:5px;border:1px solid var(--border);background:var(--bg);color:var(--text3);cursor:pointer;transition:all .15s;white-space:nowrap;-webkit-tap-highlight-color:transparent;touch-action:manipulation;min-height:36px}
 .copy-btn:hover{background:var(--navy);color:#fff;border-color:var(--navy)}
 .copy-btn.copied{background:var(--green);color:#fff;border-color:var(--green)}
 .template-box{background:#f8fffe;border:1.5px solid var(--teal);border-radius:9px;padding:1rem 1.1rem;font-size:.83rem;line-height:2;color:var(--text);font-family:var(--sans)}
@@ -140,9 +151,58 @@ body{font-family:var(--sans);background:var(--bg);color:var(--text);font-size:15
 footer{padding:1.6rem 2.5rem;display:flex;align-items:center;justify-content:space-between;border-top:1px solid var(--border);font-size:.78rem;color:var(--text3)}
 footer strong{color:var(--navy);font-weight:600}
 
-@media(max-width:1024px){.page-wrap{grid-template-columns:1fr}.toc-sidebar{display:none}}
-@media(max-width:860px){.nav-links,.nav-badge{display:none}}
-@media(max-width:600px){.topnav{padding:0 1rem}.page-header,.filter-wrap,.main-content{padding-left:1rem;padding-right:1rem}footer{flex-direction:column;gap:.5rem;text-align:center}}
+/* ── RESPONSIVE ── */
+@media(max-width:1024px){
+  .page-wrap{grid-template-columns:1fr}
+  .toc-sidebar{display:none}
+}
+@media(max-width:860px){
+  .nav-links,.nav-badge{display:none}
+}
+/* TABLET */
+@media(max-width:768px){
+  .filter-wrap{overflow-x:auto;flex-wrap:nowrap;padding:.65rem 1rem;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+  .filter-wrap::-webkit-scrollbar{display:none}
+  .chip{flex-shrink:0;font-size:.75rem;padding:5px 11px}
+  .search-wrap{padding:.65rem 1rem}
+  .main-content{padding:1rem 1rem 3rem}
+  .dcard-head{padding:.85rem 1rem}
+  .inner-section{padding:.85rem 1rem}
+}
+/* MOBILE */
+@media(max-width:600px){
+  .topnav{padding:0 1rem;height:52px}
+  .brand{font-size:1.05rem}
+  .page-header{padding:1.4rem 1rem 1.2rem}
+  .page-header h1{font-size:clamp(1.6rem,7vw,2.2rem)}
+  .page-header p{font-size:.85rem}
+  .search-wrap{top:52px;padding:.6rem 1rem;gap:8px}
+  #search{font-size:.88rem}
+  .filter-wrap{top:102px;padding:.6rem 1rem}
+  .dcard{border-radius:10px;margin-bottom:9px;scroll-margin-top:155px}
+  .dcard-head{padding:.8rem 1rem;gap:10px}
+  .dcard-num{font-size:1.1rem;min-width:24px}
+  .dcard-icon{width:34px;height:34px;font-size:1rem}
+  .dcard-title{font-size:1rem}
+  .dcard-subtitle{font-size:.75rem}
+  .dcard-badges{gap:4px}
+  .badge{font-size:.62rem;padding:2px 6px}
+  .inner-section{padding:.75rem .9rem}
+  .mental-box{font-size:.8rem;padding:.75rem .85rem}
+  .insider-hack{font-size:.79rem;padding:.75rem .85rem}
+  .template-box{font-size:.79rem;line-height:1.85;padding:.85rem .9rem}
+  .vwd-chip{font-size:.7rem;padding:3px 8px}
+  .copy-btn{font-size:.7rem;padding:7px 12px;min-height:38px}
+  .main-content{padding:.9rem .9rem 3rem}
+  footer{padding:1.2rem 1rem;flex-direction:column;gap:.5rem;text-align:center}
+  .section-label{font-size:.58rem}
+}
+/* VERY SMALL PHONES */
+@media(max-width:380px){
+  .dcard-title{font-size:.92rem}
+  .mental-box{font-size:.77rem}
+  .template-box{font-size:.76rem}
+}
 </style>
 </head>
 <body>
@@ -168,15 +228,21 @@ footer strong{color:var(--navy);font-weight:600}
   <p>30 fertige Epikrise-Vorlagen für alle häufigen kardiologischen Krankheitsbilder. Mit Insider-Mentalität, Kodierungs-Hacks und Copy-Paste-Funktion. Der Hausarzt liest nur die Epikrise — mach sie kurz, präzise und professionell.</p>
 </div>
 
+<div class="search-wrap">
+  <svg class="search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+  <input id="search" type="search" placeholder="Suche: NSTEMI, Furosemid, MDK, Epikrise…" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" inputmode="search">
+  <button class="search-clear" id="search-clear" onclick="clearSearch()" title="Löschen" aria-label="Suche löschen">✕</button>
+  <span class="search-count" id="search-count"></span>
+</div>
+
 <div class="filter-wrap">
-  <button class="chip active" data-cat="all">Alle (30)</button>
+  <button class="chip active" data-cat="all">Alle</button>
   <button class="chip" data-cat="hi">💧 Herzinsuffizienz</button>
   <button class="chip" data-cat="aks">❤️ ACS / KHK</button>
   <button class="chip" data-cat="rhythmus">〰️ Rhythmus</button>
   <button class="chip" data-cat="klappe">🔬 Klappen / Aorta</button>
-  <button class="chip" data-cat="speziell">🧬 Speziell</button>
   <button class="chip" data-cat="device">🔋 Devices</button>
-  <button class="chip" data-cat="komplikation">⚠️ Komplikationen</button>
+  <button class="chip" data-cat="komplikation">⚠️ Komplikation</button>
 </div>
 
 <div class="page-wrap">
@@ -1661,64 +1727,101 @@ footer strong{color:var(--navy);font-weight:600}
 </footer>
 
 <script>
-// ACCORDION
+// ── STATE ─────────────────────────────────────────────────────────────────────
+var currentCat = 'all';
+var searchEl   = document.getElementById('search');
+var clearBtn   = document.getElementById('search-clear');
+var countEl    = document.getElementById('search-count');
+var noRes      = document.getElementById('no-results');
+
+// ── ACCORDION ─────────────────────────────────────────────────────────────────
 function toggle(h){ h.parentElement.classList.toggle('open'); }
 
-// FILTER CHIPS
+// ── SEARCH ────────────────────────────────────────────────────────────────────
+searchEl.addEventListener('input', applyFilters);
+
+function clearSearch(){
+  searchEl.value = '';
+  applyFilters();
+  searchEl.focus();
+}
+
+function applyFilters(){
+  var q = searchEl.value.trim().toLowerCase();
+  clearBtn.style.display = q ? 'block' : 'none';
+
+  var cards   = document.querySelectorAll('.dcard');
+  var visible = 0;
+
+  cards.forEach(function(card){
+    var catMatch  = currentCat === 'all' || card.dataset.cat === currentCat;
+    var bodyText  = card.textContent.toLowerCase();
+    var qMatch    = !q || bodyText.includes(q);
+    var show      = catMatch && qMatch;
+    card.style.display = show ? '' : 'none';
+    if(show) visible++;
+  });
+
+  countEl.textContent = (q || currentCat !== 'all') ? visible + ' Vorlagen' : '';
+  if(noRes) noRes.style.display = visible === 0 ? 'block' : 'none';
+}
+
+// ── FILTER CHIPS ──────────────────────────────────────────────────────────────
 document.querySelectorAll('.chip').forEach(function(c){
   c.addEventListener('click', function(){
     document.querySelectorAll('.chip').forEach(function(x){ x.classList.remove('active'); });
     c.classList.add('active');
-    var cat = c.dataset.cat, n = 0;
-    document.querySelectorAll('.dcard').forEach(function(s){
-      var show = cat === 'all' || s.dataset.cat === cat;
-      s.style.display = show ? '' : 'none';
-      if(show) n++;
-    });
-    document.getElementById('no-results').style.display = n === 0 ? 'block' : 'none';
+    currentCat = c.dataset.cat;
+    applyFilters();
   });
 });
 
-// COPY TEMPLATE
+// ── COPY TEMPLATE ─────────────────────────────────────────────────────────────
 function copyTemplate(btn){
-  var box = btn.closest('.template-wrap').querySelector('.template-box');
+  var box  = btn.closest('.template-wrap').querySelector('.template-box');
   var text = box.innerText.trim();
-  navigator.clipboard.writeText(text).then(function(){
-    btn.classList.add('copied');
-    btn.textContent = '✓ Kopiert!';
-    setTimeout(function(){
-      btn.classList.remove('copied');
-      btn.textContent = 'Kopieren';
-    }, 2500);
-  }).catch(function(){
+  var doFallback = function(){
     var ta = document.createElement('textarea');
     ta.value = text;
+    ta.style.position = 'fixed';
+    ta.style.opacity  = '0';
     document.body.appendChild(ta);
+    ta.focus();
     ta.select();
-    document.execCommand('copy');
+    try{ document.execCommand('copy'); } catch(e){}
     document.body.removeChild(ta);
-    btn.classList.add('copied');
-    btn.textContent = '✓ Kopiert!';
-    setTimeout(function(){ btn.classList.remove('copied'); btn.textContent = 'Kopieren'; }, 2500);
-  });
+    flashCopied(btn);
+  };
+  if(navigator.clipboard && window.isSecureContext){
+    navigator.clipboard.writeText(text).then(function(){ flashCopied(btn); }).catch(doFallback);
+  } else {
+    doFallback();
+  }
+}
+function flashCopied(btn){
+  btn.classList.add('copied');
+  btn.textContent = '✓ Kopiert!';
+  setTimeout(function(){
+    btn.classList.remove('copied');
+    btn.textContent = 'Kopieren';
+  }, 2500);
 }
 
-// TOC ACTIVE LINK on scroll
-var cards = document.querySelectorAll('.dcard[id]');
+// ── TOC ACTIVE ON SCROLL ──────────────────────────────────────────────────────
+var dcards   = document.querySelectorAll('.dcard[id]');
 var tocLinks = document.querySelectorAll('.toc-link');
 window.addEventListener('scroll', function(){
-  var scrollY = window.scrollY + 150;
+  var scrollY = window.scrollY + 180;
   var current = '';
-  cards.forEach(function(card){
+  dcards.forEach(function(card){
     if(card.offsetTop <= scrollY){ current = card.id; }
   });
   tocLinks.forEach(function(link){
-    link.classList.remove('active-toc');
-    if(link.getAttribute('href') === '#' + current){ link.classList.add('active-toc'); }
+    link.classList.toggle('active-toc', link.getAttribute('href') === '#' + current);
   });
 }, {passive: true});
 
-// Open first card by default
+// ── OPEN FIRST CARD ───────────────────────────────────────────────────────────
 var first = document.querySelector('.dcard');
 if(first) first.classList.add('open');
 </script>
