@@ -485,6 +485,7 @@ footer strong { color: var(--red); font-weight: 600; }
     <a href="echo/index.html">📡 Echo</a>
     <a href="ekg/index.html">📈 EKG</a>
     <a href="notfall_erweitert.html" style="color:var(--red);font-weight:600">🚨 Notfall</a>
+    <a href="arztbrief_hub.html" style="color:var(--navy);font-weight:600">📝 Arztbrief</a>
   </div>
   <div class="spacer"></div>
   <span class="nav-badge">Weiterbildung DE</span>
@@ -505,6 +506,7 @@ footer strong { color: var(--red); font-weight: 600; }
   <a href="doppler/index.html" onclick="mobClose()" style="display:flex;align-items:center;gap:12px;padding:13px 1.3rem;font-size:15px;font-weight:500;color:var(--text);text-decoration:none;border-bottom:1px solid var(--border);min-height:50px">🔊 Doppler Guide</a>
   <a href="notes/index.html" onclick="mobClose()" style="display:flex;align-items:center;gap:12px;padding:13px 1.3rem;font-size:15px;font-weight:500;color:var(--text);text-decoration:none;border-bottom:1px solid var(--border);min-height:50px">✏️ Meine Notizen</a>
   <a href="notfall.html" onclick="mobClose()" style="display:flex;align-items:center;gap:12px;padding:13px 1.3rem;font-size:15px;font-weight:600;color:var(--red);text-decoration:none;border-bottom:1px solid var(--border);min-height:50px">🚨 Notfallmedikamente</a>
+  <a href="arztbrief_hub.html" onclick="mobClose()" style="display:flex;align-items:center;gap:12px;padding:13px 1.3rem;font-size:15px;font-weight:600;color:var(--navy);text-decoration:none;border-bottom:1px solid var(--border);min-height:50px">📝 Arztbrief-Hub</a>
   <a href="#leitlinien" onclick="mobClose()" style="display:flex;align-items:center;gap:12px;padding:13px 1.3rem;font-size:15px;font-weight:500;color:var(--text);text-decoration:none;border-bottom:1px solid var(--border);min-height:50px">📖 Leitlinien</a>
 </div>
 <script>
@@ -570,6 +572,7 @@ window.addEventListener('resize',function(){if(window.innerWidth>860)mobClose();
     <a href="notes/index.html"         class="hbtn hbtn-gold">✏️ Notizen</a>
     <a href="kardiologie_sop.html"     class="hbtn hbtn-sop">📋 Kardio-SOPs</a>
     <a href="kardiometabolik.html"     class="hbtn hbtn-teal">🩺 Kardiometabolik</a>
+    <a href="arztbrief_hub.html"       class="hbtn hbtn-navy">📝 Arztbrief-Hub</a>
   </div>
 </section>
 
@@ -578,7 +581,7 @@ window.addEventListener('resize',function(){if(window.innerWidth>860)mobClose();
   <div class="section-lbl">Überblick</div>
   <div class="stats-grid">
     <div class="stat-card">
-      <span class="stat-val r">9</span>
+      <span class="stat-val r">10</span>
       <span class="stat-lbl">Module</span>
     </div>
     <div class="stat-card">
@@ -609,7 +612,7 @@ window.addEventListener('resize',function(){if(window.innerWidth>860)mobClose();
 <div class="section" id="module">
   <div class="section-head reveal">
     <h2>Klinische <em>Module</em></h2>
-    <span style="font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--text3)">9 Module</span>
+    <span style="font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--text3)">10 Module</span>
   </div>
   <div class="cards-grid">
 
@@ -627,6 +630,25 @@ window.addEventListener('resize',function(){if(window.innerWidth>860)mobClose();
         <span class="tag red">22 Szenarien</span>
         <span class="tag gray">ZNA · Station</span>
         <span class="tag red">Notfall</span>
+      </div>
+    </a>
+
+    <!-- Arztbrief-Hub -->
+    <a href="arztbrief_hub.html" id="card-arztbrief" class="kcard c-navy reveal" style="animation-delay:.04s; border: 1.5px solid #c4ccdf;">
+      <div class="kcard-icon" style="background:#f0f2f8">
+        <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+          <rect x="3" y="2" width="13" height="18" rx="2" stroke="var(--navy)" stroke-width="1.4" fill="none"/>
+          <path d="M6 6h7M6 9.5h7M6 13h5M6 16h3" stroke="var(--navy)" stroke-width="1.1" stroke-linecap="round"/>
+          <circle cx="17" cy="17" r="4" fill="var(--navy)"/>
+          <path d="M15.5 17h3M17 15.5v3" stroke="#fff" stroke-width="1.3" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <h3 class="kcard-title">Arztbrief-Hub</h3>
+      <p class="kcard-desc">Strukturierte Arztbriefe für Kardiologie &amp; Innere Medizin — Vorlagen, Formulierungen und klinische Freitextbausteine für Visite und Entlassung.</p>
+      <div class="kcard-tags">
+        <span class="tag navy">Entlassbrief</span>
+        <span class="tag gray">Vorlagen</span>
+        <span class="tag navy">Kardiologie</span>
       </div>
     </a>
 

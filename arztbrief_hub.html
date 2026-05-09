@@ -1,0 +1,1726 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Arztbrief-Hub — OUSS Kardiologie</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#ffffff;--surface:#f7f5f2;--surface2:#eeecea;--border:#e5e2de;--text:#1a1410;--text2:#6b6460;--text3:#a09890;--red:#c8303a;--gold:#9a7430;--navy:#0f1528;--blue:#2563eb;--green:#0f7b5a;--purple:#7c3aed;--orange:#ea580c;--teal:#0d9488;--serif:'Cormorant Garamond',Georgia,serif;--sans:'DM Sans',system-ui,sans-serif;--sh:0 2px 8px rgba(0,0,0,.06);--sh-md:0 6px 24px rgba(0,0,0,.09)}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);background:var(--bg);color:var(--text);font-size:15px;line-height:1.7;overflow-x:hidden}
+
+.topnav{position:sticky;top:0;z-index:200;height:56px;background:rgba(255,255,255,.97);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);display:flex;align-items:center;padding:0 2.5rem;gap:6px}
+.brand{font-family:var(--serif);font-size:1.2rem;font-weight:400;color:var(--text);text-decoration:none;display:flex;align-items:center;gap:.5rem;white-space:nowrap;flex-shrink:0}
+.brand-heart{animation:hb 1.6s ease-in-out infinite;display:inline-block}
+@keyframes hb{0%,100%{transform:scale(1)}14%{transform:scale(1.2)}28%{transform:scale(1)}42%{transform:scale(1.1)}56%{transform:scale(1)}}
+.nav-links{display:flex;gap:2px;margin-left:.5rem}
+.nav-links a{padding:7px 12px;border-radius:7px;text-decoration:none;color:var(--text2);font-size:.88rem;font-weight:500;transition:background .15s,color .15s}
+.nav-links a:hover{background:var(--surface);color:var(--text)}
+.nav-links a.active{background:#f0fdf8;color:var(--green)}
+.spacer{flex:1}
+.nav-badge{font-size:.78rem;font-weight:600;padding:7px 14px;background:var(--navy);color:#fff;border-radius:7px;white-space:nowrap}
+
+.page-header{border-bottom:1px solid var(--border);padding:2rem 2.5rem 1.8rem;background:var(--surface)}
+.page-eyebrow{font-size:.68rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--navy);margin-bottom:.7rem}
+.page-header h1{font-family:var(--serif);font-size:clamp(2rem,4vw,3.2rem);font-weight:300;line-height:1.15}
+.page-header h1 em{font-style:italic;color:var(--navy)}
+.page-header p{color:var(--text2);margin-top:.6rem;font-size:.92rem;line-height:1.8;max-width:760px}
+
+/* FILTER BAR */
+.filter-wrap{display:flex;flex-wrap:wrap;gap:6px;padding:.85rem 2.5rem;border-bottom:1px solid var(--border);background:var(--bg);position:sticky;top:56px;z-index:190;backdrop-filter:blur(12px)}
+.chip{padding:5px 13px;border-radius:20px;border:1.5px solid var(--border);background:var(--surface);color:var(--text2);font-size:.78rem;font-weight:600;cursor:pointer;transition:all .15s;letter-spacing:.03em}
+.chip:hover{background:var(--surface2);color:var(--text)}
+.chip.active{background:var(--navy);color:#fff;border-color:var(--navy)}
+.chip[data-cat="hi"].active{background:#2563eb;border-color:#2563eb}
+.chip[data-cat="aks"].active{background:var(--red);border-color:var(--red)}
+.chip[data-cat="rhythmus"].active{background:var(--purple);border-color:var(--purple)}
+.chip[data-cat="klappe"].active{background:var(--gold);border-color:var(--gold)}
+.chip[data-cat="speziell"].active{background:var(--teal);border-color:var(--teal)}
+.chip[data-cat="device"].active{background:var(--green);border-color:var(--green)}
+.chip[data-cat="komplikation"].active{background:var(--orange);border-color:var(--orange)}
+
+/* LAYOUT */
+.page-wrap{display:grid;grid-template-columns:260px 1fr;min-height:calc(100vh - 130px)}
+
+/* TOC SIDEBAR */
+.toc-sidebar{border-right:1px solid var(--border);padding:1.5rem 1.2rem 3rem;position:sticky;top:112px;height:calc(100vh - 112px);overflow-y:auto;background:var(--surface)}
+.toc-title{font-size:.62rem;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:var(--text3);margin-bottom:.9rem;padding-bottom:.5rem;border-bottom:1px solid var(--border)}
+.toc-group{margin-bottom:1rem}
+.toc-group-label{font-size:.63rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--text3);margin-bottom:.35rem;margin-top:.6rem}
+.toc-link{display:flex;align-items:center;gap:7px;padding:.3rem .5rem;border-radius:6px;text-decoration:none;color:var(--text2);font-size:.8rem;font-weight:500;transition:background .12s,color .12s;line-height:1.4}
+.toc-link:hover{background:var(--surface2);color:var(--text)}
+.toc-link.active-toc{background:var(--navy);color:#fff}
+.toc-link .toc-num{font-size:.68rem;font-weight:700;color:var(--text3);min-width:18px;font-family:var(--serif)}
+.toc-link:hover .toc-num,.toc-link.active-toc .toc-num{color:inherit;opacity:.7}
+
+/* MAIN CONTENT */
+.main-content{padding:1.5rem 2.5rem 4rem}
+
+/* DISEASE CARDS */
+.dcard{border:1px solid var(--border);border-radius:12px;background:var(--bg);overflow:hidden;transition:box-shadow .2s;margin-bottom:12px;scroll-margin-top:130px}
+.dcard:hover{box-shadow:var(--sh-md)}
+.dcard-head{display:flex;align-items:flex-start;gap:14px;padding:1rem 1.2rem;cursor:pointer;user-select:none;transition:background .15s}
+.dcard-head:hover{background:var(--surface)}
+.dcard-num{font-family:var(--serif);font-size:1.35rem;font-weight:300;color:var(--text3);min-width:32px;flex-shrink:0;padding-top:2px}
+.dcard-icon{width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.15rem;flex-shrink:0}
+.dcard-info{flex:1;min-width:0}
+.dcard-title{font-family:var(--serif);font-size:1.15rem;font-weight:400;line-height:1.3;color:var(--text)}
+.dcard-subtitle{font-size:.8rem;color:var(--text3);margin-top:2px}
+.dcard-badges{display:flex;flex-wrap:wrap;gap:5px;margin-top:6px}
+.badge{font-size:.68rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:2px 8px;border-radius:5px;border:1px solid transparent;white-space:nowrap}
+.badge.red{background:#fdf2f2;color:var(--red);border-color:#fbd5d5}
+.badge.blue{background:#eff6ff;color:var(--blue);border-color:#bfdbfe}
+.badge.gold{background:#fdf8ee;color:var(--gold);border-color:#e8d5a3}
+.badge.green{background:#f0fdf8;color:var(--green);border-color:#a7f3d0}
+.badge.navy{background:#f0f2f8;color:var(--navy);border-color:#c7cde8}
+.badge.gray{background:var(--surface);color:var(--text2);border-color:var(--border)}
+.badge.orange{background:#fff7ed;color:var(--orange);border-color:#fed7aa}
+.badge.purple{background:#f5f3ff;color:var(--purple);border-color:#ddd6fe}
+.badge.teal{background:#f0fdfa;color:var(--teal);border-color:#99f6e4}
+.dcard-chevron{color:var(--text3);transition:transform .25s;flex-shrink:0;margin-top:10px}
+.dcard.open .dcard-chevron{transform:rotate(180deg)}
+.dcard-inner{display:none;border-top:1px solid var(--border)}
+.dcard.open .dcard-inner{display:block}
+
+/* INNER SECTIONS */
+.inner-section{padding:1rem 1.2rem;border-bottom:1px solid var(--surface2)}
+.inner-section:last-child{border-bottom:none}
+.section-label{font-size:.62rem;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:var(--text3);margin-bottom:.65rem;display:flex;align-items:center;gap:6px}
+.section-label::after{content:'';flex:1;height:1px;background:var(--border)}
+
+/* MENTALITÄT BOX */
+.mental-box{border-radius:9px;padding:.85rem 1rem;margin-bottom:.5rem;font-size:.83rem;line-height:1.8;color:var(--text2)}
+.mental-box p{margin-bottom:.4rem}
+.mental-box p:last-child{margin-bottom:0}
+.mental-box strong{color:var(--text)}
+.mental-box.gold{background:#fdf8ee;border:1px solid #e8d5a3;border-left:3px solid var(--gold)}
+.mental-box.navy{background:#f0f2f8;border:1px solid #c7cde8;border-left:3px solid var(--navy)}
+.mental-box.red{background:#fdf2f2;border:1px solid #fbd5d5;border-left:3px solid var(--red)}
+.mental-box.teal{background:#f0fdfa;border:1px solid #99f6e4;border-left:3px solid var(--teal)}
+.mental-box.purple{background:#f5f3ff;border:1px solid #ddd6fe;border-left:3px solid var(--purple)}
+.mental-box.green{background:#f0fdf8;border:1px solid #a7f3d0;border-left:3px solid var(--green)}
+.mental-box.orange{background:#fff7ed;border:1px solid #fed7aa;border-left:3px solid var(--orange)}
+
+/* INSIDER HACK */
+.insider-hack{background:var(--navy);color:#e8eaf6;border-radius:9px;padding:.85rem 1rem;margin:.5rem 0;font-size:.82rem;line-height:1.8}
+.insider-hack-label{font-size:.6rem;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:#7986cb;margin-bottom:.4rem}
+.insider-hack p{margin-bottom:.3rem;color:#b0bec5}
+.insider-hack p:last-child{margin-bottom:0}
+.insider-hack strong{color:#ffcc80}
+.insider-hack .h-ok{color:#a5d6a7}
+.insider-hack .h-warn{color:#ef9a9a;font-weight:600}
+.insider-hack .h-step{color:#90caf9}
+
+/* TEMPLATE BOX */
+.template-wrap{position:relative}
+.template-label{font-size:.62rem;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:var(--text3);margin-bottom:.5rem;display:flex;align-items:center;justify-content:space-between;gap:8px}
+.template-label::before{content:'📋 ARZTBRIEF-VORLAGE';flex:1}
+.copy-btn{font-size:.7rem;font-weight:700;padding:3px 10px;border-radius:5px;border:1px solid var(--border);background:var(--bg);color:var(--text3);cursor:pointer;transition:all .15s;white-space:nowrap}
+.copy-btn:hover{background:var(--navy);color:#fff;border-color:var(--navy)}
+.copy-btn.copied{background:var(--green);color:#fff;border-color:var(--green)}
+.template-box{background:#f8fffe;border:1.5px solid var(--teal);border-radius:9px;padding:1rem 1.1rem;font-size:.83rem;line-height:2;color:var(--text);font-family:var(--sans)}
+.template-box p{margin-bottom:.4rem}
+.template-box p:last-child{margin-bottom:0}
+.template-box strong{color:var(--navy);font-weight:700}
+
+/* VWD CHIP */
+.vwd-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:.5rem}
+.vwd-chip{font-size:.75rem;font-weight:700;padding:4px 11px;border-radius:6px;border:1px solid var(--border);background:var(--surface);color:var(--text2);display:flex;align-items:center;gap:5px}
+.vwd-chip.days{background:#f0fdf8;color:var(--green);border-color:#a7f3d0}
+.vwd-chip.code{background:#f0f2f8;color:var(--navy);border-color:#c7cde8}
+.vwd-chip.drg{background:#fdf8ee;color:var(--gold);border-color:#e8d5a3}
+.vwd-chip.warn{background:#fdf2f2;color:var(--red);border-color:#fbd5d5}
+
+/* NO RESULTS */
+.no-results{text-align:center;padding:4rem 2rem;color:var(--text3);font-size:.95rem;display:none}
+
+footer{padding:1.6rem 2.5rem;display:flex;align-items:center;justify-content:space-between;border-top:1px solid var(--border);font-size:.78rem;color:var(--text3)}
+footer strong{color:var(--navy);font-weight:600}
+
+@media(max-width:1024px){.page-wrap{grid-template-columns:1fr}.toc-sidebar{display:none}}
+@media(max-width:860px){.nav-links,.nav-badge{display:none}}
+@media(max-width:600px){.topnav{padding:0 1rem}.page-header,.filter-wrap,.main-content{padding-left:1rem;padding-right:1rem}footer{flex-direction:column;gap:.5rem;text-align:center}}
+</style>
+</head>
+<body>
+
+<nav class="topnav">
+  <a href="index.html" class="brand">
+    <span class="brand-heart"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M9 15.5C3.5 12.2 1 9 1 6A4 4 0 0 1 9 4.2a4 4 0 0 1 8 1.8C17 9 14.5 12.2 9 15.5Z" fill="var(--teal)" opacity=".9"/></svg></span>
+    OUSS Kardiologie
+  </a>
+  <div class="nav-links">
+    <a href="stationsmanagement.html">🏥 Station</a>
+    <a href="stations_hacks.html">⚡ Hacks</a>
+    <a href="crashkurs.html">🎓 Crashkurs</a>
+    <a href="arztbrief_hub.html" class="active">📋 Arztbrief-Hub</a>
+  </div>
+  <div class="spacer"></div>
+  <span class="nav-badge">30 Templates · Kardiologie</span>
+</nav>
+
+<div class="page-header">
+  <div class="page-eyebrow">Arztbrief-Hub · Normalstation Kardiologie · Epikrise-Vorlagen · DRG-Hacks</div>
+  <h1>Der <em>Arztbrief</em> — Templates, Hacks &amp; DRG</h1>
+  <p>30 fertige Epikrise-Vorlagen für alle häufigen kardiologischen Krankheitsbilder. Mit Insider-Mentalität, Kodierungs-Hacks und Copy-Paste-Funktion. Der Hausarzt liest nur die Epikrise — mach sie kurz, präzise und professionell.</p>
+</div>
+
+<div class="filter-wrap">
+  <button class="chip active" data-cat="all">Alle (30)</button>
+  <button class="chip" data-cat="hi">💧 Herzinsuffizienz</button>
+  <button class="chip" data-cat="aks">❤️ ACS / KHK</button>
+  <button class="chip" data-cat="rhythmus">〰️ Rhythmus</button>
+  <button class="chip" data-cat="klappe">🔬 Klappen / Aorta</button>
+  <button class="chip" data-cat="speziell">🧬 Speziell</button>
+  <button class="chip" data-cat="device">🔋 Devices</button>
+  <button class="chip" data-cat="komplikation">⚠️ Komplikationen</button>
+</div>
+
+<div class="page-wrap">
+
+<!-- ═══ TOC SIDEBAR ═══ -->
+<aside class="toc-sidebar">
+  <div class="toc-title">Inhaltsverzeichnis</div>
+
+  <div class="toc-group">
+    <div class="toc-group-label">💧 Herzinsuffizienz</div>
+    <a class="toc-link" href="#hi-01"><span class="toc-num">01</span>Dekompensierte HFrEF</a>
+    <a class="toc-link" href="#hi-02"><span class="toc-num">02</span>HFpEF / Hypertensive HHK</a>
+    <a class="toc-link" href="#hi-03"><span class="toc-num">03</span>Kardiorenales Syndrom</a>
+    <a class="toc-link" href="#hi-04"><span class="toc-num">04</span>Tachymyopathie</a>
+    <a class="toc-link" href="#hi-05"><span class="toc-num">05</span>Eisenmangel bei HI</a>
+    <a class="toc-link" href="#hi-06"><span class="toc-num">06</span>Flash-Lungenödem</a>
+    <a class="toc-link" href="#hi-07"><span class="toc-num">07</span>Cor Pulmonale / RHD</a>
+    <a class="toc-link" href="#hi-08"><span class="toc-num">08</span>Pleuraerguss (Punktion)</a>
+    <a class="toc-link" href="#hi-09"><span class="toc-num">09</span>Dilatative Kardiomyopathie</a>
+    <a class="toc-link" href="#hi-10"><span class="toc-num">10</span>HOCM</a>
+  </div>
+
+  <div class="toc-group">
+    <div class="toc-group-label">❤️ ACS / KHK</div>
+    <a class="toc-link" href="#aks-01"><span class="toc-num">11</span>NSTEMI</a>
+    <a class="toc-link" href="#aks-02"><span class="toc-num">12</span>STEMI / Post-PCI</a>
+    <a class="toc-link" href="#aks-03"><span class="toc-num">13</span>Instabile AP (konservativ)</a>
+    <a class="toc-link" href="#aks-04"><span class="toc-num">14</span>Chronisches KS / Elektiv-Coro</a>
+    <a class="toc-link" href="#aks-05"><span class="toc-num">15</span>Typ-2-Myokardinfarkt</a>
+    <a class="toc-link" href="#aks-06"><span class="toc-num">16</span>Tako-Tsubo</a>
+    <a class="toc-link" href="#aks-07"><span class="toc-num">17</span>Myokarditis</a>
+  </div>
+
+  <div class="toc-group">
+    <div class="toc-group-label">〰️ Rhythmus</div>
+    <a class="toc-link" href="#rhy-01"><span class="toc-num">18</span>Tachyarrhythmia absoluta / VHF</a>
+    <a class="toc-link" href="#rhy-02"><span class="toc-num">19</span>VHF-Erstdiagnose / Kardioversion</a>
+    <a class="toc-link" href="#rhy-03"><span class="toc-num">20</span>Vorhofflattern / Ablationseval.</a>
+    <a class="toc-link" href="#rhy-04"><span class="toc-num">21</span>Unklare Synkope</a>
+    <a class="toc-link" href="#rhy-05"><span class="toc-num">22</span>Sick-Sinus / Tachy-Brady</span></a>
+    <a class="toc-link" href="#rhy-06"><span class="toc-num">23</span>VES / Palpitationen</a>
+    <a class="toc-link" href="#rhy-07"><span class="toc-num">24</span>Brugada-Syndrom</a>
+    <a class="toc-link" href="#rhy-08"><span class="toc-num">25</span>nsVT</a>
+  </div>
+
+  <div class="toc-group">
+    <div class="toc-group-label">🔬 Klappen / Aorta / Spezial</div>
+    <a class="toc-link" href="#kla-01"><span class="toc-num">26</span>Aortenklappeninsuffizienz</a>
+    <a class="toc-link" href="#kla-02"><span class="toc-num">27</span>TAVI-Evaluation</a>
+    <a class="toc-link" href="#kla-03"><span class="toc-num">28</span>Typ-B-Aortendissektion</a>
+    <a class="toc-link" href="#kla-04"><span class="toc-num">29</span>Aortenaneurysma</a>
+    <a class="toc-link" href="#kla-05"><span class="toc-num">30</span>Pericarditis constrictiva</a>
+  </div>
+
+  <div class="toc-group">
+    <div class="toc-group-label">🔋 Devices</div>
+    <a class="toc-link" href="#dev-01">AV-Block / Schrittmacher</a>
+    <a class="toc-link" href="#dev-02">ICD Primärprophylaxe</a>
+    <a class="toc-link" href="#dev-03">Aggregatwechsel</a>
+    <a class="toc-link" href="#dev-04">PFO-Verschluss</a>
+  </div>
+
+  <div class="toc-group">
+    <div class="toc-group-label">⚠️ Komplikationen</div>
+    <a class="toc-link" href="#kom-01">Nachblutung nach Coro</a>
+    <a class="toc-link" href="#kom-02">Aneurysma spurium</a>
+    <a class="toc-link" href="#kom-03">Statin-Myopathie</a>
+    <a class="toc-link" href="#kom-04">HIT II</a>
+    <a class="toc-link" href="#kom-05">Taschenhämatom</a>
+    <a class="toc-link" href="#kom-06">Tascheninfektion</a>
+    <a class="toc-link" href="#kom-07">Stentthrombose</a>
+  </div>
+</aside>
+
+<!-- ═══ MAIN CONTENT ═══ -->
+<main class="main-content">
+
+<!-- ══════════════════════════════════════════════ -->
+<!--  HERZINSUFFIZIENZ -->
+<!-- ══════════════════════════════════════════════ -->
+
+<!-- 01 -->
+<div class="dcard open" id="hi-01" data-cat="hi">
+  <div class="dcard-head" onclick="toggle(this)">
+    <span class="dcard-num">01</span>
+    <div class="dcard-icon" style="background:#eff6ff">💧</div>
+    <div class="dcard-info">
+      <div class="dcard-title">Akut dekompensierte Herzinsuffizienz (HFrEF)</div>
+      <div class="dcard-subtitle">EF reduziert · i.v. Diurese · häufigste Aufnahme</div>
+      <div class="dcard-badges"><span class="badge blue">HFrEF · NYHA III–IV</span><span class="badge gold">DRG: F62A/B</span><span class="badge red">MDK-sensitiv</span></div>
+    </div>
+    <svg class="dcard-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+  </div>
+  <div class="dcard-inner">
+    <div class="inner-section">
+      <div class="section-label">Mentalität, Kodierung &amp; DRG-Hacks</div>
+      <div class="mental-box gold">
+        <p>Die dekompensierte Herzinsuffizienz ist das Brot-und-Butter-Krankheitsbild der Kardiologie — und gleichzeitig die am häufigsten falsch kodierte Diagnose. Der erste und entscheidende Fehler: nur „Herzinsuffizienz" ins System schreiben und dabei vergessen, den Typ, den Schweregrad und den Dekompensationsstatus anzugeben. Das kostet das Krankenhaus erhebliche Erlöse und kann vom MDK gestrichen werden.</p>
+        <p>Die korrekte Kodierformel lautet immer: <strong>Typ (HFrEF / HFmrEF / HFpEF) + NYHA-Klasse + Zustand (kompensiert oder dekompensiert)</strong>. Ein Beispiel, das der MDK akzeptiert und das den maximalen DRG-Erlös bringt, wäre: „Akut dekompensierte HFrEF, NYHA IV, unter i.v. Diuretikatherapie." Diese Kombination ist für den MDK nicht anfechtbar, weil sie Schweregrad, Therapieaufwand und klinische Dringlichkeit gleichzeitig belegt.</p>
+        <p>Der zweite häufige Fehler betrifft die Dokumentation des Therapieaufwands. Der MDK akzeptiert einen stationären Aufenthalt wegen Herzinsuffizienz nur dann, wenn du täglich folgendes im ORBIS dokumentierst: tägliche Gewichtskontrolle als Anordnung, Einfuhr-Ausfuhr-Bilanz, und vor allem die intravenöse Gabe des Diuretikums. Furosemid als Tablette allein genügt dem MDK nicht als Beweis für die stationäre Notwendigkeit — es muss Furosemid i.v. in der Anordnung stehen. Das ist der einzige Unterschied zwischen einer genehmigten und einer gestrichenen Liegezeit.</p>
+        <p>Der dritte Hack betrifft die Nebendiagnosen. Jede Begleiterkrankung, die du mitbehandelst oder mitüberwachst, erhöht den PCCL-Score und damit den DRG-Erlös. Suche aktiv nach: Niereninsuffizienz (AKIN-Stadium benennen), Hypokaliämie (nur wenn du Kalium substituiert hast), Eisenmangel (Ferritin und TSAT messen — wenn erniedrigt, Ferinject i.v. geben und als eigene Prozedur kodieren), Adipositas permagna (BMI über 40), und Diabetes mellitus (Insulingabe oder Anpassung des Schemas im Verlauf dokumentieren).</p>
+        <p>Zum Hausarzt-Brief gilt die folgende Mentalität: Der Hausarzt liest nicht den gesamten Brief. Er liest die Epikrise und den Medikamentenplan. In der Epikrise muss in drei bis vier Sätzen stehen: warum der Patient gekommen ist, was im Echo gefunden wurde (EF in Prozent), wie die Therapie angesprochen hat (Gewichtsabnahme in Kilogramm), und in welchem Zustand der Patient entlassen wurde. Jede Medikamentenänderung muss mit Begründung stehen — „Torasemid erhöht auf 20 mg bei persistierender Dekompensation" — damit der Hausarzt nicht irrtümlich die alte Dosierung wiederherstellt.</p>
+      </div>
+      <div class="insider-hack">
+        <div class="insider-hack-label">⚡ Drei Sätze die beim MDK entscheiden</div>
+        <p><span class="h-ok">Satz 1 in der Kurve:</span> „<strong>Tägliche Gewichtskontrolle angeordnet. Einfuhr-Ausfuhr-Bilanz wird geführt.</strong>" — das beweist stationäre Überwachung.</p>
+        <p><span class="h-step">Satz 2 in der Anordnung:</span> „<strong>Furosemid 40–80 mg i.v.</strong>" — nicht als Tablette, sondern explizit intravenös. Das ist der Unterschied zwischen akzeptiert und gestrichen.</p>
+        <p><span class="h-warn">Satz 3 in der Epikrise:</span> „<strong>Unter i.v. Diuretikatherapie Gewichtsabnahme von X kg, klinische Rekompensation.</strong>" — zeigt dem MDK, dass die Therapie gewirkt hat und stationär notwendig war.</p>
+      </div>
+      <div class="vwd-row">
+        <div class="vwd-chip days">⏱ VWD: 5–7 Tage</div>
+        <div class="vwd-chip code">ICD: I50.13 (HFrEF dekompensiert)</div>
+        <div class="vwd-chip drg">DRG: F62A</div>
+        <div class="vwd-chip warn">MDK: tägl. Bilanz + i.v. Pflicht!</div>
+      </div>
+    </div>
+    <div class="inner-section">
+      <div class="section-label">Arztbrief-Vorlage</div>
+      <div class="template-wrap">
+        <div class="template-label"><button class="copy-btn" onclick="copyTemplate(this)">Kopieren</button></div>
+        <div class="template-box">
+          <p>Die stationäre Aufnahme des Patienten erfolgte über unsere Notaufnahme bei zunehmender Dyspnoe (NYHA III) und peripheren Ödemen. Echokardiographisch zeigte sich eine hochgradig reduzierte linksventrikuläre Pumpfunktion (LVEF 30%) ohne höhergradige Klappenvitien. Unter einer konsequenten intravenösen Diuretikatherapie mit Furosemid kam es zu einer raschen klinischen Rekompensation sowie einer deutlichen Gewichtsabnahme von 4 kg. Laborchemisch zeigte sich die Nierenfunktion im Verlauf stabil. Die Entlassung erfolgt in kardiopulmonal kompensiertem Zustand in die hausärztliche Weiterbetreuung. Wir empfehlen eine regelmäßige Gewichtskontrolle sowie die leitliniengerechte Auftitrierung der Herzinsuffizienz-Medikation.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 02 -->
+<div class="dcard" id="hi-02" data-cat="hi">
+  <div class="dcard-head" onclick="toggle(this)">
+    <span class="dcard-num">02</span>
+    <div class="dcard-icon" style="background:#f5f3ff">🫀</div>
+    <div class="dcard-info">
+      <div class="dcard-title">HFpEF / Hypertensive Herzerkrankung</div>
+      <div class="dcard-subtitle">EF erhalten · diastolische Dysfunktion · Hypertrophie</div>
+      <div class="dcard-badges"><span class="badge purple">HFpEF · I11.0</span><span class="badge gold">MDK-Falle: Kodierung!</span></div>
+    </div>
+    <svg class="dcard-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+  </div>
+  <div class="dcard-inner">
+    <div class="inner-section">
+      <div class="section-label">Mentalität, Kodierung &amp; DRG-Hacks</div>
+      <div class="mental-box purple">
+        <p>Dies ist die klassische Falle für neue Assistenzärzte. Der Patient kommt mit Dyspnoe und Unterschenkelödemen, das Echo zeigt eine EF von 60 Prozent — und der Anfänger schreibt „Herzinsuffizienz" ins System. Damit erhält das Krankenhaus eine minimalistische DRG-Erlösung, weil die Diagnose zu unspezifisch ist, und schlimmer: der MDK kann sie als ambulant behandelbar einstufen und streichen.</p>
+        <p>Das Zauberwort für den MDK ist die Kombination aus ICD-Code und Klartext: <strong>„Herzinsuffizienz mit erhaltener Pumpfunktion (HFpEF) auf dem Boden einer hypertensiven Herzkrankheit"</strong>, kodiert als I11.0 mit I50.11. Nur diese Formulierung bringt das Krankenhaus in die korrekte DRG-Gruppe und sichert die Liegezeit ab.</p>
+        <p>Was der MDK sehen will: Im Echo muss eine Linksherzhypertrophie dokumentiert sein — IVS über 12 Millimeter oder LVMI erhöht. Außerdem muss eine diastolische Dysfunktion mindestens Grad II vorliegen. Und entscheidend: die Therapie muss intravenös gewesen sein. Furosemid als Tablette allein macht aus dieser Diagnose einen ambulanten Fall. Furosemid i.v. mit dokumentierter Gewichtsabnahme macht daraus einen medizinisch und wirtschaftlich validen stationären Aufenthalt.</p>
+        <p>Der Hausarzt braucht in diesem Fall besonders klare Instruktionen, weil er die Diagnose HFpEF oft nicht von einer normalen Hypertonie unterscheiden kann. Die Epikrise muss deshalb explizit benennen, dass die linksventrikuläre Pumpfunktion erhalten war, aber die diastolische Dysfunktion die Ursache der Dekompensation war. Das verhindert, dass der Hausarzt bei der nächsten Dekompensation nur den Blutdruck behandelt und die Diuretika vergisst.</p>
+      </div>
+      <div class="vwd-row">
+        <div class="vwd-chip days">⏱ VWD: 4–6 Tage</div>
+        <div class="vwd-chip code">ICD: I11.0 + I50.11</div>
+        <div class="vwd-chip warn">Nie nur „I50" kodieren!</div>
+      </div>
+    </div>
+    <div class="inner-section">
+      <div class="section-label">Arztbrief-Vorlage</div>
+      <div class="template-wrap">
+        <div class="template-label"><button class="copy-btn" onclick="copyTemplate(this)">Kopieren</button></div>
+        <div class="template-box">
+          <p>Der Patient stellte sich mit progredienter Belastungsdyspnoe und Unterschenkelödemen in unserer Notaufnahme vor. Echokardiographisch zeigte sich eine erhaltene linksventrikuläre Pumpfunktion (LVEF 60%), jedoch eine deutliche Linksherzhypertrophie sowie Zeichen einer hochgradigen diastolischen Funktionsstörung. Wir stellten die Diagnose einer Herzinsuffizienz mit erhaltener Pumpfunktion (HFpEF) auf dem Boden einer hypertensiven Herzkrankheit. Unter konsequenter intravenöser Diuretikatherapie mit Furosemid und strenger Blutdruckeinstellung kam es zu einer raschen klinischen Rekompensation des Patienten. Bei Entlassung präsentierte sich der Patient kardiopulmonal stabil. Wir empfehlen die leitliniengerechte Fortführung der antihypertensiven und diuretischen Therapie.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 03 -->
+<div class="dcard" id="hi-03" data-cat="hi">
+  <div class="dcard-head" onclick="toggle(this)">
+    <span class="dcard-num">03</span>
+    <div class="dcard-icon" style="background:#fff7ed">🔄</div>
+    <div class="dcard-info">
+      <div class="dcard-title">Kardiorenales Syndrom</div>
+      <div class="dcard-subtitle">HFrEF + akutes Nierenversagen unter Diuretika</div>
+      <div class="dcard-badges"><span class="badge orange">Doppelkodierung!</span><span class="badge gold">DRG-Goldgrube</span><span class="badge red">Balance kritisch</span></div>
+    </div>
+    <svg class="dcard-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+  </div>
+  <div class="dcard-inner">
+    <div class="inner-section">
+      <div class="section-label">Mentalität, Kodierung &amp; DRG-Hacks</div>
+      <div class="mental-box orange">
+        <p>Das kardiorenale Syndrom ist der klinische Alptraum der Kardiologie — und gleichzeitig eine der lukrativsten DRG-Konstellationen, wenn man sie richtig kodiert. Das Dilemma ist medizinisch real: Mehr Lasix entwässert den Patienten, aber die Niere kollabiert. Weniger Lasix schützt die Niere, aber das Herz dekompensiert erneut. Dieses Gleichgewicht zu finden ist echter stationärer Aufwand — und genau das will der MDK sehen.</p>
+        <p>Die Kodierungsregel ist einfach aber absolut entscheidend: <strong>Immer beide Diagnosen kodieren</strong>. Hauptdiagnose: die Herzinsuffizienz mit der exakten NYHA-Klasse und dem Dekompensationsstatus. Nebendiagnose: das akute Nierenversagen mit dem AKIN-Stadium. AKIN Grad I bedeutet Kreatinin 1,5-fach erhöht gegenüber Ausgangswert, AKIN II bedeutet zweifach erhöht, AKIN III bedeutet dreifach erhöht oder Dialysepflichtigkeit. Je höher das AKIN-Stadium, desto höher der PCCL-Score und desto besser die DRG.</p>
+        <p>Was der MDK in der Kurve lesen will: Wie hast du das Gleichgewicht zwischen Herzinsuffizienz-Therapie und Nierenschutz gemanagt? Täglich Kreatinin und Elektrolyte kontrollieren und die Anpassungen der Diuretika explizit dokumentieren. Nicht „Furosemid wie gestern", sondern „Furosemid reduziert auf 40 mg i.v. bei Kreatinin-Anstieg auf 2,1 mg/dl — Balance zwischen renaler Protektion und kardialer Rekompensation." Diese Sprache versteht der MDK und akzeptiert jeden Liegetag.</p>
+        <p>Der Hausarzt braucht klare Zahlen: Welches Kreatinin hatte der Patient bei Entlassung? War es rückläufig? Was ist der Zielwert? Schreibe explizit: „Laborkontrollen Kreatinin, Kalium und Natrium nach einer Woche erforderlich." Das schützt den Patienten vor dem nächsten akuten Nierenversagen zu Hause.</p>
+      </div>
+      <div class="vwd-row">
+        <div class="vwd-chip days">⏱ VWD: 7–10 Tage</div>
+        <div class="vwd-chip code">ICD: I50.13 + N17.9</div>
+        <div class="vwd-chip drg">DRG: F60A</div>
+      </div>
+    </div>
+    <div class="inner-section">
+      <div class="section-label">Arztbrief-Vorlage</div>
+      <div class="template-wrap">
+        <div class="template-label"><button class="copy-btn" onclick="copyTemplate(this)">Kopieren</button></div>
+        <div class="template-box">
+          <p>Die stationäre Aufnahme erfolgte bei schwerer kardialer Dekompensation mit ausgeprägten peripheren Ödemen und Pleuraergüssen bei bekannter chronischer Herzinsuffizienz (HFrEF). Im Rahmen der hochdosierten intravenösen Diuretikatherapie mit Furosemid kam es erwartungsgemäß zu einem passageren akuten Nierenversagen (AKIN II) im Sinne eines kardiorenalen Syndroms. Durch eine sorgfältige Steuerung der Flüssigkeitsbilanz und Dosisanpassung der Diuretika konnten wir im weiteren Verlauf eine Rekompensation des Patienten bei sich stabilisierenden Retentionsparametern erreichen. Bei Entlassung war der Patient kardiopulmonal deutlich gebessert, das Kreatinin war rückläufig. Wir bitten um engmaschige laborchemische Kontrollen der Nierenwerte und Elektrolyte im ambulanten Verlauf.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 04 -->
+<div class="dcard" id="hi-04" data-cat="hi">
+  <div class="dcard-head" onclick="toggle(this)">
+    <span class="dcard-num">04</span>
+    <div class="dcard-icon" style="background:#f0fdfa">⚡</div>
+    <div class="dcard-info">
+      <div class="dcard-title">Tachymyopathie bei Vorhofflimmern</div>
+      <div class="dcard-subtitle">EF erniedrigt durch chronische Tachykardie · reversibel</div>
+      <div class="dcard-badges"><span class="badge teal">Reversibel!</span><span class="badge gray">Echo-Kontrolle in 3 Mon.</span></div>
+    </div>
+    <svg class="dcard-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+  </div>
+  <div class="dcard-inner">
+    <div class="inner-section">
+      <div class="section-label">Mentalität, Kodierung &amp; DRG-Hacks</div>
+      <div class="mental-box teal">
+        <p>Die Tachymyopathie ist eine der häufig verkannten Diagnosen, weil der unerfahrene Arzt bei einer EF von 40 Prozent sofort an eine dilatative Kardiomyopathie denkt und alle DCM-spezifischen Untersuchungen einleitet. Der entscheidende Hinweis ist die Tachykardie: wenn der Patient seit Wochen oder Monaten eine hohe Herzfrequenz durch unkontrolliertes Vorhofflimmern hatte und das Echo eine reduzierte EF zeigt, ist die Tachymyopathie die wahrscheinlichste Ursache — nicht eine primäre Kardiomyopathie.</p>
+        <p>Das Wichtigste für den Hausarzt im Brief: Die EF kann sich nach konsequenter Frequenzkontrolle vollständig erholen. Dieser Satz ist medizinisch und psychologisch für den Patienten enorm wichtig. Er bedeutet: die Diagnose ist reversibel, die Prognose ist deutlich besser als bei einer echten DCM, und es gibt keine lebenslange ICD-Indikation — zumindest nicht vorerst. Deshalb muss eine Echo-Kontrolle in drei Monaten nach Rhythmusstabilisierung stattfinden. Das schreibst du explizit ins Procedere.</p>
+        <p>Kodierung: Hauptdiagnose ist das Vorhofflimmern mit dem korrekten Subtyp. Als Nebendiagnose die Herzinsuffizienz mit EF-Angabe. Die Tachymyopathie als ätiologischer Begriff gehört in die Epikrise, aber nicht als ICD-Code — dafür gibt es keinen spezifischen Code. Die elektrische Kardioversion und die TEE werden als OPS-Codes dokumentiert und bringen jeweils zusätzliche Erlöse.</p>
+      </div>
+      <div class="vwd-row">
+        <div class="vwd-chip days">⏱ VWD: 4–5 Tage</div>
+        <div class="vwd-chip code">ICD: I48.x + I50.x</div>
+      </div>
+    </div>
+    <div class="inner-section">
+      <div class="section-label">Arztbrief-Vorlage</div>
+      <div class="template-wrap">
+        <div class="template-label"><button class="copy-btn" onclick="copyTemplate(this)">Kopieren</button></div>
+        <div class="template-box">
+          <p>Die Aufnahme erfolgte bei neu aufgetretener Herzinsuffizienz-Symptomatik (NYHA III) und Leistungsknick. Echokardiographisch zeigte sich eine mittelgradig reduzierte linksventrikuläre Pumpfunktion (LVEF 40%). Im EKG dokumentierten wir ein persistierendes Vorhofflimmern mit rascher Überleitung. Nach medikamentöser Frequenzkontrolle und anschließender erfolgreicher elektrischer Kardioversion gehen wir von einer Tachymyopathie aus. Im kurzfristigen Verlauf zeigte sich bereits eine echokardiographische Befundbesserung. Wir leiteten eine leitliniengerechte Herzinsuffizienztherapie sowie eine orale Antikoagulation ein und entließen den Patienten in stabilem Zustand.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 05 -->
+<div class="dcard" id="hi-05" data-cat="hi">
+  <div class="dcard-head" onclick="toggle(this)">
+    <span class="dcard-num">05</span>
+    <div class="dcard-icon" style="background:#f0fdf8">🔩</div>
+    <div class="dcard-info">
+      <div class="dcard-title">Eisenmangel bei Herzinsuffizienz</div>
+      <div class="dcard-subtitle">i.v. Ferinject · eigener DRG-Code · unterschätzt</div>
+      <div class="dcard-badges"><span class="badge green">Ferinject i.v.</span><span class="badge gold">Extra DRG-Erlös</span></div>
+    </div>
+    <svg class="dcard-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+  </div>
+  <div class="dcard-inner">
+    <div class="inner-section">
+      <div class="section-label">Mentalität, Kodierung &amp; DRG-Hacks</div>
+      <div class="mental-box green">
+        <p>Aktiv suchen: <strong>Ferritin &lt;100 µg/l</strong> oder <strong>TSAT &lt;20%</strong> bei jedem HI-Patienten. Ferinject i.v. verbessert nachweislich die Symptomatik und Lebensqualität — und bringt dem Krankenhaus <strong>eine separate OPS-Kodierung und damit zusätzliche Erlöse</strong>. Kodiere: Eisenmangel als Nebendiagnose + OPS für i.v. Eisensubstitution.</p>
+      </div>
+      <div class="vwd-row">
+        <div class="vwd-chip code">ICD: E61.1 (Eisenmangel)</div>
+        <div class="vwd-chip drg">OPS: 8-60a.0</div>
+      </div>
+    </div>
+    <div class="inner-section">
+      <div class="section-label">Arztbrief-Vorlage</div>
+      <div class="template-wrap">
+        <div class="template-label"><button class="copy-btn" onclick="copyTemplate(this)">Kopieren</button></div>
+        <div class="template-box">
+          <p>Die stationäre Aufnahme erfolgte bei progredienter Leistungsminderung und Dyspnoe bei bekannter chronischer Herzinsuffizienz (HFrEF). Im Rahmen der laborchemischen Routinediagnostik demaskierte sich ein absoluter Eisenmangel mit einem erniedrigten Ferritin-Wert sowie einer reduzierten Transferrinsättigung (TSAT &lt; 20%). Da ein Eisenmangel die Herzinsuffizienz-Symptomatik signifikant aggraviert, stellten wir die Indikation zur intravenösen Eisensubstitution. Wir verabreichten komplikationslos 1000 mg Ferinject i.v. als Kurzinfusion. Hierunter sowie unter Optimierung der diuretischen Therapie zeigte sich der Patient im Verlauf deutlich belastbarer und kardiopulmonal re-kompensiert. Die Entlassung erfolgt in stabilem Zustand in die hausärztliche Weiterbetreuung. Wir empfehlen eine laborchemische Kontrolle des Eisenstatus in 3 Monaten.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 06 -->
+<div class="dcard" id="hi-06" data-cat="hi">
+  <div class="dcard-head" onclick="toggle(this)">
+    <span class="dcard-num">06</span>
+    <div class="dcard-icon" style="background:#fdf2f2">🌊</div>
+    <div class="dcard-info">
+      <div class="dcard-title">Hypertensives Flash-Lungenödem</div>
+      <div class="dcard-subtitle">RR 220/110 · akute Dyspnoe · i.v. Therapie</div>
+      <div class="dcard-badges"><span class="badge red">Notfall!</span><span class="badge gold">Hypertensive Krise kodieren</span></div>
+    </div>
+    <svg class="dcard-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+  </div>
+  <div class="dcard-inner">
+    <div class="inner-section">
+      <div class="section-label">Mentalität, Kodierung &amp; DRG-Hacks</div>
+      <div class="mental-box red">
+        <p>Kodiere <strong>nicht</strong> nur „Lungenödem" und nicht nur „Hypertensive Krise" — kodiere <strong>beide</strong>. Das Flash-Lungenödem als Folge der hypertensiven Krise bringt maximalen PCCL. Dokumentiere zwingend: <strong>Nitrospray</strong> oder <strong>Urapidil i.v.</strong> + <strong>Furosemid i.v.</strong> — das ist der Beweis für die stationäre Notwendigkeit.</p>
+      </div>
+      <div class="vwd-row">
+        <div class="vwd-chip days">⏱ VWD: 3–5 Tage</div>
+        <div class="vwd-chip code">ICD: I11.0 + J81</div>
+      </div>
+    </div>
+    <div class="inner-section">
+      <div class="section-label">Arztbrief-Vorlage</div>
+      <div class="template-wrap">
+        <div class="template-label"><button class="copy-btn" onclick="copyTemplate(this)">Kopieren</button></div>
+        <div class="template-box">
+          <p>Der Patient wurde notfallmäßig mit akuter hochgradiger Dyspnoe und orthopnoischer Atemnot bei massiv entgleisten Blutdruckwerten aufgenommen. Klinisch und radiologisch zeigte sich das Vollbild eines akuten Flash-Lungenödems. Unter sofortiger intravenöser Vorlastsenkung mit Nitrospray und Urapidil sowie intravenöser Diuretikatherapie mit Furosemid kam es zu einer raschen klinischen Rekompensation. Die Sauerstoffsättigung normalisierte sich unter Raumluft schnell. Bei Entlassung war der Patient kardiopulmonal stabil und normotensiv. Wir bitten um engmaschige Blutdruckkontrollen im ambulanten Verlauf.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 07 -->
+<div class="dcard" id="hi-07" data-cat="hi">
+  <div class="dcard-head" onclick="toggle(this)">
+    <span class="dcard-num">07</span>
+    <div class="dcard-icon" style="background:#fff7ed">🫁</div>
+    <div class="dcard-info">
+      <div class="dcard-title">Cor Pulmonale / Rechtsherzinsuffizienz bei COPD</div>
+      <div class="dcard-subtitle">Ödeme + Aszites · Lungenkrankheit als Ursache</div>
+      <div class="dcard-badges"><span class="badge orange">Ursache = Lunge</span><span class="badge navy">LAE ausschließen!</span></div>
+    </div>
+    <svg class="dcard-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+  </div>
+  <div class="dcard-inner">
+    <div class="inner-section">
+      <div class="section-label">Mentalität, Kodierung &amp; DRG-Hacks</div>
+      <div class="mental-box orange">
+        <p>Niemals nur „Herzinsuffizienz" schreiben! Der Hausarzt muss wissen: Das Grundproblem liegt in der <strong>Lunge</strong> (COPD → pulmonale Hypertonie → RHD). Kodiere <strong>Cor Pulmonale</strong> als Hauptdiagnose. Außerdem: Die Symptomatik kann einer Lungenembolie ähneln — <strong>LAE-Ausschluss dokumentieren</strong> (CT oder Echo/klinisch).</p>
+      </div>
+      <div class="vwd-row">
+        <div class="vwd-chip days">⏱ VWD: 5–7 Tage</div>
+        <div class="vwd-chip code">ICD: I27.9 (Cor Pulmonale)</div>
+      </div>
+    </div>
+    <div class="inner-section">
+      <div class="section-label">Arztbrief-Vorlage</div>
+      <div class="template-wrap">
+        <div class="template-label"><button class="copy-btn" onclick="copyTemplate(this)">Kopieren</button></div>
+        <div class="template-box">
+          <p>Die Aufnahme des Patienten erfolgte bei schwerer Rechtsherzdekompensation mit massiven peripheren Ödemen und Stauungshepatomegalie bei bekannter schwerer COPD. Echokardiographisch und laborchemisch ergaben sich keine Hinweise auf eine akute Lungenarterienembolie oder ein akutes Linksherzversagen, jedoch zeigte sich ein deutlich dilatierter und funktionell eingeschränkter rechter Ventrikel im Sinne eines chronischen Cor pulmonale. Unter einer hochdosierten intravenösen Rekompensationstherapie und Optimierung der inhalativen Bronchodilatatoren ließ sich der Patient zunehmend stabilisieren und mobilisieren. Die Entlassung erfolgt in deutlich gebessertem Allgemeinzustand. Wir bitten um eine zeitnahe pneumologische Mitbeurteilung im ambulanten Verlauf.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 08 -->
+<div class="dcard" id="hi-08" data-cat="hi">
+  <div class="dcard-head" onclick="toggle(this)">
+    <span class="dcard-num">08</span>
+    <div class="dcard-icon" style="background:#f0fdfa">💉</div>
+    <div class="dcard-info">
+      <div class="dcard-title">Therapierefraktärer Pleuraerguss (Pleurapunktion)</div>
+      <div class="dcard-subtitle">Kardialer Erguss · Punktion · Rö-Kontrolle</div>
+      <div class="dcard-badges"><span class="badge teal">OPS-Prozedur!</span><span class="badge navy">Rö post-Punktion Pflicht</span></div>
+    </div>
+    <svg class="dcard-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+  </div>
+  <div class="dcard-inner">
+    <div class="inner-section">
+      <div class="section-label">Mentalität, Kodierung &amp; DRG-Hacks</div>
+      <div class="mental-box teal">
+        <p>Wenn Lasix i.v. nicht reicht → Pleurapunktion. Diese Prozedur bringt einen <strong>eigenen OPS-Code</strong> und damit Zusatzerlöse. Drei Dinge zwingend dokumentieren: (1) <strong>Sonographische Führung</strong> der Punktion, (2) <strong>Menge des aspirierten Materials</strong> (z.B. 1200 ml Transsudat), (3) <strong>Röntgen-Thorax post-Punktion</strong> (Pneumothorax-Ausschluss). Fehlt einer dieser Punkte → MDK streicht den OPS-Code.</p>
+      </div>
+      <div class="vwd-row">
+        <div class="vwd-chip code">OPS: 8-152.0</div>
+        <div class="vwd-chip warn">Rö danach: Pflicht!</div>
+      </div>
+    </div>
+    <div class="inner-section">
+      <div class="section-label">Arztbrief-Vorlage</div>
+      <div class="template-wrap">
+        <div class="template-label"><button class="copy-btn" onclick="copyTemplate(this)">Kopieren</button></div>
+        <div class="template-box">
+          <p>Die stationäre Aufnahme erfolgte bei massiver Ruhedyspnoe auf dem Boden einer bekannten, chronischen Herzinsuffizienz. Klinisch und sonographisch zeigte sich ein ausgedehnter, rechtsseitiger Pleuraerguss. Da eine hochdosierte intravenöse diuretische Therapie initial keine ausreichende klinische Besserung erbrachte, stellten wir die Indikation zur entlastenden Pleurapunktion. Unter sonographischer Führung konnten wir komplikationslos 1200 ml seröses Transsudat abpunktieren. In der postinterventionellen Röntgen-Thorax-Kontrolle zeigte sich ein deutlich regressiver Erguss ohne Anhalt für einen iatrogenen Pneumothorax. Der Patient berichtete im Anschluss über eine signifikante Linderung der Atemnot. Wir optimierten die orale Herzinsuffizienz-Medikation und entlassen den Patienten in kardiopulmonal kompensiertem Zustand.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 09 -->
+<div class="dcard" id="hi-09" data-cat="hi">
+  <div class="dcard-head" onclick="toggle(this)">
+    <span class="dcard-num">09</span>
+    <div class="dcard-icon" style="background:#eff6ff">🫀</div>
+    <div class="dcard-info">
+      <div class="dcard-title">Dilatative Kardiomyopathie (Erstdiagnose)</div>
+      <div class="dcard-subtitle">EF 20% · KHK-Ausschluss · LifeVest · Kardio-MRT</div>
+      <div class="dcard-badges"><span class="badge blue">DCM Erstdiagnose</span><span class="badge red">LifeVest-Indikation!</span></div>
+    </div>
+    <svg class="dcard-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+  </div>
+  <div class="dcard-inner">
+    <div class="inner-section">
+      <div class="section-label">Mentalität, Kodierung &amp; DRG-Hacks</div>
+      <div class="mental-box navy">
+        <p>Junger Patient, Dyspnoe, Echo: EF 20%. Schritt 1: <strong>KHK durch Koronarangiographie ausschließen</strong>. Schritt 2: Bei EF &lt;35% → <strong>LifeVest</strong> (tragbarer Defibrillator) verordnen, bis nach 3 Monaten OMT die EF kontrolliert wird. Schritt 3: <strong>Kardio-MRT</strong> für Ätiologieklärung terminieren. All das muss im Brief stehen, sonst versteht der Hausarzt die komplexen Folgetermine nicht.</p>
+      </div>
+    </div>
+    <div class="inner-section">
+      <div class="section-label">Arztbrief-Vorlage</div>
+      <div class="template-wrap">
+        <div class="template-label"><button class="copy-btn" onclick="copyTemplate(this)">Kopieren</button></div>
+        <div class="template-box">
+          <p>Die stationäre Aufnahme erfolgte bei progredienter Leistungsminderung und Dyspnoe. Echokardiographisch zeigte sich ein deutlich dilatierter linker Ventrikel mit hochgradig reduzierter Pumpfunktion (LVEF 20%). Zum Ausschluss einer ischämischen Genese führten wir eine Koronarangiographie durch, welche ein unauffälliges Koronarsystem zeigte. Wir stellten die Erstdiagnose einer nicht-ischämischen dilatativen Kardiomyopathie (DCM). Unter Initiierung einer leitliniengerechten Herzinsuffizienztherapie konnte der Patient klinisch stabilisiert werden. Zur Primärprävention des plötzlichen Herztodes bei hochgradig eingeschränkter LVEF verordneten wir eine tragbare Defibrillator-Weste (LifeVest). Eine ambulante kardiale MRT zur weiteren Ätiologieklärung haben wir bereits terminiert.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 10 -->
+<div class="dcard" id="hi-10" data-cat="hi">
+  <div class="dcard-head" onclick="toggle(this)">
+    <span class="dcard-num">10</span>
+    <div class="dcard-icon" style="background:#fdf2f2">⛔</div>
+    <div class="dcard-info">
+      <div class="dcard-title">HOCM (Obstruktive hypertrophe Kardiomyopathie)</div>
+      <div class="dcard-subtitle">Synkope · SAM-Phänomen · Diuretika verboten!</div>
+      <div class="dcard-badges"><span class="badge red">Diuretika KI!</span><span class="badge navy">Familien-Screening</span></div>
+    </div>
+    <svg class="dcard-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+  </div>
+  <div class="dcard-inner">
+    <div class="inner-section">
+      <div class="section-label">Mentalität, Kodierung &amp; DRG-Hacks — Tödliche Falle</div>
+      <div class="mental-box red">
+        <p><strong>Niemals Diuretika oder Vasodilatatoren (Nitrospray!) geben!</strong> Bei HOCM verringert jede Vorlastsenkung das Schlagvolumen und verschlimmert die Obstruktion — der Patient kann sterben. Das <strong>muss explizit im Brief stehen</strong> damit der Hausarzt nicht irrtümlich Furosemid verschreibt. Außerdem: <strong>Familien-Screening</strong> empfehlen (Autosomal-dominant), und <strong>Sportverbot</strong> bis zur ICD/Ablations-Evaluation.</p>
+      </div>
+    </div>
+    <div class="inner-section">
+      <div class="section-label">Arztbrief-Vorlage</div>
+      <div class="template-wrap">
+        <div class="template-label"><button class="copy-btn" onclick="copyTemplate(this)">Kopieren</button></div>
+        <div class="template-box">
+          <p>Die stationäre Aufnahme des jungen Patienten erfolgte zur Abklärung rezidivierender belastungsabhängiger Synkopen und Angina Pectoris. In der transthorakalen Echokardiographie demaskierte sich eine hochgradige asymmetrische Septumhypertrophie mit Vorwärtsbewegung des vorderen Mitralklappensegels (SAM-Phänomen) und resultierender linksventrikulärer Ausflusstraktobstruktion (LVOTO). Wir stellten die Diagnose einer hypertrophen obstruktiven Kardiomyopathie (HOCM). Therapeutisch initiierten wir eine hochdosierte Betablocker-Therapie mit Bisoprolol zur Verlängerung der Diastole und Gradientenreduktion. Nachlastsenkende Medikamente und Diuretika wurden streng pausiert und sind kontraindiziert. Der Patient zeigte sich hierunter beschwerdefrei. Eine genetische Beratung sowie ein echokardiographisches Familien-Screening werden dringend empfohlen.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════ -->
+<!--  ACS / KHK -->
+<!-- ══════════════════════════════════════════════ -->
+
+<!-- 11 -->
+<div class="dcard" id="aks-01" data-cat="aks">
+  <div class="dcard-head" onclick="toggle(this)">
+    <span class="dcard-num">11</span>
+    <div class="dcard-icon" style="background:#fdf2f2">❤️‍🔥</div>
+    <div class="dcard-info">
+      <div class="dcard-title">NSTEMI mit PCI und Stentimplantation</div>
+      <div class="dcard-subtitle">Troponin positiv · Coro · DES · DAPT 12 Monate</div>
+      <div class="dcard-badges"><span class="badge red">DAPT 12 Mon.!</span><span class="badge gold">DRG: F41B</span><span class="badge navy">OPS: PCI kodieren</span></div>
+    </div>
+    <svg class="dcard-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+  </div>
+  <div class="dcard-inner">
+    <div class="inner-section">
+      <div class="section-label">Mentalität, Kodierung &amp; DRG-Hacks</div>
+      <div class="mental-box red">
+        <p>Der NSTEMI mit PCI ist der häufigste interventionelle Eingriff in der Kardiologie und gleichzeitig einer der erlösreichsten Fälle im DRG-System — aber nur wenn man drei OPS-Codes korrekt kombiniert: den Code für die Koronarangiographie, den Code für die PCI selbst, und den Code für die Stentimplantation. Jeder dieser Codes ist ein separater Erlös. Wer nur einen davon vergisst, verliert Geld für das Krankenhaus.</p>
+        <p>Die Kodierformel für den Chefarzt lautet: Hauptdiagnose NSTEMI (I21.4), Nebendiagnose koronare Herzerkrankung mit Angabe der betroffenen Gefäße (1-, 2- oder 3-Gefäß-KHK), und als OPS: Herzkatheteruntersuchung plus perkutane Koronarintervention plus Stentimplantation Drug-Eluting-Stent. Zusätzlich: kodiere die neuen Medikamente als Nebendiagnose-Auslöser, etwa die duale Thrombozytenaggregationshemmung mit Ticagrelor oder Prasugrel — weil das den Therapieaufwand und damit den PCCL-Score erhöht.</p>
+        <p>Das Rechtliche: Der wichtigste Satz im gesamten Brief ist jener über die duale Plättchenhemmung. Schreibe explizit: „Duale Thrombozytenaggregationshemmung mit ASS 100 mg täglich und Ticagrelor 90 mg zweimal täglich für 12 Monate ist zwingend erforderlich. Eine Unterbrechung dieser Therapie darf nur nach kardiologischer Rücksprache erfolgen." Wenn dieser Satz fehlt und der Patient nach drei Monaten wegen Zahnschmerzen sein Ticagrelor absetzt und eine Stentthrombose erleidet, hast du ein rechtliches Problem.</p>
+        <p>Für den Hausarzt ist das LDL-Ziel nach NSTEMI entscheidend: unter 1,4 mmol/l. Das muss im Procedere stehen mit dem Hinweis, wann die erste Kontrolle stattfinden soll — in der Regel sechs Wochen nach Entlassung.</p>
+      </div>
+      <div class="vwd-row">
+        <div class="vwd-chip days">⏱ VWD: 4–6 Tage</div>
+        <div class="vwd-chip code">ICD: I21.4 + I25.13</div>
+        <div class="vwd-chip drg">DRG: F41B</div>
+      </div>
+    </div>
+    <div class="inner-section">
+      <div class="section-label">Arztbrief-Vorlage</div>
+      <div class="template-wrap">
+        <div class="template-label"><button class="copy-btn" onclick="copyTemplate(this)">Kopieren</button></div>
+        <div class="template-box">
+          <p>Der Patient stellte sich mit typischer Angina Pectoris in unserer Notaufnahme vor. Im EKG zeigten sich keine frischen Ischämiezeichen, laborchemisch fiel jedoch ein positiver Troponin-Wert auf, sodass wir die Diagnose eines NSTEMI stellten. Wir führten zeitnah eine Koronarangiographie durch. Hierbei zeigte sich eine signifikante Stenose der RIVA, welche erfolgreich mittels PCI und Implantation eines Medikamenten-freisetzenden Stents (DES) versorgt wurde. Der weitere stationäre Verlauf gestaltete sich komplikationslos. Der Patient war bei Entlassung vollständig beschwerdefrei. Eine duale Plättchenhemmung (DAPT) mit ASS und Ticagrelor ist für 12 Monate indiziert.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 12 -->
+<div class="dcard" id="aks-02" data-cat="aks">
+  <div class="dcard-head" onclick="toggle(this)">
+    <span class="dcard-num">12</span>
+    <div class="dcard-icon" style="background:#fdf2f2">🚨</div>
+    <div class="dcard-info">
+      <div class="dcard-title">STEMI mit Notfall-PCI (Door-to-Balloon)</div>
+      <div class="dcard-subtitle">ST-Hebung · LAD-Verschluss · Notfall-Rekanalisation</div>
+      <div class="dcard-badges"><span class="badge red">Notfall-PCI</span><span class="badge gold">DRG: F41A</span><span class="badge navy">D2B-Zeit dokumentieren!</span></div>
+    </div>
+    <svg class="dcard-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+  </div>
+  <div class="dcard-inner">
+    <div class="inner-section">
+      <div class="section-label">Mentalität, Kodierung &amp; DRG-Hacks</div>
+      <div class="mental-box red">
+        <p>Die <strong>Door-to-Balloon-Zeit</strong> (D2B) muss dokumentiert werden — sie ist ein Qualitätsindikator und pflicht für die Krankenhausabrechnung. Ideal: unter 90 Minuten. Außerdem: Immer den Befund aus der Koronarangiographie exakt beschreiben (welches Gefäß, welches Segment, TIMI-Fluss vor/nach Intervention). Das schützt bei MDK-Prüfungen.</p>
+      </div>
+      <div class="vwd-row">
+        <div class="vwd-chip days">⏱ VWD: 5–8 Tage</div>
+        <div class="vwd-chip code">ICD: I21.0–I21.3</div>
+        <div class="vwd-chip drg">DRG: F41A</div>
+      </div>
+    </div>
+    <div class="inner-section">
+      <div class="section-label">Arztbrief-Vorlage</div>
+      <div class="template-wrap">
+        <div class="template-label"><button class="copy-btn" onclick="copyTemplate(this)">Kopieren</button></div>
+        <div class="template-box">
+          <p>Der Patient stellte sich mit akutem Thoraxschmerz und ST-Strecken-Hebungen in den Ableitungen V2–V5 in unserer Notaufnahme vor. Laborchemisch bestätigte sich ein signifikanter Troponinantieg. Wir stellten die Diagnose eines anterioren STEMI und führten innerhalb von 65 Minuten (Door-to-Balloon-Zeit) eine Notfall-Koronarangiographie durch. Hierbei zeigte sich ein akuter Verschluss der RIVA proximal. Es erfolgte eine erfolgreiche Rekanalisation und Stentimplantation (DES 3,0 × 28 mm) mit Erreichen eines TIMI-3-Flusses. Der weitere stationäre Verlauf gestaltete sich komplikationslos. Unter dualer Plättchenhemmung (ASS + Ticagrelor) sowie leitliniengerechter Herzinsuffizienztherapie erfolgt die Entlassung des Patienten in gutem Allgemeinzustand. Eine duale Plättchenhemmung für 12 Monate ist zwingend erforderlich.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 13 -->
+<div class="dcard" id="aks-03" data-cat="aks">
+  <div class="dcard-head" onclick="toggle(this)">
+    <span class="dcard-num">13</span>
+    <div class="dcard-icon" style="background:#fff7ed">⚠️</div>
+    <div class="dcard-info">
+      <div class="dcard-title">Instabile Angina Pectoris (konservativ)</div>
+      <div class="dcard-subtitle">Troponin negativ · Coro: kein Stent · medikamentöse Strategie</div>
+      <div class="dcard-badges"><span class="badge orange">MDK prüft genau!</span><span class="badge navy">Herzteam-Entscheidung</span></div>
+    </div>
+    <svg class="dcard-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+  </div>
+  <div class="dcard-inner">
+    <div class="inner-section">
+      <div class="section-label">Mentalität, Kodierung &amp; DRG-Hacks</div>
+      <div class="mental-box orange">
+        <p>Der MDK fragt: „Warum hat der Patient gestattet, wenn keine Intervention erfolgte?" Die Antwort muss im Brief stehen: Die <strong>Coro war medizinisch notwendig</strong> zum Ausschluss eines ACS, und die konservative Entscheidung wurde im <strong>Herzteam</strong> getroffen. Dokumentiere außerdem die Medikamentenänderungen (Betablocker hochdosiert, Statin gestartet/eskaliert).</p>
+      </div>
+    </div>
+    <div class="inner-section">
+      <div class="section-label">Arztbrief-Vorlage</div>
+      <div class="template-wrap">
+        <div class="template-label"><button class="copy-btn" onclick="copyTemplate(this)">Kopieren</button></div>
+        <div class="template-box">
+          <p>Der Patient stellte sich mit typischen, ruhe- und belastungsabhängigen Thoraxschmerzen in unserer Notaufnahme vor. Bei passageren ST-Strecken-Senkungen im EKG und normwertigem Troponin stellten wir die Diagnose einer instabilen Angina Pectoris. In der zeitnah durchgeführten Koronarangiographie zeigte sich eine diffuse koronare Herzkrankheit ohne umschriebene, interventionell angehbare hochgradige Stenosen. In der interdisziplinären Herzteam-Besprechung entschieden wir uns gegen eine Revaskularisation und für eine rein medikamentöse Strategie. Wir intensivierten die antianginöse Therapie durch Erhöhung des Betablockers und Anlage eines Nitro-Pflasters. Hierunter war der Patient beschwerdefrei und konnte entlassen werden.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 14 -->
+<div class="dcard" id="aks-04" data-cat="aks">
+  <div class="dcard-head" onclick="toggle(this)">
+    <span class="dcard-num">14</span>
+    <div class="dcard-icon" style="background:#f0fdf8">📅</div>
+    <div class="dcard-info">
+      <div class="dcard-title">Elektive Koronarangiographie (Kurzlieger)</div>
+      <div class="dcard-subtitle">Belastungsangina · PCI elektiv · 1–2 Tage</div>
+      <div class="dcard-badges"><span class="badge green">Kurzlieger</span><span class="badge gold">Herzteam dokumentieren</span></div>
+    </div>
+    <svg class="dcard-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+  </div>
+  <div class="dcard-inner">
+    <div class="inner-section">
+      <div class="section-label">Mentalität, Kodierung &amp; DRG-Hacks</div>
+      <div class="mental-box green">
+        <p>Der elektive Patient bleibt 1 Nacht. Der Brief muss kurz und präzise sein. Wichtig: Wenn ein <strong>Bypass empfohlen</strong> wurde, muss das Herzteam-Protokoll im Brief erwähnt werden. Wenn ein Stent gelegt wurde: DAPT-Dauer und welches Medikament explizit benennen. Wenn keine Intervention: klar erläutern warum (diffuse KHK, kein Target).</p>
+      </div>
+      <div class="vwd-row">
+        <div class="vwd-chip days">⏱ VWD: 1–2 Tage</div>
+        <div class="vwd-chip warn">Kurzliegerabschlag bei &lt;1 Tag!</div>
+      </div>
+    </div>
+    <div class="inner-section">
+      <div class="section-label">Arztbrief-Vorlage</div>
+      <div class="template-wrap">
+        <div class="template-label"><button class="copy-btn" onclick="copyTemplate(this)">Kopieren</button></div>
+        <div class="template-box">
+          <p>Die elektive stationäre Aufnahme erfolgte zur Durchführung einer geplanten Koronarangiographie bei bekannter KHK und progredienter Belastungsangina. In der Untersuchung zeigte sich eine hochgradige In-Stent-Restenose in der RCA. Diese wurde erfolgreich mittels Ballondilatation (DEB) und Implantation eines weiteren Drug-Eluting-Stents (DES) behandelt. Die Punktionsstelle an der Arteria radialis zeigte sich im Verlauf reizlos und ohne Hinweis auf eine Nachblutung. Der Patient war bei Entlassung hämodynamisch stabil und beschwerdefrei. Wir empfehlen die Fortführung der dualen Plättchenhemmung für 6 Monate.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 15 -->
+<div class="dcard" id="aks-05" data-cat="aks">
+  <div class="dcard-head" onclick="toggle(this)">
+    <span class="dcard-num">15</span>
+    <div class="dcard-icon" style="background:#f5f3ff">⚠️</div>
+    <div class="dcard-info">
+      <div class="dcard-title">Typ-2-Myokardinfarkt (Demand-Ischämie)</div>
+      <div class="dcard-subtitle">Troponin hoch bei Anämie / COPD · kein ACS!</div>
+      <div class="dcard-badges"><span class="badge purple">Größte Kodier-Falle!</span><span class="badge red">Nie als NSTEMI kodieren!</span></div>
+    </div>
+    <svg class="dcard-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+  </div>
+  <div class="dcard-inner">
+    <div class="inner-section">
+      <div class="section-label">Mentalität, Kodierung &amp; DRG-Hacks — Größte Kodier-Falle der Kardiologie</div>
+      <div class="mental-box purple">
+        <p>Dies ist die gefährlichste Kodier-Falle in der gesamten Kardiologie. Der Mechanismus ist folgender: Ein Patient mit schwerer Pneumonie oder Anämie hat einen Troponin-Anstieg. Ein unerfahrener Arzt schreibt NSTEMI ins System und beginnt Heparin zu geben. Der MDK prüft den Fall, sieht dass keine Koronarangiographie durchgeführt wurde, keine PCI stattfand, und kein kardiologisches Interventionsprinzip angewendet wurde — und streicht die NSTEMI-Diagnose vollständig. Das Krankenhaus verliert den gesamten Zusatzerlös.</p>
+        <p>Die medizinische Erklärung, die du verinnerlichen musst: Ein Typ-2-Myokardinfarkt entsteht nicht durch eine Plaqueruptur und Thrombose. Er entsteht durch ein Missverhältnis zwischen Sauerstoffangebot und Sauerstoffbedarf des Herzmuskels — bei hohem Fieber, schwerem Infekt, schwerer Anämie, oder exzessiver Tachykardie. Der Herzmuskel ist gezwungen zu viel zu arbeiten und erhält zu wenig Sauerstoff — das Troponin steigt als Zeichen der myokardialen Überlastung, aber nicht als Zeichen eines Koronarverschlusses.</p>
+        <p>Die Kodierungsregel: Die Hauptdiagnose ist immer die auslösende Erkrankung — also die Pneumonie, die schwere Anämie, oder die COPD-Exazerbation. Der Typ-2-Myokardinfarkt (ICD I21.A9) wird als Nebendiagnose kodiert. Dieser Code ist für den MDK der einzig akzeptable Weg, den Troponin-Anstieg zu kodieren, ohne eine Intervention rechtfertigen zu müssen. Im Brief muss explizit stehen warum der Troponin-Anstieg nicht auf eine koronare Ursache zurückzuführen ist — das schützt dich medizinisch und erklärt dem Hausarzt, dass er den Patienten nicht automatisch zur Koronarangiographie überweisen muss.</p>
+      </div>
+      <div class="insider-hack">
+        <div class="insider-hack-label">⚡ Die entscheidende Unterscheidung</div>
+        <p><span class="h-warn">Niemals kodieren:</span> NSTEMI (I21.4) wenn keine Koronarangiographie geplant ist und der Troponin-Anstieg durch eine Grunderkrankung erklärt wird.</p>
+        <p><span class="h-ok">Immer kodieren:</span> Grunderkrankung als Hauptdiagnose + Typ-2-Myokardinfarkt (I21.A9) als Nebendiagnose. So ist der MDK zufrieden und das Krankenhaus erhält den korrekten Erlös ohne rechtliche Angriffsfläche.</p>
+      </div>
+    </div>
+    <div class="inner-section">
+      <div class="section-label">Arztbrief-Vorlage</div>
+      <div class="template-wrap">
+        <div class="template-label"><button class="copy-btn" onclick="copyTemplate(this)">Kopieren</button></div>
+        <div class="template-box">
+          <p>Die stationäre Aufnahme des Patienten erfolgte primär bei exazerbierter COPD und begleitender schwerer Anämie. Laborchemisch zeigte sich initial eine signifikante Troponindynamik ohne begleitende Ischämiezeichen im 12-Kanal-EKG. Wir werteten diese Konstellation als Ausdruck einer myokardialen Demand-Ischämie im Sinne eines Typ-2-Myokardinfarktes bei passagerem Missverhältnis von Sauerstoffangebot und -bedarf. Eine primäre kardiologische Intervention war nicht indiziert. Unter erfolgreicher Therapie der Grunderkrankung mittels Transfusion von zwei Erythrozytenkonzentraten und konsequenter Sauerstoffgabe waren die kardialen Nekrosemarker im Verlauf rasch rückläufig. Der Patient konnte kardiopulmonal stabil in die hausärztliche Weiterbetreuung entlassen werden.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 16 -->
+<div class="dcard" id="aks-06" data-cat="aks">
+  <div class="dcard-head" onclick="toggle(this)">
+    <span class="dcard-num">16</span>
+    <div class="dcard-icon" style="background:#fdf8ee">💔</div>
+    <div class="dcard-info">
+      <div class="dcard-title">Tako-Tsubo-Kardiomyopathie</div>
+      <div class="dcard-subtitle">Stress-Trigger · Coro blank · Apical Ballooning · reversibel</div>
+      <div class="dcard-badges"><span class="badge gold">Echo in 3 Mon.</span><span class="badge teal">Meist Frauen</span></div>
+    </div>
+    <svg class="dcard-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+  </div>
+  <div class="dcard-inner">
+    <div class="inner-section">
+      <div class="section-label">Mentalität, Kodierung &amp; DRG-Hacks</div>
+      <div class="mental-box gold">
+        <p>Ältere Patientin, nach emotionalem Stress, EKG wie STEMI, Coro: blanke Koronararterien. In der Lävokardiographie: apical ballooning. Wichtig im Brief: <strong>Stress-Trigger explizit benennen</strong>, erklären dass die EF sich meist vollständig erholt, und <strong>Echo-Kontrolle in 3 Monaten</strong> empfehlen. Der Hausarzt ist oft verunsichert — ein präziser Brief nimmt ihm die Angst.</p>
+      </div>
+    </div>
+    <div class="inner-section">
+      <div class="section-label">Arztbrief-Vorlage</div>
+      <div class="template-wrap">
+        <div class="template-label"><button class="copy-btn" onclick="copyTemplate(this)">Kopieren</button></div>
+        <div class="template-box">
+          <p>Die Patientin stellte sich mit akutem Thoraxschmerz und dynamischen ST-Strecken-Veränderungen im EKG unmittelbar nach einem schweren emotionalen Stressereignis vor. Zur Abklärung eines akuten Koronarsyndroms führten wir eine notfallmäßige Koronarangiographie durch. Hierbei zeigte sich ein makroskopisch unauffälliges Koronarsystem ohne stenosierende Läsionen. In der ergänzenden Lävokardiographie sowie der Echokardiographie demaskierte sich das klassische Bild eines apical ballooning mit hochgradig reduzierter linksventrikulärer Pumpfunktion. Wir stellten die Diagnose einer Tako-Tsubo-Kardiomyopathie und initiierten eine herzinsuffizienzspezifische Medikation. Hierunter war die Patientin im Verlauf beschwerdefrei. Wir empfehlen eine echokardiographische Verlaufskontrolle in 3 Monaten zur Überprüfung der linksventrikulären Funktionserholung.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 17 -->
+<div class="dcard" id="aks-07" data-cat="aks">
+  <div class="dcard-head" onclick="toggle(this)">
+    <span class="dcard-num">17</span>
+    <div class="dcard-icon" style="background:#f0fdfa">🦠</div>
+    <div class="dcard-info">
+      <div class="dcard-title">Akute Myokarditis</div>
+      <div class="dcard-subtitle">Junger Patient · Troponin · Coro blank · Kardio-MRT</div>
+      <div class="dcard-badges"><span class="badge teal">Sportverbot 3–6 Mon.</span><span class="badge navy">Kardio-MRT Pflicht</span></div>
+    </div>
+    <svg class="dcard-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+  </div>
+  <div class="dcard-inner">
+    <div class="inner-section">
+      <div class="section-label">Mentalität, Kodierung &amp; DRG-Hacks</div>
+      <div class="mental-box teal">
+        <p>Junger Patient, Brustschmerz, Troponin positiv, Coro blank → Kardio-MRT zeigt Late Gadolinium Enhancement (LGE) subepikardial. Der wichtigste Satz im Brief: <strong>„Striktes körperliches Sportverbot für mindestens 3–6 Monate ist zwingend erforderlich."</strong> Das ist die medizinisch und haftungsrechtlich kritischste Empfehlung — wenn dieser Satz fehlt und der Patient stirbt beim Sport, haftest du.</p>
+      </div>
+    </div>
+    <div class="inner-section">
+      <div class="section-label">Arztbrief-Vorlage</div>
+      <div class="template-wrap">
+        <div class="template-label"><button class="copy-btn" onclick="copyTemplate(this)">Kopieren</button></div>
+        <div class="template-box">
+          <p>Der junge Patient stellte sich mit atypischen Thoraxschmerzen und laborchemisch passagerer Troponindynamik vor. Zum Ausschluss eines akuten Koronarsyndroms führten wir eine Koronarangiographie durch, welche makroskopisch unauffällige Koronararterien zeigte. In der ergänzend durchgeführten kardialen Magnetresonanztomographie (Kardio-MRT) zeigten sich typische Zeichen einer akuten Myokarditis mit subepikardialem Late Gadolinium Enhancement. Unter symptomatischer Therapie mit Ibuprofen war der Patient im Verlauf beschwerdefrei. Die Entlassung erfolgt in stabilem Zustand. Eine strikte körperliche Schonung und ein absolutes Sportverbot für mindestens 3 bis 6 Monate sind zwingend erforderlich.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════ -->
+<!--  RHYTHMUS -->
+<!-- ══════════════════════════════════════════════ -->
+
+<!-- 18 -->
+<div class="dcard" id="rhy-01" data-cat="rhythmus">
+  <div class="dcard-head" onclick="toggle(this)">
+    <span class="dcard-num">18</span>
+    <div class="dcard-icon" style="background:#f5f3ff">〰️</div>
+    <div class="dcard-info">
+      <div class="dcard-title">Tachyarrhythmia absoluta bei VHF + Kardioversion</div>
+      <div class="dcard-subtitle">HF 130/min · TEE · elektrische Kardioversion</div>
+      <div class="dcard-badges"><span class="badge purple">TAA kodieren!</span><span class="badge teal">TEE-OPS</span><span class="badge red">DOAK lebenslang?</span></div>
+    </div>
+    <svg class="dcard-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+  </div>
+  <div class="dcard-inner">
+    <div class="inner-section">
+      <div class="section-label">Mentalität, Kodierung &amp; DRG-Hacks</div>
+      <div class="mental-box purple">
+        <p>Vorhofflimmern ist das häufigste anhaltende Herzrhythmusstörungsbild, das du auf der Kardiologie sehen wirst. Aber „Vorhofflimmern" ins System zu schreiben und stehen zu lassen ist der teuerste Fehler, den ein Assistenzarzt machen kann. Der Grund ist einfach: der ICD-Code für Vorhofflimmern allein bringt eine minimale DRG-Erlösung, weil er keine Komplexität signalisiert.</p>
+        <p>Die Zauberformel für den MDK lautet: <strong>Tachyarrhythmia absoluta (TAA) bei paroxysmalem oder persistierendem Vorhofflimmern.</strong> Diese Kombination kodierst du als zwei separate Diagnosen — der VHF-Typ als ICD-Code (I48.0 für paroxysmal, I48.1 für persistierend, I48.2 für permanent) und die TAA als eigenen Code, der die hämodynamische Relevanz und die Tachykardie belegt. Diese Kombination erklärt dem MDK, warum der Patient stationär überwacht werden musste und warum i.v.-Medikamente gegeben wurden.</p>
+        <p>Zum Prozedurenkodieren: Jede TEE ist ein OPS-Code. Jede elektrische Kardioversion ist ein OPS-Code. Wenn du den Patienten für die Kardioversion sediert hast — was du immer tust — dann ist das Sedierungs-OPS ein weiterer Code. Diese drei Prozeduren zusammen machen aus einem einfachen VHF-Fall einen deutlich besser vergüteten DRG-Fall.</p>
+        <p>Der CHA₂DS₂-VASc-Score muss im Brief stehen und erklärt werden. Nicht nur der Score als Zahl, sondern auch die daraus abgeleitete Therapieentscheidung: ab einem Score von 1 bei Männern und 2 bei Frauen ist ein DOAK indiziert und muss dauerhaft vom Hausarzt weitergeführt werden. Wenn dieser Score im Brief fehlt, kann der Hausarzt das DOAK-Rezept nicht medizinisch begründen und wird es absetzen.</p>
+      </div>
+      <div class="vwd-row">
+        <div class="vwd-chip days">⏱ VWD: 2–4 Tage</div>
+        <div class="vwd-chip code">ICD: I48.0–I48.2 + TAA</div>
+        <div class="vwd-chip drg">OPS: TEE + Kardioversion</div>
+      </div>
+    </div>
+    <div class="inner-section">
+      <div class="section-label">Arztbrief-Vorlage</div>
+      <div class="template-wrap">
+        <div class="template-label"><button class="copy-btn" onclick="copyTemplate(this)">Kopieren</button></div>
+        <div class="template-box">
+          <p>Die Aufnahme erfolgte bei symptomatischer Tachyarrhythmia absoluta bei bekanntem paroxysmalem Vorhofflimmern mit Herzfrequenzen um 130/min. Nach Ausschluss eines Vorhofthrombus mittels TEE führten wir in Kurznarkose eine erfolgreiche elektrische Kardioversion durch. Hierunter etablierte sich ein stabiler Sinusrhythmus. Die therapeutische Antikoagulation mit einem DOAK wurde leitliniengerecht begonnen. Bei Entlassung war der Patient im Sinusrhythmus normofrequent und beschwerdefrei. Wir bitten um regelmäßige EKG-Kontrollen im ambulanten Verlauf.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 19 -->
+<div class="dcard" id="rhy-02" data-cat="rhythmus">
+  <div class="dcard-head" onclick="toggle(this)">
+    <span class="dcard-num">19</span>
+    <div class="dcard-icon" style="background:#eff6ff">🆕</div>
+    <div class="dcard-info">
+      <div class="dcard-title">VHF-Erstdiagnose / Elektive Kardioversion</div>
+      <div class="dcard-subtitle">Erstes VHF · Rhythmuskontroll-Strategie · DOAK starten</div>
+      <div class="dcard-badges"><span class="badge blue">CHA₂DS₂-VASc!</span><span class="badge gold">TEE vor Kardioversion</span></div>
+    </div>
+    <svg class="dcard-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+  </div>
+  <div class="dcard-inner">
+    <div class="inner-section">
+      <div class="section-label">Mentalität, Kodierung &amp; DRG-Hacks</div>
+      <div class="mental-box navy">
+        <p>Bei VHF-Erstdiagnose immer: <strong>TSH messen</strong> (Hyperthyreose als Trigger ausschließen!). Bei elektiver Kardioversion: entweder 4 Wochen adäquate Antikoagulation <strong>oder</strong> TEE-Ausschluss eines LA-Thrombus. Beides im Brief dokumentieren. DOAK-Indikation mit CHA₂DS₂-VASc-Score begründen.</p>
+      </div>
+    </div>
+    <div class="inner-section">
+      <div class="section-label">Arztbrief-Vorlage</div>
+      <div class="template-wrap">
+        <div class="template-label"><button class="copy-btn" onclick="copyTemplate(this)">Kopieren</button></div>
+        <div class="template-box">
+          <p>Der Patient stellte sich mit akut aufgetretenen, stark symptomatischen Palpitationen in unserer Notaufnahme vor. Im EKG dokumentierten wir die Erstdiagnose eines tachykarden Vorhofflimmerns. Nach laborchemischem Ausschluss einer Hyperthyreose und unauffälliger transthorakaler Echokardiographie strebten wir bei kurzer Anamnesedauer eine primäre Rhythmuskontrolle an. Nach Ausschluss von Vorhofthromben mittels transösophagealer Echokardiographie (TEE) begannen wir eine medikamentöse Kardioversion durch Aufsättigung mit Amiodaron. Hierunter konvertierte der Patient erfreulicherweise rasch in einen stabilen Sinusrhythmus. Aufgrund eines CHA₂DS₂-VASc-Scores von 2 leiteten wir eine dauerhafte orale Antikoagulation mit einem DOAK ein. Wir bitten um regelmäßige Schilddrüsen- und Leberwertkontrollen unter der laufenden Amiodaron-Therapie.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 20 -->
+<div class="dcard" id="rhy-03" data-cat="rhythmus">
+  <div class="dcard-head" onclick="toggle(this)">
+    <span class="dcard-num">20</span>
+    <div class="dcard-icon" style="background:#f5f3ff">⚡</div>
+    <div class="dcard-info">
+      <div class="dcard-title">Vorhofflattern / Ablations-Evaluation (EPU)</div>
+      <div class="dcard-subtitle">Sägezahnmuster · Isthmusablation · Warteliste EPU</div>
+      <div class="dcard-badges"><span class="badge purple">≠ VHF-Code!</span><span class="badge teal">DOAK bis Ablation</span></div>
+    </div>
+    <svg class="dcard-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+  </div>
+  <div class="dcard-inner">
+    <div class="inner-section">
+      <div class="section-label">Mentalität, Kodierung &amp; DRG-Hacks</div>
+      <div class="mental-box purple">
+        <p>Vorhofflattern und Vorhofflimmern sind zwei völlig verschiedene Erkrankungen mit unterschiedlichen ICD-Codes, unterschiedlichen Therapieansätzen und unterschiedlichem DRG-Erlös. Wer Vorhofflattern als Vorhofflimmern kodiert, macht einen medizinisch falschen und juristisch angreifbaren Fehler. Das Vorhofflattern hat einen kurativen Behandlungsansatz — die Isthmusablation — während Vorhofflimmern häufig ein chronisches Management erfordert. Diese Unterscheidung ist für den Patienten, den Hausarzt und den MDK gleichermaßen wichtig.</p>
+        <p>Die Kodierung: Vorhofflattern typisches isthmusabhängiges (I48.3) oder atypisches (I48.4) — immer den korrekten Untercode verwenden. Nicht I48.0 oder I48.1, die für Vorhofflimmern reserviert sind. Als Nebendiagnose die Tachykardie mit der dokumentierten Überleitung (2:1 oder 3:1) angeben, damit der MDK die medikamentöse Frequenzkontrolle nachvollziehen kann.</p>
+        <p>Die Ablationsindikation ist im Brief zwingend zu benennen: Der Patient steht auf der Warteliste für eine elektrophysiologische Untersuchung mit Isthmusablation. Das gibt dem Hausarzt die Information, dass eine kurative Therapie geplant ist und er die frequenzkontrollierende Medikation als Überbrückungstherapie verstehen soll — nicht als Dauerlösung. Das DOAK muss bis zur Ablation zwingend weitergeführt werden, weil das Vorhofflattern genauso wie Vorhofflimmern thrombogenes Potenzial hat. Dieser Satz muss im Brief stehen, weil Hausärzte dieses Wissen oft nicht haben.</p>
+      </div>
+    </div>
+    <div class="inner-section">
+      <div class="section-label">Arztbrief-Vorlage</div>
+      <div class="template-wrap">
+        <div class="template-label"><button class="copy-btn" onclick="copyTemplate(this)">Kopieren</button></div>
+        <div class="template-box">
+          <p>Der Patient stellte sich mit symptomatischen Palpitationen und reduzierter Belastbarkeit vor. Im 12-Kanal-EKG dokumentierten wir ein typisches Vorhofflattern mit einer 2:1-Überleitung und einer Kammerfrequenz von 130/min. Unter Einleitung einer frequenzkontrollierenden Therapie mit Metoprolol ließ sich die Herzfrequenz im Verlauf suffizient regulieren. Echokardiographisch zeigte sich eine gute biventrikuläre Pumpfunktion ohne relevante Vitien. Wir stellten die Indikation zur elektiven Isthmusablation. Der Patient wurde auf unsere Warteliste für die elektrophysiologische Untersuchung (EPU) aufgenommen. Die therapeutische Antikoagulation mit einem DOAK wurde leitliniengerecht begonnen und muss bis zur geplanten Ablation zwingend fortgeführt werden.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 21 -->
+<div class="dcard" id="rhy-04" data-cat="rhythmus">
+  <div class="dcard-head" onclick="toggle(this)">
+    <span class="dcard-num">21</span>
+    <div class="dcard-icon" style="background:#fdf8ee">🫨</div>
+    <div class="dcard-info">
+      <div class="dcard-title">Unklare Synkope</div>
+      <div class="dcard-subtitle">Komplette Diagnostik · Langzeit-EKG · Exsikkose?</div>
+      <div class="dcard-badges"><span class="badge gold">Ursache suchen!</span><span class="badge gray">Orthostatisch? Kardial?</span></div>
+    </div>
+    <svg class="dcard-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+  </div>
+  <div class="dcard-inner">
+    <div class="inner-section">
+      <div class="section-label">Mentalität, Kodierung &amp; DRG-Hacks</div>
+      <div class="mental-box gold">
+        <p>Die Synkope ist auf den ersten Blick ein einfacher Fall — der Patient ist gefallen oder kurz ohnmächtig gewesen. Aber aus DRG-Perspektive ist die Synkope als alleinige Hauptdiagnose wirtschaftlich fast wertlos. Der Schlüssel liegt darin, die Ursache zu finden und als Nebendiagnose zu kodieren. Ohne Ursache — keine Zusatzerlöse.</p>
+        <p>Was der MDK sehen will: eine vollständige Stufendiagnostik. Das bedeutet konkret: transthorakale Echokardiographie zum Ausschluss struktureller Herzerkrankungen, 24-Stunden-Langzeit-EKG zum Ausschluss bradykarder oder tachykarder Episoden, und Duplexsonographie der extrakraniellen hirnversorgenden Gefäße zum Ausschluss einer zerebrovaskulären Ursache. Jede dieser Untersuchungen ist ein OPS-Code. Alle drei zusammen rechtfertigen den stationären Aufenthalt von 2 bis 3 Tagen ohne jede Diskussion mit dem MDK.</p>
+        <p>Zur Nebendiagnose: Die häufigste Ursache bei älteren Patienten ist die Exsikkose — Dehydratation. Wenn du einen Liter Ringer- oder Sterofundin-Lösung intravenös gegeben hast, dann kannst du Exsikkose als Nebendiagnose kodieren. Ohne diese intravenöse Behandlung ist die Exsikkose nicht kodierbar — das ist die MDK-Regel. Die orthostatische Hypotonie ist die zweithäufigste Ursache und ebenfalls als Nebendiagnose kodierbar, wenn du eine Schellong-Messung durchgeführt und dokumentiert hast. Bradykardie als Ursache muss durch das Langzeit-EKG belegt sein.</p>
+        <p>Für den Hausarzt ist die Botschaft des Briefs folgende: Eine kardiovaskuläre Ursache der Synkope wurde vollständig ausgeschlossen. Der Hausarzt muss sich um die ambulante Weiterklärung und ggf. neurologische Vorstellung kümmern. Wenn der Brief das nicht klar sagt, wird der Hausarzt den Patienten unnötig weiter zur Kardiologie schicken.</p>
+      </div>
+      <div class="vwd-row">
+        <div class="vwd-chip days">⏱ VWD: 2–3 Tage</div>
+        <div class="vwd-chip code">ICD: R55 + Ursache</div>
+      </div>
+    </div>
+    <div class="inner-section">
+      <div class="section-label">Arztbrief-Vorlage</div>
+      <div class="template-wrap">
+        <div class="template-label"><button class="copy-btn" onclick="copyTemplate(this)">Kopieren</button></div>
+        <div class="template-box">
+          <p>Die stationäre Aufnahme erfolgte zur Abklärung einer unklaren Synkope. In der von uns durchgeführten Diagnostik (Echokardiographie, Langzeit-EKG, Duplexsonographie der extrakraniellen hirnversorgenden Gefäße) ergab sich kein richtungsweisender pathologischer Befund für eine kardiovaskuläre Ursache der Synkope. Wir gehen am ehesten von einer orthostatischen Genese bei Exsikkose aus. Unter ausreichender intravenöser und oraler Hydratation zeigte sich der Patient im Verlauf durchgehend hämodynamisch stabil ohne erneute Schwindelsymptomatik oder Synkopen. Die Entlassung erfolgt in gutem Allgemeinzustand in die ambulante Weiterbetreuung. Wir empfehlen eine ausreichende Trinkmenge von mindestens 2 Litern täglich.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 22 -->
+<div class="dcard" id="rhy-05" data-cat="rhythmus">
+  <div class="dcard-head" onclick="toggle(this)">
+    <span class="dcard-num">22</span>
+    <div class="dcard-icon" style="background:#fdf8ee">🔋</div>
+    <div class="dcard-info">
+      <div class="dcard-title">Sick-Sinus-Syndrom / Tachy-Brady-Syndrom</div>
+      <div class="dcard-subtitle">Pausen im Langzeit-EKG · Schrittmacher zuerst · dann Betablocker</div>
+      <div class="dcard-badges"><span class="badge gold">Reihenfolge kritisch!</span><span class="badge navy">SM vor Betablocker</span></div>
+    </div>
+    <svg class="dcard-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+  </div>
+  <div class="dcard-inner">
+    <div class="inner-section">
+      <div class="section-label">Mentalität, Kodierung &amp; DRG-Hacks</div>
+      <div class="mental-box gold">
+        <p>Das Dilemma: Betablocker gegen das Tachykardie-VHF geben → Patient stirbt an der Bradykardie. Lösung: <strong>Erst Schrittmacher, dann Betablocker</strong>. Im Brief erklären: der SM schützt vor dem tiefen Abfall, danach kann sicher frequenzkontrolliert werden. Das muss der Hausarzt verstehen, damit er nicht versucht, die Frequenz mit Digitalis zu bremsen (was die Pausen verlängert).</p>
+      </div>
+    </div>
+    <div class="inner-section">
+      <div class="section-label">Arztbrief-Vorlage</div>
+      <div class="template-wrap">
+        <div class="template-label"><button class="copy-btn" onclick="copyTemplate(this)">Kopieren</button></div>
+        <div class="template-box">
+          <p>Die stationäre Aufnahme erfolgte zur Abklärung rezidivierender Schwindelattacken und Präsynkopen. Im durchgeführten Langzeit-EKG demaskierte sich ein klassisches Tachy-Brady-Syndrom im Sinne eines Sick-Sinus-Syndroms mit tachykardem Vorhofflimmern und anschließenden asystolischen Pausen von bis zu 4 Sekunden. Zur Ermöglichung einer sicheren frequenzkontrollierenden Therapie stellten wir die Indikation zur Schrittmacherversorgung. Wir implantierten komplikationslos einen Zweikammer-Herzschrittmacher. Im Anschluss konnte eine medikamentöse Frequenzkontrolle mit Metoprolol sicher etabliert werden. Die Wundverhältnisse zeigten sich bei Entlassung reizlos, der Patient war hämodynamisch stabil und schwindelfrei. Wir bitten um regelmäßige Wundkontrollen und Fadenentfernung am 10. postoperativen Tag.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 23 -->
+<div class="dcard" id="rhy-06" data-cat="rhythmus">
+  <div class="dcard-head" onclick="toggle(this)">
+    <span class="dcard-num">23</span>
+    <div class="dcard-icon" style="background:#f0fdf8">🫀</div>
+    <div class="dcard-info">
+      <div class="dcard-title">Symptomatische VES / Palpitationen</div>
+      <div class="dcard-subtitle">VES-Burden 15% · strukturelle Herzerkrankung ausgeschlossen</div>
+      <div class="dcard-badges"><span class="badge green">Holter-Kontrolle 3 Mon.</span><span class="badge gray">Ablation besprechen</span></div>
+    </div>
+    <svg class="dcard-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+  </div>
+  <div class="dcard-inner">
+    <div class="inner-section">
+      <div class="section-label">Mentalität, Kodierung &amp; DRG-Hacks</div>
+      <div class="mental-box green">
+        <p>Das Entscheidende für den Hausarzt: <strong>Wir haben strukturelle Herzerkrankung (KHK, DCM) ausgeschlossen.</strong> Erst dann kann konservativ mit Betablocker behandelt werden. Holter-EKG in 3 Monaten empfehlen — wenn VES-Burden unter Therapie nicht sinkt → Ablationsindikation prüfen.</p>
+      </div>
+    </div>
+    <div class="inner-section">
+      <div class="section-label">Arztbrief-Vorlage</div>
+      <div class="template-wrap">
+        <div class="template-label"><button class="copy-btn" onclick="copyTemplate(this)">Kopieren</button></div>
+        <div class="template-box">
+          <p>Die stationäre Aufnahme erfolgte zur Rhythmusdiagnostik bei ausgeprägten, symptomatischen Palpitationen. Im extern durchgeführten Langzeit-EKG zeigte sich eine hochgradige ventrikuläre Extrasystolie mit einem VES-Burden von 15 Prozent ohne Nachweis höhergradiger ventrikulärer Tachykardien. Echokardiographisch sowie laborchemisch konnten wir eine strukturelle Herzerkrankung oder eine akute Ischämie sicher ausschließen. Nach ausführlicher Aufklärung des Patienten über die medikamentösen und interventionellen Therapieoptionen entschieden wir uns primär für einen konservativen Ansatz und initiierten eine betablockierende Therapie mit Bisoprolol. Hierunter zeigte sich der Patient im Verlauf subjektiv deutlich beschwerdegelindert. Eine ambulante Kontrolle des Langzeit-EKGs in 3 Monaten wird zur Beurteilung des Therapieerfolgs dringend empfohlen.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 24 -->
+<div class="dcard" id="rhy-07" data-cat="rhythmus">
+  <div class="dcard-head" onclick="toggle(this)">
+    <span class="dcard-num">24</span>
+    <div class="dcard-icon" style="background:#fdf2f2">⚡</div>
+    <div class="dcard-info">
+      <div class="dcard-title">Brugada-Syndrom</div>
+      <div class="dcard-subtitle">Coved-Type V1–V2 · Kardio-MRT · ICD Sekundärprophylaxe</div>
+      <div class="dcard-badges"><span class="badge red">Genetische Erkrankung!</span><span class="badge navy">ICD-Indikation</span></div>
+    </div>
+    <svg class="dcard-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+  </div>
+  <div class="dcard-inner">
+    <div class="inner-section">
+      <div class="section-label">Mentalität, Kodierung &amp; DRG-Hacks</div>
+      <div class="mental-box red">
+        <p>Junger Patient mit Synkope, spontanes Typ-1-EKG (Coved-Type in V1–V2) → Brugada-Syndrom. Zwei kritische Empfehlungen: (1) <strong>Familien-Screening</strong> (genetische Erkrankung, AD), (2) <strong>ICD zur Sekundärprävention</strong> bei Synkope + Typ-1-EKG. Fieber vermeiden (verschlimmert EKG-Muster). Im Brief explizit Medikamente listen, die Brugada-Muster provozieren können (z.B. Flecainid, Ajmalin-Test).</p>
+      </div>
+    </div>
+    <div class="inner-section">
+      <div class="section-label">Arztbrief-Vorlage</div>
+      <div class="template-wrap">
+        <div class="template-label"><button class="copy-btn" onclick="copyTemplate(this)">Kopieren</button></div>
+        <div class="template-box">
+          <p>Die stationäre Aufnahme des jungen Patienten erfolgte nach rezidivierenden, unklaren Synkopen. Im 12-Kanal-EKG zeigten sich in den rechtspräkordialen Ableitungen (V1–V2) coved-type ST-Strecken-Hebungen, vereinbar mit einem Brugada-Syndrom Typ 1. Zum Ausschluss struktureller Herzerkrankungen führten wir ein Kardio-MRT durch, welches absolut unauffällig ausfiel. Aufgrund der stattgehabten Synkopen in Kombination mit dem spontanen Typ-1-EKG stellten wir die Indikation zur Implantation eines transvenösen ICDs zur Sekundärprävention des plötzlichen Herztodes. Der Eingriff verlief komplikationslos und der Patient konnte kardiopulmonal stabil entlassen werden.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 25 -->
+<div class="dcard" id="rhy-08" data-cat="rhythmus">
+  <div class="dcard-head" onclick="toggle(this)">
+    <span class="dcard-num">25</span>
+    <div class="dcard-icon" style="background:#fff7ed">〰️</div>
+    <div class="dcard-info">
+      <div class="dcard-title">Nicht-anhaltende ventrikuläre Tachykardie (nsVT)</div>
+      <div class="dcard-subtitle">Salven im Holter · Ischämie ausschließen · ICD-Evaluation</div>
+      <div class="dcard-badges"><span class="badge orange">Coro zum Ausschluss</span><span class="badge navy">ICD-Evaluation nötig</span></div>
+    </div>
+    <svg class="dcard-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+  </div>
+  <div class="dcard-inner">
+    <div class="inner-section">
+      <div class="section-label">Mentalität, Kodierung &amp; DRG-Hacks</div>
+      <div class="mental-box orange">
+        <p>nsVT = &gt;3 Schläge, &lt;30 Sekunden. Wichtig: <strong>Ursache suchen</strong>! Ischämie ausschließen (Coro oder Stress-Echo), Elektrolyte normalisieren. Im Brief muss stehen, dass Holter-Kontrolle und Evaluation der ICD-Indikation ambulant erfolgen sollen — das ist der Schutz vor plötzlichem Herztod.</p>
+      </div>
+    </div>
+    <div class="inner-section">
+      <div class="section-label">Arztbrief-Vorlage</div>
+      <div class="template-wrap">
+        <div class="template-label"><button class="copy-btn" onclick="copyTemplate(this)">Kopieren</button></div>
+        <div class="template-box">
+          <p>Der Patient stellte sich mit rezidivierenden, stark symptomatischen Palpitationen und Schwindelepisoden vor. Im externen Langzeit-EKG zeigten sich mehrfache Episoden nicht-anhaltender ventrikulärer Tachykardien (nsVT) von bis zu 10 Schlägen. Zur Ischämieabklärung als mögliche Triggerursache führten wir eine Koronarangiographie durch, welche ein makroskopisch unauffälliges Koronarsystem zeigte. Elektrolytverschiebungen wurden laborchemisch ausgeschlossen. Wir initiierten eine antiarrhythmische Therapie durch Aufdosierung eines Betablockers (Bisoprolol). Hierunter zeigte sich der Patient im Monitor-EKG stabil ohne erneute VT-Episoden. Wir empfehlen eine erneute ambulante Langzeit-EKG-Kontrolle in 4 Wochen zur Re-Evaluation der Rhythmusstörung und Überprüfung einer möglichen ICD-Indikation.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════ -->
+<!--  KLAPPEN / AORTA -->
+<!-- ══════════════════════════════════════════════ -->
+
+<!-- 26 -->
+<div class="dcard" id="kla-01" data-cat="klappe">
+  <div class="dcard-head" onclick="toggle(this)">
+    <span class="dcard-num">26</span>
+    <div class="dcard-icon" style="background:#fdf8ee">🔬</div>
+    <div class="dcard-info">
+      <div class="dcard-title">Hochgradige Aortenklappeninsuffizienz</div>
+      <div class="dcard-subtitle">Diastolikum · TEE · Endokarditis ausschließen</div>
+      <div class="dcard-badges"><span class="badge gold">Herzteam-Entscheidung</span><span class="badge red">Endokarditis ausschließen!</span></div>
+    </div>
+    <svg class="dcard-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+  </div>
+  <div class="dcard-inner">
+    <div class="inner-section">
+      <div class="section-label">Mentalität, Kodierung &amp; DRG-Hacks</div>
+      <div class="mental-box gold">
+        <p>Beim Hausarzt klingt „Aortenklappeninsuffizienz" nach Routine — im Brief muss er verstehen, dass bei <strong>LVEDD &gt;60mm oder LVESD &gt;45mm</strong> eine OP-Indikation besteht. Außerdem: <strong>TEE + Blutkulturen</strong> zum Endokarditis-Ausschluss sind Pflicht — das gehört in die Epikrise.</p>
+      </div>
+    </div>
+    <div class="inner-section">
+      <div class="section-label">Arztbrief-Vorlage</div>
+      <div class="template-wrap">
+        <div class="template-label"><button class="copy-btn" onclick="copyTemplate(this)">Kopieren</button></div>
+        <div class="template-box">
+          <p>Die stationäre Aufnahme des Patienten erfolgte bei progredienter Belastungsdyspnoe und neu auskultiertem Diastolikum. In der durchgeführten transthorakalen und transösophagealen Echokardiographie (TEE) demaskierte sich eine hochgradige Aortenklappeninsuffizienz. Hinweise auf eine infektiöse Endokarditis oder Aortendissektion ergaben sich weder echokardiographisch noch laborchemisch, die abgenommenen Blutkulturen blieben steril. Aufgrund der echokardiographisch nachgewiesenen beginnenden linksventrikulären Dilatation (LVEDD 60 mm) und der klinischen Symptomatik stellten wir die Indikation zum operativen Aortenklappenersatz. Der Fall wurde im Herzteam besprochen. Wir leiteten eine herzinsuffizienzspezifische Medikation zur Nachlastsenkung ein und entließen den Patienten zur zeitnahen ambulanten Operationsvorbereitung in stabilem Zustand.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 27 -->
+<div class="dcard" id="kla-02" data-cat="klappe">
+  <div class="dcard-head" onclick="toggle(this)">
+    <span class="dcard-num">27</span>
+    <div class="dcard-icon" style="background:#f0f2f8">🎯</div>
+    <div class="dcard-info">
+      <div class="dcard-title">TAVI-Evaluation</div>
+      <div class="dcard-subtitle">Hochgradige AS · Staging · Herzteam · interventionell</div>
+      <div class="dcard-badges"><span class="badge navy">Herzteam-Protokoll</span><span class="badge gold">CT + Coro + Lungenfunktion</span></div>
+    </div>
+    <svg class="dcard-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+  </div>
+  <div class="dcard-inner">
+    <div class="inner-section">
+      <div class="section-label">Mentalität, Kodierung &amp; DRG-Hacks</div>
+      <div class="mental-box navy">
+        <p>Die TAVI-Evaluation ist einer der komplexesten und erlösreichsten Aufenthalte in der Kardiologie — aber nur, wenn die gesamte Stufendiagnostik korrekt dokumentiert und kodiert ist. Der MDK prüft diese Fälle besonders genau, weil sie teuer sind und weil viele Krankenhäuser hier Dokumentationslücken haben.</p>
+        <p>Das Stufendiagnostik-Schema, das vollständig dokumentiert sein muss: erstens die Koronarangiographie zum Ausschluss oder zur Behandlung relevanter KHK vor dem Klappeneingriff, zweitens die CT-Angiographie der Aorta und der Becken-Bein-Gefäße zur Planung des Zugangswegs, drittens die transthorakale und transösophageale Echokardiographie für die exakte Klappenanalyse mit Öffnungsfläche, mittlerem Gradienten und Klappenannulus-Messung, viertens die Lungenfunktionsprüfung als Teil des präoperativen Risiko-Assessments, und fünftens die Duplexsonographie der Karotiden. Jede dieser Untersuchungen ist ein eigener OPS-Code.</p>
+        <p>Der absolute Pflicht-Satz im Brief, ohne den der MDK den gesamten Aufenthalt ablehnen kann: <strong>„Der Fall wurde in unserem interdisziplinären Herzteam besprochen und die Indikation zur TAVI gestellt."</strong> Dieser Satz ist keine Formalität — er ist eine gesetzliche Anforderung für jeden TAVI-Entscheid. Ohne Herzteam-Dokumentation kein MDK-Akzept, kein Erlös.</p>
+        <p>Der Hausarzt muss aus dem Brief verstehen, was der Patient vor dem Eingriff beachten muss: körperliche Schonung, Antikoagulation (falls bereits begonnen), Termin-Koordination mit der intervenierenden Abteilung. Je klarer dieser Teil, desto weniger Rückfragen erhält das Sekretariat.</p>
+      </div>
+      <div class="vwd-row">
+        <div class="vwd-chip days">⏱ VWD: 3–5 Tage (Staging)</div>
+        <div class="vwd-chip code">ICD: I35.0</div>
+        <div class="vwd-chip warn">Herzteam-Satz unverzichtbar!</div>
+      </div>
+    </div>
+    <div class="inner-section">
+      <div class="section-label">Arztbrief-Vorlage</div>
+      <div class="template-wrap">
+        <div class="template-label"><button class="copy-btn" onclick="copyTemplate(this)">Kopieren</button></div>
+        <div class="template-box">
+          <p>Die elektive stationäre Aufnahme des Patienten erfolgte zur Evaluation eines interventionellen Klappenersatzes (TAVI) bei bekannter, hochgradiger und symptomatischer Aortenklappenstenose. Während des stationären Aufenthaltes führten wir ein umfassendes Staging durch. Die Koronarangiographie zeigte keine interventionsbedürftigen Stenosen. In der Computertomographie der Aorta sowie der Becken-Bein-Gefäße zeigte sich ein geeigneter transfemoraler Zugangsweg. Die Lungenfunktionsprüfung und die Duplexsonographie der Carotiden zeigten altersentsprechende Befunde. Der Fall wurde in unserem interdisziplinären Herzteam besprochen und die Indikation zur TAVI gestellt. Der Patient wird zur weiteren Terminierung in die ambulante Betreuung entlassen.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 28 -->
+<div class="dcard" id="kla-03" data-cat="klappe">
+  <div class="dcard-head" onclick="toggle(this)">
+    <span class="dcard-num">28</span>
+    <div class="dcard-icon" style="background:#fdf2f2">⚠️</div>
+    <div class="dcard-info">
+      <div class="dcard-title">Typ-B-Aortendissektion (konservativ)</div>
+      <div class="dcard-subtitle">Vernichtungsschmerz · CT bestätigt · strenge RR-Kontrolle</div>
+      <div class="dcard-badges"><span class="badge red">RR-Ziel &lt;120!</span><span class="badge gold">CT-Verlauf in 3 Mon.</span></div>
+    </div>
+    <svg class="dcard-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+  </div>
+  <div class="dcard-inner">
+    <div class="inner-section">
+      <div class="section-label">Mentalität, Kodierung &amp; DRG-Hacks</div>
+      <div class="mental-box red">
+        <p>Typ-B = absteigende Aorta, keine Herzbeteiligung → konservativ. Typ-A = aufsteigende Aorta → sofort OP! Im Brief: RR-Ziel <strong>systolisch &lt;120 mmHg</strong> ist die wichtigste Empfehlung — das verhindert Progression. CT-angiographische Verlaufskontrolle in 3 Monaten. Wenn der Hausarzt die Blutdrucktabletten absetzt, riskiert er eine Progression.</p>
+      </div>
+    </div>
+    <div class="inner-section">
+      <div class="section-label">Arztbrief-Vorlage</div>
+      <div class="template-wrap">
+        <div class="template-label"><button class="copy-btn" onclick="copyTemplate(this)">Kopieren</button></div>
+        <div class="template-box">
+          <p>Die Übernahme des Patienten auf unsere Normalstation erfolgte nach initialer intensivmedizinischer Überwachung bei computertomographisch gesicherter, unkomplizierter Typ-B-Aortendissektion. Klinische oder apparative Hinweise auf eine Malperfusion intraabdomineller Organe oder der unteren Extremitäten bestanden zu keinem Zeitpunkt. Im interdisziplinären Konsens mit der Gefäßchirurgie entschieden wir uns für eine primär konservative Therapiestrategie. Im Vordergrund stand hierbei die strenge medikamentöse Blutdruckeinstellung. Unter einer Kombinationstherapie aus einem Betablocker, ACE-Hemmer und Calciumantagonisten ließen sich systolische Blutdruckwerte konsequent unter 120 mmHg erzielen. Der Patient zeigte sich hierunter vollständig schmerzfrei. Wir entlassen den Patienten in hämodynamisch stabilem Zustand und bitten um eine zwingende ambulante CT-angiographische Verlaufskontrolle in 3 Monaten sowie die rigorose Einhaltung der Blutdruckzielwerte.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 29 -->
+<div class="dcard" id="kla-04" data-cat="klappe">
+  <div class="dcard-head" onclick="toggle(this)">
+    <span class="dcard-num">29</span>
+    <div class="dcard-icon" style="background:#f5f3ff">🔍</div>
+    <div class="dcard-info">
+      <div class="dcard-title">Thorakales Aortenaneurysma (Zufallsbefund)</div>
+      <div class="dcard-subtitle">45mm · konservativ · CT-Verlauf · RR-Kontrolle</div>
+      <div class="dcard-badges"><span class="badge purple">OP erst ab 50–55mm</span><span class="badge gold">CT-Kontrolle jährlich</span></div>
+    </div>
+    <svg class="dcard-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+  </div>
+  <div class="dcard-inner">
+    <div class="inner-section">
+      <div class="section-label">Mentalität, Kodierung &amp; DRG-Hacks</div>
+      <div class="mental-box purple">
+        <p>Zufallsbefund bei 45mm: Der Hausarzt ist erschrocken. Im Brief beruhigen und informieren: OP-Indikation erst ab 50–55mm (je nach Lokalisation und Grunderkrankung). Wichtigste Empfehlung: <strong>CT-Angio-Verlaufskontrolle in 12 Monaten</strong> und strenge Blutdruckeinstellung (Betablocker bevorzugt) zur Wachstumsverzögerung.</p>
+      </div>
+    </div>
+    <div class="inner-section">
+      <div class="section-label">Arztbrief-Vorlage</div>
+      <div class="template-wrap">
+        <div class="template-label"><button class="copy-btn" onclick="copyTemplate(this)">Kopieren</button></div>
+        <div class="template-box">
+          <p>Die elektive Vorstellung erfolgte zur kardiologischen Routineabklärung. Echokardiographisch fiel als Zufallsbefund ein erweiterter Durchmesser der aszendierenden Aorta auf. In der ergänzend durchgeführten CT-Angiographie der Aorta bestätigte sich ein thorakales Aortenaneurysma mit einem maximalen Durchmesser von 45 mm ohne Dissektionsmembran. Da die Kriterien für eine operative Sanierung aktuell nicht erfüllt sind, entschieden wir uns für ein konservatives Management. Wir optimierten die antihypertensive Therapie zur strikten Blutdruckkontrolle. Die Entlassung erfolgt in beschwerdefreiem Zustand. Wir empfehlen eine CT-angiographische Verlaufskontrolle in 12 Monaten.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 30 -->
+<div class="dcard" id="kla-05" data-cat="klappe">
+  <div class="dcard-head" onclick="toggle(this)">
+    <span class="dcard-num">30</span>
+    <div class="dcard-icon" style="background:#f0f2f8">🦺</div>
+    <div class="dcard-info">
+      <div class="dcard-title">Pericarditis constrictiva (Panzerherz)</div>
+      <div class="dcard-subtitle">Stauung · Rechtsherzkatheter · Perikardiektomie</div>
+      <div class="dcard-badges"><span class="badge navy">Seltene Diagnose</span><span class="badge gold">Chirurgie Herzteam</span></div>
+    </div>
+    <svg class="dcard-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+  </div>
+  <div class="dcard-inner">
+    <div class="inner-section">
+      <div class="section-label">Mentalität, Kodierung &amp; DRG-Hacks</div>
+      <div class="mental-box navy">
+        <p>Seltene, aber spektakuläre Diagnose. Patient kommt mit therapierefraktärer Rechtsherzdekompensation nach früherer Perikarditis. Diagnose: Rechts-Links-Herzkatheter zeigt das klassische <strong>Dip-and-Plateau-Phänomen</strong>. CT zeigt perikardiale Verkalkungen. Die einzige kurative Therapie ist die <strong>Perikardiektomie</strong> (Herzchirurgie). Im Brief klar verweisen.</p>
+      </div>
+    </div>
+    <div class="inner-section">
+      <div class="section-label">Arztbrief-Vorlage</div>
+      <div class="template-wrap">
+        <div class="template-label"><button class="copy-btn" onclick="copyTemplate(this)">Kopieren</button></div>
+        <div class="template-box">
+          <p>Die Aufnahme des Patienten erfolgte zur Abklärung einer therapierefraktären Rechtsherzdekompensation mit massiver Einflussstauung und Aszites bei Z.n. rezidivierenden Perikarditiden in der Vorgeschichte. Echokardiographisch zeigte sich ein verdicktes Perikard mit deutlichen Zeichen einer gestörten ventrikulären Füllung und eines paradoxen Septummotions. Zur Bestätigung der Diagnose einer Pericarditis constrictiva führten wir eine simultane Links- und Rechtsherzkatheteruntersuchung durch, welche den typischen Angleich der enddiastolischen Fülldrücke (Dip-and-Plateau-Phänomen) in beiden Ventrikeln zeigte. Im ergänzenden Kardio-CT bestätigten sich ausgeprägte perikardiale Verkalkungen (Panzerherz). Wir haben den Patienten zur geplanten operativen Perikardiektomie in unsere herzchirurgische Kooperationsklinik verlegt.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════ -->
+<!--  DEVICES -->
+<!-- ══════════════════════════════════════════════ -->
+
+<div class="dcard" id="dev-01" data-cat="device">
+  <div class="dcard-head" onclick="toggle(this)">
+    <span class="dcard-num">D1</span>
+    <div class="dcard-icon" style="background:#f0fdf8">🔋</div>
+    <div class="dcard-info">
+      <div class="dcard-title">AV-Block III° / Schrittmacher-Implantation</div>
+      <div class="dcard-subtitle">Symptomatische Bradykardie · Röntgen · Reizschwelle · Ausweis</div>
+      <div class="dcard-badges"><span class="badge green">Rö + Abfrage Pflicht</span><span class="badge navy">SM-Ausweis aushändigen</span></div>
+    </div>
+    <svg class="dcard-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+  </div>
+  <div class="dcard-inner">
+    <div class="inner-section">
+      <div class="section-label">Mentalität, Kodierung &amp; DRG-Hacks — Die 3 Pflicht-Sätze</div>
+      <div class="mental-box green">
+        <p>Der Chefarzt unterschreibt einen Schrittmacher-Brief nur, wenn drei Dinge dokumentiert sind: (1) <strong>Postoperativer Röntgen-Thorax</strong> (Pneumothorax-Ausschluss + korrekte Sondenlage), (2) <strong>Schrittmacher-Abfrage</strong> vor Entlassung mit exzellenten Messwerten, (3) <strong>SM-Ausweis ausgehändigt</strong>. Diese drei Sätze müssen im Brief stehen.</p>
+      </div>
+    </div>
+    <div class="inner-section">
+      <div class="section-label">Arztbrief-Vorlage</div>
+      <div class="template-wrap">
+        <div class="template-label"><button class="copy-btn" onclick="copyTemplate(this)">Kopieren</button></div>
+        <div class="template-box">
+          <p>Die stationäre Aufnahme erfolgte bei symptomatischer Bradykardie. Im EKG dokumentierten wir einen intermittierenden AV-Block III. Grades. Nach ausführlicher Aufklärung führten wir die unkomplizierte Implantation eines Zweikammer-Herzschrittmachers durch. Die intraoperativen Messwerte waren exzellent. In der postoperativen Röntgen-Thorax-Kontrolle zeigten sich eine korrekte Sondenlage sowie kein Anhalt für einen Pneumothorax. Die Wundverhältnisse waren bei Entlassung reizlos. Vor Entlassung erfolgte eine regelrechte Schrittmacher-Abfrage, der Herzschrittmacherausweis wurde dem Patienten ausgehändigt. Wir bitten um regelmäßige Wundkontrollen sowie eine Fadenentfernung am 10. postoperativen Tag durch den Hausarzt.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="dcard" id="dev-02" data-cat="device">
+  <div class="dcard-head" onclick="toggle(this)">
+    <span class="dcard-num">D2</span>
+    <div class="dcard-icon" style="background:#fdf2f2">⚡</div>
+    <div class="dcard-info">
+      <div class="dcard-title">ICD-Implantation Primärprophylaxe</div>
+      <div class="dcard-subtitle">EF ≤35% · OMT &gt;3 Monate · keine EF-Verbesserung</div>
+      <div class="dcard-badges"><span class="badge red">OMT-Nachweis Pflicht!</span><span class="badge gold">MDK prüft genau</span></div>
+    </div>
+    <svg class="dcard-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+  </div>
+  <div class="dcard-inner">
+    <div class="inner-section">
+      <div class="section-label">Mentalität, Kodierung &amp; DRG-Hacks — MDK-Falle</div>
+      <div class="mental-box red">
+        <p>Der MDK verweigert die Abrechnung eines ICD, wenn du nicht dokumentierst: <strong>Optimale medikamentöse Therapie (OMT) seit &gt;3 Monaten</strong> und trotzdem EF ≤35%. Ohne diesen Nachweis gilt der ICD als nicht indiziert. Schreib im Brief: „Trotz ausdosierter und optimierter Herzinsuffizienztherapie über mehr als 3 Monate persistierende hochgradige EF-Reduktion."</p>
+      </div>
+    </div>
+    <div class="inner-section">
+      <div class="section-label">Arztbrief-Vorlage</div>
+      <div class="template-wrap">
+        <div class="template-label"><button class="copy-btn" onclick="copyTemplate(this)">Kopieren</button></div>
+        <div class="template-box">
+          <p>Die elektive stationäre Aufnahme des Patienten erfolgte zur geplanten ICD-Implantation zur Primärprophylaxe auf dem Boden einer bekannten ischämischen Kardiomyopathie. Trotz optimaler und ausdosierter medikamentöser Herzinsuffizienztherapie (OMT) über mehr als 3 Monate zeigte sich in der aktuellen Echokardiographie eine anhaltend hochgradig reduzierte linksventrikuläre Pumpfunktion (LVEF 30%). Der operative Eingriff erfolgte komplikationslos in Lokalanästhesie. In der postoperativen Röntgen-Thorax-Kontrolle zeigten sich eine korrekte Sondenlage und reizlose Lungenbefunde. Die Aggregatabfrage vor Entlassung ergab exzellente Messwerte. Der Patient konnte in stabilem Zustand entlassen werden.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="dcard" id="dev-03" data-cat="device">
+  <div class="dcard-head" onclick="toggle(this)">
+    <span class="dcard-num">D3</span>
+    <div class="dcard-icon" style="background:#f0fdf8">🔄</div>
+    <div class="dcard-info">
+      <div class="dcard-title">Schrittmacher-Aggregatwechsel (Batterieerschöpfung)</div>
+      <div class="dcard-subtitle">ERI · Sondenbelassung · Kurzlieger</div>
+      <div class="dcard-badges"><span class="badge green">Kurzlieger</span><span class="badge navy">Sondenmesswerte dokumentieren</span></div>
+    </div>
+    <svg class="dcard-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+  </div>
+  <div class="dcard-inner">
+    <div class="inner-section">
+      <div class="section-label">Mentalität, Kodierung &amp; DRG-Hacks</div>
+      <div class="mental-box green">
+        <p>Die alten Sonden bleiben — nur das Aggregat wird getauscht. Deshalb muss im Brief stehen: <strong>„Sondenmesswerte intakt"</strong> (Reizschwelle im Normbereich) — das beweist, dass die alten Sonden weiter funktionieren. Außerdem: neuen SM-Ausweis mit neuem Aggregat und neuer Seriennummer aushändigen und dokumentieren.</p>
+      </div>
+    </div>
+    <div class="inner-section">
+      <div class="section-label">Arztbrief-Vorlage</div>
+      <div class="template-wrap">
+        <div class="template-label"><button class="copy-btn" onclick="copyTemplate(this)">Kopieren</button></div>
+        <div class="template-box">
+          <p>Die elektive stationäre Aufnahme erfolgte zum geplanten Schrittmacher-Aggregatwechsel bei Erschöpfung der Batterie (ERI) des bekannten VVI-Systems. Der operative Eingriff erfolgte komplikationslos in Lokalanästhesie. Das alte Aggregat wurde explantiert und bei intakten Sondenmesswerten erfolgreich durch ein neues System ersetzt. Die rechtsventrikuläre Sonde wurde belassen. In der postoperativen Röntgen-Thorax-Kontrolle zeigten sich eine korrekte Sondenlage sowie ein unauffälliger Befund der Lungen. Die Wundverhältnisse waren bei Entlassung absolut reizlos, der Patient war hämodynamisch stabil. Vor Entlassung erfolgte eine regelrechte Aggregatabfrage, der neue Schrittmacherausweis wurde dem Patienten ausgehändigt. Wir bitten um Fadenentfernung am 10. postoperativen Tag.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="dcard" id="dev-04" data-cat="device">
+  <div class="dcard-head" onclick="toggle(this)">
+    <span class="dcard-num">D4</span>
+    <div class="dcard-icon" style="background:#eff6ff">🔴</div>
+    <div class="dcard-info">
+      <div class="dcard-title">PFO-Verschluss nach kryptogenem Schlaganfall</div>
+      <div class="dcard-subtitle">Bubble-Test positiv · Okkluder · Neurologie-Herzteam</div>
+      <div class="dcard-badges"><span class="badge blue">Interdisziplinär!</span><span class="badge navy">DAPT 6 Monate</span></div>
+    </div>
+    <svg class="dcard-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+  </div>
+  <div class="dcard-inner">
+    <div class="inner-section">
+      <div class="section-label">Mentalität, Kodierung &amp; DRG-Hacks</div>
+      <div class="mental-box blue" style="background:#eff6ff;border:1px solid #bfdbfe;border-left:3px solid var(--blue)">
+        <p>Interdisziplinäre Entscheidung Kardiologie + Neurologie ist gesetzlich vorgeschrieben. Im Brief die Zauberformel: <strong>„Interdisziplinäre Fallbesprechung mit den neurologischen Kollegen."</strong> DAPT (ASS + Clopidogrel) für 6 Monate, dann auf ASS-Monotherapie umstellen.</p>
+      </div>
+    </div>
+    <div class="inner-section">
+      <div class="section-label">Arztbrief-Vorlage</div>
+      <div class="template-wrap">
+        <div class="template-label"><button class="copy-btn" onclick="copyTemplate(this)">Kopieren</button></div>
+        <div class="template-box">
+          <p>Die elektive Aufnahme des Patienten erfolgte zur kardiologischen Diagnostik nach stattgehabtem kryptogenem Schlaganfall im jungen Alter. In der transösophagealen Echokardiographie (TEE) mit positivem Kontrastmittel-Nachweis durch den Bubble-Test unter Valsalva-Manöver konnte ein persistierendes Foramen ovale (PFO) mit signifikantem Rechts-Links-Shunt diagnostiziert werden. Nach interdisziplinärer Fallbesprechung mit unseren neurologischen Kollegen stellten wir die Indikation zum interventionellen PFO-Verschluss zur Sekundärprävention. Der Eingriff wurde erfolgreich und komplikationslos mittels Okkluder-Implantation durchgeführt. Die Entlassung erfolgt bei reizlosen Punktionsstellen in der Leiste und normofrequentem Sinusrhythmus. Eine duale Plättchenhemmung mit ASS und Clopidogrel ist für 6 Monate indiziert.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════ -->
+<!--  KOMPLIKATIONEN -->
+<!-- ══════════════════════════════════════════════ -->
+
+<div class="dcard" id="kom-01" data-cat="komplikation">
+  <div class="dcard-head" onclick="toggle(this)">
+    <span class="dcard-num">K1</span>
+    <div class="dcard-icon" style="background:#fff7ed">🩸</div>
+    <div class="dcard-info">
+      <div class="dcard-title">Nachblutung nach Koronarangiographie (A. radialis)</div>
+      <div class="dcard-subtitle">Unterarm-Schwellung · Druckverband · Fußpulse intakt</div>
+      <div class="dcard-badges"><span class="badge orange">Komplikation = Extra-DRG!</span><span class="badge green">Fußpulse dokumentieren</span></div>
+    </div>
+    <svg class="dcard-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+  </div>
+  <div class="dcard-inner">
+    <div class="inner-section">
+      <div class="section-label">Mentalität, Kodierung &amp; DRG-Hacks</div>
+      <div class="mental-box orange">
+        <p>Komplikationen nach Interventionen sind im DRG-System keine Schande — sie sind Erlöspotenzial. Wer eine Komplikation verbirgt, nicht dokumentiert und nicht kodiert, schadet dem Krankenhaus wirtschaftlich. Die korrekte Vorgehensweise ist genau umgekehrt: Jede Komplikation nach einer Intervention wird als Nebendiagnose kodiert, erhöht den PCCL-Score und verlängert die medizinisch gerechtfertigte Liegezeit.</p>
+        <p>Die Nachblutung nach Koronarangiographie aus dem Radialiszugang ist eine klar definierte Komplikation mit eigenem ICD-Code. Sie wird als Nebendiagnose kodiert und rechtfertigt die verlängerte stationäre Beobachtung. Wichtig: im Brief und in der Kurve muss stehen, dass die Fußpulse (Arteria dorsalis pedis und Arteria tibialis posterior) beidseits tastbar und kräftig waren — das beweist, dass keine distale Ischämie vorlag und die Komplikation konservativ erfolgreich behandelt wurde.</p>
+        <p>Die Formulierung im Brief schützt auch vor späteren Haftungsansprüchen. Schreibe explizit: Die motorische und sensorische Funktion der betroffenen Extremität war zu jedem Zeitpunkt intakt. Unter Druckverband Sistieren der Blutung. Das zeigt, dass du die Situation richtig eingeschätzt, überwacht und konservativ korrekt behandelt hast — ohne unnötige operative Intervention.</p>
+      </div>
+    </div>
+    <div class="inner-section">
+      <div class="section-label">Arztbrief-Vorlage</div>
+      <div class="template-wrap">
+        <div class="template-label"><button class="copy-btn" onclick="copyTemplate(this)">Kopieren</button></div>
+        <div class="template-box">
+          <p>Der Patient befand sich nach durchgeführter Koronarangiographie und PCI über einen rechtsseitigen radialen Zugang auf unserer Normalstation. Im Verlauf kam es zu einer schmerzhaften Schwellung am rechten Unterarm im Sinne einer postinterventionellen Nachblutung. Wir legten umgehend einen straffen Druckverband an und pausierten kurzzeitig die duale Plättchenhemmung. Hierunter sistierte die Blutung rasch, und die Schwellung war in den folgenden Tagen deutlich regredient. Motorik und Sensibilität der rechten Hand waren durchgehend intakt. Der Patient kann nun bei reizlosen lokalen Verhältnissen in die ambulante Weiterbetreuung entlassen werden.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="dcard" id="kom-02" data-cat="komplikation">
+  <div class="dcard-head" onclick="toggle(this)">
+    <span class="dcard-num">K2</span>
+    <div class="dcard-icon" style="background:#fff7ed">🫀</div>
+    <div class="dcard-info">
+      <div class="dcard-title">Aneurysma spurium nach Herzkatheter (Femoralzugang)</div>
+      <div class="dcard-subtitle">To-and-Fro · Kompressionstherapie · Thrombin</div>
+      <div class="dcard-badges"><span class="badge orange">Komplikation kodieren!</span><span class="badge navy">Duplexsono bestätigen</span></div>
+    </div>
+    <svg class="dcard-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+  </div>
+  <div class="dcard-inner">
+    <div class="inner-section">
+      <div class="section-label">Mentalität, Kodierung &amp; DRG-Hacks</div>
+      <div class="mental-box orange">
+        <p>Diagnose per Duplex: To-and-Fro-Muster = Blut schießt systolisch rein und diastolisch raus. Therapie: ultraschallgesteuerte Kompression oder Thrombin-Injektion. Im Brief: <strong>Fußpulse intakt</strong> (keine distale Ischämie) und <strong>Sensomotorik der Extremität normal</strong> dokumentieren.</p>
+      </div>
+    </div>
+    <div class="inner-section">
+      <div class="section-label">Arztbrief-Vorlage</div>
+      <div class="template-wrap">
+        <div class="template-label"><button class="copy-btn" onclick="copyTemplate(this)">Kopieren</button></div>
+        <div class="template-box">
+          <p>Der Patient stellte sich mit einer schmerzhaften, pulsierenden Schwellung in der rechten Leiste nach kürzlich durchgeführter transfemoraler Koronarangiographie vor. In der umgehend durchgeführten Duplexsonographie bestätigte sich der Verdacht auf ein Aneurysma spurium mit typischem To-and-Fro-Flussprofil. Wir führten eine erfolgreiche ultraschallgesteuerte Kompressionstherapie durch, worunter das Aneurysma vollständig thrombosierte. Im weiteren Verlauf wurde ein straffer Druckverband für 24 Stunden angelegt. Die periphere Durchblutung war stets intakt, die Fußpulse (A. dorsalis pedis und A. tibialis posterior) waren beidseits kräftig tastbar. Sensomotorische Defizite lagen nicht vor. Der Patient kann nach unauffälliger sonographischer Verlaufskontrolle bei reizlosen lokalen Verhältnissen entlassen werden.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="dcard" id="kom-03" data-cat="komplikation">
+  <div class="dcard-head" onclick="toggle(this)">
+    <span class="dcard-num">K3</span>
+    <div class="dcard-icon" style="background:#fdf2f2">💊</div>
+    <div class="dcard-info">
+      <div class="dcard-title">Statin-induzierte Myopathie</div>
+      <div class="dcard-subtitle">CK massiv erhöht · Statin pausieren · Umstellen auf Ezetimib</div>
+      <div class="dcard-badges"><span class="badge red">Statin-Intoleranz!</span><span class="badge navy">Alternativen benennen</span></div>
+    </div>
+    <svg class="dcard-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+  </div>
+  <div class="dcard-inner">
+    <div class="inner-section">
+      <div class="section-label">Mentalität, Kodierung &amp; DRG-Hacks</div>
+      <div class="mental-box red">
+        <p>CK &gt;5000 U/l nach Hochdosis-Statin = Myopathie. Statin <strong>sofort stoppen</strong>. Im Brief: <strong>„Statin-Intoleranz"</strong> klar benennen, und Alternativen empfehlen: Ezetimib, Bempedoinsäure, PCSK9-Inhibitor. Der Hausarzt darf das Statin nicht wieder ansetzen ohne kardiologische Rücksprache.</p>
+      </div>
+    </div>
+    <div class="inner-section">
+      <div class="section-label">Arztbrief-Vorlage</div>
+      <div class="template-wrap">
+        <div class="template-label"><button class="copy-btn" onclick="copyTemplate(this)">Kopieren</button></div>
+        <div class="template-box">
+          <p>Die stationäre Aufnahme erfolgte zur Abklärung diffuser, starker Myalgien und proximaler Muskelschwäche. Laborchemisch imponierte eine massive Erhöhung der Creatinkinase (CK) auf über 5000 U/l bei normwertigem Troponin. In der Anamnese zeigte sich eine kürzlich erfolgte Dosissteigerung von Atorvastatin auf 80 mg täglich. Wir stellten die Diagnose einer Statin-induzierten Myopathie und pausierten das Präparat umgehend. Unter intravenöser Hydratation waren die Retentionsparameter stets stabil und die CK-Werte im Verlauf deutlich regredient. Aufgrund der laborchemisch gesicherten Statin-Intoleranz haben wir die lipidsenkende Therapie auf Ezetimib umgestellt. Wir empfehlen die ambulante Kontrolle der Lipidwerte und ggf. eine Eskalation auf Bempedoinsäure oder einen PCSK9-Inhibitor bei Nichterreichen des LDL-Zielbereichs.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="dcard" id="kom-04" data-cat="komplikation">
+  <div class="dcard-head" onclick="toggle(this)">
+    <span class="dcard-num">K4</span>
+    <div class="dcard-icon" style="background:#fdf2f2">🚨</div>
+    <div class="dcard-info">
+      <div class="dcard-title">Heparin-induzierte Thrombozytopenie Typ II (HIT II)</div>
+      <div class="dcard-subtitle">Thrombozyten ↓50% · Heparin stopp · Argatroban</div>
+      <div class="dcard-badges"><span class="badge red">Heparin lebenslang KI!</span><span class="badge gold">Allergiepass!</span></div>
+    </div>
+    <svg class="dcard-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+  </div>
+  <div class="dcard-inner">
+    <div class="inner-section">
+      <div class="section-label">Mentalität, Kodierung &amp; DRG-Hacks — Ein Satz der Leben rettet</div>
+      <div class="mental-box red">
+        <p>Die heparininduzierte Thrombozytopenie Typ II ist eine der gefährlichsten und am häufigsten übersehenen Komplikationen der Antikoagulationstherapie. Das Tückische: Der Patient bekommt Heparin wegen einer Thrombose oder eines Herzinfarkts, und das Heparin selbst löst nach fünf bis zehn Tagen durch Antikörperbildung eine paradoxe Thrombozytopenie mit gleichzeitig erhöhtem Thromboserisiko aus. Nicht Blutungsrisiko — Thromboserisiko. Das ist der klinische Fehler, den unerfahrene Ärzte machen: sie denken, niedrige Thrombozyten bedeuten Blutungsgefahr, und geben mehr Heparin. Das ist falsch und kann tödlich sein.</p>
+        <p>Die Diagnoseregel ist eindeutig: Wenn zwischen Tag 5 und Tag 10 nach Heparingabe die Thrombozytenzahl um mehr als 50 Prozent des Ausgangswertes fällt, gilt HIT II als gesichert bis zum Beweis des Gegenteils. Heparin sofort stoppen — nicht reduzieren, nicht auf niedermolekulares Heparin umstellen, sondern vollständig stoppen. Als Alternative Argatroban intravenös beginnen. HIT-Antikörper-Test abschicken — aber das Resultat abwarten ist keine Option, Heparin muss sofort gestoppt werden.</p>
+        <p>Der DRG-Aspekt: HIT II ist eine schwere Komplikation mit eigenem ICD-Code, die den PCCL-Score deutlich erhöht. Kodiere die Diagnose, die Thrombozytopenie als Nebendiagnose, und den Wechsel auf Argatroban als separate Prozedur. Das rechtfertigt verlängerte Liegezeiten und bringt erhebliche Zusatzerlöse.</p>
+        <p>Der lebenswichtige Satz im Brief, der in keinem Fall fehlen darf: „Die lebenslange absolute Kontraindikation für jegliche Heparin-Präparate einschließlich niedermolekularer Heparine wurde im Allergiepass des Patienten dokumentiert." Dieser Satz verhindert, dass der Patient bei einem zukünftigen Krankenhausaufenthalt, einer Operation oder einer Dialyse erneut Heparin erhält. Wenn dieser Satz fehlt, ist der nächste HIT-Fall mit möglicherweise tödlichem Ausgang vorprogrammiert.</p>
+      </div>
+    </div>
+    <div class="inner-section">
+      <div class="section-label">Arztbrief-Vorlage</div>
+      <div class="template-wrap">
+        <div class="template-label"><button class="copy-btn" onclick="copyTemplate(this)">Kopieren</button></div>
+        <div class="template-box">
+          <p>Im stationären Verlauf fiel ab dem fünften Tag ein signifikanter, relativer Thrombozytenabfall um mehr als 50 Prozent des Ausgangswertes auf. Bei dringendem klinischem Verdacht auf eine Heparin-induzierte Thrombozytopenie Typ II (HIT II) beendeten wir die Heparingabe umgehend und stellten die therapeutische Antikoagulation auf Argatroban um. Laborchemisch ließen sich im Verlauf HIT-Antikörper nachweisen, sodass sich unsere Verdachtsdiagnose bestätigte. Unter der alternativen Antikoagulation erholten sich die Thrombozytenzahlen rasch. Die Entlassung erfolgt in stabilem Zustand. Die lebenslange absolute Kontraindikation für jegliche Heparin-Präparate wurde im Allergiepass des Patienten dokumentiert und wir bitten um dringende Beachtung im ambulanten Verlauf.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="dcard" id="kom-05" data-cat="komplikation">
+  <div class="dcard-head" onclick="toggle(this)">
+    <span class="dcard-num">K5</span>
+    <div class="dcard-icon" style="background:#fff7ed">🩹</div>
+    <div class="dcard-info">
+      <div class="dcard-title">Schrittmacher-Taschenhämatom</div>
+      <div class="dcard-subtitle">Konservativ · Sandsack · Keine Infektion!</div>
+      <div class="dcard-badges"><span class="badge orange">Nicht eröffnen!</span><span class="badge green">Perforation ausschließen</span></div>
+    </div>
+    <svg class="dcard-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+  </div>
+  <div class="dcard-inner">
+    <div class="inner-section">
+      <div class="section-label">Mentalität, Kodierung &amp; DRG-Hacks — Klassische Falle</div>
+      <div class="mental-box orange">
+        <p><strong>Niemals das Hämatom chirurgisch entleeren!</strong> Das Öffnen der Tasche bringt Infektionskeim rein → dann muss das gesamte System raus. Konservativ: Sandsack, Kühlung, DOAK pausieren, abwarten. Im Brief muss stehen: <strong>keine Hautperforation, keine Infektzeichen</strong> — das rechtfertigt das konservative Vorgehen.</p>
+      </div>
+    </div>
+    <div class="inner-section">
+      <div class="section-label">Arztbrief-Vorlage</div>
+      <div class="template-wrap">
+        <div class="template-label"><button class="copy-btn" onclick="copyTemplate(this)">Kopieren</button></div>
+        <div class="template-box">
+          <p>Der Patient stellte sich wenige Tage nach elektiver Herzschrittmacher-Implantation mit einer progredienten, schmerzhaften Schwellung und lividen Verfärbung im Bereich der Schrittmachertasche in unserer Notaufnahme vor. Klinisch und sonographisch zeigte sich das Bild eines ausgeprägten Schrittmacher-Taschenhämatoms. Lokale oder systemische Infektionszeichen sowie eine drohende Hautperforation lagen erfreulicherweise nicht vor. Wir entschieden uns nach Rücksprache mit der operierenden Abteilung für ein primär konservatives Vorgehen. Unter konsequenter lokaler Kompression mittels Sandsack, Kühlung sowie passagerer Pausierung der oralen Antikoagulation zeigte sich das Hämatom im Verlauf größenkonstant und der Lokalbefund deutlich reizärmer. Der Patient kann in die ambulante Weiterbetreuung entlassen werden. Wir empfehlen eine strenge körperliche Schonung des betroffenen Armes.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="dcard" id="kom-06" data-cat="komplikation">
+  <div class="dcard-head" onclick="toggle(this)">
+    <span class="dcard-num">K6</span>
+    <div class="dcard-icon" style="background:#fdf2f2">☠️</div>
+    <div class="dcard-info">
+      <div class="dcard-title">Schrittmacher-Tascheninfektion</div>
+      <div class="dcard-subtitle">Eiter · Rötung · Systemexplantation nötig!</div>
+      <div class="dcard-badges"><span class="badge red">Systemexplantation!</span><span class="badge gold">TEE zum Ausschluss Sonden-Endokarditis</span></div>
+    </div>
+    <svg class="dcard-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+  </div>
+  <div class="dcard-inner">
+    <div class="inner-section">
+      <div class="section-label">Mentalität, Kodierung &amp; DRG-Hacks — Keine Kompromisse</div>
+      <div class="mental-box red">
+        <p>Die Schrittmacher-Tascheninfektion ist eine der wenigen Situationen in der Kardiologie, in denen es keine Kompromisslösung gibt. Der Biofilm auf dem Aggregat und den Sonden ist durch Antibiotika allein nicht eliminierbar — die physikalische Struktur des Biofilms schützt die Bakterien vor allen systemischen Antiinfektiva. Wer glaubt, mit einem Antibiotikakurs auszukommen, riskiert eine Sondenendokarditis, Sepsis und den Tod des Patienten.</p>
+        <p>Das Vorgehen ist eindeutig: erstens Blutkulturen abnehmen vor dem ersten Antibiotikum — das ist das Einzige, womit du den Erreger identifizieren kannst, und der MDK prüft diesen Schritt explizit. Zweitens TEE durchführen zum Ausschluss einer Sondenendokarditis. Drittens kalkulierte intravenöse Antibiotikatherapie beginnen. Viertens Herzchirurgie oder interventionelles Sondenextraktionszentrum kontaktieren für die komplette Systemexplantation. Eine schwere Schrittmacher-Tascheninfektion ist eine Komplikation mit eigenem ICD-Code, die die PCCL-Kategorie auf die höchste Stufe hebt und dem Krankenhaus den maximalen Erlös bringt.</p>
+      </div>
+    </div>
+    <div class="inner-section">
+      <div class="section-label">Arztbrief-Vorlage</div>
+      <div class="template-wrap">
+        <div class="template-label"><button class="copy-btn" onclick="copyTemplate(this)">Kopieren</button></div>
+        <div class="template-box">
+          <p>Die notfallmäßige Aufnahme erfolgte bei deutlicher Rötung, Schwellung und putrider Sekretion im Bereich der Schrittmachertasche bei vorbekanntem Zweikammer-Schrittmacher. Begleitend bestanden febrile Temperaturen und erhöhte laborchemische Infektparameter. Wir stellten die Diagnose einer akuten Schrittmacher-Tascheninfektion. Umgehend erfolgte die Abnahme von Blutkulturen sowie eines lokalen Wundabstriches, gefolgt von der Einleitung einer kalkulierten intravenösen Antibiotikatherapie. Eine systemische Streuung im Sinne einer Sondenendokarditis konnten wir mittels transösophagealer Echokardiographie (TEE) erfreulicherweise ausschließen. Zur definitiven Sanierung des Infektfokus haben wir den Patienten nach Rücksprache in unser kooperierendes Herzzentrum zur vollständigen Systemexplantation verlegt.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="dcard" id="kom-07" data-cat="komplikation">
+  <div class="dcard-head" onclick="toggle(this)">
+    <span class="dcard-num">K7</span>
+    <div class="dcard-icon" style="background:#fdf2f2">🔴</div>
+    <div class="dcard-info">
+      <div class="dcard-title">Subakute Stentthrombose (DAPT-Non-Compliance)</div>
+      <div class="dcard-subtitle">Stent &lt;30 Tage · Patient hat DAPT abgesetzt · Notfall-Coro</div>
+      <div class="dcard-badges"><span class="badge red">Dokumentation schützt!</span><span class="badge orange">Non-Compliance vermerken</span></div>
+    </div>
+    <svg class="dcard-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+  </div>
+  <div class="dcard-inner">
+    <div class="inner-section">
+      <div class="section-label">Mentalität, Kodierung &amp; DRG-Hacks — Rechtlicher Schutz</div>
+      <div class="mental-box red">
+        <p>Patient hat DAPT eigenmächtig abgesetzt → Stentthrombose → Herzinfarkt. Im Brief muss stehen: <strong>„Patient wurde wiederholt und eingehend über die absolute Notwendigkeit der lückenlosen Einnahme der dualen Plättchenhemmung aufgeklärt. Das Absetzen erfolgte gegen ärztlichen Rat."</strong> Das schützt dich und das Krankenhaus vor Haftungsansprüchen.</p>
+      </div>
+    </div>
+    <div class="inner-section">
+      <div class="section-label">Arztbrief-Vorlage</div>
+      <div class="template-wrap">
+        <div class="template-label"><button class="copy-btn" onclick="copyTemplate(this)">Kopieren</button></div>
+        <div class="template-box">
+          <p>Die notfallmäßige stationäre Aufnahme des Patienten erfolgte bei klinischem und elektrokardiographischem Bild eines akuten Koronarsyndroms. Anamnestisch eruierte sich ein eigenmächtiges Absetzen der dualen Plättchenhemmung (Ticagrelor) vor wenigen Tagen. In der notfallmäßig durchgeführten Koronarangiographie demaskierte sich eine subakute Stentthrombose im Bereich der proximalen RIVA nach Stentimplantation im Vormonat. Wir führten eine erfolgreiche Rekanalisation und Thrombusaspiration mit Implantation eines weiteren Drug-Eluting-Stents (DES) durch. Wir haben den Patienten nochmals eindringlich über die absolute Notwendigkeit der lückenlosen Einnahme der dualen Plättchenhemmung (DAPT) aufgeklärt. Eine Fortführung der DAPT ist nun für volle 12 Monate ab dem aktuellen Ereignis zwingend erforderlich.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="no-results" id="no-results">
+  <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+  <br>Keine Templates in dieser Kategorie.
+</div>
+
+</main><!-- /main-content -->
+</div><!-- /page-wrap -->
+
+<footer>
+  <span>OUSS Kardiologie · Arztbrief-Hub · 30 Templates · Normalstation Kardiologie · SHG Herzentrum</span>
+  <strong>Nur zur persönlichen Weiterbildung · Situationsabhängig anwenden · Kein Ersatz für ärztliches Urteil</strong>
+</footer>
+
+<script>
+// ACCORDION
+function toggle(h){ h.parentElement.classList.toggle('open'); }
+
+// FILTER CHIPS
+document.querySelectorAll('.chip').forEach(function(c){
+  c.addEventListener('click', function(){
+    document.querySelectorAll('.chip').forEach(function(x){ x.classList.remove('active'); });
+    c.classList.add('active');
+    var cat = c.dataset.cat, n = 0;
+    document.querySelectorAll('.dcard').forEach(function(s){
+      var show = cat === 'all' || s.dataset.cat === cat;
+      s.style.display = show ? '' : 'none';
+      if(show) n++;
+    });
+    document.getElementById('no-results').style.display = n === 0 ? 'block' : 'none';
+  });
+});
+
+// COPY TEMPLATE
+function copyTemplate(btn){
+  var box = btn.closest('.template-wrap').querySelector('.template-box');
+  var text = box.innerText.trim();
+  navigator.clipboard.writeText(text).then(function(){
+    btn.classList.add('copied');
+    btn.textContent = '✓ Kopiert!';
+    setTimeout(function(){
+      btn.classList.remove('copied');
+      btn.textContent = 'Kopieren';
+    }, 2500);
+  }).catch(function(){
+    var ta = document.createElement('textarea');
+    ta.value = text;
+    document.body.appendChild(ta);
+    ta.select();
+    document.execCommand('copy');
+    document.body.removeChild(ta);
+    btn.classList.add('copied');
+    btn.textContent = '✓ Kopiert!';
+    setTimeout(function(){ btn.classList.remove('copied'); btn.textContent = 'Kopieren'; }, 2500);
+  });
+}
+
+// TOC ACTIVE LINK on scroll
+var cards = document.querySelectorAll('.dcard[id]');
+var tocLinks = document.querySelectorAll('.toc-link');
+window.addEventListener('scroll', function(){
+  var scrollY = window.scrollY + 150;
+  var current = '';
+  cards.forEach(function(card){
+    if(card.offsetTop <= scrollY){ current = card.id; }
+  });
+  tocLinks.forEach(function(link){
+    link.classList.remove('active-toc');
+    if(link.getAttribute('href') === '#' + current){ link.classList.add('active-toc'); }
+  });
+}, {passive: true});
+
+// Open first card by default
+var first = document.querySelector('.dcard');
+if(first) first.classList.add('open');
+</script>
+</body>
+</html>
