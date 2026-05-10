@@ -1,0 +1,1484 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>USIC Cheat Sheet DE — OUSS Kardiologie</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#ffffff;--surface:#f7f5f2;--surface2:#eeecea;--border:#e5e2de;--text:#1a1410;--text2:#6b6460;--text3:#a09890;--red:#c8303a;--gold:#9a7430;--navy:#0f1528;--blue:#2563eb;--green:#0f7b5a;--purple:#7c3aed;--orange:#ea580c;--cyan:#0e7490;--teal:#0d9488;--serif:'Cormorant Garamond',Georgia,serif;--sans:'DM Sans',system-ui,sans-serif;--sh:0 2px 8px rgba(0,0,0,.06);--sh-md:0 6px 24px rgba(0,0,0,.09)}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}
+body{font-family:var(--sans);background:var(--bg);color:var(--text);font-size:15px;line-height:1.7;overflow-x:hidden}
+.topnav{position:sticky;top:0;z-index:200;height:56px;background:rgba(255,255,255,.97);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);display:flex;align-items:center;padding:0 2.5rem;gap:6px}
+.brand{font-family:var(--serif);font-size:1.2rem;font-weight:400;color:var(--text);text-decoration:none;display:flex;align-items:center;gap:.5rem;white-space:nowrap;flex-shrink:0}
+.brand-heart{animation:hb 1.6s ease-in-out infinite;display:inline-block}
+@keyframes hb{0%,100%{transform:scale(1)}14%{transform:scale(1.2)}28%{transform:scale(1)}42%{transform:scale(1.1)}56%{transform:scale(1)}}
+.nav-links{display:flex;gap:2px;margin-left:.5rem}
+.nav-links a{padding:7px 12px;border-radius:7px;text-decoration:none;color:var(--text2);font-size:.88rem;font-weight:500;transition:background .15s,color .15s}
+.nav-links a:hover{background:var(--surface);color:var(--text)}
+.nav-links a.active{background:#fee2e2;color:var(--red)}
+.spacer{flex:1}
+.nav-badge{font-size:.78rem;font-weight:600;padding:7px 14px;background:var(--navy);color:#fff;border-radius:7px;white-space:nowrap}
+.page-header{border-bottom:1px solid var(--border);padding:2rem 2.5rem 1.8rem;background:var(--surface)}
+.page-eyebrow{font-size:.68rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--navy);margin-bottom:.7rem}
+.page-header h1{font-family:var(--serif);font-size:clamp(2rem,4vw,3.2rem);font-weight:300;line-height:1.15}
+.page-header h1 em{font-style:italic;color:var(--navy)}
+.page-header p{color:var(--text2);margin-top:.6rem;font-size:.92rem;line-height:1.8;max-width:760px}
+.lang-switcher{display:flex;gap:8px;margin-top:1rem}
+.lang-btn{padding:6px 14px;border-radius:20px;border:1.5px solid var(--border);background:var(--bg);color:var(--text2);font-size:.78rem;font-weight:700;cursor:pointer;text-decoration:none;transition:all .15s}
+.lang-btn:hover{background:var(--surface2);color:var(--text)}
+.lang-btn.active{background:var(--navy);color:#fff;border-color:var(--navy)}
+.filter-wrap{display:flex;flex-wrap:wrap;gap:6px;padding:.85rem 2.5rem;border-bottom:1px solid var(--border);background:var(--bg);position:sticky;top:56px;z-index:190;backdrop-filter:blur(12px)}
+.chip{padding:5px 13px;border-radius:20px;border:1.5px solid var(--border);background:var(--surface);color:var(--text2);font-size:.78rem;font-weight:600;cursor:pointer;transition:all .15s;letter-spacing:.03em}
+.chip:hover{background:var(--surface2);color:var(--text)}
+.chip.active{background:var(--navy);color:#fff;border-color:var(--navy)}
+.chip[data-cat="acs"].active{background:var(--red);border-color:var(--red)}
+.chip[data-cat="hf"].active{background:var(--blue);border-color:var(--blue)}
+.chip[data-cat="arythmie"].active{background:var(--purple);border-color:var(--purple)}
+.chip[data-cat="aorte"].active{background:var(--gold);border-color:var(--gold)}
+.chip[data-cat="pieges"].active{background:var(--orange);border-color:var(--orange)}
+.chip[data-cat="autres"].active{background:var(--teal);border-color:var(--teal)}
+.sop-list{padding:1.5rem 2.5rem 3rem;display:flex;flex-direction:column;gap:10px}
+.scard{border:1px solid var(--border);border-radius:12px;background:var(--bg);overflow:hidden;transition:box-shadow .2s}
+.scard:hover{box-shadow:var(--sh-md)}
+.scard-head{display:flex;align-items:flex-start;gap:14px;padding:1rem 1.2rem;cursor:pointer;user-select:none;transition:background .15s}
+.scard-head:hover{background:var(--surface)}
+.scard-num{font-family:var(--serif);font-size:1.35rem;font-weight:300;color:var(--text3);min-width:28px;flex-shrink:0;padding-top:2px}
+.scard-icon{width:38px;height:38px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0}
+.scard-info{flex:1;min-width:0}
+.scard-title{font-family:var(--serif);font-size:1.12rem;font-weight:400;line-height:1.3}
+.scard-badges{display:flex;flex-wrap:wrap;gap:5px;margin-top:5px}
+.badge{font-size:.68rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:2px 8px;border-radius:5px;border:1px solid transparent;white-space:nowrap}
+.badge.red{background:#fdf2f2;color:var(--red);border-color:#fbd5d5}
+.badge.blue{background:#eff6ff;color:var(--blue);border-color:#bfdbfe}
+.badge.gold{background:#fdf8ee;color:var(--gold);border-color:#e8d5a3}
+.badge.green{background:#f0fdf8;color:var(--green);border-color:#a7f3d0}
+.badge.navy{background:#f0f2f8;color:var(--navy);border-color:#c7cde8}
+.badge.gray{background:var(--surface);color:var(--text2);border-color:var(--border)}
+.badge.orange{background:#fff7ed;color:var(--orange);border-color:#fed7aa}
+.badge.purple{background:#f5f3ff;color:var(--purple);border-color:#ddd6fe}
+.badge.teal{background:#f0fdfa;color:var(--teal);border-color:#99f6e4}
+.scard-chevron{color:var(--text3);transition:transform .25s;flex-shrink:0;margin-top:8px}
+.scard.open .scard-chevron{transform:rotate(180deg)}
+.scard-inner{display:none;padding:0 1.2rem 1.2rem;border-top:1px solid var(--border)}
+.scard.open .scard-inner{display:block}
+.sop-section{margin-top:1rem}
+.sop-section-title{font-size:.65rem;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:var(--text3);margin-bottom:.6rem;display:flex;align-items:center;gap:6px}
+.sop-section-title::after{content:'';flex:1;height:1px;background:var(--border)}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:.6rem}
+.three-col{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-top:.6rem}
+.hack{border:1px solid var(--border);border-radius:9px;overflow:hidden;margin-bottom:7px}
+.hack-head{display:flex;align-items:center;gap:9px;padding:.55rem .9rem;font-size:.83rem;font-weight:700;border-bottom:1px solid var(--border)}
+.hack-body{padding:.6rem .9rem;font-size:.81rem;color:var(--text2);line-height:1.7}
+.hack-body ul{padding-left:1.1rem;margin:0}
+.hack-body li{margin-bottom:.25rem}
+.hack-body li strong{color:var(--text)}
+.hack-body p{margin-bottom:.35rem}
+.hack-gold{background:#fdf8ee;border-left:3px solid var(--gold)}.hack-gold .hack-head{background:#fef3c7;color:var(--gold)}
+.hack-red{background:#fdf2f2;border-left:3px solid var(--red)}.hack-red .hack-head{background:#fee2e2;color:var(--red)}
+.hack-navy{background:#f0f2f8;border-left:3px solid var(--navy)}.hack-navy .hack-head{background:#e0e7ff;color:var(--navy)}
+.hack-teal{background:#f0fdfa;border-left:3px solid var(--teal)}.hack-teal .hack-head{background:#ccfbf1;color:var(--teal)}
+.hack-green{background:#f0fdf8;border-left:3px solid var(--green)}.hack-green .hack-head{background:#dcfce7;color:var(--green)}
+.hack-orange{background:#fff7ed;border-left:3px solid var(--orange)}.hack-orange .hack-head{background:#ffedd5;color:var(--orange)}
+.hack-purple{background:#f5f3ff;border-left:3px solid var(--purple)}.hack-purple .hack-head{background:#ede9fe;color:var(--purple)}
+/* DARIJA HIGHLIGHT — spécial pour les notes en darija */
+.hack-darija{background:linear-gradient(135deg,#1a1f3a,#0f1528);border-left:3px solid #7986cb;color:#e8eaf6}
+.hack-darija .hack-head{background:rgba(121,134,203,.18);color:#9fa8da;border-bottom-color:rgba(121,134,203,.25);font-family:var(--serif);font-size:.9rem;letter-spacing:.02em}
+.hack-darija .hack-body{color:#b0bec5}
+.hack-darija .hack-body strong{color:#ffcc80}
+.hack-darija .hack-body ul{padding-left:1.1rem}
+.hack-darija .hack-body li{margin-bottom:.3rem}
+.darija-label{display:inline-block;font-size:.6rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;background:rgba(121,134,203,.3);color:#9fa8da;padding:1px 7px;border-radius:4px;margin-bottom:.4rem}
+.checklist{display:flex;flex-direction:column;gap:4px;margin-top:.5rem}
+.cl-item{display:flex;align-items:flex-start;gap:9px;padding:.45rem .7rem;border-radius:7px;font-size:.82rem;line-height:1.55;border:1px solid var(--border);background:var(--bg)}
+.cl-item .cl-icon{font-size:.9rem;flex-shrink:0;margin-top:.05rem}
+.cl-item .cl-txt{flex:1;color:var(--text2)}
+.cl-item .cl-txt strong{color:var(--text)}
+.cl-item.must{border-left:3px solid var(--red)}
+.cl-item.should{border-left:3px solid var(--gold)}
+.cl-item.nice{border-left:3px solid var(--green)}
+.cl-item.skip{border-left:3px solid var(--text3);opacity:.65}
+.drug-table{width:100%;border-collapse:collapse;font-size:.8rem;margin-top:.5rem}
+.drug-table th{background:var(--navy);color:#fff;font-size:.66rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:.4rem .6rem;text-align:left}
+.drug-table td{padding:.4rem .6rem;border-bottom:1px solid var(--surface2);vertical-align:top;line-height:1.5;color:var(--text2)}
+.drug-table tr:last-child td{border-bottom:none}
+.drug-table td:first-child{font-weight:700;color:var(--text);white-space:nowrap}
+.drug-table tr:nth-child(even) td{background:var(--surface)}
+.drug-table .d-must{color:var(--red);font-weight:800;font-size:.7rem}
+.drug-table .d-ci{color:var(--orange);font-weight:800;font-size:.7rem}
+.drug-table .d-opt{color:var(--gold);font-weight:700;font-size:.7rem}
+.algo-box{background:var(--navy);color:#e8eaf6;border-radius:10px;padding:1rem 1.1rem;margin-top:.8rem;font-size:.82rem;line-height:1.75}
+.algo-box-title{font-size:.63rem;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:#7986cb;margin-bottom:.5rem}
+.algo-box ol,.algo-box ul{padding-left:1.2rem;margin:0}
+.algo-box li{margin-bottom:.28rem}
+.algo-box strong{color:#ffcc80}
+.algo-warn{color:#ef9a9a;font-weight:600}
+.algo-ok{color:#a5d6a7}
+.algo-note{color:#b0bec5;font-size:.78rem}
+.tip-box{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:.55rem .8rem;font-size:.8rem;color:var(--text2);display:flex;gap:8px;align-items:flex-start;line-height:1.5;margin-top:.6rem}
+.tip-box.danger{background:#fdf2f2;border-color:#fbd5d5;color:#7f1d1d}
+.tip-box.warn{background:#fff7ed;border-color:#fed7aa;color:#7c2d12}
+.tip-box.ok{background:#f0fdf8;border-color:#a7f3d0;color:#064e3b}
+.tip-box.navy-tip{background:#f0f2f8;border-color:#c7cde8;color:#1e2a4a}
+.pill{display:inline-block;font-size:.72rem;font-weight:700;padding:1px 8px;border-radius:4px;margin:0 2px}
+.pill-green{background:#dcfce7;color:#166534}
+.pill-red{background:#fee2e2;color:#991b1b}
+.pill-gold{background:#fef9c3;color:#854d0e}
+.pill-navy{background:#e0e7ff;color:#1e40af}
+.pill-gray{background:var(--surface2);color:var(--text2)}
+.pill-teal{background:#ccfbf1;color:#134e4a}
+.pill-orange{background:#ffedd5;color:#9a3412}
+.pill-purple{background:#f3e8ff;color:#6b21a8}
+.no-results{text-align:center;padding:4rem 2rem;color:var(--text3);font-size:.95rem;display:none}
+footer{padding:1.6rem 2.5rem;display:flex;align-items:center;justify-content:space-between;border-top:1px solid var(--border);font-size:.78rem;color:var(--text3)}
+footer strong{color:var(--navy);font-weight:600}
+
+/* ── SEARCH BAR ── */
+.search-wrap{position:sticky;top:56px;z-index:195;background:rgba(255,255,255,.97);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:.75rem 2.5rem;display:flex;align-items:center;gap:10px}
+.search-icon{color:var(--text3);flex-shrink:0}
+#search{flex:1;border:none;outline:none;font-family:var(--sans);font-size:.95rem;background:transparent;color:var(--text);caret-color:var(--red);-webkit-appearance:none;min-width:0}
+#search::placeholder{color:var(--text3)}
+.search-clear{display:none;background:var(--surface2);border:none;cursor:pointer;width:22px;height:22px;border-radius:50%;color:var(--text2);font-size:.8rem;line-height:22px;text-align:center;transition:background .15s;flex-shrink:0}
+.search-clear:hover{background:var(--border)}
+.search-count{font-size:.75rem;color:var(--text3);white-space:nowrap;font-weight:600;letter-spacing:.05em}
+mark{background:#fef08a;border-radius:2px;padding:0 1px}
+
+/* ── FILTER — adjust top when search bar present ── */
+.filter-wrap{top:calc(56px + 49px)}
+
+/* ── RESPONSIVE ── */
+@media(max-width:860px){.nav-links{display:none}.nav-badge{display:none}}
+@media(max-width:600px){
+  .topnav{padding:0 1rem}
+  .page-header,.search-wrap,.filter-wrap,.sop-list{padding-left:1rem;padding-right:1rem}
+  .two-col,.three-col{grid-template-columns:1fr}
+  .scard-head{padding:.9rem 1rem}
+  .scard-inner{padding:0 1rem 1rem}
+  .hack-body{font-size:.8rem}
+  .drug-table{font-size:.75rem}
+  .drug-table td,.drug-table th{padding:.35rem .45rem}
+  footer{flex-direction:column;gap:.5rem;text-align:center}
+  .search-wrap{padding:.7rem 1rem}
+}
+/* iOS safe area */
+@supports(padding:max(0px)){
+  .topnav{padding-left:max(2.5rem,env(safe-area-inset-left));padding-right:max(2.5rem,env(safe-area-inset-right))}
+  .sop-list{padding-bottom:max(3rem,calc(env(safe-area-inset-bottom) + 1rem))}
+  footer{padding-left:max(2.5rem,env(safe-area-inset-left));padding-right:max(2.5rem,env(safe-area-inset-right));padding-bottom:max(1.6rem,calc(env(safe-area-inset-bottom) + .8rem))}
+  @media(max-width:600px){
+    .topnav{padding-left:max(1rem,env(safe-area-inset-left));padding-right:max(1rem,env(safe-area-inset-right))}
+  }
+}
+</style>
+</head>
+<body>
+
+<nav class="topnav">
+  <a href="#" class="brand">
+    <span class="brand-heart">
+      <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M9 15.5C3.5 12.2 1 9 1 6A4 4 0 0 1 9 4.2a4 4 0 0 1 8 1.8C17 9 14.5 12.2 9 15.5Z" fill="var(--red)" opacity=".9"/></svg>
+    </span>
+    OUSS Kardiologie
+  </a>
+  <div class="nav-links">
+    <a href="stations_hacks.html">⚡ Stations-Hacks</a>
+    <a href="usic_cheatsheet.html">🇫🇷 Version FR</a>
+    <a href="usic_cheatsheet_de.html" class="active">🇩🇪 Version DE/Darija</a>
+  </div>
+  <div class="spacer"></div>
+  <span class="nav-badge">🚨 USIC · Kardiologische Intensivstation</span>
+</nav>
+
+<div class="page-header">
+  <div class="page-eyebrow">Cheat Sheet · USIC · Kardiologische Intensivstation · Völklingen / Forbach</div>
+  <h1>Notfall-Leitfaden <em>Kardiologie</em> — USIC</h1>
+  <p>Diagnosen, Fallen und Sofortmaßnahmen auf Deutsch. Die ⚠️ Fallen und 💡 Tipps sind auf Darija — so wie du wirklich denkst, wenn's schnell gehen muss.</p>
+  <div class="lang-switcher">
+    <a href="usic_cheatsheet.html" class="lang-btn">🇫🇷 Français</a>
+    <a href="usic_cheatsheet_de.html" class="lang-btn active">🇩🇪 Deutsch + دارجة</a>
+  </div>
+</div>
+
+<div class="search-wrap">
+  <svg class="search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+  <input id="search" type="search" placeholder="Suche — Diagnose, Medikament, Symptom, دارجة…" autocomplete="off" autocorrect="off" spellcheck="false">
+  <button class="search-clear" id="search-clear" onclick="clearSearch()" title="Löschen">×</button>
+  <span class="search-count" id="search-count"></span>
+</div>
+
+<div class="filter-wrap">
+  <button class="chip active" data-cat="all">Alle Diagnosen</button>
+  <button class="chip" data-cat="acs">❤️‍🔥 Koronarsyndrome</button>
+  <button class="chip" data-cat="hf">💧 Herzinsuffizienz</button>
+  <button class="chip" data-cat="arythmie">⚡ Rhythmusstörungen</button>
+  <button class="chip" data-cat="aorte">🩸 Aorta &amp; Perikard</button>
+  <button class="chip" data-cat="pieges">☠️ Tödliche Fallen</button>
+  <button class="chip" data-cat="autres">🧬 Weitere Notfälle</button>
+</div>
+
+<div class="sop-list" id="sop-list">
+
+<!-- ══ 01 STEMI ══ -->
+<div class="scard" data-cat="acs">
+  <div class="scard-head" onclick="toggle(this)">
+    <span class="scard-num">01</span>
+    <div class="scard-icon" style="background:#fdf2f2">❤️‍🔥</div>
+    <div class="scard-info">
+      <div class="scard-title">STEMI — ST-Hebungs-Infarkt</div>
+      <div class="scard-badges">
+        <span class="badge red">Absoluter Notfall · Door-to-balloon &lt;90 min</span>
+        <span class="badge gold">Herzkatheter · PCI</span>
+        <span class="badge gray">Vollverschluss Koronararterie</span>
+      </div>
+    </div>
+    <svg class="scard-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+  </div>
+  <div class="scard-inner">
+    <div class="two-col">
+      <div class="hack hack-navy">
+        <div class="hack-head">📌 Klinik / Symptome</div>
+        <div class="hack-body">
+          <ul>
+            <li>Drückender, brennender Brustschmerz, Ausstrahlung in linken Arm / Kiefer</li>
+            <li>Dauer &gt;20 min, kein Ansprechen auf Nitrate</li>
+            <li>ST-Hebung ≥1 mm in ≥2 benachbarten Ableitungen</li>
+            <li>Neuer Linksschenkelblock (LSB) = STEMI-Äquivalent</li>
+            <li>Übelkeit, Schweißausbrüche, Todesangst</li>
+          </ul>
+        </div>
+      </div>
+      <div class="hack hack-darija">
+        <div class="hack-head">⚠️ الفخ — Die Falle</div>
+        <div class="hack-body">
+          <div class="darija-label">دارجة · Tipp</div>
+          <ul>
+            <li><strong>STEMI سفلي (II, III, aVF)</strong> → دير دايما V3R و V4R باش تعرف واش كاين Infarktus VD</li>
+            <li>المرضى ديال السكري والنساء والكبار → الألم يكون خفي أو ما كاينش!</li>
+            <li>ST-Hebung في V1–V4 مع LSB قديم → قارن مع ECG القديم قبل ما تحكم</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="sop-section">
+      <div class="sop-section-title">⚡ Sofortmaßnahmen</div>
+      <div class="checklist">
+        <div class="cl-item must"><span class="cl-icon">1️⃣</span><div class="cl-txt"><strong>Herzkatheterlabor sofort anrufen</strong> — "STEMI, Patient stabil/instabil, ETA X min"</div></div>
+        <div class="cl-item must"><span class="cl-icon">2️⃣</span><div class="cl-txt"><strong>Doppelte Thrombozytenhemmung:</strong> ASS 300mg + Ticagrelor 180mg (oder Prasugrel 60mg) p.o.</div></div>
+        <div class="cl-item must"><span class="cl-icon">3️⃣</span><div class="cl-txt"><strong>Antikoagulation:</strong> UFH 60–70 IE/kg i.v. Bolus (max 5000 IE)</div></div>
+        <div class="cl-item must"><span class="cl-icon">4️⃣</span><div class="cl-txt"><strong>Monitoring:</strong> EKG, SpO2, RR laufend — 2× i.v.-Zugang, Labor (Trop, BB, Gerinnung, Krea, Blutgruppe)</div></div>
+        <div class="cl-item should"><span class="cl-icon">5️⃣</span><div class="cl-txt">Analgesie: Morphin 2–4 mg i.v. bei starken Schmerzen (cave Hypotonie)</div></div>
+        <div class="cl-item should"><span class="cl-icon">6️⃣</span><div class="cl-txt">O₂ nur bei SpO2 &lt;90% — Hyperoxie ist schädlich nach STEMI!</div></div>
+      </div>
+    </div>
+    <div class="hack hack-darija" style="margin-top:.8rem">
+      <div class="hack-head">💡 مذكرة سريعة — ECG-Lokalisierung</div>
+      <div class="hack-body">
+        <div class="darija-label">دارجة · Merkhilfe</div>
+        <ul>
+          <li><strong>V1–V4:</strong> IVA (LAD) → كبير وخطير</li>
+          <li><strong>II, III, aVF:</strong> Koronararterie يمين (RCA) → STEMI سفلي → فكر في VD!</li>
+          <li><strong>I, aVL, V5–V6:</strong> Circumflex (LCX) → STEMI جانبي</li>
+          <li><strong>Spiegel في V1–V3 (Unter-ST):</strong> فكر في STEMI خلفي → دير V7–V9</li>
+        </ul>
+      </div>
+    </div>
+    <div class="hack hack-red" style="margin-top:7px">
+      <div class="hack-head">🚫 Absolute Kontraindikationen</div>
+      <div class="hack-body">
+        <ul>
+          <li><strong>Nitrate</strong> bei inferiorem STEMI mit Verdacht auf RV-Infarkt → sofortiger Schock</li>
+          <li><strong>Nitrate</strong> bei Sildenafil-Einnahme in letzten 24–48h → schwere Hypotonie</li>
+          <li><strong>NSAIDs</strong> — vergrößern die Nekrosezone</li>
+          <li><strong>Lyse</strong> wenn Katheterlabor in &lt;120 min verfügbar</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ 02 NSTEMI ══ -->
+<div class="scard" data-cat="acs">
+  <div class="scard-head" onclick="toggle(this)">
+    <span class="scard-num">02</span>
+    <div class="scard-icon" style="background:#fff7ed">🩺</div>
+    <div class="scard-info">
+      <div class="scard-title">NSTEMI / Instabile Angina — Nicht-ST-Hebungs-Infarkt</div>
+      <div class="scard-badges">
+        <span class="badge orange">Zeitkritisch · GRACE-Score bestimmen</span>
+        <span class="badge gray">Troponin ↑ · ST-Senkung · T-Negativierung</span>
+      </div>
+    </div>
+    <svg class="scard-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+  </div>
+  <div class="scard-inner">
+    <div class="two-col">
+      <div class="hack hack-navy">
+        <div class="hack-head">📌 Klinik / Symptome</div>
+        <div class="hack-body">
+          <ul>
+            <li>Typischer oder atypischer Brustschmerz</li>
+            <li>Troponin <strong>erhöht oder im Anstieg</strong> (0h/1h/3h Protokoll)</li>
+            <li>EKG: ST-Senkung oder negative T-Wellen, <strong>keine ST-Hebung</strong></li>
+            <li>Ruhe-Angina, Crescendo-Angina, Post-Revaskularisierung</li>
+          </ul>
+        </div>
+      </div>
+      <div class="hack hack-darija">
+        <div class="hack-head">⚠️ الفخ — Die Falle</div>
+        <div class="hack-body">
+          <div class="darija-label">دارجة · Tipp</div>
+          <ul>
+            <li><strong>Troponin سلبي عند الوصول ما معناهش راسك</strong> → عاود 3 ساعات بعد!</li>
+            <li>ST-Senkung في V1–V3 = مرايا ديال STEMI خلفي → دير V7–V9 ضروري</li>
+            <li>GRACE-Score &gt;140 = خطر عالي → Herzkatheter خلال 24 ساعة بلا تأخير</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="sop-section">
+      <div class="sop-section-title">⚡ Sofortmaßnahmen</div>
+      <div class="checklist">
+        <div class="cl-item must"><span class="cl-icon">💊</span><div class="cl-txt"><strong>Doppelte Thrombozytenhemmung:</strong> ASS 300mg + Ticagrelor 180mg p.o.</div></div>
+        <div class="cl-item must"><span class="cl-icon">💉</span><div class="cl-txt"><strong>Antikoagulation:</strong> Fondaparinux 2,5mg s.c./d (1. Wahl) oder UFH i.v. wenn Kath. &lt;2h</div></div>
+        <div class="cl-item must"><span class="cl-icon">📊</span><div class="cl-txt"><strong>GRACE-Score berechnen</strong> → Risikostratifizierung → Timing der Koronarografie</div></div>
+        <div class="cl-item should"><span class="cl-icon">💊</span><div class="cl-txt">Betablocker p.o. wenn HF &gt;70 und kein AV-Block, kein akutes LV-Versagen</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ 03 RV-INFARKT ══ -->
+<div class="scard" data-cat="acs">
+  <div class="scard-head" onclick="toggle(this)">
+    <span class="scard-num">03</span>
+    <div class="scard-icon" style="background:#fdf8ee">⚠️</div>
+    <div class="scard-info">
+      <div class="scard-title">Rechtsherzinfarkt — RV-Infarkt</div>
+      <div class="scard-badges">
+        <span class="badge red">Klassische Falle · Nitrate töten hier</span>
+        <span class="badge gold">ST-Hebung V3R–V4R</span>
+        <span class="badge gray">Begleitet inferioren STEMI</span>
+      </div>
+    </div>
+    <svg class="scard-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+  </div>
+  <div class="scard-inner">
+    <div class="two-col">
+      <div class="hack hack-navy">
+        <div class="hack-head">📌 Klinik — Cohn-Trias</div>
+        <div class="hack-body">
+          <ul>
+            <li>Inferiorer STEMI (II, III, aVF) <strong>MIT</strong> schwerer Hypotonie</li>
+            <li>Cohn-Trias: <strong>Hypotonie + klare Lunge + gestaute Halsvenen</strong></li>
+            <li>ST-Hebung in V3R und V4R = Diagnose</li>
+            <li>Kein Lungenödem trotz Kreislaufversagen</li>
+          </ul>
+        </div>
+      </div>
+      <div class="hack hack-darija">
+        <div class="hack-head">⚠️ الفخ القاتل — Tödliche Falle</div>
+        <div class="hack-body">
+          <div class="darija-label">دارجة · دار بالك!</div>
+          <ul>
+            <li><strong class="pill pill-red">Nitrate = ممنوع</strong> — القلب الأيمن محتاج دم يدخل (Preload)، النيترات تنقصها → مريض يطيح في الشوك فورا</li>
+            <li><strong class="pill pill-red">Diuretika = ممنوع</strong> — نفس المنطق، تفرغ القلب الأيمن</li>
+            <li>كل مريض STEMI سفلي + هبوط ضغط → دير V3R وV4R قبل أي دواء</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="sop-section">
+      <div class="sop-section-title">⚡ Sofortmaßnahmen</div>
+      <div class="checklist">
+        <div class="cl-item must"><span class="cl-icon">💧</span><div class="cl-txt"><strong>Volumengabe:</strong> NaCl 0,9% 500ml i.v. Bolus — wiederholen bei ausbleibender Reaktion</div></div>
+        <div class="cl-item must"><span class="cl-icon">🚨</span><div class="cl-txt"><strong>Sofortige Koronarografie</strong> — Reperfusion des RV ist einzige kausale Therapie</div></div>
+        <div class="cl-item must"><span class="cl-icon">❤️</span><div class="cl-txt">Bei persistierendem Schock nach Volumengabe: <strong>Dobutamin</strong> (RV-Unterstützung)</div></div>
+        <div class="cl-item should"><span class="cl-icon">🔍</span><div class="cl-txt"><strong>IMMER</strong> rechtsseitige Ableitungen beim inferioren STEMI, auch bei normalem RR</div></div>
+      </div>
+    </div>
+    <div class="tip-box danger">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/></svg>
+      <span><strong>Goldene Regel:</strong> Jeder inferiore STEMI + Hypotonie = RV-Infarkt bis zum Beweis des Gegenteils. Rechtsseitige Ableitungen VOR jeder Therapie.</span>
+    </div>
+  </div>
+</div>
+
+<!-- ══ 04 LUNGENÖDEM / KARDIOGENER SCHOCK ══ -->
+<div class="scard" data-cat="hf">
+  <div class="scard-head" onclick="toggle(this)">
+    <span class="scard-num">04</span>
+    <div class="scard-icon" style="background:#eff6ff">💧</div>
+    <div class="scard-info">
+      <div class="scard-title">Lungenödem &amp; Kardiogener Schock</div>
+      <div class="scard-badges">
+        <span class="badge blue">Lungenödem · OAP</span>
+        <span class="badge red">Kardiogener Schock</span>
+        <span class="badge gray">Akute Herzinsuffizienz</span>
+      </div>
+    </div>
+    <svg class="scard-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+  </div>
+  <div class="scard-inner">
+    <div class="two-col">
+      <div class="hack hack-navy">
+        <div class="hack-head">📌 Lungenödem — Klinik</div>
+        <div class="hack-body">
+          <ul>
+            <li>Schwere akute Dyspnoe, Orthopnoe, Patient in Panik</li>
+            <li>Niedrige SpO2, beidseitige Rasselgeräusche</li>
+            <li>RR oft initial erhöht (hypertensives Lungenödem)</li>
+            <li>Schaumiger Auswurf bei schweren Formen</li>
+          </ul>
+        </div>
+      </div>
+      <div class="hack hack-red">
+        <div class="hack-head">📌 Kardiogener Schock — Klinik</div>
+        <div class="hack-body">
+          <ul>
+            <li>Systolischer RR &lt;90 mmHg trotz Volumengabe</li>
+            <li>Zeichen der Minderperfusion: Marmorierung, Oligurie, Verwirrtheit</li>
+            <li>Meist post-STEMI oder fulminante Myokarditis</li>
+            <li>Troponin sehr hoch, Laktat ↑, Kreatinin ↑</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="sop-section">
+      <div class="sop-section-title">⚡ Therapie Lungenödem</div>
+      <div class="checklist">
+        <div class="cl-item must"><span class="cl-icon">😤</span><div class="cl-txt"><strong>NIV (CPAP/BiPAP)</strong> als 1. Maßnahme — sofortige Entlastung der Atemarbeit. CPAP 5–10 cmH2O</div></div>
+        <div class="cl-item must"><span class="cl-icon">💊</span><div class="cl-txt"><strong>Furosemid i.v.:</strong> 40–80 mg i.v. (doppeln wenn bereits auf oralem Furosemid). Venöser Effekt nach 10 min!</div></div>
+        <div class="cl-item must"><span class="cl-icon">💉</span><div class="cl-txt"><strong>Nitrate i.v.</strong> wenn RR &gt;110: Glyceroltrinitrat oder Isosorbiddinitrat als Perfusor — venöse Vorlastsenkung</div></div>
+        <div class="cl-item should"><span class="cl-icon">🔝</span><div class="cl-txt">Sitzende Position mit hängenden Beinen (reduziert venösen Rückfluss)</div></div>
+      </div>
+    </div>
+    <div class="sop-section">
+      <div class="sop-section-title">⚡ Therapie Kardiogener Schock</div>
+      <div class="checklist">
+        <div class="cl-item must"><span class="cl-icon">💉</span><div class="cl-txt"><strong>Noradrenalin als Perfusor</strong>: Vasopressor der 1. Wahl · Start 0,1 µg/kg/min, titrieren</div></div>
+        <div class="cl-item must"><span class="cl-icon">💊</span><div class="cl-txt"><strong>Dobutamin als Perfusor</strong>: Inotrop + · 5–20 µg/kg/min zur Herzzeitvolumen-Steigerung</div></div>
+        <div class="cl-item must"><span class="cl-icon">🔍</span><div class="cl-txt"><strong>Ursache behandeln:</strong> Koronarografie bei STEMI, Echo zum Ausschluss Tamponade, Septumruptur, akute AI</div></div>
+        <div class="cl-item should"><span class="cl-icon">🔬</span><div class="cl-txt">Laktat alle 2h zur Perfusionskontrolle — Ziel &lt;2 mmol/L</div></div>
+      </div>
+    </div>
+    <div class="hack hack-darija" style="margin-top:.8rem">
+      <div class="hack-head">💡 الفرق بين الاثنين — Schnell unterscheiden</div>
+      <div class="hack-body">
+        <div class="darija-label">دارجة · Merkhilfe</div>
+        <ul>
+          <li><strong>Lungenödem:</strong> ضغط عالي + رئتين مليانة + يعيا من التنفس → نيترات + ديوريتيك + NIV</li>
+          <li><strong>Kardiogener Schock:</strong> ضغط واطي + علامات نقص الدم للأعضاء → Noradrenalin + Dobutamin</li>
+          <li>ولا الاثنين مع بعضاهم؟ → Noradrenalin أولا باش ترفع الضغط، وبعدين Furosemid بحذر</li>
+        </ul>
+      </div>
+    </div>
+    <table class="drug-table" style="margin-top:.8rem">
+      <tr><th>Medikament</th><th>Dosis</th><th>Indikation</th><th>Achtung</th></tr>
+      <tr><td>Furosemid</td><td>40–80 mg i.v. dann Perfusor 10–40 mg/h</td><td>Lungenödem, Überwässerung</td><td>K⁺, Kreat. überwachen</td></tr>
+      <tr><td>Glyceroltrinitrat</td><td>1–10 mg/h Perfusor</td><td>Lungenödem + RR hoch</td><td><span class="d-ci">KI</span> RR &lt;90, RV-Infarkt, Sildenafil</td></tr>
+      <tr><td>Noradrenalin</td><td>0,1–1 µg/kg/min Perfusor</td><td>Kardiogener Schock</td><td>Zentralvenöser Zugang bevorzugt</td></tr>
+      <tr><td>Dobutamin</td><td>5–20 µg/kg/min Perfusor</td><td>Low-output + Schock</td><td>Arrhythmogen — EKG überwachen</td></tr>
+    </table>
+  </div>
+</div>
+
+<!-- ══ 05 VORHOFFLIMMERN ══ -->
+<div class="scard" data-cat="arythmie">
+  <div class="scard-head" onclick="toggle(this)">
+    <span class="scard-num">05</span>
+    <div class="scard-icon" style="background:#f5f3ff">⚡</div>
+    <div class="scard-info">
+      <div class="scard-title">Vorhofflimmern mit schneller Überleitung — VHF tachyarrhythmisch</div>
+      <div class="scard-badges">
+        <span class="badge purple">VHF · Vorhofflimmern</span>
+        <span class="badge red">WPW = tödliche Falle</span>
+        <span class="badge gray">Frequenzkontrolle · Kardioversion</span>
+      </div>
+    </div>
+    <svg class="scard-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+  </div>
+  <div class="scard-inner">
+    <div class="two-col">
+      <div class="hack hack-navy">
+        <div class="hack-head">📌 Klinik / EKG</div>
+        <div class="hack-body">
+          <ul>
+            <li>Unregelmäßiger Rhythmus, HF meist 120–180 bpm</li>
+            <li>EKG: keine P-Wellen, unregelmäßige RR-Abstände, schmale QRS</li>
+            <li>Palpitationen, Dyspnoe, Schwindel, funktionelle Angina</li>
+            <li><strong>VHF mit breitem, unregelmäßigem QRS</strong> → WPW denken!</li>
+          </ul>
+        </div>
+      </div>
+      <div class="hack hack-darija">
+        <div class="hack-head">⚠️ فخ WPW — Die WPW-Falle</div>
+        <div class="hack-body">
+          <div class="darija-label">دارجة · خطر قاتل!</div>
+          <ul>
+            <li>VHF + QRS عريض (&gt;0.12s) وسريع جداً (≥200/min) = <strong>VHF على WPW</strong></li>
+            <li><strong class="pill pill-red">Amiodaron = ممنوع</strong> — يسرع القلب الزائد ويسبب الرجفان البطيني</li>
+            <li><strong class="pill pill-red">Betablocker = ممنوع</strong></li>
+            <li><strong class="pill pill-red">Digoxin = ممنوع</strong></li>
+            <li><strong class="pill pill-red">Verapamil = ممنوع</strong></li>
+            <li>→ الحل الوحيد: <strong>Elektrokardioversion فوراً</strong></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="sop-section">
+      <div class="sop-section-title">⚡ Therapie nach Stabilität</div>
+      <div class="two-col">
+        <div class="hack hack-red">
+          <div class="hack-head">🚨 Instabil (RR&lt;90, Angina, Lungenödem)</div>
+          <div class="hack-body">
+            <ul>
+              <li><strong>Sofortige synchronisierte Kardioversion</strong></li>
+              <li>Kurznarkose: Midazolam 2–5 mg i.v. oder Propofol</li>
+              <li>Biphasischer Schock: Start 150–200 Joule</li>
+              <li>Antikoagulation vor Kardioversion wenn VHF &gt;48h (oder TEE)</li>
+            </ul>
+          </div>
+        </div>
+        <div class="hack hack-teal">
+          <div class="hack-head">✅ Stabil</div>
+          <div class="hack-body">
+            <ul>
+              <li><strong>Frequenzkontrolle:</strong> Metoprolol 5 mg i.v. langsam, oder Digoxin bei LV-Versagen</li>
+              <li>Oder Amiodaron 150 mg i.v. in 10 min dann 900 mg/24h (bei kürzlichem VHF)</li>
+              <li>Antikoagulation: NMH oder UFH</li>
+              <li>Ursache suchen: Hyperthyreose, Infektion, ACS, LE</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ 06 VT / VF ══ -->
+<div class="scard" data-cat="arythmie">
+  <div class="scard-head" onclick="toggle(this)">
+    <span class="scard-num">06</span>
+    <div class="scard-icon" style="background:#fee2e2">🔴</div>
+    <div class="scard-info">
+      <div class="scard-title">Kammertachykardie / Kammerflimmern — VT / VF</div>
+      <div class="scard-badges">
+        <span class="badge red">Unmittelbar lebensbedrohlich</span>
+        <span class="badge navy">Defibrillation · Reanimation</span>
+        <span class="badge gray">VT · VF · Torsades de pointes</span>
+      </div>
+    </div>
+    <svg class="scard-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+  </div>
+  <div class="scard-inner">
+    <div class="two-col">
+      <div class="hack hack-navy">
+        <div class="hack-head">📌 VT — Klinik / EKG</div>
+        <div class="hack-body">
+          <ul>
+            <li>Regelmäßige Breitkomplextachykardie (&gt;0,12s), HF 150–250</li>
+            <li>AV-Dissoziation (P-Wellen unabhängig von QRS)</li>
+            <li>Capture beats und Fusionsschläge = VT-Beweis</li>
+            <li>Stabil oder instabil je nach hämodynamischer Toleranz</li>
+          </ul>
+        </div>
+      </div>
+      <div class="hack hack-darija">
+        <div class="hack-head">⚠️ فخ Torsades de pointes</div>
+        <div class="hack-body">
+          <div class="darija-label">دارجة · دار بالك!</div>
+          <ul>
+            <li>VT متعددة الأشكال على QT طويل = Torsades de pointes</li>
+            <li><strong class="pill pill-red">Amiodaron = ممنوع</strong> — يطول QT أكثر ويزيد الحالة سوءاً</li>
+            <li><strong>العلاج:</strong> Magnesiumsulfat 2g i.v. في دقيقتين</li>
+            <li>صحح Hypokaliämie + Hypomagnesiämie فوراً</li>
+            <li>وقف كل دواء يطول QT</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="sop-section">
+      <div class="sop-section-title">⚡ ACLS-Algorithmus VT/VF</div>
+      <div class="algo-box">
+        <div class="algo-box-title">Vorgehen VT / VF</div>
+        <ol>
+          <li><strong>Bewusstloser Patient / kein Puls → Sofort-CPR</strong> (30:2 dann Beatmung)</li>
+          <li><strong>VF oder VT ohne Puls:</strong> Defibrillation (nicht synchronisiert) 200J biphasisch. CPR 2 min fortführen. Adrenalin 1mg i.v. alle 3–5 min.</li>
+          <li><span class="algo-ok">Nach 2 Schocks ohne Erfolg:</span> <strong>Amiodaron 300 mg i.v.</strong> als Bolus (nicht bei Torsades!)</li>
+          <li><strong>VT mit Puls, stabil:</strong> Amiodaron 150 mg i.v. über 10 min, bei Versagen Kardioversion</li>
+          <li><span class="algo-warn">VT mit Puls, instabil:</span> Synchronisierte Kardioversion sofort</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ 07 AV-BLOCK / BRADYKARDIE ══ -->
+<div class="scard" data-cat="arythmie">
+  <div class="scard-head" onclick="toggle(this)">
+    <span class="scard-num">07</span>
+    <div class="scard-icon" style="background:#f0f2f8">🐢</div>
+    <div class="scard-info">
+      <div class="scard-title">AV-Block III° &amp; schwere Bradykardie</div>
+      <div class="scard-badges">
+        <span class="badge navy">Totaler AV-Block · AV-Block III°</span>
+        <span class="badge gold">Passagerer Schrittmacher</span>
+        <span class="badge gray">Bradykardie &lt;40 bpm · Adams-Stokes</span>
+      </div>
+    </div>
+    <svg class="scard-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+  </div>
+  <div class="scard-inner">
+    <div class="two-col">
+      <div class="hack hack-navy">
+        <div class="hack-head">📌 Klinik / EKG</div>
+        <div class="hack-body">
+          <ul>
+            <li>HF &lt;40 bpm, wiederholte Synkopen (Adams-Stokes-Anfälle)</li>
+            <li>EKG: regelmäßige P-Wellen, <strong>unabhängig</strong> von QRS-Komplexen</li>
+            <li>Breite QRS (ventrikulärer Ersatzrhythmus) = schlechtes Zeichen</li>
+            <li>Hypotonie, akute Herzinsuffizienz</li>
+            <li>Kontext: inferiorer MI, Medikamententoxizität, Borreliose</li>
+          </ul>
+        </div>
+      </div>
+      <div class="hack hack-darija">
+        <div class="hack-head">⚠️ الفخ — Die Falle</div>
+        <div class="hack-body">
+          <div class="darija-label">دارجة · دار بالك!</div>
+          <ul>
+            <li><strong>Atropin ما ينفعش</strong> إذا كان الحصار تحت العقدة (QRS عريض) — ما تضيعش الوقت!</li>
+            <li>قاعدة بسيطة: <strong>QRS ضيق = Atropin ممكن ينفع. QRS عريض = Schrittmacher مباشرة</strong></li>
+            <li>AV-Block بعد STEMI سفلي = عادة مؤقت 48–72 ساعة → Schrittmacher مؤقت في الانتظار</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="sop-section">
+      <div class="sop-section-title">⚡ Sofortmaßnahmen</div>
+      <div class="checklist">
+        <div class="cl-item must"><span class="cl-icon">💊</span><div class="cl-txt"><strong>Atropin 0,5–1 mg i.v.</strong> (max 3 mg) — 1. Therapie bei nodalem Block (schmale QRS, AV-Block II° Typ 1)</div></div>
+        <div class="cl-item must"><span class="cl-icon">⚡</span><div class="cl-txt"><strong>Transkutaner Schrittmacher</strong> bei Atropin-Versagen oder infranodalem Block (breite QRS)</div></div>
+        <div class="cl-item must"><span class="cl-icon">🔌</span><div class="cl-txt"><strong>Passagerer endokavialer Schrittmacher</strong> bei persistierender Instabilität — Instrumentarium vorbereiten</div></div>
+        <div class="cl-item should"><span class="cl-icon">💉</span><div class="cl-txt">Adrenalin oder Dopamin als Perfusor wenn Atropin und Pacing unzureichend</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ 08 AORTENDISSEKTION ══ -->
+<div class="scard" data-cat="aorte">
+  <div class="scard-head" onclick="toggle(this)">
+    <span class="scard-num">08</span>
+    <div class="scard-icon" style="background:#fdf8ee">🩸</div>
+    <div class="scard-info">
+      <div class="scard-title">Aortendissektion</div>
+      <div class="scard-badges">
+        <span class="badge red">Typ A = Herzchirurgie sofort</span>
+        <span class="badge gold">Blutdrucksenkung + Zielbradykardie</span>
+        <span class="badge gray">Lyse = fataler Fehler</span>
+      </div>
+    </div>
+    <svg class="scard-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+  </div>
+  <div class="scard-inner">
+    <div class="two-col">
+      <div class="hack hack-navy">
+        <div class="hack-head">📌 Klinik / Symptome</div>
+        <div class="hack-body">
+          <ul>
+            <li>Reißender Brustschmerz, Ausstrahlung in den Rücken / zwischen die Schulterblätter</li>
+            <li>Schlagartiger Beginn, sofort maximal (≠ progredienter Angina-Schmerz)</li>
+            <li>Blutdruckdifferenz zwischen beiden Armen (&gt;20 mmHg)</li>
+            <li>EKG oft <strong>normal</strong> — entscheidendes Unterscheidungsmerkmal zu STEMI</li>
+            <li>Organischämie-Zeichen: Apoplex, Mesenterialischämie, Anurie</li>
+          </ul>
+        </div>
+      </div>
+      <div class="hack hack-darija">
+        <div class="hack-head">⚠️ الفخ القاتل — Tödliche Verwechslung</div>
+        <div class="hack-body">
+          <div class="darija-label">دارجة · خطر قاتل!</div>
+          <ul>
+            <li>مريض جاي بألم تمزيقي + ECG عادي → هذا ما هوش STEMI بالضرورة!</li>
+            <li><strong class="pill pill-red">Thrombolyse = ممنوع</strong> — تسبب نزيف حول القلب والموت</li>
+            <li><strong class="pill pill-red">Heparin = ممنوع</strong> إذا الانشقاق متشوّف فيه</li>
+            <li>دير Scanner أولاً قبل أي antikoagulation إذا عندك شك</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="sop-section">
+      <div class="sop-section-title">⚡ Sofortmaßnahmen</div>
+      <div class="checklist">
+        <div class="cl-item must"><span class="cl-icon">📸</span><div class="cl-txt"><strong>CT-Angiografie Thorax sofort</strong> — Diagnose und Klassifikation (Typ A vs B)</div></div>
+        <div class="cl-item must"><span class="cl-icon">💊</span><div class="cl-txt"><strong>Aggressive Blutdrucksenkung:</strong> Ziel RR &lt;120/80 mmHg. Urapidil 12,5–25 mg i.v. oder Esmolol-Perfusor</div></div>
+        <div class="cl-item must"><span class="cl-icon">💊</span><div class="cl-txt"><strong>Ziel-HF 60 bpm:</strong> Betablocker i.v. (Metoprolol 5 mg i.v., Esmolol) — reduziert Scherkräfte auf Aorta</div></div>
+        <div class="cl-item must"><span class="cl-icon">🏥</span><div class="cl-txt"><strong>Typ A → Herzchirurgie SOFORT</strong> — Herzchirurgen sofort anrufen</div></div>
+        <div class="cl-item should"><span class="cl-icon">🔒</span><div class="cl-txt">Typ B unkompliziert → medikamentöse Therapie auf USIC, engmaschige Überwachung</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ 09 PERIKARDTAMPONADE ══ -->
+<div class="scard" data-cat="aorte">
+  <div class="scard-head" onclick="toggle(this)">
+    <span class="scard-num">09</span>
+    <div class="scard-icon" style="background:#f0fdfa">🫀</div>
+    <div class="scard-info">
+      <div class="scard-title">Perikardtamponade</div>
+      <div class="scard-badges">
+        <span class="badge teal">Beck-Trias · Perikardpunktion notfallmäßig</span>
+        <span class="badge red">Absoluter Notfall</span>
+        <span class="badge gray">Kompressiver Perikarderguss</span>
+      </div>
+    </div>
+    <svg class="scard-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+  </div>
+  <div class="scard-inner">
+    <div class="two-col">
+      <div class="hack hack-navy">
+        <div class="hack-head">📌 Beck-Trias</div>
+        <div class="hack-body">
+          <ul>
+            <li>1️⃣ <strong>Schwere Hypotonie</strong></li>
+            <li>2️⃣ <strong>Gestaute Halsvenen (Halsvenenstauung)</strong></li>
+            <li>3️⃣ <strong>Abgeschwächte Herztöne</strong></li>
+            <li>Pulsus paradoxus: RR-Abfall &gt;10 mmHg bei Inspiration</li>
+            <li>EKG: Niedervoltage, elektrischer Alternans (pathognomonisch)</li>
+          </ul>
+        </div>
+      </div>
+      <div class="hack hack-darija">
+        <div class="hack-head">⚠️ الفخ — Wird wie Schock verkannt</div>
+        <div class="hack-body">
+          <div class="darija-label">دارجة · دار بالك!</div>
+          <ul>
+            <li>مريض في شوك ما كيجاوبش على Katecholamine → فكر في Tamponade!</li>
+            <li>Echo بدوي = التشخيص في 30 ثانية: انهيار البطين الأيمن في Diastole</li>
+            <li>بعد STEMI + Heparin → فكر في تمزق الجدار الحر → Tamponnade</li>
+            <li><strong>قاعدة:</strong> Schock + عروق الرقبة منتفخة = Tamponade حتى يثبت عكسه</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="sop-section">
+      <div class="sop-section-title">⚡ Sofortmaßnahmen</div>
+      <div class="checklist">
+        <div class="cl-item must"><span class="cl-icon">📡</span><div class="cl-txt"><strong>Echokardiografie am Bett SOFORT</strong> — Diagnose und Führung der Punktion</div></div>
+        <div class="cl-item must"><span class="cl-icon">💉</span><div class="cl-txt"><strong>Volumengabe</strong> 500ml NaCl 0,9% i.v. in Erwartung der Punktion — hält Vorlast aufrecht</div></div>
+        <div class="cl-item must"><span class="cl-icon">🔌</span><div class="cl-txt"><strong>Perikardpunktion unter Echo-Führung</strong> (subxiphoidaler Zugang) — schon 50ml entleeren = sofortige Verbesserung</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ 10 LUNGENEMBOLIE ══ -->
+<div class="scard" data-cat="aorte">
+  <div class="scard-head" onclick="toggle(this)">
+    <span class="scard-num">10</span>
+    <div class="scard-icon" style="background:#fff7ed">🫁</div>
+    <div class="scard-info">
+      <div class="scard-title">Massive Lungenembolie</div>
+      <div class="scard-badges">
+        <span class="badge orange">Massive LE · Obstruktiver Schock</span>
+        <span class="badge red">Lyse bei Instabilität</span>
+        <span class="badge gray">S1Q3T3 · Akutes Cor pulmonale</span>
+      </div>
+    </div>
+    <svg class="scard-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+  </div>
+  <div class="scard-inner">
+    <div class="two-col">
+      <div class="hack hack-navy">
+        <div class="hack-head">📌 Klinik / EKG</div>
+        <div class="hack-body">
+          <ul>
+            <li>Akute Dyspnoe, pleuritischer Schmerz, Hämoptyse</li>
+            <li>Tachykardie, Hypoxämie, Beinvenenthrombose-Zeichen</li>
+            <li>EKG: S1Q3T3, Sinustachykardie, RSB, neg. T-Wellen V1–V4</li>
+            <li>Massive LE: Hypotonie + Schock (&gt;50% Lungenstrombahn verlegt)</li>
+            <li>RV-Dilatation im Echo (RV/LV-Ratio &gt;0,9)</li>
+          </ul>
+        </div>
+      </div>
+      <div class="hack hack-darija">
+        <div class="hack-head">⚠️ الفخ — Verwechslung mit inferiorem MI</div>
+        <div class="hack-body">
+          <div class="darija-label">دارجة · دار بالك!</div>
+          <ul>
+            <li>ECG عادي ما يسلكش الانصمام الرئوي — S1Q3T3 يشبه STEMI سفلي!</li>
+            <li>LE + هبوط ضغط: <strong>رملة محدودة</strong> — القلب الأيمن المنتفخ ما يتحملش كميات كبيرة</li>
+            <li>مريض على antikoagulation ممكن تجيه LE رغم ذلك</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="sop-section">
+      <div class="sop-section-title">⚡ Sofortmaßnahmen</div>
+      <div class="checklist">
+        <div class="cl-item must"><span class="cl-icon">💉</span><div class="cl-txt"><strong>Sofortige Antikoagulation:</strong> UFH 80 IE/kg i.v. Bolus dann 18 IE/kg/h Perfusor (wenn Lyse geplant)</div></div>
+        <div class="cl-item must"><span class="cl-icon">🚨</span><div class="cl-txt"><strong>Massive LE + Schock → Systemische Lyse</strong> (Alteplase 100mg über 2h) wenn keine absolute KI</div></div>
+        <div class="cl-item must"><span class="cl-icon">💊</span><div class="cl-txt"><strong>Vasopressoren bei Schock:</strong> Noradrenalin 0,1–0,5 µg/kg/min — Volumengabe BEGRENZT (max 250–500ml)</div></div>
+        <div class="cl-item should"><span class="cl-icon">📸</span><div class="cl-txt">CT-Pulmonalis-Angiografie zur Bestätigung (wenn Patient stabil genug für Transport)</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ 11 HYPERKALIÄMIE ══ -->
+<div class="scard" data-cat="pieges">
+  <div class="scard-head" onclick="toggle(this)">
+    <span class="scard-num">11</span>
+    <div class="scard-icon" style="background:#fff7ed">☢️</div>
+    <div class="scard-info">
+      <div class="scard-title">Schwere Hyperkaliämie</div>
+      <div class="scard-badges">
+        <span class="badge orange">K⁺ &gt;6,5 = EKG-Notfall</span>
+        <span class="badge red">Zeltförmige T-Wellen · Breite QRS · Asystolie</span>
+        <span class="badge gray">Nierenversagen · Dialyse</span>
+      </div>
+    </div>
+    <svg class="scard-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+  </div>
+  <div class="scard-inner">
+    <div class="two-col">
+      <div class="hack hack-navy">
+        <div class="hack-head">📌 EKG-Zeichen nach Kaliumspiegel</div>
+        <div class="hack-body">
+          <ul>
+            <li><strong>K⁺ 5,5–6,5:</strong> Hohe, spitze T-Wellen (Zeltform)</li>
+            <li><strong>K⁺ 6,5–7,5:</strong> PR-Verlängerung, flache P-Welle, QRS-Verbreiterung</li>
+            <li><strong>K⁺ &gt;7,5:</strong> Sehr breiter QRS (Sinuswellen-Morphologie) → Asystolie droht</li>
+            <li>Kontext: ANV/CNV, Rhabdomyolyse, Azidose, ACE-Hemmer/Sartane</li>
+          </ul>
+        </div>
+      </div>
+      <div class="hack hack-darija">
+        <div class="hack-head">⚠️ الفخ — Pseudo-Hyperkaliämie</div>
+        <div class="hack-body">
+          <div class="darija-label">دارجة · دار بالك!</div>
+          <ul>
+            <li>Pseudo-Hyperkaliämie (Hämolyse في الأنبوب) → عاود التحليل بلا Stauung</li>
+            <li>K⁺ عادي مع ECG مخيف → ما يسلكش الحالة (redistribution ممكنة)</li>
+            <li>Na⁺ واطي + K⁺ عالي → فكر في Nebenniereninsuffizienz (Addison)</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="sop-section">
+      <div class="sop-section-title">⚡ Sequentielle Therapie</div>
+      <div class="checklist">
+        <div class="cl-item must"><span class="cl-icon">1️⃣</span><div class="cl-txt"><strong>Kalziumglukonat 1g i.v. über 10 min</strong> — Myokardschutz sofort (Wirkung in 3 min, 30–60 min anhaltend). Wiederholen wenn EKG-Veränderungen persistieren.</div></div>
+        <div class="cl-item must"><span class="cl-icon">2️⃣</span><div class="cl-txt"><strong>Insulin Actrapid 10 IE + G30% 200ml i.v.</strong> — treibt K⁺ in die Zellen. Wirkung in 20–30 min.</div></div>
+        <div class="cl-item must"><span class="cl-icon">3️⃣</span><div class="cl-txt"><strong>Salbutamol vernebelt 10–20mg</strong> — Ergänzung, senkt K⁺ um 0,5–1 mmol/L</div></div>
+        <div class="cl-item must"><span class="cl-icon">4️⃣</span><div class="cl-txt"><strong>Furosemid i.v. 40–80mg</strong> bei erhaltener Diurese — renale Elimination</div></div>
+        <div class="cl-item should"><span class="cl-icon">5️⃣</span><div class="cl-txt">Bei fortgeschrittenem Nierenversagen oder K⁺ &gt;7 trotz Therapie → <strong>Notfall-Dialyse</strong> (Nephrologen anrufen)</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ 12 VHF AUF WPW ══ -->
+<div class="scard" data-cat="pieges">
+  <div class="scard-head" onclick="toggle(this)">
+    <span class="scard-num">12</span>
+    <div class="scard-icon" style="background:#fee2e2">☠️</div>
+    <div class="scard-info">
+      <div class="scard-title">VHF auf WPW — Wolff-Parkinson-White-Syndrom</div>
+      <div class="scard-badges">
+        <span class="badge red">FBI-Muster = WPW bis Beweis des Gegenteils</span>
+        <span class="badge navy">Kardioversion = einzige sichere Therapie</span>
+        <span class="badge gray">Akzessorische Leitungsbahn · Kent-Bündel</span>
+      </div>
+    </div>
+    <svg class="scard-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+  </div>
+  <div class="scard-inner">
+    <div class="two-col">
+      <div class="hack hack-navy">
+        <div class="hack-head">📌 EKG-Erkennung — FBI-Muster</div>
+        <div class="hack-body">
+          <ul>
+            <li><strong>FBI:</strong> Fast (HF &gt;200/min) · Broad (breite QRS) · Irregular (unregelmäßig)</li>
+            <li>Breite QRS, wechselnde Morphologie von Schlag zu Schlag</li>
+            <li>Sehr kurze RR-Abstände (&lt;250 ms) = VF-Risiko</li>
+            <li>WPW im Sinusrhythmus: kurzes PR + Delta-Welle</li>
+          </ul>
+        </div>
+      </div>
+      <div class="hack hack-darija">
+        <div class="hack-head">⚠️⚠️ أدوية تقتل في WPW</div>
+        <div class="hack-body">
+          <div class="darija-label">دارجة · خطر قاتل جداً!</div>
+          <ul>
+            <li><strong class="pill pill-red">Amiodaron = ممنوع</strong> — يسرع القلب الإضافي → رجفان بطيني</li>
+            <li><strong class="pill pill-red">Adenosin = ممنوع</strong> — يمكن يطلق الرجفان البطيني</li>
+            <li><strong class="pill pill-red">Digoxin = ممنوع</strong> — يسرع مسار Kent</li>
+            <li><strong class="pill pill-red">Verapamil = ممنوع</strong></li>
+            <li><strong class="pill pill-red">Betablocker i.v. = ممنوع</strong></li>
+            <li>شفت FBI في ECG → <strong>Elektrokardioversion مباشرة</strong></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="sop-section">
+      <div class="sop-section-title">⚡ Ein einziges Vorgehen: Kardioversion</div>
+      <div class="algo-box">
+        <div class="algo-box-title">Vorgehen WPW + VHF</div>
+        <ol>
+          <li><strong>FBI-Muster im EKG erkennen</strong> (breite QRS, unregelmäßig, sehr schnell)</li>
+          <li><span class="algo-warn">KEINE der oben genannten Medikamente geben</span></li>
+          <li><strong>Senior / Reanimationsarzt SOFORT rufen</strong></li>
+          <li><span class="algo-ok">Synchronisierte Elektrokardioversion:</span> Kurznarkose (Midazolam 2–5 mg i.v.) + Schock 150–200J</li>
+          <li>Bei Herzstillstand (VF) → unsynchronisierte Defibrillation 200J + CPR</li>
+          <li>Nach Kardioversion: Ablation durch Ablationskatheterlabor planen</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ 13 HIT ══ -->
+<div class="scard" data-cat="pieges">
+  <div class="scard-head" onclick="toggle(this)">
+    <span class="scard-num">13</span>
+    <div class="scard-icon" style="background:#f5f3ff">🩸</div>
+    <div class="scard-info">
+      <div class="scard-title">HIT Typ II — Heparin-induzierte Thrombozytopenie</div>
+      <div class="scard-badges">
+        <span class="badge purple">Thrombozyten ↓50% = Heparin STOPP</span>
+        <span class="badge red">Thrombosen trotz Antikoagulation</span>
+        <span class="badge gray">4T-Score · Argatroban · Fondaparinux</span>
+      </div>
+    </div>
+    <svg class="scard-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+  </div>
+  <div class="scard-inner">
+    <div class="two-col">
+      <div class="hack hack-navy">
+        <div class="hack-head">📌 Klinik</div>
+        <div class="hack-body">
+          <ul>
+            <li>Thrombozyten fallen um <strong>&gt;50%</strong> zwischen Tag 5–14 unter Heparin</li>
+            <li>Paradox: arterielle und venöse Thrombosen trotz Antikoagulation</li>
+            <li>Katheter-Thrombose, Apoplex, MI, Extremitätenischämie</li>
+            <li>Hautnekrosen an Heparin-Injektionsstellen</li>
+          </ul>
+        </div>
+      </div>
+      <div class="hack hack-darija">
+        <div class="hack-head">⚠️ الفخ — الصفائح ما تنزلش خوفاً من النزيف</div>
+        <div class="hack-body">
+          <div class="darija-label">دارجة · دار بالك!</div>
+          <ul>
+            <li>الـ Thrombozytopenie هنا مو تجلط — <strong>ما تعطيش Thrombozyten</strong> (يزيد الجلطات)</li>
+            <li>كل الهيبارين خطر: UFH وNMH — الـ Fondaparinux وحده سليم</li>
+            <li>4T-Score &lt;4 = احتمال ضعيف → يسلك تقريباً التشخيص</li>
+            <li><strong>قاعدة يومية:</strong> NFS كل يوم من اليوم 5 لكل مريض على هيبارين في الـ USIC</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="sop-section">
+      <div class="sop-section-title">⚡ Sofortmaßnahmen</div>
+      <div class="checklist">
+        <div class="cl-item must"><span class="cl-icon">🛑</span><div class="cl-txt"><strong>Jegliches Heparin SOFORT stoppen</strong> (UFH + NMH) — auch Katheter-Spülungen</div></div>
+        <div class="cl-item must"><span class="cl-icon">💊</span><div class="cl-txt"><strong>Argatroban-Perfusor starten</strong> (direkter Thrombinin-Hemmer) oder Fondaparinux s.c.</div></div>
+        <div class="cl-item must"><span class="cl-icon">🔬</span><div class="cl-txt">Anti-PF4-Antikörper (ELISA) zur Bestätigung — aber behandeln bevor Ergebnis vorliegt bei starkem Verdacht</div></div>
+        <div class="cl-item should"><span class="cl-icon">📊</span><div class="cl-txt">Tägliche BB-Kontrolle ab Tag 5 bei jedem Heparin-Patienten auf USIC</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ 14 MECHANISCHE KOMPLIKATIONEN ══ -->
+<div class="scard" data-cat="pieges">
+  <div class="scard-head" onclick="toggle(this)">
+    <span class="scard-num">14</span>
+    <div class="scard-icon" style="background:#fdf2f2">💥</div>
+    <div class="scard-info">
+      <div class="scard-title">Mechanische Komplikationen nach Herzinfarkt</div>
+      <div class="scard-badges">
+        <span class="badge red">Tag 3–5 post-STEMI = Gefahr</span>
+        <span class="badge navy">Ruptur · VSD · Akute MI</span>
+        <span class="badge gray">Herzchirurgie notfallmäßig</span>
+      </div>
+    </div>
+    <svg class="scard-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+  </div>
+  <div class="scard-inner">
+    <div class="sop-section">
+      <div class="sop-section-title">3 lebensbedrohliche Komplikationen</div>
+      <div class="three-col">
+        <div class="hack hack-red">
+          <div class="hack-head">💥 Freiwandruptur</div>
+          <div class="hack-body">
+            <ul>
+              <li>Plötzlicher Bewusstseinsverlust</li>
+              <li>Elektromechanische Dissoziation (PEA)</li>
+              <li>→ Akute Tamponade = rascher Tod</li>
+              <li>Echo sofort</li>
+            </ul>
+          </div>
+        </div>
+        <div class="hack hack-orange">
+          <div class="hack-head">🔊 Ventrikelseptumdefekt (VSD)</div>
+          <div class="hack-body">
+            <ul>
+              <li>Plötzlicher kardiogener Schock</li>
+              <li><strong>Neues lautes Holosystolikum</strong></li>
+              <li>Echo Doppler: Links-Rechts-Shunt</li>
+              <li>→ Notfall-Herzchirurgie</li>
+            </ul>
+          </div>
+        </div>
+        <div class="hack hack-gold">
+          <div class="hack-head">🔻 Akute Mitralinsuffizienz</div>
+          <div class="hack-body">
+            <ul>
+              <li>Papillarmuskelruptur (nach inf. MI)</li>
+              <li>Fulminantes Lungenödem</li>
+              <li>Apikales Systolikum</li>
+              <li>→ Notfall-OP / TAVI</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="hack hack-darija" style="margin-top:.8rem">
+      <div class="hack-head">⚠️ قاعدة الأيام 3–5 — Goldene Regel</div>
+      <div class="hack-body">
+        <div class="darija-label">دارجة · قاعدة أساسية</div>
+        <p>كل <strong>شوك قلبي يجي بين اليوم 3 واليوم 5</strong> بعد STEMI = مضاعفة ميكانيكية حتى يثبت عكسه. Echo فوراً. Kontraindikation مطلقة لـ IABP إذا كاين Aorteninsuffizienz معها.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ 15 POST-RCP ══ -->
+<div class="scard" data-cat="autres">
+  <div class="scard-head" onclick="toggle(this)">
+    <span class="scard-num">15</span>
+    <div class="scard-icon" style="background:#f0fdf8">🧊</div>
+    <div class="scard-info">
+      <div class="scard-title">Post-Reanimations-Syndrom</div>
+      <div class="scard-badges">
+        <span class="badge green">TTM · Targeted Temperature Management</span>
+        <span class="badge navy">Koronarografie systematisch</span>
+        <span class="badge gray">Neuroprotection · Sedierung</span>
+      </div>
+    </div>
+    <svg class="scard-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+  </div>
+  <div class="scard-inner">
+    <div class="sop-section">
+      <div class="sop-section-title">⚡ Versorgungsbündel ab Ankunft</div>
+      <div class="checklist">
+        <div class="cl-item must"><span class="cl-icon">❤️</span><div class="cl-txt"><strong>Koronarografie sofort</strong> bei ST-Hebung oder Verdacht auf koronare Ursache — auch im Koma</div></div>
+        <div class="cl-item must"><span class="cl-icon">🧊</span><div class="cl-txt"><strong>TTM 36°C</strong> für 24h (Hyperthermie &gt;37,8°C strikt vermeiden) — zerebraler Schutz</div></div>
+        <div class="cl-item must"><span class="cl-icon">😴</span><div class="cl-txt"><strong>Analgosedierung:</strong> Propofol + Sufentanil als Perfusor — hämodynamische Stabilität wahren</div></div>
+        <div class="cl-item must"><span class="cl-icon">💊</span><div class="cl-txt"><strong>Hypoglykämie UND Hyperglykämie vermeiden</strong> — Glukose-Ziel 6–10 mmol/L (Insulinperfusor)</div></div>
+        <div class="cl-item must"><span class="cl-icon">🧠</span><div class="cl-txt"><strong>Kontinuierliches EEG</strong> zum Ausschluss subklinischer epileptischer Anfälle (häufig post-CPR)</div></div>
+        <div class="cl-item should"><span class="cl-icon">🫁</span><div class="cl-txt">Protektive Beatmung: TV 6 ml/kg, PEEP 5–8, SpO2 94–98%, pCO2 35–45 mmHg</div></div>
+        <div class="cl-item should"><span class="cl-icon">📊</span><div class="cl-txt">Neurologische Prognose erst nach <strong>72h</strong> beurteilen (nicht früher!)</div></div>
+      </div>
+    </div>
+    <div class="hack hack-darija" style="margin-top:.8rem">
+      <div class="hack-head">💡 تذكيرات أساسية — Post-CPR</div>
+      <div class="hack-body">
+        <div class="darija-label">دارجة · Merkhilfe</div>
+        <ul>
+          <li>مهما كان المريض في غيبوبة: إذا ECG يظهر STEMI → Herzkatheter فوراً — حتى في الكوما!</li>
+          <li>Hyperoxie خطرة — SpO2 بين 94–98% كافي، ما تديش O₂ أكثر من اللازم</li>
+          <li>السكر الواطي والعالي الاثنين يضرون الدماغ — انتبه للـ Insulinperfusor</li>
+          <li>الحكم على الدماغ: <strong>72 ساعة على الأقل</strong> قبل أي تقييم عصبي</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ 16 TAKO-TSUBO ══ -->
+<div class="scard" data-cat="autres">
+  <div class="scard-head" onclick="toggle(this)">
+    <span class="scard-num">16</span>
+    <div class="scard-icon" style="background:#fdf8ee">💔</div>
+    <div class="scard-info">
+      <div class="scard-title">Tako-Tsubo-Kardiomyopathie — Stresskardiomyopathie</div>
+      <div class="scard-badges">
+        <span class="badge gold">Frau + emotionaler Stress + gesunde Koronararterien</span>
+        <span class="badge navy">Apikale Akinesie im Echo</span>
+        <span class="badge gray">Broken-Heart-Syndrom</span>
+      </div>
+    </div>
+    <svg class="scard-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+  </div>
+  <div class="scard-inner">
+    <div class="two-col">
+      <div class="hack hack-navy">
+        <div class="hack-head">📌 Klinik</div>
+        <div class="hack-body">
+          <ul>
+            <li>Postmenopausale Frau, kürzlicher emotionaler oder körperlicher Stress</li>
+            <li>Bild eines anterioren STEMI (EKG + Troponin ↑)</li>
+            <li>In der Koronarografie: <strong>gesunde Koronararterien</strong></li>
+            <li>Echo: Apikale Ballonierung ("Tako-Tsubo" = Tintenfischfalle 🐙)</li>
+            <li>LVEF vorübergehend stark reduziert (&lt;35%)</li>
+          </ul>
+        </div>
+      </div>
+      <div class="hack hack-darija">
+        <div class="hack-head">⚠️ المضاعفات المخيفة — Gefürchtete Komplikationen</div>
+        <div class="hack-body">
+          <div class="darija-label">دارجة · دار بالك!</div>
+          <ul>
+            <li>Arrhythmien بطينية في أول 48 ساعة → Monitoring إلزامي</li>
+            <li>Obstruction dynamique داخل البطين الأيسر (LVOTO) → <strong>Dobutamin ممنوع!</strong></strong></li>
+            <li>Thrombus apical ممكن → خطر الجلطة الدماغية → antikoagulation إذا LVEF &lt;35%</li>
+            <li>البشارة: تتعافى المريضة تقريباً 100% بعد 4–6 أسابيع</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="sop-section">
+      <div class="sop-section-title">⚡ Therapie</div>
+      <div class="checklist">
+        <div class="cl-item must"><span class="cl-icon">📡</span><div class="cl-txt"><strong>Kontinuierliches EKG-Monitoring 48–72h</strong> — Arrhythmien überwachen</div></div>
+        <div class="cl-item must"><span class="cl-icon">💊</span><div class="cl-txt"><strong>Betablocker</strong> (Basistherapie), ACE-Hemmer, Antikoagulation bei Thrombus oder LVEF &lt;35%</div></div>
+        <div class="cl-item should"><span class="cl-icon">🔍</span><div class="cl-txt">Kontroll-Echo nach 4–6 Wochen: LVEF-Erholung in der Regel vollständig</div></div>
+        <div class="cl-item skip"><span class="cl-icon">🚫</span><div class="cl-txt"><strong>Dobutamin KI bei LVOTO</strong> — Echo Doppler vor jedem Inotropikum überprüfen</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ 17 HYPERTENSIVER NOTFALL ══ -->
+<div class="scard" data-cat="autres">
+  <div class="scard-head" onclick="toggle(this)">
+    <span class="scard-num">17</span>
+    <div class="scard-icon" style="background:#f5f3ff">📈</div>
+    <div class="scard-info">
+      <div class="scard-title">Hypertensiver Notfall mit Organschaden</div>
+      <div class="scard-badges">
+        <span class="badge purple">RR &gt;180/120 + Organschaden</span>
+        <span class="badge gold">Langsam senken — nicht abrupt!</span>
+        <span class="badge gray">Apoplex · Lungenödem · Dissektion · Enzephalopathie</span>
+      </div>
+    </div>
+    <svg class="scard-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+  </div>
+  <div class="scard-inner">
+    <div class="two-col">
+      <div class="hack hack-navy">
+        <div class="hack-head">📌 Klinik</div>
+        <div class="hack-body">
+          <ul>
+            <li>Systolischer RR &gt;180–220 mmHg mit: Kopfschmerzen, Verwirrtheit, Sehstörungen</li>
+            <li>Nierenschaden (Oligurie, Kreat. ↑), Lungenödem, Apoplex, Dissektion</li>
+            <li>Fundus: Exsudate, Blutungen, Papillenödem = Grad IV</li>
+          </ul>
+        </div>
+      </div>
+      <div class="hack hack-darija">
+        <div class="hack-head">⚠️ الفخ — ما تخفضش بزاف وبسرعة</div>
+        <div class="hack-body">
+          <div class="darija-label">دارجة · قاعدة أساسية</div>
+          <ul>
+            <li><strong>ما تخفضش الضغط بسرعة كبيرة</strong> → نقص التروية للدماغ والكلى والقلب</li>
+            <li>الهدف اليوم الأول: تخفيض <strong>20–25% كحد أقصى</strong> في ساعة إلى ساعتين</li>
+            <li>Apoplex إقفاري: <strong>ما تعالجش الضغط في أول 24 ساعة</strong> إلا إذا فوق 220/120 أو مخطط Lyse</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="sop-section">
+      <div class="sop-section-title">⚡ Therapie nach Präsentation</div>
+      <table class="drug-table">
+        <tr><th>Notfall</th><th>1. Wahl</th><th>Ziel-RR</th></tr>
+        <tr><td>Hypertensiver Notfall einfach</td><td>Urapidil 25 mg i.v. langsam oder Nicardipine-Perfusor</td><td>−25% in 1–2h</td></tr>
+        <tr><td>Hypertensives Lungenödem</td><td>Nitroglycerin-Perfusor + Furosemid i.v.</td><td>RRsys &lt;140</td></tr>
+        <tr><td>Aortendissektion</td><td>Esmolol-Perfusor + Urapidil / Nicardipine</td><td>RRsys &lt;120, HF 60</td></tr>
+        <tr><td>Hypertensive Enzephalopathie</td><td>Nicardipine-Perfusor oder Labetalol i.v.</td><td>−25% in 1h</td></tr>
+        <tr><td>Eklampsie / Post-partum</td><td>Nicardipine + Magnesiumsulfat i.v.</td><td>RRsys &lt;160</td></tr>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- ══ 18 RETROPERITONEAL HÄMATOM ══ -->
+<div class="scard" data-cat="pieges">
+  <div class="scard-head" onclick="toggle(this)">
+    <span class="scard-num">18</span>
+    <div class="scard-icon" style="background:#fdf2f2">🩹</div>
+    <div class="scard-info">
+      <div class="scard-title">Retroperitoneales Hämatom nach Herzkatheter</div>
+      <div class="scard-badges">
+        <span class="badge red">Hypovolämischer Schock ohne sichtbare Blutung</span>
+        <span class="badge gold">Femoraler Zugang · Post-Koronarografie</span>
+        <span class="badge gray">Abdomen-CT sofort</span>
+      </div>
+    </div>
+    <svg class="scard-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+  </div>
+  <div class="scard-inner">
+    <div class="two-col">
+      <div class="hack hack-navy">
+        <div class="hack-head">📌 Klinik</div>
+        <div class="hack-body">
+          <ul>
+            <li>Nach Herzkatheter über A. femoralis</li>
+            <li>Progredienter Blutdruckabfall, Tachykardie, Blässe</li>
+            <li>Schmerzen Flanke / Fossa iliaca / Lendenbereich</li>
+            <li><strong>Keine Blutung sichtbar an der Punktionsstelle!</strong></li>
+            <li>Hämoglobin im Sturzflug</li>
+          </ul>
+        </div>
+      </div>
+      <div class="hack hack-darija">
+        <div class="hack-head">⚠️ الفخ الكلاسيكي — Klassische Verwechslung</div>
+        <div class="hack-body">
+          <div class="darija-label">دارجة · قصة تتكرر!</div>
+          <ul>
+            <li>الطبيب يدور النزيف من الخارج → ما كاين والو → يطمن → يضيع الوقت = كارثة</li>
+            <li><strong>قاعدة:</strong> كل شوك بعد Herzkatheter فيمورالي + ضمادة نظيفة → Retroperitonealraum أولاً</li>
+            <li>Scanner البطن ضروري — Echo وحدها ما تكفيش للتشخيص</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="sop-section">
+      <div class="sop-section-title">⚡ Sofortmaßnahmen</div>
+      <div class="checklist">
+        <div class="cl-item must"><span class="cl-icon">🛑</span><div class="cl-txt"><strong>Jede Antikoagulation sofort stoppen</strong></div></div>
+        <div class="cl-item must"><span class="cl-icon">💧</span><div class="cl-txt"><strong>Aggressive Volumengabe:</strong> NaCl 0,9% i.v. Blut kreuzen, Erythrozytenkonzentrate bestellen</div></div>
+        <div class="cl-item must"><span class="cl-icon">📸</span><div class="cl-txt"><strong>Abdominopelvines CT sofort</strong> (nativ + KM) zur Quantifizierung des Hämatoms</div></div>
+        <div class="cl-item must"><span class="cl-icon">🏥</span><div class="cl-txt">Gefäßchirurgen und / oder interventionelle Radiologie anrufen bei expandierendem Hämatom</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ 19 BRUGADA / LONG QT ══ -->
+<div class="scard" data-cat="arythmie">
+  <div class="scard-head" onclick="toggle(this)">
+    <span class="scard-num">19</span>
+    <div class="scard-icon" style="background:#f5f3ff">🧬</div>
+    <div class="scard-info">
+      <div class="scard-title">Brugada-Syndrom &amp; Long-QT-Syndrom</div>
+      <div class="scard-badges">
+        <span class="badge purple">Plötzlicher Herztod beim jungen Erwachsenen</span>
+        <span class="badge red">ICD nach Stabilisierung implantieren</span>
+        <span class="badge gray">Liste verbotener Medikamente</span>
+      </div>
+    </div>
+    <svg class="scard-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+  </div>
+  <div class="scard-inner">
+    <div class="two-col">
+      <div class="hack hack-navy">
+        <div class="hack-head">📌 Brugada — EKG</div>
+        <div class="hack-body">
+          <ul>
+            <li>ST-Hebung in <strong>"Sattel-" oder "Dom-Form"</strong> in V1–V2 (Typ 1 = diagnostisch)</li>
+            <li>Positive Familienanamnese für plötzlichen Herztod</li>
+            <li>Nächtliche Synkopen, oft bei Fieber getriggert</li>
+            <li>Risiko: spontanes VF</li>
+          </ul>
+        </div>
+      </div>
+      <div class="hack hack-purple">
+        <div class="hack-head">📌 Long-QT — Torsades de pointes</div>
+        <div class="hack-body">
+          <ul>
+            <li>QTc &gt;480 ms (Frauen) / &gt;470 ms (Männer)</li>
+            <li>Polymorphe VT (Torsades) → Synkope → VF möglich</li>
+            <li>Trigger: <strong>Hypokaliämie, Hypomagnesiämie</strong></li>
+            <li>Sehr viele QT-verlängernde Medikamente → <a href="https://crediblemeds.org" style="color:var(--navy)">crediblemeds.org</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="sop-section">
+      <div class="sop-section-title">⚡ Sofortmaßnahmen</div>
+      <div class="checklist">
+        <div class="cl-item must"><span class="cl-icon">📋</span><div class="cl-txt"><strong>Alle QT-verlängernden Medikamente stoppen</strong> — prüfen auf crediblemeds.org</div></div>
+        <div class="cl-item must"><span class="cl-icon">💉</span><div class="cl-txt">Aktive Torsades: <strong>Magnesiumsulfat 2g i.v. in 2 min</strong> + K⁺ auf &gt;4,5 mmol/L korrigieren</div></div>
+        <div class="cl-item must"><span class="cl-icon">📡</span><div class="cl-txt"><strong>Kontinuierliches EKG-Monitoring 24/7</strong> — QTc überwachen, Rezidiv erkennen</div></div>
+        <div class="cl-item should"><span class="cl-icon">🔌</span><div class="cl-txt">ICD (Defibrillator-Implantat) mit Rhythmologen für beide Syndrome besprechen</div></div>
+      </div>
+    </div>
+    <div class="hack hack-darija" style="margin-top:.8rem">
+      <div class="hack-head">💡 قاعدة بسيطة — Torsades</div>
+      <div class="hack-body">
+        <div class="darija-label">دارجة · Merkhilfe</div>
+        <p>شفت Torsades في ECG → <strong>أول حاجة: Magnesiumsulfat 2g i.v.</strong>، صحح K⁺ فوق 4.5، وقف كل دواء يطول QT. <span class="pill pill-red">Amiodaron ممنوع هنا!</span></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ 20 HOCM ══ -->
+<div class="scard" data-cat="pieges">
+  <div class="scard-head" onclick="toggle(this)">
+    <span class="scard-num">20</span>
+    <div class="scard-icon" style="background:#fff7ed">⚠️</div>
+    <div class="scard-info">
+      <div class="scard-title">HOCM — Hypertrophische Obstruktive Kardiomyopathie</div>
+      <div class="scard-badges">
+        <span class="badge orange">Therapie umgekehrt zum klassischen Schock</span>
+        <span class="badge red">Dobutamin tötet den Patienten</span>
+        <span class="badge gray">HOCM · Obstruktive Kardiomyopathie</span>
+      </div>
+    </div>
+    <svg class="scard-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+  </div>
+  <div class="scard-inner">
+    <div class="two-col">
+      <div class="hack hack-navy">
+        <div class="hack-head">📌 Klinik</div>
+        <div class="hack-body">
+          <ul>
+            <li>Belastungssynkope, Belastungsdyspnoe, Angina bei jungem Patient</li>
+            <li>Systolikum das <strong>beim Valsalva zunimmt</strong> (verkleinert LV-Lumen) = HOCM</li>
+            <li>Echo: Septum &gt;15mm, LVOT-Gradient &gt;30 mmHg in Ruhe</li>
+            <li>Positive Familienanamnese für plötzlichen Herztod</li>
+          </ul>
+        </div>
+      </div>
+      <div class="hack hack-darija">
+        <div class="hack-head">⚠️ العلاج معكوس — Umgekehrte Therapie</div>
+        <div class="hack-body">
+          <div class="darija-label">دارجة · العكس تاع كل شيء عادي!</div>
+          <ul>
+            <li><strong class="pill pill-red">Dobutamin = ممنوع</strong> — يقوي الانقباض → يسد المجرى كمال → المريض يموت</li>
+            <li><strong class="pill pill-red">Nitrate = ممنوع</strong> — ينقص الدم اللي يدخل القلب ويزيد الانسداد</li>
+            <li><strong class="pill pill-red">Diuretika = تجنب</strong> إذا كاين Hypovolämie</li>
+            <li><strong class="pill pill-green">Betablocker = العلاج!</strong></li>
+            <li><strong class="pill pill-green">رملة وريدية!</strong></li>
+            <li><strong>مبدأ:</strong> كل ما يفرغ القلب أو يسرعه = يزيد الانسداد. امل + أبطئ = صح</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ 21 SCAD ══ -->
+<div class="scard" data-cat="pieges">
+  <div class="scard-head" onclick="toggle(this)">
+    <span class="scard-num">21</span>
+    <div class="scard-icon" style="background:#f0fdfa">🩺</div>
+    <div class="scard-info">
+      <div class="scard-title">SCAD — Spontane Koronararterien-Dissektion</div>
+      <div class="scard-badges">
+        <span class="badge teal">Junge Frau · Post-partum · Gesunde Koronararterien</span>
+        <span class="badge red">Stent oft kontraindiziert — konservativ behandeln</span>
+        <span class="badge gray">Spontane Dissektion · SCAD</span>
+      </div>
+    </div>
+    <svg class="scard-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+  </div>
+  <div class="scard-inner">
+    <div class="two-col">
+      <div class="hack hack-navy">
+        <div class="hack-head">📌 Klinik</div>
+        <div class="hack-body">
+          <ul>
+            <li>Junge Frau (&lt;50 J.), ohne kardiovaskuläre Risikofaktoren</li>
+            <li>Oft post-partum oder nach intensiver körperlicher Belastung</li>
+            <li>STEMI oder NSTEMI, Troponin ↑</li>
+            <li>Koronarografie: intramurales Hämatom, kein Atherom</li>
+          </ul>
+        </div>
+      </div>
+      <div class="hack hack-darija">
+        <div class="hack-head">⚠️ الفخ الحاسم — Stent oft schädlich</div>
+        <div class="hack-body">
+          <div class="darija-label">دارجة · قرار صعب!</div>
+          <ul>
+            <li><strong>Stent كثيراً ما يكون ممنوع</strong> — يمكن يمدد الانشقاق نحو الأسفل</li>
+            <li>العلاج التحفظي إذا التدفق TIMI 2–3 محفوظ</li>
+            <li>Betablocker لتقليل قوى الشد على جدار الشريان</li>
+            <li>مراقبة مشددة في الـ USIC — الشفاء التلقائي هو القاعدة</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- NO RESULTS -->
+<div class="no-results" id="no-results">
+  <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+  <br>Keine Diagnose gefunden für <span id="no-results-term"></span>
+</div>
+
+</div><!-- /sop-list -->
+
+<footer>
+  <span>OUSS Kardiologie · USIC Cheat Sheet DE/Darija · Völklingen / Forbach</span>
+  <strong>Nur für klinischen Eigengebrauch — immer situationsabhängig anwenden · Kein Ersatz für ärztliches Urteil</strong>
+</footer>
+
+<script>
+// ── Toggle card open/close ──
+function toggle(h){ h.parentElement.classList.toggle('open'); }
+
+// ── State ──
+var currentCat = 'all';
+var searchEl  = document.getElementById('search');
+var clearBtn  = document.getElementById('search-clear');
+var countEl   = document.getElementById('search-count');
+var noRes     = document.getElementById('no-results');
+var noResTerm = document.getElementById('no-results-term');
+
+// ── Category chips ──
+document.querySelectorAll('.chip').forEach(function(c){
+  c.addEventListener('click', function(){
+    document.querySelectorAll('.chip').forEach(function(x){ x.classList.remove('active'); });
+    c.classList.add('active');
+    currentCat = c.dataset.cat;
+    applyFilters();
+  });
+});
+
+// ── Search ──
+searchEl.addEventListener('input', applyFilters);
+
+function clearSearch(){
+  searchEl.value = '';
+  applyFilters();
+  searchEl.focus();
+}
+
+// ── Unified filter + search ──
+function applyFilters(){
+  var q = searchEl.value.trim().toLowerCase();
+  clearBtn.style.display = q ? 'block' : 'none';
+
+  var cards = document.querySelectorAll('.scard');
+  var visible = 0;
+
+  cards.forEach(function(card){
+    var catMatch = currentCat === 'all' || card.dataset.cat === currentCat;
+    var text = (card.dataset.keywords || '') + ' ' + card.textContent.toLowerCase();
+    var qMatch = !q || text.includes(q);
+    var show = catMatch && qMatch;
+    card.style.display = show ? '' : 'none';
+    if(show) visible++;
+  });
+
+  countEl.textContent = (q || currentCat !== 'all') ? visible + ' Diagnosen' : '';
+  noRes.style.display = visible === 0 ? 'block' : 'none';
+  if(visible === 0 && noResTerm) noResTerm.textContent = '"' + (q || currentCat) + '"';
+}
+
+// Open first card by default
+var first = document.querySelector('.scard');
+if(first) first.classList.add('open');
+</script>
+</body>
+</html>
