@@ -484,6 +484,7 @@ footer strong { color: var(--red); font-weight: 600; }
     <a href="kardiometabolik.html" style="color:#14b8a6;font-weight:600;background:rgba(13,148,136,.08);border-radius:7px">🩺 Kardiometabolik</a>
     <a href="echo/index.html">📡 Echo</a>
     <a href="ekg/index.html">📈 EKG</a>
+    <a href="usic_cheatsheet_de.html" style="color:var(--red);font-weight:700;background:rgba(200,48,58,.09);border-radius:7px">🫀 USIC</a>
     <a href="notfall_erweitert.html" style="color:var(--red);font-weight:600">🚨 Notfall</a>
     <a href="arztbrief_hub.html" style="color:var(--navy);font-weight:600">📝 Arztbrief</a>
   </div>
@@ -505,6 +506,7 @@ footer strong { color: var(--red); font-weight: 600; }
   <a href="ekg/index.html" onclick="mobClose()" style="display:flex;align-items:center;gap:12px;padding:13px 1.3rem;font-size:15px;font-weight:500;color:var(--text);text-decoration:none;border-bottom:1px solid var(--border);min-height:50px">📈 EKG-Tachykardien</a>
   <a href="doppler/index.html" onclick="mobClose()" style="display:flex;align-items:center;gap:12px;padding:13px 1.3rem;font-size:15px;font-weight:500;color:var(--text);text-decoration:none;border-bottom:1px solid var(--border);min-height:50px">🔊 Doppler Guide</a>
   <a href="notes/index.html" onclick="mobClose()" style="display:flex;align-items:center;gap:12px;padding:13px 1.3rem;font-size:15px;font-weight:500;color:var(--text);text-decoration:none;border-bottom:1px solid var(--border);min-height:50px">✏️ Meine Notizen</a>
+  <a href="usic_cheatsheet_de.html" onclick="mobClose()" style="display:flex;align-items:center;gap:12px;padding:13px 1.3rem;font-size:15px;font-weight:700;color:var(--red);text-decoration:none;border-bottom:1px solid var(--border);min-height:50px;background:#fdf2f2">🫀 USIC Intensivstation</a>
   <a href="notfall.html" onclick="mobClose()" style="display:flex;align-items:center;gap:12px;padding:13px 1.3rem;font-size:15px;font-weight:600;color:var(--red);text-decoration:none;border-bottom:1px solid var(--border);min-height:50px">🚨 Notfallmedikamente</a>
   <a href="arztbrief_hub.html" onclick="mobClose()" style="display:flex;align-items:center;gap:12px;padding:13px 1.3rem;font-size:15px;font-weight:600;color:var(--navy);text-decoration:none;border-bottom:1px solid var(--border);min-height:50px">📝 Arztbrief-Hub</a>
   <a href="#leitlinien" onclick="mobClose()" style="display:flex;align-items:center;gap:12px;padding:13px 1.3rem;font-size:15px;font-weight:500;color:var(--text);text-decoration:none;border-bottom:1px solid var(--border);min-height:50px">📖 Leitlinien</a>
@@ -563,6 +565,7 @@ window.addEventListener('resize',function(){if(window.innerWidth>860)mobClose();
   </p>
   <div class="hero-actions">
     <a href="#module" class="btn-primary">Module ansehen 📋</a>
+    <a href="usic_cheatsheet_de.html"       class="hbtn hbtn-red">🫀 USIC Intensivstation</a>
     <a href="notfall_erweitert.html"    class="hbtn hbtn-red">🚨 Notfall</a>
     <a href="#card-echo"               class="hbtn hbtn-blue">🫀 Echokardiographie</a>
     <a href="echo/index.html"          class="hbtn hbtn-green">📡 Echo-Kurs</a>
@@ -581,7 +584,7 @@ window.addEventListener('resize',function(){if(window.innerWidth>860)mobClose();
   <div class="section-lbl">Überblick</div>
   <div class="stats-grid">
     <div class="stat-card">
-      <span class="stat-val r">10</span>
+      <span class="stat-val r">11</span>
       <span class="stat-lbl">Module</span>
     </div>
     <div class="stat-card">
@@ -612,7 +615,7 @@ window.addEventListener('resize',function(){if(window.innerWidth>860)mobClose();
 <div class="section" id="module">
   <div class="section-head reveal">
     <h2>Klinische <em>Module</em></h2>
-    <span style="font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--text3)">10 Module</span>
+    <span style="font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--text3)">11 Module</span>
   </div>
   <div class="cards-grid">
 
@@ -633,7 +636,38 @@ window.addEventListener('resize',function(){if(window.innerWidth>860)mobClose();
       </div>
     </a>
 
-    <!-- Arztbrief-Hub -->
+<!-- USIC CHEAT SHEET — Kardiologische Intensivstation -->
+<a href="usic_cheatsheet_de.html" id="card-usic" class="kcard c-red reveal"
+   style="animation-delay:.02s; border:1.5px solid #fbd5d5; background:linear-gradient(160deg,#fff 70%,#fdf2f2 100%);">
+
+  <div class="kcard-icon" style="background:#fdf2f2">
+    <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+      <path d="M11 3C6.03 3 2 7.03 2 12s4.03 9 9 9 9-4.03 9-9S15.97 3 11 3z" stroke="var(--red)" stroke-width="1.4" fill="none"/>
+      <path d="M2 12h3M17 12h3M11 2v3M11 17v3" stroke="var(--red)" stroke-width="1.1" stroke-linecap="round" opacity=".4"/>
+      <path d="M7 12h2l1-2.5 2 5 1-2.5H15" stroke="var(--red)" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+    </svg>
+  </div>
+
+  <div style="display:flex; flex-wrap:wrap; align-items:baseline; gap:6px 8px;">
+    <h3 class="kcard-title" style="margin:0; flex-shrink:0;">USIC — Intensivstation</h3>
+    <div style="display:flex; gap:4px; align-items:center; flex-shrink:0;">
+      <span style="font-size:.6rem;font-weight:800;letter-spacing:.07em;text-transform:uppercase;background:#fee2e2;color:var(--red);padding:2px 7px;border-radius:4px;border:1px solid #fbd5d5;white-space:nowrap;">DE + دارجة</span>
+      <button onclick="event.stopPropagation(); event.preventDefault(); window.location='usic_cheatsheet.html';"
+              style="font-size:.6rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;background:var(--surface);color:var(--text2);padding:2px 7px;border-radius:4px;border:1px solid var(--border);cursor:pointer;white-space:nowrap;font-family:inherit;">
+        🇫🇷 FR
+      </button>
+    </div>
+  </div>
+
+  <p class="kcard-desc">21 Notfalldiagnosen mit Fallen, Sofortmaßnahmen und Kontraindikationen. Auf Deutsch — kritische Tipps auf Darija. Für die Kardiologische Intensivstation.</p>
+
+  <div class="kcard-tags">
+    <span class="tag red">21 Diagnosen</span>
+    <span class="tag gray">USIC · Völklingen</span>
+    <span class="tag gray">دارجة Tipps</span>
+  </div>
+</a>    
+<!-- Arztbrief-Hub -->
     <a href="arztbrief_hub.html" id="card-arztbrief" class="kcard c-navy reveal" style="animation-delay:.04s; border: 1.5px solid #c4ccdf;">
       <div class="kcard-icon" style="background:#f0f2f8">
         <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
@@ -805,6 +839,11 @@ window.addEventListener('resize',function(){if(window.innerWidth>860)mobClose();
   </div>
   <div class="prog-card reveal">
     <div class="prog-card-title">Module im Überblick</div>
+    <div class="prog-row">
+      <span class="prog-label">🫀 USIC Intensivstation</span>
+      <div class="prog-bar"><div class="prog-fill" data-w="100" style="background:var(--red)"></div></div>
+      <span class="prog-pct" style="color:var(--red)">100%</span>
+    </div>
     <div class="prog-row">
       <span class="prog-label">🚨 Notfallmedikamente</span>
       <div class="prog-bar"><div class="prog-fill" data-w="100" style="background:var(--red)"></div></div>
