@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="theme-color" content="#ffffff">
+<title>IDM vs Lesion Myocardique — OUSS Cardiologie</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#ffffff;--surface:#f7f5f2;--surface2:#eeecea;--border:#e5e2de;
+  --text:#1a1410;--text2:#6b6460;--text3:#a09890;
+  --red:#c8303a;--gold:#9a7430;--navy:#0f1528;--blue:#2563eb;
+  --green:#0f7b5a;--purple:#7c3aed;--orange:#ea580c;--cyan:#0e7490;
+  --serif:'Cormorant Garamond',Georgia,serif;
+  --sans:'DM Sans',system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  --r:10px;--sh:0 2px 8px rgba(0,0,0,.06);--sh-md:0 6px 24px rgba(0,0,0,.09);
+  --tap:44px;
+  --si-top:env(safe-area-inset-top,0px);
+  --si-bot:env(safe-area-inset-bottom,0px);
+  --si-l:env(safe-area-inset-left,0px);
+  --si-r:env(safe-area-inset-right,0px);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;text-size-adjust:100%}
+body{
+  font-family:var(--sans);background:var(--bg);color:var(--text);
+  font-size:15px;line-height:1.7;overflow-x:hidden;
+  -webkit-tap-highlight-color:transparent;
+  padding-bottom:calc(1rem + var(--si-bot));
+}
+/* NAV */
+.topnav{
+  position:sticky;top:0;z-index:200;
+  background:rgba(255,255,255,.97);
+  -webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px);
+  border-bottom:1px solid var(--border);
+  display:flex;align-items:flex-end;
+  padding-top:var(--si-top);
+  padding-left:calc(1.1rem + var(--si-l));
+  padding-right:calc(1.1rem + var(--si-r));
+  padding-bottom:.7rem;
+  gap:6px;min-height:calc(56px + var(--si-top));
+}
+.brand{
+  font-family:var(--serif);font-size:1.12rem;font-weight:400;
+  color:var(--text);text-decoration:none;
+  display:flex;align-items:center;gap:.4rem;white-space:nowrap;flex-shrink:0;
+}
+.brand-heart{animation:hb 1.6s ease-in-out infinite;display:inline-block}
+@keyframes hb{0%,100%{transform:scale(1)}14%{transform:scale(1.2)}28%{transform:scale(1)}42%{transform:scale(1.1)}56%{transform:scale(1)}}
+.spacer{flex:1}
+.nav-badge{font-size:.71rem;font-weight:600;padding:5px 11px;background:var(--blue);color:#fff;border-radius:20px;white-space:nowrap;flex-shrink:0}
+/* HEADER */
+.page-header{
+  border-bottom:1px solid var(--border);background:var(--surface);
+  padding:1.4rem calc(1.1rem + var(--si-l)) 1.3rem calc(1.1rem + var(--si-l));
+  padding-right:calc(1.1rem + var(--si-r));
+}
+.page-eyebrow{font-size:.63rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--blue);margin-bottom:.55rem}
+.page-header h1{font-family:var(--serif);font-size:clamp(1.7rem,5.5vw,2.9rem);font-weight:300;line-height:1.15;letter-spacing:-.01em}
+.page-header h1 em{font-style:italic;color:var(--red)}
+.page-header p{color:var(--text2);margin-top:.45rem;font-size:.86rem;line-height:1.72;max-width:660px}
+/* MAIN */
+.main{
+  padding:1.3rem calc(1.1rem + var(--si-l)) 3rem;
+  padding-right:calc(1.1rem + var(--si-r));
+  max-width:900px;margin:0 auto;
+}
+/* SECTION TITLE */
+.sec-ttl{
+  font-size:.62rem;font-weight:800;letter-spacing:.17em;text-transform:uppercase;
+  color:var(--text3);margin:2rem 0 .95rem;
+  display:flex;align-items:center;gap:8px;
+}
+.sec-ttl::after{content:'';flex:1;height:1px;background:var(--border)}
+/* MEMO BOX */
+.memo-box{background:var(--navy);color:#e8eaf6;border-radius:14px;padding:1rem 1.2rem;margin-bottom:1.7rem}
+.memo-ttl{font-size:.61rem;font-weight:800;letter-spacing:.15em;text-transform:uppercase;color:#7986cb;margin-bottom:.7rem}
+.memo-grid{display:flex;flex-direction:column;gap:.38rem}
+.memo-row{display:flex;align-items:baseline;gap:.5rem;font-size:.82rem;line-height:1.55}
+.memo-row .ar{color:#90caf9;font-weight:700;flex-shrink:0}
+.memo-row .tx strong{color:#ffcc80}
+/* CONNECTOR */
+.conn{display:flex;justify-content:center;align-items:center;height:30px;position:relative}
+.conn::before{content:'';position:absolute;top:0;bottom:0;left:50%;width:2px;background:var(--border);transform:translateX(-50%)}
+.conn .ar{position:relative;z-index:1;background:var(--bg);padding:0 5px;color:var(--text3);font-size:.9rem}
+/* STEMI */
+.stemi-box{border:2px solid var(--red);border-radius:14px;background:#fdf2f2;padding:.95rem 1.05rem;display:flex;gap:.8rem;align-items:flex-start}
+.stemi-ico{width:40px;height:40px;min-width:40px;background:var(--red);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.15rem}
+.st-lbl{font-size:.59rem;font-weight:800;letter-spacing:.15em;text-transform:uppercase;color:var(--red);margin-bottom:.18rem}
+.st-ttl{font-family:var(--serif);font-size:1.05rem;font-weight:600;color:var(--red);line-height:1.2}
+.st-body{font-size:.8rem;color:#7f1d1d;margin-top:.3rem;line-height:1.6}
+/* STEP CARDS */
+.step-card{border:1px solid var(--border);border-radius:14px;background:var(--bg);overflow:hidden;box-shadow:var(--sh)}
+.step-head{display:flex;align-items:center;gap:9px;padding:.8rem 1rem;background:var(--surface);border-bottom:1px solid var(--border)}
+.step-n{font-family:var(--serif);font-size:1.45rem;font-weight:300;color:var(--text3);min-width:26px;flex-shrink:0}
+.step-ql{font-size:.59rem;font-weight:800;letter-spacing:.13em;text-transform:uppercase;color:var(--text3);margin-bottom:.15rem}
+.step-q{font-family:var(--serif);font-size:1rem;font-weight:400;line-height:1.3;color:var(--text)}
+.step-body{padding:.85rem 1rem}
+/* BRANCHES */
+.br{display:flex;gap:7px;margin-bottom:7px;align-items:stretch}
+.br:last-child{margin-bottom:0}
+.bl{flex-shrink:0;min-width:68px;width:68px;display:flex;align-items:center;justify-content:center;border-radius:8px;font-size:.7rem;font-weight:700;text-align:center;padding:.38rem .2rem;line-height:1.2}
+.bl.oui{background:#dcfce7;color:#166534}
+.bl.non{background:#fee2e2;color:#991b1b}
+.bl.dyn{background:#eff6ff;color:#1e40af}
+.bl.stb{background:#fef9c3;color:#854d0e}
+.bc{flex:1;padding:.48rem .72rem;border-radius:8px;font-size:.81rem;line-height:1.6;border:1px solid var(--border)}
+.bc.g{border-color:#6ee7b7;background:#f0fdf8}
+.bc.y{border-color:#fcd34d;background:#fdf8ee}
+.bc.n{border-color:var(--border);background:var(--surface)}
+.bc strong{color:var(--text)}
+/* TIP */
+.tip{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:.48rem .72rem;font-size:.78rem;color:var(--text2);display:flex;gap:6px;align-items:flex-start;line-height:1.5;margin-top:.7rem}
+/* CRITERIA */
+.crit-grid{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-top:.55rem}
+.ci{display:flex;gap:6px;align-items:flex-start;padding:.48rem .62rem;border:1px solid var(--border);border-radius:8px;background:var(--surface);font-size:.78rem;line-height:1.5}
+.ci-ico{font-size:.92rem;flex-shrink:0;margin-top:1px}
+.ci-tx{color:var(--text2)}
+.ci-tx strong{color:var(--text);display:block;margin-bottom:.06rem}
+/* OUTCOMES */
+.oc-grid{display:grid;grid-template-columns:1fr 1fr;gap:9px}
+.oc{border-radius:12px;border:1.5px solid;overflow:hidden}
+.oc-h{padding:.6rem .9rem;display:flex;align-items:center;gap:8px}
+.oc-l{font-family:var(--serif);font-size:1.35rem;font-weight:400;width:26px;flex-shrink:0}
+.oc-sl{font-size:.58rem;font-weight:800;letter-spacing:.11em;text-transform:uppercase;margin-bottom:.06rem}
+.oc-t{font-family:var(--serif);font-size:.93rem;font-weight:400;line-height:1.2}
+.oc-b{padding:.5rem .9rem .75rem;font-size:.77rem;line-height:1.6}
+.oc-b ul{margin-top:.3rem;padding-left:.7rem}
+.oc-b li{margin-bottom:.1rem;color:var(--text2)}
+.st{display:inline-flex;align-items:center;gap:5px;padding:.22rem .5rem;border-radius:6px;font-size:.74rem;font-weight:600;margin-top:.4rem;margin-right:4px;border:1px solid transparent}
+.oc.a{border-color:#fca5a5;background:#fdf2f2}.oc.a .oc-h{background:#fee2e2}.oc.a .oc-l,.oc.a .oc-sl{color:var(--red)}.oc.a .oc-t{color:#7f1d1d}
+.st.t1{background:#fdf2f2;color:var(--red);border-color:#fca5a5}
+.st.t2{background:#fff7ed;color:var(--orange);border-color:#fed7aa}
+.oc.b{border-color:#a5f3fc;background:#ecfeff}.oc.b .oc-h{background:#cffafe}.oc.b .oc-l,.oc.b .oc-sl{color:var(--cyan)}.oc.b .oc-t{color:#164e63}
+.oc.c{border-color:#fcd34d;background:#fdf8ee}.oc.c .oc-h{background:#fef9c3}.oc.c .oc-l,.oc.c .oc-sl{color:var(--gold)}.oc.c .oc-t{color:#78350f}
+.oc.d{border-color:#ddd6fe;background:#f5f3ff}.oc.d .oc-h{background:#ede9fe}.oc.d .oc-l,.oc.d .oc-sl{color:var(--purple)}.oc.d .oc-t{color:#4c1d95}
+/* BADGES */
+.badge{font-size:.65rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:2px 7px;border-radius:5px;border:1px solid transparent;white-space:nowrap}
+.badge.red{background:#fdf2f2;color:var(--red);border-color:#fbd5d5}
+.badge.orange{background:#fff7ed;color:var(--orange);border-color:#fed7aa}
+.badge.cyan{background:#ecfeff;color:var(--cyan);border-color:#a5f3fc}
+.badge.gold{background:#fdf8ee;color:var(--gold);border-color:#e8d5a3}
+.badge.purple{background:#f5f3ff;color:var(--purple);border-color:#ddd6fe}
+.badge.gray{background:var(--surface);color:var(--text2);border-color:var(--border)}
+/* TABS */
+.tabs{display:flex;gap:6px;overflow-x:auto;padding-bottom:3px;-webkit-overflow-scrolling:touch;scrollbar-width:none;margin-bottom:1rem}
+.tabs::-webkit-scrollbar{display:none}
+.ctab{
+  flex-shrink:0;padding:5px 13px;border-radius:20px;
+  border:1.5px solid var(--border);background:var(--surface);
+  color:var(--text2);font-size:.75rem;font-weight:600;cursor:pointer;
+  transition:background .15s,color .15s,border-color .15s;
+  min-height:var(--tap);display:inline-flex;align-items:center;
+  -webkit-tap-highlight-color:transparent;
+}
+.ctab.active{background:var(--navy);color:#fff;border-color:var(--navy)}
+.ctab[data-f="mi1"].active{background:var(--red);border-color:var(--red)}
+.ctab[data-f="mi2"].active{background:var(--orange);border-color:var(--orange)}
+.ctab[data-f="injury"].active{background:var(--cyan);border-color:var(--cyan)}
+.ctab[data-f="chronic"].active{background:var(--gold);border-color:var(--gold)}
+.ctab[data-f="angina"].active{background:var(--purple);border-color:var(--purple)}
+/* CASE CARDS */
+.cases-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(265px,1fr));gap:10px}
+.cc{border:1px solid var(--border);border-radius:14px;background:var(--bg);overflow:hidden;box-shadow:var(--sh);transition:box-shadow .2s}
+.cc:hover{box-shadow:var(--sh-md)}
+.cc.hidden{display:none}
+.cc[data-t="mi1"]{border-left:3px solid var(--red)}
+.cc[data-t="mi2"]{border-left:3px solid var(--orange)}
+.cc[data-t="injury"]{border-left:3px solid var(--cyan)}
+.cc[data-t="chronic"]{border-left:3px solid var(--gold)}
+.cc[data-t="angina"]{border-left:3px solid var(--purple)}
+.cc-h{display:flex;align-items:center;gap:9px;padding:.7rem .95rem;cursor:pointer;user-select:none;transition:background .15s;min-height:var(--tap);-webkit-tap-highlight-color:transparent}
+.cc-h:hover,.cc-h:active{background:var(--surface)}
+.cc-n{font-family:var(--serif);font-size:1.3rem;font-weight:300;color:var(--text3);min-width:24px;flex-shrink:0}
+.cc-i{flex:1;min-width:0}
+.cc-t{font-family:var(--serif);font-size:.95rem;font-weight:400;line-height:1.3}
+.cc-tags{display:flex;flex-wrap:wrap;gap:3px;margin-top:3px}
+.cc-chev{color:var(--text3);transition:transform .25s;flex-shrink:0}
+.cc.open .cc-chev{transform:rotate(180deg)}
+.cc-b{display:none;padding:.65rem .95rem .9rem;border-top:1px solid var(--border);font-size:.8rem;line-height:1.6}
+.cc.open .cc-b{display:block}
+.ccr{display:flex;gap:.4rem;margin-bottom:.28rem;align-items:baseline}
+.ccrl{font-size:.62rem;font-weight:800;letter-spacing:.09em;text-transform:uppercase;color:var(--text3);min-width:62px;flex-shrink:0}
+.ccrv{color:var(--text2)}
+.ccrv strong{color:var(--text)}
+.verd{margin-top:.7rem;padding:.42rem .72rem;border-radius:8px;font-size:.8rem;font-weight:600;border:1.5px solid;line-height:1.5}
+.verd.mi1{background:#fdf2f2;color:#7f1d1d;border-color:#fca5a5}
+.verd.mi2{background:#fff7ed;color:#92400e;border-color:#fed7aa}
+.verd.injury{background:#ecfeff;color:#164e63;border-color:#a5f3fc}
+.verd.chronic{background:#fdf8ee;color:#78350f;border-color:#fcd34d}
+.verd.angina{background:#f5f3ff;color:#4c1d95;border-color:#ddd6fe}
+.verd-w{margin-top:.25rem;font-size:.76rem;font-weight:400;color:var(--text2);line-height:1.5}
+/* FOOTER */
+footer{
+  padding:1.2rem calc(1.1rem + var(--si-l)) calc(1.2rem + var(--si-bot));
+  padding-right:calc(1.1rem + var(--si-r));
+  display:flex;flex-direction:column;gap:.3rem;
+  border-top:1px solid var(--border);font-size:.75rem;color:var(--text3);
+}
+footer strong{color:var(--navy);font-weight:600}
+/* RESPONSIVE TABLET */
+@media(min-width:600px){
+  .page-header{padding:1.8rem 2rem 1.6rem}
+  .main{padding:1.7rem 2rem 3.5rem}
+  .memo-grid{display:grid;grid-template-columns:1fr 1fr}
+  footer{flex-direction:row;align-items:center;justify-content:space-between}
+}
+@media(min-width:900px){
+  .page-header{padding:2rem 2.5rem 1.8rem}
+  .main{padding:2rem 2.5rem 4rem}
+  footer{padding:1.4rem 2.5rem}
+}
+/* SMALL PHONE */
+@media(max-width:400px){
+  .crit-grid{grid-template-columns:1fr}
+  .oc-grid{grid-template-columns:1fr}
+  .cases-grid{grid-template-columns:1fr}
+  .step-q{font-size:.94rem}
+  .bl{min-width:58px;width:58px}
+}
+</style>
+</head>
+<body>
+
+<nav class="topnav">
+  <a href="index.html" class="brand">
+    <span class="brand-heart">
+      <svg width="16" height="16" viewBox="0 0 18 18" fill="none">
+        <path d="M9 15.5C3.5 12.2 1 9 1 6A4 4 0 0 1 9 4.2a4 4 0 0 1 8 1.8C17 9 14.5 12.2 9 15.5Z" fill="var(--blue)" opacity=".9"/>
+      </svg>
+    </span>
+    OUSS Cardiologie
+  </a>
+  <div class="spacer"></div>
+  <span class="nav-badge">4e Def. Universelle</span>
+</nav>
+
+<div class="page-header">
+  <div class="page-eyebrow">Arbre decisionnel · 4e Definition Universelle IDM · ESC 2023</div>
+  <h1>IDM vs <em>Lesion Myocardique</em></h1>
+  <p>Algorithme structure pour differencier l'infarctus du myocarde type 1/2, la lesion myocardique aigue et chronique, ainsi que l'angor instable — base sur la cinetique de la troponine, l'ECG et le contexte clinique.</p>
+</div>
+
+<div class="main">
+
+  <div class="memo-box">
+    <div class="memo-ttl">⚡ Les 3 regles fondamentales</div>
+    <div class="memo-grid">
+      <div class="memo-row"><span class="ar">→</span><div class="tx">Troponine &gt; 99e percentile = <strong>Lesion Myocardique</strong></div></div>
+      <div class="memo-row"><span class="ar">→</span><div class="tx">+ Hausse/Baisse = Lesion <strong>Aigue</strong></div></div>
+      <div class="memo-row"><span class="ar">→</span><div class="tx">+ Signes d'ischemie = <strong>Infarctus du Myocarde</strong></div></div>
+      <div class="memo-row"><span class="ar">⚠</span><div class="tx">Sans ischemie : pas d'IDM — chercher la <strong>cause de la lesion</strong></div></div>
+    </div>
+  </div>
+
+  <div class="sec-ttl">Algorithme etape par etape</div>
+
+  <!-- ETAPE 0 -->
+  <div class="stemi-box">
+    <div class="stemi-ico">🚨</div>
+    <div>
+      <div class="st-lbl">Etape 0 — Decision immediate</div>
+      <div class="st-ttl">Eliminer un STEMI en premier !</div>
+      <div class="st-body">Symptomes ischemiques + <strong>sus-decalage ST ou equivalent STEMI a l'ECG ?</strong>
+        → <strong>Ne pas attendre la troponine.</strong> Activer le protocole SCA → coronarographie / reperfusion en urgence.</div>
+    </div>
+  </div>
+
+  <div class="conn"><span class="ar">▼</span></div>
+
+  <!-- ETAPE 1 -->
+  <div class="step-card">
+    <div class="step-head">
+      <span class="step-n">01</span>
+      <div>
+        <div class="step-ql">Seuil biomarqueur</div>
+        <div class="step-q">La hs-cTroponine depasse-t-elle le 99e percentile URL ?</div>
+      </div>
+    </div>
+    <div class="step-body">
+      <div class="br">
+        <div class="bl non">Non</div>
+        <div class="bc n">Pas de <strong>lesion myocardique</strong> selon la definition.<br><em style="color:var(--text3);font-size:.76rem">Si symptomes &lt; 1–3 h → repeter la troponine (protocole 0h/1h/2h).</em></div>
+      </div>
+      <div class="br">
+        <div class="bl oui">Oui</div>
+        <div class="bc g">✓ <strong>Lesion myocardique presente</strong> (troponine &gt; 99e Pct)<br><em style="color:var(--text3);font-size:.76rem">→ Etape 2 : evaluer la cinetique</em></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="conn"><span class="ar">▼</span></div>
+
+  <!-- ETAPE 2 -->
+  <div class="step-card">
+    <div class="step-head">
+      <span class="step-n">02</span>
+      <div>
+        <div class="step-ql">Cinetique de la troponine</div>
+        <div class="step-q">Y a-t-il une hausse ou une baisse significative en serie ?</div>
+      </div>
+    </div>
+    <div class="step-body">
+      <div class="br">
+        <div class="bl dyn">↑ / ↓</div>
+        <div class="bc g">✓ <strong>Lesion Myocardique Aigue</strong><br><em style="color:var(--text3);font-size:.76rem">→ Etape 3 : rechercher des signes d'ischemie</em></div>
+      </div>
+      <div class="br">
+        <div class="bl stb">Stable ↔</div>
+        <div class="bc y"><strong>Lesion Myocardique Chronique</strong><br><em style="color:var(--text3);font-size:.76rem">Typique : IRC, IC chronique, CMH, cardiopathie structurelle → Resultat C</em></div>
+      </div>
+      <div class="tip">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="var(--text3)" stroke-width="2" style="flex-shrink:0;margin-top:2px"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+        <span>La 4e Definition Universelle distingue la lesion aigue (hausse/baisse significative) de la lesion chronique (elevation persistante sans cinetique notable).</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="conn"><span class="ar">▼</span></div>
+
+  <!-- ETAPE 3 -->
+  <div class="step-card">
+    <div class="step-head">
+      <span class="step-n">03</span>
+      <div>
+        <div class="step-ql">Question cle — Preuve d'ischemie</div>
+        <div class="step-q">Existe-t-il une preuve clinique d'ischemie myocardique aigue ?</div>
+      </div>
+    </div>
+    <div class="step-body">
+      <p style="font-size:.8rem;color:var(--text2);margin-bottom:.65rem">Au moins <strong>un</strong> des criteres suivants :</p>
+      <div class="crit-grid">
+        <div class="ci"><span class="ci-ico">🤕</span><div class="ci-tx"><strong>Symptomes ischemiques</strong>Douleur retrosternale, irradiation bras/machoire/dos, sueurs froides, dyspnee</div></div>
+        <div class="ci"><span class="ci-ico">📈</span><div class="ci-tx"><strong>Nouvelles modifications ECG</strong>Sus/sous-decalage ST, nouvelles ondes T, ondes Q pathologiques</div></div>
+        <div class="ci"><span class="ci-ico">🫀</span><div class="ci-tx"><strong>Imagerie evocatrice</strong>Nouvelle anomalie cinetique a l'echo, perte de viabilite IRM/scintigraphie</div></div>
+        <div class="ci"><span class="ci-ico">🔬</span><div class="ci-tx"><strong>Coronarographie / autopsie</strong>Thrombus, lesion coupable aigue, rupture/erosion de plaque</div></div>
+      </div>
+      <div style="display:flex;gap:7px;margin-top:.8rem">
+        <div class="bl oui" style="min-width:58px;width:58px;border-radius:8px">Oui</div>
+        <div class="bc g">✓ <strong>Infarctus du Myocarde</strong> — Determiner le type (→ Resultat A)</div>
+      </div>
+      <div style="display:flex;gap:7px;margin-top:7px">
+        <div class="bl non" style="min-width:58px;width:58px;border-radius:8px">Non</div>
+        <div class="bc n"><strong>Lesion Myocardique Aigue sans IDM</strong> — Rechercher la cause (→ Resultat B)</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="conn"><span class="ar">▼</span></div>
+
+  <!-- ETAPE 4 -->
+  <div class="step-card">
+    <div class="step-head">
+      <span class="step-n">04</span>
+      <div>
+        <div class="step-ql">En cas d'IDM — Classification</div>
+        <div class="step-q">Quel est le mecanisme sous-jacent de l'ischemie ?</div>
+      </div>
+    </div>
+    <div class="step-body">
+      <div class="br">
+        <div class="bl" style="background:#fdf2f2;color:#991b1b;min-width:68px;width:68px;border-radius:8px;font-size:.7rem;font-weight:700;text-align:center;display:flex;align-items:center;justify-content:center;padding:.38rem .2rem">Type 1</div>
+        <div class="bc" style="border-color:#fca5a5;background:#fdf2f2"><strong>Rupture/erosion de plaque avec thrombus coronarien</strong><br><span style="color:#7f1d1d;font-size:.77rem">Mecanisme SCA classique → double antiagregation, heparine, PCI / pontage</span></div>
+      </div>
+      <div class="br" style="margin-top:7px">
+        <div class="bl" style="background:#fff7ed;color:#c2410c;min-width:68px;width:68px;border-radius:8px;font-size:.7rem;font-weight:700;text-align:center;display:flex;align-items:center;justify-content:center;padding:.38rem .2rem">Type 2</div>
+        <div class="bc" style="border-color:#fed7aa;background:#fff7ed"><strong>Desequilibre offre/demande — sans rupture de plaque aigue</strong><br><span style="color:#92400e;font-size:.77rem">Anemie severe · Hypotension/choc · Tachyarythmie · Hypoxie · Sepsis · Crise hypertensive · Spasme coronarien</span></div>
+      </div>
+      <div class="tip" style="margin-top:.8rem">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="var(--text3)" stroke-width="2" style="flex-shrink:0;margin-top:2px"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+        <span>IDM type 2 : le traitement cible la cause declenchante. L'indication PCI/anticoagulation s'evalue au cas par cas.</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- RESULTATS -->
+  <div class="sec-ttl">Resultats — Les 4 scenarios diagnostiques</div>
+  <div class="oc-grid">
+    <div class="oc a">
+      <div class="oc-h"><span class="oc-l">A</span><div><div class="oc-sl">Troponine + cinetique + ischemie</div><div class="oc-t">Infarctus du Myocarde Aigu</div></div></div>
+      <div class="oc-b">Troponine elevee avec cinetique et ischemie documentee.<br><span class="st t1">🩸 Type 1 — Thrombus</span><span class="st t2">⚡ Type 2 — Desequilibre O₂</span></div>
+    </div>
+    <div class="oc b">
+      <div class="oc-h"><span class="oc-l">B</span><div><div class="oc-sl">Troponine + cinetique, sans ischemie</div><div class="oc-t">Lesion Myocardique Aigue</div></div></div>
+      <div class="oc-b">Pas d'IDM. Rechercher la cause :<ul><li>Myocardite · Takotsubo · Decompensation IC</li><li>Embolie pulmonaire · Sepsis · Choc</li><li>Tachyarythmie · Cardioversion · Ablation</li><li>Trauma · Toxiques (chimiotherapie)</li></ul></div>
+    </div>
+    <div class="oc c">
+      <div class="oc-h"><span class="oc-l">C</span><div><div class="oc-sl">Troponine sans cinetique significative</div><div class="oc-t">Lesion Myocardique Chronique</div></div></div>
+      <div class="oc-b">Troponine persistante sans hausse/baisse significative.<ul><li>Insuffisance renale chronique (IRC)</li><li>Insuffisance cardiaque chronique</li><li>CMH · Cardiopathie structurelle</li></ul></div>
+    </div>
+    <div class="oc d">
+      <div class="oc-h"><span class="oc-l">D</span><div><div class="oc-sl">Symptomes ischemiques, troponine normale</div><div class="oc-t">Angor Instable</div></div></div>
+      <div class="oc-b">Ischemie <strong>sans</strong> necrose troponinique detectable.<ul><li>ECG immediat, dosages series 0h/1h</li><li>Traitement anti-ischemique, hospitalisation</li><li>Envisager coronarographie precoce</li></ul></div>
+    </div>
+  </div>
+
+  <!-- CAS CLINIQUES -->
+  <div class="sec-ttl">Cas cliniques — 12 scenarios typiques</div>
+  <p style="font-size:.86rem;color:var(--text2);margin-bottom:1rem;line-height:1.7;max-width:660px">
+    Chaque cas suit la meme logique : <strong>Troponine elevee ?</strong> → <strong>Cinetique ?</strong> → <strong>Signes d'ischemie ?</strong> — Appuyer pour developper.
+  </p>
+
+  <div class="tabs">
+    <button class="ctab active" data-f="all">Tous</button>
+    <button class="ctab" data-f="mi1">🩸 Type 1</button>
+    <button class="ctab" data-f="mi2">⚡ Type 2</button>
+    <button class="ctab" data-f="injury">💧 Lesion aigue</button>
+    <button class="ctab" data-f="chronic">⏱ Chronique</button>
+    <button class="ctab" data-f="angina">🫀 Angor instable</button>
+  </div>
+
+  <div class="cases-grid">
+
+    <div class="cc" data-t="injury">
+      <div class="cc-h" onclick="toggleCase(this.parentElement)">
+        <span class="cc-n">01</span>
+        <div class="cc-i"><div class="cc-t">Sepsis sans ischemie</div><div class="cc-tags"><span class="badge cyan">Lesion aigue</span><span class="badge gray">Sepsis</span></div></div>
+        <svg class="cc-chev" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+      </div>
+      <div class="cc-b">
+        <div class="ccr"><span class="ccrl">Clinique</span><span class="ccrv">Pneumonie, sepsis, fievre, hypotension. <strong>Pas de douleur thoracique.</strong></span></div>
+        <div class="ccr"><span class="ccrl">ECG</span><span class="ccrv">Pas de modifications ischemiques</span></div>
+        <div class="ccr"><span class="ccrl">Echo</span><span class="ccrv">Pas de nouvelle anomalie cinetique segmentaire</span></div>
+        <div class="ccr"><span class="ccrl">Troponine</span><span class="ccrv">Legerement elevee, legere hausse → <strong>cinetique presente</strong></span></div>
+        <div class="verd injury">💧 Lesion Myocardique Aigue<div class="verd-w">Troponine elevee + cinetique = lesion aigue. Mais absence de signes d'ischemie → pas d'IDM. Cause : atteinte myocardique septique.</div></div>
+      </div>
+    </div>
+
+    <div class="cc" data-t="mi2">
+      <div class="cc-h" onclick="toggleCase(this.parentElement)">
+        <span class="cc-n">02</span>
+        <div class="cc-i"><div class="cc-t">Sepsis avec ischemie</div><div class="cc-tags"><span class="badge orange">IDM Type 2</span><span class="badge gray">Desequilibre O₂</span></div></div>
+        <svg class="cc-chev" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+      </div>
+      <div class="cc-b">
+        <div class="ccr"><span class="ccrl">Clinique</span><span class="ccrv">Sepsis, hypotension, tachycardie 140 bpm. <strong>Oppression thoracique.</strong></span></div>
+        <div class="ccr"><span class="ccrl">ECG</span><span class="ccrv"><strong>Nouveaux sous-decalages ST diffus</strong></span></div>
+        <div class="ccr"><span class="ccrl">Troponine</span><span class="ccrv">Hausse franche → cinetique significative</span></div>
+        <div class="verd mi2">⚡ IDM de Type 2<div class="verd-w">Troponine dynamique + signes d'ischemie. Mecanisme : desequilibre offre/demande par hypotension + tachycardie — pas de rupture de plaque.</div></div>
+      </div>
+    </div>
+
+    <div class="cc" data-t="mi1">
+      <div class="cc-h" onclick="toggleCase(this.parentElement)">
+        <span class="cc-n">03</span>
+        <div class="cc-i"><div class="cc-t">STEMI inferieur classique</div><div class="cc-tags"><span class="badge red">IDM Type 1</span><span class="badge gray">STEMI · CDA</span></div></div>
+        <svg class="cc-chev" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+      </div>
+      <div class="cc-b">
+        <div class="ccr"><span class="ccrl">Clinique</span><span class="ccrv"><strong>Douleur retrosternale intense</strong>, sueurs froides, irradiation bras gauche</span></div>
+        <div class="ccr"><span class="ccrl">ECG</span><span class="ccrv"><strong>Sus-decalage ST II, III, aVF</strong> (STEMI inferieur)</span></div>
+        <div class="ccr"><span class="ccrl">Troponine</span><span class="ccrv">Hausse → cinetique</span></div>
+        <div class="ccr"><span class="ccrl">Coronaro</span><span class="ccrv"><strong>Occlusion aigue de la CDA</strong> par thrombus</span></div>
+        <div class="verd mi1">🩸 IDM de Type 1 / STEMI<div class="verd-w">Rupture de plaque + thrombus = mecanisme type 1 classique. Coronarographie immediate — ne pas attendre la troponine !</div></div>
+      </div>
+    </div>
+
+    <div class="cc" data-t="mi1">
+      <div class="cc-h" onclick="toggleCase(this.parentElement)">
+        <span class="cc-n">04</span>
+        <div class="cc-i"><div class="cc-t">NSTEMI</div><div class="cc-tags"><span class="badge red">IDM Type 1</span><span class="badge gray">NSTEMI · IVA</span></div></div>
+        <svg class="cc-chev" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+      </div>
+      <div class="cc-b">
+        <div class="ccr"><span class="ccrl">Clinique</span><span class="ccrv">Douleur d'effort et de <strong>repos</strong></span></div>
+        <div class="ccr"><span class="ccrl">ECG</span><span class="ccrv"><strong>Sous-decalages ST en V4–V6</strong>, pas de sus-decalage</span></div>
+        <div class="ccr"><span class="ccrl">Troponine</span><span class="ccrv">Hausse franche → cinetique claire</span></div>
+        <div class="ccr"><span class="ccrl">Coronaro</span><span class="ccrv"><strong>Stenose serree IVA</strong>, lesion coupable visible</span></div>
+        <div class="verd mi1">🩸 IDM de Type 1 / NSTEMI<div class="verd-w">Pas de sus-decalage ST, mais cinetique + signes d'ischemie + lesion coupable. IDM sans sus-decalage = NSTEMI.</div></div>
+      </div>
+    </div>
+
+    <div class="cc" data-t="chronic">
+      <div class="cc-h" onclick="toggleCase(this.parentElement)">
+        <span class="cc-n">05</span>
+        <div class="cc-i"><div class="cc-t">IRC — troponine stable</div><div class="cc-tags"><span class="badge gold">Lesion chronique</span><span class="badge gray">IRC</span></div></div>
+        <svg class="cc-chev" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+      </div>
+      <div class="cc-b">
+        <div class="ccr"><span class="ccrl">Clinique</span><span class="ccrv">IRC chronique. <strong>Pas de douleur thoracique.</strong></span></div>
+        <div class="ccr"><span class="ccrl">ECG</span><span class="ccrv">Inchange, pas de signes d'ischemie</span></div>
+        <div class="ccr"><span class="ccrl">Troponine</span><span class="ccrv">85 → 87 → 84 ng/l — <strong>stable, sans cinetique</strong></span></div>
+        <div class="verd chronic">⏱ Lesion Myocardique Chronique<div class="verd-w">Troponine durablement au-dessus du 99e Pct, sans cinetique ni signes d'ischemie. Typique de l'IRC, IC ou cardiopathie structurelle.</div></div>
+      </div>
+    </div>
+
+    <div class="cc" data-t="injury">
+      <div class="cc-h" onclick="toggleCase(this.parentElement)">
+        <span class="cc-n">06</span>
+        <div class="cc-i"><div class="cc-t">Myocardite</div><div class="cc-tags"><span class="badge cyan">Lesion aigue</span><span class="badge gray">Myocardite</span></div></div>
+        <svg class="cc-chev" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+      </div>
+      <div class="cc-b">
+        <div class="ccr"><span class="ccrl">Clinique</span><span class="ccrv">Jeune patient, infection virale, fievre, fatigue, <strong>douleur thoracique</strong></span></div>
+        <div class="ccr"><span class="ccrl">ECG</span><span class="ccrv">Modifications diffuses non specifiques (pas de topographie coronarienne)</span></div>
+        <div class="ccr"><span class="ccrl">Echo</span><span class="ccrv">Legere dysfonction VG, <strong>pas d'anomalie cinetique segmentaire typique</strong></span></div>
+        <div class="ccr"><span class="ccrl">IRM card.</span><span class="ccrv">Myocardite (rehaussement tardif epicardique/medio-parietal)</span></div>
+        <div class="ccr"><span class="ccrl">Troponine</span><span class="ccrv">Hausse → cinetique presente</span></div>
+        <div class="verd injury">💧 Lesion Myocardique Aigue par Myocardite<div class="verd-w">Atteinte inflammatoire, pas d'ischemie coronarienne. Pas d'IDM malgre la cinetique troponinique — pas d'origine coronarienne.</div></div>
+      </div>
+    </div>
+
+    <div class="cc" data-t="injury">
+      <div class="cc-h" onclick="toggleCase(this.parentElement)">
+        <span class="cc-n">07</span>
+        <div class="cc-i"><div class="cc-t">Embolie pulmonaire</div><div class="cc-tags"><span class="badge cyan">Lesion aigue</span><span class="badge gray">EP · Surcharge VD</span></div></div>
+        <svg class="cc-chev" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+      </div>
+      <div class="cc-b">
+        <div class="ccr"><span class="ccrl">Clinique</span><span class="ccrv">Dyspnee brutale, tachycardie, <strong>SpO₂ ↓</strong></span></div>
+        <div class="ccr"><span class="ccrl">Biologie</span><span class="ccrv">D-dimeres eleves, troponine augmentee</span></div>
+        <div class="ccr"><span class="ccrl">Angio-TDM</span><span class="ccrv"><strong>Embolie pulmonaire centrale</strong></span></div>
+        <div class="ccr"><span class="ccrl">Echo</span><span class="ccrv"><strong>Surcharge VD</strong>, signe de McConnell</span></div>
+        <div class="verd injury">💧 Lesion Myocardique Aigue par EP<div class="verd-w">Troponine par stress parietal du VD. Pas d'ischemie coronarienne → pas d'IDM.</div></div>
+      </div>
+    </div>
+
+    <div class="cc" data-t="injury">
+      <div class="cc-h" onclick="toggleCase(this.parentElement)">
+        <span class="cc-n">08</span>
+        <div class="cc-i"><div class="cc-t">Tachyarythmie sans ischemie</div><div class="cc-tags"><span class="badge cyan">Lesion aigue</span><span class="badge gray">FA · Tachycardie</span></div></div>
+        <svg class="cc-chev" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+      </div>
+      <div class="cc-b">
+        <div class="ccr"><span class="ccrl">Clinique</span><span class="ccrv">FA 160 bpm depuis plusieurs heures. <strong>Pas de douleur thoracique typique.</strong></span></div>
+        <div class="ccr"><span class="ccrl">ECG</span><span class="ccrv">Tachyarythmie, <strong>pas de signes ischemiques francs</strong></span></div>
+        <div class="ccr"><span class="ccrl">Troponine</span><span class="ccrv">Legerement elevee, hausse minime. Amelioration apres controle de frequence.</span></div>
+        <div class="verd injury">💧 Lesion Myocardique Aigue par Tachyarythmie<div class="verd-w">Troponine par stress myocardique lie a la tachycardie. Sans signes d'ischemie : pas d'IDM.</div></div>
+      </div>
+    </div>
+
+    <div class="cc" data-t="mi2">
+      <div class="cc-h" onclick="toggleCase(this.parentElement)">
+        <span class="cc-n">09</span>
+        <div class="cc-i"><div class="cc-t">Tachyarythmie avec ischemie</div><div class="cc-tags"><span class="badge orange">IDM Type 2</span><span class="badge gray">FA · Coronarien</span></div></div>
+        <svg class="cc-chev" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+      </div>
+      <div class="cc-b">
+        <div class="ccr"><span class="ccrl">Clinique</span><span class="ccrv">FA 170 bpm, coronaropathie connue. <strong>Oppression retrosternale.</strong></span></div>
+        <div class="ccr"><span class="ccrl">ECG</span><span class="ccrv"><strong>Nouveaux sous-decalages ST</strong> lors de la tachycardie</span></div>
+        <div class="ccr"><span class="ccrl">Troponine</span><span class="ccrv">Hausse puis baisse → cinetique franche</span></div>
+        <div class="verd mi2">⚡ IDM de Type 2<div class="verd-w">Ischemie par forte demande O₂ lors de tachycardie + stenose coronarienne preexistante. Desequilibre offre/demande — pas necessairement une rupture de plaque.</div></div>
+      </div>
+    </div>
+
+    <div class="cc" data-t="injury">
+      <div class="cc-h" onclick="toggleCase(this.parentElement)">
+        <span class="cc-n">10</span>
+        <div class="cc-i"><div class="cc-t">Decompensation cardiaque</div><div class="cc-tags"><span class="badge cyan">Lesion aigue</span><span class="badge gray">IC · Oedeme pulm.</span></div></div>
+        <svg class="cc-chev" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+      </div>
+      <div class="cc-b">
+        <div class="ccr"><span class="ccrl">Clinique</span><span class="ccrv">Decompensation severe, oedeme pulmonaire, BNP eleve. <strong>Pas de douleur angineuse typique.</strong></span></div>
+        <div class="ccr"><span class="ccrl">ECG</span><span class="ccrv">Pas de nouveaux signes ischemiques</span></div>
+        <div class="ccr"><span class="ccrl">Echo</span><span class="ccrv">Mauvaise FE connue, <strong>pas de nouvelle anomalie cinetique</strong></span></div>
+        <div class="ccr"><span class="ccrl">Troponine</span><span class="ccrv">Legerement elevee, eventuellement legere cinetique</span></div>
+        <div class="verd injury">💧 Lesion Myocardique Aigue (ou chronique) par IC<div class="verd-w">Atteinte myocardique par stress parietal et decompensation. Sans ischemie coronarienne nouvelle : pas d'IDM.</div></div>
+      </div>
+    </div>
+
+    <div class="cc" data-t="mi2">
+      <div class="cc-h" onclick="toggleCase(this.parentElement)">
+        <span class="cc-n">11</span>
+        <div class="cc-i"><div class="cc-t">Crise hypertensive</div><div class="cc-tags"><span class="badge orange">IDM Type 2</span><span class="badge gray">TA 230/120</span></div></div>
+        <svg class="cc-chev" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+      </div>
+      <div class="cc-b">
+        <div class="ccr"><span class="ccrl">Clinique</span><span class="ccrv">TA 230/120 mmHg, dyspnee, cephalees. <strong>+ Douleur thoracique + nouveaux sous-decalages ST.</strong></span></div>
+        <div class="ccr"><span class="ccrl">ECG</span><span class="ccrv">HVG/strain. <strong>Nouveaux sous-decalages ST</strong></span></div>
+        <div class="ccr"><span class="ccrl">Troponine</span><span class="ccrv">Legere hausse</span></div>
+        <div class="verd mi2">⚡ IDM de Type 2<div class="verd-w">Forte demande O₂ par crise hypertensive → desequilibre offre/demande → ischemie. Troponine + cinetique + signes d'ischemie = IDM type 2. Sans signes : lesion aigue seulement.</div></div>
+      </div>
+    </div>
+
+    <div class="cc" data-t="angina">
+      <div class="cc-h" onclick="toggleCase(this.parentElement)">
+        <span class="cc-n">12</span>
+        <div class="cc-i"><div class="cc-t">Angor instable</div><div class="cc-tags"><span class="badge purple">Angor instable</span><span class="badge gray">Troponine normale</span></div></div>
+        <svg class="cc-chev" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+      </div>
+      <div class="cc-b">
+        <div class="ccr"><span class="ccrl">Clinique</span><span class="ccrv"><strong>Douleur thoracique typique au repos</strong></span></div>
+        <div class="ccr"><span class="ccrl">ECG</span><span class="ccrv">Sous-decalages ST transitoires pendant la douleur</span></div>
+        <div class="ccr"><span class="ccrl">Troponine</span><span class="ccrv"><strong>Reste normale</strong> aux dosages series (0h/1h/2h)</span></div>
+        <div class="verd angina">🫀 Angor Instable<div class="verd-w">Ischemie sans necrose myocardique detectable. Pas de hausse troponinique → ni lesion ni IDM. Urgent : surveillance hospitaliere, anti-ischemique, coronarographie precoce a envisager.</div></div>
+      </div>
+    </div>
+
+  </div><!-- /cases-grid -->
+</div><!-- /main -->
+
+<script>
+function toggleCase(c){c.classList.toggle('open')}
+document.querySelectorAll('.ctab').forEach(function(t){
+  t.addEventListener('click',function(){
+    document.querySelectorAll('.ctab').forEach(function(x){x.classList.remove('active')});
+    this.classList.add('active');
+    var f=this.dataset.f;
+    document.querySelectorAll('.cc').forEach(function(c){
+      if(f==='all'||c.dataset.t===f){c.classList.remove('hidden')}
+      else{c.classList.add('hidden');c.classList.remove('open')}
+    });
+  });
+});
+</script>
+
+<footer>
+  <span>OUSS Cardiologie · <strong>4e Definition Universelle de l'IDM</strong> · ESC 2023 · Thygesen et al.</span>
+  <span>Usage clinique hospitalier — ne remplace pas le jugement medical individuel</span>
+</footer>
+</body>
+</html>
