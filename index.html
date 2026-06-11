@@ -3,238 +3,191 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>OUSS Kardiologie</title>
+<title>Diastola — Kardiologie-Lern-Hub</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500;600&family=Caveat:wght@500;600;700&display=swap" rel="stylesheet">
 <style>
+/* ════════════════════════════════════════════════════════════
+   DIASTOLA · DESIGN SYSTEM „KLINISCHES SKIZZENBUCH"
+   Paper + ink + one red pen. Handwriting only as annotation.
+   ════════════════════════════════════════════════════════════ */
 :root {
-  --bg:       #ffffff;
-  --surface:  #f7f5f2;
-  --surface2: #eeecea;
-  --border:   #e5e2de;
-  --text:     #1a1410;
-  --text2:    #6b6460;
-  --text3:    #a09890;
-  --red:      #c8303a;
-  --gold:     #9a7430;
-  --navy:     #0f1528;
-  --blue:     #2563eb;
-  --green:    #0f7b5a;
-  --purple:   #7c3aed;
-  --orange:   #ea580c;
+  /* Paper & ink */
+  --paper:    #faf6ee;
+  --paper2:   #f3ecdd;
+  --card:     #fffdf8;
+  --line:     #e7ddc9;
+  --line2:    #ddd1b8;
+  --ink:      #2a241c;
+  --ink2:     #6e6354;
+  --ink3:     #a3957f;
+
+  /* Pen colors (kept names for compatibility) */
+  --red:      #c8303a;   /* the red pen */
+  --blue:     #2456a6;   /* fountain-pen blue */
+  --green:    #1f7a5c;
+  --gold:     #97742e;
+  --navy:     #1d2b50;
+  --teal:     #11756c;
+  --purple:   #6d3fb8;
+  --orange:   #c2570f;
+
+  /* Highlights & notes */
+  --hl:       #ffe9a3;   /* highlighter yellow */
+  --note-y:   #fff4bd;
+  --note-r:   #ffe4e0;
+  --note-g:   #e1f1e7;
+
+  /* Legacy aliases used by markup/JS */
+  --bg:       var(--paper);
+  --surface:  #f4eee0;
+  --surface2: #ece4d2;
+  --border:   var(--line);
+  --text:     var(--ink);
+  --text2:    var(--ink2);
+  --text3:    var(--ink3);
+
   --serif:    'Cormorant Garamond', Georgia, serif;
   --sans:     'DM Sans', system-ui, sans-serif;
-  --r:        10px;
-  --sh:       0 2px 8px rgba(0,0,0,.06);
-  --sh-md:    0 6px 24px rgba(0,0,0,.09);
+  --hand:     'Caveat', cursive;
+
+  --r:        14px;
+  --r-sketch: 255px 15px 225px 15px / 15px 225px 15px 255px;
+  --sh:       0 1px 3px rgba(74,60,38,.07), 0 4px 14px rgba(74,60,38,.06);
+  --sh-md:    0 2px 6px rgba(74,60,38,.08), 0 10px 28px rgba(74,60,38,.10);
+
+  /* Wavy hand-drawn rules (SVG data-URIs, one per pen color) */
+  --wave-red:   url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='7'%3E%3Cpath d='M0 3.5Q5 .5 10 3.5T20 3.5T30 3.5T40 3.5' fill='none' stroke='%23c8303a' stroke-width='1.7' stroke-linecap='round'/%3E%3C/svg%3E");
+  --wave-blue:  url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='7'%3E%3Cpath d='M0 3.5Q5 .5 10 3.5T20 3.5T30 3.5T40 3.5' fill='none' stroke='%232456a6' stroke-width='1.7' stroke-linecap='round'/%3E%3C/svg%3E");
+  --wave-green: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='7'%3E%3Cpath d='M0 3.5Q5 .5 10 3.5T20 3.5T30 3.5T40 3.5' fill='none' stroke='%231f7a5c' stroke-width='1.7' stroke-linecap='round'/%3E%3C/svg%3E");
+  --wave-gold:  url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='7'%3E%3Cpath d='M0 3.5Q5 .5 10 3.5T20 3.5T30 3.5T40 3.5' fill='none' stroke='%2397742e' stroke-width='1.7' stroke-linecap='round'/%3E%3C/svg%3E");
+  --wave-navy:  url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='7'%3E%3Cpath d='M0 3.5Q5 .5 10 3.5T20 3.5T30 3.5T40 3.5' fill='none' stroke='%231d2b50' stroke-width='1.7' stroke-linecap='round'/%3E%3C/svg%3E");
+  --wave-teal:  url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='7'%3E%3Cpath d='M0 3.5Q5 .5 10 3.5T20 3.5T30 3.5T40 3.5' fill='none' stroke='%2311756c' stroke-width='1.7' stroke-linecap='round'/%3E%3C/svg%3E");
 }
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; }
-body { font-family: var(--sans); background: var(--bg); color: var(--text); font-size: 15px; line-height: 1.7; overflow-x: hidden; }
-
-/* ─── PREMIUM COLOR PALETTE ─── */
-:root {
-  --navy-deep:    #0a0f1e;
-  --navy-mid:     #0f1528;
-  --navy-light:   #1a2240;
-  --gold-warm:    #c9a84c;
-  --gold-bright:  #e8c96a;
-  --gold-dim:     #8c7035;
-  --platinum:     #d4d8e2;
-  --platinum-dim: #9aa0b2;
-  --teal-rich:    #0d9488;
-  --teal-light:   #14b8a6;
-  --emerald:      #059669;
-  --emerald-light:#10b981;
-  --sh-premium:   0 8px 32px rgba(10,15,30,.22), 0 2px 8px rgba(10,15,30,.12);
-  --sh-glow-gold: 0 0 24px rgba(201,168,76,.18), 0 4px 16px rgba(10,15,30,.2);
-  --sh-glow-teal: 0 0 24px rgba(13,148,136,.18), 0 4px 16px rgba(10,15,30,.2);
-  --sh-glow-navy: 0 0 24px rgba(15,21,40,.3), 0 4px 16px rgba(10,15,30,.2);
+body {
+  font-family: var(--sans); color: var(--ink);
+  font-size: 15px; line-height: 1.7; overflow-x: hidden;
+  background-color: var(--paper);
+  background-image: radial-gradient(rgba(67,54,32,.055) 1px, transparent 1.2px);
+  background-size: 23px 23px;
+}
+/* Signature: red margin rule, like ruled notebook paper */
+body::after {
+  content: ''; position: fixed; top: 0; bottom: 0; left: 34px;
+  width: 1.5px; background: rgba(200,48,58,.20);
+  pointer-events: none; z-index: 1;
 }
 
-/* ─── SOP DASHBOARD SECTION ─── */
+::selection { background: var(--hl); color: var(--ink); }
 
-
-
-/* Teal/Emerald variant */
-.sop-card.v-teal {
-  background: linear-gradient(145deg, #0b1a22 0%, #0a1520 100%);
-  border: 1px solid rgba(13,148,136,.25);
-  box-shadow: var(--sh-premium);
-  color: #e8eaf0;
+/* ─── Handwritten accents (Caveat — annotations only) ─── */
+.hand { font-family: var(--hand); }
+.annot {
+  font-family: var(--hand); font-weight: 600;
+  color: var(--red); line-height: 1.15;
 }
-.sop-card.v-teal::before {
-  content: '';
-  position: absolute; top: 0; left: 0; right: 0; height: 2px;
-  background: linear-gradient(90deg, #065f46, var(--teal-light), #065f46);
+.margin-note {
+  font-family: var(--hand); font-weight: 600; font-size: 1.15rem;
+  color: var(--ink2); transform: rotate(-1.5deg); display: inline-block;
 }
-.sop-card.v-teal:hover { box-shadow: var(--sh-glow-teal); border-color: rgba(13,148,136,.45); }
-
-/* Platinum/Navy variant (for notfall) */
-.sop-card.v-platinum {
-  background: linear-gradient(145deg, #1a0a10 0%, #150810 100%);
-  border: 1px solid rgba(200,48,58,.25);
-  box-shadow: var(--sh-premium);
-  color: #e8eaf0;
+.hl-marker {
+  background: linear-gradient(104deg, transparent .5%, var(--hl) 3%, var(--hl) 96%, transparent 99%);
+  padding: 0 .25em; border-radius: 2px;
+  box-decoration-break: clone; -webkit-box-decoration-break: clone;
 }
-.sop-card.v-platinum::before {
-  content: '';
-  position: absolute; top: 0; left: 0; right: 0; height: 2px;
-  background: linear-gradient(90deg, #7f1d1d, #ef4444, #7f1d1d);
+.u-squiggle {
+  background: var(--wave-red) repeat-x left bottom;
+  background-size: 40px 7px; padding-bottom: 8px;
 }
-.sop-card.v-platinum:hover { box-shadow: 0 0 24px rgba(200,48,58,.2), 0 4px 16px rgba(10,15,30,.2); border-color: rgba(200,48,58,.45); }
-
-.sop-card-icon {
-  width: 42px; height: 42px; border-radius: 10px;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 1.2rem; flex-shrink: 0;
+/* Hand-drawn circle around a word */
+.circle-hand { position: relative; display: inline-block; white-space: nowrap; }
+.circle-hand > svg.ring {
+  position: absolute; left: -.45em; top: -.28em;
+  width: calc(100% + .9em); height: calc(100% + .55em);
+  overflow: visible; pointer-events: none;
 }
-.v-gold  .sop-card-icon { background: rgba(201,168,76,.12); }
-.v-teal  .sop-card-icon { background: rgba(13,148,136,.12); }
-.v-platinum .sop-card-icon { background: rgba(200,48,58,.12); }
-
-.sop-card-title {
-  font-family: var(--serif); font-size: 1.18rem; font-weight: 400;
-  line-height: 1.25; letter-spacing: -.005em;
-}
-.v-gold  .sop-card-title { color: #f5f0e8; }
-.v-teal  .sop-card-title { color: #e8f5f2; }
-.v-platinum .sop-card-title { color: #f5e8ea; }
-
-.sop-card-desc {
-  font-size: .81rem; line-height: 1.65; flex: 1;
-}
-.v-gold  .sop-card-desc { color: rgba(212,216,226,.65); }
-.v-teal  .sop-card-desc { color: rgba(212,216,226,.65); }
-.v-platinum .sop-card-desc { color: rgba(212,216,226,.65); }
-
-.sop-card-tags { display: flex; flex-wrap: wrap; gap: 5px; margin-top: .1rem; }
-.sop-tag {
-  font-size: .66rem; font-weight: 700; letter-spacing: .07em;
-  text-transform: uppercase; padding: 2px 9px;
-  border-radius: 4px; border: 1px solid;
-}
-.v-gold  .sop-tag { background: rgba(201,168,76,.1); color: var(--gold-bright); border-color: rgba(201,168,76,.2); }
-.v-teal  .sop-tag { background: rgba(13,148,136,.1); color: #5eead4; border-color: rgba(13,148,136,.2); }
-.v-platinum .sop-tag { background: rgba(200,48,58,.1); color: #fca5a5; border-color: rgba(200,48,58,.2); }
-.sop-tag.gray {
-  background: rgba(255,255,255,.05); color: var(--platinum-dim);
-  border-color: rgba(255,255,255,.08);
-}
-
-/* PREMIUM HERO BUTTONS */
-.btn-primary {
-  display: inline-flex; align-items: center; gap: .4rem;
-  background: #c8303a; color: #fff;
-  font-size: .85rem; font-weight: 700; letter-spacing: .025em;
-  padding: .78rem 1.7rem; border-radius: 9px;
-  text-decoration: none; border: 1.5px solid #c8303a;
-  box-shadow: 0 2px 14px rgba(200,48,58,.32);
-  transition: background .2s, box-shadow .22s, transform .2s;
-}
-.btn-primary:hover {
-  background: #b8242d; border-color: #b8242d;
-  box-shadow: 0 4px 22px rgba(200,48,58,.38);
-  transform: translateY(-1px);
-}
-
-/* Uniform hero module buttons */
-.hbtn {
-  display: inline-flex; align-items: center; gap: .35rem;
-  font-family: var(--sans); font-size: .82rem; font-weight: 600;
-  padding: .62rem 1.25rem; border-radius: 9px;
-  text-decoration: none; border: 1.5px solid;
-  transition: transform .2s cubic-bezier(.23,1,.32,1), box-shadow .2s ease, background .15s, border-color .15s;
-  white-space: nowrap;
-}
-.hbtn:hover { transform: translateY(-2px); }
-.hbtn-red   { background:#fdf2f2; color:#b8242d; border-color:#f8c8ca; }
-.hbtn-red:hover   { background:#fce8e9; border-color:#e8a0a5; box-shadow:0 4px 16px rgba(200,48,58,.14); }
-.hbtn-blue  { background:#eff6ff; color:#1d52c4; border-color:#bdd4fc; }
-.hbtn-blue:hover  { background:#e3eefe; border-color:#93b8fa; box-shadow:0 4px 16px rgba(37,99,235,.14); }
-.hbtn-green { background:#f0fdf8; color:#0a6147; border-color:#a4e8cc; }
-.hbtn-green:hover { background:#e2fbf2; border-color:#6dd5b0; box-shadow:0 4px 16px rgba(15,123,90,.13); }
-.hbtn-navy  { background:#f0f2f8; color:#0f1528; border-color:#c4ccdf; }
-.hbtn-navy:hover  { background:#e5e9f4; border-color:#9aaac8; box-shadow:0 4px 16px rgba(15,21,40,.12); }
-.hbtn-gold  { background:#fdf8ee; color:#7a5c20; border-color:#e8d5a0; }
-.hbtn-gold:hover  { background:#faf0da; border-color:#d4b870; box-shadow:0 4px 16px rgba(154,116,48,.14); }
-.hbtn-sop {
-  background:linear-gradient(135deg,#111828,#0d1520);
-  color:#e8c96a; border-color:rgba(201,168,76,.32);
-  box-shadow:0 2px 10px rgba(10,15,30,.2);
-}
-.hbtn-sop:hover {
-  background:linear-gradient(135deg,#1a2240,#0f1528);
-  border-color:rgba(201,168,76,.55);
-  box-shadow:0 4px 20px rgba(10,15,30,.28),0 0 14px rgba(201,168,76,.12);
-}
-.hbtn-teal {
-  background:linear-gradient(135deg,#0b1a22,#0a1520);
-  color:#5eead4; border-color:rgba(13,148,136,.3);
-  box-shadow:0 2px 10px rgba(10,15,30,.2);
-}
-.hbtn-teal:hover {
-  background:linear-gradient(135deg,#0d2030,#0a1820);
-  border-color:rgba(13,148,136,.55);
-  box-shadow:0 4px 20px rgba(10,15,30,.28),0 0 14px rgba(13,148,136,.12);
-}
-
-@media(max-width:600px){
-  .sop-dashboard{padding:1.8rem 1rem}
-  .sop-dashboard h2{font-size:1.5rem}
+.circle-hand > svg.ring path {
+  fill: none; stroke: var(--red); stroke-width: 2.4;
+  stroke-linecap: round; opacity: .85;
 }
 
 /* ─── NAV ─── */
 .topnav {
   position: sticky; top: 0; z-index: 200;
-  height: 56px; background: rgba(255,255,255,.97);
-  backdrop-filter: blur(16px);
-  border-bottom: 1px solid var(--border);
+  height: 58px; background: rgba(250,246,238,.94);
+  backdrop-filter: blur(14px);
+  border-bottom: 1.5px solid var(--line2);
   display: flex; align-items: center;
   padding: 0 2.5rem; gap: 6px;
 }
 .brand {
-  font-family: var(--serif); font-size: 1.2rem; font-weight: 400;
-  color: var(--text); text-decoration: none;
-  display: flex; align-items: center; gap: 0.5rem;
+  font-family: var(--serif); font-size: 1.35rem; font-weight: 600;
+  letter-spacing: .01em;
+  color: var(--ink); text-decoration: none;
+  display: flex; align-items: center; gap: 0.55rem;
   white-space: nowrap; flex-shrink: 0;
 }
-.brand-heart { animation: hb 1.6s ease-in-out infinite; display: inline-block; }
+.brand em { font-style: italic; font-weight: 400; color: var(--red); }
+.brand-heart { animation: hb 1.6s ease-in-out infinite; display: inline-flex; }
 @keyframes hb {
   0%,100%{transform:scale(1)} 14%{transform:scale(1.2)} 28%{transform:scale(1)} 42%{transform:scale(1.1)} 56%{transform:scale(1)}
 }
 .nav-links { display: flex; gap: 2px; }
 .nav-links a {
-  padding: 7px 12px; border-radius: 7px; text-decoration: none;
-  color: var(--text2); font-size: .88rem; font-weight: 500;
+  padding: 7px 12px; border-radius: 8px; text-decoration: none;
+  color: var(--ink2); font-size: .88rem; font-weight: 500;
   transition: background .15s, color .15s;
 }
-.nav-links a:hover { background: var(--surface); color: var(--text); }
+.nav-links a:hover { background: var(--surface); color: var(--ink); }
 .spacer { flex: 1; }
 .nav-badge {
-  font-size: .78rem; font-weight: 600;
-  padding: 7px 14px; background: var(--red); color: #fff; border-radius: 7px;
+  font-family: var(--hand); font-size: 1.05rem; font-weight: 700;
+  padding: 4px 15px; background: transparent; color: var(--red);
+  border: 1.8px solid var(--red); border-radius: var(--r-sketch);
+  transform: rotate(-1.2deg); white-space: nowrap;
 }
 
-/* ─── ECG SECTION ─── */
+/* ─── ECG STRIP — rhythm strip taped into the notebook ─── */
 .ecg-section {
-  background: var(--bg);
-  border-bottom: 1px solid var(--border);
-  padding: 1.4rem 2.5rem 0;
+  margin: 1.8rem 2.5rem 0;
+  padding: 1.1rem 1.4rem .4rem;
+  background:
+    linear-gradient(rgba(200,48,58,.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(200,48,58,.05) 1px, transparent 1px),
+    #fffcf4;
+  background-size: 8px 8px, 8px 8px, auto;
+  border: 1.5px solid var(--line2);
+  border-radius: 6px;
+  box-shadow: var(--sh);
+  position: relative;
 }
+/* tape strips holding the ECG paper */
+.ecg-section::before, .ecg-section::after {
+  content: ''; position: absolute; top: -12px;
+  width: 92px; height: 26px;
+  background: rgba(240,230,200,.55);
+  border: 1px solid rgba(74,60,38,.10);
+  box-shadow: 0 1px 2px rgba(74,60,38,.10);
+}
+.ecg-section::before { left: 7%;  transform: rotate(-3deg); }
+.ecg-section::after  { right: 7%; transform: rotate(2.5deg); }
+
 .ecg-top {
   display: flex; align-items: flex-end; justify-content: space-between;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.5rem; flex-wrap: wrap; gap: .5rem;
 }
 .ecg-brand {
-  font-family: var(--serif); font-size: 2.2rem; font-weight: 300;
+  font-family: var(--serif); font-size: 2.1rem; font-weight: 300;
   letter-spacing: -.01em;
 }
 .ecg-brand em { font-style: italic; color: var(--red); }
-.ecg-meta {
-  display: flex; align-items: center; gap: 1.2rem;
-  padding-bottom: .4rem;
+.ecg-strip-label {
+  font-family: var(--hand); font-size: 1.05rem; font-weight: 600;
+  color: var(--ink2); display: block; margin-top: -6px;
 }
+.ecg-meta { display: flex; align-items: center; gap: 1.2rem; padding-bottom: .4rem; }
 .ecg-rhythm-label {
   font-size: .72rem; font-weight: 700;
   letter-spacing: .12em; text-transform: uppercase;
@@ -243,7 +196,7 @@ body { font-family: var(--sans); background: var(--bg); color: var(--text); font
   font-family: var(--serif); font-size: 1.4rem; font-weight: 300;
   display: flex; align-items: baseline; gap: .3rem;
 }
-.ecg-hr-unit { font-family: var(--sans); font-size: .68rem; color: var(--text3); }
+.ecg-hr-unit { font-family: var(--sans); font-size: .68rem; color: var(--ink3); }
 .pulse-dot {
   width: 7px; height: 7px; border-radius: 50%; background: var(--red);
   animation: blink 1.4s ease-in-out infinite;
@@ -254,36 +207,29 @@ body { font-family: var(--sans); background: var(--bg); color: var(--text); font
 
 .ecg-controls {
   display: flex; align-items: center; gap: 8px;
-  padding: .8rem 0 .8rem;
-  flex-wrap: wrap;
+  padding: .8rem 0 .8rem; flex-wrap: wrap;
 }
 .rhy-btn {
   font-family: var(--sans); font-size: .75rem; font-weight: 600;
-  padding: 5px 14px; border-radius: 20px;
-  border: 1.5px solid var(--border);
-  background: var(--surface); color: var(--text2);
+  padding: 5px 14px;
+  border-radius: var(--r-sketch);
+  border: 1.5px solid var(--line2);
+  background: var(--card); color: var(--ink2);
   cursor: pointer; transition: all .2s; white-space: nowrap;
 }
-.rhy-btn:hover { background: var(--surface2); color: var(--text); }
-.rhy-btn.active {
-  color: #fff; border-color: transparent;
-}
-.rhy-btn[data-r="sinus"].active    { background: var(--red); }
-.rhy-btn[data-r="vhf"].active      { background: var(--red); }
-.rhy-btn[data-r="flutter"].active  { background: var(--red); }
-.rhy-btn[data-r="vt"].active       { background: var(--red); }
-.rhy-btn[data-r="tdp"].active      { background: var(--red); }
+.rhy-btn:hover { border-color: var(--ink3); color: var(--ink); }
+.rhy-btn.active { color: #fffdf8; border-color: transparent; background: var(--red) !important; }
 
-.ecg-sep { width: 1px; height: 24px; background: var(--border); margin: 0 4px; }
+.ecg-sep { width: 1px; height: 24px; background: var(--line2); margin: 0 4px; }
 
 .action-btn {
   font-family: var(--sans); font-size: .75rem; font-weight: 700;
-  padding: 6px 16px; border-radius: 20px; border: none;
+  padding: 6px 16px; border-radius: var(--r-sketch); border: none;
   cursor: pointer; transition: all .2s; white-space: nowrap;
   animation: pulse-action 1.5s ease-in-out infinite;
 }
-.action-btn.defib { background: #ef4444; color: #fff; }
-.action-btn.mg    { background: var(--purple); color: #fff; }
+.action-btn.defib { background: #d33b3b; color: #fffdf8; }
+.action-btn.mg    { background: var(--purple); color: #fffdf8; }
 @keyframes pulse-action {
   0%,100%{box-shadow:0 0 0 0 rgba(200,48,58,.4)}
   50%{box-shadow:0 0 0 6px rgba(200,48,58,0)}
@@ -291,49 +237,114 @@ body { font-family: var(--sans); background: var(--bg); color: var(--text); font
 
 /* ─── HERO ─── */
 .hero {
-  padding: 3rem 2.5rem 2.5rem;
-  border-bottom: 1px solid var(--border);
+  padding: 3.2rem 2.5rem 2.6rem;
+  border-bottom: 1.5px solid var(--line);
+  position: relative;
 }
 .hero-eyebrow {
   font-size: .68rem; font-weight: 700; letter-spacing: .18em;
-  text-transform: uppercase; color: var(--red); margin-bottom: .9rem;
+  text-transform: uppercase; color: var(--ink3); margin-bottom: 1rem;
+}
+.hero-title-row {
+  display: flex; align-items: flex-start; gap: 1.4rem; flex-wrap: wrap;
 }
 .hero h1 {
   font-family: var(--serif);
-  font-size: clamp(2.6rem, 3.5vw, 4.2rem);
-  font-weight: 300; line-height: 1.1;
-  letter-spacing: -.01em; margin-bottom: 1.2rem;
+  font-size: clamp(3rem, 5vw, 5rem);
+  font-weight: 300; line-height: 1.02;
+  letter-spacing: -.01em; margin-bottom: .4rem;
 }
 .hero h1 em { font-style: italic; color: var(--red); }
-.hero-desc { font-size: 1rem; color: var(--text2); max-width: 680px; line-height: 1.85; margin-bottom: 2rem; }
+.hero-sub {
+  font-family: var(--serif); font-style: italic;
+  font-size: clamp(1.15rem, 1.6vw, 1.45rem);
+  color: var(--ink2); margin-bottom: 1.3rem;
+}
+/* the one handwritten annotation of the hero */
+.hero-annot {
+  position: relative; margin-top: 1.1rem;
+  font-size: clamp(1.25rem, 1.7vw, 1.5rem);
+  max-width: 270px; transform: rotate(-2deg);
+}
+.hero-annot .annot-arrow {
+  position: absolute; left: -64px; top: -4px;
+  width: 58px; height: 44px; overflow: visible;
+}
+.hero-annot .annot-arrow path {
+  fill: none; stroke: var(--red); stroke-width: 2.2; stroke-linecap: round;
+}
+.hero-desc {
+  font-size: 1rem; color: var(--ink2); max-width: 680px;
+  line-height: 1.85; margin-bottom: 2rem;
+}
 .hero-actions { display: flex; gap: .75rem; flex-wrap: wrap; }
 
+/* Primary "red pen" button — sketchy outline */
+.btn-primary {
+  display: inline-flex; align-items: center; gap: .4rem;
+  background: var(--red); color: #fffdf8;
+  font-size: .85rem; font-weight: 700; letter-spacing: .025em;
+  padding: .78rem 1.7rem;
+  border-radius: var(--r-sketch);
+  text-decoration: none; border: 1.5px solid var(--red);
+  box-shadow: 2px 3px 0 rgba(200,48,58,.22);
+  transition: box-shadow .2s, transform .2s;
+}
+.btn-primary:hover {
+  transform: translate(-1px,-2px);
+  box-shadow: 3px 5px 0 rgba(200,48,58,.26);
+}
+
+/* Module quick-link chips — ink on paper */
+.hbtn {
+  display: inline-flex; align-items: center; gap: .35rem;
+  font-family: var(--sans); font-size: .82rem; font-weight: 600;
+  padding: .6rem 1.2rem;
+  border-radius: var(--r-sketch);
+  text-decoration: none; border: 1.5px solid;
+  background: var(--card);
+  box-shadow: 0 1px 2px rgba(74,60,38,.06);
+  transition: transform .2s cubic-bezier(.23,1,.32,1), box-shadow .2s ease;
+  white-space: nowrap;
+}
+.hbtn:hover { transform: translateY(-2px) rotate(-.4deg); box-shadow: var(--sh); }
+.hbtn-red   { color: var(--red);   border-color: rgba(200,48,58,.45); }
+.hbtn-blue  { color: var(--blue);  border-color: rgba(36,86,166,.42); }
+.hbtn-green { color: var(--green); border-color: rgba(31,122,92,.45); }
+.hbtn-navy  { color: var(--navy);  border-color: rgba(29,43,80,.40); }
+.hbtn-gold  { color: var(--gold);  border-color: rgba(151,116,46,.48); }
+.hbtn-sop   { color: var(--gold);  border-color: rgba(151,116,46,.48); background: #fdf6e4; }
+.hbtn-teal  { color: var(--teal);  border-color: rgba(17,117,108,.45); background: #eef6f2; }
+
 /* ─── SECTIONS ─── */
-.section { padding: 2.5rem 2.5rem; border-bottom: 1px solid var(--border); }
+.section { padding: 2.6rem 2.5rem; border-bottom: 1.5px solid var(--line); }
 .section-lbl {
   font-size: .68rem; font-weight: 700; letter-spacing: .14em;
-  text-transform: uppercase; color: var(--text3); margin-bottom: 1.2rem;
+  text-transform: uppercase; color: var(--ink3); margin-bottom: 1.2rem;
 }
 .section-head {
   display: flex; align-items: baseline; justify-content: space-between;
-  margin-bottom: 1.4rem;
+  margin-bottom: 1.5rem; gap: 1rem; flex-wrap: wrap;
 }
 .section-head h2 {
-  font-family: var(--serif); font-size: clamp(1.5rem, 2.5vw, 2.2rem);
+  font-family: var(--serif); font-size: clamp(1.6rem, 2.6vw, 2.3rem);
   font-weight: 300;
 }
 .section-head h2 em { font-style: italic; color: var(--red); }
+.section-count {
+  font-family: var(--hand); font-size: 1.15rem; font-weight: 600;
+  color: var(--ink3); transform: rotate(-1deg);
+}
 
-/* ─── STATS ─── */
-.stats-grid {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 12px;
-}
+/* ─── STATS — small index cards ─── */
+.stats-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; }
 .stat-card {
-  background: var(--surface); border: 1px solid var(--border);
-  border-radius: var(--r); padding: 1.3rem 1.2rem;
+  background: var(--card); border: 1.5px solid var(--line);
+  border-radius: 10px; padding: 1.25rem 1.2rem;
+  box-shadow: var(--sh); position: relative;
 }
+.stat-card:nth-child(odd)  { transform: rotate(-.4deg); }
+.stat-card:nth-child(even) { transform: rotate(.35deg); }
 .stat-val {
   font-family: var(--serif); font-size: 2.2rem; font-weight: 400;
   line-height: 1; display: block;
@@ -342,123 +353,227 @@ body { font-family: var(--sans); background: var(--bg); color: var(--text); font
 .stat-val.b { color: var(--blue); }
 .stat-lbl {
   font-size: .68rem; font-weight: 700; text-transform: uppercase;
-  letter-spacing: .08em; color: var(--text3); margin-top: .4rem; display: block;
+  letter-spacing: .08em; color: var(--ink3); margin-top: .45rem; display: block;
 }
 
-/* ─── CARDS ─── */
+/* ─── MODULE CARDS ─── */
 .cards-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-  gap: 14px;
+  gap: 16px;
 }
 .kcard {
-  border: 1px solid var(--border); border-radius: 12px;
-  background: var(--bg); padding: 1.5rem;
-  text-decoration: none; color: var(--text);
+  border: 1.5px solid var(--line2); border-radius: var(--r);
+  background: var(--card); padding: 1.5rem;
+  text-decoration: none; color: var(--ink);
   display: flex; flex-direction: column; gap: .55rem;
-  transition: box-shadow .2s, transform .2s;
+  transition: box-shadow .22s, transform .22s;
   position: relative; overflow: hidden;
+  box-shadow: var(--sh);
 }
+/* hand-drawn wavy line replaces the old straight bar */
 .kcard::before {
-  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2.5px;
-  transform: scaleX(0); transform-origin: left;
-  transition: transform .38s cubic-bezier(.23,1,.32,1);
+  content: ''; position: absolute; top: 7px; left: 1.3rem; right: 1.3rem; height: 7px;
+  background-repeat: repeat-x; background-size: 40px 7px;
+  opacity: 0; transition: opacity .3s ease;
 }
-.kcard:hover { box-shadow: var(--sh-md); transform: translateY(-2px); }
-.kcard:hover::before { transform: scaleX(1); }
-.kcard.c-red::before   { background: var(--red); }
-.kcard.c-blue::before  { background: var(--blue); }
-.kcard.c-gold::before  { background: var(--gold); }
-.kcard.c-green::before { background: var(--green); }
-.kcard.c-navy::before  { background: var(--navy); }
+.kcard:hover { box-shadow: var(--sh-md); transform: translateY(-3px) rotate(-.3deg); }
+.kcard:hover::before { opacity: 1; }
+.kcard.c-red::before   { background-image: var(--wave-red); }
+.kcard.c-blue::before  { background-image: var(--wave-blue); }
+.kcard.c-gold::before  { background-image: var(--wave-gold); }
+.kcard.c-green::before { background-image: var(--wave-green); }
+.kcard.c-navy::before  { background-image: var(--wave-navy); }
+.kcard.c-teal::before  { background-image: var(--wave-teal); }
 
 .kcard-icon {
-  width: 38px; height: 38px; border-radius: 9px;
+  width: 40px; height: 40px; border-radius: 10px;
   display: flex; align-items: center; justify-content: center;
-  flex-shrink: 0;
+  flex-shrink: 0; border: 1px solid rgba(74,60,38,.08);
 }
-.kcard-title {
-  font-family: var(--serif); font-size: 1.3rem; font-weight: 400; line-height: 1.2;
-}
-.kcard-desc { font-size: .82rem; color: var(--text2); line-height: 1.7; flex: 1; }
+.kcard-title { font-family: var(--serif); font-size: 1.3rem; font-weight: 400; line-height: 1.2; }
+.kcard-desc { font-size: .82rem; color: var(--ink2); line-height: 1.7; flex: 1; }
 .kcard-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: .3rem; }
 .tag {
   display: inline-flex; align-items: center;
-  padding: 2px 9px; border-radius: 20px;
-  font-size: .71rem; font-weight: 700; border: 1px solid;
+  padding: 2px 10px; border-radius: var(--r-sketch);
+  font-size: .71rem; font-weight: 700; border: 1.2px solid;
+  background: transparent;
 }
-.tag.red    { background: #fdf2f2; color: var(--red);    border-color: #fbd5d5; }
-.tag.blue   { background: #eff6ff; color: var(--blue);   border-color: #bfdbfe; }
-.tag.gold   { background: #fdf8ee; color: var(--gold);   border-color: #e8d5a3; }
-.tag.green  { background: #f0fdf8; color: var(--green);  border-color: #a7f3d0; }
-.tag.navy   { background: #f0f2f8; color: var(--navy);   border-color: #c7cde8; }
-.tag.gray   { background: var(--surface); color: var(--text2); border-color: var(--border); }
+.tag.red    { color: var(--red);   border-color: rgba(200,48,58,.40); }
+.tag.blue   { color: var(--blue);  border-color: rgba(36,86,166,.38); }
+.tag.gold   { color: var(--gold);  border-color: rgba(151,116,46,.45); }
+.tag.green  { color: var(--green); border-color: rgba(31,122,92,.40); }
+.tag.navy   { color: var(--navy);  border-color: rgba(29,43,80,.36); }
+.tag.teal   { color: var(--teal);  border-color: rgba(17,117,108,.42); }
+.tag.gray   { color: var(--ink2);  border-color: var(--line2); }
+
+/* ─── CLINICAL PEARLS — sticky notes ─── */
+.pearls-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+  gap: 22px; padding-top: 10px;
+}
+.sticky {
+  padding: 1.4rem 1.25rem 1.15rem;
+  border-radius: 3px;
+  box-shadow: 0 4px 10px rgba(74,60,38,.13), 0 1px 3px rgba(74,60,38,.10);
+  position: relative; display: flex; flex-direction: column; gap: .35rem;
+  transition: transform .22s ease;
+}
+.sticky:hover { transform: translateY(-3px) rotate(0deg) !important; }
+.sticky::before {
+  content: ''; position: absolute; top: -11px; left: 50%;
+  transform: translateX(-50%) rotate(-2deg);
+  width: 84px; height: 24px;
+  background: rgba(255,255,255,.42);
+  border: 1px solid rgba(74,60,38,.08);
+  box-shadow: 0 1px 2px rgba(74,60,38,.08);
+}
+.sticky.s-y { background: var(--note-y); transform: rotate(-1.1deg); }
+.sticky.s-r { background: var(--note-r); transform: rotate(.9deg); }
+.sticky.s-g { background: var(--note-g); transform: rotate(-.7deg); }
+.sticky-head {
+  font-family: var(--hand); font-size: 1.45rem; font-weight: 700;
+  line-height: 1.05; color: var(--ink);
+}
+.sticky.s-y .sticky-head { color: #7a5c10; }
+.sticky.s-r .sticky-head { color: var(--red); }
+.sticky.s-g .sticky-head { color: var(--green); }
+.sticky-body { font-size: .84rem; color: var(--ink); line-height: 1.65; }
+.sticky-src {
+  font-size: .66rem; font-weight: 700; letter-spacing: .08em;
+  text-transform: uppercase; color: rgba(42,36,28,.45); margin-top: .3rem;
+}
+
+/* ─── QUICK REFERENCE — ruled index cards ─── */
+.qref-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 16px;
+}
+.qref-card {
+  background:
+    repeating-linear-gradient(transparent, transparent 27px, rgba(36,86,166,.10) 27px, rgba(36,86,166,.10) 28px),
+    var(--card);
+  border: 1.5px solid var(--line2);
+  border-top: 3px solid rgba(200,48,58,.55);
+  border-radius: 8px;
+  padding: 1.15rem 1.25rem 1.05rem;
+  box-shadow: var(--sh);
+}
+.qref-title {
+  font-family: var(--hand); font-size: 1.4rem; font-weight: 700;
+  color: var(--navy); line-height: 1; margin-bottom: .55rem;
+}
+.qref-list { list-style: none; }
+.qref-list li {
+  font-size: .78rem; color: var(--ink); line-height: 28px;
+  display: flex; justify-content: space-between; gap: .6rem;
+}
+.qref-list li span:last-child { font-weight: 600; color: var(--ink); white-space: nowrap; }
+.qref-list li span:first-child { color: var(--ink2); }
+
+/* ─── PATHWAYS — clean cards with hand-drawn arrows ─── */
+.path-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+  gap: 16px;
+}
+.path-card {
+  background: var(--card); border: 1.5px solid var(--line2);
+  border-radius: var(--r); padding: 1.4rem 1.4rem 1.25rem;
+  box-shadow: var(--sh); text-decoration: none; color: var(--ink);
+  display: flex; flex-direction: column; gap: .8rem;
+  transition: box-shadow .22s, transform .22s;
+}
+.path-card:hover { box-shadow: var(--sh-md); transform: translateY(-3px); }
+.path-title { font-family: var(--serif); font-size: 1.25rem; font-weight: 400; }
+.path-steps { display: flex; align-items: center; flex-wrap: wrap; gap: 6px 4px; }
+.path-step {
+  font-size: .74rem; font-weight: 600; color: var(--ink2);
+  border: 1.2px solid var(--line2); background: var(--paper);
+  padding: 3px 10px; border-radius: var(--r-sketch); white-space: nowrap;
+}
+.path-step.hot { color: var(--red); border-color: rgba(200,48,58,.45); background: #fdf3ef; }
+.harrow { width: 26px; height: 14px; flex-shrink: 0; overflow: visible; }
+.harrow path { fill: none; stroke: var(--red); stroke-width: 1.9; stroke-linecap: round; stroke-linejoin: round; }
+.path-note { font-family: var(--hand); font-size: 1.05rem; font-weight: 600; color: var(--ink3); transform: rotate(-.8deg); }
 
 /* ─── PROGRESS ─── */
 .prog-card {
-  background: var(--surface); border: 1px solid var(--border);
-  border-radius: 12px; padding: 1.6rem 2rem;
+  background: var(--card); border: 1.5px solid var(--line2);
+  border-radius: var(--r); padding: 1.7rem 2rem;
+  box-shadow: var(--sh);
 }
 .prog-card-title {
   font-size: .68rem; font-weight: 700; letter-spacing: .1em;
-  text-transform: uppercase; color: var(--text3); margin-bottom: 1.2rem;
+  text-transform: uppercase; color: var(--ink3); margin-bottom: 1.2rem;
 }
 .prog-row { display: flex; align-items: center; gap: 14px; margin-bottom: .9rem; }
 .prog-row:last-child { margin-bottom: 0; }
 .prog-label { font-size: .88rem; font-weight: 500; min-width: 220px; flex-shrink: 0; }
-.prog-bar { flex: 1; height: 7px; background: var(--surface2); border-radius: 4px; overflow: hidden; }
-.prog-fill { height: 100%; border-radius: 4px; width: 0; transition: width 1.3s cubic-bezier(.16,1,.3,1); }
-.prog-pct { font-size: .82rem; font-weight: 700; min-width: 36px; text-align: right; }
+.prog-bar {
+  flex: 1; height: 9px; background: var(--paper2);
+  border-radius: 6px; overflow: hidden;
+  border: 1px solid rgba(74,60,38,.08);
+}
+.prog-fill { height: 100%; border-radius: 6px; width: 0; transition: width 1.3s cubic-bezier(.16,1,.3,1); opacity: .85; }
+.prog-pct {
+  font-family: var(--hand); font-size: 1.15rem; font-weight: 700;
+  min-width: 48px; text-align: right;
+}
 
-/* ─── QUOTE ─── */
+/* ─── QUOTE — handwritten margin note ─── */
 .quote-section {
-  background: var(--surface);
-  border-bottom: 1px solid var(--border);
-  padding: 3rem 2.5rem;
-  text-align: center;
+  background: var(--paper2);
+  border-bottom: 1.5px solid var(--line);
+  padding: 3rem 2.5rem; text-align: center;
 }
 .quote-text {
   font-family: var(--serif); font-size: clamp(1.3rem, 2vw, 1.8rem);
   font-weight: 300; font-style: italic; line-height: 1.6;
-  color: var(--text); margin-bottom: .8rem; max-width: 720px; margin-inline: auto;
+  color: var(--ink); margin-bottom: .9rem; max-width: 720px; margin-inline: auto;
 }
-.quote-author { font-size: .72rem; letter-spacing: .14em; text-transform: uppercase; color: var(--text3); }
+.quote-author {
+  font-family: var(--hand); font-size: 1.2rem; font-weight: 600;
+  color: var(--ink2); transform: rotate(-1deg); display: inline-block;
+}
 
 /* ─── FOOTER ─── */
 footer {
   padding: 2rem 2.5rem;
   display: flex; align-items: center; justify-content: space-between;
-  border-top: 1px solid var(--border);
-  font-size: .78rem; color: var(--text3);
+  font-size: .78rem; color: var(--ink3);
 }
 footer strong { color: var(--red); font-weight: 600; }
 
 /* ─── REVEAL ─── */
 .reveal { opacity: 0; transform: translateY(14px); transition: opacity .6s ease, transform .6s ease; }
 .reveal.in { opacity: 1; transform: none; }
-
-/* ─── CARD ACTION BUTTONS ─── */
-.kcard-actions { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: .6rem; }
-.kcard-btn-mod {
-  font-size: .74rem; font-weight: 600;
-  padding: .36rem .95rem; border-radius: 7px;
-  text-decoration: none; font-family: var(--sans);
-  display: inline-flex; align-items: center;
-  transition: opacity .18s;
+@media (prefers-reduced-motion: reduce) {
+  .reveal { opacity: 1; transform: none; transition: none; }
+  .brand-heart, .pulse-dot, .action-btn { animation: none; }
+  * { scroll-behavior: auto; }
 }
-.kcard-btn-mod:hover { opacity: .82; }
+a:focus-visible, button:focus-visible {
+  outline: 2.5px solid var(--blue); outline-offset: 3px; border-radius: 6px;
+}
 
 /* ─── RESPONSIVE ─── */
 @media (max-width: 860px) {
+  body::after { display: none; }
   .stats-grid { grid-template-columns: repeat(3,1fr); }
   .prog-label { min-width: 140px; }
   .nav-links { display: none; }
   .nav-badge { display: none; }
   #ham-mob { display: flex !important; }
+  .hero-annot .annot-arrow { display: none; }
 }
 @media (max-width: 600px) {
   .topnav { padding: 0 1rem; }
-  .ecg-section, .hero, .section { padding-left: 1rem; padding-right: 1rem; }
+  .ecg-section { margin: 1.4rem 1rem 0; padding: .9rem .9rem .3rem; }
+  .hero, .section { padding-left: 1rem; padding-right: 1rem; }
   .stats-grid { grid-template-columns: repeat(2,1fr); }
   .ecg-brand { font-size: 1.5rem; }
   .quote-section { padding: 2rem 1rem; }
@@ -472,44 +587,45 @@ footer strong { color: var(--red); font-weight: 600; }
 <nav class="topnav">
   <a href="#" class="brand">
     <span class="brand-heart">
-      <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
-        <path d="M9 15.5C3.5 12.2 1 9 1 6A4 4 0 0 1 9 4.2a4 4 0 0 1 8 1.8C17 9 14.5 12.2 9 15.5Z" fill="var(--red)" opacity=".9"/>
+      <svg width="19" height="19" viewBox="0 0 18 18" fill="none">
+        <path d="M9 15.5C3.5 12.2 1 9 1 6A4 4 0 0 1 9 4.2a4 4 0 0 1 8 1.8C17 9 14.5 12.2 9 15.5Z" stroke="var(--red)" stroke-width="1.6" fill="none" stroke-linejoin="round"/>
+        <path d="M4.5 9.5h2.2l1-2.2 1.6 4 1-1.8h2.9" stroke="var(--red)" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
       </svg>
     </span>
-    OUSS Kardiologie
+    Dia<em>stola</em>
   </a>
   <div class="nav-links" style="margin-left:.5rem">
     <a href="#module">Module</a>
-    <a href="kardiologie_sop.html" style="color:var(--gold);font-weight:600;background:rgba(201,168,76,.08);border-radius:7px">📋 SOPs</a>
-    <a href="kardiometabolik.html" style="color:#14b8a6;font-weight:600;background:rgba(13,148,136,.08);border-radius:7px">🩺 Kardiometabolik</a>
+    <a href="kardiologie_sop.html" style="color:var(--gold);font-weight:600">📋 SOPs</a>
+    <a href="kardiometabolik.html" style="color:var(--teal);font-weight:600">🩺 Kardiometabolik</a>
     <a href="echo/index.html">📡 Echo</a>
     <a href="ekg/index.html">📈 EKG</a>
-    <a href="usic_cheatsheet_de.html" style="color:var(--red);font-weight:700;background:rgba(200,48,58,.09);border-radius:7px">🫀 USIC</a>
+    <a href="usic_cheatsheet_de.html" style="color:var(--red);font-weight:700">🫀 USIC</a>
     <a href="notfall_erweitert.html" style="color:var(--red);font-weight:600">🚨 Notfall</a>
     <a href="arztbrief_hub.html" style="color:var(--navy);font-weight:600">📝 Arztbrief</a>
   </div>
   <div class="spacer"></div>
   <span class="nav-badge">Weiterbildung DE</span>
-  <button class="ham-mob" id="ham-mob" onclick="mobToggle()" aria-label="Menü" style="display:none;flex-direction:column;justify-content:center;align-items:center;gap:5px;width:40px;height:40px;flex-shrink:0;background:var(--surface);border:1px solid var(--border);border-radius:8px;cursor:pointer;margin-left:4px">
-    <span style="display:block;width:17px;height:2px;background:var(--text);border-radius:2px;transition:transform .25s,opacity .25s"></span>
-    <span style="display:block;width:17px;height:2px;background:var(--text);border-radius:2px;transition:opacity .25s"></span>
-    <span style="display:block;width:17px;height:2px;background:var(--text);border-radius:2px;transition:transform .25s,opacity .25s"></span>
+  <button class="ham-mob" id="ham-mob" onclick="mobToggle()" aria-label="Menü" style="display:none;flex-direction:column;justify-content:center;align-items:center;gap:5px;width:40px;height:40px;flex-shrink:0;background:var(--card);border:1.5px solid var(--line2);border-radius:8px;cursor:pointer;margin-left:4px">
+    <span style="display:block;width:17px;height:2px;background:var(--ink);border-radius:2px;transition:transform .25s,opacity .25s"></span>
+    <span style="display:block;width:17px;height:2px;background:var(--ink);border-radius:2px;transition:opacity .25s"></span>
+    <span style="display:block;width:17px;height:2px;background:var(--ink);border-radius:2px;transition:transform .25s,opacity .25s"></span>
   </button>
 </nav>
-<div id="mob-overlay" onclick="mobClose()" style="display:none;position:fixed;inset:0;top:56px;background:rgba(0,0,0,.35);z-index:499"></div>
-<div id="mob-drawer" style="position:fixed;top:56px;right:0;bottom:0;width:min(260px,80vw);background:#fff;z-index:500;transform:translateX(110%);transition:transform .28s cubic-bezier(.4,0,.2,1);display:flex;flex-direction:column;border-left:1px solid var(--border);padding:.5rem 0;overflow-y:auto;font-family:var(--sans)">
-  <a href="kardiologie_sop.html" onclick="mobClose()" style="display:flex;align-items:center;gap:12px;padding:13px 1.3rem;font-size:15px;font-weight:600;color:#9a7430;text-decoration:none;border-bottom:1px solid var(--border);min-height:50px;background:#fdf8ee">📋 Kardio-SOPs &amp; Leitlinien</a>
-  <a href="kardiometabolik.html" onclick="mobClose()" style="display:flex;align-items:center;gap:12px;padding:13px 1.3rem;font-size:15px;font-weight:600;color:#0d9488;text-decoration:none;border-bottom:1px solid var(--border);min-height:50px;background:#f0fdfa">🩺 Kardiometabolik &amp; Diabetologie</a>
-  <a href="#module" onclick="mobClose()" style="display:flex;align-items:center;gap:12px;padding:13px 1.3rem;font-size:15px;font-weight:500;color:var(--text);text-decoration:none;border-bottom:1px solid var(--border);min-height:50px">📚 Module</a>
-  <a href="echo/index.html" onclick="mobClose()" style="display:flex;align-items:center;gap:12px;padding:13px 1.3rem;font-size:15px;font-weight:500;color:var(--text);text-decoration:none;border-bottom:1px solid var(--border);min-height:50px">📡 Echo-Kurs</a>
-  <a href="echo/pathologie.html" onclick="mobClose()" style="display:flex;align-items:center;gap:12px;padding:13px 1.3rem;font-size:15px;font-weight:500;color:var(--text);text-decoration:none;border-bottom:1px solid var(--border);min-height:50px">🏥 Echo-Pathologien</a>
-  <a href="ekg/index.html" onclick="mobClose()" style="display:flex;align-items:center;gap:12px;padding:13px 1.3rem;font-size:15px;font-weight:500;color:var(--text);text-decoration:none;border-bottom:1px solid var(--border);min-height:50px">📈 EKG-Tachykardien</a>
-  <a href="doppler/index.html" onclick="mobClose()" style="display:flex;align-items:center;gap:12px;padding:13px 1.3rem;font-size:15px;font-weight:500;color:var(--text);text-decoration:none;border-bottom:1px solid var(--border);min-height:50px">🔊 Doppler Guide</a>
-  <a href="notes/index.html" onclick="mobClose()" style="display:flex;align-items:center;gap:12px;padding:13px 1.3rem;font-size:15px;font-weight:500;color:var(--text);text-decoration:none;border-bottom:1px solid var(--border);min-height:50px">✏️ Meine Notizen</a>
-  <a href="usic_cheatsheet_de.html" onclick="mobClose()" style="display:flex;align-items:center;gap:12px;padding:13px 1.3rem;font-size:15px;font-weight:700;color:var(--red);text-decoration:none;border-bottom:1px solid var(--border);min-height:50px;background:#fdf2f2">🫀 USIC Intensivstation</a>
-  <a href="notfall.html" onclick="mobClose()" style="display:flex;align-items:center;gap:12px;padding:13px 1.3rem;font-size:15px;font-weight:600;color:var(--red);text-decoration:none;border-bottom:1px solid var(--border);min-height:50px">🚨 Notfallmedikamente</a>
-  <a href="arztbrief_hub.html" onclick="mobClose()" style="display:flex;align-items:center;gap:12px;padding:13px 1.3rem;font-size:15px;font-weight:600;color:var(--navy);text-decoration:none;border-bottom:1px solid var(--border);min-height:50px">📝 Arztbrief-Hub</a>
-  <a href="#leitlinien" onclick="mobClose()" style="display:flex;align-items:center;gap:12px;padding:13px 1.3rem;font-size:15px;font-weight:500;color:var(--text);text-decoration:none;border-bottom:1px solid var(--border);min-height:50px">📖 Leitlinien</a>
+<div id="mob-overlay" onclick="mobClose()" style="display:none;position:fixed;inset:0;top:58px;background:rgba(42,36,28,.35);z-index:499"></div>
+<div id="mob-drawer" style="position:fixed;top:58px;right:0;bottom:0;width:min(260px,80vw);background:var(--card);z-index:500;transform:translateX(110%);transition:transform .28s cubic-bezier(.4,0,.2,1);display:flex;flex-direction:column;border-left:1.5px solid var(--line2);padding:.5rem 0;overflow-y:auto;font-family:var(--sans)">
+  <a href="kardiologie_sop.html" onclick="mobClose()" style="display:flex;align-items:center;gap:12px;padding:13px 1.3rem;font-size:15px;font-weight:600;color:var(--gold);text-decoration:none;border-bottom:1px solid var(--line);min-height:50px;background:#fdf6e4">📋 Kardio-SOPs &amp; Leitlinien</a>
+  <a href="kardiometabolik.html" onclick="mobClose()" style="display:flex;align-items:center;gap:12px;padding:13px 1.3rem;font-size:15px;font-weight:600;color:var(--teal);text-decoration:none;border-bottom:1px solid var(--line);min-height:50px;background:#eef6f2">🩺 Kardiometabolik &amp; Diabetologie</a>
+  <a href="#module" onclick="mobClose()" style="display:flex;align-items:center;gap:12px;padding:13px 1.3rem;font-size:15px;font-weight:500;color:var(--ink);text-decoration:none;border-bottom:1px solid var(--line);min-height:50px">📚 Module</a>
+  <a href="echo/index.html" onclick="mobClose()" style="display:flex;align-items:center;gap:12px;padding:13px 1.3rem;font-size:15px;font-weight:500;color:var(--ink);text-decoration:none;border-bottom:1px solid var(--line);min-height:50px">📡 Echo-Kurs</a>
+  <a href="echo/pathologie.html" onclick="mobClose()" style="display:flex;align-items:center;gap:12px;padding:13px 1.3rem;font-size:15px;font-weight:500;color:var(--ink);text-decoration:none;border-bottom:1px solid var(--line);min-height:50px">🏥 Echo-Pathologien</a>
+  <a href="ekg/index.html" onclick="mobClose()" style="display:flex;align-items:center;gap:12px;padding:13px 1.3rem;font-size:15px;font-weight:500;color:var(--ink);text-decoration:none;border-bottom:1px solid var(--line);min-height:50px">📈 EKG-Tachykardien</a>
+  <a href="doppler/index.html" onclick="mobClose()" style="display:flex;align-items:center;gap:12px;padding:13px 1.3rem;font-size:15px;font-weight:500;color:var(--ink);text-decoration:none;border-bottom:1px solid var(--line);min-height:50px">🔊 Doppler Guide</a>
+  <a href="notes/index.html" onclick="mobClose()" style="display:flex;align-items:center;gap:12px;padding:13px 1.3rem;font-size:15px;font-weight:500;color:var(--ink);text-decoration:none;border-bottom:1px solid var(--line);min-height:50px">✏️ Meine Notizen</a>
+  <a href="usic_cheatsheet_de.html" onclick="mobClose()" style="display:flex;align-items:center;gap:12px;padding:13px 1.3rem;font-size:15px;font-weight:700;color:var(--red);text-decoration:none;border-bottom:1px solid var(--line);min-height:50px;background:#fdf3ef">🫀 USIC Intensivstation</a>
+  <a href="notfall.html" onclick="mobClose()" style="display:flex;align-items:center;gap:12px;padding:13px 1.3rem;font-size:15px;font-weight:600;color:var(--red);text-decoration:none;border-bottom:1px solid var(--line);min-height:50px">🚨 Notfallmedikamente</a>
+  <a href="arztbrief_hub.html" onclick="mobClose()" style="display:flex;align-items:center;gap:12px;padding:13px 1.3rem;font-size:15px;font-weight:600;color:var(--navy);text-decoration:none;border-bottom:1px solid var(--line);min-height:50px">📝 Arztbrief-Hub</a>
+  <a href="#leitlinien" onclick="mobClose()" style="display:flex;align-items:center;gap:12px;padding:13px 1.3rem;font-size:15px;font-weight:500;color:var(--ink);text-decoration:none;border-bottom:1px solid var(--line);min-height:50px">📖 Leitlinien</a>
 </div>
 <script>
 function mobToggle(){
@@ -527,15 +643,18 @@ function mobClose(){
 window.addEventListener('resize',function(){if(window.innerWidth>860)mobClose();});
 </script>
 
-<!-- ECG SECTION -->
+<!-- ECG STRIP — eingeklebter Rhythmusstreifen -->
 <div class="ecg-section">
   <div class="ecg-top">
-    <div class="ecg-brand">OUSS <em>Kardiologie</em></div>
+    <div>
+      <div class="ecg-brand">Dia<em>stola</em></div>
+      <span class="ecg-strip-label">Rhythmusstreifen · 25 mm/s — zum Wechseln antippen</span>
+    </div>
     <div class="ecg-meta">
       <div class="pulse-dot" id="ecg-pulse-dot" style="background: rgb(200, 48, 58)"></div>
       <div>
         <div class="ecg-rhythm-label" id="ecg-label" style="color: rgb(200, 48, 58)">Sinusrhythmus</div>
-        <div style="font-size:.65rem;letter-spacing:.1em;text-transform:uppercase;color:var(--text3)">Weiterbildung · Deutschland</div>
+        <div style="font-size:.65rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink3)">Weiterbildung · Deutschland</div>
       </div>
       <div class="ecg-hr">
         <span id="ecg-hr-val">72</span>
@@ -559,23 +678,35 @@ window.addEventListener('resize',function(){if(window.innerWidth>860)mobClose();
 <!-- HERO -->
 <section class="hero">
   <div class="hero-eyebrow">Persönliche Wissensdatenbank · Innere Medizin &amp; Kardiologie</div>
-  <h1>Mein Weg durch die <em>Kardiologie</em></h1>
+  <div class="hero-title-row">
+    <div>
+      <h1>Dia<em>stola</em></h1>
+      <div class="hero-sub">Ein kardiologischer Lern-Hub — aus der Weiterbildung, für die Praxis.</div>
+    </div>
+    <div class="hero-annot annot">
+      <svg class="annot-arrow" viewBox="0 0 58 44" aria-hidden="true">
+        <path d="M52 36 C36 38, 16 30, 8 10"/>
+        <path d="M4 18 L8 9 L16 12"/>
+      </svg>
+      gr. diastolē — die Füllungsphase.<br>Hier füllt sich das Wissen. ♡
+    </div>
+  </div>
   <p class="hero-desc">
     Alles was ich während meiner Weiterbildung in Deutschland aufgebaut habe — EKG-Tachykardien, Echokardiographie, Doppler-Analyse, Notfallmedikamente, kardiologische SOPs und kardiometabolische Diabetologie. Für Visite, ZNA und Herzkatheter-Labor.
   </p>
   <div class="hero-actions">
     <a href="#module" class="btn-primary">Module ansehen 📋</a>
-    <a href="usic_cheatsheet_de.html"       class="hbtn hbtn-red">🫀 USIC Intensivstation</a>
+    <a href="usic_cheatsheet_de.html"   class="hbtn hbtn-red">🫀 USIC Intensivstation</a>
     <a href="notfall_erweitert.html"    class="hbtn hbtn-red">🚨 Notfall</a>
-    <a href="#card-echo"               class="hbtn hbtn-blue">🫀 Echokardiographie</a>
-    <a href="echo/index.html"          class="hbtn hbtn-green">📡 Echo-Kurs</a>
-    <a href="echo/pathologie.html"     class="hbtn hbtn-red">🏥 Echo-Pathologien</a>
-    <a href="doppler/index.html"       class="hbtn hbtn-navy">🔊 Doppler</a>
-    <a href="ekg/index.html"           class="hbtn hbtn-blue">📈 EKG-Tachykardien</a>
-    <a href="notes/index.html"         class="hbtn hbtn-gold">✏️ Notizen</a>
-    <a href="kardiologie_sop.html"     class="hbtn hbtn-sop">📋 Kardio-SOPs</a>
-    <a href="kardiometabolik.html"     class="hbtn hbtn-teal">🩺 Kardiometabolik</a>
-    <a href="arztbrief_hub.html"       class="hbtn hbtn-navy">📝 Arztbrief-Hub</a>
+    <a href="#card-echo"                class="hbtn hbtn-blue">🫀 Echokardiographie</a>
+    <a href="echo/index.html"           class="hbtn hbtn-green">📡 Echo-Kurs</a>
+    <a href="echo/pathologie.html"      class="hbtn hbtn-red">🏥 Echo-Pathologien</a>
+    <a href="doppler/index.html"        class="hbtn hbtn-navy">🔊 Doppler</a>
+    <a href="ekg/index.html"            class="hbtn hbtn-blue">📈 EKG-Tachykardien</a>
+    <a href="notes/index.html"          class="hbtn hbtn-gold">✏️ Notizen</a>
+    <a href="kardiologie_sop.html"      class="hbtn hbtn-sop">📋 Kardio-SOPs</a>
+    <a href="kardiometabolik.html"      class="hbtn hbtn-teal">🩺 Kardiometabolik</a>
+    <a href="arztbrief_hub.html"        class="hbtn hbtn-navy">📝 Arztbrief-Hub</a>
   </div>
 </section>
 
@@ -606,22 +737,17 @@ window.addEventListener('resize',function(){if(window.innerWidth>860)mobClose();
   </div>
 </div>
 
-<!-- ═══════════════════════════════════════════════════════════
-     SOP & KARDIOMETABOLIK DASHBOARD — PREMIUM NAVIGATION
-     ═══════════════════════════════════════════════════════════ -->
-
-
 <!-- MODULES -->
 <div class="section" id="module">
   <div class="section-head reveal">
     <h2>Klinische <em>Module</em></h2>
-    <span style="font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--text3)">11 Module</span>
+    <span class="section-count">11 Module — wächst weiter ↗</span>
   </div>
   <div class="cards-grid">
 
-    <!-- 1. Notfallmedikamente — FIRST -->
-    <a href="notfall.html" id="card-notfall" class="kcard c-red reveal" style="border: 1.5px solid #fbd5d5;">
-      <div class="kcard-icon" style="background:#fdf2f2">
+    <!-- 1. Notfallmedikamente -->
+    <a href="notfall.html" id="card-notfall" class="kcard c-red reveal">
+      <div class="kcard-icon" style="background:#fdf3ef">
         <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
           <path d="M11 2L2 7v8l9 5 9-5V7z" stroke="var(--red)" stroke-width="1.4" fill="none"/>
           <path d="M11 9v4M11 14.5v.5" stroke="var(--red)" stroke-width="1.6" stroke-linecap="round"/>
@@ -636,45 +762,41 @@ window.addEventListener('resize',function(){if(window.innerWidth>860)mobClose();
       </div>
     </a>
 
-<!-- USIC CHEAT SHEET — Kardiologische Intensivstation -->
-<a href="usic_cheatsheet_de.html" id="card-usic" class="kcard c-red reveal"
-   style="animation-delay:.02s; border:1.5px solid #fbd5d5; background:linear-gradient(160deg,#fff 70%,#fdf2f2 100%);">
+    <!-- USIC CHEAT SHEET -->
+    <a href="usic_cheatsheet_de.html" id="card-usic" class="kcard c-red reveal" style="animation-delay:.02s">
+      <div class="kcard-icon" style="background:#fdf3ef">
+        <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+          <path d="M11 3C6.03 3 2 7.03 2 12s4.03 9 9 9 9-4.03 9-9S15.97 3 11 3z" stroke="var(--red)" stroke-width="1.4" fill="none"/>
+          <path d="M2 12h3M17 12h3M11 2v3M11 17v3" stroke="var(--red)" stroke-width="1.1" stroke-linecap="round" opacity=".4"/>
+          <path d="M7 12h2l1-2.5 2 5 1-2.5H15" stroke="var(--red)" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+        </svg>
+      </div>
+      <div style="display:flex; flex-wrap:wrap; align-items:baseline; gap:6px 8px;">
+        <h3 class="kcard-title" style="margin:0; flex-shrink:0;">USIC — Intensivstation</h3>
+        <div style="display:flex; gap:4px; align-items:center; flex-shrink:0;">
+          <span style="font-size:.6rem;font-weight:800;letter-spacing:.07em;text-transform:uppercase;color:var(--red);padding:2px 8px;border-radius:255px 15px 225px 15px / 15px 225px 15px 255px;border:1.2px solid rgba(200,48,58,.45);white-space:nowrap;">DE + دارجة</span>
+          <button onclick="event.stopPropagation(); event.preventDefault(); window.location='usic_cheatsheet.html';"
+                  style="font-size:.6rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;background:var(--paper);color:var(--ink2);padding:2px 8px;border-radius:255px 15px 225px 15px / 15px 225px 15px 255px;border:1.2px solid var(--line2);cursor:pointer;white-space:nowrap;font-family:inherit;">
+            🇫🇷 FR
+          </button>
+        </div>
+      </div>
+      <p class="kcard-desc">21 Notfalldiagnosen mit Fallen, Sofortmaßnahmen und Kontraindikationen. Auf Deutsch — kritische Tipps auf Darija. Für die Kardiologische Intensivstation.</p>
+      <div class="kcard-tags">
+        <span class="tag red">21 Diagnosen</span>
+        <span class="tag gray">USIC · Völklingen</span>
+        <span class="tag gray">دارجة Tipps</span>
+      </div>
+    </a>
 
-  <div class="kcard-icon" style="background:#fdf2f2">
-    <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
-      <path d="M11 3C6.03 3 2 7.03 2 12s4.03 9 9 9 9-4.03 9-9S15.97 3 11 3z" stroke="var(--red)" stroke-width="1.4" fill="none"/>
-      <path d="M2 12h3M17 12h3M11 2v3M11 17v3" stroke="var(--red)" stroke-width="1.1" stroke-linecap="round" opacity=".4"/>
-      <path d="M7 12h2l1-2.5 2 5 1-2.5H15" stroke="var(--red)" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-    </svg>
-  </div>
-
-  <div style="display:flex; flex-wrap:wrap; align-items:baseline; gap:6px 8px;">
-    <h3 class="kcard-title" style="margin:0; flex-shrink:0;">USIC — Intensivstation</h3>
-    <div style="display:flex; gap:4px; align-items:center; flex-shrink:0;">
-      <span style="font-size:.6rem;font-weight:800;letter-spacing:.07em;text-transform:uppercase;background:#fee2e2;color:var(--red);padding:2px 7px;border-radius:4px;border:1px solid #fbd5d5;white-space:nowrap;">DE + دارجة</span>
-      <button onclick="event.stopPropagation(); event.preventDefault(); window.location='usic_cheatsheet.html';"
-              style="font-size:.6rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;background:var(--surface);color:var(--text2);padding:2px 7px;border-radius:4px;border:1px solid var(--border);cursor:pointer;white-space:nowrap;font-family:inherit;">
-        🇫🇷 FR
-      </button>
-    </div>
-  </div>
-
-  <p class="kcard-desc">21 Notfalldiagnosen mit Fallen, Sofortmaßnahmen und Kontraindikationen. Auf Deutsch — kritische Tipps auf Darija. Für die Kardiologische Intensivstation.</p>
-
-  <div class="kcard-tags">
-    <span class="tag red">21 Diagnosen</span>
-    <span class="tag gray">USIC · Völklingen</span>
-    <span class="tag gray">دارجة Tipps</span>
-  </div>
-</a>    
-<!-- Arztbrief-Hub -->
-    <a href="arztbrief_hub.html" id="card-arztbrief" class="kcard c-navy reveal" style="animation-delay:.04s; border: 1.5px solid #c4ccdf;">
-      <div class="kcard-icon" style="background:#f0f2f8">
+    <!-- Arztbrief-Hub -->
+    <a href="arztbrief_hub.html" id="card-arztbrief" class="kcard c-navy reveal" style="animation-delay:.04s">
+      <div class="kcard-icon" style="background:#f0f1f6">
         <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
           <rect x="3" y="2" width="13" height="18" rx="2" stroke="var(--navy)" stroke-width="1.4" fill="none"/>
           <path d="M6 6h7M6 9.5h7M6 13h5M6 16h3" stroke="var(--navy)" stroke-width="1.1" stroke-linecap="round"/>
           <circle cx="17" cy="17" r="4" fill="var(--navy)"/>
-          <path d="M15.5 17h3M17 15.5v3" stroke="#fff" stroke-width="1.3" stroke-linecap="round"/>
+          <path d="M15.5 17h3M17 15.5v3" stroke="#fffdf8" stroke-width="1.3" stroke-linecap="round"/>
         </svg>
       </div>
       <h3 class="kcard-title">Arztbrief-Hub</h3>
@@ -686,13 +808,13 @@ window.addEventListener('resize',function(){if(window.innerWidth>860)mobClose();
       </div>
     </a>
 
-    <!-- 2. Echokardiographie -->
+    <!-- Echokardiographie -->
     <a href="#" id="card-echo" class="kcard c-blue reveal" style="animation-delay:.06s">
-      <div class="kcard-icon" style="background:#eff6ff">
+      <div class="kcard-icon" style="background:#eef3fa">
         <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
           <ellipse cx="11" cy="11" rx="9" ry="6" stroke="var(--blue)" stroke-width="1.4" fill="none"/>
           <ellipse cx="11" cy="11" rx="4.5" ry="3" stroke="var(--blue)" stroke-width="1.1" stroke-dasharray="2 1.5" fill="none"/>
-          <path d="M2 11Q7 7 11 11Q15 15 20 11" stroke="rgba(37,99,235,0.35)" stroke-width="1" fill="none"/>
+          <path d="M2 11Q7 7 11 11Q15 15 20 11" stroke="rgba(36,86,166,0.35)" stroke-width="1" fill="none"/>
         </svg>
       </div>
       <h3 class="kcard-title">Echokardiographie</h3>
@@ -704,9 +826,9 @@ window.addEventListener('resize',function(){if(window.innerWidth>860)mobClose();
       </div>
     </a>
 
-    <!-- 3. Echo-Pathologien -->
+    <!-- Echo-Pathologien -->
     <a href="echo/pathologie.html" id="card-echo-pathologien" class="kcard c-red reveal" style="animation-delay:.26s">
-      <div class="kcard-icon" style="background:#fdf2f2">
+      <div class="kcard-icon" style="background:#fdf3ef">
         <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
           <rect x="3" y="3" width="16" height="16" rx="3" stroke="var(--red)" stroke-width="1.4" fill="none"/>
           <path d="M7 11h8M7 7.5h5M7 14.5h3" stroke="var(--red)" stroke-width="1.2" stroke-linecap="round"/>
@@ -721,9 +843,9 @@ window.addEventListener('resize',function(){if(window.innerWidth>860)mobClose();
       </div>
     </a>
 
-    <!-- 8. EKG-Tachykardien -->
+    <!-- EKG-Tachykardien -->
     <a href="ekg/index.html" id="card-ekg-tachykardien" class="kcard c-blue reveal" style="animation-delay:.30s">
-      <div class="kcard-icon" style="background:#eff6ff">
+      <div class="kcard-icon" style="background:#eef3fa">
         <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
           <polyline points="1,11 4,11 6,6 8,16 10,9 12,13 14,11 17,11 19,8 21,11"
             stroke="var(--blue)" stroke-width="1.5" stroke-linejoin="round" fill="none"/>
@@ -738,9 +860,9 @@ window.addEventListener('resize',function(){if(window.innerWidth>860)mobClose();
       </div>
     </a>
 
-    <!-- 9. Echo-Kurs -->
+    <!-- Echo-Kurs -->
     <a href="echo/index.html" id="card-echo-kurs" class="kcard c-green reveal" style="animation-delay:.34s">
-      <div class="kcard-icon" style="background:#f0fdf8">
+      <div class="kcard-icon" style="background:#edf5ef">
         <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
           <ellipse cx="11" cy="11" rx="9" ry="6" stroke="var(--green)" stroke-width="1.4" fill="none"/>
           <path d="M2 11Q7 7 11 11Q15 15 20 11" stroke="var(--green)" stroke-width="1" fill="none"/>
@@ -756,9 +878,9 @@ window.addEventListener('resize',function(){if(window.innerWidth>860)mobClose();
       </div>
     </a>
 
-    <!-- 10. Doppler Echokardiographie -->
+    <!-- Doppler -->
     <a href="doppler/index.html" id="card-doppler" class="kcard c-navy reveal" style="animation-delay:.38s">
-      <div class="kcard-icon" style="background:#f0f2f8">
+      <div class="kcard-icon" style="background:#f0f1f6">
         <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
           <path d="M3 11 Q8 4 11 11 Q14 18 19 11" stroke="var(--navy)" stroke-width="1.5" fill="none"/>
           <path d="M3 11 Q8 7 11 11 Q14 15 19 11" stroke="var(--navy)" stroke-width=".8" stroke-dasharray="2 2" fill="none"/>
@@ -773,14 +895,14 @@ window.addEventListener('resize',function(){if(window.innerWidth>860)mobClose();
       </div>
     </a>
 
-    <!-- 11. Meine Notizen -->
+    <!-- Meine Notizen -->
     <a href="notes/index.html" id="card-notizen" class="kcard c-gold reveal" style="animation-delay:.42s">
-      <div class="kcard-icon" style="background:#fdf8ee">
+      <div class="kcard-icon" style="background:#faf4e3">
         <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
           <rect x="4" y="2" width="14" height="18" rx="2" stroke="var(--gold)" stroke-width="1.4" fill="none"/>
           <path d="M7 7h8M7 10.5h8M7 14h5" stroke="var(--gold)" stroke-width="1.1" stroke-linecap="round"/>
           <circle cx="17" cy="17" r="4" fill="var(--gold)"/>
-          <path d="M15.5 17h3M17 15.5v3" stroke="#fff" stroke-width="1.3" stroke-linecap="round"/>
+          <path d="M15.5 17h3M17 15.5v3" stroke="#fffdf8" stroke-width="1.3" stroke-linecap="round"/>
         </svg>
       </div>
       <h3 class="kcard-title">Meine Notizen</h3>
@@ -792,17 +914,17 @@ window.addEventListener('resize',function(){if(window.innerWidth>860)mobClose();
       </div>
     </a>
 
-    <!-- 8. Kardio-SOPs -->
-    <a href="kardiologie_sop.html" id="card-kardio-sop" class="kcard c-red reveal" style="animation-delay:.46s; border: 1.5px solid #fbd5d5;">
-      <div class="kcard-icon" style="background:#fdf2f2">
+    <!-- Kardio-SOPs -->
+    <a href="kardiologie_sop.html" id="card-kardio-sop" class="kcard c-red reveal" style="animation-delay:.46s">
+      <div class="kcard-icon" style="background:#fdf3ef">
         <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
           <rect x="3" y="2" width="13" height="18" rx="2" stroke="var(--red)" stroke-width="1.4" fill="none"/>
           <path d="M6 7h7M6 10.5h7M6 14h4" stroke="var(--red)" stroke-width="1.1" stroke-linecap="round"/>
           <circle cx="17" cy="17" r="4" fill="var(--red)"/>
-          <path d="M15.5 17h3M17 15.5v3" stroke="#fff" stroke-width="1.3" stroke-linecap="round"/>
+          <path d="M15.5 17h3M17 15.5v3" stroke="#fffdf8" stroke-width="1.3" stroke-linecap="round"/>
         </svg>
       </div>
-      <h3 class="kcard-title" style="font-family:var(--serif)">Kardiologie SOPs</h3>
+      <h3 class="kcard-title">Kardiologie SOPs</h3>
       <p class="kcard-desc">11 SOPs — Klappenvitien, KHK &amp; CABG, HFrEF, VHF-Antikoagulation, AV-Blockierungen, ICD/CRT-Indikationen und pAVK. ESC-Klassen I/III farbkodiert.</p>
       <div class="kcard-tags">
         <span class="tag red">ESC 2021–2024</span>
@@ -811,19 +933,19 @@ window.addEventListener('resize',function(){if(window.innerWidth>860)mobClose();
       </div>
     </a>
 
-    <!-- 9. Kardiometabolik -->
-    <a href="kardiometabolik.html" id="card-kardiometabolik" class="kcard reveal" style="animation-delay:.50s; border: 1.5px solid #bce4e1;">
-      <div class="kcard-icon" style="background:#ebf6f5">
+    <!-- Kardiometabolik -->
+    <a href="kardiometabolik.html" id="card-kardiometabolik" class="kcard c-teal reveal" style="animation-delay:.50s">
+      <div class="kcard-icon" style="background:#eef6f2">
         <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
-          <path d="M11 2C6 2 2 6 2 11s4 9 9 9 9-4 9-9S16 2 11 2z" stroke="#0d9488" stroke-width="1.4" fill="none"/>
-          <path d="M7 11h2l1.5-3 2 6 1.5-3H17" stroke="#0d9488" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+          <path d="M11 2C6 2 2 6 2 11s4 9 9 9 9-4 9-9S16 2 11 2z" stroke="var(--teal)" stroke-width="1.4" fill="none"/>
+          <path d="M7 11h2l1.5-3 2 6 1.5-3H17" stroke="var(--teal)" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
         </svg>
       </div>
-      <h3 class="kcard-title" style="font-family:var(--serif)">Kardiometabolik</h3>
+      <h3 class="kcard-title">Kardiometabolik</h3>
       <p class="kcard-desc">DKA/HHS/euDKA-Algorithmen, Insulin-Meisterschaft (ICT · Perfusor · periop.), OAD-Red-Flags, Lipide, Hypertonie und perioperatives Gerinnungsmanagement.</p>
       <div class="kcard-tags">
-        <span class="tag teal" style="background:#ebf6f5; color:#0d9488;">DDG · ESC · ADA 2024</span>
-        <span class="tag teal" style="background:#ebf6f5; color:#0d9488;">9 SOPs</span>
+        <span class="tag teal">DDG · ESC · ADA 2024</span>
+        <span class="tag teal">9 SOPs</span>
         <span class="tag gray">ZNA · Station</span>
       </div>
     </a>
@@ -831,11 +953,139 @@ window.addEventListener('resize',function(){if(window.innerWidth>860)mobClose();
   </div>
 </div>
 
+<!-- CLINICAL PEARLS — Haftnotizen -->
+<div class="section" id="pearls">
+  <div class="section-head reveal">
+    <h2>Klinische <em>Perlen</em> — Merksätze für die
+      <span class="circle-hand">Diastole
+        <svg class="ring" viewBox="0 0 120 48" preserveAspectRatio="none" aria-hidden="true">
+          <path d="M14 30 C4 14, 34 3, 62 5 C94 7, 114 13, 112 25 C110 39, 72 46, 40 42 C20 40, 10 35, 16 22"/>
+        </svg>
+      </span>
+    </h2>
+    <span class="section-count">an den Monitor geklebt ✎</span>
+  </div>
+  <div class="pearls-grid">
+    <div class="sticky s-r reveal">
+      <div class="sticky-head">Instabil? Strom.</div>
+      <div class="sticky-body">Tachykardie mit Schock, Synkope, Lungenödem oder Ischämie → synchronisierte Kardioversion. Nicht lange am Algorithmus grübeln.</div>
+      <div class="sticky-src">ERC / ESC</div>
+    </div>
+    <div class="sticky s-y reveal">
+      <div class="sticky-head">VHF + WPW = Vorsicht</div>
+      <div class="sticky-body">Kein Verapamil, kein Digoxin, kein Adenosin bei Präexzitation — AV-Block beschleunigt die akzessorische Bahn. Ajmalin oder elektrisch.</div>
+      <div class="sticky-src">EKG-Tachykardien · Modul</div>
+    </div>
+    <div class="sticky s-g reveal">
+      <div class="sticky-head">Die Diastole zählt</div>
+      <div class="sticky-body">E/e′ &gt; 14 spricht für erhöhte Füllungsdrücke — HFpEF nicht übersehen, auch bei „normaler" EF. Immer diastolische Funktion mitbefunden.</div>
+      <div class="sticky-src">Echo-Kurs · Doppler</div>
+    </div>
+    <div class="sticky s-y reveal">
+      <div class="sticky-head">Troponin ≠ alles</div>
+      <div class="sticky-body">Ein negatives Troponin schließt eine instabile Angina nicht aus. Klinik + EKG-Dynamik + 0/1h-Algorithmus zusammen bewerten.</div>
+      <div class="sticky-src">ESC NSTE-ACS</div>
+    </div>
+    <div class="sticky s-r reveal">
+      <div class="sticky-head">Erst Echo, dann Volumen</div>
+      <div class="sticky-body">Hypotonie unklarer Ursache: fokussiertes Echo vor blinder Volumengabe — Tamponade, RV-Versagen und schwere AS ändern alles.</div>
+      <div class="sticky-src">USIC · Notfall</div>
+    </div>
+  </div>
+</div>
+
+<!-- QUICK REFERENCE — Karteikarten -->
+<div class="section" id="quickref">
+  <div class="section-head reveal">
+    <h2>Schnell<em>referenz</em></h2>
+    <span class="section-count">Karteikarten fürs Kittel-Gedächtnis</span>
+  </div>
+  <div class="qref-grid">
+    <div class="qref-card reveal">
+      <div class="qref-title">LV-Funktion (EF)</div>
+      <ul class="qref-list">
+        <li><span>HFpEF — erhalten</span><span>≥ 50 %</span></li>
+        <li><span>HFmrEF — leicht red.</span><span>41–49 %</span></li>
+        <li><span>HFrEF — reduziert</span><span>≤ 40 %</span></li>
+      </ul>
+    </div>
+    <div class="qref-card reveal">
+      <div class="qref-title">Schwere Aortenstenose</div>
+      <ul class="qref-list">
+        <li><span>V<sub>max</sub></span><span>≥ 4,0 m/s</span></li>
+        <li><span>ΔP<sub>mean</sub></span><span>≥ 40 mmHg</span></li>
+        <li><span>KÖF</span><span>&lt; 1,0 cm²</span></li>
+      </ul>
+    </div>
+    <div class="qref-card reveal">
+      <div class="qref-title">CHA₂DS₂-VASc</div>
+      <ul class="qref-list">
+        <li><span>OAK erwägen ab</span><span>1 ♂ / 2 ♀</span></li>
+        <li><span>OAK empfohlen ab</span><span>2 ♂ / 3 ♀</span></li>
+        <li><span>Blutungsrisiko</span><span>HAS-BLED</span></li>
+      </ul>
+    </div>
+    <div class="qref-card reveal">
+      <div class="qref-title">QTc-Grenzen</div>
+      <ul class="qref-list">
+        <li><span>Verlängert ♂</span><span>&gt; 450 ms</span></li>
+        <li><span>Verlängert ♀</span><span>&gt; 460 ms</span></li>
+        <li><span>Torsades-Risiko</span><span>&gt; 500 ms</span></li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- PATHWAYS — Algorithmen -->
+<div class="section" id="pfade">
+  <div class="section-head reveal">
+    <h2>Klinische <em>Pfade</em></h2>
+    <span class="section-count">3 Skizzen — Details im jeweiligen Modul</span>
+  </div>
+  <div class="path-grid">
+    <a href="ekg/index.html" class="path-card reveal">
+      <div class="path-title">Tachykardie</div>
+      <div class="path-steps">
+        <span class="path-step hot">Instabil?</span>
+        <svg class="harrow" viewBox="0 0 26 14" aria-hidden="true"><path d="M2 8 C9 4, 15 5, 22 7"/><path d="M17 3 L22 7 L16 10"/></svg>
+        <span class="path-step">Kardioversion</span>
+        <svg class="harrow" viewBox="0 0 26 14" aria-hidden="true"><path d="M2 6 C9 10, 15 9, 22 7"/><path d="M17 11 L22 7 L16 4"/></svg>
+        <span class="path-step">QRS schmal / breit</span>
+        <svg class="harrow" viewBox="0 0 26 14" aria-hidden="true"><path d="M2 8 C9 4, 15 5, 22 7"/><path d="M17 3 L22 7 L16 10"/></svg>
+        <span class="path-step">Vagusmanöver · Adenosin · Amiodaron</span>
+      </div>
+      <div class="path-note">→ vollständiger Algorithmus im EKG-Modul</div>
+    </a>
+    <a href="usic_cheatsheet_de.html" class="path-card reveal">
+      <div class="path-title">ACS</div>
+      <div class="path-steps">
+        <span class="path-step hot">EKG &lt; 10 min</span>
+        <svg class="harrow" viewBox="0 0 26 14" aria-hidden="true"><path d="M2 8 C9 4, 15 5, 22 7"/><path d="M17 3 L22 7 L16 10"/></svg>
+        <span class="path-step">STEMI → Katheter ≤ 120 min</span>
+        <svg class="harrow" viewBox="0 0 26 14" aria-hidden="true"><path d="M2 6 C9 10, 15 9, 22 7"/><path d="M17 11 L22 7 L16 4"/></svg>
+        <span class="path-step">NSTEMI → hs-Troponin 0/1h</span>
+      </div>
+      <div class="path-note">→ Fallen &amp; Kontraindikationen im USIC-Sheet</div>
+    </a>
+    <a href="echo/pathologie.html" class="path-card reveal">
+      <div class="path-title">Akute Dyspnoe</div>
+      <div class="path-steps">
+        <span class="path-step hot">Fokussiertes Echo</span>
+        <svg class="harrow" viewBox="0 0 26 14" aria-hidden="true"><path d="M2 8 C9 4, 15 5, 22 7"/><path d="M17 3 L22 7 L16 10"/></svg>
+        <span class="path-step">EF · RV · Perikard · B-Linien</span>
+        <svg class="harrow" viewBox="0 0 26 14" aria-hidden="true"><path d="M2 6 C9 10, 15 9, 22 7"/><path d="M17 11 L22 7 L16 4"/></svg>
+        <span class="path-step">HF · PE · Tamponade-Pfad</span>
+      </div>
+      <div class="path-note">→ 14 Krankheitsbilder in Echo-Pathologien</div>
+    </a>
+  </div>
+</div>
+
 <!-- PROGRESS -->
 <div class="section" id="fortschritt">
   <div class="section-head reveal">
     <h2><em>Lern</em>fortschritt</h2>
-    <span style="font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--text3)">Stand Mai 2026</span>
+    <span class="section-count">Stand Mai 2026</span>
   </div>
   <div class="prog-card reveal">
     <div class="prog-card-title">Module im Überblick</div>
@@ -881,13 +1131,13 @@ window.addEventListener('resize',function(){if(window.innerWidth>860)mobClose();
     </div>
     <div class="prog-row">
       <span class="prog-label">📋 Kardio-SOPs &amp; Leitlinien</span>
-      <div class="prog-bar"><div class="prog-fill" data-w="100" style="background:#c8303a"></div></div>
-      <span class="prog-pct" style="color:#c8303a">100%</span>
+      <div class="prog-bar"><div class="prog-fill" data-w="100" style="background:var(--red)"></div></div>
+      <span class="prog-pct" style="color:var(--red)">100%</span>
     </div>
     <div class="prog-row">
       <span class="prog-label">🩺 Kardiometabolik &amp; Diabetologie</span>
-      <div class="prog-bar"><div class="prog-fill" data-w="100" style="background:#c8303a"></div></div>
-      <span class="prog-pct" style="color:#c8303a">100%</span>
+      <div class="prog-bar"><div class="prog-fill" data-w="100" style="background:var(--red)"></div></div>
+      <span class="prog-pct" style="color:var(--red)">100%</span>
     </div>
   </div>
 </div>
@@ -897,11 +1147,11 @@ window.addEventListener('resize',function(){if(window.innerWidth>860)mobClose();
   <div class="quote-text">
     „Das Herz ist nicht nur ein Organ — es ist das Zentrum von allem, was wir in der Medizin tun."
   </div>
-  <div class="quote-author">Kardiologie · Weiterbildung Deutschland</div>
+  <div class="quote-author">— notiert während der Weiterbildung, Deutschland ♡</div>
 </div>
 
 <footer>
-  <span>OUSS <strong>Kardiologie</strong> · Innere Medizin &amp; Kardiologie · Deutschland</span>
+  <span>Dia<strong>stola</strong> · Innere Medizin &amp; Kardiologie · Deutschland</span>
   <span>Kein Ersatz für medizinischen Rat</span>
 </footer>
 
