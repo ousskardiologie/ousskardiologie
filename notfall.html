@@ -3,477 +3,220 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Notfallmedikamente – OUSS Kardiologie</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
-<style>
-/* ─── TOKENS (same as hub) ─── */
-:root {
-  --bg:       #ffffff;
-  --surface:  #f7f5f2;
-  --surface2: #eeecea;
-  --border:   #e5e2de;
-  --text:     #1a1410;
-  --text2:    #6b6460;
-  --text3:    #a09890;
-  --red:      #c8303a;
-  --gold:     #9a7430;
-  --navy:     #0f1528;
-  --blue:     #2563eb;
-  --green:    #0f7b5a;
-  --purple:   #7c3aed;
-  --orange:   #ea580c;
-  --serif:    'Cormorant Garamond', Georgia, serif;
-  --sans:     'DM Sans', system-ui, sans-serif;
-  --r:        10px;
-  --sh:       0 2px 8px rgba(0,0,0,.06);
-  --sh-md:    0 6px 24px rgba(0,0,0,.09);
-}
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; }
-body {
-  font-family: var(--sans); background: var(--bg);
-  color: var(--text); font-size: 15px; line-height: 1.7;
-  overflow-x: hidden;
-}
+<title>Notfallmedikamente — Diastola</title>
 
-/* ─── NAV ─── */
-.topnav {
-  position: sticky; top: 0; z-index: 200;
-  height: 56px; background: rgba(255,255,255,.97);
-  backdrop-filter: blur(16px);
-  border-bottom: 1px solid var(--border);
-  display: flex; align-items: center;
-  padding: 0 2.5rem; gap: 6px;
-}
-.brand {
-  font-family: var(--serif); font-size: 1.2rem; font-weight: 400;
-  color: var(--text); text-decoration: none;
-  display: flex; align-items: center; gap: 0.5rem;
-  white-space: nowrap; flex-shrink: 0;
-}
-.brand-heart { animation: hb 1.6s ease-in-out infinite; display: inline-block; }
-@keyframes hb {
-  0%,100%{transform:scale(1)} 14%{transform:scale(1.2)}
-  28%{transform:scale(1)} 42%{transform:scale(1.1)} 56%{transform:scale(1)}
-}
-.nav-links { display: flex; gap: 2px; margin-left: .5rem; }
-.nav-links a {
-  padding: 7px 12px; border-radius: 7px; text-decoration: none;
-  color: var(--text2); font-size: .88rem; font-weight: 500;
-  transition: background .15s, color .15s;
-}
-.nav-links a:hover { background: var(--surface); color: var(--text); }
-.nav-links a.active { background: #fdf2f2; color: var(--red); }
-.spacer { flex: 1; }
-.nav-badge {
-  font-size: .78rem; font-weight: 600;
-  padding: 7px 14px; background: var(--red); color: #fff; border-radius: 7px;
-}
-
-/* ─── PAGE HEADER ─── */
-.page-header {
-  border-bottom: 1px solid var(--border);
-  padding: 2rem 2.5rem 1.8rem;
-  background: var(--surface);
-}
-.page-eyebrow {
-  font-size: .68rem; font-weight: 700; letter-spacing: .18em;
-  text-transform: uppercase; color: var(--red); margin-bottom: .7rem;
-}
-.page-header h1 {
-  font-family: var(--serif);
-  font-size: clamp(2rem, 4vw, 3.2rem);
-  font-weight: 300; line-height: 1.15; letter-spacing: -.01em;
-}
-.page-header h1 em { font-style: italic; color: var(--red); }
-.page-header p {
-  color: var(--text2); margin-top: .6rem; font-size: .92rem; line-height: 1.8;
-  max-width: 680px;
-}
-
-/* ─── SEARCH BAR ─── */
-.search-wrap {
-  position: sticky; top: 56px; z-index: 190;
-  background: rgba(255,255,255,.97);
-  backdrop-filter: blur(12px);
-  border-bottom: 1px solid var(--border);
-  padding: .85rem 2.5rem;
-  display: flex; align-items: center; gap: 10px;
-}
-.search-icon { color: var(--text3); flex-shrink: 0; }
-#search {
-  flex: 1; border: none; outline: none;
-  font-family: var(--sans); font-size: .95rem;
-  background: transparent; color: var(--text);
-  caret-color: var(--red);
-}
-#search::placeholder { color: var(--text3); }
-.search-clear {
-  display: none; background: var(--surface2); border: none; cursor: pointer;
-  width: 22px; height: 22px; border-radius: 50%;
-  color: var(--text2); font-size: .8rem; line-height: 22px; text-align: center;
-  transition: background .15s;
-}
-.search-clear:hover { background: var(--border); }
-.search-count {
-  font-size: .75rem; color: var(--text3); white-space: nowrap;
-  font-weight: 600; letter-spacing: .05em;
-}
-
-/* ─── FILTER CHIPS ─── */
-.filter-wrap {
-  padding: .7rem 2.5rem;
-  display: flex; gap: 8px; flex-wrap: wrap;
-  border-bottom: 1px solid var(--border);
-  background: var(--bg);
-}
-.chip {
-  display: inline-flex; align-items: center; gap: 5px;
-  padding: 4px 13px; border-radius: 20px; cursor: pointer;
-  font-size: .76rem; font-weight: 600;
-  border: 1.5px solid var(--border);
-  background: var(--surface); color: var(--text2);
-  transition: all .18s; user-select: none;
-}
-.chip:hover { background: var(--surface2); color: var(--text); }
-.chip.active { color: #fff; border-color: transparent; }
-.chip[data-cat="all"].active   { background: var(--navy); }
-.chip[data-cat="herz"].active  { background: var(--red); }
-.chip[data-cat="kreislauf"].active { background: var(--orange); }
-.chip[data-cat="reanimation"].active { background: #dc2626; }
-.chip[data-cat="atemwege"].active   { background: var(--blue); }
-.chip[data-cat="schmerz"].active    { background: var(--gold); }
-.chip[data-cat="metabolisch"].active{ background: var(--green); }
-.chip[data-cat="neuro"].active      { background: var(--purple); }
-.chip[data-cat="allergie"].active   { background: #0891b2; }
-
-/* ─── SCENARIO LIST ─── */
-.notfall-list {
-  padding: 1.2rem 2.5rem 3rem;
-  display: flex; flex-direction: column; gap: 10px;
-}
-.no-results {
-  text-align: center; padding: 4rem 2rem;
-  color: var(--text3); font-size: .95rem;
-  display: none;
-}
-.no-results svg { display: block; margin: 0 auto 1rem; opacity: .3; }
-
-/* ─── SCENARIO CARD ─── */
-.scard {
-  border: 1px solid var(--border); border-radius: 12px;
-  background: var(--bg); overflow: hidden;
-  transition: box-shadow .2s;
-}
-.scard:hover { box-shadow: var(--sh-md); }
-.scard-head {
-  display: flex; align-items: center; gap: 14px;
-  padding: 1.1rem 1.4rem; cursor: pointer;
-  user-select: none;
-  transition: background .15s;
-}
-.scard-head:hover { background: var(--surface); }
-.scard-num {
-  font-family: var(--serif); font-size: 1.35rem; font-weight: 300;
-  color: var(--text3); min-width: 28px; flex-shrink: 0;
-}
-.scard-icon {
-  width: 36px; height: 36px; border-radius: 9px; flex-shrink: 0;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 1.1rem;
-}
-.scard-info { flex: 1; min-width: 0; }
-.scard-title {
-  font-family: var(--serif); font-size: 1.1rem; font-weight: 400;
-  line-height: 1.25; display: block;
-}
-.scard-subtitle {
-  font-size: .76rem; color: var(--text3); margin-top: 2px;
-}
-.scard-badges { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 5px; }
-.badge {
-  font-size: .68rem; font-weight: 700; padding: 2px 8px;
-  border-radius: 20px; border: 1px solid;
-}
-.badge.red    { background: #fdf2f2; color: var(--red);    border-color: #fbd5d5; }
-.badge.blue   { background: #eff6ff; color: var(--blue);   border-color: #bfdbfe; }
-.badge.gold   { background: #fdf8ee; color: var(--gold);   border-color: #e8d5a3; }
-.badge.green  { background: #f0fdf8; color: var(--green);  border-color: #a7f3d0; }
-.badge.navy   { background: #f0f2f8; color: var(--navy);   border-color: #c7cde8; }
-.badge.gray   { background: var(--surface); color: var(--text2); border-color: var(--border); }
-.badge.orange { background: #fff7ed; color: var(--orange); border-color: #fed7aa; }
-.badge.purple { background: #f5f3ff; color: var(--purple); border-color: #ddd6fe; }
-.badge.cyan   { background: #ecfeff; color: #0e7490; border-color: #a5f3fc; }
-
-.scard-chevron {
-  color: var(--text3); flex-shrink: 0;
-  transition: transform .3s cubic-bezier(.4,0,.2,1);
-}
-.scard.open .scard-chevron { transform: rotate(180deg); }
-
-/* left accent bar */
-.scard-head::before {
-  content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 3px;
-  border-radius: 3px 0 0 3px; opacity: 0;
-  transition: opacity .2s;
-}
-.scard { position: relative; }
-.scard.open .scard-head::before,
-.scard-head:hover::before { opacity: 1; }
-
-/* ─── CARD BODY ─── */
-.scard-body {
-  max-height: 0; overflow: hidden;
-  transition: max-height .45s cubic-bezier(.4,0,.2,1);
-}
-.scard.open .scard-body { max-height: 2000px; }
-.scard-inner {
-  padding: 0 1.4rem 1.4rem;
-  border-top: 1px solid var(--border);
-}
-
-/* Klinisches Bild */
-.kbild {
-  background: var(--surface); border-radius: 8px;
-  padding: .9rem 1.1rem; margin: 1rem 0;
-  font-size: .88rem; line-height: 1.8; color: var(--text2);
-}
-.kbild strong { color: var(--text); font-weight: 600; display: block; margin-bottom: .3rem; font-size: .72rem; letter-spacing: .1em; text-transform: uppercase; }
-
-/* Ziel */
-.ziel {
-  display: flex; align-items: flex-start; gap: 8px;
-  background: #eff6ff; border: 1px solid #bfdbfe;
-  border-radius: 8px; padding: .8rem 1rem; margin-bottom: 1rem;
-  font-size: .88rem; color: #1d4ed8;
-}
-.ziel-icon { flex-shrink: 0; margin-top: 2px; }
-
-/* Med rows */
-.med-list { display: flex; flex-direction: column; gap: 8px; }
-
-.med-row {
-  display: flex; align-items: flex-start; gap: 10px;
-  background: var(--bg); border: 1px solid var(--border);
-  border-radius: 9px; padding: .85rem 1rem;
-  transition: border-color .2s;
-}
-.med-row:hover { border-color: var(--text3); }
-
-.med-dot {
-  width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; margin-top: 7px;
-}
-.med-content { flex: 1; min-width: 0; }
-.med-name {
-  font-weight: 600; font-size: .92rem; line-height: 1.3;
-}
-.med-generic { font-size: .76rem; color: var(--text3); font-weight: 400; }
-.med-dose {
-  font-family: var(--serif); font-size: 1.05rem; font-weight: 600;
-  color: var(--red); margin: .15rem 0;
-}
-.med-route {
-  display: inline-flex; align-items: center; gap: 4px;
-  font-size: .72rem; font-weight: 700; letter-spacing: .08em;
-  text-transform: uppercase;
-  background: var(--surface2); color: var(--text2);
-  padding: 1px 7px; border-radius: 4px;
-}
-.med-note { font-size: .82rem; color: var(--text2); margin-top: .3rem; line-height: 1.6; }
-
-/* WARNING box */
-.warn-box {
-  display: flex; align-items: flex-start; gap: 9px;
-  background: #fff7ed; border: 1px solid #fed7aa;
-  border-left: 3px solid var(--orange);
-  border-radius: 8px; padding: .8rem 1rem;
-  font-size: .83rem; color: #9a3412; line-height: 1.65;
-  margin-top: 4px;
-}
-.warn-box svg { flex-shrink: 0; margin-top: 1px; }
-
-/* DANGER box */
-.danger-box {
-  display: flex; align-items: flex-start; gap: 9px;
-  background: #fdf2f2; border: 1px solid #fbd5d5;
-  border-left: 3px solid var(--red);
-  border-radius: 8px; padding: .8rem 1rem;
-  font-size: .83rem; color: #991b1b; line-height: 1.65;
-  margin-top: 4px;
-}
-.danger-box svg { flex-shrink: 0; margin-top: 1px; }
-
-/* TIP box */
-.tip-box {
-  display: flex; align-items: flex-start; gap: 9px;
-  background: #f0fdf8; border: 1px solid #a7f3d0;
-  border-left: 3px solid var(--green);
-  border-radius: 8px; padding: .8rem 1rem;
-  font-size: .83rem; color: #065f46; line-height: 1.65;
-  margin-top: 4px;
-}
-.tip-box svg { flex-shrink: 0; margin-top: 1px; }
-
-/* section divider inside card */
-.subsection-title {
-  font-size: .68rem; font-weight: 700; letter-spacing: .12em;
-  text-transform: uppercase; color: var(--text3);
-  margin: 1rem 0 .5rem; display: flex; align-items: center; gap: 8px;
-}
-.subsection-title::after {
-  content: ''; flex: 1; height: 1px; background: var(--border);
-}
-
-/* ─── COLOR THEMES per category ─── */
-.scard[data-cat="herz"]       { --cat: var(--red); }
-.scard[data-cat="kreislauf"]  { --cat: var(--orange); }
-.scard[data-cat="reanimation"]{ --cat: #dc2626; }
-.scard[data-cat="atemwege"]   { --cat: var(--blue); }
-.scard[data-cat="schmerz"]    { --cat: var(--gold); }
-.scard[data-cat="metabolisch"]{ --cat: var(--green); }
-.scard[data-cat="neuro"]      { --cat: var(--purple); }
-.scard[data-cat="allergie"]   { --cat: #0891b2; }
-
-.scard-head::before { background: var(--cat); }
-.scard-num { color: var(--cat); }
-.scard .med-dot { background: var(--cat); }
-
-/* ─── HIGHLIGHT (search) ─── */
-mark { background: #fef08a; border-radius: 2px; padding: 0 1px; }
-
-/* ─── PRAXIS-ANLEITUNG ─── */
-.praxis-box {
-  background: #0f1528; color: #e8eaf6;
-  border-radius: 10px; padding: 1rem 1.1rem;
-  margin-top: .8rem; font-size: .82rem; line-height: 1.75;
-}
-.praxis-box-title {
-  font-size: .65rem; font-weight: 800; letter-spacing: .16em;
-  text-transform: uppercase; color: #7986cb;
-  margin-bottom: .55rem; display: flex; align-items: center; gap: 6px;
-}
-.praxis-box ol { padding-left: 1.3rem; margin: 0; }
-.praxis-box li { margin-bottom: .25rem; }
-.praxis-box strong { color: #ffcc80; }
-.praxis-box .pa-warn { color: #ef9a9a; font-weight: 600; }
-.praxis-box .pa-tip  { color: #a5d6a7; }
-.praxis-box .pa-step { color: #90caf9; }
-
-@media (max-width: 600px) {
-  .drug-grid { grid-template-columns: 1fr; }
-}
-
-/* ─── MOBILE HAMBURGER ─── */
-#ham-mob {
-  display: none; flex-direction: column; justify-content: center;
-  align-items: center; gap: 5px; width: 40px; height: 40px;
-  flex-shrink: 0; background: var(--surface); border: 1px solid var(--border);
-  border-radius: 8px; cursor: pointer; margin-left: 4px;
-}
-.hbar { display: block; width: 17px; height: 2px; background: var(--text); border-radius: 2px; transition: transform .25s, opacity .25s; }
-
-/* ─── REVEAL ─── */
-.reveal { opacity: 0; transform: translateY(10px); transition: opacity .5s ease, transform .5s ease; }
-.reveal.in { opacity: 1; transform: none; }
-
-/* ─── FOOTER ─── */
-footer {
-  padding: 1.6rem 2.5rem;
-  display: flex; align-items: center; justify-content: space-between;
-  border-top: 1px solid var(--border);
-  font-size: .78rem; color: var(--text3);
-}
-footer strong { color: var(--red); font-weight: 600; }
-
-/* ─── RESPONSIVE ─── */
-@media (max-width: 860px) {
-  .nav-links { display: none; }
-  .nav-badge { display: none; }
-  #ham-mob { display: flex !important; }
-}
-@media (max-width: 600px) {
-  .topnav { padding: 0 1rem; }
-  .page-header, .search-wrap, .filter-wrap, .notfall-list { padding-left: 1rem; padding-right: 1rem; }
-  .scard-head { padding: .9rem 1rem; }
-  .scard-inner { padding: 0 1rem 1rem; }
-  footer { flex-direction: column; gap: .5rem; text-align: center; }
-}
-</style>
+<!-- Diastola Design System (immer in dieser Reihenfolge laden) -->
+<link rel="stylesheet" href="diastola-design-system/assets/css/theme.css">
+<link rel="stylesheet" href="diastola-design-system/assets/css/layout.css">
+<link rel="stylesheet" href="diastola-design-system/assets/css/components.css">
+<link rel="stylesheet" href="diastola-design-system/assets/css/notfall-board.css">
+<link rel="stylesheet" href="diastola-design-system/assets/css/animations.css">
 </head>
-<body>
+<body class="notfall-board-page">
 
 <!-- NAV -->
 <nav class="topnav">
-  <a href="../index.html" class="brand">
+  <a href="index.html" class="brand">
     <span class="brand-heart">
-      <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
-        <path d="M9 15.5C3.5 12.2 1 9 1 6A4 4 0 0 1 9 4.2a4 4 0 0 1 8 1.8C17 9 14.5 12.2 9 15.5Z" fill="var(--red)" opacity=".9"/>
+      <svg width="19" height="19" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+        <path d="M9 15.5C3.5 12.2 1 9 1 6A4 4 0 0 1 9 4.2a4 4 0 0 1 8 1.8C17 9 14.5 12.2 9 15.5Z" stroke="var(--red)" stroke-width="1.6" fill="none" stroke-linejoin="round"/>
+        <path d="M4.5 9.5h2.2l1-2.2 1.6 4 1-1.8h2.9" stroke="var(--red)" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
       </svg>
     </span>
-    OUSS Kardiologie
+    Dia<em>stola</em>
   </a>
   <div class="nav-links">
-    <a href="../index.html#module">Module</a>
-    <a href="../echo/index.html">📡 Echo</a>
-    <a href="../ekg/index.html">📈 EKG</a>
-    <a href="#" class="active">🚨 Notfall</a>
-    <a href="../notes/index.html">✏️ Notizen</a>
+    <a href="index.html#module">Module</a>
+    <a href="echo/index.html">📡 Echo</a>
+    <a href="ekg/index.html">📈 EKG</a>
+    <a href="notfall.html" class="active">🚨 Notfall</a>
+    <a href="notes/index.html">✏️ Notizen</a>
   </div>
   <div class="spacer"></div>
-  <a href="notfallmedikamente.html" style="display:inline-flex;align-items:center;gap:7px;padding:7px 13px;background:var(--navy);color:#fff;border-radius:8px;text-decoration:none;font-size:.82rem;font-weight:600;white-space:nowrap;flex-shrink:0;">
-    💊 Medikamenten-Referenz
-  </a>
+  <a href="notfallmedikamente.html" class="nav-action">💊 Medikamenten-Referenz</a>
   <span class="nav-badge">Notfall · ZNA</span>
-  <button id="ham-mob" onclick="mobToggle()" aria-label="Menü">
-    <span class="hbar"></span><span class="hbar"></span><span class="hbar"></span>
+  <button class="ham-mob" id="ham-mob" onclick="mobToggle()" aria-label="Menü" aria-expanded="false" aria-controls="mob-drawer">
+    <span></span><span></span><span></span>
   </button>
 </nav>
-<div id="mob-overlay" onclick="mobClose()" style="display:none;position:fixed;inset:0;top:56px;background:rgba(0,0,0,.35);z-index:499"></div>
-<div id="mob-drawer" style="position:fixed;top:56px;right:0;bottom:0;width:min(260px,80vw);background:#fff;z-index:500;transform:translateX(110%);transition:transform .28s cubic-bezier(.4,0,.2,1);display:flex;flex-direction:column;border-left:1px solid var(--border);padding:.5rem 0;overflow-y:auto;font-family:var(--sans)">
-  <a href="../index.html" onclick="mobClose()" style="display:flex;align-items:center;gap:12px;padding:13px 1.3rem;font-size:15px;font-weight:500;color:var(--text);text-decoration:none;border-bottom:1px solid var(--border);min-height:50px">🏠 Startseite</a>
-  <a href="../echo/index.html" onclick="mobClose()" style="display:flex;align-items:center;gap:12px;padding:13px 1.3rem;font-size:15px;font-weight:500;color:var(--text);text-decoration:none;border-bottom:1px solid var(--border);min-height:50px">📡 Echo-Kurs</a>
-  <a href="../ekg/index.html" onclick="mobClose()" style="display:flex;align-items:center;gap:12px;padding:13px 1.3rem;font-size:15px;font-weight:500;color:var(--text);text-decoration:none;border-bottom:1px solid var(--border);min-height:50px">📈 EKG-Tachykardien</a>
-  <a href="#" onclick="mobClose()" style="display:flex;align-items:center;gap:12px;padding:13px 1.3rem;font-size:15px;font-weight:500;color:var(--red);text-decoration:none;border-bottom:1px solid var(--border);min-height:50px">🚨 Notfallmedikamente</a>
-  <a href="../notes/index.html" onclick="mobClose()" style="display:flex;align-items:center;gap:12px;padding:13px 1.3rem;font-size:15px;font-weight:500;color:var(--text);text-decoration:none;border-bottom:1px solid var(--border);min-height:50px">✏️ Meine Notizen</a>
+<div id="mob-overlay" class="mob-overlay" onclick="mobClose()"></div>
+<div id="mob-drawer" class="mob-drawer">
+  <a href="index.html" onclick="mobClose()">🏠 Startseite</a>
+  <a href="index.html#module" onclick="mobClose()">📚 Module</a>
+  <a href="echo/index.html" onclick="mobClose()">📡 Echo-Kurs</a>
+  <a href="ekg/index.html" onclick="mobClose()">📈 EKG-Tachykardien</a>
+  <a href="notfall.html" class="active" onclick="mobClose()">🚨 Notfallmedikamente</a>
+  <a href="notes/index.html" onclick="mobClose()">✏️ Meine Notizen</a>
 </div>
 
-<!-- PAGE HEADER -->
-<div class="page-header">
-  <div class="page-eyebrow">Notfallmodul · Stationsalltag &amp; ZNA</div>
-  <h1>Notfall<em>medikamente</em> &amp; Szenarien</h1>
-  <p>Alle klinischen Notfallszenarien auf einen Blick — Indikationen, Dosierungen, Warnsignale. Optimiert für den schnellen Zugriff im Nachtdienst.</p>
-</div>
+<!-- HERO -->
+<section class="hero hero--sub">
+  <div class="hero-eyebrow">Notfallmodul · Stationsalltag &amp; ZNA</div>
+  <div class="hero-title-row">
+    <div>
+      <h1>Notfall<em>medikamente</em> &amp; Szenarien</h1>
+      <div class="hero-sub">Schnelle Orientierung für Nachtdienst, Station und ZNA.</div>
+    </div>
+  </div>
+  <p class="hero-desc">Alle klinischen Notfallszenarien auf einen Blick — Indikationen, Dosierungen und Warnsignale. Optimiert für den schnellen Zugriff im klinischen Alltag.</p>
+  <div class="board-hero-meta" aria-label="Inhalt dieser Referenz">
+    <span>24 Szenarien</span>
+    <span>Dosierungen</span>
+    <span>Praxis-Protokolle</span>
+  </div>
+  <div class="board-hero-note" aria-hidden="true">
+    <svg viewBox="0 0 88 44" fill="none">
+      <path d="M84 5C60 3 35 11 20 31" />
+      <path d="m20 31 2-10M20 31l10-2" />
+    </svg>
+    für den Nachtdienst<br>an den Monitor geheftet
+  </div>
+</section>
 
-<!-- SEARCH -->
-<div class="search-wrap">
-  <svg class="search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
-  <input id="search" type="search" placeholder="Suche nach Diagnose, Medikament, Symptom…" autocomplete="off" autocorrect="off" spellcheck="false">
-  <button class="search-clear" id="search-clear" onclick="clearSearch()" title="Löschen">×</button>
-  <span class="search-count" id="search-count"></span>
-</div>
+<main class="clinical-board">
+  <section class="board-section pearl-section" aria-labelledby="pearls-title">
+    <div class="board-section-head">
+      <div>
+        <span class="board-kicker">Merksätze aus den Szenarien</span>
+        <h2 id="pearls-title">Klinische <em>Perlen</em></h2>
+      </div>
+      <span class="margin-note">vor Dienstbeginn einmal überfliegen</span>
+    </div>
+    <div class="pearl-grid">
+      <article class="pearl-note pearl-note--rose">
+        <span class="paper-tape" aria-hidden="true"></span>
+        <h3>Nitro? Erst RR.</h3>
+        <p>Nur wenn <strong>systolischer RR &gt; 110 mmHg</strong> — sonst kontraindiziert!</p>
+        <span class="pearl-source">Szenario 01 · Lungenödem</span>
+      </article>
+      <article class="pearl-note pearl-note--yellow">
+        <span class="paper-tape" aria-hidden="true"></span>
+        <h3>Amiodaron richtig mischen</h3>
+        <p><strong>NUR in Glucose 5% (250 ml)</strong> mischen — NIEMALS in NaCl 0,9%! Ausfällung möglich.</p>
+        <span class="pearl-source">Szenario 03 · Tachyarrhythmie</span>
+      </article>
+      <article class="pearl-note pearl-note--mint">
+        <span class="paper-tape" aria-hidden="true"></span>
+        <h3>Kalium nie pur i.v.</h3>
+        <p>Immer verdünnen in Sterofundin, max. 20 mmol/h — niemals als Bolus!</p>
+        <span class="pearl-source">Szenario 10 · Hypokaliämie</span>
+      </article>
+      <article class="pearl-note pearl-note--yellow">
+        <span class="paper-tape" aria-hidden="true"></span>
+        <h3>COPD: nicht auf 100%</h3>
+        <p>O₂ bei COPD: Ziel SpO₂ 88–92%! Nasensonde 1–2 L/min beginnen.</p>
+        <span class="pearl-source">Szenario 11 · Exazerbation</span>
+      </article>
+      <article class="pearl-note pearl-note--rose">
+        <span class="paper-tape" aria-hidden="true"></span>
+        <h3>Blutkulturen zuerst</h3>
+        <p>Blutkulturen ZUERST — bevor jede Antibiose!</p>
+        <span class="pearl-source">Szenario 19 · Sepsis</span>
+      </article>
+    </div>
+  </section>
 
-<!-- FILTER CHIPS -->
-<div class="filter-wrap" id="filter-wrap">
-  <button class="chip active" data-cat="all">Alle</button>
-  <button class="chip" data-cat="herz">❤️ Herzinsuffizienz / ACS</button>
-  <button class="chip" data-cat="kreislauf">🔴 Kreislauf / Schock</button>
-  <button class="chip" data-cat="reanimation">⚡ Reanimation</button>
-  <button class="chip" data-cat="atemwege">🫁 Atemwege / COPD</button>
-  <button class="chip" data-cat="schmerz">💊 Schmerzmanagement</button>
-  <button class="chip" data-cat="metabolisch">🧪 Metabolisch</button>
-  <button class="chip" data-cat="neuro">🧠 Neuro / Sedierung</button>
-  <button class="chip" data-cat="allergie">💉 Allergie / Sepsis</button>
-</div>
+  <section class="board-section quick-section" aria-labelledby="quick-title">
+    <div class="board-section-head">
+      <div>
+        <span class="board-kicker">Karteikarten fürs Kittel-Gedächtnis</span>
+        <h2 id="quick-title">Schnell<em>referenz</em></h2>
+      </div>
+      <span class="margin-note">kritische Grenzen auf einen Blick</span>
+    </div>
+    <div class="quick-grid">
+      <article class="quick-card">
+        <h3>Nitrospray</h3>
+        <div class="quick-row"><span>Voraussetzung</span><strong>RR syst. &gt; 110</strong></div>
+        <div class="quick-row"><span>Dosis</span><strong>1–2 Hub s.l.</strong></div>
+        <div class="quick-row"><span>Kontrolle</span><strong>RR zuerst</strong></div>
+      </article>
+      <article class="quick-card">
+        <h3>Reanimation</h3>
+        <div class="quick-row"><span>Adrenalin</span><strong>1 mg i.v.</strong></div>
+        <div class="quick-row"><span>Wiederholen</span><strong>alle 3–5 min</strong></div>
+        <div class="quick-row"><span>Rhythmus</span><strong>nach 2 min</strong></div>
+      </article>
+      <article class="quick-card">
+        <h3>COPD + O₂</h3>
+        <div class="quick-row"><span>Ziel SpO₂</span><strong>88–92%</strong></div>
+        <div class="quick-row"><span>Beginn</span><strong>1–2 L/min</strong></div>
+        <div class="quick-row"><span>Applikation</span><strong>Nasensonde</strong></div>
+      </article>
+      <article class="quick-card">
+        <h3>QTc vor Haldol</h3>
+        <div class="quick-row"><span>EKG</span><strong>vorher prüfen</strong></div>
+        <div class="quick-row"><span>Grenze</span><strong>&gt; 450 ms</strong></div>
+        <div class="quick-row"><span>Dann</span><strong>kontraindiziert</strong></div>
+      </article>
+    </div>
+  </section>
+
+  <section class="board-section protocol-section" aria-labelledby="protocol-title">
+    <div class="board-section-head">
+      <div>
+        <span class="board-kicker">Orientierung unter Zeitdruck</span>
+        <h2 id="protocol-title">Praxis-<em>Protokolle</em></h2>
+      </div>
+      <span class="margin-note">antippen und unten im Szenario nachlesen</span>
+    </div>
+    <div class="protocol-grid">
+      <a class="protocol-card" href="#notfall-list">
+        <span class="protocol-label">Tachykardie</span>
+        <div class="protocol-flow"><span>Instabil?</span><b>→</b><span>Kardioversion</span><b>→</b><span>Szenario 03</span></div>
+        <small>Rhythmus, Kreislauf und Warnzeichen gemeinsam denken.</small>
+      </a>
+      <a class="protocol-card" href="#notfall-list">
+        <span class="protocol-label">Akute Dyspnoe</span>
+        <div class="protocol-flow"><span>Lungenödem</span><b>→</b><span>COPD / LAE</span><b>→</b><span>01 · 11 · 17</span></div>
+        <small>Klinisches Bild öffnen, Ziel und Medikamente direkt abgleichen.</small>
+      </a>
+      <a class="protocol-card" href="#notfall-list">
+        <span class="protocol-label">Kreislauf / Schock</span>
+        <div class="protocol-flow"><span>RR prüfen</span><b>→</b><span>Ursache klären</span><b>→</b><span>18 · 19 · 22</span></div>
+        <small>Das passende Praxis-Protokoll bleibt im Szenario vollständig erhalten.</small>
+      </a>
+    </div>
+  </section>
+
+  <section class="board-section scenarios-section" aria-labelledby="scenarios-title">
+    <div class="board-section-head scenarios-heading">
+      <div>
+        <span class="board-kicker">Vollständige Medikamenten-Referenz</span>
+        <h2 id="scenarios-title">Notfall-<em>Szenarien</em></h2>
+      </div>
+      <span class="margin-note">Karte öffnen · Dosis prüfen · Praxis lesen</span>
+    </div>
+
+    <div class="reference-dock" aria-label="Suche und Kategorien">
+      <div class="search-wrap">
+        <svg class="search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+        <input class="search-field" id="search" type="search" aria-label="Notfallszenarien durchsuchen" placeholder="Suche nach Diagnose, Medikament, Symptom…" autocomplete="off" autocorrect="off" spellcheck="false">
+        <button class="search-clear" id="search-clear" type="button" title="Suche löschen" aria-label="Suche löschen">×</button>
+        <span class="search-count" id="search-count" aria-live="polite"></span>
+      </div>
+
+      <div class="filter-wrap" id="filter-wrap" aria-label="Notfallszenarien filtern">
+        <button class="chip active" type="button" data-cat="all">Alle</button>
+        <button class="chip" type="button" data-cat="herz">❤️ Herzinsuffizienz / ACS</button>
+        <button class="chip" type="button" data-cat="kreislauf">🔴 Kreislauf / Schock</button>
+        <button class="chip" type="button" data-cat="reanimation">⚡ Reanimation</button>
+        <button class="chip" type="button" data-cat="atemwege">🫁 Atemwege / COPD</button>
+        <button class="chip" type="button" data-cat="schmerz">💊 Schmerzmanagement</button>
+        <button class="chip" type="button" data-cat="metabolisch">🧪 Metabolisch</button>
+        <button class="chip" type="button" data-cat="neuro">🧠 Neuro / Sedierung</button>
+        <button class="chip" type="button" data-cat="allergie">💉 Allergie / Sepsis</button>
+      </div>
+    </div>
 
 <!-- SCENARIO LIST -->
 <div class="notfall-list" id="notfall-list">
 
   <!-- ① Akute Linksherzinsuffizienz & Lungenödem -->
   <div class="scard reveal" data-cat="herz" data-keywords="linksherzinsuffizienz lungenödem dyspnoe orthopnoe rasseln blutdruck nitrospray furosemid lasix urapidil ebrantil vorlast nachlast">
-    <div class="scard-head" onclick="toggleCard(this)">
+    <div class="scard-head">
       <span class="scard-num">01</span>
-      <div class="scard-icon" style="background:#fdf2f2; font-size:1.3rem">🫀</div>
+      <div class="scard-icon">🫀</div>
       <div class="scard-info">
         <span class="scard-title">Akute Linksherzinsuffizienz &amp; Lungenödem</span>
         <div class="scard-badges">
@@ -510,7 +253,7 @@ footer strong { color: var(--red); font-weight: 600; }
               <div class="med-name">Glyceroltrinitrat <span class="med-generic">Nitrospray</span></div>
               <div class="med-dose">1 – 2 Hub s.l.</div>
               <span class="med-route">sublingual</span>
-              <div class="warn-box" style="margin-top:.5rem">
+              <div class="warn-box">
                 <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
                 <span>Nur wenn <strong>systolischer RR &gt; 110 mmHg</strong> — sonst kontraindiziert!</span>
               </div>
@@ -531,7 +274,7 @@ footer strong { color: var(--red); font-weight: 600; }
               <div class="med-name">Urapidil <span class="med-generic">Ebrantil</span></div>
               <div class="med-dose">12,5 mg i.v. fraktioniert</div>
               <span class="med-route">i.v. langsam</span>
-              <div class="tip-box" style="margin-top:.5rem">
+              <div class="tip-box">
                 <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
                 <span>Fraktioniert geben: erst 12,5 mg, Monitor beobachten, dann weitere 12,5 mg wenn RR nicht abfällt.</span>
               </div>
@@ -554,9 +297,9 @@ footer strong { color: var(--red); font-weight: 600; }
 
   <!-- ② ACS - STEMI/NSTEMI -->
   <div class="scard reveal" data-cat="herz" data-keywords="acs stemi nstemi thoraxschmerz brustschmerz retrosternal herzinfarkt koronarsyndrom heparin aspirin morphin">
-    <div class="scard-head" onclick="toggleCard(this)">
+    <div class="scard-head">
       <span class="scard-num">02</span>
-      <div class="scard-icon" style="background:#fdf2f2; font-size:1.3rem">💔</div>
+      <div class="scard-icon">💔</div>
       <div class="scard-info">
         <span class="scard-title">Akutes Koronarsyndrom (ACS) — STEMI / NSTEMI</span>
         <div class="scard-badges">
@@ -583,7 +326,7 @@ footer strong { color: var(--red); font-weight: 600; }
             <div class="med-dot"></div>
             <div class="med-content">
               <div class="med-name">Acetylsalicylsäure <span class="med-generic">ASS / Aspirin — Ladedosis</span></div>
-              <div class="med-dose">250 mg i.v. <span style="color:var(--text2);font-size:.85rem;font-family:var(--sans)">oder 300 mg p.o.</span></div>
+              <div class="med-dose">250 mg i.v. <span class="med-dose-alt">oder 300 mg p.o.</span></div>
               <span class="med-route">i.v. / p.o.</span>
             </div>
           </div>
@@ -611,7 +354,7 @@ footer strong { color: var(--red); font-weight: 600; }
               <div class="med-name">Metoclopramid <span class="med-generic">MCP</span> oder Vomex</div>
               <div class="med-dose">10 mg i.v.</div>
               <span class="med-route">i.v.</span>
-              <div class="tip-box" style="margin-top:.5rem">
+              <div class="tip-box">
                 <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
                 <span>Immer zusammen mit Morphin geben — Antiemese verhindert Erbrechen + vagale Reaktion.</span>
               </div>
@@ -635,9 +378,9 @@ footer strong { color: var(--red); font-weight: 600; }
 
   <!-- ③ Tachyarrhythmia absoluta (TAA) -->
   <div class="scard reveal" data-cat="herz" data-keywords="vorhofflimmern tachyarrhythmia absoluta taa afib palpitationen herzrasen frequenzkontrolle metoprolol beloc amiodaron cordarex">
-    <div class="scard-head" onclick="toggleCard(this)">
+    <div class="scard-head">
       <span class="scard-num">03</span>
-      <div class="scard-icon" style="background:#fdf2f2; font-size:1.3rem">⚡</div>
+      <div class="scard-icon">⚡</div>
       <div class="scard-info">
         <span class="scard-title">Tachyarrhythmia absoluta (TAA) bei Vorhofflimmern</span>
         <div class="scard-badges">
@@ -678,7 +421,7 @@ footer strong { color: var(--red); font-weight: 600; }
               <div class="med-name">Amiodaron <span class="med-generic">Cordarex</span></div>
               <div class="med-dose">300 mg als Kurzinfusion</div>
               <span class="med-route">i.v. über 20–30 min</span>
-              <div class="danger-box" style="margin-top:.5rem">
+              <div class="danger-box">
                 <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
                 <span><strong>NUR in Glucose 5% (250 ml)</strong> mischen — NIEMALS in NaCl 0,9%! Ausfällung möglich.</span>
               </div>
@@ -700,11 +443,11 @@ footer strong { color: var(--red); font-weight: 600; }
 
   <!-- ④ Hypertensive Entgleisung -->
   <div class="scard reveal" data-cat="kreislauf" data-keywords="hypertonie bluthochdruck hypertensive entgleisung urapidil ebrantil clonidin catapresan kopfschmerzen">
-    <div class="scard-head" onclick="toggleCard(this)">
+    <div class="scard-head">
       <span class="scard-num">04</span>
-      <div class="scard-icon" style="background:#fff7ed; font-size:1.3rem">🔴</div>
+      <div class="scard-icon">🔴</div>
       <div class="scard-info">
-        <span class="scard-title">Hypertensive Entgleisung <span style="font-size:.8rem;color:var(--text3)">(ohne Lungenödem)</span></span>
+        <span class="scard-title">Hypertensive Entgleisung <span class="scard-title-meta">(ohne Lungenödem)</span></span>
         <div class="scard-badges">
           <span class="badge orange">RR &gt;220/120</span>
           <span class="badge gray">Kopfschmerzen</span>
@@ -738,7 +481,7 @@ footer strong { color: var(--red); font-weight: 600; }
               <div class="med-name">Clonidin <span class="med-generic">Catapresan</span></div>
               <div class="med-dose">0,075 mg (= ½ Ampulle)</div>
               <span class="med-route">i.v. oder s.c.</span>
-              <div class="warn-box" style="margin-top:.5rem">
+              <div class="warn-box">
                 <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
                 <span>Gut bei stressbedingter Hypertonie — macht müde &amp; sediert. Patient muss danach liegen bleiben!</span>
               </div>
@@ -760,11 +503,11 @@ footer strong { color: var(--red); font-weight: 600; }
 
   <!-- ⑤ Schmerzmanagement -->
   <div class="scard reveal" data-cat="schmerz" data-keywords="thoraxschmerz koliken analgesie schmerz metamizol novalgin piritramid dipidolor">
-    <div class="scard-head" onclick="toggleCard(this)">
+    <div class="scard-head">
       <span class="scard-num">05</span>
-      <div class="scard-icon" style="background:#fdf8ee; font-size:1.3rem">💊</div>
+      <div class="scard-icon">💊</div>
       <div class="scard-info">
-        <span class="scard-title">Akutes Schmerzmanagement <span style="font-size:.8rem;color:var(--text3)">(Thoraxschmerz unklar / Koliken)</span></span>
+        <span class="scard-title">Akutes Schmerzmanagement <span class="scard-title-meta">(Thoraxschmerz unklar / Koliken)</span></span>
         <div class="scard-badges">
           <span class="badge gold">Analgesie</span>
           <span class="badge gray">nicht-kardialer Schmerz</span>
@@ -785,7 +528,7 @@ footer strong { color: var(--red); font-weight: 600; }
               <div class="med-name">Metamizol <span class="med-generic">Novalgin</span></div>
               <div class="med-dose">1 g in 100 ml NaCl 0,9%</div>
               <span class="med-route">Kurzinfusion über 15 min</span>
-              <div class="warn-box" style="margin-top:.5rem">
+              <div class="warn-box">
                 <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
                 <span>Immer als Kurzinfusion über 15 min (nicht als Bolus!) → verhindert Blutdruckabfall.</span>
               </div>
@@ -816,9 +559,9 @@ footer strong { color: var(--red); font-weight: 600; }
 
   <!-- ⑥ Anaphylaxie -->
   <div class="scard reveal" data-cat="allergie" data-keywords="anaphylaxie allergie adrenalin dimetinden fenistil prednisolon kortison juckreiz atemnot schock">
-    <div class="scard-head" onclick="toggleCard(this)">
+    <div class="scard-head">
       <span class="scard-num">06</span>
-      <div class="scard-icon" style="background:#ecfeff; font-size:1.3rem">🐝</div>
+      <div class="scard-icon">🐝</div>
       <div class="scard-info">
         <span class="scard-title">Anaphylaxie / Allergische Reaktion</span>
         <div class="scard-badges">
@@ -863,7 +606,7 @@ footer strong { color: var(--red); font-weight: 600; }
               <div class="med-name">Adrenalin <span class="med-generic">Suprarenin</span></div>
               <div class="med-dose">0,5 mg i.m.</div>
               <span class="med-route">i.m. anterolateral Oberschenkel</span>
-              <div class="danger-box" style="margin-top:.5rem">
+              <div class="danger-box">
                 <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
                 <span>Nur bei <strong>Atemnot oder Schock</strong>! In den anterolateralen Oberschenkel (mittleres Drittel). Kein i.v. Adrenalin ohne Monitor!</span>
               </div>
@@ -886,11 +629,11 @@ footer strong { color: var(--red); font-weight: 600; }
 
   <!-- ⑦ Symptomatische Bradykardie -->
   <div class="scard reveal" data-cat="kreislauf" data-keywords="bradykardie av-block schrittmacher atropin synkope schwindel herzfrequenz niedrig">
-    <div class="scard-head" onclick="toggleCard(this)">
+    <div class="scard-head">
       <span class="scard-num">07</span>
-      <div class="scard-icon" style="background:#fff7ed; font-size:1.3rem">📉</div>
+      <div class="scard-icon">📉</div>
       <div class="scard-info">
-        <span class="scard-title">Symptomatische Bradykardie <span style="font-size:.8rem;color:var(--text3)">(z.B. AV-Block III)</span></span>
+        <span class="scard-title">Symptomatische Bradykardie <span class="scard-title-meta">(z.B. AV-Block III)</span></span>
         <div class="scard-badges">
           <span class="badge orange">HF &lt;40/min</span>
           <span class="badge gray">Synkope</span>
@@ -917,7 +660,7 @@ footer strong { color: var(--red); font-weight: 600; }
               <div class="med-dose">0,5 – 1 mg i.v.</div>
               <span class="med-route">i.v. alle 3–5 min</span>
               <div class="med-note">Maximaldosis: 3 mg gesamt</div>
-              <div class="warn-box" style="margin-top:.5rem">
+              <div class="warn-box">
                 <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
                 <span>Beim AV-Block III wirkt Atropin oft <strong>nicht</strong> (infranodaler Block) → direkt an Adrenalin denken!</span>
               </div>
@@ -949,9 +692,9 @@ footer strong { color: var(--red); font-weight: 600; }
 
   <!-- ⑧ Reanimation (ALS) -->
   <div class="scard reveal" data-cat="reanimation" data-keywords="reanimation herzstillstand cpr als rosc adrenalin amiodaron vf kammerflimmern asystolie pea">
-    <div class="scard-head" onclick="toggleCard(this)">
+    <div class="scard-head">
       <span class="scard-num">08</span>
-      <div class="scard-icon" style="background:#fdf2f2; font-size:1.3rem">🚨</div>
+      <div class="scard-icon">🚨</div>
       <div class="scard-info">
         <span class="scard-title">Reanimation — Kreislaufstillstand (ALS)</span>
         <div class="scard-badges">
@@ -996,7 +739,7 @@ footer strong { color: var(--red); font-weight: 600; }
               <div class="med-name">Amiodaron <span class="med-generic">Cordarex</span></div>
               <div class="med-dose">300 mg i.v. schneller Bolus</div>
               <span class="med-route">i.v. direkt nach 3. Schock</span>
-              <div class="danger-box" style="margin-top:.5rem">
+              <div class="danger-box">
                 <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
                 <span>Bei Reanimation: Amiodaron als <strong>schnellen Bolus direkt i.v.</strong> (keine Kurzinfusion!) + 150 mg nach 5. Schock möglich.</span>
               </div>
@@ -1019,11 +762,11 @@ footer strong { color: var(--red); font-weight: 600; }
 
   <!-- ⑨ LAE hämodynamisch stabil -->
   <div class="scard reveal" data-cat="atemwege" data-keywords="lungenarterienembolie lae embolie heparin antikoagulation atemabhängig d-dimer ct-angio stabil">
-    <div class="scard-head" onclick="toggleCard(this)">
+    <div class="scard-head">
       <span class="scard-num">09</span>
-      <div class="scard-icon" style="background:#eff6ff; font-size:1.3rem">🫁</div>
+      <div class="scard-icon">🫁</div>
       <div class="scard-info">
-        <span class="scard-title">Akute Lungenarterienembolie (LAE) — hämodynamisch <em style="color:var(--green)">stabil</em></span>
+        <span class="scard-title">Akute Lungenarterienembolie (LAE) — hämodynamisch <em class="ink-green">stabil</em></span>
         <div class="scard-badges">
           <span class="badge blue">LAE</span>
           <span class="badge green">RR &gt;90 mmHg</span>
@@ -1061,7 +804,7 @@ footer strong { color: var(--red); font-weight: 600; }
             </div>
           </div>
         </div>
-        <div class="danger-box" style="margin-top:.8rem">
+        <div class="danger-box callout-spaced">
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
           <span><strong>Instabil (RR &lt;90 mmHg / Schock)?</strong> → Thrombolyse mit Alteplase (Actilyse) — Entscheidung durch Oberarzt! Actilyse vorbereiten.</span>
         </div>
@@ -1081,11 +824,11 @@ footer strong { color: var(--red); font-weight: 600; }
 
   <!-- ⑩ Hypokaliämie -->
   <div class="scard reveal" data-cat="metabolisch" data-keywords="hypokaliämie kalium kaliumchlorid kcl arrhythmie diuretika substitution">
-    <div class="scard-head" onclick="toggleCard(this)">
+    <div class="scard-head">
       <span class="scard-num">10</span>
-      <div class="scard-icon" style="background:#f0fdf8; font-size:1.3rem">🧪</div>
+      <div class="scard-icon">🧪</div>
       <div class="scard-info">
-        <span class="scard-title">Hypokaliämie <span style="font-size:.8rem;color:var(--text3)">(Arrhythmie-Risiko)</span></span>
+        <span class="scard-title">Hypokaliämie <span class="scard-title-meta">(Arrhythmie-Risiko)</span></span>
         <div class="scard-badges">
           <span class="badge green">K⁺ &lt;3,5 mmol/l</span>
           <span class="badge gray">Diuretika</span>
@@ -1106,7 +849,7 @@ footer strong { color: var(--red); font-weight: 600; }
               <div class="med-name">Kaliumchlorid <span class="med-generic">KCl — oral</span></div>
               <div class="med-dose">20 – 40 mmol p.o.</div>
               <span class="med-route">oral (Brausetabletten / Kalinor)</span>
-              <div class="tip-box" style="margin-top:.5rem">
+              <div class="tip-box">
                 <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
                 <span>Oral ist die sicherste Methode wenn Patient schlucken kann. Bevorzugen!</span>
               </div>
@@ -1118,7 +861,7 @@ footer strong { color: var(--red); font-weight: 600; }
               <div class="med-name">Kaliumchlorid <span class="med-generic">KCl — i.v.</span></div>
               <div class="med-dose">max. 20 mmol/h — verdünnt in 500–1000 ml VEL</div>
               <span class="med-route">i.v. Infusion langsam</span>
-              <div class="danger-box" style="margin-top:.5rem">
+              <div class="danger-box">
                 <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
                 <span>⚠️ <strong>GOLDENE REGEL: Kalium i.v. pur TÖTET (Herzstillstand)!</strong> Immer verdünnen in Sterofundin, max. 20 mmol/h — niemals als Bolus!</span>
               </div>
@@ -1140,9 +883,9 @@ footer strong { color: var(--red); font-weight: 600; }
 
   <!-- ⑪ COPD-Exazerbation -->
   <div class="scard reveal" data-cat="atemwege" data-keywords="copd exazerbation giemen bronchodilatation salbutamol ipratropium atrovent prednisolon raucher sauerstoff">
-    <div class="scard-head" onclick="toggleCard(this)">
+    <div class="scard-head">
       <span class="scard-num">11</span>
-      <div class="scard-icon" style="background:#eff6ff; font-size:1.3rem">🌬️</div>
+      <div class="scard-icon">🌬️</div>
       <div class="scard-info">
         <span class="scard-title">Akute Exazerbation COPD</span>
         <div class="scard-badges">
@@ -1178,7 +921,7 @@ footer strong { color: var(--red); font-weight: 600; }
             </div>
           </div>
         </div>
-        <div class="danger-box" style="margin-top:.8rem">
+        <div class="danger-box callout-spaced">
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
           <span><strong>ACHTUNG O₂ bei COPD:</strong> Ziel SpO₂ <strong>88–92%</strong>, NICHT 100%! Zu viel O₂ hebt den Atemantrieb auf (hypoxischer Atemantrieb)!</span>
         </div>
@@ -1198,9 +941,9 @@ footer strong { color: var(--red); font-weight: 600; }
 
   <!-- ⑫ SVT / AVNRT -->
   <div class="scard reveal" data-cat="herz" data-keywords="svt avnrt supraventrikulär tachykardie herzrasen adenosin vagus valsalva schmaler qrs">
-    <div class="scard-head" onclick="toggleCard(this)">
+    <div class="scard-head">
       <span class="scard-num">12</span>
-      <div class="scard-icon" style="background:#fdf2f2; font-size:1.3rem">💓</div>
+      <div class="scard-icon">💓</div>
       <div class="scard-info">
         <span class="scard-title">Supraventrikuläre Tachykardie (SVT / AVNRT)</span>
         <div class="scard-badges">
@@ -1218,7 +961,7 @@ footer strong { color: var(--red); font-weight: 600; }
           Junger Patient, plötzliches Herzrasen (paroxysmal), HF 180–200/min, reguläre schmale QRS, keine P-Wellen. RR noch ok (stabil).
         </div>
         <div class="subsection-title">1. Schritt: Vagusmanöver</div>
-        <div class="tip-box" style="margin-bottom:.8rem">
+        <div class="tip-box callout-following">
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
           <span>Patient soll in 20-ml-Spritze blasen (Valsalva-Manöver). Oft reicht das allein für Konversion zum Sinusrhythmus!</span>
         </div>
@@ -1230,7 +973,7 @@ footer strong { color: var(--red); font-weight: 600; }
               <div class="med-name">Adenosin <span class="med-generic">Adrekar</span></div>
               <div class="med-dose">6 mg i.v. schneller Bolus</div>
               <span class="med-route">i.v. + sofort 20 ml NaCl-Flush + Arm heben!</span>
-              <div class="danger-box" style="margin-top:.5rem">
+              <div class="danger-box">
                 <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
                 <span>HWZ &lt;10 Sekunden → <strong>schnellstmöglich injizieren</strong>, sofort Flush, Arm hoch! Patient vorwarnen: kurzes Todesangst-Gefühl (Asystoliegefühl) ist normal und vergeht sofort!</span>
               </div>
@@ -1253,9 +996,9 @@ footer strong { color: var(--red); font-weight: 600; }
 
   <!-- ⑬ GI-Blutung -->
   <div class="scard reveal" data-cat="schmerz" data-keywords="gi-blutung gastrointestinal hämatemesis teerstuhl meläna pantoprazol pantozol hb blutverdünner">
-    <div class="scard-head" onclick="toggleCard(this)">
+    <div class="scard-head">
       <span class="scard-num">13</span>
-      <div class="scard-icon" style="background:#fff7ed; font-size:1.3rem">🩸</div>
+      <div class="scard-icon">🩸</div>
       <div class="scard-info">
         <span class="scard-title">Akute Gastrointestinale Blutung</span>
         <div class="scard-badges">
@@ -1316,11 +1059,11 @@ footer strong { color: var(--red); font-weight: 600; }
 
   <!-- ⑭ Hypoglykämie -->
   <div class="scard reveal" data-cat="metabolisch" data-keywords="hypoglykämie unterzuckerung blutzucker diabetes glukose schweiß tremor bewusstlosigkeit g40">
-    <div class="scard-head" onclick="toggleCard(this)">
+    <div class="scard-head">
       <span class="scard-num">14</span>
-      <div class="scard-icon" style="background:#f0fdf8; font-size:1.3rem">🍬</div>
+      <div class="scard-icon">🍬</div>
       <div class="scard-info">
-        <span class="scard-title">Hypoglykämie <span style="font-size:.8rem;color:var(--text3)">(Unterzuckerung)</span></span>
+        <span class="scard-title">Hypoglykämie <span class="scard-title-meta">(Unterzuckerung)</span></span>
         <div class="scard-badges">
           <span class="badge green">BZ &lt;50 mg/dl</span>
           <span class="badge gray">Diabetes</span>
@@ -1342,7 +1085,7 @@ footer strong { color: var(--red); font-weight: 600; }
               <div class="med-name">Glucose 40% <span class="med-generic">G40</span></div>
               <div class="med-dose">1 – 2 Ampullen (10 – 20 ml)</div>
               <span class="med-route">i.v. langsame Injektion</span>
-              <div class="danger-box" style="margin-top:.5rem">
+              <div class="danger-box">
                 <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
                 <span>G40 verursacht <strong>Venennekrosen</strong> wenn es paravasiert! PVK sorgfältig aspirieren, G40 injizieren, dann mit NaCl nachspülen. BZ nach 15 min kontrollieren!</span>
               </div>
@@ -1365,9 +1108,9 @@ footer strong { color: var(--red); font-weight: 600; }
 
   <!-- ⑮ Akutes Delir -->
   <div class="scard reveal" data-cat="neuro" data-keywords="delir unruhe sedierung melperon haloperidol haldol qtc nacht station verwirrt agitiert pipamperon">
-    <div class="scard-head" onclick="toggleCard(this)">
+    <div class="scard-head">
       <span class="scard-num">15</span>
-      <div class="scard-icon" style="background:#f5f3ff; font-size:1.3rem">🧠</div>
+      <div class="scard-icon">🧠</div>
       <div class="scard-info">
         <span class="scard-title">Akutes Delir / Unruhe auf Station</span>
         <div class="scard-badges">
@@ -1400,7 +1143,7 @@ footer strong { color: var(--red); font-weight: 600; }
               <div class="med-name">Haloperidol <span class="med-generic">Haldol</span></div>
               <div class="med-dose">0,5 – 1 mg p.o. oder i.v.</div>
               <span class="med-route">p.o. / i.v.</span>
-              <div class="danger-box" style="margin-top:.5rem">
+              <div class="danger-box">
                 <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
                 <span><strong>KARDIOLOGIE-Achtung:</strong> Haldol verlängert die QTc-Zeit! Vorher EKG prüfen. Kontraindiziert bei QTc &gt;450 ms (Torsades de pointes Risiko)!</span>
               </div>
@@ -1431,9 +1174,9 @@ footer strong { color: var(--red); font-weight: 600; }
 
   <!-- ⑯ Übelkeit &amp; Erbrechen -->
   <div class="scard reveal" data-cat="schmerz" data-keywords="übelkeit erbrechen nausea emesis antiemese vomex ondansetron zofran metoclopramid mcp">
-    <div class="scard-head" onclick="toggleCard(this)">
+    <div class="scard-head">
       <span class="scard-num">16</span>
-      <div class="scard-icon" style="background:#fdf8ee; font-size:1.3rem">🤢</div>
+      <div class="scard-icon">🤢</div>
       <div class="scard-info">
         <span class="scard-title">Übelkeit &amp; Erbrechen — Antiemese</span>
         <div class="scard-badges">
@@ -1453,7 +1196,7 @@ footer strong { color: var(--red); font-weight: 600; }
               <div class="med-name">Dimenhydrinat <span class="med-generic">Vomex</span></div>
               <div class="med-dose">50 mg in 50 ml NaCl</div>
               <span class="med-route">Kurzinfusion</span>
-              <div class="warn-box" style="margin-top:.5rem">
+              <div class="warn-box">
                 <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
                 <span>Macht müde &amp; kann RR leicht senken — Patienten darüber informieren.</span>
               </div>
@@ -1465,7 +1208,7 @@ footer strong { color: var(--red); font-weight: 600; }
               <div class="med-name">Ondansetron <span class="med-generic">Zofran</span></div>
               <div class="med-dose">4 mg i.v.</div>
               <span class="med-route">i.v.</span>
-              <div class="tip-box" style="margin-top:.5rem">
+              <div class="tip-box">
                 <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
                 <span>Bevorzugt — wirkt gut, macht <strong>keinen Schlaf</strong>, kein wesentlicher RR-Abfall. Mittel der Wahl im Alltag.</span>
               </div>
@@ -1477,7 +1220,7 @@ footer strong { color: var(--red); font-weight: 600; }
               <div class="med-name">Metoclopramid <span class="med-generic">MCP</span></div>
               <div class="med-dose">10 mg i.v.</div>
               <span class="med-route">i.v.</span>
-              <div class="danger-box" style="margin-top:.5rem">
+              <div class="danger-box">
                 <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
                 <span><strong>Nicht bei jungen Frauen und Jugendlichen!</strong> Risiko für extrapyramidale Störungen (Gesichtskrämpfe, Trismus)!</span>
               </div>
@@ -1499,9 +1242,9 @@ footer strong { color: var(--red); font-weight: 600; }
 
   <!-- ⑰ Schwere Hyperkaliämie -->
   <div class="scard reveal" data-cat="metabolisch" data-keywords="hyperkaliämie kalium ekg t-wellen qrs kalzium insulin glucose membranstabilisierung herzstillstand">
-    <div class="scard-head" onclick="toggleCard(this)">
+    <div class="scard-head">
       <span class="scard-num">17</span>
-      <div class="scard-icon" style="background:#f0fdf8; font-size:1.3rem">⚡</div>
+      <div class="scard-icon">⚡</div>
       <div class="scard-info">
         <span class="scard-title">Schwere Hyperkaliämie — EKG-Notfall</span>
         <div class="scard-badges">
@@ -1529,7 +1272,7 @@ footer strong { color: var(--red); font-weight: 600; }
               <div class="med-name">Calciumgluconat 10%</div>
               <div class="med-dose">10 ml (1 Ampulle) langsam i.v.</div>
               <span class="med-route">i.v. über 2–3 min</span>
-              <div class="tip-box" style="margin-top:.5rem">
+              <div class="tip-box">
                 <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
                 <span>Senkt Kalium <strong>nicht</strong> — schützt aber das Herz durch Membranstabilisierung. Immer als erstes!</span>
               </div>
@@ -1570,9 +1313,9 @@ footer strong { color: var(--red); font-weight: 600; }
 
   <!-- ⑱ Kardiogener Schock -->
   <div class="scard reveal" data-cat="kreislauf" data-keywords="kardiogener schock norepinephrin arterenol dobutamin inotropie infarkt oligurie rr niedrig">
-    <div class="scard-head" onclick="toggleCard(this)">
+    <div class="scard-head">
       <span class="scard-num">18</span>
-      <div class="scard-icon" style="background:#fff7ed; font-size:1.3rem">📉</div>
+      <div class="scard-icon">📉</div>
       <div class="scard-info">
         <span class="scard-title">Kardiogener Schock</span>
         <div class="scard-badges">
@@ -1596,7 +1339,7 @@ footer strong { color: var(--red); font-weight: 600; }
               <div class="med-name">Norepinephrin <span class="med-generic">Arterenol / Noradrenalin</span></div>
               <div class="med-dose">Perfusor ab 0,1 µg/kg/min</div>
               <span class="med-route">i.v. Perfusor, titrieren</span>
-              <div class="danger-box" style="margin-top:.5rem">
+              <div class="danger-box">
                 <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
                 <span>Idealer Weg: <strong>ZVK (Zentralvenenkatheter)</strong> — bei peripherer Gabe: Nekrose-Risiko bei Paravasation! Im Notfall: großer peripherer Zugang temporär.</span>
               </div>
@@ -1628,9 +1371,9 @@ footer strong { color: var(--red); font-weight: 600; }
 
   <!-- ⑲ Sepsis -->
   <div class="scard reveal" data-cat="allergie" data-keywords="sepsis septischer schock antibiotika blutkultur tazobac piperacillin volumen bundle pneumonie harnwegsinfektion">
-    <div class="scard-head" onclick="toggleCard(this)">
+    <div class="scard-head">
       <span class="scard-num">19</span>
-      <div class="scard-icon" style="background:#ecfeff; font-size:1.3rem">🦠</div>
+      <div class="scard-icon">🦠</div>
       <div class="scard-info">
         <span class="scard-title">Sepsis / Septischer Schock</span>
         <div class="scard-badges">
@@ -1658,7 +1401,7 @@ footer strong { color: var(--red); font-weight: 600; }
               <div class="med-name">Blutkulturen (BKs)</div>
               <div class="med-dose">2 Pärchen (= 4 Flaschen: aerob + anaerob)</div>
               <span class="med-route">von verschiedenen Stellen</span>
-              <div class="danger-box" style="margin-top:.5rem">
+              <div class="danger-box">
                 <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
                 <span><strong>IMMER vor Antibiose!</strong> Blutkulturen zuerst → dann sofort Antibiotikum. Keine Sekunde verzögern!</span>
               </div>
@@ -1699,9 +1442,9 @@ footer strong { color: var(--red); font-weight: 600; }
 
   <!-- ⑳ Status epilepticus -->
   <div class="scard reveal" data-cat="neuro" data-keywords="krampf epilepsie status epilepticus lorazepam tavor midazolam levetiracetam keppra tonisch klonisch">
-    <div class="scard-head" onclick="toggleCard(this)">
+    <div class="scard-head">
       <span class="scard-num">20</span>
-      <div class="scard-icon" style="background:#f5f3ff; font-size:1.3rem">🧠</div>
+      <div class="scard-icon">🧠</div>
       <div class="scard-info">
         <span class="scard-title">Akuter Krampfanfall — Status epilepticus</span>
         <div class="scard-badges">
@@ -1733,7 +1476,7 @@ footer strong { color: var(--red); font-weight: 600; }
               <div class="med-name">Midazolam <span class="med-generic">Dormicum</span></div>
               <div class="med-dose">5 – 10 mg</div>
               <span class="med-route">i.m. oder intranasal (MAD)</span>
-              <div class="tip-box" style="margin-top:.5rem">
+              <div class="tip-box">
                 <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
                 <span>Wenn kein i.v. Zugang möglich (Patient krampft stark) → intranasal per MAD-Aufsatz oder i.m. in Oberschenkel.</span>
               </div>
@@ -1766,11 +1509,11 @@ footer strong { color: var(--red); font-weight: 600; }
 
   <!-- ㉑ Gichtanfall -->
   <div class="scard reveal" data-cat="schmerz" data-keywords="gicht podagra harnsäure ibuprofen colchicin diuretika gelenk entzündung">
-    <div class="scard-head" onclick="toggleCard(this)">
+    <div class="scard-head">
       <span class="scard-num">21</span>
-      <div class="scard-icon" style="background:#fdf8ee; font-size:1.3rem">🦶</div>
+      <div class="scard-icon">🦶</div>
       <div class="scard-info">
-        <span class="scard-title">Akuter Gichtanfall <span style="font-size:.8rem;color:var(--text3)">(Podagra)</span></span>
+        <span class="scard-title">Akuter Gichtanfall <span class="scard-title-meta">(Podagra)</span></span>
         <div class="scard-badges">
           <span class="badge gold">Gicht</span>
           <span class="badge gray">unter Diuretika</span>
@@ -1791,7 +1534,7 @@ footer strong { color: var(--red); font-weight: 600; }
               <div class="med-name">Ibuprofen oder Diclofenac</div>
               <div class="med-dose">p.o. standard Dosierung</div>
               <span class="med-route">p.o.</span>
-              <div class="warn-box" style="margin-top:.5rem">
+              <div class="warn-box">
                 <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
                 <span>Nur bei gutem Kreatinin und ohne Magenulkus! Bei Niereninsuffizienz → Prednisolon bevorzugen.</span>
               </div>
@@ -1811,7 +1554,7 @@ footer strong { color: var(--red); font-weight: 600; }
               <div class="med-name">Prednisolon</div>
               <div class="med-dose">20 – 30 mg p.o. für mehrere Tage</div>
               <span class="med-route">p.o.</span>
-              <div class="tip-box" style="margin-top:.5rem">
+              <div class="tip-box">
                 <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
                 <span>Sicherste Wahl bei Niereninsuffizienz wenn NSAIDs kontraindiziert.</span>
               </div>
@@ -1834,11 +1577,11 @@ footer strong { color: var(--red); font-weight: 600; }
 
   <!-- ㉒ LAE instabil -->
   <div class="scard reveal" data-cat="reanimation" data-keywords="lungenarterienembolie lae instabil thrombolyse alteplase actilyse schock rechtsherzversagen">
-    <div class="scard-head" onclick="toggleCard(this)">
+    <div class="scard-head">
       <span class="scard-num">22</span>
-      <div class="scard-icon" style="background:#fdf2f2; font-size:1.3rem">🆘</div>
+      <div class="scard-icon">🆘</div>
       <div class="scard-info">
-        <span class="scard-title">LAE — hämodynamisch <em style="color:var(--red)">instabil</em> → Thrombolyse</span>
+        <span class="scard-title">LAE — hämodynamisch <em class="ink-red">instabil</em> → Thrombolyse</span>
         <div class="scard-badges">
           <span class="badge red">RR &lt;90 mmHg</span>
           <span class="badge red">Thrombolyse</span>
@@ -1871,7 +1614,7 @@ footer strong { color: var(--red); font-weight: 600; }
             </div>
           </div>
         </div>
-        <div class="danger-box" style="margin-top:.8rem">
+        <div class="danger-box callout-spaced">
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
           <span><strong>Lyse-Entscheidung = Oberarzt/Facharzt!</strong> Als Assistenzarzt: Actilyse vorbereiten, Zugang sichern, Patient monitoren — dann Entscheider informieren.</span>
         </div>
@@ -1891,9 +1634,9 @@ footer strong { color: var(--red); font-weight: 600; }
 
   <!-- ㉖ Infektiöse Endokarditis -->
   <div class="scard reveal" data-cat="allergie" data-keywords="endokarditis herzgeräusch fieber blutkulturen tte tee vegetation ampicillin gentamicin klappe">
-    <div class="scard-head" onclick="toggleCard(this)">
+    <div class="scard-head">
       <span class="scard-num">26</span>
-      <div class="scard-icon" style="background:#ecfeff; font-size:1.3rem">🦷</div>
+      <div class="scard-icon">🦷</div>
       <div class="scard-info">
         <span class="scard-title">Verdacht auf Infektiöse Endokarditis</span>
         <div class="scard-badges">
@@ -1916,7 +1659,7 @@ footer strong { color: var(--red); font-weight: 600; }
               <div class="med-name">Blutkulturen</div>
               <div class="med-dose">3 Pärchen (= 6 Flaschen) von verschiedenen Stellen</div>
               <span class="med-route">vor jeder Antibiose</span>
-              <div class="danger-box" style="margin-top:.5rem">
+              <div class="danger-box">
                 <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
                 <span>3 Pärchen (<strong>= 6 Flaschen</strong>) von 3 verschiedenen Venenpunktionen — zwingend <strong>vor</strong> dem ersten Antibiotikum!</span>
               </div>
@@ -1948,11 +1691,11 @@ footer strong { color: var(--red); font-weight: 600; }
 
   <!-- ㉘ Kontrastmittel-Prophylaxe / AKI-Prävention -->
   <div class="scard reveal" data-cat="metabolisch" data-keywords="kontrastmittel nephropathie cin niereninsuffizienz krea egfr herzkatheterlabor hkl hydratation metformin">
-    <div class="scard-head" onclick="toggleCard(this)">
+    <div class="scard-head">
       <span class="scard-num">28</span>
-      <div class="scard-icon" style="background:#f0fdf8; font-size:1.3rem">💧</div>
+      <div class="scard-icon">💧</div>
       <div class="scard-info">
-        <span class="scard-title">KM-Nephropathie Prophylaxe <span style="font-size:.8rem;color:var(--text3)">(vor HKL / CT-Angio)</span></span>
+        <span class="scard-title">KM-Nephropathie Prophylaxe <span class="scard-title-meta">(vor HKL / CT-Angio)</span></span>
         <div class="scard-badges">
           <span class="badge green">CIN-Prophylaxe</span>
           <span class="badge gray">eGFR &lt;30</span>
@@ -1975,7 +1718,7 @@ footer strong { color: var(--red); font-weight: 600; }
               <div class="med-dose">1 ml/kg KG/h (z.B. 80 ml/h)</div>
               <span class="med-route">i.v. Infusion</span>
               <div class="med-note">Beginnen: 12 h vor dem Eingriff — weiter: 12 h danach</div>
-              <div class="warn-box" style="margin-top:.5rem">
+              <div class="warn-box">
                 <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
                 <span>Achtung bei HFrEF! Patient engmaschig auf Lungenödem überwachen.</span>
               </div>
@@ -1987,7 +1730,7 @@ footer strong { color: var(--red); font-weight: 600; }
               <div class="med-name">Metformin pausieren</div>
               <div class="med-dose">48 h vor bis 48 h nach dem Eingriff</div>
               <span class="med-route">Tabletten pausieren</span>
-              <div class="danger-box" style="margin-top:.5rem">
+              <div class="danger-box">
                 <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
                 <span>Bei Kontrastmittelgabe + Niereninsuffizienz: Laktatazidose-Risiko unter Metformin. <strong>48h vor/nach pausieren!</strong></span>
               </div>
@@ -2014,104 +1757,20 @@ footer strong { color: var(--red); font-weight: 600; }
       <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
     </svg>
     Keine Szenarien gefunden für <strong id="no-results-term"></strong>.<br>
-    <span style="font-size:.8rem;color:var(--text3);margin-top:.4rem;display:block">Versuche einen anderen Begriff oder filtere nach Kategorie.</span>
+    <span class="no-results-hint">Versuche einen anderen Begriff oder filtere nach Kategorie.</span>
   </div>
 
 </div><!-- /notfall-list -->
-
-
+  </section>
+</main>
 
 <!-- FOOTER -->
 <footer>
-  <span>OUSS Kardiologie · Notfallmodul · Weiterbildung DE</span>
-  <strong>Klinisches Hilfsmittel — kein Ersatz für ärztliches Urteil</strong>
+  <span>Dia<strong>stola</strong> · Notfallmodul · Weiterbildung DE</span>
+  <span>Klinisches Hilfsmittel — kein Ersatz für ärztliches Urteil</span>
 </footer>
 
-<script>
-/* ─── MOBILE DRAWER ─── */
-function mobToggle() {
-  var d = document.getElementById('mob-drawer'), o = document.getElementById('mob-overlay');
-  var open = d.style.transform === 'translateX(0px)' || d.style.transform === 'translateX(0)';
-  d.style.transform = open ? 'translateX(110%)' : 'translateX(0)';
-  o.style.display = open ? 'none' : 'block';
-  document.body.style.overflow = open ? '' : 'hidden';
-}
-function mobClose() {
-  document.getElementById('mob-drawer').style.transform = 'translateX(110%)';
-  document.getElementById('mob-overlay').style.display = 'none';
-  document.body.style.overflow = '';
-}
-window.addEventListener('resize', function(){ if(window.innerWidth>860) mobClose(); });
-
-/* ─── ACCORDION ─── */
-function toggleCard(head) {
-  var card = head.closest('.scard');
-  var wasOpen = card.classList.contains('open');
-  // close all
-  document.querySelectorAll('.scard.open').forEach(function(c){ c.classList.remove('open'); });
-  if (!wasOpen) card.classList.add('open');
-}
-
-/* ─── REVEAL ─── */
-(function() {
-  var obs = new IntersectionObserver(function(entries) {
-    entries.forEach(function(e, i) {
-      if (e.isIntersecting) {
-        setTimeout(function(){ e.target.classList.add('in'); }, i * 45);
-        obs.unobserve(e.target);
-      }
-    });
-  }, { threshold: 0.05 });
-  document.querySelectorAll('.reveal').forEach(function(el){ obs.observe(el); });
-})();
-
-/* ─── FILTER CHIPS ─── */
-var currentCat = 'all';
-document.getElementById('filter-wrap').addEventListener('click', function(e) {
-  var chip = e.target.closest('.chip');
-  if (!chip) return;
-  currentCat = chip.dataset.cat;
-  document.querySelectorAll('.chip').forEach(function(c){ c.classList.remove('active'); });
-  chip.classList.add('active');
-  applyFilters();
-});
-
-/* ─── SEARCH ─── */
-var searchEl   = document.getElementById('search');
-var clearBtn   = document.getElementById('search-clear');
-var countEl    = document.getElementById('search-count');
-var noRes      = document.getElementById('no-results');
-var noResTerm  = document.getElementById('no-results-term');
-
-searchEl.addEventListener('input', applyFilters);
-
-function clearSearch() {
-  searchEl.value = '';
-  applyFilters();
-  searchEl.focus();
-}
-
-function applyFilters() {
-  var q = searchEl.value.trim().toLowerCase();
-  clearBtn.style.display = q ? 'block' : 'none';
-
-  var cards = document.querySelectorAll('.scard');
-  var visible = 0;
-
-  cards.forEach(function(card) {
-    var catMatch = currentCat === 'all' || card.dataset.cat === currentCat;
-    var keywords = (card.dataset.keywords || '') + ' ' + card.textContent.toLowerCase();
-    var qMatch = !q || keywords.includes(q);
-    var show = catMatch && qMatch;
-    card.style.display = show ? '' : 'none';
-    if (show) visible++;
-  });
-
-  countEl.textContent = q || currentCat !== 'all' ? visible + ' Szenarien' : '';
-  noRes.style.display = visible === 0 ? 'block' : 'none';
-  if (visible === 0) noResTerm.textContent = '"' + (q || currentCat) + '"';
-}
-</script>
-
+<script src="diastola-design-system/assets/js/diastola.js"></script>
+<script src="diastola-design-system/assets/js/notfall.js"></script>
 </body>
 </html>
