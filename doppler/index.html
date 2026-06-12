@@ -7,85 +7,54 @@
 <meta name="theme-color" content="#ffffff">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>Doppler Echokardiographie — OUSS Kardiologie</title>
+<title>Doppler Echokardiographie — Diastola</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
-<style>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500;600&family=Caveat:wght@500;600;700&display=swap" rel="stylesheet">
+<!-- Diastola Design System -->
+<link rel="stylesheet" href="../assets/css/theme.css">
+<link rel="stylesheet" href="../assets/css/animations.css">
 
+<style>
 /* ════════════════════════════════════
-   OUSS KARDIOLOGIE — EKG TACHYKARDIE
-   Theme: matches index.html
+   DIASTOLA — DOPPLER ECHOKARDIOGRAPHIE
+   Klinisches Skizzenbuch · Token-Remap
 ════════════════════════════════════ */
 :root {
-  /* Index-matching palette */
-  --bg:       #ffffff;
-  --surface:  #f7f5f2;
-  --surface2: #eeecea;
-  --surface3: #e8e5e1;
-  --border:   #e5e2de;
-  --border2:  #d8d5d0;
-  --text:     #1a1410;
-  --text2:    #6b6460;
-  --text3:    #a09890;
-
-  /* Brand accent — OUSS red */
-  --red:      #c8303a;
-  --red-bg:   #fdf2f2;
-  --red-border:#fbd5d5;
-
-  /* Semantic colours */
-  --blue:     #2563eb;
-  --blue-bg:  #eff6ff;
-  --blue-border:#bfdbfe;
-  --green:    #0f7b5a;
-  --green-bg: #f0fdf8;
-  --green-border:#a7f3d0;
-  --amber:    #d97706;
-  --amber-bg: #fffbeb;
-  --amber-border:#fde68a;
-  --purple:   #7c3aed;
-  --purple-bg:#f5f3ff;
-  --purple-border:#ddd6fe;
-  --orange:   #c2410c;
-  --orange-bg:#fff7ed;
-  --orange-border:#fed7aa;
-  --teal:     #0d9488;
-  --darija-bg:#fef9f3;
-  --darija-border:#f0ddc8;
-  --darija-text:#5c3d1a;
-
-  /* Type */
-  --serif: 'Cormorant Garamond', Georgia, serif;
-  --sans:  'DM Sans', system-ui, sans-serif;
-  --mono:  'DM Sans', 'Courier New', monospace;
-
-  /* Layout */
-  --nav-h:      56px;
-  --sidebar-w:  260px;
-  --radius:     10px;
-  --radius-lg:  14px;
-  --shadow:     0 2px 8px rgba(0,0,0,.06);
-  --shadow-md:  0 6px 24px rgba(0,0,0,.09);
-  --shadow-lg:  0 12px 40px rgba(0,0,0,.10);
+  --bg:#faf6ee; --surface:#f4eee0; --surface2:#ece4d2; --surface3:#e2d8c2;
+  --border:#e7ddc9; --border2:#ddd1b8;
+  --text:#2a241c; --text2:#6e6354; --text3:#a3957f;
+  --red:#c8303a; --red-bg:#fdf3ef; --red-border:rgba(200,48,58,.35);
+  --blue:#2456a6; --blue-bg:#eef3fa; --blue-border:rgba(36,86,166,.30);
+  --green:#1f7a5c; --green-bg:#edf5ef; --green-border:rgba(31,122,92,.30);
+  --amber:#b07a10; --amber-bg:#faf4e0; --amber-border:rgba(176,122,16,.32);
+  --purple:#6d3fb8; --purple-bg:#f3effa; --purple-border:rgba(109,63,184,.28);
+  --orange:#c2570f; --orange-bg:#faf0e6; --orange-border:rgba(194,87,15,.30);
+  --teal:#11756c; --teal-bg:#eef6f2; --teal-border:rgba(17,117,108,.30);
+  --navy:#1d2b50; --gold:#97742e;
+  --serif:'Cormorant Garamond',Georgia,serif; --sans:'DM Sans',system-ui,sans-serif;
+  --nav-h:58px; --sidebar-w:260px; --radius:10px; --radius-lg:14px;
+  --shadow:0 1px 3px rgba(74,60,38,.07),0 4px 14px rgba(74,60,38,.06);
+  --shadow-md:0 2px 6px rgba(74,60,38,.08),0 10px 28px rgba(74,60,38,.10);
+  --shadow-lg:0 3px 8px rgba(74,60,38,.09),0 14px 36px rgba(74,60,38,.11);
 }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
-body { font-family: var(--sans); background: var(--bg); color: var(--text); font-size: 15px; line-height: 1.75; overflow-x: hidden; -webkit-tap-highlight-color: transparent; padding-bottom: env(safe-area-inset-bottom, 12px); }
+body { font-family: var(--sans); color: var(--text); font-size: 15px; line-height: 1.75; overflow-x: hidden; -webkit-tap-highlight-color: transparent; padding-bottom: env(safe-area-inset-bottom, 12px); }
 a, button { touch-action: manipulation; -webkit-tap-highlight-color: transparent; }
 ::-webkit-scrollbar { width: 5px; } ::-webkit-scrollbar-track { background: transparent; } ::-webkit-scrollbar-thumb { background: var(--border2); border-radius: 99px; }
 
-/* ═══ OUSS TOP NAV ═══ */
+/* ═══ DIASTOLA TOP NAV ═══ */
 .ouss-nav {
   position: sticky; top: 0; z-index: 600;
   height: var(--nav-h);
-  background: rgba(255,255,255,.97);
+  background: rgba(250,246,238,.94);
   backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
   border-bottom: 1px solid var(--border);
   display: flex; align-items: center; padding: 0 1.5rem; gap: 6px;
 }
 .ouss-brand {
-  font-family: var(--serif); font-size: 1.1rem; font-weight: 400;
+  font-family: var(--serif); font-size: 1.25rem; font-weight: 600; letter-spacing: .01em;
   color: var(--text); text-decoration: none;
   display: flex; align-items: center; gap: .45rem;
   white-space: nowrap; flex-shrink: 0;
@@ -101,7 +70,7 @@ a, button { touch-action: manipulation; -webkit-tap-highlight-color: transparent
 .ouss-nav-links a:hover { background: var(--surface); color: var(--text); }
 .ouss-nav-links a.cur { background: var(--red-bg); color: var(--red); font-weight: 600; }
 .ouss-spacer { flex: 1; }
-.ouss-badge { font-size: .76rem; font-weight: 600; padding: 6px 13px; background: var(--red); color: #fff; border-radius: 7px; white-space: nowrap; }
+.ouss-badge { font-family: var(--hand); font-size: 1.0rem; font-weight: 700; padding: 3px 14px; background: transparent; color: var(--red); border: 1.8px solid var(--red); border-radius: var(--r-sketch); transform: rotate(-1.2deg); white-space: nowrap; }
 .ouss-ham {
   display: none; flex-direction: column; justify-content: center; align-items: center;
   gap: 5px; width: 40px; height: 40px; flex-shrink: 0;
@@ -115,7 +84,7 @@ a, button { touch-action: manipulation; -webkit-tap-highlight-color: transparent
 .ouss-overlay.open { display: block; }
 .ouss-drawer {
   position: fixed; top: var(--nav-h); right: 0; bottom: 0;
-  width: min(260px, 80vw); background: var(--bg); z-index: 599;
+  width: min(260px, 80vw); background: var(--surface); z-index: 599;
   transform: translateX(110%); transition: transform .28s cubic-bezier(.4,0,.2,1);
   display: flex; flex-direction: column; border-left: 1px solid var(--border);
   overflow-y: auto;
@@ -152,8 +121,8 @@ a, button { touch-action: manipulation; -webkit-tap-highlight-color: transparent
 .sidebar-lang { display: flex; gap: 6px; flex-wrap: wrap; }
 .sidebar-lang span {
   font-size: .7rem; padding: 2px 9px; border-radius: 20px;
-  background: var(--darija-bg); color: var(--darija-text);
-  border: 1px solid var(--darija-border); font-weight: 600;
+  background: var(--surface); color: var(--text2);
+  border: 1px solid var(--border); font-weight: 600;
 }
 .sidebar-section {
   font-size: .65rem; font-weight: 700; letter-spacing: .13em;
@@ -264,9 +233,6 @@ hr { border: none; border-top: 1px solid var(--border); margin: 2.5rem 0; }
 .critical-box p { font-size: .9rem; line-height: 1.7; }
 
 /* ═══ DARIJA BOX ═══ */
-.darija-box { background: var(--darija-bg); border: 1px solid var(--darija-border); border-radius: var(--radius); padding: 1rem 1.2rem; margin: 1.2rem 0; direction: rtl; text-align: right; font-size: .9rem; color: var(--darija-text); line-height: 1.8; }
-.darija-label { direction: ltr; text-align: left; font-size: .65rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--darija-text); opacity: .6; margin-bottom: 7px; }
-.darija-label span { background: var(--darija-border); padding: 2px 8px; border-radius: 4px; }
 
 /* ═══ TABS (panel selector) ═══ */
 .tab-row { display: flex; gap: 4px; background: var(--surface2); border: 1px solid var(--border); border-radius: var(--radius); padding: 4px; margin: 1.4rem 0 1.6rem; flex-wrap: wrap; }
@@ -301,7 +267,6 @@ hr { border: none; border-top: 1px solid var(--border); margin: 2.5rem 0; }
 .card.c-orange::before{ background: var(--orange); }
 .card h4 { font-size: .9rem; font-weight: 700; margin-bottom: .35rem; }
 .card p { font-size: .84rem; color: var(--text2); line-height: 1.6; }
-.card .card-darija { font-size: .84rem; direction: rtl; text-align: right; color: var(--darija-text); background: var(--darija-bg); padding: 7px 11px; border-radius: 8px; margin-top: 9px; border: 1px solid var(--darija-border); }
 
 /* ═══ DETAIL PANEL ═══ */
 .detail-panel { background: var(--bg); border: 1px solid var(--border2); border-radius: var(--radius-lg); overflow: hidden; margin: 1.4rem 0; box-shadow: var(--shadow-lg); animation: fadein .3s ease both; }
@@ -476,7 +441,7 @@ hr { border: none; border-top: 1px solid var(--border); margin: 2.5rem 0; }
 .content-section{margin-bottom:2.5rem;padding-bottom:2rem;border-bottom:1px solid var(--border);}
 .content-section:last-child{border-bottom:none;}
 .de-text,.ar-text{font-size:.9rem;line-height:1.75;margin-bottom:.7rem;}
-.ar-text{direction:rtl;text-align:right;color:var(--darija-text);background:var(--darija-bg);border:1px solid var(--darija-border);border-radius:var(--radius);padding:.7rem 1rem;margin-top:.5rem;}
+.ar-text{direction:ltr;text-align:left;}
 code{background:var(--surface2);border:1px solid var(--border);border-radius:4px;padding:1px 6px;font-size:.84rem;font-family:var(--mono);}
 .formula-box{background:var(--surface);border:1px solid var(--border);border-left:3px solid var(--red);border-radius:var(--radius);padding:1rem 1.2rem;margin:.8rem 0;}
 .formula{font-size:1rem;font-weight:600;color:var(--red);}
@@ -558,14 +523,45 @@ body {
   padding-left: max(1rem, env(safe-area-inset-left, 1rem));
 }
 
+/* ═══ DIASTOLA SKIZZENBUCH-SCHICHT ═══ */
+.ouss-brand-heart{animation:hb 1.6s ease-in-out infinite}
+.ouss-nav-links a.cur{background:var(--red-bg);color:var(--red);font-weight:600}
+.tag,.badge,.tab-badge{border-radius:var(--r-sketch)}
+.tab-btn{background:var(--surface);border:1.5px solid var(--border2);border-radius:var(--r-sketch);color:var(--text2);font-weight:600}
+.tab-btn:hover{background:var(--surface);border-color:var(--text3);color:var(--text)}
+.tab-btn.active{background:var(--red)!important;border-color:var(--red)!important;color:#fffdf8;box-shadow:2px 3px 0 rgba(200,48,58,.20)}
+.tab-btn.active .tab-badge{background:rgba(255,253,248,.25);color:#fffdf8}
+.card-grid{gap:26px 22px;margin-top:1.4rem}
+.card{border:none;border-radius:3px;overflow:visible;box-shadow:0 4px 10px rgba(74,60,38,.13),0 1px 3px rgba(74,60,38,.10);background:var(--note-y,#fff4bd);position:relative}
+.card::after{content:'';position:absolute;top:-10px;left:50%;transform:translateX(-50%) rotate(-2deg);width:78px;height:21px;background:rgba(255,255,255,.42);border:1px solid rgba(74,60,38,.08);box-shadow:0 1px 2px rgba(74,60,38,.08);pointer-events:none}
+.card:nth-child(odd){transform:rotate(-.8deg)}
+.card:nth-child(even){transform:rotate(.7deg)}
+.card:hover{transform:translateY(-3px) rotate(0deg);box-shadow:0 6px 16px rgba(74,60,38,.16),0 2px 4px rgba(74,60,38,.10)}
+.card.blue{background:#e7eff9}.card.green{background:var(--note-g,#e1f1e7)}.card.red{background:var(--note-r,#ffe4e0)}
+.card.amber{background:var(--note-y,#fff4bd)}.card.purple{background:#efe8f9}.card.teal{background:#e6f2ee}.card.orange{background:#fcecdd}
+.card-title{font-family:var(--hand);font-size:1.3rem;font-weight:700}
+.callout{border:none;border-radius:3px;box-shadow:0 4px 10px rgba(74,60,38,.12),0 1px 3px rgba(74,60,38,.09);position:relative}
+.callout::before{content:'';position:absolute;top:-9px;left:50%;transform:translateX(-50%) rotate(-2deg);width:60px;height:17px;background:rgba(255,255,255,.45);border:1px solid rgba(74,60,38,.08);box-shadow:0 1px 2px rgba(74,60,38,.08);pointer-events:none}
+.callout.info{background:#e7eff9;transform:rotate(-.25deg)}
+.callout.warn,.callout.warning{background:var(--note-y,#fff4bd);transform:rotate(.3deg)}
+.callout.success{background:var(--note-g,#e1f1e7);transform:rotate(-.25deg)}
+.callout.danger{background:var(--note-r,#ffe4e0);transform:rotate(.25deg)}
+.callout.purple{background:#efe8f9;transform:rotate(-.2deg)}
+.callout.teal{background:#e6f2ee;transform:rotate(.2deg)}
+.step-num{background:transparent;border-radius:var(--r-sketch);font-family:var(--hand);font-size:.95rem;font-weight:700;border-width:2px;transform:rotate(-2deg);width:27px;height:25px}
+.step-num.danger,.step-num.success{background:transparent}
+.summary-box{background:var(--card);border:1.5px solid var(--border2);box-shadow:var(--shadow-lg)}
+.summary-box::before{height:7px;top:7px;left:1.4rem;right:1.4rem;background:var(--wave-red) repeat-x;background-size:40px 7px}
+h1 em,h2 em{font-style:italic;color:var(--red)}
+
 </style>
 </head>
 <body>
 
 <nav class="ouss-nav">
   <a href="../index.html" class="ouss-brand">
-    <span class="ouss-brand-heart"><svg width="16" height="16" viewBox="0 0 18 18" fill="none"><path d="M9 15.5C3.5 12.2 1 9 1 6A4 4 0 0 1 9 4.2a4 4 0 0 1 8 1.8C17 9 14.5 12.2 9 15.5Z" fill="#c8303a" opacity=".9"/></svg></span>
-    OUSS Kardiologie
+    <span class="ouss-brand-heart"><svg width="17" height="17" viewBox="0 0 18 18" fill="none"><path d="M9 15.5C3.5 12.2 1 9 1 6A4 4 0 0 1 9 4.2a4 4 0 0 1 8 1.8C17 9 14.5 12.2 9 15.5Z" stroke="#c8303a" stroke-width="1.6" fill="none" stroke-linejoin="round"/><path d="M4.5 9.5h2.2l1-2.2 1.6 4 1-1.8h2.9" stroke="#c8303a" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg></span>
+    Dia<em style="font-style:italic;font-weight:400;color:var(--red)">stola</em>
   </a>
   <div class="ouss-nav-links">
     <a href="../index.html">Startseite</a>
@@ -596,7 +592,7 @@ body {
   <div class="sidebar-header">
     <div class="sidebar-course">Doppler-Kurs</div>
     <div class="sidebar-title">Doppler <em>Echokardiographie</em></div>
-    <div class="sidebar-lang"><span>🇩🇪 Deutsch</span><span>🇩🇿 الدارجة</span></div>
+    <div class="sidebar-lang"><span>🇩🇪 Deutsch</span></div>
   </div>
 
   <div class="sidebar-section">Doppler Modalitäten</div>
@@ -643,8 +639,8 @@ body {
                 <div class="callout info">
                     <span class="callout-icon">💡</span>
                     <div>
-                        <strong>مرحباً يا دكتور!</strong><br>
-                        <p class="ar-text">باش تفهم مليح وقتاش تخدم بكل نوع تاع Doppler في الـ Echokardiographie، لازم نعرفو بلي كل واحد فيهم مخدوم لغرض معين: إما نحوسو على البلاصة بالضبط (Lokalisation) ولا نحوسو على السرعة القصوى (Maximale Geschwindigkeit).</p>
+                        <strong>Überblick</strong><br>
+                        <p>Um zu verstehen, wann welcher Doppler-Modus in der Echokardiographie eingesetzt wird, gilt: Jeder Modus dient einem bestimmten Zweck — entweder die exakte Lokalisation des Flusses oder die Erfassung der maximalen Geschwindigkeit.</p>
                     </div>
                 </div>
 
@@ -663,12 +659,12 @@ body {
                         <span class="badge blue">Tiefenselektiv</span>
                     </div>
                     
-                    <p class="de-text"><strong>المبدأ تاعو:</strong> يعطيك القدرة باش تخير نقطة محددة بالضبط (Sample Volume) وتقيس سرعة الدم فيها (Tiefenselektivität).</p>
+                    <p><strong>Prinzip:</strong> Erlaubt die Wahl eines genau definierten Punktes (Sample Volume) und misst dort die Blutflussgeschwindigkeit (Tiefenselektivität).</p>
                     
                     <div class="callout warn">
                         <span class="callout-icon">⚠️</span>
                         <div>
-                            <strong>المشكل تاعو:</strong> ما يقدرش يقيس السرعات العالية. كي تفوت السرعة الحد تاعو (حوالي 1.5 إلى 2 m/s)، يصرى ما يسمى بـ <code>Aliasing-Effekt</code> (المنحنى يتقطع ويتخلط).
+                            <strong>Limitation:</strong> Kann hohe Geschwindigkeiten nicht messen. Übersteigt die Geschwindigkeit den Grenzwert (etwa 1,5–2 m/s), kommt es zum <code>Aliasing-Effekt</code> (die Kurve bricht ab und überlagert sich).
                         </div>
                     </div>
                 </div><div class="card">
@@ -678,15 +674,15 @@ body {
                     </div>
                     
                     <ul style="margin-left: 20px; margin-bottom: 16px;">
-                        <li><strong>LVOT-Messung:</strong> نحطو الـ Sample Volume جيست تحت الصمام الأبهري باش نحسبو الـ VTI</li>
-                        <li><strong>Diastolische Funktion:</strong> نحطو الـ PW عند فتحة الصمام التاجي (E/A-Wellen)</li>
-                        <li><strong>Pulmonalvenenfluss:</strong> باش نزيدو نأكدو تشخيص الـ diastolische Dysfunktion</li>
+                        <li><strong>LVOT-Messung:</strong> Sample Volume direkt unterhalb der Aortenklappe platzieren, um das VTI zu berechnen</li>
+                        <li><strong>Diastolische Funktion:</strong> PW an der Mitralklappenöffnung platzieren (E/A-Wellen)</li>
+                        <li><strong>Pulmonalvenenfluss:</strong> zur weiteren Bestätigung der diastolischen Dysfunktion</li>
                     </ul>
 
                     <div class="callout success">
                         <span class="callout-icon">✅</span>
                         <div>
-                            <strong>الخلاصة للـ PW:</strong> نخدمو بيه كي نحبو نعرفو سرعة الدم العادية في بلاصة محددة.
+                            <strong>Fazit PW:</strong> Einsatz, wenn die normale Blutflussgeschwindigkeit an einem definierten Ort gemessen werden soll.
                         </div>
                     </div>
                 </div>
@@ -707,12 +703,12 @@ body {
                         <span class="badge amber">Hohe Geschwindigkeiten</span>
                     </div>
                     
-                    <p class="ar-text"><strong>المبدأ تاعو:</strong> يقيس قع السرعات لي راهي في طريق خط الـ Ultrasound كامل (مافيهش Tiefenauflösung)، بصح الميزة تاعو الخارقة هي أنه يقدر يقيس سرعات عالية جداً (hohe Geschwindigkeiten) بلا ما يصرى Aliasing.</p>
+                    <p><strong>Prinzip:</strong> Misst alle Geschwindigkeiten entlang der gesamten Ultraschalllinie (keine Tiefenauflösung). Der entscheidende Vorteil: Er kann sehr hohe Geschwindigkeiten messen, ohne dass Aliasing auftritt.</p>
 
                     <div class="callout info">
                         <span class="callout-icon">🔬</span>
                         <div>
-                            <strong>Technischer Vorteil:</strong> في الـ CW، الـ Probe فيها زوج كريستالات: وحدة تبعت دايماً ووحدة تسمع دايماً. ماكانش وقت انتظار!
+                            <strong>Technischer Vorteil:</strong> Beim CW besitzt die Sonde zwei Kristalle: einer sendet kontinuierlich, einer empfängt kontinuierlich. Keine Wartezeit!
                         </div>
                     </div>
                 </div><div class="card">
@@ -721,16 +717,16 @@ body {
                         <span class="card-title">Indikationen</span>
                     </div>
                     
-                    <h3>في تضيق الصمامات (Klappenstenosen):</h3>
+                    <h3>Bei Klappenstenosen:</h3>
                     <ul style="margin-left: 20px;">
-                        <li><strong>Aortenstenose:</strong> نجيبو الـ V<sub>max</sub> ونحسبو الـ Druckgradient (ΔP=4×V²)</li>
-                        <li><strong>Mitralstenose:</strong> نفس المبدأ</li>
+                        <li><strong>Aortenstenose:</strong> V<sub>max</sub> bestimmen und Druckgradient berechnen (ΔP=4×V²)</li>
+                        <li><strong>Mitralstenose:</strong> dasselbe Prinzip</li>
                     </ul>
 
-                    <h3 style="margin-top: 16px;">في ارتجاع الصمامات (Klappeninsuffizienzen):</h3>
+                    <h3 style="margin-top: 16px;">Bei Klappeninsuffizienzen:</h3>
                     <ul style="margin-left: 20px;">
-                        <li><strong>TI:</strong> نقيسو سرعة الـ Jet باش نحسبو ضغط الشريان الرئوي (sPAP)</li>
-                        <li><strong>MI:</strong> نشوفو شكل وكثافة المنحنى (Signaldichte)</li>
+                        <li><strong>TI:</strong> Jet-Geschwindigkeit messen, um den Pulmonalarteriendruck (sPAP) zu berechnen</li>
+                        <li><strong>MI:</strong> Form und Dichte der Kurve beurteilen (Signaldichte)</li>
                     </ul>
                 </div>
 </div>
@@ -748,20 +744,20 @@ body {
                         <span class="card-title">Das "GPS" der Echokardiographie</span>
                     </div>
                     
-                    <p class="ar-text">هذا هو الـ "GPS" تاعنا في الـ Echo. يبينلك اتجاه الدم (أحمر = جاي ليك، أزرق = رايح، حسب قاعدة BART) ويبينلك البلايص لي فيهم turbulenter Fluss.</p>
+                    <p>Das ist unser „GPS" in der Echokardiographie. Es zeigt die Flussrichtung (rot = auf den Schallkopf zu, blau = vom Schallkopf weg, nach der BART-Regel) und die Bereiche mit turbulentem Fluss.</p>
 
                     <div class="callout info">
                         <span class="callout-icon">🎨</span>
                         <div>
                             <strong>BART-Regel:</strong><br>
-                            <span style="color: #e03e3e;">● Blue = Away (أزرق = رايح)</span><br>
-                            <span style="color: #e03e3e;">● Red = Toward (أحمر = جاي)</span>
+                            <span style="color: #e03e3e;">● Blue = Away (vom Schallkopf weg)</span><br>
+                            <span style="color: #e03e3e;">● Red = Toward (auf den Schallkopf zu)</span>
                         </div>
                     </div>
 
                     <h3>Anwendungen:</h3>
                     <ul style="margin-left: 20px;">
-                        <li>Jets تاع الـ Insuffizienzen visualisieren</li>
+                        <li>Jets der Insuffizienzen visualisieren</li>
                         <li>Shunts (ASD/VSD) detektieren</li>
                         <li>Vena contracta messen</li>
                         <li>PISA-Methode für Schweregrad-Bestimmung</li>
@@ -781,20 +777,20 @@ body {
                         <span class="card-title">Myokardgeschwindigkeiten</span>
                     </div>
                     
-                    <p class="ar-text">هذا ما يقيسش سرعة الدم، بل يقيس سرعة حركة عضلة القلب بحد ذاتها (Myokardgeschwindigkeiten). العضلة تتحرك ببطء بصح الإشارة تاعها قوية.</p>
+                    <p>Misst nicht die Blutflussgeschwindigkeit, sondern die Bewegungsgeschwindigkeit des Herzmuskels selbst (Myokardgeschwindigkeiten). Der Muskel bewegt sich langsam, sein Signal ist jedoch kräftig.</p>
 
                     <div class="callout success">
                         <span class="callout-icon">⭐</span>
                         <div>
-                            <strong>أهم استخدام:</strong> Diastolische Funktion<br>
-                            نحطوه في الـ Mitralklappenring (septal و lateral) باش نقيسو موجة الـ e'. مبعد نقسمو E (تاع الـ PW الدم) على e' (تاع ال TDI العضلة) باش نخرجو الـ <code>E/e' ratio</code>
+                            <strong>Wichtigste Anwendung:</strong> Diastolische Funktion<br>
+                            Am Mitralklappenring (septal und lateral) platzieren, um die e'-Welle zu messen. Anschließend E (aus dem PW, Blut) durch e' (aus dem TDI, Muskel) teilen, um die <code>E/e' ratio</code> zu erhalten.
                         </div>
                     </div>
 
                     <h3>Weitere Anwendungen:</h3>
                     <ul style="margin-left: 20px;">
-                        <li><strong>E/e' Ratio:</strong> تعطينا فكرة دقيقة على ضغط امتلاء البطين الأيسر (Füllungsdrücke)</li>
-                        <li><strong>RV-Funktion:</strong> قياس موجة s' في الـ Trikuspidalklappenring</li>
+                        <li><strong>E/e' Ratio:</strong> liefert eine präzise Abschätzung der linksventrikulären Füllungsdrücke</li>
+                        <li><strong>RV-Funktion:</strong> Messung der s'-Welle am Trikuspidalklappenring</li>
                     </ul>
                 </div>
 
@@ -823,17 +819,17 @@ body {
                             <tbody>
                                 <tr>
                                     <td><strong>PW</strong></td>
-                                    <td>أين هو الدم؟ (Lokalisation)</td>
-                                    <td>مايقدرش للسرعة العالية</td>
+                                    <td>Wo ist der Fluss? (Lokalisation)</td>
+                                    <td>Keine hohen Geschwindigkeiten</td>
                                 </tr>
                                 <tr>
                                     <td><strong>CW</strong></td>
-                                    <td>ما هي أقصى سرعة؟ (V<sub>max</sub>)</td>
-                                    <td>مايعرفش البلاصة بالضبط</td>
+                                    <td>Wie hoch ist V<sub>max</sub>?</td>
+                                    <td>Keine genaue Lokalisation</td>
                                 </tr>
                                 <tr>
                                     <td><strong>Farb</strong></td>
-                                    <td>اتجاه و Turbulenz؟</td>
+                                    <td>Richtung &amp; Turbulenz?</td>
                                     <td>Keine quantitative Messung</td>
                                 </tr>
                                 <tr>
@@ -861,13 +857,13 @@ body {
                         <span class="badge blue">PW-Doppler</span>
                     </div>
                     
-                    <p class="ar-text">هنا رانا نشوفو الدم كيفاش يهبط من الأذين الأيسر (LA) للبطين الأيسر (LV) في وقت الانبساط. نحطو الـ PW عند فتحة الصمام في الـ Apikaler 4-Kammerblick.</p>
+                    <p>Hier wird beurteilt, wie das Blut in der Diastole vom linken Vorhof (LA) in den linken Ventrikel (LV) einströmt. Das PW wird im apikalen 4-Kammerblick an der Klappenöffnung platziert.</p>
 
-                    <h3>موجة E (Early filling):</h3>
-                    <p>كي يفتح الصمام التاجي، الدم يهبط بقوة وبسرعة للبطين الأيسر (لخاطر البطين راه فارغ والضغط فيه هابط). في الحالة الطبيعية، هاد الموجة تكون كبيرة.</p>
+                    <h3>E-Welle (Early filling):</h3>
+                    <p>Beim Öffnen der Mitralklappe strömt das Blut kräftig und schnell in den linken Ventrikel (da dieser leer ist und der Druck niedrig). Im Normalfall ist diese Welle groß.</p>
 
-                    <h3>موجة A (Atrial contraction):</h3>
-                    <p>في نهاية الانبساط، الأذين الأيسر يدير انقباضة باش يعصر الشوية تاع الدم لي بقات فيه. في الحالة الطبيعية، هاد الموجة تكون صغيرة.</p>
+                    <h3>A-Welle (Atriale Kontraktion):</h3>
+                    <p>Am Ende der Diastole kontrahiert der linke Vorhof, um das restliche Blut auszuwerfen. Im Normalfall ist diese Welle klein.</p>
                 </div><div class="card">
                     <div class="card-header">
                         <span class="card-icon">⚕️</span>
@@ -878,7 +874,7 @@ body {
                         <span class="callout-icon">📊</span>
                         <div>
                             <strong>Relaxationsstörung (E < A):</strong><br>
-                            إذا البطين الأيسر ولى يابس وما يترخفش مليح، الدم ما يهبطش بالخف في الأول (الـ E تصغار)، والأذين يولي مضطر يعصر بقوة (الـ A تكبار).
+                            Wird der linke Ventrikel steif und relaxiert schlecht, strömt das Blut anfangs schlechter ein (E wird kleiner) und der Vorhof muss kräftiger kontrahieren (A wird größer).
                         </div>
                     </div>
 
@@ -886,7 +882,7 @@ body {
                         <span class="callout-icon">🚨</span>
                         <div>
                             <strong>Restriktives Muster (E >> A):</strong><br>
-                            إذا الحالة زادت تعقدت والبطين ولى يابس بزاف والضغط فيه طالع، الدم يضرب بقوة في الأول لخاطر الضغط في الأذين راه عالي بزاف (الـ E تولي ضخمة).
+                            Verschlechtert sich der Zustand und der Ventrikel wird sehr steif mit erhöhtem Druck, strömt das Blut anfangs kräftig ein, da der Vorhofdruck stark erhöht ist (E wird sehr groß).
                         </div>
                     </div>
                 </div>
@@ -905,18 +901,18 @@ body {
                         <span class="card-title">Rechtsventrikle Funktion</span>
                     </div>
                     
-                    <p class="ar-text">هذا نفس المبدأ 100% تاع الميترال، بصح في الجهة اليمنى تاع القلب. يعني رانا نشوفو الدم كيفاش يهبط من الأذين الأيمن (RA) للبطين الأيمن (RV).</p>
+                    <p>Exakt dasselbe Prinzip wie bei der Mitralklappe, jedoch auf der rechten Herzseite: Beurteilt wird, wie das Blut vom rechten Vorhof (RA) in den rechten Ventrikel (RV) einströmt.</p>
 
                     <ul style="margin-left: 20px;">
-                        <li><strong>موجة E:</strong> التعبئة السريعة تاع البطين الأيمن</li>
-                        <li><strong>موجة A:</strong> انقباض الأذين الأيمن</li>
+                        <li><strong>E-Welle:</strong> schnelle Füllung des rechten Ventrikels</li>
+                        <li><strong>A-Welle:</strong> Kontraktion des rechten Vorhofs</li>
                     </ul>
 
                     <div class="callout info">
                         <span class="callout-icon">🔍</span>
                         <div>
                             <strong>Klinische Bedeutung:</strong><br>
-                            نستعملوها باش نقيمو الـ Rechtsventrikuläre diastolische Funktion. في حالات Pulmonale Hypertonie ولا Rechtsherzinfarkt، تلقى E < A.
+                            Dient der Beurteilung der rechtsventrikulären diastolischen Funktion. Bei pulmonaler Hypertonie oder Rechtsherzinfarkt findet sich E &lt; A.
                         </div>
                     </div>
                 </div>
@@ -935,16 +931,16 @@ body {
                         <span class="card-title">S-, D- und Ar-Welle</span>
                     </div>
                     
-                    <p class="ar-text">هنا رانا نرجعو خطوة للوراء. رانا نقيسو سرعة الدم لي راه جاي من الرية وداخل للأذين الأيسر (LA). نحطو الـ PW في الـ Vena pulmonalis (عادة الوريد الرئوي العلوي الأيمن RUPV).</p>
+                    <p>Hier wird ein Schritt zurückgegangen: Gemessen wird die Geschwindigkeit des Blutes, das aus der Lunge in den linken Vorhof (LA) einströmt. Das PW wird in der Vena pulmonalis platziert (meist die rechte obere Pulmonalvene, RUPV).</p>
 
-                    <h3>موجة S (Systole):</h3>
-                    <p>في وقت الانقباض تاع البطين (الصمام التاجي مغلوق)، الأذين الأيسر يكون يترخف، تسمى يجبد الدم من الرية. هذي الموجة تكون موجبة (الفوق).</p>
+                    <h3>S-Welle (Systole):</h3>
+                    <p>Während der Ventrikelsystole (Mitralklappe geschlossen) relaxiert der linke Vorhof und „saugt" Blut aus der Lunge an. Diese Welle ist positiv (oberhalb der Linie).</p>
 
-                    <h3>موجة D (Diastole):</h3>
-                    <p>كي يفتح الصمام التاجي، الدم يولي يفوت من الرية، يجوز على الأذين، ويهبط ديريكت للبطين الأيسر. هذي ثاني موجة موجبة.</p>
+                    <h3>D-Welle (Diastole):</h3>
+                    <p>Beim Öffnen der Mitralklappe strömt das Blut aus der Lunge über den Vorhof direkt in den linken Ventrikel. Dies ist die zweite positive Welle.</p>
 
-                    <h3>موجة Ar (Atrial reversal):</h3>
-                    <p>كي الأذين الأيسر ينقبض باش يهبط الدم للبطين، جزء من هاداك الدم يطبع للوراء ويرجع في الأوردة الرئوية. هذي الموجة تجي سالبة (تحت الخط).</p>
+                    <h3>Ar-Welle (Atrial Reversal):</h3>
+                    <p>Wenn der linke Vorhof kontrahiert, um Blut in den Ventrikel zu befördern, strömt ein Teil rückwärts in die Pulmonalvenen. Diese Welle ist negativ (unterhalb der Linie).</p>
                 </div><div class="card">
                     <div class="card-header">
                         <span class="card-icon">⚕️</span>
@@ -955,7 +951,7 @@ body {
                         <span class="callout-icon">📈</span>
                         <div>
                             <strong>Diastolische Dysfunktion:</strong><br>
-                            إذا الضغط في البطين الأيسر راه عالي بزاف (erhöhter LVEDP)، تلقى موجة Ar كبيرة بزاف وعريضة في الوقت.
+                            Bei stark erhöhtem linksventrikulärem Druck (erhöhter LVEDP) ist die Ar-Welle groß und zeitlich verbreitert.
                         </div>
                     </div>
 
@@ -963,7 +959,7 @@ body {
                         <span class="callout-icon">🚨</span>
                         <div>
                             <strong>Schwere MI:</strong><br>
-                            في حالة MI شديدة، موجة S تولي سالبة (تحت الخط) - <strong>Systolischer Fluss-Reversal</strong> - علامة خطيرة!
+                            Bei schwerer MI wird die S-Welle negativ (unterhalb der Linie) — <strong>Systolischer Fluss-Reversal</strong> — ein Alarmzeichen!
                         </div>
                     </div>
                 </div>
@@ -982,7 +978,7 @@ body {
                         <span class="card-title">Velocity Time Integral</span>
                     </div>
                     
-                    <p class="ar-text"><strong>واش هو الـ VTI؟</strong> بالعربية هو "تكامل السرعة على الزمن". تخيل حبة تاع دم (Erythrozyt) تخرجت من البطين... الـ VTI يحسبلنا شحال من سنتيمتر مشاتها هاديك الحبة في نبضة وحدة (يسموها Schlagdistanz). عادة تكون بين 18 و 22 cm.</p>
+                    <p><strong>Was ist das VTI?</strong> Das Velocity-Time-Integral. Man stelle sich ein Erythrozyt vor, das den Ventrikel verlässt — das VTI gibt an, wie viele Zentimeter es bei einem Herzschlag zurücklegt (Schlagdistanz). Normalerweise liegt es zwischen 18 und 22 cm.</p>
 
                     <div class="callout success">
                         <span class="callout-icon">🧮</span>
@@ -1017,13 +1013,13 @@ body {
                         <span class="badge amber">Wichtig!</span>
                     </div>
                     
-                    <p class="ar-text">هذي أهم معادلة في الكارديولوجيا باش نحسبو مساحة الصمام الأبهري المتضيق (Aortenklappenöffnungsfläche - AVA).</p>
+                    <p>Dies ist eine der wichtigsten Gleichungen der Kardiologie zur Berechnung der Öffnungsfläche der stenosierten Aortenklappe (Aortenklappenöffnungsfläche – AVA).</p>
 
                     <div class="callout info">
                         <span class="callout-icon">💧</span>
                         <div>
                             <strong>Physikalisches Prinzip:</strong><br>
-                            تخيل تيو تاع ماء (Pipe) عريض ومبعد يضيق. كمية الماء لي تجوز في البلاصة العريضة هي نفسها كمية الماء لي تجوز في البلاصة الضيقة. باش يتحقق هاد الشي، الماء لازم يزرب (تزيد سرعتو) كي يلحق للضيق.
+                            Man stelle sich ein zunächst weites, dann enger werdendes Rohr (Pipe) vor. Die Wassermenge, die durch den weiten Abschnitt fließt, ist dieselbe wie durch den engen. Damit dies möglich ist, muss das Wasser an der Engstelle schneller werden (höhere Geschwindigkeit).
                         </div>
                     </div>
 
@@ -1064,7 +1060,7 @@ body {
                         <span class="card-title">Pulmonale Hypertonie Marker</span>
                     </div>
                     
-                    <p class="ar-text"><strong>واش هو الـ Akzelerationszeit (AT)؟</strong> هو الوقت لي يستغرقو الدم من بداية خروجو من البطين الأيمن باش يلحق لأقصى سرعة (Peak Velocity).</p>
+                    <p><strong>Was ist die Akzelerationszeit (AT)?</strong> Die Zeit, die das Blut vom Beginn des Auswurfs aus dem rechten Ventrikel bis zum Erreichen der Spitzengeschwindigkeit (Peak Velocity) benötigt.</p>
 
                     <div class="table-wrapper">
                         <table>
@@ -1113,7 +1109,7 @@ body {
                     <div class="callout warn">
                         <span class="callout-icon">⚡</span>
                         <div>
-                            <strong>Pro-Tip:</strong> الـ Sweep Speed لـ 100 mm/s باش يكون القياس دقيق. هكذا المنحنى يطوال وتقدر تحدد القمة بالضبط.
+                            <strong>Pro-Tipp:</strong> Sweep Speed auf 100 mm/s einstellen für eine präzise Messung. So wird die Kurve gestreckt und der Peak lässt sich genau bestimmen.
                         </div>
                     </div>
                 </div><div class="card">
@@ -1123,18 +1119,18 @@ body {
                         <span class="badge red">Schwere PH</span>
                     </div>
                     
-                    <p class="ar-text">كي يكون الضغط الرئوي عالي بزاف بزاف، الدم يخبط في هاداك الضغط ويرتد شوية. الصمام الرئوي يحب يتغلق في وسط الـ Systole ومبعد يعاود يكمل يفتح!</p>
+                    <p>Bei sehr hohem Pulmonaldruck prallt das Blut gegen diesen Druck und wird teilweise reflektiert. Die Pulmonalklappe neigt dazu, mitten in der Systole zu schließen und danach erneut zu öffnen!</p>
 
                     <div class="callout danger">
                         <span class="callout-icon">⚠️</span>
                         <div>
                             <strong>Notching = W-förmige Kurve</strong><br>
-                            هذي ترسمنا دقة (كسرة) في وسط المنحنى شغل حرف W. يعيطولها <strong>Mid-systolic Notching</strong> وهي علامة قاطعة تاع PH قاوية.
+                            Dies erzeugt einen Einschnitt in der Mitte der Kurve, ähnlich dem Buchstaben W. Man nennt dies <strong>Mid-systolic Notching</strong> — ein sicheres Zeichen einer schweren PH.
                         </div>
                     </div>
 
                     <h3>AT-Messung bei Notching:</h3>
-                    <p>قيس الـ AT دايماً حتى للـ القمة الأولى المبكرة (Erster Peak). ما تروحش للقمة الدوزيام. راح تلقى الـ AT قصير بزاف (عادة أقل من 75 ms).</p>
+                    <p>Die AT immer bis zum frühen ersten Peak messen, nicht bis zum zweiten Peak. Die AT ist dann sehr kurz (meist unter 75 ms).</p>
                 </div>
 </div>
 
@@ -1164,7 +1160,7 @@ body {
                     <div class="callout info">
                         <span class="callout-icon">📊</span>
                         <div>
-                            <strong>Wichtig:</strong> الـ Mittlerer Gradient (Mean Gradient) هو الأهم في تقييم خطورة التضيق حسب الـ Leitlinien!
+                            <strong>Wichtig:</strong> Der mittlere Gradient (Mean Gradient) ist laut Leitlinien am wichtigsten für die Schweregradbeurteilung der Stenose!
                         </div>
                     </div>
                 </div><div class="card">
@@ -1222,7 +1218,7 @@ body {
                         <span class="card-title">Trikuspidalinsuffizienz (TI) → sPAP</span>
                     </div>
                     
-                    <p>أهم فايدة هي حساب الـ sPAP (ضغط الشريان الرئوي).</p>
+                    <p>Der wichtigste Nutzen ist die Berechnung des sPAP (Pulmonalarteriendruck).</p>
 
                     <div style="background: var(--notion-sidebar); padding: 16px; border-radius: 6px; margin: 16px 0;">
                         <strong>Formel:</strong><br><br>
@@ -1247,8 +1243,8 @@ body {
                     
                     <h3>Beurteilungskriterien:</h3>
                     <ul style="margin-left: 20px;">
-                        <li><strong>Signaldichte:</strong> نشوفو كثافة المنحنى. إذا أبيض ناصع ومعمر → schwere MI</li>
-                        <li><strong>Jet-Form:</strong> إذا كان فيه حفرة في الوسط (V-wave cutoff) → الأذين ينفجر بالضغط</li>
+                        <li><strong>Signaldichte:</strong> Dichte der Kurve beurteilen. Hell, dicht und gut gefüllt → schwere MI</li>
+                        <li><strong>Jet-Form:</strong> Einschnitt in der Mitte (V-wave cutoff) → der Vorhof wird durch den Druck überlastet</li>
                         <li><strong>Farb-Doppler:</strong> Jet-Größe, Vena contracta, PISA</li>
                     </ul>
                 </div><div class="card">
@@ -1257,13 +1253,13 @@ body {
                         <span class="card-title">Aortenklappeninsuffizienz (AI)</span>
                     </div>
                     
-                    <p>نحسبو الـ <strong>Pressure Half Time (PHT)</strong>:</p>
+                    <p>Berechnung der <strong>Pressure Half Time (PHT)</strong>:</p>
 
                     <div class="callout danger">
                         <span class="callout-icon">⚠️</span>
                         <div>
                             <strong>Schwere AI:</strong> PHT < 200 ms<br>
-                            معناها الضغوطات تساوات بالخف بين الأبهر والبطين - علامة خطيرة!
+                            Das bedeutet, dass sich die Drücke zwischen Aorta und Ventrikel rasch angleichen — ein Alarmzeichen!
                         </div>
                     </div>
                 </div>
@@ -1283,16 +1279,16 @@ body {
                         <span class="card-title">Komplementäre Information</span>
                     </div>
                     
-                    <p class="ar-text">علاش نعيو رواحنا بالـ AT والـ sPAP مع بعض؟ علاش ما نكتفيش بواحد برك؟</p>
+                    <p>Warum AT und sPAP gemeinsam betrachten? Warum genügt nicht einer allein?</p>
 
-                    <p>الجواب هو أنهم يكملو بعضاهم، وكل واحد يعطيك معلومة "مختلفة" من زاوية ثانية.</p>
+                    <p>Weil sie sich ergänzen — jeder liefert eine andere Information aus einem anderen Blickwinkel.</p>
 
                     <div class="callout info">
                         <span class="callout-icon">🌡️</span>
                         <div>
                             <strong>Metapher:</strong><br>
-                            sPAP = "Thermometer" (يقولك شحال راهي السخانة)<br>
-                            AT = "Symptome" (يقولك كيفاش الجسم راهو يتعامل مع السخانة)
+                            sPAP = „Thermometer" (zeigt die Höhe des Drucks)<br>
+                            AT = „Symptom" (zeigt, wie das rechte Herz mit dem Druck umgeht)
                         </div>
                     </div>
                 </div><div class="card">
@@ -1375,9 +1371,9 @@ body {
                 <div class="callout success">
                     <span class="callout-icon">💎</span>
                     <div>
-                        <strong>خلاصة يا دكتور أسامة:</strong><br>
-                        الـ sPAP يعطيك الكمية (Quantity)<br>
-                        الـ AT يعطيك النوعية (Quality) والبديل في حالة غياب الـ TR
+                        <strong>Fazit:</strong><br>
+                        Der sPAP liefert die Quantität (Quantity)<br>
+                        Die AT liefert die Qualität (Quality) und die Alternative bei fehlender TR
                     </div>
                 </div>
 
@@ -1442,8 +1438,8 @@ body {
                 <div class="callout success">
                     <span class="callout-icon">🎓</span>
                     <div class="ar-text">
-                        <strong>يا دكتور، هاد السؤال هو اللي يحولك من مجرد "تكنسيان" يعرف يحرك الـ Probe، إلى طبيب كارديلوجي يعرف يقرأ لغة القلب.</strong><br><br>
-                        الـ Doppler هو الميزان تاعك؛ الـ PW يقيسلك "نوعية التعمار" (Filling/Diastole)، والـ CW يقيسلك "شدة الضغط والمرض" (Pressure/Severity).
+                        <strong>Diese Frage macht den Unterschied: vom bloßen Bedienen der Sonde hin zum Verstehen der Sprache des Herzens.</strong><br><br>
+                        Der Doppler ist das Messinstrument: Das PW erfasst die „Qualität der Füllung" (Filling/Diastole), das CW die „Schwere von Druck und Erkrankung" (Pressure/Severity).
                     </div>
                 </div>
 
