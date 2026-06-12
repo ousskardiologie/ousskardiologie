@@ -7,84 +7,76 @@
 <meta name="theme-color" content="#ffffff">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>EKG Tachykardie — OUSS Kardiologie</title>
+<title>EKG Tachykardie — Diastola</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500;600&family=Caveat:wght@500;600;700&display=swap" rel="stylesheet">
+<!-- Diastola Design System -->
+<link rel="stylesheet" href="../assets/css/theme.css">
+<link rel="stylesheet" href="../assets/css/animations.css">
+
 <style>
 /* ════════════════════════════════════
-   OUSS KARDIOLOGIE — EKG TACHYKARDIE
-   Theme: matches index.html
+   DIASTOLA — EKG TACHYKARDIE
+   Klinisches Skizzenbuch · Token-Remap
 ════════════════════════════════════ */
 :root {
-  /* Index-matching palette */
-  --bg:       #ffffff;
-  --surface:  #f7f5f2;
-  --surface2: #eeecea;
-  --surface3: #e8e5e1;
-  --border:   #e5e2de;
-  --border2:  #d8d5d0;
-  --text:     #1a1410;
-  --text2:    #6b6460;
-  --text3:    #a09890;
-
-  /* Brand accent — OUSS red */
+  --bg:       var(--paper);
+  --surface:  #f4eee0;
+  --surface2: #ece4d2;
+  --surface3: #e2d8c2;
+  --border:   #e7ddc9;
+  --border2:  #ddd1b8;
+  --text:     #2a241c;
+  --text2:    #6e6354;
+  --text3:    #a3957f;
   --red:      #c8303a;
-  --red-bg:   #fdf2f2;
-  --red-border:#fbd5d5;
-
-  /* Semantic colours */
-  --blue:     #2563eb;
-  --blue-bg:  #eff6ff;
-  --blue-border:#bfdbfe;
-  --green:    #0f7b5a;
-  --green-bg: #f0fdf8;
-  --green-border:#a7f3d0;
-  --amber:    #d97706;
-  --amber-bg: #fffbeb;
-  --amber-border:#fde68a;
-  --purple:   #7c3aed;
-  --purple-bg:#f5f3ff;
-  --purple-border:#ddd6fe;
-  --orange:   #c2410c;
-  --orange-bg:#fff7ed;
-  --orange-border:#fed7aa;
-  --teal:     #0d9488;
-  --darija-bg:#fef9f3;
-  --darija-border:#f0ddc8;
-  --darija-text:#5c3d1a;
-
-  /* Type */
+  --red-bg:   #fdf3ef;
+  --red-border: rgba(200,48,58,.35);
+  --blue:     #2456a6;
+  --blue-bg:  #eef3fa;
+  --blue-border: rgba(36,86,166,.30);
+  --green:    #1f7a5c;
+  --green-bg: #edf5ef;
+  --green-border: rgba(31,122,92,.30);
+  --amber:    #b07a10;
+  --amber-bg: #faf4e0;
+  --amber-border: rgba(176,122,16,.32);
+  --purple:   #6d3fb8;
+  --purple-bg:#f3effa;
+  --purple-border: rgba(109,63,184,.28);
+  --orange:   #c2570f;
+  --orange-bg:#faf0e6;
+  --orange-border: rgba(194,87,15,.30);
+  --teal:     #11756c;
   --serif: 'Cormorant Garamond', Georgia, serif;
   --sans:  'DM Sans', system-ui, sans-serif;
   --mono:  'DM Sans', 'Courier New', monospace;
-
-  /* Layout */
-  --nav-h:      56px;
+  --nav-h:      58px;
   --sidebar-w:  260px;
   --radius:     10px;
   --radius-lg:  14px;
-  --shadow:     0 2px 8px rgba(0,0,0,.06);
-  --shadow-md:  0 6px 24px rgba(0,0,0,.09);
-  --shadow-lg:  0 12px 40px rgba(0,0,0,.10);
+  --shadow:     0 1px 3px rgba(74,60,38,.07), 0 4px 14px rgba(74,60,38,.06);
+  --shadow-md:  0 2px 6px rgba(74,60,38,.08), 0 10px 28px rgba(74,60,38,.10);
+  --shadow-lg:  0 3px 8px rgba(74,60,38,.09), 0 14px 36px rgba(74,60,38,.11);
 }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
-body { font-family: var(--sans); background: var(--bg); color: var(--text); font-size: 15px; line-height: 1.75; overflow-x: hidden; -webkit-tap-highlight-color: transparent; padding-bottom: env(safe-area-inset-bottom, 12px); }
+body { font-family: var(--sans); color: var(--text); font-size: 15px; line-height: 1.75; overflow-x: hidden; -webkit-tap-highlight-color: transparent; padding-bottom: env(safe-area-inset-bottom, 12px); }
 a, button { touch-action: manipulation; -webkit-tap-highlight-color: transparent; }
 ::-webkit-scrollbar { width: 5px; } ::-webkit-scrollbar-track { background: transparent; } ::-webkit-scrollbar-thumb { background: var(--border2); border-radius: 99px; }
 
-/* ═══ OUSS TOP NAV ═══ */
+/* ═══ DIASTOLA TOP NAV ═══ */
 .ouss-nav {
   position: sticky; top: 0; z-index: 600;
   height: var(--nav-h);
-  background: rgba(255,255,255,.97);
-  backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
-  border-bottom: 1px solid var(--border);
+  background: rgba(250,246,238,.94);
+  backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+  border-bottom: 1.5px solid var(--border2);
   display: flex; align-items: center; padding: 0 1.5rem; gap: 6px;
 }
 .ouss-brand {
-  font-family: var(--serif); font-size: 1.1rem; font-weight: 400;
+  font-family: var(--serif); font-size: 1.25rem; font-weight: 600; letter-spacing: .01em;
   color: var(--text); text-decoration: none;
   display: flex; align-items: center; gap: .45rem;
   white-space: nowrap; flex-shrink: 0;
@@ -100,7 +92,7 @@ a, button { touch-action: manipulation; -webkit-tap-highlight-color: transparent
 .ouss-nav-links a:hover { background: var(--surface); color: var(--text); }
 .ouss-nav-links a.cur { background: var(--red-bg); color: var(--red); font-weight: 600; }
 .ouss-spacer { flex: 1; }
-.ouss-badge { font-size: .76rem; font-weight: 600; padding: 6px 13px; background: var(--red); color: #fff; border-radius: 7px; white-space: nowrap; }
+.ouss-badge { font-family: var(--hand); font-size: 1.0rem; font-weight: 700; padding: 3px 14px; background: transparent; color: var(--red); border: 1.8px solid var(--red); border-radius: var(--r-sketch); transform: rotate(-1.2deg); white-space: nowrap; }
 .ouss-ham {
   display: none; flex-direction: column; justify-content: center; align-items: center;
   gap: 5px; width: 40px; height: 40px; flex-shrink: 0;
@@ -114,7 +106,7 @@ a, button { touch-action: manipulation; -webkit-tap-highlight-color: transparent
 .ouss-overlay.open { display: block; }
 .ouss-drawer {
   position: fixed; top: var(--nav-h); right: 0; bottom: 0;
-  width: min(260px, 80vw); background: var(--bg); z-index: 599;
+  width: min(260px, 80vw); background: var(--surface); z-index: 599;
   transform: translateX(110%); transition: transform .28s cubic-bezier(.4,0,.2,1);
   display: flex; flex-direction: column; border-left: 1px solid var(--border);
   overflow-y: auto;
@@ -151,8 +143,8 @@ a, button { touch-action: manipulation; -webkit-tap-highlight-color: transparent
 .sidebar-lang { display: flex; gap: 6px; flex-wrap: wrap; }
 .sidebar-lang span {
   font-size: .7rem; padding: 2px 9px; border-radius: 20px;
-  background: var(--darija-bg); color: var(--darija-text);
-  border: 1px solid var(--darija-border); font-weight: 600;
+  background: var(--surface); color: var(--text2);
+  border: 1px solid var(--border); font-weight: 600;
 }
 .sidebar-section {
   font-size: .65rem; font-weight: 700; letter-spacing: .13em;
@@ -177,7 +169,7 @@ a, button { touch-action: manipulation; -webkit-tap-highlight-color: transparent
 /* ═══ TOPBAR (internal breadcrumb bar) ═══ */
 .topbar {
   position: fixed; top: var(--nav-h); left: var(--sidebar-w); right: 0;
-  height: 46px; background: rgba(255,255,255,.98); backdrop-filter: blur(12px);
+  height: 46px; background: rgba(250,246,238,.96); backdrop-filter: blur(12px);
   border-bottom: 1px solid var(--border);
   display: flex; align-items: center; padding: 0 2rem; z-index: 100;
   gap: 9px; font-size: .83rem; color: var(--text3);
@@ -263,9 +255,6 @@ hr { border: none; border-top: 1px solid var(--border); margin: 2.5rem 0; }
 .critical-box p { font-size: .9rem; line-height: 1.7; }
 
 /* ═══ DARIJA BOX ═══ */
-.darija-box { background: var(--darija-bg); border: 1px solid var(--darija-border); border-radius: var(--radius); padding: 1rem 1.2rem; margin: 1.2rem 0; direction: rtl; text-align: right; font-size: .9rem; color: var(--darija-text); line-height: 1.8; }
-.darija-label { direction: ltr; text-align: left; font-size: .65rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--darija-text); opacity: .6; margin-bottom: 7px; }
-.darija-label span { background: var(--darija-border); padding: 2px 8px; border-radius: 4px; }
 
 /* ═══ TABS (panel selector) ═══ */
 .tab-row { display: flex; gap: 4px; background: var(--surface2); border: 1px solid var(--border); border-radius: var(--radius); padding: 4px; margin: 1.4rem 0 1.6rem; flex-wrap: wrap; }
@@ -300,7 +289,6 @@ hr { border: none; border-top: 1px solid var(--border); margin: 2.5rem 0; }
 .card.c-orange::before{ background: var(--orange); }
 .card h4 { font-size: .9rem; font-weight: 700; margin-bottom: .35rem; }
 .card p { font-size: .84rem; color: var(--text2); line-height: 1.6; }
-.card .card-darija { font-size: .84rem; direction: rtl; text-align: right; color: var(--darija-text); background: var(--darija-bg); padding: 7px 11px; border-radius: 8px; margin-top: 9px; border: 1px solid var(--darija-border); }
 
 /* ═══ DETAIL PANEL ═══ */
 .detail-panel { background: var(--bg); border: 1px solid var(--border2); border-radius: var(--radius-lg); overflow: hidden; margin: 1.4rem 0; box-shadow: var(--shadow-lg); animation: fadein .3s ease both; }
@@ -538,19 +526,250 @@ body {
   padding-left: max(1rem, env(safe-area-inset-left, 1rem));
 }
 
+/* ═══ DIASTOLA SKIZZENBUCH-SCHICHT ═══ */
+.sec-num {
+  background: transparent; color: var(--red);
+  border: 2px solid var(--red); border-radius: var(--r-sketch);
+  font-family: var(--hand); font-size: 1.05rem; font-weight: 700;
+  box-shadow: none; transform: rotate(-2deg);
+}
+.tag, .badge, .pill, .prop, .tab-badge { border-radius: var(--r-sketch); }
+.critical-box::before { border-radius: var(--r-sketch); }
+.card:hover { transform: translateY(-2px) rotate(-.25deg); }
+.summary-box::before {
+  height: 7px; top: 7px; left: 1.4rem; right: 1.4rem;
+  background: var(--wave-red) repeat-x; background-size: 40px 7px;
+}
+.sidebar-footer { font-family: var(--hand); font-size: 1.0rem; transform: rotate(-.8deg); }
+.topbar .time { font-family: var(--hand); font-size: 1.0rem; color: var(--text3); }
+
+/* ── Kopf-Randnotiz ── */
+.head-annot-row { display: flex; align-items: flex-start; gap: 1.4rem; flex-wrap: wrap; }
+.head-annot {
+  position: relative; margin-top: .4rem;
+  font-family: var(--hand); font-weight: 600; color: var(--red);
+  font-size: 1.35rem; line-height: 1.15; max-width: 230px; transform: rotate(-2deg);
+  padding-left: 8px;
+}
+.head-annot .annot-arrow { position: absolute; left: -44px; top: 2px; width: 46px; height: 36px; overflow: visible; }
+.annot-arrow path { fill: none; stroke: var(--red); stroke-width: 2.2; stroke-linecap: round; }
+@media (max-width: 760px) { .head-annot { display: none; } }
+
+/* ── Board-Abschnitte ── */
+.board-sec { margin: 2.6rem 0; }
+.board-head { display: flex; align-items: baseline; justify-content: space-between; gap: 1rem; flex-wrap: wrap; margin-bottom: 1.2rem; }
+.board-head h2 { font-family: var(--serif); font-size: clamp(1.5rem, 2.4vw, 2rem); font-weight: 300; color: var(--text); }
+.board-head h2 em { font-style: italic; color: var(--red); }
+.board-note { font-family: var(--hand); font-size: 1.1rem; font-weight: 600; color: var(--text3); transform: rotate(-1deg); }
+
+/* Haftnotizen */
+.board-pearls { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 20px; }
+.bp {
+  padding: 1.2rem 1.1rem 1rem; border-radius: 3px; position: relative;
+  box-shadow: 0 4px 10px rgba(74,60,38,.13), 0 1px 3px rgba(74,60,38,.10);
+  display: flex; flex-direction: column; gap: .3rem;
+}
+.bp::before {
+  content: ''; position: absolute; top: -10px; left: 50%;
+  transform: translateX(-50%) rotate(-2deg); width: 78px; height: 21px;
+  background: rgba(255,255,255,.42); border: 1px solid rgba(74,60,38,.08);
+  box-shadow: 0 1px 2px rgba(74,60,38,.08);
+}
+.bp.s-y { background: var(--note-y); transform: rotate(-1deg); }
+.bp.s-r { background: var(--note-r); transform: rotate(.85deg); }
+.bp.s-g { background: var(--note-g); transform: rotate(-.6deg); }
+.bp:hover { transform: translateY(-3px) rotate(0deg); }
+.bp-head { font-family: var(--hand); font-size: 1.3rem; font-weight: 700; line-height: 1.05; color: var(--text); }
+.bp.s-y .bp-head { color: #7a5c10; } .bp.s-r .bp-head { color: var(--red); } .bp.s-g .bp-head { color: var(--green); }
+.bp-body { font-size: .82rem; color: var(--text); line-height: 1.6; }
+.bp-src { font-size: .64rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: rgba(42,36,28,.45); margin-top: .25rem; }
+
+/* Karteikarten */
+.board-qref { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 16px; }
+.bq {
+  background: repeating-linear-gradient(transparent, transparent 27px, rgba(36,86,166,.10) 27px, rgba(36,86,166,.10) 28px), var(--card);
+  border: 1.5px solid var(--border2); border-top: 3px solid rgba(200,48,58,.55);
+  border-radius: 8px; padding: 1.1rem 1.2rem 1rem; box-shadow: var(--shadow);
+}
+.bq-title { font-family: var(--hand); font-size: 1.35rem; font-weight: 700; color: var(--navy, #1d2b50); line-height: 1; margin-bottom: .5rem; }
+.bq-list { list-style: none; }
+.bq-list li { font-size: .78rem; line-height: 28px; display: flex; justify-content: space-between; gap: .6rem; color: var(--text); }
+.bq-list li span:first-child { color: var(--text2); }
+.bq-list li span:last-child { font-weight: 600; white-space: nowrap; }
+
+/* Pfade */
+.board-paths { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px; }
+.bpath { background: var(--card); border: 1.5px solid var(--border2); border-radius: var(--radius-lg); padding: 1.3rem 1.3rem 1.1rem; box-shadow: var(--shadow); display: flex; flex-direction: column; gap: .75rem; }
+.bpath:hover { box-shadow: var(--shadow-md); }
+.bpath-title { font-family: var(--serif); font-size: 1.2rem; font-weight: 400; color: var(--text); }
+.bpath-steps { display: flex; align-items: center; flex-wrap: wrap; gap: 6px 4px; }
+.bpath-step { font-size: .73rem; font-weight: 600; color: var(--text2); border: 1.2px solid var(--border2); background: var(--bg); padding: 3px 10px; border-radius: var(--r-sketch); white-space: nowrap; }
+.bpath-step.hot { color: var(--red); border-color: rgba(200,48,58,.45); background: #fdf3ef; }
+.harrow { width: 26px; height: 14px; flex-shrink: 0; overflow: visible; }
+.harrow path { fill: none; stroke: var(--red); stroke-width: 1.9; stroke-linecap: round; stroke-linejoin: round; }
+.bpath-foot { font-family: var(--hand); font-size: 1.0rem; font-weight: 600; color: var(--text3); transform: rotate(-.6deg); }
+
+/* ── Übersicht „Schmaler / Breiter QRS" im Perlen-Stil ── */
+.overview-col-header {
+  border-bottom: none; padding-bottom: 14px;
+  background-repeat: repeat-x; background-position: left bottom; background-size: 40px 7px;
+  font-size: 1.35rem;
+}
+.overview-col-header--blue { background-image: var(--wave-blue); }
+.overview-col-header--red  { background-image: var(--wave-red); }
+.overview-col-ms {
+  font-family: var(--hand); font-size: 1.05rem; font-weight: 700;
+  opacity: 1; transform: rotate(-1.5deg); display: inline-block; margin-left: 2px;
+}
+.overview-col-num {
+  background: transparent; color: var(--blue);
+  border: 2px solid var(--blue); border-radius: var(--r-sketch);
+  font-family: var(--hand); font-size: 1.0rem; font-weight: 700;
+  width: 32px; height: 28px; transform: rotate(-2deg);
+}
+.overview-col-num--red { background: transparent; color: var(--red); border-color: var(--red); }
+
+.ov-cards { gap: 20px; padding-top: 10px; }
+.ov-cards .card {
+  border: none; border-radius: 3px; overflow: visible;
+  box-shadow: 0 4px 10px rgba(74,60,38,.13), 0 1px 3px rgba(74,60,38,.10);
+  padding: 1.2rem 1.15rem 1rem;
+}
+.ov-cards .card::before { display: none; }       /* alte Farbleiste weg */
+.ov-cards .card::after {                          /* Klebeband */
+  content: ''; position: absolute; top: -10px; left: 50%;
+  transform: translateX(-50%) rotate(-2deg);
+  width: 78px; height: 21px;
+  background: rgba(255,255,255,.42);
+  border: 1px solid rgba(74,60,38,.08);
+  box-shadow: 0 1px 2px rgba(74,60,38,.08);
+  pointer-events: none;
+}
+.ov-cards .card:nth-child(odd)  { transform: rotate(-.9deg); }
+.ov-cards .card:nth-child(even) { transform: rotate(.75deg); }
+.ov-cards .card:hover {
+  transform: translateY(-3px) rotate(0deg);
+  box-shadow: 0 6px 16px rgba(74,60,38,.16), 0 2px 4px rgba(74,60,38,.10);
+}
+/* getönte Notizzettel je Kategorie-Tinte */
+.ov-cards .card.c-blue   { background: #e7eff9; }
+.ov-cards .card.c-amber  { background: var(--note-y); }
+.ov-cards .card.c-green  { background: var(--note-g); }
+.ov-cards .card.c-red    { background: var(--note-r); }
+.ov-cards .card.c-orange { background: #fcecdd; }
+.ov-cards .card.c-purple { background: #efe8f9; }
+/* handschriftliche Notiz-Überschrift */
+.ov-cards .card h4 {
+  font-family: var(--hand); font-size: 1.35rem; font-weight: 700;
+  line-height: 1.05; margin: .15rem 0 .3rem;
+}
+.ov-cards .card.c-blue h4   { color: var(--blue); }
+.ov-cards .card.c-amber h4  { color: #7a5c10; }
+.ov-cards .card.c-green h4  { color: var(--green); }
+.ov-cards .card.c-red h4    { color: var(--red); }
+.ov-cards .card.c-orange h4 { color: var(--orange); }
+.ov-cards .card.c-purple h4 { color: var(--purple); }
+.ov-cards .card p { font-size: .82rem; line-height: 1.6; color: var(--text); }
+.ov-cards .badge { background: rgba(255,253,248,.6); margin-bottom: 2px; }
+@media (max-width: 860px) {
+  .ov-cards { gap: 18px; }
+}
+
+/* ── Detail-Ansichten (SVT · VHF · Flattern · Sinustachy / VT · KF · WPW · TdP …) ── */
+/* Rhythmus-Auswahl als Papier-Chips statt grauem Tray */
+.tab-row {
+  background: transparent; border: none; padding: 0;
+  gap: 8px; margin: 1.5rem 0 1.7rem;
+}
+.tab-btn {
+  flex: 0 1 auto; min-width: 0;
+  background: var(--surface); border: 1.5px solid var(--border2);
+  border-radius: var(--r-sketch); color: var(--text2);
+  font-weight: 600; padding: 7px 16px;
+}
+.tab-btn:hover { background: var(--surface); border-color: var(--text3); color: var(--text); transform: translateY(-1px); }
+.tab-btn.active {
+  background: var(--red); color: #fffdf8;
+  border-color: var(--red); font-weight: 700;
+  box-shadow: 2px 3px 0 rgba(200,48,58,.20);
+}
+.tab-btn.active .tab-badge { background: rgba(255,253,248,.25); color: #fffdf8; }
+
+/* Detail-Karte: eingeklebtes Blatt mit Klebeband */
+.detail-panel {
+  overflow: visible; position: relative;
+  background: var(--card);
+  border: 1.5px solid var(--border2);
+  box-shadow: var(--shadow-md);
+  margin-top: 1.9rem;
+}
+.detail-panel::before {
+  content: ''; position: absolute; top: -11px; left: 50%;
+  transform: translateX(-50%) rotate(-1.8deg);
+  width: 92px; height: 23px;
+  background: rgba(240,230,200,.6);
+  border: 1px solid rgba(74,60,38,.10);
+  box-shadow: 0 1px 2px rgba(74,60,38,.09);
+  pointer-events: none; z-index: 2;
+}
+.detail-header { border-radius: var(--radius-lg) var(--radius-lg) 0 0; }
+.detail-tabs-row { border-radius: 0; }
+/* aktiver Inhalts-Tab: handgezeichnete Wellenlinie statt gerader Linie */
+.detail-tab { padding-bottom: 10px; border-bottom: none; }
+.detail-tab.active {
+  border-bottom: none;
+  background: var(--wave-red) repeat-x left bottom;
+  background-size: 40px 7px;
+}
+
+/* Callouts als Haftnotizen (gleiche Philosophie wie Klinische Perlen) */
+.callout {
+  border: none; border-radius: 3px;
+  box-shadow: 0 4px 10px rgba(74,60,38,.12), 0 1px 3px rgba(74,60,38,.09);
+  position: relative; margin: 1.5rem 2px 1.2rem;
+}
+.callout::before {
+  content: ''; position: absolute; top: -9px; left: 50%;
+  transform: translateX(-50%) rotate(-2deg);
+  width: 64px; height: 18px;
+  background: rgba(255,255,255,.45);
+  border: 1px solid rgba(74,60,38,.08);
+  box-shadow: 0 1px 2px rgba(74,60,38,.08);
+  pointer-events: none;
+}
+.callout.info    { background: #e7eff9;       transform: rotate(-.3deg); }
+.callout.warn    { background: var(--note-y); transform: rotate(.35deg); }
+.callout.success { background: var(--note-g); transform: rotate(-.3deg); }
+.callout.danger  { background: var(--note-r); transform: rotate(.3deg); }
+.callout.purple  { background: #efe8f9;       transform: rotate(-.25deg); }
+
+/* Schritt-Nummern wie mit Stift eingekreist */
+.step-num {
+  background: transparent; border-radius: var(--r-sketch);
+  font-family: var(--hand); font-size: .95rem; font-weight: 700;
+  border-width: 2px; transform: rotate(-2deg);
+  width: 27px; height: 25px;
+}
+.step-num.danger  { background: transparent; }
+.step-num.success { background: transparent; }
+
+/* Tabellenkopf auf Karteikarten-Papier */
+.cmp-table th, .drug-table thead th { background: var(--surface); }
+
 </style>
 </head>
 <body>
 
-<!-- ═══ OUSS TOP NAV ═══ -->
+<!-- ═══ DIASTOLA TOP NAV ═══ -->
 <nav class="ouss-nav">
   <a href="../index.html" class="ouss-brand">
     <span class="ouss-brand-heart">
-      <svg width="16" height="16" viewBox="0 0 18 18" fill="none">
-        <path d="M9 15.5C3.5 12.2 1 9 1 6A4 4 0 0 1 9 4.2a4 4 0 0 1 8 1.8C17 9 14.5 12.2 9 15.5Z" fill="#c8303a" opacity=".9"/>
+      <svg width="17" height="17" viewBox="0 0 18 18" fill="none">
+        <path d="M9 15.5C3.5 12.2 1 9 1 6A4 4 0 0 1 9 4.2a4 4 0 0 1 8 1.8C17 9 14.5 12.2 9 15.5Z" stroke="#c8303a" stroke-width="1.6" fill="none" stroke-linejoin="round"/>
+        <path d="M4.5 9.5h2.2l1-2.2 1.6 4 1-1.8h2.9" stroke="#c8303a" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
       </svg>
     </span>
-    OUSS Kardiologie
+    Dia<em style="font-style:italic;font-weight:400;color:var(--red)">stola</em>
   </a>
   <div class="ouss-nav-links">
     <a href="../index.html">Startseite</a>
@@ -585,7 +804,6 @@ body {
     <div class="sidebar-title">Tachykardie-Differenzialdiagnosen</div>
     <div class="sidebar-lang">
       <span>🇩🇪 Deutsch</span>
-      <span>🇩🇿 الدارجة</span>
     </div>
   </div>
 
@@ -641,20 +859,27 @@ body {
   <div class="page-header fade-in">
     <div class="breadcrumb">EKG-Kurs <span>›</span> Tachykardien</div>
     <div class="page-icon">🫀</div>
-    <h1>EKG-Tachykardie Differenzialdiagnosen</h1>
-    <p class="page-subtitle">Schmaler vs. breiter QRS · Therapiealgorithmus · Antiarrhythmika — klinische Referenz auf Deutsch und Darija.</p>
+    <div class="head-annot-row">
+      <h1>EKG-Tachykardie <em>Differenzialdiagnosen</em></h1>
+      <div class="head-annot">
+        <svg class="annot-arrow" viewBox="0 0 58 44" aria-hidden="true">
+          <path d="M52 36 C36 38, 16 30, 8 10"/><path d="M4 18 L8 9 L16 12"/>
+        </svg>
+        schmal oder breit?<br>diese Frage zuerst ♡
+      </div>
+    </div>
+    <p class="page-subtitle">Schmaler vs. breiter QRS · Therapiealgorithmus · Antiarrhythmika — klinische Referenz.</p>
     <div class="tag-row">
       <span class="tag red">Notfall</span>
       <span class="tag blue">Schmaler QRS</span>
       <span class="tag amber">Breiter QRS</span>
       <span class="tag green">Algorithmus</span>
       <span class="tag purple">Medikamente</span>
-      <span class="tag gray">Darija الدارجة</span>
     </div>
     <div class="meta-strip">
       <div>📊 11 Rhythmusstörungen</div>
       <div>💊 Vaughan-Williams Klassen I–IV</div>
-      <div>🌐 Deutsch + Darija</div>
+      <div>🌐 Deutsch</div>
     </div>
   </div>
 
@@ -663,11 +888,122 @@ body {
     Verapamil und Diltiazem bei unklarem Breit-QRS absolut kontraindiziert → Kreislaufkollaps möglich.</p>
   </div>
 
-  <div class="darija-box" style="background:var(--darija-bg);border:1px solid var(--darija-border);border-radius:var(--radius);padding:1.1rem 1.3rem;margin:1.3rem 0;direction:rtl;text-align:right;">
-    <div style="direction:ltr;text-align:left;font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--darija-text);opacity:.6;margin-bottom:7px;"><span style="background:var(--darija-border);padding:2px 8px;border-radius:4px;">🇩🇿 بالدارجة</span></div>
-    في الـ Tachykardie، أول سؤال هو: الـ QRS ضيق ولا عريض؟ إذا كان عريض (أكثر من 120 مللي ثانية)، نعامله كـ VT حتى نثبت العكس. ما نعطيوش Verapamil ولا Diltiazem في الـ QRS العريض — خطر جداً!
+  <!-- ══════ KLINISCHE PERLEN (Haftnotizen) ══════ -->
+  <div class="board-sec">
+    <div class="board-head">
+      <h2>Klinische <em>Perlen</em></h2>
+      <span class="board-note">an den Monitor geklebt ✎</span>
+    </div>
+    <div class="board-pearls">
+      <div class="bp s-r">
+        <div class="bp-head">Breit = VT, bis bewiesen</div>
+        <div class="bp-body">Jede Breit-QRS-Tachykardie ist eine ventrikuläre Tachykardie bis zum Beweis des Gegenteils.</div>
+        <div class="bp-src">Kritische Regel</div>
+      </div>
+      <div class="bp s-y">
+        <div class="bp-head">Kein Verapamil bei Breit-QRS</div>
+        <div class="bp-body">Verapamil und Diltiazem bei unklarem Breit-QRS absolut kontraindiziert — Kreislaufkollaps möglich.</div>
+        <div class="bp-src">Antiarrhythmika</div>
+      </div>
+      <div class="bp s-g">
+        <div class="bp-head">Adenosin terminiert SVT</div>
+        <div class="bp-body">Regelmäßige Schmalkomplex-Tachykardie 150–250/min, abrupter Beginn — Adenosin als diagnostisches und therapeutisches Werkzeug.</div>
+        <div class="bp-src">Schmaler QRS</div>
+      </div>
+      <div class="bp s-r">
+        <div class="bp-head">Instabil? Sofort Strom</div>
+        <div class="bp-body">Instabiler Patient: elektrische Kardioversion direkt nach Sedierung — nicht lange am Algorithmus grübeln.</div>
+        <div class="bp-src">Algorithmus</div>
+      </div>
+    </div>
   </div>
 
+  <!-- ══════ SCHNELLREFERENZ (Karteikarten) ══════ -->
+  <div class="board-sec">
+    <div class="board-head">
+      <h2>Schnell<em>referenz</em></h2>
+      <span class="board-note">Karteikarten fürs Kittel-Gedächtnis</span>
+    </div>
+    <div class="board-qref">
+      <div class="bq">
+        <div class="bq-title">QRS-Breite</div>
+        <ul class="bq-list">
+          <li><span>Schmal (supraventrikulär)</span><span>≤ 120 ms</span></li>
+          <li><span>Breit (VT bis Beweis)</span><span>&gt; 120 ms</span></li>
+        </ul>
+      </div>
+      <div class="bq">
+        <div class="bq-title">Vorhofflattern</div>
+        <ul class="bq-list">
+          <li><span>Vorhoffrequenz</span><span>~300/min</span></li>
+          <li><span>Überleitung</span><span>2:1 häufig</span></li>
+          <li><span>Kammerfrequenz</span><span>~150/min</span></li>
+        </ul>
+      </div>
+      <div class="bq">
+        <div class="bq-title">SVT (AVNRT / AVRT)</div>
+        <ul class="bq-list">
+          <li><span>Frequenz</span><span>150–250/min</span></li>
+          <li><span>Rhythmus</span><span>regelmäßig</span></li>
+          <li><span>Beginn / Ende</span><span>abrupt</span></li>
+        </ul>
+      </div>
+      <div class="bq">
+        <div class="bq-title">VT-Kriterien</div>
+        <ul class="bq-list">
+          <li><span>RS-Intervall</span><span>&gt; 100 ms</span></li>
+          <li><span>AV-Dissoziation</span><span>beweist VT</span></li>
+          <li><span>Capture / Fusion</span><span>beweist VT</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════ KLINISCHE PFADE (Skizzen) ══════ -->
+  <div class="board-sec">
+    <div class="board-head">
+      <h2>Klinische <em>Pfade</em></h2>
+      <span class="board-note">Skizzen — Details im jeweiligen Panel</span>
+    </div>
+    <div class="board-paths">
+      <div class="bpath">
+        <div class="bpath-title">Tachykardie-Algorithmus</div>
+        <div class="bpath-steps">
+          <span class="bpath-step hot">Instabil?</span>
+          <svg class="harrow" viewBox="0 0 26 14" aria-hidden="true"><path d="M2 8 C9 4, 15 5, 22 7"/><path d="M17 3 L22 7 L16 10"/></svg>
+          <span class="bpath-step">Kardioversion</span>
+          <svg class="harrow" viewBox="0 0 26 14" aria-hidden="true"><path d="M2 6 C9 10, 15 9, 22 7"/><path d="M17 11 L22 7 L16 4"/></svg>
+          <span class="bpath-step">QRS schmal / breit</span>
+        </div>
+        <div class="bpath-foot">→ vollständiger Algorithmus im Algorithmus-Panel</div>
+      </div>
+      <div class="bpath">
+        <div class="bpath-title">Schmaler QRS</div>
+        <div class="bpath-steps">
+          <span class="bpath-step hot">Vagusmanöver</span>
+          <svg class="harrow" viewBox="0 0 26 14" aria-hidden="true"><path d="M2 8 C9 4, 15 5, 22 7"/><path d="M17 3 L22 7 L16 10"/></svg>
+          <span class="bpath-step">Adenosin</span>
+          <svg class="harrow" viewBox="0 0 26 14" aria-hidden="true"><path d="M2 6 C9 10, 15 9, 22 7"/><path d="M17 11 L22 7 L16 4"/></svg>
+          <span class="bpath-step">Betablocker</span>
+        </div>
+        <div class="bpath-foot">→ Details im SVT-Panel</div>
+      </div>
+      <div class="bpath">
+        <div class="bpath-title">Breiter QRS</div>
+        <div class="bpath-steps">
+          <span class="bpath-step hot">VT annehmen</span>
+          <svg class="harrow" viewBox="0 0 26 14" aria-hidden="true"><path d="M2 8 C9 4, 15 5, 22 7"/><path d="M17 3 L22 7 L16 10"/></svg>
+          <span class="bpath-step">Amiodaron</span>
+          <svg class="harrow" viewBox="0 0 26 14" aria-hidden="true"><path d="M2 6 C9 10, 15 9, 22 7"/><path d="M17 11 L22 7 L16 4"/></svg>
+          <span class="bpath-step">kein Verapamil!</span>
+        </div>
+        <div class="bpath-foot">→ Details im VT-Panel</div>
+      </div>
+    </div>
+  </div>
+
+
+  
   <!-- ── Side-by-side overview: Schmaler | Breiter ── -->
   <div class="overview-split">
 
@@ -682,25 +1018,21 @@ body {
           <div class="badge blue">AVNRT / AVRT</div>
           <h4>💓 SVT</h4>
           <p>150–250/min · regelmäßig · abrupter Beginn/Ende · Adenosin terminiert</p>
-          <div class="card-darija">قلبي يدق بسرعة ويوقف فجأة — Adenosin يوقفو</div>
         </div>
         <div class="card c-amber ripple-host" onclick="showPanel('schmal',null);schmalSelect('vhf');setNavActive('snav-vhf')">
           <div class="badge amber">Absolutarrhythmie</div>
           <h4>〰 Vorhofflimmern</h4>
           <p>Unregelmäßig · keine P-Wellen · Flimmerwellen · Schlaganfall-Risiko!</p>
-          <div class="card-darija">ما فيهاش انتظام — الخطر الأكبر هو الجلطة الدماغية</div>
         </div>
         <div class="card c-amber ripple-host" onclick="showPanel('schmal',null);schmalSelect('vfl');setNavActive('snav-vfl')">
           <div class="badge amber">~150/min bei 2:1</div>
           <h4>⚡ Vorhofflattern</h4>
           <p>Sägezahnmuster · Vorhof ~300/min · 2:1-Überleitung häufig</p>
-          <div class="card-darija">موجات كيما المنشار في II/III/aVF · الأذين يدق 300/دقيقة</div>
         </div>
         <div class="card c-green ripple-host" onclick="showPanel('schmal',null);schmalSelect('sinust');setNavActive('snav-sinust')">
           <div class="badge green">Reaktiv</div>
           <h4>↑ Sinustachykardie</h4>
           <p>Gradueller Beginn · normale P-Wellen · Ursache behandeln</p>
-          <div class="card-darija">تسارع طبيعي ردة فعل: حمى، ألم، فقر الدم، نقص السوائل</div>
         </div>
       </div>
     </div>
@@ -719,25 +1051,21 @@ body {
           <div class="badge red">NOTFALL</div>
           <h4>⚠ VT — Ventrikuläre Tachykardie</h4>
           <p>Regelmäßig · breiter QRS · AV-Dissoziation · Capture Beats · Fusion Beats</p>
-          <div class="card-darija">الأخطر! القلب يدق من البطين مباشرة — قابل للموت المفاجئ</div>
         </div>
         <div class="card c-red ripple-host" onclick="showPanel('breit',null);breitSelect('vf');setNavActive('snav-vf')">
           <div class="badge red">CPR SOFORT</div>
           <h4>🚨 Kammerflimmern</h4>
           <p>Keine organisierten QRS · chaotische Wellen · pulslos · Defibrillation sofort!</p>
-          <div class="card-darija">فوضى كاملة في القلب — Defibrillation فوراً + CPR</div>
         </div>
         <div class="card c-purple ripple-host" onclick="showPanel('breit',null);breitSelect('wpw');setNavActive('snav-wpw')">
           <div class="badge purple">WPW</div>
           <h4>△ WPW-Syndrom</h4>
           <p>Delta-Welle · kurze PR · keine AV-Blocker! → Flecainid/Procainamid</p>
-          <div class="card-darija">مسار إضافي للتنبيه — AV-Blocker خطر يسرع الـ VF!</div>
         </div>
         <div class="card c-orange ripple-host" onclick="showPanel('breit',null);breitSelect('torsades');setNavActive('snav-tdp')">
           <div class="badge orange">Torsades</div>
           <h4>∞ Torsades de Pointes</h4>
           <p>QT-Verlängerung · Spitzen drehen sich um Achse · Mg²⁺ sofort!</p>
-          <div class="card-darija">QT طويل + الـ QRS يتقلب حول الخط — Magnesium هو الحل الأول</div>
         </div>
       </div>
     </div>
@@ -845,11 +1173,7 @@ body {
     Thrombose (PE/ACS) · Tamponade · Tension-Pneumothorax · Toxine</div>
   </div>
 
-  <div style="background:var(--darija-bg);border:1px solid var(--darija-border);border-radius:var(--radius);padding:1.1rem 1.3rem;margin:1.3rem 0;direction:rtl;text-align:right;">
-    <div style="direction:ltr;text-align:left;font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--darija-text);opacity:.6;margin-bottom:7px;"><span style="background:var(--darija-border);padding:2px 8px;border-radius:4px;">🇩🇿 الخوارزمية بالدارجة</span></div>
-    أول سؤال: هل المريض مستقر؟ — مستقر = خذ وقتك وافحص الـ QRS. غير مستقر = Kardioversion الكهربائي مباشرة بعد التخدير. ثاني سؤال: QRS ضيق ولا عريض؟ — ضيق: Adenosin أو Betablocker. عريض: Amiodaron وما تعطيش Verapamil أبداً!
   </div>
-</div>
 
 <!-- ══════ MEDIKAMENTE ══════ -->
 <div class="page-panel" id="panel-drugs">
@@ -916,11 +1240,7 @@ body {
     <div class="callout-body"><strong>Antikoagulation bei VHF:</strong> DOAK bevorzugt (Apixaban · Rivaroxaban · Dabigatran · Edoxaban) · Phenprocoumon bei mechanischen Klappen / Mitralklappenstenose · CHA₂DS₂-VASc ≥1 (♂) / ≥2 (♀) → Antikoagulation indiziert · Bei Cardioversion ≥48h: ≥3 Wochen vorher oder TEE-Ausschluss Thrombus</div>
   </div>
 
-  <div style="background:var(--darija-bg);border:1px solid var(--darija-border);border-radius:var(--radius);padding:1.1rem 1.3rem;margin:1.3rem 0;direction:rtl;text-align:right;">
-    <div style="direction:ltr;text-align:left;font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--darija-text);opacity:.6;margin-bottom:7px;"><span style="background:var(--darija-border);padding:2px 8px;border-radius:4px;">🇩🇿 الأدوية بالدارجة</span></div>
-    Adenosin هو الأول في SVT — يوقف الـ QRS الضيق المنتظم في ثوانٍ. Amiodaron هو الأمين في كل حالة VT أو QRS عريض. Verapamil و Diltiazem ما تعطيهمش في QRS عريض ولا في WPW — يقدر يموت المريض. Magnesium هو أول دواء في Torsades de Pointes.
   </div>
-</div>
 
 </div><!-- end main-inner -->
 </main>
@@ -943,7 +1263,7 @@ const schmalData = {
           <div class="info-row"><div class="info-key">Beginn / Ende</div><div class="info-val">Abrupt — Reentry-Mechanismus · "Herzrasen beginnt/endet plötzlich"</div></div>
           <div class="info-row"><div class="info-key">Charakteristisch</div><div class="info-val">Pseudo-S in II, III, aVF · Pseudo-R' in V1 bei AVNRT</div></div>
         </div>
-        <div style="background:var(--darija-bg);border:1px solid var(--darija-border);border-radius:var(--radius);padding:1rem 1.2rem;margin-top:1rem;direction:rtl;text-align:right;font-size:14px;color:var(--darija-text);">SVT: القلب يتسارع فجأة ويوقف فجأة. الـ P موجود بصح مخبي في ولا بعد الـ QRS مباشرة. الـ Adenosin يوقفو لأنه يمر من الـ AV Node.</div>`,
+        `,
       'Differenzierung':`<div class="info-table">
           <div class="info-row"><div class="info-key">Adenosin-Response</div><div class="info-val">Terminierung → beweist AV-Knoten-Beteiligung (AVNRT, AVRT)</div></div>
           <div class="info-row"><div class="info-key">AVNRT vs AVRT</div><div class="info-val">AVNRT: RP sehr kurz (P im QRS) · AVRT: P deutlich nach QRS (RP 70–140 ms)</div></div>
@@ -973,7 +1293,7 @@ const schmalData = {
           <div class="info-row"><div class="info-key">QRS</div><div class="info-val">Normal schmal · absolut unregelmäßige Abstände (Absolutarrhythmie)</div></div>
           <div class="info-row"><div class="info-key">Besonderheit</div><div class="info-val">Bei hoher HF + Schenkelblock: breites unregelmäßiges QRS → DD VT beachten!</div></div>
         </div>
-        <div style="background:var(--darija-bg);border:1px solid var(--darija-border);border-radius:var(--radius);padding:1rem 1.2rem;margin-top:1rem;direction:rtl;text-align:right;font-size:14px;color:var(--darija-text);">VHF: الـ RR متفرقة ومتفاوتة — ما كاينش P موجة واضحة. الخطر الكبير هو جلطة الدماغ. الـ CHA₂DS₂-VASc يحدد الحاجة للـ Antikoagulation.</div>`,
+        `,
       'Klassifikation':`<div class="table-wrap"><table class="cmp-table"><tr><th>Typ</th><th>Definition</th><th>Bemerkung</th></tr>
           <tr><td>Paroxysmales VHF</td><td>&lt;7 Tage · terminiert spontan</td><td>Höchste Konversionsrate</td></tr>
           <tr><td>Persistierendes VHF</td><td>&gt;7 Tage · nicht spontan</td><td>Kardioversion erforderlich</td></tr>
@@ -1018,7 +1338,7 @@ const schmalData = {
           <div class="info-row"><div class="info-key">Überleitung</div><div class="info-val">2:1 häufigste (HF ~150/min) · 3:1 oder 4:1 möglich · Adenosin entlarvt Muster</div></div>
           <div class="info-row"><div class="info-key">EKG-Merkmal</div><div class="info-val">Negative Flatterwellen in II, III, aVF · Positive in V1 (typisches Flattern)</div></div>
         </div>
-        <div style="background:var(--darija-bg);border:1px solid var(--darija-border);border-radius:var(--radius);padding:1rem 1.2rem;margin-top:1rem;direction:rtl;text-align:right;font-size:14px;color:var(--darija-text);">كي تشوف تردد 150/دقيقة، فكر دايماً في Vorhofflattern مع 2:1 Überleitung. الأذين يدق 300 والبطين يشتغل 1 من كل 2.</div>`,
+        `,
       'Therapie':`<div class="steps">
           <div class="step"><div class="step-num danger">1</div><div><div class="step-text">Instabil: Elektrische Kardioversion 50–100 J synchronisiert</div></div></div>
           <div class="step"><div class="step-num">2</div><div><div class="step-text">Frequenzkontrolle: Betablocker oder Diltiazem i.v.</div></div></div>
@@ -1047,7 +1367,7 @@ const schmalData = {
           <div class="card c-amber"><h4>🟡 Kardial / Metabolisch</h4><ul><li>Anämie</li><li>Hyperthyreose</li><li>Schmerz / Angst</li><li>Medikamente (Atropin, Sympathomimetika)</li></ul></div>
         </div>`,
       'Therapie':`<div class="callout info"><div class="callout-icon">🎯</div><div class="callout-body"><strong>Ursachentherapie!</strong> Die Sinustachykardie ist ein Symptom, keine Diagnose. Betablocker nur bei symptomatischer Sinustachy ohne Schock.</div></div>
-        <div style="background:var(--darija-bg);border:1px solid var(--darija-border);border-radius:var(--radius);padding:1rem 1.2rem;margin-top:1rem;direction:rtl;text-align:right;font-size:14px;color:var(--darija-text);">Sinustachykardie مش مرض — هي علامة على شيء آخر. اطلب السبب أولاً: تهيج، فقر الدم، الحمى، نقص السوائل... ما تعالجش التردد بدون علاج السبب!</div>`
+        `
     }
   },
   jnkt:{title:'Junktionale Tachykardie',icon:'⊙',iconBg:'var(--accent-bg)',
@@ -1083,8 +1403,8 @@ const breitData = {
           <div class="info-row"><div class="info-key">Fusion Beats</div><div class="info-val">Mischform aus Sinus + VT — beweist VT</div></div>
           <div class="info-row"><div class="info-key">Achse</div><div class="info-val">Nordwestachse (−90° bis ±180°) sehr typisch für VT</div></div>
         </div>
-        <div style="background:var(--darija-bg);border:1px solid var(--darija-border);border-radius:var(--radius);padding:1rem 1.2rem;margin-top:1rem;direction:rtl;text-align:right;font-size:14px;color:var(--darija-text);">AV-Dissoziation هي الدليل القاطع على VT: الأذين والبطين كل واحد يشتغل لوحدو. Capture Beats و Fusion Beats يثبتو كذلك أنها VT.</div>`,
-      'Brugada-Kriterien':`<div class="callout info"><div class="callout-icon">📐</div><div class="callout-body">Brugada-Algorithmus: 4 Fragen — إذا واحدة من الأربعة "نعم" → VT!</div></div>
+        `,
+      'Brugada-Kriterien':`<div class="callout info"><div class="callout-icon">📐</div><div class="callout-body">Brugada-Algorithmus: 4 Fragen — eine von vier „Ja" → VT!</div></div>
         <div class="steps">
           <div class="step"><div class="step-num danger">1</div><div><div class="step-text">Fehlen von RS-Komplex in allen Brustwandableitungen? → Ja = VT</div></div></div>
           <div class="step"><div class="step-num danger">2</div><div><div class="step-text">RS-Intervall &gt;100 ms in einer Brustwandableitung? → Ja = VT</div></div></div>
@@ -1123,7 +1443,7 @@ const breitData = {
           <div class="info-row"><div class="info-key">EKG</div><div class="info-val">Keine organisierten QRS-Komplexe · chaotische unregelmäßige Wellen wechselnder Amplitude und Frequenz</div></div>
           <div class="info-row"><div class="info-key">CPR-Ablauf</div><div class="info-val">30:2 · Defibrillation sobald verfügbar · Adrenalin 1 mg/3–5 min · Amiodaron 300 mg nach 3. Schock</div></div>
         </div>
-        <div style="background:var(--darija-bg);border:1px solid var(--darija-border);border-radius:var(--radius);padding:1rem 1.2rem;margin-top:1rem;direction:rtl;text-align:right;font-size:14px;color:var(--darija-text);">VF = الموت المفاجئ إذا ما تدخلناش فوراً. الـ Defibrillation فوراً + CPR. Amiodaron 300 مغ بعد 3 صدمات.</div>`,
+        `,
       'Nach Reanimation':`<div class="info-table">
           <div class="info-row"><div class="info-key">TTM</div><div class="info-val">Targeted Temperature Management 32–36°C für 24h (bei persistierendem Koma)</div></div>
           <div class="info-row"><div class="info-key">Koronarangio</div><div class="info-val">Sofort wenn ST-Hebungen oder hämodynamische Instabilität nach ROSC</div></div>
@@ -1169,7 +1489,7 @@ const breitData = {
           <div class="info-row"><div class="info-key">PR-Intervall</div><div class="info-val">&lt;120 ms (verkürzt — direkte Überleitung, kein AV-Knoten-Delay)</div></div>
           <div class="info-row"><div class="info-key">QRS-Breite</div><div class="info-val">Breit durch Fusion aus normaler + akzessorischer Überleitung</div></div>
         </div>
-        <div style="background:var(--darija-bg);border:1px solid var(--darija-border);border-radius:var(--radius);padding:1rem 1.2rem;margin-top:1rem;direction:rtl;text-align:right;font-size:14px;color:var(--darija-text);">Delta Wave = الـ QRS يبدأ بحركة بطيئة لأن جزء من البطين يتنبه مبكراً عبر المسار الإضافي. PR قصير + Delta Wave = WPW.</div>`,
+        `,
       'Gefahr bei VHF':`<div class="critical-box"><p><strong>VHF + WPW = Lebensgefahr!</strong> AV-Blocker (Adenosin, Verapamil, Diltiazem, Betablocker, Digoxin) sind absolut kontraindiziert → beschleunigen Überleitung über akzessorische Bahn → VF!</p></div>
         <div class="info-table">
           <div class="info-row"><div class="info-key">EKG-Zeichen</div><div class="info-val">Unregelmäßiger Breit-QRS · extrem schnell (HF &gt;250/min möglich) · präexzitiertes VHF</div></div>
@@ -1191,7 +1511,7 @@ const breitData = {
           <div class="info-row"><div class="info-key">QTc-Verlängerung</div><div class="info-val">QTc &gt;500 ms → hohes Risiko · QTc &gt;600 ms → sehr hohes Risiko</div></div>
           <div class="info-row"><div class="info-key">Auslöser</div><div class="info-val">Kurze Pause (long-short sequence) → dann TdP</div></div>
         </div>
-        <div style="background:var(--darija-bg);border:1px solid var(--darija-border);border-radius:var(--radius);padding:1rem 1.2rem;margin-top:1rem;direction:rtl;text-align:right;font-size:14px;color:var(--darija-text);">Torsades: الـ QRS يتقلب حول الخط كيما حركة البالون. السبب هو QT طويل. Magnesium 2 غرام في الوريد فوراً!</div>`,
+        `,
       'Ursachen':`<div class="card-grid">
           <div class="card c-red"><h4>💊 Medikamente</h4><ul><li>Amiodaron · Sotalol · Ibutilid</li><li>Erythromycin · Clarithromycin</li><li>Haloperidol · Quetiapin</li><li>Methadon</li></ul></div>
           <div class="card c-amber"><h4>⚗️ Elektrolyte / Genetisch</h4><ul><li>Hypokaliämie · Hypomagnesiämie</li><li>Hypokalzämie</li><li>Kongenitales Long-QT-Syndrom (Typ 1–3)</li><li>Bradykardie / AV-Block</li></ul></div>
@@ -1308,7 +1628,7 @@ document.querySelectorAll('.fade-in').forEach(el=>obs.observe(el));
 </script>
 
 <script>
-// ─── OUSS NAV ───────────────────────────────────────
+// ─── DIASTOLA NAV ───────────────────────────────────────
 function oussToggle(){
   var d=document.getElementById('ouss-drawer');
   var o=document.getElementById('ouss-overlay');
