@@ -7,69 +7,40 @@
 <meta name="theme-color" content="#ffffff">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>Echo Pathologien — OUSS Kardiologie</title>
+<title>Echo Pathologien — Diastola</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500;600&family=Caveat:wght@500;600;700&display=swap" rel="stylesheet">
+<!-- Diastola Design System -->
+<link rel="stylesheet" href="../assets/css/theme.css">
+<link rel="stylesheet" href="../assets/css/animations.css">
+
 <style>
 /* ════════════════════════════════════
-   OUSS KARDIOLOGIE — ECHO PATHOLOGIEN
+   DIASTOLA — ECHO PATHOLOGIEN
    Design: Referenzstil (kardiologie_sop)
 ════════════════════════════════════ */
 :root {
-  --bg:       #ffffff;
-  --surface:  #f7f5f2;
-  --surface2: #eeecea;
-  --surface3: #e8e5e1;
-  --border:   #e5e2de;
-  --border2:  #d8d5d0;
-  --text:     #1a1410;
-  --text2:    #6b6460;
-  --text3:    #a09890;
-
-  --red:      #c8303a;
-  --red-bg:   #fdf2f2;
-  --red-border:#fbd5d5;
-  --blue:     #2563eb;
-  --blue-bg:  #eff6ff;
-  --blue-border:#bfdbfe;
-  --green:    #0f7b5a;
-  --green-bg: #f0fdf8;
-  --green-border:#a7f3d0;
-  --amber:    #d97706;
-  --amber-bg: #fffbeb;
-  --amber-border:#fde68a;
-  --purple:   #7c3aed;
-  --purple-bg:#f5f3ff;
-  --purple-border:#ddd6fe;
-  --orange:   #c2410c;
-  --orange-bg:#fff7ed;
-  --orange-border:#fed7aa;
-  --teal:     #0d9488;
-  --teal-bg:  #f0fdfa;
-  --teal-border:#99f6e4;
-  --navy:     #0f1528;
-  --gold:     #9a7430;
-
-  --darija-bg:#fef9f3;
-  --darija-border:#f0ddc8;
-  --darija-text:#5c3d1a;
-
-  --serif: 'Cormorant Garamond', Georgia, serif;
-  --sans:  'DM Sans', system-ui, sans-serif;
-  --mono:  'DM Sans', 'Courier New', monospace;
-
-  --nav-h:    56px;
-  --radius:   10px;
-  --radius-lg:14px;
-  --shadow:   0 2px 8px rgba(0,0,0,.06);
-  --sh-md:    0 6px 24px rgba(0,0,0,.09);
-  --sh-lg:    0 12px 40px rgba(0,0,0,.10);
+  --bg:#faf6ee; --surface:#f4eee0; --surface2:#ece4d2; --surface3:#e2d8c2;
+  --border:#e7ddc9; --border2:#ddd1b8;
+  --text:#2a241c; --text2:#6e6354; --text3:#a3957f;
+  --red:#c8303a; --red-bg:#fdf3ef; --red-border:rgba(200,48,58,.35);
+  --blue:#2456a6; --blue-bg:#eef3fa; --blue-border:rgba(36,86,166,.30);
+  --green:#1f7a5c; --green-bg:#edf5ef; --green-border:rgba(31,122,92,.30);
+  --amber:#b07a10; --amber-bg:#faf4e0; --amber-border:rgba(176,122,16,.32);
+  --purple:#6d3fb8; --purple-bg:#f3effa; --purple-border:rgba(109,63,184,.28);
+  --orange:#c2570f; --orange-bg:#faf0e6; --orange-border:rgba(194,87,15,.30);
+  --teal:#11756c; --teal-bg:#eef6f2; --teal-border:rgba(17,117,108,.30);
+  --navy:#1d2b50; --gold:#97742e;
+  --serif:'Cormorant Garamond',Georgia,serif; --sans:'DM Sans',system-ui,sans-serif;
+  --nav-h:58px; --radius:10px; --radius-lg:14px;
+  --shadow:0 1px 3px rgba(74,60,38,.07),0 4px 14px rgba(74,60,38,.06);
+  --sh-md:0 2px 6px rgba(74,60,38,.08),0 10px 28px rgba(74,60,38,.10);
 }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
 body {
-  font-family: var(--sans); background: var(--bg); color: var(--text);
+  font-family: var(--sans);  color: var(--text);
   font-size: 15px; line-height: 1.75; overflow-x: hidden;
   -webkit-tap-highlight-color: transparent;
   padding-bottom: max(env(safe-area-inset-bottom, 0px), 12px);
@@ -83,13 +54,12 @@ a, button { touch-action: manipulation; -webkit-tap-highlight-color: transparent
 .topnav {
   position: sticky; top: 0; z-index: 600;
   height: var(--nav-h);
-  background: rgba(255,255,255,.97);
+  background: rgba(250,246,238,.94);
   backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
   border-bottom: 1px solid var(--border);
   display: flex; align-items: center; padding: 0 2.5rem; gap: 6px;
 }
-.brand {
-  font-family: var(--serif); font-size: 1.2rem; font-weight: 400;
+.brand {  font-family: var(--serif); font-size: 1.2rem; font-weight: 400;
   color: var(--text); text-decoration: none;
   display: flex; align-items: center; gap: .5rem;
   white-space: nowrap; flex-shrink: 0;
@@ -106,8 +76,9 @@ a, button { touch-action: manipulation; -webkit-tap-highlight-color: transparent
 .nav-links a.active { background: var(--blue-bg); color: var(--blue); font-weight: 600; }
 .spacer { flex: 1; }
 .nav-badge {
-  font-size: .78rem; font-weight: 600; padding: 7px 14px;
-  background: var(--blue); color: #fff; border-radius: 7px; white-space: nowrap;
+  font-family: var(--hand); font-size: 1.05rem; font-weight: 700; padding: 3px 14px;
+  background: transparent; color: var(--red); border: 1.8px solid var(--red);
+  border-radius: var(--r-sketch); transform: rotate(-1.2deg); white-space: nowrap;
 }
 .nav-ham {
   display: none; flex-direction: column; justify-content: center; align-items: center;
@@ -152,7 +123,7 @@ a, button { touch-action: manipulation; -webkit-tap-highlight-color: transparent
   font-size: clamp(2rem, 4vw, 3.2rem);
   font-weight: 300; line-height: 1.15; letter-spacing: -.01em;
 }
-.page-header h1 em { font-style: italic; color: var(--blue); }
+.page-header h1 em { font-style: italic; color: var(--red); }
 .page-header p {
   color: var(--text2); margin-top: .6rem;
   font-size: .92rem; line-height: 1.8; max-width: 760px;
@@ -274,19 +245,6 @@ a, button { touch-action: manipulation; -webkit-tap-highlight-color: transparent
 /* ═══ BADGE ROW ═══ */
 .badge-row { display: flex; flex-wrap: wrap; gap: 5px; margin: .6rem 0; }
 
-/* ═══ DARIJA BOX ═══ */
-.darija-box {
-  background: var(--darija-bg); border: 1px solid var(--darija-border);
-  border-radius: var(--radius); padding: .85rem 1.1rem; margin: .8rem 0;
-  direction: rtl; text-align: right; font-size: .88rem;
-  color: var(--darija-text); line-height: 1.8;
-}
-.darija-label {
-  direction: ltr; text-align: left; font-size: .63rem; font-weight: 700;
-  letter-spacing: .1em; text-transform: uppercase; color: var(--darija-text);
-  opacity: .65; margin-bottom: 6px;
-}
-.darija-label span { background: var(--darija-border); padding: 2px 8px; border-radius: 4px; }
 
 /* ═══ CALLOUT ═══ */
 .callout {
@@ -321,13 +279,7 @@ a, button { touch-action: manipulation; -webkit-tap-highlight-color: transparent
 .algo-box .algo-ok   { color: #a5d6a7; }
 .algo-box ul, .algo-box ol { padding-left: 1.2rem; margin: 0; }
 .algo-box li { margin-bottom: .2rem; }
-.algo-box .darija-box {
-  background: rgba(255,255,255,.06); border-color: rgba(255,255,255,.12);
-  color: #e8d5b0; font-size: .82rem; margin: .7rem 0 0;
-}
-.algo-box .darija-label { color: #e8d5b0; opacity: .55; }
-.algo-box .darija-label span { background: rgba(255,255,255,.1); }
-
+.algo-box .algo-box .algo-box 
 /* ═══ CARD GRID ═══ */
 .card-grid {
   display: grid; grid-template-columns: repeat(2, 1fr);
@@ -350,12 +302,6 @@ a, button { touch-action: manipulation; -webkit-tap-highlight-color: transparent
 .card p, .card ul { font-size: .85rem; color: var(--text2); line-height: 1.6; }
 .card ul { padding-left: 1.1rem; }
 .card ul li { margin-bottom: .25rem; }
-.card .card-darija {
-  font-size: .82rem; direction: rtl; text-align: right;
-  color: var(--darija-text); background: var(--darija-bg);
-  padding: 6px 10px; border-radius: 7px; margin-top: 8px;
-  border: 1px solid var(--darija-border);
-}
 
 /* ═══ MEASURE LIST ═══ */
 .measure-list { display: flex; flex-direction: column; gap: 8px; margin: .7rem 0; }
@@ -394,7 +340,6 @@ td { padding: 8px 12px; border-bottom: 1px solid var(--border); vertical-align: 
 tr:last-child td { border-bottom: none; }
 tr:hover td { background: var(--surface); }
 td.red { color: var(--red); font-weight: 700; }
-.darija-cell { direction: rtl; text-align: right; color: var(--darija-text); font-size: .81rem; }
 
 /* ═══ TWO-COL ═══ */
 .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: .6rem; }
@@ -500,6 +445,70 @@ footer strong { color: var(--navy); font-weight: 600; }
 @media (max-width: 400px) {
   .page-header h1 { font-size: 1.75rem; }
 }
+/* ═══ DIASTOLA SKIZZENBUCH-SCHICHT ═══ */
+.brand{font-weight:600;font-size:1.3rem;letter-spacing:.01em}
+.brand-heart{animation:hb 1.6s ease-in-out infinite}
+.page-eyebrow{color:var(--text3)!important}
+.page-header{background:transparent!important}
+/* filter chips → paper chips */
+.filter-wrap{background:rgba(250,246,238,.95)}
+.chip{border:1.5px solid var(--border2);background:var(--card);border-radius:var(--r-sketch)}
+.chip.active{background:var(--red)!important;border-color:var(--red)!important;color:#fffdf8}
+.chip[data-cat="koronar"].active{background:var(--red)!important;border-color:var(--red)!important}
+.chip[data-cat="klappen"].active{background:var(--blue)!important;border-color:var(--blue)!important}
+.chip[data-cat="notfall"].active{background:var(--orange)!important;border-color:var(--orange)!important}
+.chip[data-cat="kardio"].active{background:var(--purple)!important;border-color:var(--purple)!important}
+.badge,.page-tag{border-radius:var(--r-sketch)}
+/* sop-list gap for tape room */
+.sop-list{gap:20px}
+/* scard chapters → taped index cards */
+.scard{border:1.5px solid var(--border2);background:var(--card);box-shadow:var(--shadow);position:relative;border-left:4px solid var(--border2)}
+.scard[data-cat="koronar"]{border-left-color:var(--red)}
+.scard[data-cat="klappen"]{border-left-color:var(--blue)}
+.scard[data-cat="notfall"]{border-left-color:var(--orange)}
+.scard[data-cat="kardio"]{border-left-color:var(--purple)}
+.scard::before{content:'';position:absolute;top:-9px;left:50%;transform:translateX(-50%) rotate(-1.6deg);width:84px;height:20px;background:rgba(240,230,200,.6);border:1px solid rgba(74,60,38,.10);box-shadow:0 1px 2px rgba(74,60,38,.09);pointer-events:none;z-index:1;transition:opacity .2s}
+.sop-list .scard:nth-child(odd){transform:rotate(-.5deg)}
+.sop-list .scard:nth-child(even){transform:rotate(.4deg)}
+.scard:hover{transform:translateY(-3px) rotate(0deg);box-shadow:var(--sh-md)}
+.scard.open{transform:rotate(0deg);box-shadow:var(--sh-md)}
+.scard.open::before{opacity:0}
+.scard-num{font-family:var(--hand);color:var(--red);font-size:1.5rem}
+.scard-icon{border:1px solid rgba(74,60,38,.08)}
+/* card-grid notes → sticky notes */
+.card-grid{gap:26px 22px;padding-top:14px}
+.card{border:none;border-radius:3px;overflow:visible;box-shadow:0 4px 10px rgba(74,60,38,.13),0 1px 3px rgba(74,60,38,.10);background:var(--note-y,#fff4bd)}
+.card::after{content:'';position:absolute;top:-10px;left:50%;transform:translateX(-50%) rotate(-2deg);width:78px;height:21px;background:rgba(255,255,255,.42);border:1px solid rgba(74,60,38,.08);box-shadow:0 1px 2px rgba(74,60,38,.08);pointer-events:none}
+.card:nth-child(odd){transform:rotate(-.9deg)}
+.card:nth-child(even){transform:rotate(.75deg)}
+.card:hover{transform:translateY(-3px) rotate(0deg);box-shadow:0 6px 16px rgba(74,60,38,.16),0 2px 4px rgba(74,60,38,.10);border:none}
+.card.blue{background:#e7eff9;border-top:none}
+.card.green{background:var(--note-g,#e1f1e7);border-top:none}
+.card.red{background:var(--note-r,#ffe4e0);border-top:none}
+.card.amber{background:var(--note-y,#fff4bd);border-top:none}
+.card.purple{background:#efe8f9;border-top:none}
+.card.teal{background:#e6f2ee;border-top:none}
+.card.orange{background:#fcecdd;border-top:none}
+.card h4{font-family:var(--hand);font-size:1.3rem;font-weight:700;line-height:1.1;margin-bottom:.3rem;color:var(--text)}
+.card.blue h4{color:var(--blue)}.card.green h4{color:var(--green)}.card.red h4{color:var(--red)}
+.card.amber h4{color:#7a5c10}.card.purple h4{color:var(--purple)}.card.teal h4{color:var(--teal)}.card.orange h4{color:var(--orange)}
+.card p,.card ul{color:var(--text)}
+/* callouts → sticky notes */
+.callout{border:none;border-radius:3px;box-shadow:0 4px 10px rgba(74,60,38,.12),0 1px 3px rgba(74,60,38,.09);position:relative}
+.callout::before{content:'';position:absolute;top:-9px;left:50%;transform:translateX(-50%) rotate(-2deg);width:60px;height:17px;background:rgba(255,255,255,.45);border:1px solid rgba(74,60,38,.08);box-shadow:0 1px 2px rgba(74,60,38,.08);pointer-events:none}
+.callout.info{background:#e7eff9;transform:rotate(-.25deg)}
+.callout.warn,.callout.warning{background:var(--note-y,#fff4bd);transform:rotate(.3deg)}
+.callout.success{background:var(--note-g,#e1f1e7);transform:rotate(-.25deg)}
+.callout.danger{background:var(--note-r,#ffe4e0);transform:rotate(.25deg)}
+.callout.purple{background:#efe8f9;transform:rotate(-.2deg)}
+.callout.teal{background:#e6f2ee;transform:rotate(.2deg)}
+/* hand-circled step numbers */
+.step-num{background:transparent;border-radius:var(--r-sketch);font-family:var(--hand);font-size:.95rem;font-weight:700;border-width:2px;transform:rotate(-2deg);width:26px;height:24px}
+.step-num.danger,.step-num.success{background:transparent}
+/* summary box → wavy hand-drawn top rule */
+.summary-box{background:var(--card);border:1.5px solid var(--border2);box-shadow:var(--sh-md)}
+.summary-box::before{height:7px;top:7px;left:1.4rem;right:1.4rem;background:var(--wave-red) repeat-x;background-size:40px 7px}
+
 </style>
 </head>
 <body>
@@ -509,10 +518,11 @@ footer strong { color: var(--navy); font-weight: 600; }
   <a href="../index.html" class="brand">
     <span class="brand-heart">
       <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
-        <path d="M9 15.5C3.5 12.2 1 9 1 6A4 4 0 0 1 9 4.2a4 4 0 0 1 8 1.8C17 9 14.5 12.2 9 15.5Z" fill="var(--blue)" opacity=".9"/>
+        <path d="M9 15.5C3.5 12.2 1 9 1 6A4 4 0 0 1 9 4.2a4 4 0 0 1 8 1.8C17 9 14.5 12.2 9 15.5Z" stroke="#c8303a" stroke-width="1.6" fill="none" stroke-linejoin="round"/>
+        <path d="M4.5 9.5h2.2l1-2.2 1.6 4 1-1.8h2.9" stroke="#c8303a" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
       </svg>
     </span>
-    OUSS Kardiologie
+    Dia<em style="font-style:italic;font-weight:400;color:var(--red)">stola</em>
   </a>
   <div class="nav-links">
     <a href="../index.html">Startseite</a>
@@ -540,11 +550,11 @@ footer strong { color: var(--navy); font-weight: 600; }
 
 <!-- ═══ PAGE HEADER ═══ -->
 <div class="page-header fade-in">
-  <div class="page-eyebrow">Echo-Kurs · Klinische Pathologien · Deutsch &amp; Darija الدارجة</div>
+  <div class="page-eyebrow">Echo-Kurs · Klinische Pathologien · Deutsch</div>
   <h1>Echo <em>Pathologien</em> — Klinische Übersicht</h1>
   <p>
     14 wichtige Krankheitsbilder: Was sehe ich im B-Mode, wie messe ich mit Doppler —
-    auf Deutsch und Darija. Strikte Befundkriterien, Doppler-Schwellenwerte und klinische Einordnung.
+    auf Deutsch. Strikte Befundkriterien, Doppler-Schwellenwerte und klinische Einordnung.
   </p>
   <div class="page-tags">
     <span class="page-tag red">STEMI / PE</span>
@@ -552,12 +562,11 @@ footer strong { color: var(--navy); font-weight: 600; }
     <span class="page-tag amber">Kardiomyopathien</span>
     <span class="page-tag purple">Notfall</span>
     <span class="page-tag teal">Doppler</span>
-    <span class="page-tag gray">Darija الدارجة</span>
   </div>
   <div class="meta-strip">
     <span>📚 17 Kapitel</span>
     <span>🎯 Klinik + Echo-Befunde</span>
-    <span>🌐 Deutsch + Darija</span>
+    <span>🌐 Deutsch</span>
     <span>⏱ ca. 50 Min.</span>
   </div>
 </div>
@@ -594,11 +603,7 @@ footer strong { color: var(--navy); font-weight: 600; }
     <svg class="scard-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
   </div>
   <div class="scard-inner">
-    <div class="darija-box">
-      <div class="darija-label"><span>🇩🇿 بالدارجة</span></div>
-      ملي القلب ما يوصلوش الدم كافي (Ischämie)، العضلة تيبدا تتضرر. في الـ STEMI الانسداد تام وكامل، وفي الـ NSTEMI الانسداد جزئي. الإيكو يبيّن لنا الحيطان اللي ما تتحركش مليح (RWMA).
-    </div>
-
+    
     <div class="sop-section">
       <div class="sop-section-title">B-Mode — Wandbewegungsstörungen</div>
       <div class="prose">
@@ -608,22 +613,18 @@ footer strong { color: var(--navy); font-weight: 600; }
         <div class="card blue">
           <h4>🔵 Hypokinesie</h4>
           <p>Die Wand bewegt sich, aber abgeschwächt.</p>
-          <div class="card-darija">يتحرك شوية — الحركة ضعيفة</div>
         </div>
         <div class="card amber">
           <h4>🟡 Akinesie</h4>
           <p>Die Wand bewegt sich gar nicht mehr.</p>
-          <div class="card-darija">ما يتحركش كامل — مشلول</div>
         </div>
         <div class="card red">
           <h4>🔴 Dyskinesie</h4>
           <p>Die Wand bewegt sich paradox nach außen in der Systole.</p>
-          <div class="card-darija">يخرج لبرا في وقت الانقباض — معكوس!</div>
         </div>
         <div class="card green">
           <h4>✅ NSTEMI — Achtung</h4>
           <p>Bei kleiner Ischämie kann das Echo <strong>völlig normal</strong> sein!</p>
-          <div class="card-darija">في NSTEMI الصغير، الإيكو يقدر يكون نورمال 100%</div>
         </div>
       </div>
     </div>
@@ -636,7 +637,6 @@ footer strong { color: var(--navy); font-weight: 600; }
           <div class="measure-content">
             <strong>Simpson Biplan (A4C + A2C)</strong><br>
             LVEF-Berechnung. Bei STEMI oft stark reduziert.
-            <div style="direction:rtl;text-align:right;margin-top:6px;font-size:13px;color:var(--darija-text)">حساب كسر القذف (EF) بـ Simpson في A4C و A2C</div>
           </div>
         </div>
         <div class="measure-item">
@@ -644,7 +644,6 @@ footer strong { color: var(--navy); font-weight: 600; }
           <div class="measure-content">
             <strong>Komplikationen suchen</strong><br>
             Akute Mitralinsuffizienz (Papillarmuskelabriss) · VSD · Thrombus
-            <div style="direction:rtl;text-align:right;margin-top:6px;font-size:13px;color:var(--darija-text)">نحوسو على Akute MI ولا VSD ولا جلطة</div>
           </div>
         </div>
         <div class="measure-item">
@@ -652,7 +651,6 @@ footer strong { color: var(--navy); font-weight: 600; }
           <div class="measure-content">
             <strong>Diastolische Dysfunktion</strong><br>
             Das ischämische Herz wird steif noch bevor es versagt.
-            <div style="direction:rtl;text-align:right;margin-top:6px;font-size:13px;color:var(--darija-text)">القلب يتيبس قبل ما يفشل في الضخ — تقييم الوظيفة الانبساطية</div>
           </div>
         </div>
       </div>
@@ -678,33 +676,23 @@ footer strong { color: var(--navy); font-weight: 600; }
     <svg class="scard-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
   </div>
   <div class="scard-inner">
-    <div class="darija-box">
-      <div class="darija-label"><span>🇩🇿 بالدارجة</span></div>
-      الـ PE تخنق البطين الأيمن (RV). الجلطة تسد الشريان الرئوي وترفع الضغط فيه فجأة. البطين الأيمن ما هوش مصمم باش يشيل ضغط كبير، فيولي ينتفخ ويفشل.
-    </div>
-
+    
     <div class="sop-section">
       <div class="sop-section-title">B-Mode — Schlüsselbefunde</div>
       <div class="card-grid fade-in">
         <div class="card red">
           <h4>🔴 RV-Dilatation</h4>
           <p>RV ≥ LV → Ratio &gt; 1. Das RV darf nie größer als das LV sein!</p>
-          <div class="card-darija">البطين الأيمن أكبر من الأيسر (RV/LV > 1) — علامة قوية</div>
         </div>
         <div class="card purple">
           <h4>🟣 D-Shape (PSAX)</h4>
           <p>Druckbelastung des RV drückt das Septum ins LV — LV wird abgeflacht wie Buchstabe D.</p>
-          <div class="card-darija">في PSAX، الحاجز يضغط على البطين الأيسر ويخليه كيما حرف D</div>
         </div>
       </div>
       <div class="algo-box">
         <div class="algo-box-title">🔑 McConnell-Sign — Hochspezifisch für PE</div>
         <p>Die <strong>freie Wand des RV ist akinetisch</strong> — aber der <span class="algo-ok">RV-Apex bewegt sich noch normal</span>. Dieses Zeichen ist hochspezifisch für akute PE.</p>
-        <div class="darija-box">
-          <div class="darija-label"><span>🇩🇿 بالدارجة</span></div>
-          الحيط الحر تاع RV حابس (Akinetisch)، بصح الـ Apex مازال يتحرك مليح — علامة قاطعة للـ PE الحادة!
-        </div>
-      </div>
+              </div>
     </div>
 
     <div class="sop-section">
@@ -715,7 +703,6 @@ footer strong { color: var(--navy); font-weight: 600; }
           <div class="measure-content">
             <strong>TAPSE (A4C — Trikuspidaler Anulus)</strong><br>
             &lt; 17 mm → Rechtsherzversagen
-            <div style="direction:rtl;text-align:right;margin-top:6px;font-size:13px;color:var(--darija-text)">أقل من 17 مم = البطين الأيمن فاشل</div>
           </div>
         </div>
         <div class="measure-item">
@@ -723,7 +710,6 @@ footer strong { color: var(--navy); font-weight: 600; }
           <div class="measure-content">
             <strong>s'-Welle (Trikuspidalring)</strong><br>
             &lt; 9.5 cm/s → reduzierte RV-Funktion
-            <div style="direction:rtl;text-align:right;margin-top:6px;font-size:13px;color:var(--darija-text)">أقل من 9.5 سم/ثانية = وظيفة هابطة</div>
           </div>
         </div>
         <div class="measure-item">
@@ -731,7 +717,6 @@ footer strong { color: var(--navy); font-weight: 600; }
           <div class="measure-content">
             <strong>TR Vmax → sPAP-Berechnung</strong><br>
             Bei akuter PE selten &gt; 60 mmHg (RV nicht adaptiert!)
-            <div style="direction:rtl;text-align:right;margin-top:6px;font-size:13px;color:var(--darija-text)">في PE حادة، الـ sPAP ما يفوتش عادة 60 مع الـ RV مش موالف</div>
           </div>
         </div>
         <div class="measure-item">
@@ -739,7 +724,6 @@ footer strong { color: var(--navy); font-weight: 600; }
           <div class="measure-content">
             <strong>RVOT — 60/60-Zeichen</strong><br>
             Mid-systolic Notch + AT &lt; 60 ms → hochspezifisch für PE
-            <div style="direction:rtl;text-align:right;margin-top:6px;font-size:13px;color:var(--darija-text)">علامة الـ 60/60: Mid-systolic Notch مع AT أقل من 60 مللي ثانية = قاطعة</div>
           </div>
         </div>
       </div>
@@ -766,11 +750,7 @@ footer strong { color: var(--navy); font-weight: 600; }
     <svg class="scard-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
   </div>
   <div class="scard-inner">
-    <div class="darija-box">
-      <div class="darija-label"><span>🇩🇿 بالدارجة</span></div>
-      الارتجاع التاجي معناه الصمام التاجي ما يغلقش مليح، والدم يرجع للخلف للأذين الأيسر وقت الانقباض. لازم تفرق بين MI الأولي (مشكل في الصمام نفسو) والثانوي (الصمام مليح بصح البطين الكبار جبدو للخلف).
-    </div>
-    <div class="card-grid fade-in">
+        <div class="card-grid fade-in">
       <div class="card blue">
         <h4>🔵 Primäre MI</h4>
         <ul>
@@ -778,7 +758,6 @@ footer strong { color: var(--navy); font-weight: 600; }
           <li>Prolaps / Flail Leaflet</li>
           <li>Endokarditis, Ruptur</li>
         </ul>
-        <div class="card-darija">MI أولية: مشكل في الصمام نفسو — Prolaps ولا Flail ولا Endokarditis</div>
       </div>
       <div class="card amber">
         <h4>🟡 Sekundäre MI</h4>
@@ -787,7 +766,6 @@ footer strong { color: var(--navy); font-weight: 600; }
           <li>Dilat. Ventrikel → Tethering</li>
           <li>Annuluserweiterung</li>
         </ul>
-        <div class="card-darija">MI ثانوية: الصمام مليح بصح البطين كبار جبد الصمام للخلف (Tethering)</div>
       </div>
     </div>
     <div class="sop-section">
@@ -798,7 +776,6 @@ footer strong { color: var(--navy); font-weight: 600; }
           <div class="measure-content">
             <strong>Vena Contracta + PISA</strong><br>
             Vena contracta &gt; 7 mm → schwere MI. PISA gibt effektiven Regurgitationsradius.
-            <div style="direction:rtl;text-align:right;margin-top:6px;font-size:13px;color:var(--darija-text)">Vena contracta أكبر من 7 مم = MI شديدة. وPISA يعطينا Radius الارتجاع</div>
           </div>
         </div>
         <div class="measure-item">
@@ -806,7 +783,6 @@ footer strong { color: var(--navy); font-weight: 600; }
           <div class="measure-content">
             <strong>Signaldichte</strong><br>
             Dense, vollständiges Signal → schwere MI. Schwaches Signal → leichte MI.
-            <div style="direction:rtl;text-align:right;margin-top:6px;font-size:13px;color:var(--darija-text)">إشارة CW كثيفة ومكتملة = MI شديدة — إشارة ضعيفة = MI خفيفة</div>
           </div>
         </div>
       </div>
@@ -831,18 +807,10 @@ footer strong { color: var(--navy); font-weight: 600; }
     <svg class="scard-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
   </div>
   <div class="scard-inner">
-    <div class="darija-box">
-      <div class="darija-label"><span>🇩🇿 بالدارجة</span></div>
-      التضيق التاجي غالباً بسبب الروماتيزم. الصمام يتيبس ويضيق، والدم يتعب باش يفوت للبطين الأيسر. الأذين الأيسر ينتفخ بزاف (خطر الـ Vorhofflimmern والجلطات).
-    </div>
-    <div class="algo-box">
+        <div class="algo-box">
       <div class="algo-box-title">🏑 Hockey-Stick Sign — Pathognomonisch</div>
       <p>Das <strong>vordere Mitralklappensegel wölbt sich in der Diastole</strong> wie ein Hockeyschläger nach innen. Fusion der Kommissuren durch Fibrose.</p>
-      <div class="darija-box">
-        <div class="darija-label"><span>🇩🇿 بالدارجة</span></div>
-        الصمام الأمامي يندمج ويدير شكل "عصا الهوكي" في الـ Diastole — علامة نموذجية للـ MS
-      </div>
-    </div>
+          </div>
     <div class="sop-section">
       <div class="sop-section-title">Schweregrad-Kriterien</div>
       <div class="table-wrap fade-in">
@@ -861,7 +829,6 @@ footer strong { color: var(--navy); font-weight: 600; }
           <div class="measure-content">
             <strong>Planimetrie (PSAX — MK-Ebene)</strong><br>
             Manuelles Einzeichnen der Klappenöffnungsfläche.
-            <div style="direction:rtl;text-align:right;margin-top:6px;font-size:13px;color:var(--darija-text)">نرسمو مساحة الصمام يدوياً في PSAX على مستوى الصمام التاجي</div>
           </div>
         </div>
         <div class="measure-item">
@@ -869,7 +836,6 @@ footer strong { color: var(--navy); font-weight: 600; }
           <div class="measure-content">
             <strong>PHT → MVA = 220 / PHT</strong><br>
             Normal MVA: 4–6 cm². Schwere MS: &lt; 1.5 cm².
-            <div style="direction:rtl;text-align:right;margin-top:6px;font-size:13px;color:var(--darija-text)">MVA = 220 ÷ PHT — الـ PHT كبير = التضيق شديد</div>
           </div>
         </div>
       </div>
@@ -894,27 +860,22 @@ footer strong { color: var(--navy); font-weight: 600; }
     <svg class="scard-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
   </div>
   <div class="scard-inner">
-    <div class="darija-box">
-      <div class="darija-label"><span>🇩🇿 بالدارجة</span></div>
-      الـ AS غالباً بسبب الكالسيوم اللي يتراكم في الصمام الأبهري مع العمر. الصمام يتيبس ويضيق، والبطين الأيسر يتعب باش يضخ الدم. نستعملو الـ Kontinuitätsgleichung باش نحسبو مساحة الصمام.
-    </div>
-    <div class="callout info">
+        <div class="callout info">
       <div class="callout-icon">📐</div>
       <div class="callout-body">
         <strong>Kontinuitätsgleichung:</strong> AVA = (LVOT-Fläche × LVOT-VTI) / AV-VTI.
         3 Messungen nötig: LVOT-Durchmesser (PLAX), LVOT-VTI (PW, A5C), AV-VTI (CW, A5C).
-        <div style="direction:rtl;text-align:right;margin-top:6px;font-size:13px;color:var(--darija-text)">معادلة الاستمرارية: مساحة الصمام = (قطر LVOT² × π/4 × VTI في LVOT) ÷ VTI في الصمام</div>
       </div>
     </div>
     <div class="sop-section">
       <div class="sop-section-title">Schweregrad — Kriterien (ESC 2021)</div>
       <div class="table-wrap fade-in">
         <table>
-          <thead><tr><th>Schweregrad</th><th>Vmax</th><th>Mean Gradient</th><th>AVA</th><th class="darija-cell">الشدة</th></tr></thead>
+          <thead><tr><th>Schweregrad</th><th>Vmax</th><th>Mean Gradient</th><th>AVA</th></tr></thead>
           <tbody>
-            <tr><td>Leicht</td><td>&lt; 3 m/s</td><td>&lt; 20 mmHg</td><td>&gt; 1.5 cm²</td><td class="darija-cell">خفيفة</td></tr>
-            <tr><td>Mittel</td><td>3–4 m/s</td><td>20–40 mmHg</td><td>1–1.5 cm²</td><td class="darija-cell">متوسطة</td></tr>
-            <tr><td class="red"><strong>Schwer</strong></td><td class="red"><strong>&gt; 4 m/s</strong></td><td class="red"><strong>&gt; 40 mmHg</strong></td><td class="red"><strong>&lt; 1 cm²</strong></td><td class="darija-cell">شديدة 🚨</td></tr>
+            <tr><td>Leicht</td><td>&lt; 3 m/s</td><td>&lt; 20 mmHg</td><td>&gt; 1.5 cm²</td></tr>
+            <tr><td>Mittel</td><td>3–4 m/s</td><td>20–40 mmHg</td><td>1–1.5 cm²</td></tr>
+            <tr><td class="red"><strong>Schwer</strong></td><td class="red"><strong>&gt; 4 m/s</strong></td><td class="red"><strong>&gt; 40 mmHg</strong></td><td class="red"><strong>&lt; 1 cm²</strong></td></tr>
           </tbody>
         </table>
       </div>
@@ -924,7 +885,6 @@ footer strong { color: var(--navy); font-weight: 600; }
           <div class="measure-content">
             <strong>LVOT-Durchmesser (PLAX — Zoom)</strong><br>
             Messung Mitte der Systole. Kritisch genau — <mark>quadratischer Einfluss!</mark>
-            <div style="direction:rtl;text-align:right;margin-top:6px;font-size:13px;color:var(--darija-text)">قياس قطر LVOT في PLAX بالـ Zoom، وسط الـ Systole — الخطأ هنا يضاعف نفسو!</div>
           </div>
         </div>
         <div class="measure-item">
@@ -932,7 +892,6 @@ footer strong { color: var(--navy); font-weight: 600; }
           <div class="measure-content">
             <strong>LVOT-VTI (A5C — unter der Klappe)</strong><br>
             PW-Cursor direkt unterhalb der Aortenklappe im LVOT.
-            <div style="direction:rtl;text-align:right;margin-top:6px;font-size:13px;color:var(--darija-text)">PW تحت الصمام مباشرة في LVOT — نخرجو الـ VTI</div>
           </div>
         </div>
         <div class="measure-item">
@@ -940,7 +899,6 @@ footer strong { color: var(--navy); font-weight: 600; }
           <div class="measure-content">
             <strong>AV-Vmax + Mean Gradient + AV-VTI (A5C)</strong><br>
             Schwere AS: Vmax &gt; 4 m/s, MG &gt; 40 mmHg, AVA &lt; 1 cm².
-            <div style="direction:rtl;text-align:right;margin-top:6px;font-size:13px;color:var(--darija-text)">AS شديدة: Vmax أكثر من 4 م/ث، Gradient فوق 40، مساحة أقل من 1 سم²</div>
           </div>
         </div>
       </div>
@@ -965,11 +923,7 @@ footer strong { color: var(--navy); font-weight: 600; }
     <svg class="scard-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
   </div>
   <div class="scard-inner">
-    <div class="darija-box">
-      <div class="darija-label"><span>🇩🇿 بالدارجة</span></div>
-      في الـ AI، الصمام الأبهري ما يغلقش مليح وقت الانبساط، والدم يرجع للبطين الأيسر. في الحالات المزمنة، البطين يتكيف وينتفخ (Volume Overload). نعرفو الـ AI الشديدة بثلاث علامات بالدوبلر.
-    </div>
-    <div class="sop-section">
+        <div class="sop-section">
       <div class="sop-section-title">Drei Zeichen der schweren AI</div>
       <div class="measure-list">
         <div class="measure-item">
@@ -977,7 +931,6 @@ footer strong { color: var(--navy); font-weight: 600; }
           <div class="measure-content">
             <strong>Vena Contracta (PLAX)</strong><br>
             &gt; 6 mm → schwere AI
-            <div style="direction:rtl;text-align:right;margin-top:6px;font-size:13px;color:var(--darija-text)">عرض الجيت في PLAX: أكثر من 6 مم = AI شديدة</div>
           </div>
         </div>
         <div class="measure-item">
@@ -985,7 +938,6 @@ footer strong { color: var(--navy); font-weight: 600; }
           <div class="measure-content">
             <strong>PHT-Messung (A5C / APLAX)</strong><br>
             PHT &lt; 200 ms → schneller Druckausgleich → schwere AI
-            <div style="direction:rtl;text-align:right;margin-top:6px;font-size:13px;color:var(--darija-text)">إذا المنحنى يهبط بالخف (PHT أقل من 200 مللي ثانية) = AI شديدة</div>
           </div>
         </div>
         <div class="measure-item">
@@ -993,7 +945,6 @@ footer strong { color: var(--navy); font-weight: 600; }
           <div class="measure-content">
             <strong>Holodiastolischer Rückfluss (Suprasternal — Aorta descendens)</strong><br>
             Diastolischer Rückfluss in der Aorta descendens → schwere AI
-            <div style="direction:rtl;text-align:right;margin-top:6px;font-size:13px;color:var(--darija-text)">الدم يرجع بقوة طيلة الانبساط في الأبهر النازل = AI شديدة — الضربة القاضية!</div>
           </div>
         </div>
       </div>
@@ -1018,11 +969,7 @@ footer strong { color: var(--navy); font-weight: 600; }
     <svg class="scard-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
   </div>
   <div class="scard-inner">
-    <div class="darija-box">
-      <div class="darija-label"><span>🇩🇿 بالدارجة</span></div>
-      الارتجاع ثلاثي الشرف شائع وغالباً ثانوي لارتفاع ضغط الشريان الرئوي ولا توسع الأذين والبطين الأيمن. الضربة القاضية للتشخيص هي الدوبلر النبضي في الـ Vena Hepatica.
-    </div>
-    <div class="sop-section">
+        <div class="sop-section">
       <div class="sop-section-title">Quantifizierung</div>
       <div class="measure-list">
         <div class="measure-item">
@@ -1030,7 +977,6 @@ footer strong { color: var(--navy); font-weight: 600; }
           <div class="measure-content">
             <strong>Vena Contracta</strong><br>
             &gt; 7 mm → schwere TI
-            <div style="direction:rtl;text-align:right;margin-top:6px;font-size:13px;color:var(--darija-text)">Vena contracta أكثر من 7 مم = TI شديدة</div>
           </div>
         </div>
         <div class="measure-item">
@@ -1038,15 +984,13 @@ footer strong { color: var(--navy); font-weight: 600; }
           <div class="measure-content">
             <strong>Signaldichte + Kurvenform + sPAP</strong><br>
             Dense, dreieckiges, früh-gipfelndes Signal → schwere TI.
-            <div style="direction:rtl;text-align:right;margin-top:6px;font-size:13px;color:var(--darija-text)">إشارة مثلثية كثيفة ومبكرة الذروة = TI شديدة. نحسبو sPAP كذلك.</div>
           </div>
         </div>
         <div class="measure-item">
           <span class="measure-badge pw">PW</span>
           <div class="measure-content">
-            <strong>Vena Hepatica (Subcostal) — الضربة القاضية</strong><br>
+            <strong>Vena Hepatica (Subcostal)</strong><br>
             Systolischer Fluss-Reversal (S-Welle negativ) → beweist schwere TI
-            <div style="direction:rtl;text-align:right;margin-top:6px;font-size:13px;color:var(--darija-text)">موجة S ولات سالبة في الوريد الكبدي = TI شديدة — الضربة القاضية!</div>
           </div>
         </div>
       </div>
@@ -1071,16 +1015,11 @@ footer strong { color: var(--navy); font-weight: 600; }
     <svg class="scard-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
   </div>
   <div class="scard-inner">
-    <div class="darija-box">
-      <div class="darija-label"><span>🇩🇿 بالدارجة</span></div>
-      نادرة جداً بوحدها، وغالباً تجي مع Mitralstenose في Rheumatische Herzerkrankung. الصمام ثلاثي الشرف يتيبس ويقاوم التدفق من الأذين الأيمن للبطين.
-    </div>
-    <div class="callout warning">
+        <div class="callout warning">
       <div class="callout-icon">🔔</div>
       <div class="callout-body">
         <strong>Doming-Zeichen:</strong> Das Segel wölbt sich in der Diastole wie eine Kuppel (ähnlich wie bei MS).
         <strong>Mittlerer Gradient &gt; 5 mmHg</strong> ist klinisch bedeutsam. TVA = 190 / PHT.
-        <div style="direction:rtl;text-align:right;margin-top:6px;font-size:13px;color:var(--darija-text)">الصمام يدير شكل القبة (Doming) كيما MS. Gradient أكثر من 5 = ذو دلالة. TVA = 190 ÷ PHT</div>
       </div>
     </div>
   </div>
@@ -1105,22 +1044,14 @@ footer strong { color: var(--navy); font-weight: 600; }
     <svg class="scard-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
   </div>
   <div class="scard-inner">
-    <div class="darija-box">
-      <div class="darija-label"><span>🇩🇿 بالدارجة</span></div>
-      الـ Dissektion هي طوارئ قاتلة. الغشاء الداخلي للشريان الأبهر يتشق والدم يدخل في جدار الشريان ويخلق قناتين. الإيكو يبيّنلنا التوسعة (Dilatation) والغشاء المترفرف (Intima-Flap).
-    </div>
-    <div class="algo-box">
+        <div class="algo-box">
       <div class="algo-box-title">🚨 KRITISCH — B-Mode Zeichen</div>
       <ul>
         <li><strong>Aortenwurzel-Dilatation &gt; 40 mm</strong></li>
         <li><strong>Intima-Flap</strong> — ein flatterndes Häutchen teilt die Aorta in zwei Lumina</li>
         <li>Immer suchen: <span class="algo-warn">Perikarderguss (Tamponade!)</span> + <span class="algo-warn">akute Aorteninsuffizienz</span></li>
       </ul>
-      <div class="darija-box">
-        <div class="darija-label"><span>🇩🇿 بالدارجة</span></div>
-        الـ Intima-Flap = غشاء يرفرف ويقسم الأبهر. دايماً حوس على الـ Perikarderguss والـ AI الحادة!
-      </div>
-    </div>
+          </div>
     <div class="sop-section">
       <div class="sop-section-title">Doppler</div>
       <div class="measure-list">
@@ -1129,7 +1060,6 @@ footer strong { color: var(--navy); font-weight: 600; }
           <div class="measure-content">
             <strong>True vs. False Lumen unterscheiden</strong><br>
             True Lumen: normaler antegrader Fluss. False Lumen: langsam, retrograd oder kein Fluss.
-            <div style="direction:rtl;text-align:right;margin-top:6px;font-size:13px;color:var(--darija-text)">True Lumen: الدم يجري عادي. False Lumen: التدفق بطيء ولا معكوس</div>
           </div>
         </div>
       </div>
@@ -1145,7 +1075,7 @@ footer strong { color: var(--navy); font-weight: 600; }
     <span class="scard-num">10</span>
     <div class="scard-icon" style="background:var(--purple-bg)">🔬</div>
     <div class="scard-info">
-      <div class="scard-title">Myokarditis (التهاب عضلة القلب)</div>
+      <div class="scard-title">Myokarditis</div>
       <div class="scard-badges">
         <span class="badge purple">Variable Befunde</span>
         <span class="badge gray">Alle Fenster</span>
@@ -1154,11 +1084,7 @@ footer strong { color: var(--navy); font-weight: 600; }
     <svg class="scard-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
   </div>
   <div class="scard-inner">
-    <div class="darija-box">
-      <div class="darija-label"><span>🇩🇿 بالدارجة</span></div>
-      الـ Myokarditis "المرض المتلون" — يقدر يكون الإيكو نورمال 100%، ويقدر يشبه STEMI، ويقدر يشبه DCM. أهم أداة هنا هي الـ GLS بالـ Speckle Tracking.
-    </div>
-    <div class="card-grid fade-in">
+        <div class="card-grid fade-in">
       <div class="card purple">
         <h4>🔮 B-Mode — Variable Befunde</h4>
         <ul>
@@ -1167,7 +1093,6 @@ footer strong { color: var(--navy); font-weight: 600; }
           <li>Regionale RWMA (wie STEMI)</li>
           <li>Wandverdickung durch Ödem</li>
         </ul>
-        <div class="card-darija">يقدر يكون نورمال، ولا كيما DCM، ولا كيما STEMI</div>
       </div>
       <div class="card teal">
         <h4>⭐ GLS — Speckle Tracking</h4>
@@ -1176,14 +1101,12 @@ footer strong { color: var(--navy); font-weight: 600; }
           <li>Reduzierter Strain obwohl EF normal</li>
           <li>Erkennt subklinische Dysfunktion</li>
         </ul>
-        <div class="card-darija">GLS هابط حتى ولو الـ EF يبان طبيعي — الضربة القاضية هنا!</div>
       </div>
     </div>
     <div class="callout teal">
       <div class="callout-icon">🔍</div>
       <div class="callout-body">
         <strong>Immer suchen:</strong> Perikarderguss (Perimyokarditis sehr häufig!). Bei V.a. Myokarditis ist ein <strong>Cardiac MRI</strong> die beste Ergänzung zum Echo.
-        <div style="direction:rtl;text-align:right;margin-top:6px;font-size:13px;color:var(--darija-text)">دايماً حوس على Perikarderguss لأن التهاب القلب والغشاء سوا شائع. MRI القلب يكمّل التشخيص.</div>
       </div>
     </div>
   </div>
@@ -1206,11 +1129,7 @@ footer strong { color: var(--navy); font-weight: 600; }
     <svg class="scard-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
   </div>
   <div class="scard-inner">
-    <div class="darija-box">
-      <div class="darija-label"><span>🇩🇿 بالدارجة</span></div>
-      الـ Tamponade طوارئ حقيقية: السائل في الغشاء يضغط على القلب ويمنعو من الامتلاء. الـ Subcostal هو أحسن نافذة باش تشوف السائل. نفرّقو على الـ Pleuraerguss: السائل حول القلب يكون قدام الـ Aorta descendens.
-    </div>
-    <div class="card-grid fade-in">
+        <div class="card-grid fade-in">
       <div class="card blue">
         <h4>🔵 Perikarderguss — B-Mode</h4>
         <ul>
@@ -1218,7 +1137,6 @@ footer strong { color: var(--navy); font-weight: 600; }
           <li>Anterior zur Aorta descendens</li>
           <li>Umfang &amp; Menge beurteilen</li>
         </ul>
-        <div class="card-darija">مساحة سوداء (Echo-frei) دايرة بالقلب، قدام الـ Aorta descendens</div>
       </div>
       <div class="card red">
         <h4>🚨 Tamponade-Zeichen</h4>
@@ -1227,17 +1145,12 @@ footer strong { color: var(--navy); font-weight: 600; }
           <li>Systolischer RA-Kollaps</li>
           <li>VCI dilatiert, kein Atemcollaps (Plethora)</li>
         </ul>
-        <div class="card-darija">RV ينهار في الانبساط + RA في الانقباض + الـ VCI منتفخة ولا تتنفس</div>
       </div>
     </div>
     <div class="algo-box">
       <div class="algo-box-title">📊 Pulsus Paradoxus im Echo (Doppler)</div>
       <p>PW Doppler auf Mitral-Inflow. Die <strong>E-Welle fällt beim Einatmen um &gt; 25%</strong> → Tamponade-Zeichen. Dies ist das Echo-Äquivalent des klinischen Pulsus paradoxus.</p>
-      <div class="darija-box">
-        <div class="darija-label"><span>🇩🇿 بالدارجة</span></div>
-        موجة E تاع الميترال تهبط أكثر من 25% مع الشهيق = علامة Tamponade = Pulsus paradoxus بالإيكو
-      </div>
-    </div>
+          </div>
   </div>
 </div>
 
@@ -1258,11 +1171,7 @@ footer strong { color: var(--navy); font-weight: 600; }
     <svg class="scard-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
   </div>
   <div class="scard-inner">
-    <div class="darija-box">
-      <div class="darija-label"><span>🇩🇿 بالدارجة</span></div>
-      بروتين الأميلويد يتراكم في جدران القلب ويخليها تتيبس. الصورة الكلاسيكية: بطينات صغار وخشان، وأذينات كبار. الضربة القاضية هي الـ "Apical Sparing" في الـ Strain — لاباز مريض والـ Apex سليم.
-    </div>
-    <div class="card-grid fade-in">
+        <div class="card-grid fade-in">
       <div class="card amber">
         <h4>🟡 B-Mode — Klassisches Bild</h4>
         <ul>
@@ -1271,7 +1180,6 @@ footer strong { color: var(--navy); font-weight: 600; }
           <li>Sparkling-Muster (glitzerndes Myokard)</li>
           <li>Verdickte Klappen + IAS</li>
         </ul>
-        <div class="card-darija">بطينات صغار خشان، أذينات كبار، العضلة "تلمع" (Sparkling)</div>
       </div>
       <div class="card red">
         <h4>⭐ Apical Sparing — Strain</h4>
@@ -1281,14 +1189,12 @@ footer strong { color: var(--navy); font-weight: 600; }
           <li>"Cherry on Top" Muster</li>
           <li>Pathognomonisch für Amyloidose</li>
         </ul>
-        <div class="card-darija">الـ Strain في القاعدة والوسط كارثي، لكن الـ Apex مليح — "Cherry on Top"</div>
       </div>
     </div>
     <div class="callout warning">
       <div class="callout-icon">📊</div>
       <div class="callout-body">
         <strong>PW / TDI:</strong> Restriktives Füllungsmuster (E/A groß, kurze DT, kleine e'-Wellen). E/E' sehr hoch → erhöhter Füllungsdruck.
-        <div style="direction:rtl;text-align:right;margin-top:6px;font-size:13px;color:var(--darija-text)">نمط امتلاء قيدي (Restriktiv): E/A كبير، DT قصير، موجات e' صغار بزاف</div>
       </div>
     </div>
   </div>
@@ -1313,30 +1219,20 @@ footer strong { color: var(--navy); font-weight: 600; }
     <svg class="scard-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
   </div>
   <div class="scard-inner">
-    <div class="darija-box">
-      <div class="darija-label"><span>🇩🇿 بالدارجة</span></div>
-      في الـ HOCM، الحاجز يتضخم بشكل غير متماثل (ASH) ويضيّق مخرج البطين الأيسر (LVOT). والأهم من هذا هو الـ SAM: الصمام التاجي ينجبد لقدام في الانقباض ويزيد يسد المخرج أكثر.
-    </div>
-    <div class="card-grid fade-in">
+        <div class="card-grid fade-in">
       <div class="card purple">
         <h4>🔮 ASH — Asymm. Septumhypertrophie</h4>
         <p>Das Septum ist deutlich dicker als die Hinterwand. Ratio &gt; 1.3 : 1 pathologisch.</p>
-        <div class="card-darija">الحاجز أثخن بكثير من الجدار الخلفي — Ratio أكثر من 1.3</div>
       </div>
       <div class="card red">
         <h4>🚨 SAM-Phänomen</h4>
         <p>Systolic Anterior Motion: Das Mitralsegel wird in der Systole nach vorne gezogen und verlegt den LVOT.</p>
-        <div class="card-darija">الصمام التاجي ينجبد لقدام في الانقباض ويغلق مخرج البطين (LVOT) — الضربة القاضية!</div>
       </div>
     </div>
     <div class="algo-box">
       <div class="algo-box-title">⚔️ Dagger-Shape (CW in LVOT / A5C)</div>
       <p>Das CW-Doppler-Signal hat eine charakteristische <mark>Dolchform</mark> — <strong>spät gipfelnd (Late-peaking)</strong>, da die Obstruktion während der Systole zunimmt. Gegensatz zur Aortenstenose (früh gipfelnd, symmetrisch).</p>
-      <div class="darija-box">
-        <div class="darija-label"><span>🇩🇿 بالدارجة</span></div>
-        شكل "الخنجر" (Dagger Shape): المنحنى يكون متأخر الذروة لأن الانسداد يزيد مع الانقباض. عكس AS وين الذروة مبكرة.
-      </div>
-    </div>
+          </div>
   </div>
 </div>
 
@@ -1358,15 +1254,10 @@ footer strong { color: var(--navy); font-weight: 600; }
     <svg class="scard-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
   </div>
   <div class="scard-inner">
-    <div class="darija-box">
-      <div class="darija-label"><span>🇩🇿 بالدارجة</span></div>
-      التاكوتسوبو غالباً تجي عند نسا كبار بعد صدمة عاطفية أو جسدية. القلب يشبه الـ STEMI بالـ ECG، بصح الشرايين مليحة. الشكل المميز هو "Apical Ballooning": الـ Apex مقنبع وحابس، والقاعدة تخبط بقوة.
-    </div>
-    <div class="callout info">
+        <div class="callout info">
       <div class="callout-icon">🏺</div>
       <div class="callout-body">
         <strong>Apical Ballooning:</strong> Der Apex ist akinetisch und wölbt sich wie ein Ballon nach außen. Die Basis ist hyperkinetisch. Form erinnert an japanische Tintenfischfalle (Takotsubo). Meist <strong>reversibel in Wochen!</strong>
-        <div style="direction:rtl;text-align:right;margin-top:6px;font-size:13px;color:var(--darija-text)">الـ Apex حابس ومقنبع كيما البالون، والقاعدة تخبط بقوة — شكل جرة صيد الأخطبوط اليابانية. عادةً يرجع خلال أسابيع!</div>
       </div>
     </div>
   </div>
@@ -1389,11 +1280,7 @@ footer strong { color: var(--navy); font-weight: 600; }
     <svg class="scard-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
   </div>
   <div class="scard-inner">
-    <div class="darija-box">
-      <div class="darija-label"><span>🇩🇿 بالدارجة</span></div>
-      قلب كبير، مدور، جدرانه رقيقة، ويخبط ببطء — هذا هو الـ DCM. يقدر يكون بسبب إدمان الكحول، التهابات، أو وراثي. الـ EF ينزل بزاف.
-    </div>
-    <div class="card-grid fade-in">
+        <div class="card-grid fade-in">
       <div class="card blue">
         <h4>🔵 B-Mode — Klassisch</h4>
         <ul>
@@ -1402,7 +1289,6 @@ footer strong { color: var(--navy); font-weight: 600; }
           <li>Globale Hypokinesie</li>
           <li>EF stark reduziert (&lt; 35%)</li>
         </ul>
-        <div class="card-darija">قلب مدور وكبير، جدران رقاق، كل شي يتحرك ببطء، EF هابط بزاف</div>
       </div>
       <div class="card amber">
         <h4>🟡 Komplikationen</h4>
@@ -1411,7 +1297,6 @@ footer strong { color: var(--navy); font-weight: 600; }
           <li>Apikaler Thrombus</li>
           <li>Diastolische Dysfunktion</li>
         </ul>
-        <div class="card-darija">MI ثانوية + جلطة في الـ Apex + خلل انبساطي</div>
       </div>
     </div>
   </div>
@@ -1435,11 +1320,7 @@ footer strong { color: var(--navy); font-weight: 600; }
     <svg class="scard-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
   </div>
   <div class="scard-inner">
-    <div class="darija-box">
-      <div class="darija-label"><span>🇩🇿 بالدارجة</span></div>
-      ثلاثة أشياء مهمين: التهاب الشغاف (Endokarditis) مع الـ Vegetationen، الورم الحميد للأذين (Myxom)، والجلطات داخل القلب. الـ TEE غالباً ضروري باش تشوف التفاصيل مليح.
-    </div>
-    <div class="card-grid fade-in">
+        <div class="card-grid fade-in">
       <div class="card red">
         <h4>🦠 Infektiöse Endokarditis</h4>
         <ul>
@@ -1448,7 +1329,6 @@ footer strong { color: var(--navy); font-weight: 600; }
           <li>Abszess in Aortenwurzel möglich</li>
           <li>Color/CW: neue Insuffizienz?</li>
         </ul>
-        <div class="card-darija">Vegetationen على الصمام (upstream). حوس على خراج في جذر الأبهر والـ TEE ضروري.</div>
       </div>
       <div class="card amber">
         <h4>🫀 Vorhofmyxom</h4>
@@ -1458,7 +1338,6 @@ footer strong { color: var(--navy); font-weight: 600; }
           <li>Pendelt durch Mitralklappe</li>
           <li>Symptome wie Mitralstenose</li>
         </ul>
-        <div class="card-darija">ورم في الأذين الأيسر، متعلق بالحاجز. في الـ Diastole يطيح ويسد الصمام التاجي.</div>
       </div>
       <div class="card purple">
         <h4>🩸 Thromben</h4>
@@ -1467,7 +1346,6 @@ footer strong { color: var(--navy); font-weight: 600; }
           <li>LAA-Thrombus: bei Vorhofflimmern</li>
           <li>LAA nur sicher mit TEE</li>
         </ul>
-        <div class="card-darija">جلطة الـ Apex: بعد STEMI، تحتاج Kontrastmittel. جلطة الأذن (LAA): غير بالـ TEE.</div>
       </div>
     </div>
   </div>
@@ -1490,11 +1368,7 @@ footer strong { color: var(--navy); font-weight: 600; }
     <svg class="scard-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
   </div>
   <div class="scard-inner">
-    <div class="darija-box">
-      <div class="darija-label"><span>🇩🇿 بالدارجة</span></div>
-      الـ ASD (ثقب في الحاجز بين الأذينين) والـ PFO (ثقب صغير طبيعي ما انسدش) هما الأكثر شيوعاً عند البالغين. الـ Subcostal هو أحسن نافذة لأن الأشعة تضرب الحاجز بصورة عمودية.
-    </div>
-    <div class="sop-section">
+        <div class="sop-section">
       <div class="sop-section-title">Diagnostik — Doppler</div>
       <div class="measure-list">
         <div class="measure-item">
@@ -1502,7 +1376,6 @@ footer strong { color: var(--navy); font-weight: 600; }
           <div class="measure-content">
             <strong>Links-Rechts-Shunt visualisieren</strong><br>
             Blut fließt von LA → RA. RV-Volumenbelastung (dilatiert).
-            <div style="direction:rtl;text-align:right;margin-top:6px;font-size:13px;color:var(--darija-text)">نشوفو الدم يفوت من اليسار لليمين. البطين الأيمن ينتفخ بسبب الحجم الزائد.</div>
           </div>
         </div>
         <div class="measure-item">
@@ -1510,7 +1383,6 @@ footer strong { color: var(--navy); font-weight: 600; }
           <div class="measure-content">
             <strong>Bubble-Study / Agitated Saline</strong><br>
             Blasen erscheinen &lt; 3 Herzschläge nach rechts = PFO. Bei ASD sofort.
-            <div style="direction:rtl;text-align:right;margin-top:6px;font-size:13px;color:var(--darija-text)">نضربو سيروم ملحي مهوى. إذا الفقاعات جازت للأيسر في أقل من 3 دقات = PFO. فوري = ASD.</div>
           </div>
         </div>
       </div>
@@ -1529,11 +1401,7 @@ footer strong { color: var(--navy); font-weight: 600; }
           <li><strong>HOCM:</strong> SAM + Dagger-Shape CW + ASH</li>
           <li><strong>Amyloidose:</strong> Apical Sparing im Strain ("Cherry on Top")</li>
         </ul>
-        <div class="darija-box" style="margin-top:1rem">
-          <div class="darija-label"><span>🇩🇿 الملخص الكامل</span></div>
-          اضطراب الحركة الجدارية = إشكيمية. McConnell = PE حادة. Vena contracta > 7مم = MI أو TI شديدة. AS شديدة: سرعة > 4، Gradient > 40، مساحة < 1. AI شديدة: VC > 6، PHT < 200، رجوع الأبهر. Tamponade: انهيار RV + E-Wave تتغير أكثر من 25%.
-        </div>
-      </div>
+              </div>
     </div>
   </div>
 </div>
@@ -1545,9 +1413,9 @@ footer strong { color: var(--navy); font-weight: 600; }
 <!-- ═══ FOOTER ═══ -->
 <footer>
   <div>
-    <strong>OUSS Kardiologie</strong> — Echo Pathologien
+    Dia<strong style="color:var(--red)">stola</strong> — Echo Pathologien
   </div>
-  <div>17 Kapitel · Deutsch + Darija الدارجة · Weiterbildung DE</div>
+  <div>17 Kapitel · Deutsch · Weiterbildung DE</div>
   <div>
     <a href="../echo/index.html" style="color:var(--blue);text-decoration:none;font-weight:600">← Zurück zum Echo-Kurs</a>
   </div>
