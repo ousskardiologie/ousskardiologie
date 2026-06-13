@@ -4,47 +4,47 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Vollständiger Echokardiographie-Kurs — Compact Echo Course</title>
-<link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@300;400;500;600;700&family=Google+Sans+Display:wght@400;500;700&family=Google+Sans+Mono&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500;600&family=Caveat:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/css/theme.css">
+<link rel="stylesheet" href="../assets/css/animations.css">
 <style>
   :root {
-    --bg: #ffffff;
-    --surface: #fafafa;
-    --surface2: #f4f4f2;
-    --surface3: #ececea;
-    --border: #e3e3e0;
-    --border2: #d5d5d0;
-    --text: #2e2e2c;
-    --text2: #616161;
-    --text3: #9e9e9e;
-    --accent: #2563eb;
-    --accent2: #1d4ed8;
-    --accent-bg: #eff6ff;
-    --accent-border: #bfdbfe;
-    --green: #059669;
-    --green-bg: #ecfdf5;
-    --green-border: #a7f3d0;
-    --red: #dc2626;
-    --red-bg: #fef2f2;
-    --red-border: #fecaca;
-    --amber: #d97706;
-    --amber-bg: #fffbeb;
-    --amber-border: #fde68a;
-    --purple: #7c3aed;
-    --purple-bg: #f5f3ff;
-    --purple-border: #ddd6fe;
-    --teal: #0d9488;
-    --teal-bg: #f0fdfa;
-    --teal-border: #99f6e4;
-    --darija-bg: #fef9f3;
-    --darija-border: #f0ddc8;
-    --darija-text: #5c3d1a;
+    --bg: #faf6ee;
+    --surface: #f4eee0;
+    --surface2: #ece4d2;
+    --surface3: #e2d8c2;
+    --border: #e7ddc9;
+    --border2: #ddd1b8;
+    --text: #2a241c;
+    --text2: #6e6354;
+    --text3: #a3957f;
+    --accent: #c8303a;
+    --accent2: #a82730;
+    --accent-bg: #fdf3ef;
+    --accent-border: rgba(200,48,58,.30);
+    --green: #1f7a5c;
+    --green-bg: #edf5ef;
+    --green-border: rgba(31,122,92,.30);
+    --red: #c8303a;
+    --red-bg: #fdf3ef;
+    --red-border: rgba(200,48,58,.30);
+    --amber: #b07a10;
+    --amber-bg: #faf4e0;
+    --amber-border: rgba(176,122,16,.32);
+    --purple: #6d3fb8;
+    --purple-bg: #f3effa;
+    --purple-border: rgba(109,63,184,.28);
+    --teal: #11756c;
+    --teal-bg: #eef6f2;
+    --teal-border: rgba(17,117,108,.30);
     --radius: 12px;
     --radius-lg: 16px;
-    --shadow: 0 1px 3px rgba(0,0,0,.04), 0 1px 2px rgba(0,0,0,.02);
-    --shadow-md: 0 4px 16px rgba(0,0,0,.06), 0 2px 8px rgba(0,0,0,.03);
-    --shadow-lg: 0 10px 40px rgba(0,0,0,.08), 0 4px 12px rgba(0,0,0,.04);
-    --font: 'Google Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-    --font-display: 'Google Sans Display', 'Google Sans', sans-serif;
+    --shadow: 0 1px 3px rgba(74,60,38,.07), 0 4px 14px rgba(74,60,38,.06);
+    --shadow-md: 0 2px 6px rgba(74,60,38,.08), 0 10px 28px rgba(74,60,38,.10);
+    --shadow-lg: 0 3px 8px rgba(74,60,38,.09), 0 14px 36px rgba(74,60,38,.11);
+    --font: 'DM Sans', system-ui, sans-serif;
+    --font-display: 'Cormorant Garamond', Georgia, serif;
     --font-mono: 'Google Sans Mono', 'Courier New', monospace;
   }
 
@@ -53,6 +53,9 @@
 
   body {
     font-family: var(--font);
+    background-color: #faf6ee;
+    background-image: radial-gradient(rgba(67,54,32,.055) 1px, transparent 1.2px);
+    background-size: 23px 23px;
     background: var(--bg);
     color: var(--text);
     font-size: 17px;
@@ -106,9 +109,9 @@
     font-size: 11px;
     padding: 3px 10px;
     border-radius: 20px;
-    background: var(--darija-bg);
-    color: var(--darija-text);
-    border: 1px solid var(--darija-border);
+    background: var(--surface2);
+    color: var(--text2);
+    border: 1px solid var(--border);
     font-weight: 500;
   }
 
@@ -318,49 +321,7 @@
   hr { border: none; border-top: 1px solid var(--border); margin: 3rem 0; }
 
   /* ═══ DARIJA BOX ═══ */
-  .darija-box {
-    background: var(--darija-bg);
-    border: 1px solid var(--darija-border);
-    border-radius: var(--radius-lg);
-    padding: 1.5rem 1.8rem;
-    margin: 1.5rem 0;
-    direction: rtl;
-    text-align: right;
-    font-size: 17px;
-    line-height: 2;
-    color: var(--darija-text);
-    position: relative;
-    overflow: hidden;
-    box-shadow: var(--shadow);
-  }
-  .darija-box::before {
-    content: '';
-    position: absolute;
-    top: 0; right: 0;
-    width: 5px;
-    height: 100%;
-    background: linear-gradient(180deg, #d4a574, #e8c9a0);
-    border-radius: 0 var(--radius-lg) var(--radius-lg) 0;
-  }
-  .darija-label {
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: .1em;
-    text-transform: uppercase;
-    color: #9a7040;
-    direction: ltr;
-    margin-bottom: 8px;
-    display: flex;
-    align-items: center;
-    gap: 7px;
-    justify-content: flex-end;
-  }
-  .darija-label span {
-    background: #f5e8d4;
-    padding: 3px 10px;
-    border-radius: 20px;
-  }
-
+        
   /* ═══ CALLOUTS ═══ */
   .callout {
     display: flex;
@@ -424,13 +385,7 @@
   }
   tbody tr:last-child td { border-bottom: none; }
   tbody tr:hover td { background: var(--surface2); }
-  td.darija-cell {
-    direction: rtl;
-    text-align: right;
-    font-size: 15px;
-    color: var(--darija-text);
-  }
-
+  td
   /* ═══ STEPS ═══ */
   .steps { margin: 1.5rem 0 2rem; }
   .step {
@@ -503,18 +458,7 @@
     color: var(--text2);
   }
   .card ul li { margin-bottom: .3rem; }
-  .card .card-darija {
-    font-size: 14px;
-    direction: rtl;
-    text-align: right;
-    color: var(--darija-text);
-    background: var(--darija-bg);
-    padding: 8px 12px;
-    border-radius: 8px;
-    margin-top: 10px;
-    border: 1px solid var(--darija-border);
-  }
-
+  
   /* ═══ BADGE ROW ═══ */
   .badge-row {
     display: flex;
@@ -756,6 +700,44 @@
     h1 { font-size: 2.2rem; }
     h2 { font-size: 1.7rem; }
   }
+  /* ═══ DIASTOLA SKIZZENBUCH-SCHICHT ═══ */
+  .brand-heart{animation:hb 1.6s ease-in-out infinite}
+  body::after{content:'';position:fixed;top:0;bottom:0;left:34px;width:1.5px;background:rgba(200,48,58,.20);pointer-events:none;z-index:1}
+  .sidebar{background:var(--surface);border-right:1.5px solid var(--border2)}
+  .sidebar-title{font-family:'Cormorant Garamond',serif}
+  .tag,.badge{border-radius:255px 15px 225px 15px / 15px 225px 15px 255px}
+  /* CARDS → sticky notes */
+  .card-grid{gap:26px 22px;margin-top:1.6rem}
+  .card{border:none;border-radius:3px;overflow:visible;position:relative;background:#fff4bd;box-shadow:0 4px 10px rgba(74,60,38,.13),0 1px 3px rgba(74,60,38,.10)}
+  .card::after{content:'';position:absolute;top:-10px;left:50%;transform:translateX(-50%) rotate(-2deg);width:78px;height:21px;background:rgba(255,255,255,.42);border:1px solid rgba(74,60,38,.08);box-shadow:0 1px 2px rgba(74,60,38,.08);pointer-events:none}
+  .card:nth-child(odd){transform:rotate(-.8deg)}
+  .card:nth-child(even){transform:rotate(.7deg)}
+  .card:hover{transform:translateY(-3px) rotate(0deg);box-shadow:0 6px 16px rgba(74,60,38,.16),0 2px 4px rgba(74,60,38,.10)}
+  .card.blue{background:#e7eff9;border-top:none}
+  .card.green{background:#e1f1e7;border-top:none}
+  .card.red{background:#ffe4e0;border-top:none}
+  .card.amber{background:#fff4bd;border-top:none}
+  .card.purple{background:#efe8f9;border-top:none}
+  .card.teal{background:#e6f2ee;border-top:none}
+  .card h4{font-family:'Caveat',cursive;font-size:1.35rem;font-weight:700;line-height:1.1;margin-bottom:.4rem}
+  .card.blue h4{color:var(--accent)}.card.green h4{color:var(--green)}.card.red h4{color:var(--red)}
+  .card.amber h4{color:#7a5c10}.card.purple h4{color:var(--purple)}.card.teal h4{color:var(--teal)}
+  .card p,.card ul{color:var(--text)}
+  /* CALLOUTS → sticky notes */
+  .callout{border:none;border-radius:3px;position:relative;box-shadow:0 4px 10px rgba(74,60,38,.12),0 1px 3px rgba(74,60,38,.09)}
+  .callout:hover{transform:translateY(-2px)}
+  .callout::before{content:'';position:absolute;top:-9px;left:50%;transform:translateX(-50%) rotate(-2deg);width:60px;height:17px;background:rgba(255,255,255,.45);border:1px solid rgba(74,60,38,.08);box-shadow:0 1px 2px rgba(74,60,38,.08);pointer-events:none}
+  .callout.info{background:#e7eff9;transform:rotate(-.25deg)}
+  .callout.warn{background:#fff4bd;transform:rotate(.3deg)}
+  .callout.danger{background:#ffe4e0;transform:rotate(.25deg)}
+  .callout.success{background:#e1f1e7;transform:rotate(-.25deg)}
+  .callout.purple{background:#efe8f9;transform:rotate(-.2deg)}
+  .callout.teal{background:#e6f2ee;transform:rotate(.2deg)}
+  /* hand-circled step numbers */
+  .step-num{background:transparent!important;color:var(--red)!important;border:2px solid var(--red);border-radius:255px 15px 225px 15px / 15px 225px 15px 255px;font-family:'Caveat',cursive;font-size:1.1rem;transform:rotate(-3deg);box-shadow:none!important;width:34px;height:32px}
+  /* headings serif red em */
+  h1 em,h2 em,h3 em{font-style:italic;color:var(--red)}
+
 </style>
 </head>
 <body>
@@ -767,11 +749,14 @@
 <!-- ═══════════════════════════════════════════════════════════════ -->
 <aside class="sidebar">
   <div class="sidebar-header">
+    <a href="../index.html" class="brand-link" style="display:flex;align-items:center;gap:.5rem;text-decoration:none;margin-bottom:.6rem">
+      <span class="brand-heart" style="display:inline-flex"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M9 15.5C3.5 12.2 1 9 1 6A4 4 0 0 1 9 4.2a4 4 0 0 1 8 1.8C17 9 14.5 12.2 9 15.5Z" stroke="#c8303a" stroke-width="1.6" fill="none" stroke-linejoin="round"/><path d="M4.5 9.5h2.2l1-2.2 1.6 4 1-1.8h2.9" stroke="#c8303a" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg></span>
+      <span style="font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-weight:600;color:#2a241c">Dia<em style="font-style:italic;font-weight:400;color:#c8303a">stola</em></span>
+    </a>
     <div class="sidebar-course">Compact Echo Course</div>
     <div class="sidebar-title">Kompletter Echokardiographie-Kurs</div>
     <div class="sidebar-lang">
       <span>🇩🇪 Deutsch</span>
-      <span>🇩🇿 الدارجة الجزائرية</span>
     </div>
   </div>
 
@@ -851,13 +836,12 @@
     <span class="tag red">Pathologien</span>
     <span class="tag amber">Doppler</span>
     <span class="tag teal">LV & RV</span>
-    <span class="tag gray">Darija الدارجة</span>
   </div>
 
   <div class="meta-strip">
     <div class="meta-item">📚 Niveau: Fortgeschritten</div>
     <div class="meta-item">🎯 Ziel: Alle Standardschnitte beherrschen</div>
-    <div class="meta-item">🌐 Sprachen: Deutsch + Darija (Algerien)</div>
+    <div class="meta-item">🌐 Sprache: Deutsch</div>
     <div class="meta-item">📹 Quelle: Compact Echo Course</div>
   </div>
 </div>
@@ -873,10 +857,6 @@
   <p>Der parasternal Kurzachsenschnitt (PSAX) ist einer der wichtigsten Standardschnitte der Echokardiographie. Er erlaubt durch einfaches Kippen des Schallkopfes eine <mark>vollständige Beurteilung des gesamten linken Ventrikels — von der Herzbasis bis zur Herzspitze (Apex)</mark>.</p>
 </div>
 
-<div class="darija-box">
-  <div class="darija-label"><span>🇩🇿 الشرح بالدارجة</span></div>
-  PSAX راه واحد من أهم المقاطع لي نديرو في الإيكو. تقدر تشوف القلب الكامل من الفوق للتحت، من la base للـ apex، كامل غير بهز السوند شوية. المريض يكون في côté gauche (الجنب اليسار)، والسوند تحطّو في 2ème أو 3ème espace intercostal يسار، قريب من sternum بزاف.
-</div>
 
 <div class="callout info">
   <div class="callout-icon">📍</div>
@@ -913,10 +893,6 @@
   </div>
 </div>
 
-<div class="darija-box">
-  <div class="darija-label"><span>🇩🇿 كيفاش ندير PSAX</span></div>
-  نبداو من PLAX (المحور الطويل)، نخلّيو الصمام الأورطي في وسط الصورة، ونديرو rotation تاع 90° في sens des aiguilles (في اتجاه الساعة). الـ marker يروّح من l'épaule droite للـ épaule gauche. ملي نشوفو الصمام الأورطي في coupe transversale (مقطع عرضي)، نكونو وصلنا للـ PSAX.
-</div>
 </section>
 
 <hr>
@@ -929,10 +905,6 @@
   <p>Die erste und wichtigste Ebene im PSAX ist die <strong>Ebene der Aortenklappe (AK)</strong>. Sie liegt in der Bildmitte und ermöglicht die Beurteilung aller drei Klappentaschen.</p>
 </div>
 
-<div class="darija-box">
-  <div class="darija-label"><span>🇩🇿 الصمام الأورطي</span></div>
-  أول مستوى في PSAX هو niveau تاع الصمام الأورطي. فيه ثلاث cusps (شرفات): اليمنى RCC، اليسرى LCC، والـ non-coronaire NCC. ملي الصمام normal، les trois cusps يعملو شكل Y، كيما الـ Mercedes-Stern (نجمة مرسيدس). هذا علامة تاع صمام طبيعي trikuspide.
-</div>
 
 <div class="card-grid fade-in">
   <div class="card blue">
@@ -942,7 +914,6 @@
       <li>Anterior im Bild</li>
       <li>Abgang rechte Koronararterie</li>
     </ul>
-    <div class="card-darija">RCC — تتوجّه للبطين اليمين، قدّام في الصورة</div>
   </div>
   <div class="card green">
     <h4>🟢 LCC — Linkskoronare Tasche</h4>
@@ -951,7 +922,6 @@
       <li>Links-posterior</li>
       <li>Abgang linke Koronararterie</li>
     </ul>
-    <div class="card-darija">LCC — تتوجّه للأذين اليسار، على اليسار من ورا</div>
   </div>
   <div class="card amber">
     <h4>🟡 NCC — Nichtkoronare Tasche</h4>
@@ -960,7 +930,6 @@
       <li>Rechts-posterior</li>
       <li>Kein Koronararterien-Abgang</li>
     </ul>
-    <div class="card-darija">NCC — تتوجّه للحاجز الأذيني، على اليمين من ورا، ما فيهاش شريان</div>
   </div>
   <div class="card red">
     <h4>⭐ Mercedes-Stern-Zeichen</h4>
@@ -969,7 +938,6 @@
       <li>Beweist normale trikuspide AK</li>
       <li>Auch bei schlechter Bildqualität erkennbar</li>
     </ul>
-    <div class="card-darija">شكل Y (نجمة مرسيدس) = دليل صمام طبيعي عندو ثلاث شرفات</div>
   </div>
 </div>
 
@@ -987,10 +955,6 @@
 <section id="psax3">
 <h2><span class="sec-num">03</span>Trikuspidalklappe & Pulmonalklappe</h2>
 
-<div class="darija-box">
-  <div class="darija-label"><span>🇩🇿 الصمام ثلاثي الشرف والصمام الرئوي</span></div>
-  باش نشوفو الصمام ثلاثي الشرف (TV) مليح، نحركو السوند شوية lateral (للجنب) من sternum ونعملو tilt شوية. نشوفو septale Segel (الشرفة الحاجزية) واضحة، والشرفات الأخرى حسب الزاوية. تحت TV نشوفو الأورطة النازلة (Aorta descendens) والـ IVC (الوريد الأجوف السفلي).
-</div>
 
 <div class="callout info">
   <div class="callout-icon">💊</div>
@@ -1004,10 +968,6 @@
   <p>Für optimale Darstellung: Marker von linker Schulter mehr <strong>Richtung Kopf drehen</strong> → Längsachse des Pulmonalarterienstamms.</p>
 </div>
 
-<div class="darija-box">
-  <div class="darija-label"><span>🇩🇿 الشريان الرئوي</span></div>
-  باش نشوفو الشريان الرئوي مليح، ندورو الـ marker من الكتف اليسار شوية فوق (نحو الرأس). نشوفو الصمام الرئوي PV والشريان الرئوي لي يتقسّم لفرعين (يمين ويسار). ملي يكون الشريان موسّع (dilaté)، هذا يدل على ارتفاع ضغط رئوي.
-</div>
 
 <div class="callout warn">
   <div class="callout-icon">⚠️</div>
@@ -1027,10 +987,6 @@
   <p>Der PSAX bietet einen <strong>einzigartigen Gesamtüberblick über die gesamte Mitralklappe</strong>. Durch Kippen nach kaudal (zur Herzspitze) wird die MK-Ebene erreicht: Ein <strong>runder LV</strong> mit der MK in der Mitte.</p>
 </div>
 
-<div class="darija-box">
-  <div class="darija-label"><span>🇩🇿 الصمام التاجي — الأجزاء</span></div>
-  PSAX هو الوحيد لي يوريك الصمام التاجي كامل في نفس الوقت. الصمام عندو ستة segments: A1, A2, A3 (الشرفة الأمامية) و P1, P2, P3 (الشرفة الخلفية). ملي نكيّفو السوند من مستوى الصمام الأورطي للتحت، نوصلو لمستوى الصمام التاجي — نشوفو البطين الأيسر دائري والصمام في الوسط.
-</div>
 
 <h3>Segmentale Gliederung</h3>
 <div class="mv-grid">
@@ -1047,10 +1003,6 @@
   <div class="mv-cell label" style="grid-column:span 2">Posteriores Segel</div>
 </div>
 
-<div class="darija-box">
-  <div class="darija-label"><span>🇩🇿 استخدامات PSAX للصمام التاجي</span></div>
-  في PSAX تقدر تعرف بالضبط منين جاي القلس التاجي (mitral insufficiency) — من أي segment. مثلاً لو لقيت jet في P2، يعني عندك prolapse في P2. كاين كذلك planimetrie — قياس مساحة الفتحة تاع الصمام في حالة تضيّق تاجي (mitralstenose). وتقدر تراقب بعد MitraClip.
-</div>
 
 <div class="callout danger">
   <div class="callout-icon">🔬</div>
@@ -1066,10 +1018,6 @@
 <section id="psax5">
 <h2><span class="sec-num">05</span>Papillarmuskel-Ebene & Apikale Ebene</h2>
 
-<div class="darija-box">
-  <div class="darija-label"><span>🇩🇿 مستوى العضلات الحليمية والقمة</span></div>
-  ملي نكيّفو السوند أكثر للتحت، نوصلو لمستوى papillarmuskel (العضلات الحليمية). البطين الأيسر دائري والعضلتين واضحين: الـ posteromedialer (من ورا داخل) والـ anterolateraler (من قدام جانب). أكثر واحد معرّض للإحتشاء هو الأول (PMPM) لأنو يتغذى من شريان واحد. العضلة الثانية (ALPM) عندها تغذية مزدوجة، أقل خطر.
-</div>
 
 <div class="card-grid">
   <div class="card blue">
@@ -1079,7 +1027,6 @@
       <li>Infarktanfälliger</li>
       <li>Rupturrisiko bei Ischämie</li>
     </ul>
-    <div class="card-darija">PMPM — يتغذى من RCA، معرّض للاحتشاء أكثر</div>
   </div>
   <div class="card green">
     <h4>Anterolateraler PM (ALPM)</h4>
@@ -1088,7 +1035,6 @@
       <li>Bessere Toleranz</li>
       <li>Ruptur seltener</li>
     </ul>
-    <div class="card-darija">ALPM — تغذية مزدوجة، خطر أقل</div>
   </div>
 </div>
 
@@ -1104,10 +1050,6 @@
   <p>Weiteres Kippen nach kaudal oder Wechsel in den <strong>4. ICR</strong> → apikale Ebene. Papillarmuskeln verschwinden, LV-Querschnitt wird kleiner.</p>
 </div>
 
-<div class="darija-box">
-  <div class="darija-label"><span>🇩🇿 مستوى القمة (Apex)</span></div>
-  نكيّفو السوند أكثر للتحت أو ننزلو مساحة وربية واحدة (4ème ICR). العضلات الحليمية تختفي، البطين يولّي صغير ودائري. هذا المستوى مهم باش نشوفو الـ Non-Compaction (LVNC) — لو لقيت trabécules عميقة بزاف في القمة مع نسبة NC/C ≥ 2:1، هذا يدل على LVNC.
-</div>
 </section>
 
 <hr>
@@ -1126,10 +1068,6 @@
   <div class="pipe-box" style="background:var(--amber-bg);color:var(--amber);border-color:var(--amber-border)">LV-Apex</div>
 </div>
 
-<div class="darija-box">
-  <div class="darija-label"><span>🇩🇿 المستويات تاع PSAX</span></div>
-  أربعة niveaux رئيسيين: ١- مستوى الصمام الأورطي (AK) — نشوفو les trois cusps والهياكل اللي حوالاه. ٢- مستوى الصمام التاجي (MK) — نشوفو الستة segments كاملين. ٣- مستوى العضلات الحليمية — نقيسو سماكة الجدران ونشوفو الـ péricarde. ٤- القمة (Apex) — نكتشفو الـ LVNC والجلطات القمية.
-</div>
 
 <div class="table-wrap">
   <table>
@@ -1182,10 +1120,6 @@
 <section id="psax7">
 <h2><span class="sec-num">07</span>Pathologische Befunde im PSAX</h2>
 
-<div class="darija-box">
-  <div class="darija-label"><span>🇩🇿 الحالات المرضية في PSAX</span></div>
-  في PSAX نشوفو بزاف من الأمراض: تضيّق أورطي (AS) — الصمام متكلّس وما يفتحش مليح. قلس أورطي (AR) — رجوع الدم في الديستول. قصور ثلاثي الشرف (TR) — نقيسو السرعة ونحسبو ضغط الشريان الرئوي. قصور تاجي (MI) — نحدّدو من أي segment جاي الـ jet. اضطرابات حركة الجدران في حالة احتشاء. الأميلويد — سماكة عامة في كل الجدران.
-</div>
 
 <div class="accordion" onclick="toggleAcc(this)">
   <div class="accordion-header">
@@ -1198,11 +1132,7 @@
   <div class="accordion-body">
     <p><strong>B-Mode:</strong> Verkalkte, verdickte Klappensegel. Reduzierte Öffnungsfläche. Im M-Mode: Aortale Box sehr klein.</p>
     <p><strong>Farbdoppler:</strong> Turbulenter Fluss. Quantifizierung der AS erfolgt aus dem apikalen 5-Kammer-Blick mit CW-Doppler.</p>
-    <div class="darija-box" style="margin-top:1rem">
-      <div class="darija-label"><span>🇩🇿 تضيّق الصمام الأورطي</span></div>
-      الصمام متكلّس وسميك، ما يفتحش مليح. في الـ B-Mode نشوفو الفتحة صغيرة، وفي M-Mode الـ aortale Box تكون صغيرة بزاف. التقييم الدقيق يتعمل من مقطع الخمس غرف بالدوبلر المستمر.
-    </div>
-  </div>
+      </div>
 </div>
 
 <div class="accordion" onclick="toggleAcc(this)">
@@ -1220,11 +1150,7 @@
       <li><strong>2,8–3,4 m/s:</strong> Mögliche PH</li>
       <li><strong>≥ 3,4 m/s:</strong> Wahrscheinliche PH</li>
     </ul>
-    <div class="darija-box" style="margin-top:1rem">
-      <div class="darija-label"><span>🇩🇿 قصور الصمام ثلاثي الشرف وارتفاع الضغط الرئوي</span></div>
-      نقيسو السرعة تاع الـ jet بالدوبلر المستمر. لازم نكونو aligned مليح، والا نقصّرو في القيمة. أقل من 2.5 م/ث عادي، من 2.8 لـ 3.4 محتمل عندو ارتفاع ضغط رئوي، فوق 3.4 مؤكّد تقريباً.
-    </div>
-  </div>
+      </div>
 </div>
 
 <div class="accordion" onclick="toggleAcc(this)">
@@ -1238,11 +1164,7 @@
   <div class="accordion-body">
     <p>PSAX zeigt <strong>Ursprungsregion des MI-Jets segmentgenau</strong>. Beispiel: Jet in P2 → P2-Prolaps-Verdacht.</p>
     <p><strong>Farbdoppler-M-Mode:</strong> Zeitlicher Verlauf der Regurgitation. Turbulenz im geschlossenen Zustand = MI.</p>
-    <div class="darija-box" style="margin-top:1rem">
-      <div class="darija-label"><span>🇩🇿 قصور الصمام التاجي والتدلي</span></div>
-      في PSAX نحدّدو بالضبط منين جاي الـ jet. مثلاً لو في P2، يعني عندنا prolapse في P2. الدوبلر الملون مع M-Mode يورينا الوقت لي فيه القلس صار — ملي الصمام مسكّر لازم ما يكونش فيه turbulence.
-    </div>
-  </div>
+      </div>
 </div>
 </section>
 
@@ -1252,10 +1174,6 @@
 <section id="psax8">
 <h2><span class="sec-num">08</span>M-Mode & Doppler-Messungen</h2>
 
-<div class="darija-box">
-  <div class="darija-label"><span>🇩🇿 M-Mode والدوبلر</span></div>
-  M-Mode يعطينا résolution عالية في الوقت — نشوفو حركة الهياكل بدقة. نستخدموه باش نقيسو: الـ aortale Box (فتح وسكر الصمام الأورطي)، حركة الصمام التاجي، أبعاد البطين الأيسر. لكن حساب الـ EF بالـ M-Mode (Teichholz) ما عادش موصى به — فيه أخطاء بزاف. نفضّلو Simpson biplan من المقاطع القمية.
-</div>
 
 <div class="callout warn">
   <div class="callout-icon">⚠️</div>
@@ -1294,10 +1212,6 @@
   </table>
 </div>
 
-<div class="darija-box">
-  <div class="darija-label"><span>🇩🇿 PAT — زمن التسارع الرئوي</span></div>
-  PAT راه الوقت من بداية انقباض البطين الأيمن حتى وصول السرعة للقمة في الشريان الرئوي. نقيسوه بـ PW-Doppler على مستوى RVOT. فوق 120 ملي ثانية عادي، تحت 60 يدل على ارتفاع ضغط رئوي مؤكّد تقريباً.
-</div>
 </section>
 
 <hr>
@@ -1316,10 +1230,6 @@
   <span class="badge gray">Pulmonale Hypertonie</span>
 </div>
 
-<div class="darija-box">
-  <div class="darija-label"><span>🇩🇿 الأخطاء الشائعة (Pitfalls)</span></div>
-  واحد من أكبر الأخطاء: السوند بعيد بزاف من الـ sternum — الرئة تدخل وتخربّ الصورة. لازم تكون قريب بزاف من sternum. خطأ ثاني: الـ Doppler ما كاش aligned مليح مع الـ jet — نقصّرو في السرعة بزاف. ثالث خطأ: نشوفو الـ IVC ونحسبوه جلطة — لازم نستعملو الدوبلر باش نتأكدو.
-</div>
 
 <div class="callout danger">
   <div class="callout-icon">🚨</div>
@@ -1349,31 +1259,23 @@
   <p>Die apikalen Ansichten befinden sich an der <mark>Herzspitze (Apex)</mark>, genauer am LV-Apex. Verglichen mit parasternalen Schnitten liegt die Position deutlich weiter lateral und kaudal.</p>
 </div>
 
-<div class="darija-box">
-  <div class="darija-label"><span>🇩🇿 المقاطع القمية — الموضع</span></div>
-  المقاطع القمية نديروها في la pointe du cœur (قمة القلب). الموضع أكثر lateral (جانبي) ونحو التحت مقارنةً بالمقاطع القصيّة. السوند نحطّوه في 5ème espace intercostal، على اليسار، جانبي بزاف. المريض ما يكونش في côté gauche كامل — خليّلو شوية مجال باش السوند يدخل. الـ marker يتوجّه للجانب اليسار تاع المريض.
-</div>
 
 <div class="card-grid fade-in">
   <div class="card blue">
     <h4>📍 Position</h4>
     <p>5. ICR — links lateral, variabel je nach Körperbau</p>
-    <div class="card-darija">المساحة الوربية الخامسة، يسار جانبي</div>
   </div>
   <div class="card green">
     <h4>🔄 Marker</h4>
     <p>Zeigt zum linken Lateral des Patienten</p>
-    <div class="card-darija">الـ marker يتوجّه للجانب الأيسر تاع المريض</div>
   </div>
   <div class="card amber">
     <h4>🛏️ Patientenlagerung</h4>
     <p>Nicht streng links lateral — Raum für Schallkopf lassen</p>
-    <div class="card-darija">مش côté gauche كامل، خلّي مجال للسوند</div>
   </div>
   <div class="card red">
     <h4>⚠️ Schwierige Patienten</h4>
     <p>Adipositas, COPD, Brustimplantate → Kontrastmittel erwägen</p>
-    <div class="card-darija">السمنة، COPD، غرسات الثدي → استعمل التباين</div>
   </div>
 </div>
 
@@ -1399,10 +1301,6 @@
   <p>Der A4C ist <mark>die wichtigste apikale Ansicht</mark>. Er zeigt gleichzeitig alle vier Herzkammern, beide AV-Klappen, beide Septen und ermöglicht umfassende Funktionsbeurteilung.</p>
 </div>
 
-<div class="darija-box">
-  <div class="darija-label"><span>🇩🇿 مقطع الأربع غرف (A4C)</span></div>
-  A4C راه أهم مقطع قمي. يورينا الأربع غرف تاع القلب كاملين في نفس الوقت: البطين الأيسر LV والبطين الأيمن RV، الأذين الأيسر LA والأذين الأيمن RA. نشوفو كذلك الصمام التاجي والصمام ثلاثي الشرف، والحاجزين (البيطيني والأذيني). البطين الأيسر لازم يكون أكبر من الأيمن والجدران تاعو أسمك.
-</div>
 
 <div class="badge-row">
   <span class="badge blue">Linker Ventrikel (LV)</span>
@@ -1422,10 +1320,6 @@
   </div>
 </div>
 
-<div class="darija-box">
-  <div class="darija-label"><span>🇩🇿 القيم الطبيعية في A4C</span></div>
-  البطين الأيسر لازم يكون على شكل طوربيد (bullet shape). جداره أسمك من البطين الأيمن. الحجم تاعو تقريباً الدوبل. الـ EF الطبيعي من 55 لـ 65%. كل الجدران لازم تتقلّص بشكل منتظم (uniformément).
-</div>
 </section>
 
 <hr>
@@ -1434,10 +1328,6 @@
 <section id="apical3">
 <h2><span class="sec-num">12</span>LV-Pathologien im A4C</h2>
 
-<div class="darija-box">
-  <div class="darija-label"><span>🇩🇿 الأمراض في البطين الأيسر</span></div>
-  في A4C نشوفو أمراض مختلفة: احتشاء أمامي (STEMI antérieur) — اضطراب حركة الجدار في منطقة LAD. ارتفاع ضغط مزمن — جدران سميكة وتجويف صغير. اعتلال القلب التوسعي (DCM) — بطين موسّع بزاف وجدران رقيقة. رفض زراعة القلب — سماكة العضلة رغم أن الـ EF يبان normal. الأميلويد — سماكة شاملة في كل الجدران.
-</div>
 
 <div class="accordion" onclick="toggleAcc(this)">
   <div class="accordion-header">
@@ -1449,11 +1339,7 @@
   </div>
   <div class="accordion-body">
     <p>Im A4C sichtbar: <strong>Angelpunkt (hinge point)</strong> trennt kontraktile basale Segmente von akinetischen apikalen Segmenten. LAD-Territorium (apikales IVS, anterior) betroffen.</p>
-    <div class="darija-box" style="margin-top:1rem">
-      <div class="darija-label"><span>🇩🇿 احتشاء أمامي</span></div>
-      نشوفو نقطة انعطاف (hinge point) تفرّق بين الجدران لي تتقلّص normal (في القاعدة) والجدران لي ما تتحركش (في القمة). هذا يدل على احتشاء في منطقة LAD.
-    </div>
-  </div>
+      </div>
 </div>
 
 <div class="accordion" onclick="toggleAcc(this)">
@@ -1466,11 +1352,7 @@
   </div>
   <div class="accordion-body">
     <p>Großer, erweiterter LV und RV mit dünnen Wänden. Stark reduzierte Funktion beider Ventrikel. Oft nach Myokarditis.</p>
-    <div class="darija-box" style="margin-top:1rem">
-      <div class="darija-label"><span>🇩🇿 اعتلال القلب التوسعي</span></div>
-      البطين موسّع بزاف، الجدران رقيقة، الوظيفة منخفضة حادّة. سبب شائع: التهاب عضلة القلب (myocardite).
-    </div>
-  </div>
+      </div>
 </div>
 
 <div class="accordion" onclick="toggleAcc(this)">
@@ -1483,11 +1365,7 @@
   </div>
   <div class="accordion-body">
     <p>Stark konzentrisch verdickte LV-Wände, verdickte Papillarmuskeln, oft Vorhofflimmern, verdickte Klappen mit vorzeitigem Schluss. GLS typisch ca. <strong>−10%</strong> (stark pathologisch).</p>
-    <div class="darija-box" style="margin-top:1rem">
-      <div class="darija-label"><span>🇩🇿 داء النشواني (Amyloidose)</span></div>
-      سماكة دائرية شديدة في كل الجدران، العضلات الحليمية سميكة، الصمامات سميكة. غالباً مع الرجفان الأذيني. الـ GLS (قياس التقلص) ضعيف جداً (~−10%).
-    </div>
-  </div>
+      </div>
 </div>
 </section>
 
@@ -1497,10 +1375,6 @@
 <section id="apical4">
 <h2><span class="sec-num">13</span>Kontrastmittel-Echo</h2>
 
-<div class="darija-box">
-  <div class="darija-label"><span>🇩🇿 التباين في الإيكو</span></div>
-  عامل التباين (microbulles) يحسّن رؤية حدود الشغاف بزاف. نستعملوه ملي الصورة mish واضحة، أو نقلّبو على جلطات، أو نشكّو في LVNC (non-compaction)، أو HCM قمي، أو pseudoanévrisme. التباين يخلّينا نقيسو الـ EF بدقة أكبر ونميّزو بين الجلطات والتراكيب الطبيعية.
-</div>
 
 <div class="card-grid fade-in">
   <div class="card blue">
@@ -1511,12 +1385,10 @@
       <li>Non-Compaction (LVNC)</li>
       <li>Apikale HCM</li>
     </ul>
-    <div class="card-darija">ملي الصورة mish واضحة، للجلطات، LVNC، HCM قمي</div>
   </div>
   <div class="card green">
     <h4>✅ Non-Compaction (LVNC)</h4>
     <p>Tiefe Trabekel apikal/mid-ventrikulär. EF ~20%, verbessert sich unter Therapie auf ~45%. Kontrast unterscheidet Thrombus von Trabekeln.</p>
-    <div class="card-darija">LVNC — تراص غير طبيعي، EF يبدا 20% ويتحسّن مع العلاج</div>
   </div>
 </div>
 </section>
@@ -1534,10 +1406,6 @@
   </div>
 </div>
 
-<div class="darija-box">
-  <div class="darija-label"><span>🇩🇿 Foreshortening — أكثر خطأ شائع</span></div>
-  هذا أكثر خطأ في التصوير القمي! ملي السوند يكون عالي بزاف، ما نشوفوش القمة الحقيقية تاع البطين. العلامات: العضلات الحليمية توصل للقمة في الصورة (مستحيل طبيعياً)، والقمة تتحرك للبرّا (لازم تتحرك للداخل). النتيجة: نقدّرو الـ EF عالي بالغلط ونفوّتو الجلطات والاضطرابات.
-</div>
 
 <h3>Foreshortening vermeiden</h3>
 <div class="steps">
@@ -1561,10 +1429,6 @@
   </div>
 </div>
 
-<div class="darija-box">
-  <div class="darija-label"><span>🇩🇿 كيفاش نتجنّبو Foreshortening</span></div>
-  ١. ننزلو بالسوند مساحة وربية واحدة للتحت. ٢. نطلبو من المريض الشهيق أو الزفير. ٣. نتأكّدو: العضلات الحليمية ما توصلش للقمة، وقمة البطين لازم تتحرك للداخل.
-</div>
 </section>
 
 <hr>
@@ -1577,21 +1441,15 @@
   <p>Durch <mark>Kippen nach kranial</mark> vom A4C → apikaler 5-Kammerblick. Die „fünfte Kammer" ist die <strong>Aortenklappe + LVOT</strong>.</p>
 </div>
 
-<div class="darija-box">
-  <div class="darija-label"><span>🇩🇿 مقطع الخمس غرف (A5C)</span></div>
-  بإمالة السوند نحو الفوق من A4C، نوصلو لـ A5C. الغرفة الخامسة mish غرفة حقيقية — راهي الصمام الأبهري والـ LVOT. في هذا المقطع نقدرو نقيسو تضيّق الصمام الأبهري بالدوبلر المستمر، نشوفو انسداد LVOT في حالة HCM، ونقيسو القلس الأبهري.
-</div>
 
 <div class="card-grid fade-in">
   <div class="card blue">
     <h4>🔵 Aortenstenose</h4>
     <p>CW-Doppler über AK → Peak-Gradient, mittlerer Gradient, VTI für KÖF</p>
-    <div class="card-darija">قياس السرعة والتدرج الضغطي ومساحة الفتحة</div>
   </div>
   <div class="card red">
     <h4>🔴 LVOT-Obstruktion</h4>
     <p>CW: Dolchförmiges Signal bei LVOT-Obstruktion (HCM)</p>
-    <div class="card-darija">إشارة على شكل خنجر في حالة انسداد LVOT</div>
   </div>
 </div>
 </section>
@@ -1602,21 +1460,15 @@
 <section id="apical7">
 <h2><span class="sec-num">16</span>Koronarsinusblick</h2>
 
-<div class="darija-box">
-  <div class="darija-label"><span>🇩🇿 مقطع الجيب التاجي</span></div>
-  بإمالة السوند للتحت من A4C، نوصلو لمقطع الجيب التاجي (sinus coronaire). يورينا قاعدة القلب والجيب التاجي لي هو وريد من ورا القلب. نستعملوه في: شذوذ إبشتاين Ebstein، توسّع الجيب التاجي (محتمل عندو LSVC مستمر)، مراقبة أجهزة CRT والـ reducer.
-</div>
 
 <div class="card-grid">
   <div class="card teal">
     <h4>🔵 Ebstein-Anomalie</h4>
     <p>Trikuspidalklappe inseriert hoch im RV</p>
-    <div class="card-darija">الصمام ثلاثي الشرف يتّصل بعيد في البطين</div>
   </div>
   <div class="card blue">
     <h4>💙 Persistierende LSVC</h4>
     <p>Erweiterter Koronarsinus bei jungen Patienten</p>
-    <div class="card-darija">توسّع الجيب التاجي — احتمال LSVC مستمر</div>
   </div>
 </div>
 </section>
@@ -1631,10 +1483,6 @@
   <p>Durch <mark>60–90° Gegenuhrzeigersinn-Rotation</mark> vom A4C (LV im Zentrum halten!) → apikaler 2-Kammerblick. Zeigt nur <strong>LV und LA</strong>.</p>
 </div>
 
-<div class="darija-box">
-  <div class="darija-label"><span>🇩🇿 مقطع الغرفتين (A2C)</span></div>
-  بدوران 60–90° عكس عقارب الساعة من A4C (نخلّيو البطين الأيسر في الوسط). يورينا غير البطين الأيسر والأذين الأيسر. مهم باش نشوفو الجدار الأمامي والجدار السفلي، ونحسبو الـ EF (Simpson biplan — المقطع الثاني)، ونقيسو حجم الأذين الأيسر.
-</div>
 
 <div class="badge-row">
   <span class="badge blue">Anteriore LV-Wand</span>
@@ -1662,10 +1510,6 @@
   <p>Weitere <mark>30° Gegenuhrzeigersinn</mark> vom A2C (= 90–120° vom A4C) → APLAX. Entspricht PLAX aus apikaler Perspektive. Apex <strong>zwingend sichtbar</strong>.</p>
 </div>
 
-<div class="darija-box">
-  <div class="darija-label"><span>🇩🇿 المحور الطولي القمي (APLAX)</span></div>
-  دوران 30° إضافية من A2C، يعني مجموع 90–120° من A4C. يشبه PLAX لكن من زاوية قمية. لازم نشوفو القمة الحقيقية. يورينا: البطين الأيسر مع القمة، الأذين الأيسر، الصمام الأبهري، LVOT، الصمام التاجي (P2 واضح)، وجزء من الأبهر الصاعد.
-</div>
 
 <div class="callout info">
   <div class="callout-icon">🔍</div>
@@ -1681,10 +1525,6 @@
 <section id="apical10">
 <h2><span class="sec-num">19</span>Mitralklappe — Segmente in apikalen Schnitten</h2>
 
-<div class="darija-box">
-  <div class="darija-label"><span>🇩🇿 أجزاء الصمام التاجي في المقاطع القمية</span></div>
-  الصمام التاجي يحتاج عدة مقاطع للتقييم الكامل. ما كاينش مقطع قمي واحد يورينا الستة segments مرة واحدة (هذا ممكن غير في PSAX). كل مقطع يوري segments معيّنين: A4C يوري A3/A2 و P1-P2، APLAX يوري A2 و P2، A2C يوري P3/P2 و A2.
-</div>
 
 <div class="table-wrap">
   <table>
@@ -1692,29 +1532,29 @@
       <tr>
         <th>Ansicht</th>
         <th>Sichtbare MK-Segmente</th>
-        <th class="darija-cell">بالدارجة</th>
+        
       </tr>
     </thead>
     <tbody>
       <tr>
         <td><strong>PSAX (MK-Ebene)</strong></td>
         <td>Alle: A1–A3, P1–P3</td>
-        <td class="darija-cell">الكل: A1–A3, P1–P3</td>
+        
       </tr>
       <tr>
         <td><strong>A4C</strong></td>
         <td>A3/A2 + P1–P2</td>
-        <td class="darija-cell">A3/A2 + P1–P2</td>
+        
       </tr>
       <tr>
         <td><strong>APLAX</strong></td>
         <td>A2 + P2</td>
-        <td class="darija-cell">A2 + P2</td>
+        
       </tr>
       <tr>
         <td><strong>A2C</strong></td>
         <td>P3/P2 + A2</td>
-        <td class="darija-cell">P3/P2 + A2</td>
+        
       </tr>
     </tbody>
   </table>
@@ -1727,10 +1567,6 @@
 <section id="apical11">
 <h2><span class="sec-num">20</span>Doppler & Messungen</h2>
 
-<div class="darija-box">
-  <div class="darija-label"><span>🇩🇿 قياسات الدوبلر</span></div>
-  في المقاطع القمية نقيسو: TAPSE (≥17 مم) — وظيفة البطين الأيمن. MAPSE (≥10 مم) — وظيفة البطين الأيسر. S' (≥9.5 سم/ث) — سرعة حلقة الصمام ثلاثي الشرف. TR Vmax — نحسبو ضغط الشريان الرئوي بمعادلة برنولي: ΔP = 4×V². فوق 3.4 م/ث يدل على ارتفاع ضغط رئوي.
-</div>
 
 <h3>TAPSE & TDI</h3>
 <div class="table-wrap">
@@ -1799,10 +1635,6 @@
 <section id="apical12">
 <h2><span class="sec-num">21</span>Diastolische Dysfunktion</h2>
 
-<div class="darija-box">
-  <div class="darija-label"><span>🇩🇿 الخلل الانبساطي</span></div>
-  الوظيفة الانبساطية تُقاس بالدوبلر النبضي على الصمام التاجي (موجة E و A) وبالـ TDI على حلقة الصمام (موجة E'). نسبة E/A الطبيعية فوق 1 (E أكبر من A). ملي يكون E أصغر من A، عندنا impaired relaxation. نسبة E/E' فوق 14 تدل على ارتفاع ضغط الامتلاء.
-</div>
 
 <div class="card-grid">
   <div class="card blue">
@@ -1812,7 +1644,6 @@
       <li>Impaired relaxation: E &lt; A</li>
       <li>Restriktiv: E &gt;&gt; A</li>
     </ul>
-    <div class="card-darija">E/A عادي: E أكبر من A</div>
   </div>
   <div class="card purple">
     <h4>E' (TDI)</h4>
@@ -1821,7 +1652,6 @@
       <li>Septal ≥ 7 cm/s</li>
       <li>E/E' &gt;14 → erhöhte Füllungsdrücke</li>
     </ul>
-    <div class="card-darija">E/E' فوق 14 = ضغط امتلاء عالي</div>
   </div>
 </div>
 </section>
@@ -1863,11 +1693,7 @@
     </ul>
   </div>
 
-  <div class="darija-box" style="margin-top:1.5rem">
-    <div class="darija-label"><span>🇩🇿 الملخص الكامل بالدارجة</span></div>
-    PSAX: الموضع في 2–3 مساحة وربية يسار، قريب بزاف من sternum. أربعة مستويات: صمام أورطي، تاجي، عضلات حليمية، قمة. نشوفو الأربع صمامات كاملين، الصمام التاجي بكل الـ segments تاعو. المقاطع القمية: الموضع في 5 مساحة وربية، يسار جانبي. A4C: الأربع غرف كاملين. نتجنّبو Foreshortening بالنزول مساحة وربية ومناورات التنفس. A5C: إمالة فوق للصمام الأبهري. A2C: دوران 60–90°. APLAX: دوران 90–120°، القمة لازم تبان. TAPSE ≥17، S' ≥9.5 = وظيفة بطين أيمن طبيعية. TR Vmax: ΔP = 4×V². نستعملو التباين ملي الصورة mish واضحة.
   </div>
-</div>
 
 <div class="callout success">
   <div class="callout-icon">🎓</div>
