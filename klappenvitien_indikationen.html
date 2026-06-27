@@ -194,9 +194,17 @@
     <div class="calc">
       <section class="panel">
         <p class="panel-title">Aorteninsuffizienz — Eingabe</p>
-        <div class="grp-h">Schweregrad</div>
-        <label class="fld"><span class="lab">Schwere AI bestätigt? <small>(VC, EROA, Holodiastol. Flow-Reversal)</small></span>
-          <div class="seg" data-seg="ar_severe"><button type="button" data-v="ja">Ja</button><button type="button" data-v="nein">Nein</button></div></label>
+        <div class="grp-h">Schweregrad — Quantifizierung (Echo)</div>
+        <div class="two">
+          <label class="fld"><span class="lab">Vena contracta</span><div class="unit-wrap"><input class="inp" id="ar_vc" type="number" step="0.5" min="0" placeholder="z. B. 6"><span class="unit">mm</span></div></label>
+          <label class="fld"><span class="lab">EROA</span><div class="unit-wrap"><input class="inp" id="ar_eroa" type="number" step="0.01" min="0" placeholder="z. B. 0.25"><span class="unit">cm²</span></div></label>
+        </div>
+        <div class="two">
+          <label class="fld"><span class="lab">Regurgitationsvolumen</span><div class="unit-wrap"><input class="inp" id="ar_rvol" type="number" step="1" min="0" placeholder="z. B. 55"><span class="unit">ml</span></div></label>
+          <label class="fld"><span class="lab">PHT (Pressure Half Time)</span><div class="unit-wrap"><input class="inp" id="ar_pht" type="number" step="5" min="0" placeholder="z. B. 250"><span class="unit">ms</span></div></label>
+        </div>
+        <label class="fld"><span class="lab">Holodiastolischer Flow-Reversal in der Aorta desc.</span>
+          <div class="seg" data-seg="ar_flowrev"><button type="button" data-v="ja">Ja</button><button type="button" data-v="nein">Nein</button></div></label>
         <div class="grp-h">Klinik &amp; LV</div>
         <label class="fld"><span class="lab">Symptomatisch</span>
           <div class="seg" data-seg="ar_sympt"><button type="button" data-v="ja">Ja</button><button type="button" data-v="nein">Nein</button></div></label>
@@ -223,8 +231,15 @@
     <div class="calc">
       <section class="panel">
         <p class="panel-title">Mitralstenose — Eingabe</p>
-        <div class="grp-h">Schweregrad</div>
-        <label class="fld"><span class="lab">MÖF (Mitralklappenöffnungsfläche)</span><div class="unit-wrap"><input class="inp" id="ms_mva" type="number" step="0.1" min="0" placeholder="z. B. 1.2"><span class="unit">cm²</span></div></label>
+        <div class="grp-h">Schweregrad — Quantifizierung (Echo)</div>
+        <div class="two">
+          <label class="fld"><span class="lab">MÖF (Planimetrie / PHT)</span><div class="unit-wrap"><input class="inp" id="ms_mva" type="number" step="0.1" min="0" placeholder="z. B. 1.2"><span class="unit">cm²</span></div></label>
+          <label class="fld"><span class="lab">Mittlerer Gradient</span><div class="unit-wrap"><input class="inp" id="ms_mean" type="number" step="1" min="0" placeholder="z. B. 10"><span class="unit">mmHg</span></div></label>
+        </div>
+        <div class="two">
+          <label class="fld"><span class="lab">Pressure Half Time</span><div class="unit-wrap"><input class="inp" id="ms_pht" type="number" step="5" min="0" placeholder="z. B. 180"><span class="unit">ms</span></div></label>
+          <label class="fld"><span class="lab">sPAP (in Ruhe)</span><div class="unit-wrap"><input class="inp" id="ms_spap" type="number" step="1" min="0" placeholder="z. B. 45"><span class="unit">mmHg</span></div></label>
+        </div>
         <div class="grp-h">Klinik &amp; Anatomie</div>
         <label class="fld"><span class="lab">Symptomatisch</span>
           <div class="seg" data-seg="ms_sympt"><button type="button" data-v="ja">Ja</button><button type="button" data-v="nein">Nein</button></div></label>
@@ -232,7 +247,7 @@
           <select id="ms_anat"><option value="">— wählen —</option><option value="guenstig">günstig</option><option value="unguenstig">ungünstig</option></select></label>
         <label class="fld"><span class="lab">Hohes OP-Risiko oder Kontraindikation gegen Chirurgie?</span>
           <div class="seg" data-seg="ms_risk"><button type="button" data-v="ja">Ja</button><button type="button" data-v="nein">Nein</button></div></label>
-        <div class="grp-h">Asymptomatisch (IIa)</div>
+        <div class="grp-h">Asymptomatisch — Risikomarker (IIa)</div>
         <label class="chk"><input type="checkbox" id="ms_thromb"><span class="box"></span><span>Hohes Thromboembolie- / Dekompensationsrisiko (neues VHF, sPAP &gt; 50 mmHg, Embolie/SEC, Kinderwunsch, große nicht-kardiale OP)</span></label>
       </section>
       <section class="panel"><p class="panel-title">Ergebnis</p><div id="out-ms"><div class="placeholder">Werte eingeben — Auswertung erscheint automatisch.</div></div></section>
@@ -248,9 +263,16 @@
           <div class="seg" data-seg="mr_type"><button type="button" data-v="primar" class="on">Primär (degenerativ)</button><button type="button" data-v="sekundar">Sekundär (funktionell)</button></div></label>
 
         <div id="mr-primary">
-          <div class="grp-h">Primäre MI</div>
-          <label class="fld"><span class="lab">Schwere primäre MI bestätigt? <small>(EROA ≥ 40 mm², RVol ≥ 60 ml, VC ≥ 7 mm)</small></span>
-            <div class="seg" data-seg="mrp_severe"><button type="button" data-v="ja">Ja</button><button type="button" data-v="nein">Nein</button></div></label>
+          <div class="grp-h">Schweregrad — Quantifizierung (Echo)</div>
+          <div class="two">
+            <label class="fld"><span class="lab">EROA</span><div class="unit-wrap"><input class="inp" id="mrp_eroa" type="number" step="0.01" min="0" placeholder="z. B. 0.40"><span class="unit">cm²</span></div></label>
+            <label class="fld"><span class="lab">Regurgitationsvolumen</span><div class="unit-wrap"><input class="inp" id="mrp_rvol" type="number" step="1" min="0" placeholder="z. B. 60"><span class="unit">ml</span></div></label>
+          </div>
+          <div class="two">
+            <label class="fld"><span class="lab">Vena contracta</span><div class="unit-wrap"><input class="inp" id="mrp_vc" type="number" step="0.5" min="0" placeholder="z. B. 7"><span class="unit">mm</span></div></label>
+            <label class="fld"><span class="lab">sPAP (in Ruhe)</span><div class="unit-wrap"><input class="inp" id="mrp_spap" type="number" step="1" min="0" placeholder="z. B. 45"><span class="unit">mmHg</span></div></label>
+          </div>
+          <div class="grp-h">Klinik &amp; LV</div>
           <label class="fld"><span class="lab">Symptomatisch</span>
             <div class="seg" data-seg="mrp_sympt"><button type="button" data-v="ja">Ja</button><button type="button" data-v="nein">Nein</button></div></label>
           <div class="two">
@@ -266,9 +288,16 @@
         </div>
 
         <div id="mr-secondary" style="display:none">
-          <div class="grp-h">Sekundäre MI</div>
-          <label class="fld"><span class="lab">Schwere sekundäre MI bestätigt? <small>(EROA ≥ 30 mm², RVol ≥ 45 ml)</small></span>
-            <div class="seg" data-seg="mrs_severe"><button type="button" data-v="ja">Ja</button><button type="button" data-v="nein">Nein</button></div></label>
+          <div class="grp-h">Schweregrad — Quantifizierung (Echo)</div>
+          <div class="two">
+            <label class="fld"><span class="lab">EROA</span><div class="unit-wrap"><input class="inp" id="mrs_eroa" type="number" step="0.01" min="0" placeholder="z. B. 0.30"><span class="unit">cm²</span></div></label>
+            <label class="fld"><span class="lab">Regurgitationsvolumen</span><div class="unit-wrap"><input class="inp" id="mrs_rvol" type="number" step="1" min="0" placeholder="z. B. 45"><span class="unit">ml</span></div></label>
+          </div>
+          <div class="two">
+            <label class="fld"><span class="lab">Vena contracta</span><div class="unit-wrap"><input class="inp" id="mrs_vc" type="number" step="0.5" min="0" placeholder="z. B. 6"><span class="unit">mm</span></div></label>
+            <label class="fld"><span class="lab">LVEF</span><div class="unit-wrap"><input class="inp" id="mrs_lvef" type="number" step="1" min="0" max="90" placeholder="z. B. 35"><span class="unit">%</span></div></label>
+          </div>
+          <div class="grp-h">Klinik &amp; Therapie</div>
           <label class="fld"><span class="lab">Symptomatisch trotz optimaler GDMT <small>(+ CRT / Revaskularisation falls indiziert)</small></span>
             <div class="seg" data-seg="mrs_sympt"><button type="button" data-v="ja">Ja</button><button type="button" data-v="nein">Nein</button></div></label>
           <label class="fld"><span class="lab">Begleitende Herz-OP <small>(CABG / andere)</small></span>
@@ -394,22 +423,46 @@
 
   // ===================== AR =====================
   function computeAR(){
-    var sev=seg['ar_severe'], sympt=seg['ar_sympt'], lvef=num('ar_lvef'), lvesd=num('ar_lvesd'), idx=chk('ar_idx');
+    var vc=num('ar_vc'), eroa=num('ar_eroa'), rvol=num('ar_rvol'), pht=num('ar_pht');
+    var flowrev=seg['ar_flowrev'], sympt=seg['ar_sympt'], lvef=num('ar_lvef'), lvesd=num('ar_lvesd'), idx=chk('ar_idx');
     var other=seg['ar_other'], aorta=num('ar_aorta'), arisk=document.getElementById('ar_aortarisk').value;
-    if(sev==null && sympt==null && lvef===null && lvesd===null && aorta===null){ render('out-ar'); return; }
+
+    var hasInput = (vc!==null||eroa!==null||rvol!==null||pht!==null||flowrev!=null||sympt!=null||lvef!==null||lvesd!==null||aorta!==null);
+    if(!hasInput){ render('out-ar'); return; }
+
+    // auto severity: VC ≥ 6 mm OR EROA ≥ 0.30 cm² OR RVol ≥ 60 ml OR PHT < 200 ms OR holodiastolischer flow-reversal
+    var sevCriteria = [];
+    if(vc!==null){ if(vc>=6) sevCriteria.push('VC '+vc+' mm ≥ 6 mm'); }
+    if(eroa!==null){ if(eroa>=0.30) sevCriteria.push('EROA '+eroa+' cm² ≥ 0,30 cm²'); }
+    if(rvol!==null){ if(rvol>=60) sevCriteria.push('RVol '+rvol+' ml ≥ 60 ml'); }
+    if(pht!==null){ if(pht<200) sevCriteria.push('PHT '+pht+' ms < 200 ms'); }
+    if(flowrev==='ja') sevCriteria.push('holodiastolischer Flow-Reversal');
+
+    var hasMeasure = (vc!==null||eroa!==null||rvol!==null||pht!==null||flowrev!=null);
+    var severe = sevCriteria.length > 0;
 
     var recs=[], notes=[], mode=null, sevHtml, sevClass='';
-    sevHtml='<p class="big">'+(sev==='ja'?'Schwere AI':(sev==='nein'?'Keine schwere AI':'Schweregrad offen'))+'</p>'; sevClass=(sev==='ja')?'is-sev':'';
 
-    if(sev==='ja'){
+    if(!hasMeasure){
+      sevHtml='<p>Echo-Quantifizierung (VC, EROA, RVol, PHT oder Flow-Reversal) eingeben.</p>';
+    } else if(severe){
+      sevHtml='<p class="big">Schwere AI</p><p style="font-size:13px;color:var(--ink-soft);margin:4px 0 0">Kriterien: '+sevCriteria.join(' · ')+'</p>';
+      sevClass='is-sev';
       if(other==='ja') recs.push({cls:'I',text:'Schwere AI bei <b>begleitender Herz-OP</b> (CABG / andere Klappe / Aorta) → Klappenchirurgie empfohlen.'});
       if(sympt==='ja') recs.push({cls:'I',text:'<b>Symptomatische</b> schwere AI → Operation empfohlen (unabhängig von der LVEF).'});
       else if(sympt==='nein'){
         if(lvef!==null && lvef<=50) recs.push({cls:'I',text:'Asymptomatisch + <b>LVEF ≤ 50 %</b> → Operation empfohlen.'});
         else if((lvesd!==null && lvesd>50) || idx) recs.push({cls:'IIa',text:'Asymptomatisch, EF &gt; 50 % + <b>LVESD &gt; 50 mm</b> bzw. &gt; 25 mm/m² → Operation sollte erwogen werden.'});
         else if(!(other==='ja')) recs.push({cls:'none',text:'Asymptomatisch, EF &gt; 50 %, LV nicht dilatiert → <b>Verlaufskontrolle</b>.'});
-      }
-    } else if(sev==='nein'){
+      } else { notes.push('Bitte <b>Symptomatik</b> angeben.'); }
+    } else {
+      var measured=[];
+      if(vc!==null) measured.push('VC '+vc+' mm');
+      if(eroa!==null) measured.push('EROA '+eroa+' cm²');
+      if(rvol!==null) measured.push('RVol '+rvol+' ml');
+      if(pht!==null) measured.push('PHT '+pht+' ms');
+      if(flowrev==='nein') measured.push('kein Flow-Reversal');
+      sevHtml='<p class="big">Keine schwere AI</p><p style="font-size:13px;color:var(--ink-soft);margin:4px 0 0">Messwerte: '+measured.join(' · ')+'</p>';
       if(!(aorta!==null && aorta>=45)) recs.push({cls:'none',text:'Keine schwere AI → keine valvuläre OP-Indikation; <b>Verlauf</b>.'});
     }
     // ascending aorta
@@ -421,21 +474,37 @@
     if(recs.some(function(r){return r.cls==='I'||r.cls==='IIa';})){
       mode={pl:'Aortenklappen-Chirurgie', why:'Klappenersatz; klappenerhaltende Rekonstruktion in erfahrenen Zentren — ggf. mit Ersatz der Aorta ascendens.'};
     }
-    if(sympt==null && sev==='ja') notes.push('Bitte <b>Symptomatik</b> angeben.');
+    notes.push('Schweregrad-Konfirmation: <b>≥ 2 schwere Kriterien</b> empfohlen (multiparametrisch ESC 2021).');
     render('out-ar', sevHtml, sevClass, recs, mode, notes);
   }
 
+
   // ===================== MS =====================
   function computeMS(){
-    var mva=num('ms_mva'), sympt=seg['ms_sympt'], anat=document.getElementById('ms_anat').value, risk=seg['ms_risk'], thromb=chk('ms_thromb');
-    if(mva===null && sympt==null){ render('out-ms'); return; }
-    var recs=[], notes=[], mode=null, sevHtml, sevClass='';
-    var sig = (mva!==null && mva>0 && mva<=1.5);
-    sevHtml='<p class="big">'+(mva===null?'MÖF eingeben':(sig?'Klinisch signifikante MS (MÖF ≤ 1,5 cm²)':'Keine signifikante MS'))+'</p>'; sevClass=sig?'is-sev':'';
+    var mva=num('ms_mva'), meangrad=num('ms_mean'), phtms=num('ms_pht'), spap=num('ms_spap');
+    var sympt=seg['ms_sympt'], anat=document.getElementById('ms_anat').value, risk=seg['ms_risk'], thromb=chk('ms_thromb');
 
-    if(mva!==null){
-      if(!sig){ recs.push({cls:'none',text:'MÖF &gt; 1,5 cm² → keine Interventionsindikation; <b>Verlauf</b>.'}); }
-      else if(sympt==='ja'){
+    var hasInput = (mva!==null||meangrad!==null||phtms!==null||spap!==null||sympt!=null);
+    if(!hasInput){ render('out-ms'); return; }
+
+    var recs=[], notes=[], mode=null, sevHtml, sevClass='';
+
+    // Severity: MÖF ≤ 1.5 cm² OR mean gradient ≥ 5 mmHg OR PHT ≥ 150 ms
+    var sevCriteria=[];
+    if(mva!==null && mva>0){ if(mva<=1.5) sevCriteria.push('MÖF '+mva+' cm² ≤ 1,5 cm²'); }
+    if(meangrad!==null){ if(meangrad>=5) sevCriteria.push('Gradient '+meangrad+' mmHg ≥ 5 mmHg'); }
+    if(phtms!==null){ if(phtms>=150) sevCriteria.push('PHT '+phtms+' ms ≥ 150 ms'); }
+    if(spap!==null && spap>50) notes.push('Erhöhter sPAP '+spap+' mmHg: Risikofaktor für Entscheidung.');
+
+    var hasMeasure = (mva!==null||meangrad!==null||phtms!==null);
+    var sig = sevCriteria.length > 0;
+
+    if(!hasMeasure){
+      sevHtml='<p>MÖF, Gradient oder PHT eingeben für automatische Schweregradbestimmung.</p>';
+    } else if(sig){
+      sevHtml='<p class="big">Klinisch signifikante MS</p><p style="font-size:13px;color:var(--ink-soft);margin:4px 0 0">Kriterien: '+sevCriteria.join(' · ')+'</p>';
+      sevClass='is-sev';
+      if(sympt==='ja'){
         if(anat==='guenstig'){ recs.push({cls:'I',text:'Symptomatisch + <b>günstige Anatomie</b> → perkutane Mitralkommissurotomie (PMC) empfohlen.'}); mode={pl:'PMC (Ballonvalvuloplastie)', why:'Methode der Wahl bei günstiger Klappenmorphologie.'}; }
         else if(anat==='unguenstig' && risk==='ja'){ recs.push({cls:'I',text:'Symptomatisch, ungünstige Anatomie, aber <b>hohes OP-Risiko/KI</b> → PMC empfohlen.'}); mode={pl:'PMC', why:'Bei Kontraindikation/hohem Risiko für Chirurgie.'}; }
         else if(anat==='unguenstig'){ recs.push({cls:'I',text:'Symptomatisch, <b>nicht für PMC geeignet</b> → Mitralklappen-Chirurgie empfohlen.'}); mode={pl:'Mitralklappen-Chirurgie', why:'Ersatz/Rekonstruktion bei ungünstiger Anatomie ohne hohes OP-Risiko.'}; }
@@ -444,10 +513,18 @@
         if(thromb){ recs.push({cls:'IIa',text:'Asymptomatisch + <b>hohes Thromboembolie-/Dekompensationsrisiko</b>, günstige Anatomie → PMC sollte erwogen werden.'}); mode={pl:'PMC', why:'Präemptiv bei hohem Risiko und geeigneter Anatomie.'}; }
         else { recs.push({cls:'none',text:'Asymptomatisch ohne Risikomarker → <b>Verlauf</b>.'}); }
       } else { notes.push('Bitte <b>Symptomatik</b> angeben.'); }
+    } else {
+      var measured=[];
+      if(mva!==null) measured.push('MÖF '+mva+' cm²');
+      if(meangrad!==null) measured.push('Gradient '+meangrad+' mmHg');
+      if(phtms!==null) measured.push('PHT '+phtms+' ms');
+      sevHtml='<p class="big">Keine signifikante MS</p><p style="font-size:13px;color:var(--ink-soft);margin:4px 0 0">Messwerte: '+measured.join(' · ')+'</p>';
+      recs.push({cls:'none',text:'Keine signifikante MS → keine Interventionsindikation; <b>Verlauf</b>.'});
     }
     notes.push('Bei VHF: orale Antikoagulation mit <b>VKA</b> (DOAK bei signifikanter MS nicht empfohlen).');
     render('out-ms', sevHtml, sevClass, recs, mode, notes);
   }
+
 
   // ===================== MR =====================
   function computeMR(){
@@ -455,41 +532,90 @@
     if(type!=='sekundar') computeMRprimary(); else computeMRsecondary();
   }
   function computeMRprimary(){
-    var sev=seg['mrp_severe'], sympt=seg['mrp_sympt'], lvef=num('mrp_lvef'), lvesd=num('mrp_lvesd');
+    var eroa=num('mrp_eroa'), rvol=num('mrp_rvol'), vc=num('mrp_vc'), spap=num('mrp_spap');
+    var sympt=seg['mrp_sympt'], lvef=num('mrp_lvef'), lvesd=num('mrp_lvesd');
     var af=chk('mrp_af'), pht=chk('mrp_pht'), other=seg['mrp_other'], op=document.getElementById('mrp_op').value;
-    if(sev==null && sympt==null && lvef===null && lvesd===null){ render('out-mr'); return; }
-    var recs=[], notes=[], mode=null, sevHtml, sevClass='';
-    sevHtml='<p class="big">Primäre MI — '+(sev==='ja'?'schwer':(sev==='nein'?'nicht schwer':'Schweregrad offen'))+'</p>'; sevClass=(sev==='ja')?'is-sev':'';
 
-    if(sev==='ja'){
+    var hasInput = (eroa!==null||rvol!==null||vc!==null||sympt!=null||lvef!==null||lvesd!==null);
+    if(!hasInput){ render('out-mr'); return; }
+
+    var recs=[], notes=[], mode=null, sevHtml, sevClass='';
+
+    // Auto severity: EROA ≥ 40 mm² (=0.40 cm²) OR RVol ≥ 60 ml OR VC ≥ 7 mm
+    var sevCriteria=[];
+    if(eroa!==null){ if(eroa>=0.40) sevCriteria.push('EROA '+eroa+' cm² ≥ 0,40 cm²'); }
+    if(rvol!==null){ if(rvol>=60) sevCriteria.push('RVol '+rvol+' ml ≥ 60 ml'); }
+    if(vc!==null){ if(vc>=7) sevCriteria.push('VC '+vc+' mm ≥ 7 mm'); }
+    if(spap!==null && spap>50){ pht=true; notes.push('sPAP '+spap+' mmHg → pulmonale Hypertonie bestätigt (Checkbox automatisch berücksichtigt).'); }
+
+    var hasMeasure = (eroa!==null||rvol!==null||vc!==null);
+    var severe = sevCriteria.length > 0;
+
+    if(!hasMeasure){
+      sevHtml='<p class="big">Primäre MI</p><p style="font-size:13px;color:var(--ink-soft);margin:4px 0 0">EROA, RVol oder VC eingeben für automatischen Schweregrad.</p>';
+    } else if(severe){
+      sevHtml='<p class="big">Schwere primäre MI</p><p style="font-size:13px;color:var(--ink-soft);margin:4px 0 0">Kriterien: '+sevCriteria.join(' · ')+'</p>';
+      sevClass='is-sev';
       if(other==='ja') recs.push({cls:'I',text:'Schwere primäre MI bei <b>begleitender Herz-OP</b> → Mitralklappen-Operation empfohlen.'});
       if(sympt==='ja'){
         if(op==='operabel'){ recs.push({cls:'I',text:'<b>Symptomatische</b> schwere primäre MI, operabel → Operation empfohlen (<b>Reparatur bevorzugt</b>).'}); mode={pl:'Mitralklappen-Reparatur', why:'Reparatur vor Ersatz, wenn dauerhaftes Ergebnis zu erwarten (erfahrenes Zentrum).'}; }
         else { recs.push({cls:'IIb',text:'Symptomatisch, <b>inoperabel/hohes OP-Risiko</b>, geeignete Anatomie → TEER kann erwogen werden.'}); mode={pl:'TEER (Edge-to-Edge)', why:'Bei hohem/prohibitivem OP-Risiko und passender Morphologie.'}; }
       } else if(sympt==='nein'){
         if((lvef!==null && lvef<=60) || (lvesd!==null && lvesd>=40)){ recs.push({cls:'I',text:'Asymptomatisch + <b>LVEF ≤ 60 % und/oder LVESD ≥ 40 mm</b> → Operation empfohlen.'}); mode={pl:'Mitralklappen-Reparatur', why:'Reparatur bevorzugt.'}; }
-        else if(af || pht){ recs.push({cls:'IIa',text:'Asymptomatisch, erhaltene LV-Funktion + <b>'+(af?'neues VHF':'')+(af&&pht?' / ':'')+(pht?'PHT (sPAP &gt; 50)':'')+'</b> → Operation sollte erwogen werden (Reparatur).'}); mode={pl:'Mitralklappen-Reparatur', why:'Bei dauerhaft zu erwartender Reparatur und niedrigem Risiko.'}; }
+        else if(af || pht){ recs.push({cls:'IIa',text:'Asymptomatisch, erhaltene LV-Funktion + <b>'+(af?'neues VHF':'')+(af&&pht?' / ':'')+(pht?'PHT / sPAP &gt; 50':'')+'</b> → Operation sollte erwogen werden (Reparatur).'}); mode={pl:'Mitralklappen-Reparatur', why:'Bei dauerhaft zu erwartender Reparatur und niedrigem Risiko.'}; }
         else { recs.push({cls:'none',text:'Asymptomatisch, LVEF &gt; 60 %, LVESD &lt; 40 mm, keine AF/PHT → <b>Verlauf</b> (Reparatur an erfahrenem Zentrum erwägbar).'}); }
       } else notes.push('Bitte <b>Symptomatik</b> angeben.');
-    } else if(sev==='nein'){ recs.push({cls:'none',text:'Keine schwere primäre MI → keine OP-Indikation; <b>Verlauf</b>.'}); }
+    } else {
+      var measured=[];
+      if(eroa!==null) measured.push('EROA '+eroa+' cm²');
+      if(rvol!==null) measured.push('RVol '+rvol+' ml');
+      if(vc!==null) measured.push('VC '+vc+' mm');
+      sevHtml='<p class="big">Keine schwere primäre MI</p><p style="font-size:13px;color:var(--ink-soft);margin:4px 0 0">Messwerte: '+measured.join(' · ')+'</p>';
+      recs.push({cls:'none',text:'Keine schwere primäre MI → keine OP-Indikation; <b>Verlauf</b>.'});
+    }
     notes.push('Reparatur vor Ersatz, sobald ein dauerhaftes Ergebnis zu erwarten ist.');
     render('out-mr', sevHtml, sevClass, recs, mode, notes);
   }
   function computeMRsecondary(){
-    var sev=seg['mrs_severe'], symp=seg['mrs_sympt'], other=seg['mrs_other'], coapt=seg['mrs_coapt'];
-    if(sev==null && symp==null && other==null){ render('out-mr'); return; }
-    var recs=[], notes=[], mode=null, sevHtml, sevClass='';
-    sevHtml='<p class="big">Sekundäre MI — '+(sev==='ja'?'schwer':(sev==='nein'?'nicht schwer':'Schweregrad offen'))+'</p>'; sevClass=(sev==='ja')?'is-sev':'';
-    notes.push('<b>Zuerst leitliniengerechte HF-Therapie (GDMT)</b> optimieren, ggf. CRT und Revaskularisation.');
+    var eroa=num('mrs_eroa'), rvol=num('mrs_rvol'), vc=num('mrs_vc'), lvef=num('mrs_lvef');
+    var symp=seg['mrs_sympt'], other=seg['mrs_other'], coapt=seg['mrs_coapt'];
 
-    if(sev==='ja'){
+    var hasInput = (eroa!==null||rvol!==null||vc!==null||lvef!==null||symp!=null||other!=null);
+    if(!hasInput){ render('out-mr'); return; }
+
+    var recs=[], notes=[], mode=null, sevHtml, sevClass='';
+
+    // Auto severity: EROA ≥ 30 mm² (=0.30 cm²) OR RVol ≥ 45 ml OR VC ≥ 6 mm
+    var sevCriteria=[];
+    if(eroa!==null){ if(eroa>=0.30) sevCriteria.push('EROA '+eroa+' cm² ≥ 0,30 cm²'); }
+    if(rvol!==null){ if(rvol>=45) sevCriteria.push('RVol '+rvol+' ml ≥ 45 ml'); }
+    if(vc!==null){ if(vc>=6) sevCriteria.push('VC '+vc+' mm ≥ 6 mm'); }
+
+    var hasMeasure = (eroa!==null||rvol!==null||vc!==null);
+    var severe = sevCriteria.length > 0;
+
+    notes.push('<b>Zuerst leitliniengerechte HF-Therapie (GDMT)</b> optimieren, ggf. CRT und Revaskularisation.');
+    if(lvef!==null) notes.push('LVEF '+lvef+' % — bei LVEF &lt; 30 % sehr limitierte Prognose; Heart-Team-Entscheidung.');
+
+    if(!hasMeasure){
+      sevHtml='<p class="big">Sekundäre MI</p><p style="font-size:13px;color:var(--ink-soft);margin:4px 0 0">EROA, RVol oder VC eingeben für automatischen Schweregrad.</p>';
+    } else if(severe){
+      sevHtml='<p class="big">Schwere sekundäre MI</p><p style="font-size:13px;color:var(--ink-soft);margin:4px 0 0">Kriterien: '+sevCriteria.join(' · ')+'</p>';
+      sevClass='is-sev';
       if(other==='ja') recs.push({cls:'I',text:'Schwere sekundäre MI bei <b>begleitender CABG/Herz-OP</b> → Mitralklappen-Operation empfohlen.'});
       if(symp==='ja'){
         if(coapt==='ja'){ recs.push({cls:'IIa',text:'Symptomatisch trotz GDMT + <b>COAPT-ähnliche Kriterien</b> erfüllt → TEER sollte erwogen werden.'}); mode={pl:'TEER (Edge-to-Edge)', why:'Bei geeigneter Anatomie und erfüllten Selektionskriterien (kein Revaskularisationsbedarf).'}; }
         else { recs.push({cls:'IIb',text:'Symptomatisch trotz GDMT, Kriterien nicht/teilweise erfüllt → TEER oder Chirurgie kann erwogen werden (Heart-Team).'}); mode={pl:'TEER oder Chirurgie', why:'Individuelle Heart-Team-Entscheidung.'}; }
       } else if(symp==='nein'){ recs.push({cls:'none',text:'Nicht symptomatisch bzw. nicht trotz GDMT → <b>GDMT fortführen</b>, Verlauf.'}); }
       else notes.push('Bitte angeben, ob <b>symptomatisch trotz GDMT</b>.');
-    } else if(sev==='nein'){ recs.push({cls:'none',text:'Keine schwere sekundäre MI → GDMT; <b>Verlauf</b>.'}); }
+    } else {
+      var measured2=[];
+      if(eroa!==null) measured2.push('EROA '+eroa+' cm²');
+      if(rvol!==null) measured2.push('RVol '+rvol+' ml');
+      if(vc!==null) measured2.push('VC '+vc+' mm');
+      sevHtml='<p class="big">Keine schwere sekundäre MI</p><p style="font-size:13px;color:var(--ink-soft);margin:4px 0 0">Messwerte: '+measured2.join(' · ')+'</p>';
+      recs.push({cls:'none',text:'Keine schwere sekundäre MI → GDMT; <b>Verlauf</b>.'});
+    }
     render('out-mr', sevHtml, sevClass, recs, mode, notes);
   }
 
