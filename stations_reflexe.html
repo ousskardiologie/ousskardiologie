@@ -1,0 +1,1098 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Stations-Reflexe · Kardiologie Normalstation — diastola</title>
+<meta name="description" content="Kardiologie Normalstation: die täglichen Reflexe. Einfache Checklisten für Device, TAVI, PCI, Herzinsuffizienz, Rhythmus und Entlassung.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400&family=Caveat:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --parchment:#faf6ee;
+  --paper:#fffdf7;
+  --ink:#2b2620;
+  --ink-soft:#5c544a;
+  --red:#c8303a;
+  --red-soft:#fdf0f0;
+  --red-line:#e8c2c4;
+  --amber:#b07d2b;
+  --amber-soft:#fbf3e2;
+  --teal:#2f6f6a;
+  --teal-soft:#e9f2f1;
+  --line:#d8cfbf;
+  --shadow:0 2px 0 rgba(43,38,32,.08), 0 12px 28px -18px rgba(43,38,32,.28);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:130px}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{
+  font-family:'DM Sans',system-ui,sans-serif;
+  background-color:var(--parchment);
+  background-image:radial-gradient(rgba(43,38,32,.10) 1px, transparent 1.5px);
+  background-size:22px 22px;
+  color:var(--ink);
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+}
+::selection{background:var(--red);color:#fff}
+
+/* ---------- sketchy border helper ---------- */
+.sketch{
+  border:1.5px solid var(--ink);
+  border-radius:255px 15px 225px 15px / 15px 225px 15px 255px;
+}
+
+/* ---------- header ---------- */
+header.site{
+  max-width:1060px;margin:0 auto;padding:44px 22px 10px;
+}
+.brand-row{display:flex;align-items:baseline;justify-content:space-between;flex-wrap:wrap;gap:8px}
+.brand{
+  font-family:'Cormorant Garamond',serif;font-weight:700;font-size:1.35rem;letter-spacing:.02em;
+  color:var(--ink);text-decoration:none;
+}
+.brand em{color:var(--red);font-style:normal}
+.brand-note{font-family:'Caveat',cursive;font-size:1.15rem;color:var(--ink-soft);transform:rotate(-1.2deg)}
+.hero{margin-top:26px;position:relative}
+.kicker{
+  display:inline-block;font-size:.72rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--red);border:1.5px solid var(--red);padding:4px 12px;border-radius:999px;background:var(--paper);
+}
+h1{
+  font-family:'Cormorant Garamond',serif;font-weight:600;
+  font-size:clamp(2.3rem,5.4vw,3.6rem);line-height:1.08;margin-top:14px;max-width:18ch;
+}
+h1 .u{position:relative;white-space:nowrap}
+h1 .u::after{
+  content:"";position:absolute;left:0;right:-4px;bottom:6px;height:.34em;z-index:-1;
+  background:linear-gradient(104deg, rgba(200,48,58,.28) 0%, rgba(200,48,58,.16) 100%);
+  transform:rotate(-1deg);border-radius:2px;
+}
+.hero p.lede{margin-top:14px;max-width:56ch;color:var(--ink-soft);font-size:1.02rem}
+.hero .scribble{
+  font-family:'Caveat',cursive;color:var(--red);font-size:1.35rem;margin-top:14px;transform:rotate(-1.5deg);display:inline-block;
+}
+
+/* ---------- nav ---------- */
+nav.groups{
+  position:sticky;top:0;z-index:50;
+  background:rgba(250,246,238,.94);backdrop-filter:blur(6px);
+  border-bottom:1.5px solid var(--line);
+  padding:10px 22px;
+}
+.nav-inner{max-width:1060px;margin:0 auto;display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.chip{
+  font-family:'DM Sans',sans-serif;font-size:.8rem;font-weight:500;letter-spacing:.02em;
+  border:1.5px solid var(--ink);background:var(--paper);color:var(--ink);
+  padding:5px 13px;border-radius:255px 15px 225px 15px / 15px 225px 15px 255px;
+  cursor:pointer;text-decoration:none;transition:background .15s,color .15s;
+}
+.chip:hover{background:var(--ink);color:var(--paper)}
+.chip.active{background:var(--red);border-color:var(--red);color:#fff}
+.searchbox{margin-left:auto;display:flex;align-items:center;gap:6px}
+.searchbox input{
+  font-family:'DM Sans',sans-serif;font-size:.85rem;color:var(--ink);
+  border:1.5px solid var(--ink);border-radius:255px 15px 225px 15px / 15px 225px 15px 255px;
+  background:var(--paper);padding:6px 14px;width:190px;outline:none;
+}
+.searchbox input:focus{border-color:var(--red);box-shadow:0 0 0 3px rgba(200,48,58,.15)}
+.searchbox input::placeholder{color:#a89e8e}
+
+/* ---------- layout ---------- */
+main{max-width:1060px;margin:0 auto;padding:34px 22px 90px}
+section.group{margin-top:54px}
+section.group:first-of-type{margin-top:22px}
+.group-head{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;margin-bottom:6px}
+.group-head h2{
+  font-family:'Cormorant Garamond',serif;font-weight:600;font-size:clamp(1.6rem,3vw,2.1rem);
+}
+.group-head .count{font-family:'Caveat',cursive;font-size:1.15rem;color:var(--ink-soft)}
+.group-lede{color:var(--ink-soft);font-size:.95rem;max-width:64ch;margin-bottom:18px}
+
+.cards{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+@media (max-width:840px){.cards{grid-template-columns:1fr}}
+
+/* ---------- card ---------- */
+article.card{
+  background:var(--paper);
+  border:1.5px solid var(--ink);
+  border-radius:255px 15px 225px 15px / 15px 225px 15px 255px;
+  padding:22px 22px 18px;
+  box-shadow:var(--shadow);
+  position:relative;
+  display:flex;flex-direction:column;gap:12px;
+}
+article.card.wide{grid-column:1 / -1}
+.card-top{display:flex;align-items:flex-start;justify-content:space-between;gap:10px}
+.card h3{
+  font-family:'Cormorant Garamond',serif;font-weight:700;font-size:1.42rem;line-height:1.15;
+}
+.tag{
+  flex-shrink:0;font-size:.63rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;
+  padding:3px 9px;border-radius:999px;border:1.5px solid var(--ink);color:var(--ink);background:var(--parchment);
+  white-space:nowrap;margin-top:4px;
+}
+.tag.zusatz{border-color:var(--teal);color:var(--teal);background:var(--teal-soft)}
+.card p.why{color:var(--ink-soft);font-size:.92rem;margin-top:-4px}
+
+ul.check{list-style:none;display:flex;flex-direction:column;gap:7px}
+ul.check li{position:relative;padding-left:26px;font-size:.94rem}
+ul.check li::before{
+  content:"";position:absolute;left:2px;top:6px;width:11px;height:11px;
+  border:1.5px solid var(--ink);border-radius:3px 4px 3px 4px;background:var(--paper);
+  transform:rotate(-3deg);
+}
+ul.check li strong{font-weight:700}
+ul.check li .sub{display:block;color:var(--ink-soft);font-size:.86rem;margin-top:1px}
+
+.flags{
+  background:var(--red-soft);border:1.5px dashed var(--red);border-radius:14px 4px 14px 4px;
+  padding:12px 14px;
+}
+.flags .flags-title{
+  font-size:.68rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--red);
+  display:flex;align-items:center;gap:6px;margin-bottom:6px;
+}
+.flags ul{list-style:none;display:flex;flex-direction:column;gap:4px}
+.flags li{position:relative;padding-left:18px;font-size:.88rem}
+.flags li::before{content:"⚑";position:absolute;left:0;top:0;color:var(--red);font-size:.8rem}
+.flags li strong{color:var(--red)}
+
+.pearl{
+  background:var(--amber-soft);border:1.5px dashed var(--amber);border-radius:4px 14px 4px 14px;
+  padding:10px 14px;font-size:.88rem;
+}
+.pearl .pearl-title{
+  font-size:.66rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--amber);margin-bottom:4px;
+}
+
+/* Merksatz — signature element: taped handwritten card */
+.merk{
+  margin-top:auto;position:relative;
+  background:#fdfaf1;
+  border:1.5px solid var(--ink);
+  border-radius:225px 15px 255px 15px / 15px 255px 15px 225px;
+  padding:12px 16px 10px;
+  transform:rotate(-.6deg);
+}
+.merk::before{
+  content:"";position:absolute;top:-9px;left:50%;transform:translateX(-50%) rotate(2deg);
+  width:74px;height:18px;background:rgba(200,48,58,.18);
+  border-left:1px solid rgba(200,48,58,.25);border-right:1px solid rgba(200,48,58,.25);
+}
+.merk .m-label{
+  font-size:.62rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-soft);
+}
+.merk .m-text{
+  font-family:'Caveat',cursive;font-size:1.45rem;line-height:1.25;color:var(--red);font-weight:600;
+}
+
+/* Vorstellung / Sätze specials */
+.quotebox{
+  background:var(--paper);border-left:4px solid var(--red);padding:14px 18px;
+  border-radius:0 12px 12px 0;font-size:.95rem;
+}
+.quotebox .who{font-family:'Caveat',cursive;font-size:1.15rem;color:var(--ink-soft);margin-bottom:4px}
+ul.saetze{list-style:none;display:flex;flex-direction:column;gap:10px}
+ul.saetze li{
+  font-family:'Caveat',cursive;font-size:1.35rem;line-height:1.3;color:var(--ink);
+  padding-left:26px;position:relative;
+}
+ul.saetze li::before{content:"„";position:absolute;left:0;top:-2px;color:var(--red);font-size:1.6rem;font-family:'Cormorant Garamond',serif}
+
+footer{
+  border-top:1.5px solid var(--line);margin-top:70px;padding:26px 22px 50px;text-align:center;color:var(--ink-soft);font-size:.85rem;
+}
+footer .fbrand{font-family:'Cormorant Garamond',serif;font-weight:700;color:var(--ink)}
+footer .fbrand em{color:var(--red);font-style:normal}
+footer .fnote{font-family:'Caveat',cursive;font-size:1.1rem;margin-top:6px}
+
+.hidden{display:none!important}
+.no-results{
+  display:none;text-align:center;color:var(--ink-soft);font-family:'Caveat',cursive;font-size:1.5rem;padding:60px 0;
+}
+@media (max-width:600px){
+  .searchbox{margin-left:0;width:100%}
+  .searchbox input{width:100%}
+  header.site{padding-top:30px}
+}
+@media print{
+  nav.groups,.searchbox{display:none}
+  body{background:#fff}
+  article.card{break-inside:avoid;box-shadow:none}
+}
+</style>
+</head>
+<body>
+
+<header class="site">
+  <div class="brand-row">
+    <a class="brand" href="index.html">diastola<em>.de</em></a>
+    <span class="brand-note">Klinisches Skizzenbuch · Weiterbildung Kardiologie</span>
+  </div>
+  <div class="hero">
+    <span class="kicker">Normalstation · Tägliche Praxis</span>
+    <h1>Stations-Reflexe: <span class="u">so denkt Kardiologie</span> jeden Tag.</h1>
+    <p class="lede">Einfache Checklisten für die kardiologische Normalstation: Was du nach Device, TAVI und PCI kontrollierst, wie du Herzinsuffizienz, Rhythmus und Synkope strukturiert angehst — und mit welchen Sätzen du beim Oberarzt professionell klingst.</p>
+    <span class="scribble">→ Erst das Problem benennen, dann den Plan.</span>
+  </div>
+</header>
+
+<nav class="groups" aria-label="Kapitel">
+  <div class="nav-inner">
+    <button class="chip active" data-filter="all">Alle</button>
+    <button class="chip" data-filter="g1">Jeden Tag</button>
+    <button class="chip" data-filter="g2">Nach Intervention</button>
+    <button class="chip" data-filter="g3">Leitprobleme</button>
+    <button class="chip" data-filter="g4">Sicherheits-Reflexe</button>
+    <button class="chip" data-filter="g5">Akut auf Station</button>
+    <button class="chip" data-filter="g6">Häufig vergessen</button>
+    <div class="searchbox">
+      <input type="search" id="q" placeholder="Suchen … z. B. TAVI, Kalium, DAPT" aria-label="Karten durchsuchen">
+    </div>
+  </div>
+</nav>
+
+<main>
+
+<!-- ============ GRUPPE 1 · JEDEN TAG ============ -->
+<section class="group" data-group="g1" id="g1">
+  <div class="group-head">
+    <h2>Jeden Tag</h2>
+    <span class="count">— der Morgen-Reflex bei jedem Patienten</span>
+  </div>
+  <p class="group-lede">Bevor du in die Details gehst: einmal pro Patient dieselben sechs Fragen. Das strukturiert die Visite und verhindert, dass ein offenes Problem übersehen wird.</p>
+  <div class="cards">
+
+    <article class="card wide" data-tags="morgen visite hauptproblem plan grundfragen jeden tag">
+      <div class="card-top">
+        <h3>Der Morgen-Reflex</h3>
+        <span class="tag">Basis</span>
+      </div>
+      <p class="why">Jeden Morgen bei jedem Patienten im Kopf durchgehen — in dieser Reihenfolge.</p>
+      <ul class="check">
+        <li><strong>Warum ist der Patient hier?</strong> <span class="sub">Aufnahmegrund in einem Satz.</span></li>
+        <li><strong>Was wurde gemacht?</strong> <span class="sub">PCI, TAVI, CRT-D, ICD, Schrittmacher, Kardioversion?</span></li>
+        <li><strong>Was ist heute das Hauptproblem?</strong> <span class="sub">Ein Problem benennen, nicht zehn.</span></li>
+        <li><strong>Braucht er heute Diagnostik?</strong> <span class="sub">EKG, Monitor, Labor, Rö-Thorax, Echo?</span></li>
+        <li><strong>Sind Antikoagulation und Medikamente klar?</strong></li>
+        <li><strong>Kann er entlassen werden — oder nicht?</strong> <span class="sub">Und wenn nein: was fehlt noch?</span></li>
+      </ul>
+      <div class="merk">
+        <div class="m-label">Merksatz</div>
+        <div class="m-text">Was ist heute das Problem — und was ist mein Plan?</div>
+      </div>
+    </article>
+
+    <article class="card wide" data-tags="tagescheckliste rhythmus herzinsuffizienz ischämie device antithrombotika niere elektrolyte blutung infekt entlassung screening">
+      <div class="card-top">
+        <h3>Die 10-Punkte-Tagescheckliste</h3>
+        <span class="tag">Screening</span>
+      </div>
+      <p class="why">Ein schnelles Raster über jeden Patienten. Zehn Stichworte — bei Auffälligkeit springst du in die passende Karte.</p>
+      <ul class="check">
+        <li><strong>Rhythmus</strong> <span class="sub">AF? AV-Block? VT? Monitor nötig?</span></li>
+        <li><strong>Herzinsuffizienz</strong> <span class="sub">Stauung? Gewicht? Bilanz? Diuretika?</span></li>
+        <li><strong>Ischämie</strong> <span class="sub">Brustschmerz? EKG? Troponin?</span></li>
+        <li><strong>Device / Klappe</strong> <span class="sub">TAVI? ICD? CRT? Komplikationen?</span></li>
+        <li><strong>Antithrombotika</strong> <span class="sub">DAPT? DOAK? Marcumar? Dauer klar?</span></li>
+        <li><strong>Niere</strong> <span class="sub">Krea? eGFR? Kontrastmittel gehabt?</span></li>
+        <li><strong>Elektrolyte</strong> <span class="sub">K? Mg? Na?</span></li>
+        <li><strong>Blutung</strong> <span class="sub">Hb? Leiste? Wunde? Stuhl? Urin?</span></li>
+        <li><strong>Infekt</strong> <span class="sub">Fieber? CRP? Wunde? Endokarditis?</span></li>
+        <li><strong>Entlassung</strong> <span class="sub">Medikamente, Kontrolle, Brief, Follow-up?</span></li>
+      </ul>
+      <div class="merk">
+        <div class="m-label">Merksatz</div>
+        <div class="m-text">Zehn Stichworte, ein Patient — kein offenes Problem geht verloren.</div>
+      </div>
+    </article>
+
+  </div>
+</section>
+
+<!-- ============ GRUPPE 2 · NACH INTERVENTION ============ -->
+<section class="group" data-group="g2" id="g2">
+  <div class="group-head">
+    <h2>Nach Intervention</h2>
+    <span class="count">— Device, TAVI, PCI und was danach zählt</span>
+  </div>
+  <p class="group-lede">Nach jedem Eingriff gibt es typische Komplikationen, die man aktiv suchen muss. Zugang, Rhythmus, Niere und Blutung sind die vier wiederkehrenden Themen.</p>
+  <div class="cards">
+
+    <article class="card" data-tags="device crt icd schrittmacher pacemaker ekg reizschwelle impedanz sensing pneumothorax lead wunde tamponade">
+      <div class="card-top">
+        <h3>Nach CRT-D / ICD / Schrittmacher</h3>
+        <span class="tag">Device</span>
+      </div>
+      <ul class="check">
+        <li><strong>EKG machen.</strong> <span class="sub">Rhythmus, QRS, Pacing, Capture.</span></li>
+        <li><strong>Device-Kontrolle vor Entlassung.</strong> <span class="sub">Sensing, Reizschwelle, Impedanz, Batterie. Bei CRT: biventrikuläres Pacing.</span></li>
+        <li><strong>Rö-Thorax in 2 Ebenen.</strong> <span class="sub">Lead-Lage kontrollieren, Pneumothorax ausschließen.</span></li>
+        <li><strong>Wunde kontrollieren.</strong> <span class="sub">Hämatom? Rötung? Überwärmung? Schmerz? Fieber?</span></li>
+      </ul>
+      <div class="flags">
+        <div class="flags-title">⚑ Red Flags</div>
+        <ul>
+          <li><strong>Dyspnoe</strong> nach Implantation → Pneumothorax.</li>
+          <li><strong>Hypotonie / Brustschmerz</strong> → Perikarderguss, Tamponade.</li>
+          <li><strong>Synkope / Bradykardie</strong> → Lead-Dislokation, Device-Problem.</li>
+        </ul>
+      </div>
+      <div class="merk">
+        <div class="m-label">Merksatz</div>
+        <div class="m-text">Nach Device: EKG, Device-Kontrolle, Rö-Thorax, Wunde.</div>
+      </div>
+    </article>
+
+    <article class="card" data-tags="tavi av-block lbbb rbbb pr-verlängerung schrittmacher monitor telemetrie leiste niere stroke neurologie kontrastmittel">
+      <div class="card-top">
+        <h3>Nach TAVI</h3>
+        <span class="tag">TAVI</span>
+      </div>
+      <p class="why">Das Wichtigste: AV-Block und neue Leitungsstörungen aktiv suchen.</p>
+      <ul class="check">
+        <li><strong>EKG täglich.</strong> <span class="sub">PR-Zeit? QRS? Neuer LBBB? AV-Block? Bradykardie?</span></li>
+        <li><strong>Monitor / Telemetrie.</strong> <span class="sub">Besonders bei RBBB vorher, neuem LBBB, PR-Verlängerung, Bradykardie.</span></li>
+        <li><strong>RBBB vor TAVI = hohes Schrittmacher-Risiko.</strong> <span class="sub">Bei höhergradigem AV-Block an Schrittmacher denken.</span></li>
+        <li><strong>Leiste kontrollieren.</strong> <span class="sub">Hämatom? Nachblutung? Schmerz? Pulse distal?</span></li>
+        <li><strong>Niere kontrollieren.</strong> <span class="sub">Krea / eGFR nach Kontrastmittel.</span></li>
+        <li><strong>Neurologie kontrollieren.</strong> <span class="sub">Neue Schwäche, Aphasie, Verwirrtheit → Stroke.</span></li>
+      </ul>
+      <div class="merk">
+        <div class="m-label">Merksatz</div>
+        <div class="m-text">Nach TAVI: EKG täglich, Monitor, AV-Block suchen, Leiste und Niere.</div>
+      </div>
+    </article>
+
+    <article class="card" data-tags="pci koronarangiographie zugang radial femoral hämatom brustschmerz ekg dapt aspirin p2y12 niere kontrastmittel">
+      <div class="card-top">
+        <h3>Nach PCI / Koronarangiographie</h3>
+        <span class="tag">PCI</span>
+      </div>
+      <ul class="check">
+        <li><strong>Zugang kontrollieren.</strong> <span class="sub">Radial: Hand warm? Schmerz? Hämatom? Femoral: Leiste, Nachblutung, Pulse, Hb.</span></li>
+        <li><strong>Bei Brustschmerz sofort EKG.</strong> <span class="sub">Nicht warten. Erst EKG, dann diskutieren.</span></li>
+        <li><strong>DAPT kontrollieren.</strong> <span class="sub">Aspirin + P2Y12-Hemmer? Wie lange? Warum? Im Brief klar schreiben.</span></li>
+        <li><strong>Niere kontrollieren.</strong> <span class="sub">Krea / eGFR nach Kontrastmittel.</span></li>
+      </ul>
+      <div class="merk">
+        <div class="m-label">Merksatz</div>
+        <div class="m-text">Nach PCI: Zugang, Brustschmerz-EKG, DAPT, Niere.</div>
+      </div>
+    </article>
+
+    <article class="card" data-tags="ablation pvi pulmonalvenenisolation vt avnrt leiste transseptal perikarderguss tamponade oak antikoagulation blanking rezidiv fistel">
+      <div class="card-top">
+        <h3>Nach Ablation (PVI / VT / AVNRT)</h3>
+        <span class="tag zusatz">Zusatz</span>
+      </div>
+      <ul class="check">
+        <li><strong>Leiste kontrollieren.</strong> <span class="sub">Oft mehrere venöse Schleusen: Hämatom? Nachblutung? Geräusch (AV-Fistel)?</span></li>
+        <li><strong>Perikarderguss denken.</strong> <span class="sub">Hypotonie, Brustschmerz, Dyspnoe nach transseptaler Punktion → sofort Echo.</span></li>
+        <li><strong>OAK weiterführen.</strong> <span class="sub">Nach PVI mindestens 8 Wochen — unabhängig vom Score, danach nach CHA₂DS₂-VA.</span></li>
+        <li><strong>Frührezidive einordnen.</strong> <span class="sub">AF in der Blanking-Phase (3 Monate) heißt nicht automatisch Therapieversagen.</span></li>
+      </ul>
+      <div class="flags">
+        <div class="flags-title">⚑ Red Flag (selten, aber tödlich)</div>
+        <ul>
+          <li><strong>Fieber + Brustschmerz + Neurologie</strong> Tage bis Wochen nach PVI → an atrio-ösophageale Fistel denken. Notfall.</li>
+        </ul>
+      </div>
+      <div class="merk">
+        <div class="m-label">Merksatz</div>
+        <div class="m-text">Nach Ablation: Leiste, Perikard — und die OAK läuft weiter.</div>
+      </div>
+    </article>
+
+    <article class="card" data-tags="hb abfall blutung intervention leistenhämatom retroperitoneal gi-blutung pocket hämatom hypotonie tachykardie flankenschmerz">
+      <div class="card-top">
+        <h3>Hb-Abfall nach Intervention</h3>
+        <span class="tag">Blutung</span>
+      </div>
+      <p class="why">Nicht „kontrollieren wir morgen“. Aktiv nach der Blutungsquelle suchen.</p>
+      <ul class="check">
+        <li><strong>Leistenhämatom</strong> <span class="sub">nach femoralem Zugang.</span></li>
+        <li><strong>Retroperitoneale Blutung</strong> <span class="sub">Flanken-/Rückenschmerz, oft ohne sichtbares Hämatom.</span></li>
+        <li><strong>GI-Blutung</strong> <span class="sub">unter DAPT / OAK — Stuhl, Hb, Kreislauf.</span></li>
+        <li><strong>Pocket-Hämatom</strong> <span class="sub">nach Device-Implantation.</span></li>
+      </ul>
+      <div class="flags">
+        <div class="flags-title">⚑ Warnzeichen</div>
+        <ul>
+          <li>Hypotonie · Tachykardie</li>
+          <li>Rücken- oder Flankenschmerz</li>
+          <li>Hb-Abfall · Schmerz in der Leiste</li>
+        </ul>
+      </div>
+      <div class="merk">
+        <div class="m-label">Merksatz</div>
+        <div class="m-text">Hb-Abfall nach Intervention = Blutung suchen.</div>
+      </div>
+    </article>
+
+  </div>
+</section>
+
+<!-- ============ GRUPPE 3 · LEITPROBLEME ============ -->
+<section class="group" data-group="g3" id="g3">
+  <div class="group-head">
+    <h2>Leitprobleme</h2>
+    <span class="count">— die häufigen Situationen strukturiert angehen</span>
+  </div>
+  <p class="group-lede">Herzinsuffizienz, Vorhofflimmern und Synkope sind die Klassiker der Normalstation. Immer erst die Stabilität klären, dann die Ursache — nicht nur das Symptom behandeln.</p>
+  <div class="cards">
+
+    <article class="card" data-tags="herzinsuffizienz dekompensiert gewicht bilanz ödeme diuretika lasix furosemid gdmt arni sglt2 mra betablocker entstauen">
+      <div class="card-top">
+        <h3>Akut dekompensierte Herzinsuffizienz</h3>
+        <span class="tag">HF</span>
+      </div>
+      <p class="why">Jeden Tag: Gewicht, Bilanz / Urinmenge, Ödeme, Lunge auskultieren, Krea / K / Mg / Na, Blutdruck.</p>
+      <ul class="check">
+        <li><strong>Wirkt die Diurese?</strong> <span class="sub">Urinmenge besser? Gewicht runter? Dyspnoe besser?</span></li>
+        <li><strong>Krea stabil? Kalium okay?</strong> <span class="sub">Nicht blind Furosemid erhöhen.</span></li>
+        <li><strong>Bei HFrEF an GDMT denken.</strong> <span class="sub">ARNI/ACE/ARB, Betablocker, MRA, SGLT2 — aber erst wenn stabil.</span></li>
+      </ul>
+      <div class="merk">
+        <div class="m-label">Merksatz</div>
+        <div class="m-text">Erst entstauen, dann Medikamente steigern.</div>
+      </div>
+    </article>
+
+    <article class="card" data-tags="vorhofflimmern af afib stabil instabil kardioversion frequenz ursache antikoagulation doak marcumar hyperthyreose hypokaliämie">
+      <div class="card-top">
+        <h3>Vorhofflimmern</h3>
+        <span class="tag">Rhythmus</span>
+      </div>
+      <p class="why">Erste Frage immer: stabil oder instabil?</p>
+      <ul class="check">
+        <li><strong>Instabil?</strong> <span class="sub">Hypotonie, Synkope, Lungenödem, Ischämie → Senior rufen, elektrische Kardioversion denken.</span></li>
+        <li><strong>Frequenz kontrollieren.</strong></li>
+        <li><strong>Ursache suchen.</strong> <span class="sub">Infekt? HF? ACS? Hyperthyreose? Hypokaliämie? Anämie?</span></li>
+        <li><strong>Antikoagulation klären.</strong> <span class="sub">DOAK? Marcumar? Kontraindikation? Nierenfunktion?</span></li>
+      </ul>
+      <div class="merk">
+        <div class="m-label">Merksatz</div>
+        <div class="m-text">Neues Vorhofflimmern: nicht nur Frequenz senken — Ursache suchen.</div>
+      </div>
+    </article>
+
+    <article class="card" data-tags="synkope kollaps ekg av-block bifaszikulär long-qt brugada ischämie langzeit-ekg echo strukturell belastung">
+      <div class="card-top">
+        <h3>Synkope</h3>
+        <span class="tag">Rhythmus</span>
+      </div>
+      <p class="why">In der Kardiologie immer ernst nehmen: Rhythmusstörung ausschließen.</p>
+      <ul class="check">
+        <li><strong>EKG anschauen.</strong> <span class="sub">AV-Block? Bifaszikulärer Block? Long-QT? Brugada? Ischämie?</span></li>
+        <li><strong>Monitor oder Langzeit-EKG.</strong></li>
+        <li><strong>Echo</strong> <span class="sub">bei möglicher struktureller Herzerkrankung.</span></li>
+      </ul>
+      <div class="flags">
+        <div class="flags-title">⚑ Red Flags</div>
+        <ul>
+          <li>Synkope bei <strong>Belastung</strong> oder im <strong>Liegen</strong></li>
+          <li>Palpitationen vor der Synkope</li>
+          <li>Bekannte Herzerkrankung · pathologisches EKG</li>
+        </ul>
+      </div>
+      <div class="merk">
+        <div class="m-label">Merksatz</div>
+        <div class="m-text">Synkope in der Kardiologie = Rhythmusstörung ausschließen.</div>
+      </div>
+    </article>
+
+    <article class="card" data-tags="troponin acs tachyarrhythmie herzinsuffizienz niereninsuffizienz sepsis myokarditis lungenembolie dynamik wandbewegungsstörung">
+      <div class="card-top">
+        <h3>Troponin richtig denken</h3>
+        <span class="tag">Labor</span>
+      </div>
+      <p class="why">Troponin heißt nicht automatisch ACS. Es steigt auch bei Tachyarrhythmie, HF, Niereninsuffizienz, Sepsis, Myokarditis, Lungenembolie.</p>
+      <ul class="check">
+        <li><strong>Hat der Patient Brustschmerz?</strong></li>
+        <li><strong>Gibt es EKG-Veränderungen?</strong></li>
+        <li><strong>Gibt es eine Dynamik?</strong> <span class="sub">Ein Wert allein sagt wenig.</span></li>
+        <li><strong>Wandbewegungsstörung im Echo?</strong></li>
+        <li><strong>Passt die Klinik zusammen?</strong></li>
+      </ul>
+      <div class="merk">
+        <div class="m-label">Merksatz</div>
+        <div class="m-text">Nicht das Troponin behandeln — den Patienten.</div>
+      </div>
+    </article>
+
+    <article class="card" data-tags="klappe klappenvitium aortenstenose mitralinsuffizienz mechanische klappe bioprothese marcumar inr doak endokarditis prophylaxe amoxicillin nitrate auskultation geräusch">
+      <div class="card-top">
+        <h3>Klappenvitien auf Station</h3>
+        <span class="tag zusatz">Zusatz</span>
+      </div>
+      <ul class="check">
+        <li><strong>Schwere AS: Vorsicht mit Vorlast.</strong> <span class="sub">Nitrate und aggressive Diurese können den RR abstürzen lassen.</span></li>
+        <li><strong>Symptome aktiv fragen.</strong> <span class="sub">Dyspnoe? Angina? Synkope? — Bei schwerer AS ändern sie alles.</span></li>
+        <li><strong>Mechanische Klappe = Marcumar.</strong> <span class="sub">Nie DOAK! INR-Ziel klären, täglich kontrollieren, Bridging-Fragen früh klären.</span></li>
+        <li><strong>Bioprothese / TAVI:</strong> <span class="sub">Antithrombotik-Regime eindeutig festlegen.</span></li>
+        <li><strong>Auskultieren und dokumentieren.</strong> <span class="sub">Neues oder verändertes Geräusch → Echo.</span></li>
+      </ul>
+      <div class="pearl">
+        <div class="pearl-title">Endokarditis-Prophylaxe</div>
+        Nur Hochrisiko: Klappenprothese (inkl. TAVI), Z. n. Endokarditis, bestimmte angeborene Vitien — vor zahnärztlichen Risikoeingriffen (üblich: Amoxicillin 2 g p.o.).
+      </div>
+      <div class="merk">
+        <div class="m-label">Merksatz</div>
+        <div class="m-text">Mechanische Klappe = Marcumar, nie DOAK — und der INR bleibt im Blick.</div>
+      </div>
+    </article>
+
+  </div>
+</section>
+
+<!-- ============ GRUPPE 4 · SICHERHEITS-REFLEXE ============ -->
+<section class="group" data-group="g4" id="g4">
+  <div class="group-head">
+    <h2>Sicherheits-Reflexe</h2>
+    <span class="count">— die stillen Fehlerquellen</span>
+  </div>
+  <p class="group-lede">Antikoagulation, Niere nach Kontrastmittel, Elektrolyte und QT-Zeit: unspektakulär, aber genau hier passieren die vermeidbaren Fehler. Diese Reflexe machen den erfahrenen Assistenzarzt aus.</p>
+  <div class="cards">
+
+    <article class="card" data-tags="antikoagulation thrombozytenhemmung dapt aspirin clopidogrel prasugrel ticagrelor doak marcumar dauer blutungsrisiko entlassung">
+      <div class="card-top">
+        <h3>Antikoagulation & Thrombozytenhemmung</h3>
+        <span class="tag">Antithrombotika</span>
+      </div>
+      <p class="why">Das macht den Unterschied. Vor Entlassung immer eindeutig festlegen.</p>
+      <ul class="check">
+        <li><strong>Aspirin</strong> ja / nein?</li>
+        <li><strong>Clopidogrel / Prasugrel / Ticagrelor</strong> ja / nein?</li>
+        <li><strong>DOAK oder Marcumar</strong> ja / nein?</li>
+        <li><strong>Wie lange? Warum?</strong></li>
+      </ul>
+      <div class="pearl">
+        <div class="pearl-title">Besonders heikel</div>
+        PCI · TAVI · AF + PCI · TAVI + AF · hohes Blutungsrisiko · Niereninsuffizienz. Nie mit unklarem Plan entlassen.
+      </div>
+      <div class="merk">
+        <div class="m-label">Merksatz</div>
+        <div class="m-text">Vor Entlassung eindeutig: Was, wie lange, warum?</div>
+      </div>
+    </article>
+
+    <article class="card" data-tags="kontrastmittel niere krea egfr bilanz kontrastmittelnephropathie ckd diabetes metformin raas hydratation">
+      <div class="card-top">
+        <h3>Nach Kontrastmittel: Niere denken</h3>
+        <span class="tag">Niere</span>
+      </div>
+      <p class="why">Nach PCI, Koronarangiographie, TAVI oder CT-Angiographie.</p>
+      <ul class="check">
+        <li><strong>Krea / eGFR</strong> kontrollieren.</li>
+        <li><strong>Bilanz</strong> im Blick behalten.</li>
+        <li><strong>Diuretika kritisch prüfen.</strong></li>
+        <li><strong>Metformin / RAAS-Hemmer</strong> <span class="sub">je nach Situation pausieren.</span></li>
+      </ul>
+      <div class="pearl">
+        <div class="pearl-title">Besonders gefährdet</div>
+        Alte Patienten · CKD · Diabetes · Hypotonie · viel Kontrastmittel · starke Diurese.
+      </div>
+      <div class="merk">
+        <div class="m-label">Merksatz</div>
+        <div class="m-text">Nach Kontrastmittel: Niere kontrollieren.</div>
+      </div>
+    </article>
+
+    <article class="card" data-tags="elektrolyte kalium magnesium calcium ves vt af icd-schock qt rhythmusstörung hypokaliämie hypomagnesiämie">
+      <div class="card-top">
+        <h3>Elektrolyte bei Rhythmusstörungen</h3>
+        <span class="tag">Labor</span>
+      </div>
+      <p class="why">Bei VES, VT, schnellem AF, ICD-Schock oder QT-Verlängerung: sofort schauen.</p>
+      <ul class="check">
+        <li><strong>Kalium</strong></li>
+        <li><strong>Magnesium</strong></li>
+        <li><strong>Calcium</strong></li>
+      </ul>
+      <div class="pearl">
+        <div class="pearl-title">Warum</div>
+        Hypokaliämie und Hypomagnesiämie machen Rhythmusstörungen schlimmer — und sind schnell korrigierbar.
+      </div>
+      <div class="merk">
+        <div class="m-label">Merksatz</div>
+        <div class="m-text">Bei Rhythmusstörung zuerst K und Mg kontrollieren.</div>
+      </div>
+    </article>
+
+    <article class="card" data-tags="elektrolyt korrektur substitution kalium magnesium kcl perfusor oral iv ziel hochnormal digitalis refraktär monitor">
+      <div class="card-top">
+        <h3>K & Mg konkret korrigieren</h3>
+        <span class="tag zusatz">Zusatz</span>
+      </div>
+      <p class="why">In der Kardiologie zielt man bei Rhythmusproblemen auf hoch-normale Werte.</p>
+      <ul class="check">
+        <li><strong>Ziel:</strong> <span class="sub">Kalium ≥ 4,0 mmol/l, Magnesium im (hoch-)normalen Bereich.</span></li>
+        <li><strong>Mg immer mitkorrigieren.</strong> <span class="sub">Bei Hypomagnesiämie bleibt die Kalium-Substitution refraktär.</span></li>
+        <li><strong>Oral vor i.v.</strong> <span class="sub">Milde Hypokaliämie oral. I.v. nur langsam, unter Monitor, peripher niedrige Laufrate — nach hausinternem Standard.</span></li>
+        <li><strong>Ursache suchen.</strong> <span class="sub">Diuretika? Erbrechen / Diarrhö? Insulin? Sonst kommt es wieder.</span></li>
+        <li><strong>Kontrolle nach Substitution</strong> <span class="sub">einplanen — nicht nur anordnen und vergessen.</span></li>
+      </ul>
+      <div class="pearl">
+        <div class="pearl-title">Extra-Reflex</div>
+        Unter Digitalis macht Hypokaliämie die Toxizität schlimmer — hier besonders konsequent korrigieren.
+      </div>
+      <div class="merk">
+        <div class="m-label">Merksatz</div>
+        <div class="m-text">Ohne Magnesium bleibt das Kalium nicht oben.</div>
+      </div>
+    </article>
+
+    <article class="card" data-tags="qt-zeit qtc torsade amiodaron sotalol makrolide fluorchinolone haloperidol ondansetron antidepressiva kalium magnesium">
+      <div class="card-top">
+        <h3>QT-Zeit nicht vergessen</h3>
+        <span class="tag">Rhythmus</span>
+      </div>
+      <p class="why">Gefährliche Kombination: QT lang + K niedrig + Mg niedrig + neues Medikament.</p>
+      <div class="pearl">
+        <div class="pearl-title">QT-verlängernde Medikamente</div>
+        Amiodaron · Sotalol · Makrolide · Fluorchinolone · Haloperidol · Ondansetron · manche Antidepressiva.
+      </div>
+      <div class="merk">
+        <div class="m-label">Merksatz</div>
+        <div class="m-text">QT lang + K niedrig + neues Medikament = Torsade-Gefahr.</div>
+      </div>
+    </article>
+
+    <article class="card" data-tags="ekg vergleich vor-ekg alt tavi pci lbbb rbbb pr qrs medikament dynamik">
+      <div class="card-top">
+        <h3>EKG mit Vor-EKG vergleichen</h3>
+        <span class="tag">EKG</span>
+      </div>
+      <p class="why">Nicht nur anschauen — vergleichen. Der Unterschied ist die Information.</p>
+      <ul class="check">
+        <li><strong>Vor TAVI</strong> vs. <strong>nach TAVI.</strong></li>
+        <li><strong>Vor PCI</strong> vs. <strong>nach Brustschmerz.</strong></li>
+        <li><strong>Vor Medikament</strong> vs. <strong>nach Medikament.</strong></li>
+      </ul>
+      <div class="pearl">
+        <div class="pearl-title">Bei TAVI besonders</div>
+        RBBB vorher? Neuer LBBB? PR länger? QRS breiter? AV-Block?
+      </div>
+      <div class="merk">
+        <div class="m-label">Merksatz</div>
+        <div class="m-text">EKG immer mit dem Vor-EKG vergleichen.</div>
+      </div>
+    </article>
+
+    <article class="card" data-tags="fieber device tavi klappe schrittmacher icd crt klappenprothese endokarditis blutkulturen wundinfekt pneumonie harnwegsinfekt">
+      <div class="card-top">
+        <h3>Fieber bei Device, TAVI oder Klappe</h3>
+        <span class="tag">Infekt</span>
+      </div>
+      <p class="why">Bei Fieber nach Schrittmacher, ICD, CRT, TAVI oder Klappenprothese immer breiter denken.</p>
+      <ul class="check">
+        <li><strong>Device-Infektion</strong></li>
+        <li><strong>Endokarditis</strong></li>
+        <li><strong>Wundinfekt · Pneumonie · Harnwegsinfekt</strong></li>
+      </ul>
+      <div class="pearl">
+        <div class="pearl-title">Reihenfolge</div>
+        Wenn der Patient stabil ist: <strong>Blutkulturen vor Antibiotika.</strong>
+      </div>
+      <div class="merk">
+        <div class="m-label">Merksatz</div>
+        <div class="m-text">Fieber bei Device oder Klappe = Endokarditis im Kopf behalten.</div>
+      </div>
+    </article>
+
+  </div>
+</section>
+
+<!-- ============ GRUPPE 5 · AKUT AUF STATION ============ -->
+<section class="group" data-group="g5" id="g5">
+  <div class="group-head">
+    <h2>Akut auf Station</h2>
+    <span class="count">— wenn es plötzlich brennt (Ergänzung)</span>
+  </div>
+  <p class="group-lede">Häufige akute Situationen, die dich nachts oder auf der Visite treffen. Jede Karte gibt dir die ersten Schritte, bevor du entscheidest, ob du den Senior brauchst.</p>
+  <div class="cards">
+
+    <article class="card" data-tags="brustschmerz thoraxschmerz akut ekg troponin acs stemi nstemi aortendissektion lungenembolie perikarditis nitro">
+      <div class="card-top">
+        <h3>Akuter Brustschmerz</h3>
+        <span class="tag zusatz">Akut</span>
+      </div>
+      <p class="why">Erst EKG, dann diskutieren. Innerhalb von Minuten, nicht später.</p>
+      <ul class="check">
+        <li><strong>Sofort EKG</strong> <span class="sub">und mit Vor-EKG vergleichen. STEMI? Neue Veränderungen?</span></li>
+        <li><strong>Troponin + Dynamik</strong> <span class="sub">Verlaufswert, nicht nur ein Punkt.</span></li>
+        <li><strong>Vitalparameter, beide Arme</strong> <span class="sub">RR-Differenz → an Dissektion denken.</span></li>
+        <li><strong>Differenzialdiagnosen</strong> <span class="sub">ACS, Lungenembolie, Aortendissektion, Perikarditis, muskuloskelettal.</span></li>
+      </ul>
+      <div class="flags">
+        <div class="flags-title">⚑ Nicht verpassen</div>
+        <ul>
+          <li>ST-Hebung → sofort Senior / Herzkatheter</li>
+          <li>Reißender Schmerz in den Rücken → <strong>Dissektion</strong></li>
+          <li>Dyspnoe + Tachykardie + Hypoxie → <strong>Lungenembolie</strong></li>
+        </ul>
+      </div>
+      <div class="merk">
+        <div class="m-label">Merksatz</div>
+        <div class="m-text">Brustschmerz? Erst das EKG in der Hand, dann denken.</div>
+      </div>
+    </article>
+
+    <article class="card" data-tags="bradykardie av-block sinusbradykardie atropin schrittmacher medikament betablocker digitalis synkope pause">
+      <div class="card-top">
+        <h3>Akute Bradykardie</h3>
+        <span class="tag zusatz">Akut</span>
+      </div>
+      <ul class="check">
+        <li><strong>Stabil oder instabil?</strong> <span class="sub">RR, Bewusstsein, Brustschmerz, Herzinsuffizienz?</span></li>
+        <li><strong>EKG:</strong> Sinusbradykardie? AV-Block? Welcher Grad? Pausen?</li>
+        <li><strong>Reversible Ursachen:</strong> <span class="sub">Betablocker, Digitalis, Ca-Antagonisten, Hyperkaliämie, Ischämie, Hypothyreose.</span></li>
+        <li><strong>Instabil:</strong> Atropin, Senior rufen, an (transkutanes) Pacing denken.</li>
+      </ul>
+      <div class="merk">
+        <div class="m-label">Merksatz</div>
+        <div class="m-text">Erst Stabilität und Ursache — dann Atropin und Senior.</div>
+      </div>
+    </article>
+
+    <article class="card" data-tags="tachykardie schmalkomplex breitkomplex svt vt vagusmanöver adenosin kardioversion stabil instabil frequenz">
+      <div class="card-top">
+        <h3>Akute Tachykardie</h3>
+        <span class="tag zusatz">Akut</span>
+      </div>
+      <ul class="check">
+        <li><strong>Stabil oder instabil?</strong> <span class="sub">Instabil → synchronisierte Kardioversion, Senior.</span></li>
+        <li><strong>Schmal oder breit?</strong> <span class="sub">Breitkomplex = bis zum Beweis des Gegenteils VT.</span></li>
+        <li><strong>Regelmäßig oder unregelmäßig?</strong> <span class="sub">Unregelmäßig breit → an Präexzitation / AF denken.</span></li>
+        <li><strong>12-Kanal-EKG sichern</strong> <span class="sub">vor jeder Therapie, wenn Zeit bleibt.</span></li>
+      </ul>
+      <div class="pearl">
+        <div class="pearl-title">Reflex</div>
+        Elektrolyte (K, Mg) und reversible Auslöser (Fieber, Volumen, Schmerz, Anämie) nicht vergessen.
+      </div>
+      <div class="merk">
+        <div class="m-label">Merksatz</div>
+        <div class="m-text">Breitkomplex-Tachykardie ist VT, bis das Gegenteil bewiesen ist.</div>
+      </div>
+    </article>
+
+    <article class="card" data-tags="lungenödem dyspnoe akut hypertensiv nitro furosemid sauerstoff niv sitzen orthopnoe stauung">
+      <div class="card-top">
+        <h3>Akute Dyspnoe / Lungenödem</h3>
+        <span class="tag zusatz">Akut</span>
+      </div>
+      <ul class="check">
+        <li><strong>Vitalwerte + SpO₂</strong> <span class="sub">Patient aufsetzen, Sauerstoff.</span></li>
+        <li><strong>Kardial oder pulmonal?</strong> <span class="sub">Stauung, Ödeme, Orthopnoe vs. Infekt, Bronchospasmus, Lungenembolie.</span></li>
+        <li><strong>EKG + Troponin + BGA</strong> <span class="sub">Ischämie oder Rhythmus als Auslöser?</span></li>
+        <li><strong>Kardiales Lungenödem:</strong> <span class="sub">Sauerstoff / NIV, Nitrat (wenn RR erlaubt), Furosemid, Ursache suchen.</span></li>
+      </ul>
+      <div class="merk">
+        <div class="m-label">Merksatz</div>
+        <div class="m-text">Aufsetzen, Sauerstoff, EKG — dann die Ursache der Dekompensation suchen.</div>
+      </div>
+    </article>
+
+    <article class="card" data-tags="hypertensiver notfall entgleisung blutdruck endorganschaden lungenödem dissektion enzephalopathie langsam senken">
+      <div class="card-top">
+        <h3>Hypertensive Entgleisung</h3>
+        <span class="tag zusatz">Akut</span>
+      </div>
+      <ul class="check">
+        <li><strong>Notfall oder Dringlichkeit?</strong> <span class="sub">Entscheidend: Endorganschaden ja/nein.</span></li>
+        <li><strong>Endorgan prüfen:</strong> <span class="sub">Brustschmerz, Dyspnoe/Lungenödem, Neurologie, Sehstörung, Niere.</span></li>
+        <li><strong>EKG, Troponin</strong> <span class="sub">bei kardialer Symptomatik.</span></li>
+        <li><strong>Nicht zu schnell senken</strong> <span class="sub">ohne Endorganschaden: kontrolliert, oral, kein RR-Sturz.</span></li>
+      </ul>
+      <div class="merk">
+        <div class="m-label">Merksatz</div>
+        <div class="m-text">Nicht die Zahl behandeln — den Endorganschaden.</div>
+      </div>
+    </article>
+
+    <article class="card" data-tags="hypotonie schock kardiogen kreislauf volumen tamponade lungenembolie blutung sepsis noradrenalin echo">
+      <div class="card-top">
+        <h3>Hypotonie & Schock</h3>
+        <span class="tag zusatz">Akut</span>
+      </div>
+      <ul class="check">
+        <li><strong>Vitalwerte, Bewusstsein, Rekap-Zeit</strong> <span class="sub">Wie krank ist der Patient wirklich?</span></li>
+        <li><strong>Schockform einordnen:</strong> <span class="sub">kardiogen, hypovoläm (Blutung!), obstruktiv (Tamponade, LE), distributiv (Sepsis).</span></li>
+        <li><strong>Reflexe in der Kardiologie:</strong> <span class="sub">nach Intervention → Blutung / Tamponade; neuer Herzinfarkt; Rhythmus.</span></li>
+        <li><strong>Fokussiertes Echo</strong> <span class="sub">Perikarderguss? Rechtsherzbelastung? Pumpfunktion?</span></li>
+        <li><strong>Früh Senior rufen.</strong></li>
+      </ul>
+      <div class="merk">
+        <div class="m-label">Merksatz</div>
+        <div class="m-text">Hypotonie nach Eingriff: erst an Blutung und Tamponade denken.</div>
+      </div>
+    </article>
+
+    <article class="card" data-tags="perikarderguss tamponade beck echo einflussstauung pulsus paradoxus punktion niedervoltage nach intervention">
+      <div class="card-top">
+        <h3>Perikarderguss / Tamponade</h3>
+        <span class="tag zusatz">Akut</span>
+      </div>
+      <p class="why">Vor allem nach Device-Implantation, Ablation oder Intervention aktiv bedenken.</p>
+      <ul class="check">
+        <li><strong>Klinik:</strong> <span class="sub">Hypotonie, gestaute Halsvenen, leise Herztöne, Dyspnoe, Tachykardie.</span></li>
+        <li><strong>EKG:</strong> <span class="sub">Niedervoltage, ggf. elektrischer Alternans.</span></li>
+        <li><strong>Echo sofort</strong> <span class="sub">Erguss? Diastolischer Kollaps? — Senior / Punktion.</span></li>
+      </ul>
+      <div class="merk">
+        <div class="m-label">Merksatz</div>
+        <div class="m-text">Hypotonie + gestaute Venen + leise Töne nach Eingriff → sofort Echo.</div>
+      </div>
+    </article>
+
+    <article class="card" data-tags="lungenembolie le dyspnoe tachykardie hypoxie rechtsherzbelastung d-dimer ct-angiographie s1q3t3 antikoagulation wells">
+      <div class="card-top">
+        <h3>Lungenembolie mitdenken</h3>
+        <span class="tag zusatz">Akut</span>
+      </div>
+      <p class="why">Häufig übersehen, weil sie sich als „unklare Dyspnoe“ tarnt.</p>
+      <ul class="check">
+        <li><strong>Trias:</strong> <span class="sub">akute Dyspnoe + Tachykardie + Hypoxie ohne klare kardiale/pulmonale Erklärung.</span></li>
+        <li><strong>Risikofaktoren:</strong> <span class="sub">Immobilisation, OP, Tumor, TVT, frühere LE.</span></li>
+        <li><strong>EKG:</strong> <span class="sub">Sinustachykardie, ggf. Rechtsherzzeichen (S1Q3T3, neuer RBBB).</span></li>
+        <li><strong>Wahrscheinlichkeit + D-Dimer + CT-Angiographie</strong> <span class="sub">strukturiert vorgehen, Echo bei Instabilität.</span></li>
+      </ul>
+      <div class="merk">
+        <div class="m-label">Merksatz</div>
+        <div class="m-text">Unklare Dyspnoe + Tachykardie? Lungenembolie aktiv ausschließen.</div>
+      </div>
+    </article>
+
+    <article class="card wide" data-tags="reanimation cpr peri-arrest kreislaufstillstand defibrillation adrenalin amiodaron 4h hits schockbar vf pvt asystolie pea met notruf">
+      <div class="card-top">
+        <h3>Peri-Arrest & Reanimation auf Station</h3>
+        <span class="tag zusatz">Akut</span>
+      </div>
+      <p class="why">Das Wichtigste passiert vor dem Stillstand: Peri-Arrest-Zeichen erkennen und nicht allein bleiben.</p>
+      <ul class="check">
+        <li><strong>Peri-Arrest erkennen:</strong> <span class="sub">RR-Abfall, neue Brady- oder Tachykardie, SpO₂-Abfall, Bewusstseinstrübung → Senior / Notfallteam sofort dazu.</span></li>
+        <li><strong>Keine Reaktion + keine normale Atmung?</strong> <span class="sub">Reanimationsalarm auslösen, sofort CPR 30:2 — hart und schnell (5–6 cm, 100–120/min), Wechsel alle 2 Minuten.</span></li>
+        <li><strong>Defi holen, Pads kleben, Rhythmus analysieren.</strong> <span class="sub">Schockbar (VF / pVT) → Schock. Nicht schockbar (Asystolie / PEA) → CPR weiter.</span></li>
+        <li><strong>Medikamente nach Algorithmus:</strong> <span class="sub">Adrenalin 1 mg alle 3–5 min; Amiodaron 300 mg nach dem 3. Schock.</span></li>
+        <li><strong>Reversible Ursachen abarbeiten — 4 H & HITS:</strong> <span class="sub">Hypoxie, Hypovolämie, Hypo-/Hyperkaliämie, Hypothermie · Herzbeuteltamponade, Intoxikation, Thrombose (LE / Infarkt), Spannungspneumothorax.</span></li>
+      </ul>
+      <div class="pearl">
+        <div class="pearl-title">Kardiologie-Reflex</div>
+        Auf der kardiologischen Station besonders an Hyperkaliämie, Ischämie und — nach Intervention — an Tamponade und Blutung denken.
+      </div>
+      <div class="merk">
+        <div class="m-label">Merksatz</div>
+        <div class="m-text">Erkennen, rufen, drücken — und die 4 H und HITS abarbeiten.</div>
+      </div>
+    </article>
+
+  </div>
+</section>
+
+<!-- ============ GRUPPE 6 · HÄUFIG VERGESSEN + KOMMUNIKATION ============ -->
+<section class="group" data-group="g6" id="g6">
+  <div class="group-head">
+    <h2>Häufig vergessen</h2>
+    <span class="count">— Entlassung, Vorstellung & die Sätze zum Auswendiglernen</span>
+  </div>
+  <p class="group-lede">Der Eingriff ist gemacht, der Patient ist stabil — jetzt entscheidet die Sorgfalt bei Entlassung und Kommunikation. Plus ein paar zusätzliche Reflexe, die im Alltag leicht untergehen.</p>
+  <div class="cards">
+
+    <article class="card wide" data-tags="entlassung discharge medikamente antikoagulation dapt niere kalium leiste wunde rhythmus follow-up labor device kontrolle">
+      <div class="card-top">
+        <h3>Entlassungs-Reflex</h3>
+        <span class="tag">Entlassung</span>
+      </div>
+      <p class="why">Vor jeder Entlassung dieselbe Liste durchgehen. Nichts offen lassen.</p>
+      <ul class="check">
+        <li><strong>Medikamente klar?</strong> Antikoagulation? DAPT-Dauer?</li>
+        <li><strong>Nierenwerte stabil?</strong> Kalium / Magnesium okay?</li>
+        <li><strong>Leiste / Wunde reizlos?</strong> Rhythmus stabil?</li>
+        <li><strong>Follow-up geplant?</strong> Labor-Kontrolle? Device-Kontrolle?</li>
+        <li><strong>Weiß der Patient, wann er wiederkommen muss?</strong></li>
+      </ul>
+      <div class="merk">
+        <div class="m-label">Merksatz</div>
+        <div class="m-text">Keine Entlassung mit unklarer Antikoagulation, instabiler Niere oder offenem Problem.</div>
+      </div>
+      <p style="margin-top:12px;font-size:.9rem">
+        <a href="musterbriefe_arztbrief.html" style="color:var(--red);font-weight:600;text-decoration:none;border-bottom:1.5px dashed var(--red)">→ Musterbriefe für den Arztbrief</a>
+        <span style="color:var(--ink-soft)"> — 14 fertige Entlassungsberichte im Stationsformat (KHK, Dekompensation, TAVI, EPU, Synkope …)</span>
+      </p>
+    </article>
+
+    <article class="card" data-tags="vorstellung oberarzt präsentation strukturiert kurz klar tag hauptproblem vorschlag übergabe">
+      <div class="card-top">
+        <h3>Patienten gut vorstellen</h3>
+        <span class="tag">Kommunikation</span>
+      </div>
+      <p class="why">Nicht lange erzählen. Kurz, strukturiert, mit einem Vorschlag am Ende.</p>
+      <div class="quotebox">
+        <div class="who">— So klingt es professionell:</div>
+        „Herr Müller, 78 Jahre, Tag 2 nach TAVI. Hauptproblem: neuer LBBB mit PR-Verlängerung. Klinisch stabil, keine Synkope. Leiste reizlos, Hb stabil, Krea leicht steigend. Mein Vorschlag: heute keine Entlassung, weiter Monitor, morgen EKG und Krea-Kontrolle.“
+      </div>
+      <div class="pearl">
+        <div class="pearl-title">Struktur</div>
+        Name · Alter · Tag nach Eingriff → Hauptproblem → Stabilität → relevante Befunde → <strong>eigener Vorschlag.</strong>
+      </div>
+    </article>
+
+    <article class="card" data-tags="volumen bilanz einfuhr ausfuhr gewicht katheter urin dokumentation stauung">
+      <div class="card-top">
+        <h3>Bilanz & Gewicht ernst nehmen</h3>
+        <span class="tag zusatz">Zusatz</span>
+      </div>
+      <p class="why">Die einfachsten Zahlen sind oft die aussagekräftigsten — wenn sie wirklich erhoben werden.</p>
+      <ul class="check">
+        <li><strong>Tägliches Gewicht</strong> <span class="sub">gleiche Zeit, gleiche Waage — Trend zählt.</span></li>
+        <li><strong>Ein- und Ausfuhr</strong> <span class="sub">Stimmt die dokumentierte Bilanz mit der Klinik überein?</span></li>
+        <li><strong>Diurese-Antwort</strong> <span class="sub">Reagiert der Patient auf das Diuretikum wie erwartet?</span></li>
+      </ul>
+      <div class="merk">
+        <div class="m-label">Merksatz</div>
+        <div class="m-text">Gewicht und Bilanz sagen mehr als jeder Einzelbefund — wenn du sie liest.</div>
+      </div>
+    </article>
+
+    <article class="card" data-tags="nierenfunktion medikamentendosis dosisanpassung doak antibiotika krea egfr kontraindikation renal">
+      <div class="card-top">
+        <h3>Nierenfunktion & Dosisanpassung</h3>
+        <span class="tag zusatz">Zusatz</span>
+      </div>
+      <p class="why">Viele kardiologische Medikamente müssen an die Nierenfunktion angepasst werden.</p>
+      <ul class="check">
+        <li><strong>DOAK-Dosis</strong> <span class="sub">nach eGFR prüfen — nicht blind das Standardmaß.</span></li>
+        <li><strong>Bei Verschlechterung</strong> <span class="sub">nephrotoxische / renal eliminierte Substanzen überdenken.</span></li>
+        <li><strong>Neue Medikamente</strong> <span class="sub">Kontraindikation bei der aktuellen eGFR?</span></li>
+      </ul>
+      <div class="merk">
+        <div class="m-label">Merksatz</div>
+        <div class="m-text">Bei jeder eGFR-Änderung: passt die Medikamentendosis noch?</div>
+      </div>
+    </article>
+
+    <article class="card" data-tags="sturzrisiko antikoagulation delir mobilisation ältere patienten blutung ohnmacht sicherheit">
+      <div class="card-top">
+        <h3>Der ältere Patient</h3>
+        <span class="tag zusatz">Zusatz</span>
+      </div>
+      <p class="why">Auf der Kardiologie oft hochbetagt und multimorbid — hier lohnt der zweite Blick.</p>
+      <ul class="check">
+        <li><strong>Sturz- und Blutungsrisiko</strong> <span class="sub">bei Antikoagulation gemeinsam abwägen.</span></li>
+        <li><strong>Delir</strong> <span class="sub">neue Verwirrtheit? An Infekt, Elektrolyte, Medikamente, Hypoxie denken.</span></li>
+        <li><strong>Frühe Mobilisation</strong> <span class="sub">wo möglich — reduziert Komplikationen.</span></li>
+      </ul>
+      <div class="merk">
+        <div class="m-label">Merksatz</div>
+        <div class="m-text">Nutzen und Risiko beim alten Patienten immer zusammen abwägen.</div>
+      </div>
+    </article>
+
+    <article class="card wide" data-tags="sätze auswendig lernen formulierungen oberarzt kommunikation phrasen">
+      <div class="card-top">
+        <h3>Die Sätze zum Auswendiglernen</h3>
+        <span class="tag">Kommunikation</span>
+      </div>
+      <p class="why">Fertige Formulierungen für Visite und Übergabe — sie zeigen strukturiertes Denken.</p>
+      <ul class="saetze">
+        <li>Was ist heute das Hauptproblem?</li>
+        <li>Ich würde das EKG mit dem Vor-EKG vergleichen.</li>
+        <li>Bei Hb-Abfall nach Intervention würde ich eine Blutung aktiv ausschließen.</li>
+        <li>Nach Kontrastmittel sollten wir die Nierenfunktion kontrollieren.</li>
+        <li>Bei TAVI und neuem LBBB würde ich den Patienten weiter monitoren.</li>
+        <li>Bei vorbestehendem RBBB nach TAVI besteht ein erhöhtes Risiko für AV-Block.</li>
+        <li>Bei CRT sollten wir die biventrikuläre Stimulationsrate kontrollieren.</li>
+        <li>Bei Rhythmusstörungen würde ich zuerst Kalium und Magnesium kontrollieren.</li>
+        <li>Vor Entlassung müssen Antikoagulation und DAPT-Dauer klar sein.</li>
+        <li>Die Entlassung ist möglich, wenn Rhythmus stabil, Wunde/Leiste reizlos, Nierenwerte stabil und Medikamente geklärt sind.</li>
+      </ul>
+    </article>
+
+  </div>
+</section>
+
+<div class="no-results" id="noResults">Keine Karte passt zu deiner Suche — versuch ein anderes Stichwort.</div>
+
+</main>
+
+<footer>
+  <div class="fbrand">diastola<em>.de</em> · Klinisches Skizzenbuch</div>
+  <p class="fnote">Stations-Reflexe · für die kardiologische Normalstation</p>
+  <p style="margin-top:14px;max-width:60ch;margin-left:auto;margin-right:auto;font-size:.8rem;">
+    Lernhilfe zur Weiterbildung, keine verbindliche Handlungsanweisung. Klinische Entscheidungen richten sich immer nach aktuellen Leitlinien, hausinternen Standards und dem individuellen Patienten.
+  </p>
+</footer>
+
+<script>
+(function(){
+  var chips = Array.prototype.slice.call(document.querySelectorAll('.chip'));
+  var sections = Array.prototype.slice.call(document.querySelectorAll('section.group'));
+  var cards = Array.prototype.slice.call(document.querySelectorAll('article.card'));
+  var q = document.getElementById('q');
+  var noResults = document.getElementById('noResults');
+  var activeFilter = 'all';
+
+  function normalize(s){ return (s||'').toLowerCase().replace(/[äöü]/g,function(m){return {'ä':'a','ö':'o','ü':'u'}[m];}).replace(/ß/g,'ss'); }
+
+  function apply(){
+    var term = normalize(q.value.trim());
+    var anyVisible = false;
+
+    sections.forEach(function(sec){
+      var g = sec.getAttribute('data-group');
+      var groupMatchesFilter = (activeFilter === 'all' || activeFilter === g);
+      var cardsInSec = Array.prototype.slice.call(sec.querySelectorAll('article.card'));
+      var visibleInSec = 0;
+
+      cardsInSec.forEach(function(card){
+        var hay = normalize(card.getAttribute('data-tags') + ' ' + card.textContent);
+        var matchesTerm = (term === '' || hay.indexOf(term) !== -1);
+        var show = groupMatchesFilter && matchesTerm;
+        card.classList.toggle('hidden', !show);
+        if(show){ visibleInSec++; anyVisible = true; }
+      });
+
+      sec.classList.toggle('hidden', visibleInSec === 0);
+    });
+
+    noResults.style.display = anyVisible ? 'none' : 'block';
+  }
+
+  chips.forEach(function(chip){
+    chip.addEventListener('click', function(){
+      chips.forEach(function(c){ c.classList.remove('active'); });
+      chip.classList.add('active');
+      activeFilter = chip.getAttribute('data-filter');
+      apply();
+      if(activeFilter !== 'all'){
+        var target = document.getElementById(activeFilter);
+        if(target){ window.scrollTo({top: target.offsetTop - 110, behavior: 'smooth'}); }
+      } else {
+        window.scrollTo({top: 0, behavior: 'smooth'});
+      }
+    });
+  });
+
+  var t;
+  q.addEventListener('input', function(){
+    clearTimeout(t);
+    t = setTimeout(function(){
+      if(q.value.trim() !== '' && activeFilter !== 'all'){
+        chips.forEach(function(c){ c.classList.remove('active'); });
+        chips[0].classList.add('active');
+        activeFilter = 'all';
+      }
+      apply();
+    }, 120);
+  });
+
+  apply();
+})();
+</script>
+
+</body>
+</html>
