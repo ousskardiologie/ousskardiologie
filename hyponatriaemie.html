@@ -1,0 +1,1236 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hyponatriämie · Algorithme Station Kardiologie — diastola</title>
+<meta name="description" content="Outil pédagogique interactif pour l'Hyponatriämie en cardiologie : triage, diagnostic par Volumenstatus, SIADH, Herzinsuffizienz, BGA en COPD et calculateur de correction. Français, termes médicaux en allemand.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400&family=Caveat:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+/* ===================================================================
+   diastola · Klinisches Skizzenbuch — design tokens
+   Palette de base identique aux autres pages diastola,
+   étendue par des couleurs de catégorie pour l'algorithme.
+   =================================================================== */
+:root{
+  --parchment:#faf6ee;
+  --paper:#fffdf7;
+  --ink:#2b2620;
+  --ink-soft:#5c544a;
+  --red:#c8303a;
+  --red-soft:#fdf0f0;
+  --red-line:#e8c2c4;
+  --amber:#b07d2b;
+  --amber-soft:#fbf3e2;
+  --teal:#2f6f6a;
+  --teal-soft:#e9f2f1;
+  --line:#d8cfbf;
+  --shadow:0 2px 0 rgba(43,38,32,.08), 0 12px 28px -18px rgba(43,38,32,.28);
+
+  /* couleurs de catégorie (algorithme) */
+  --cat-emergency:#c8303a;   --cat-emergency-soft:#fdf0f0;
+  --cat-diag:#2c5c8a;        --cat-diag-soft:#eaf1f8;
+  --cat-hypo:#c0741f;        --cat-hypo-soft:#fbf1e3;   /* hypovolämisch — orange */
+  --cat-eu:#7a4a9c;          --cat-eu-soft:#f3ecf8;     /* euvolämisch / SIADH — violet */
+  --cat-hyper:#3a7d4e;       --cat-hyper-soft:#eaf5ee;  /* hypervolämisch / HF — vert */
+  --cat-safety:#8f1f26;      --cat-safety-soft:#f7e7e8; /* sécurité / surcorrection — rouge foncé */
+
+  --sketch-radius:255px 15px 225px 15px / 15px 225px 15px 255px;
+}
+
+/* ---------- mode sombre ---------- */
+[data-theme="dark"]{
+  --parchment:#1c1a17;
+  --paper:#26231e;
+  --ink:#efe9dc;
+  --ink-soft:#b7ae9d;
+  --red:#f0656d;
+  --red-soft:#3a2422;
+  --red-line:#6a3b3d;
+  --amber:#e0aa5c;
+  --amber-soft:#332a1c;
+  --teal:#68b3ad;
+  --teal-soft:#1f2e2c;
+  --line:#453f34;
+  --shadow:0 2px 0 rgba(0,0,0,.3), 0 14px 30px -18px rgba(0,0,0,.6);
+  --cat-emergency:#f0656d;   --cat-emergency-soft:#3a2422;
+  --cat-diag:#7fb0dd;        --cat-diag-soft:#1e2a36;
+  --cat-hypo:#e0a45c;        --cat-hypo-soft:#332818;
+  --cat-eu:#c19ce0;          --cat-eu-soft:#2a2033;
+  --cat-hyper:#75c48c;       --cat-hyper-soft:#1c2d22;
+  --cat-safety:#f28088;      --cat-safety-soft:#3a2020;
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:120px}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto} *{transition:none!important}}
+body{
+  font-family:'DM Sans',system-ui,sans-serif;
+  background-color:var(--parchment);
+  background-image:radial-gradient(rgba(43,38,32,.10) 1px, transparent 1.5px);
+  background-size:22px 22px;
+  color:var(--ink);
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+  transition:background-color .3s, color .3s;
+}
+[data-theme="dark"] body{background-image:radial-gradient(rgba(255,255,255,.06) 1px, transparent 1.5px)}
+::selection{background:var(--red);color:#fff}
+
+.sketch{border:1.5px solid var(--ink);border-radius:var(--sketch-radius)}
+
+/* ---------- header ---------- */
+header.site{max-width:1080px;margin:0 auto;padding:40px 22px 8px}
+.brand-row{display:flex;align-items:baseline;justify-content:space-between;flex-wrap:wrap;gap:8px}
+.brand{font-family:'Cormorant Garamond',serif;font-weight:700;font-size:1.35rem;letter-spacing:.02em;color:var(--ink);text-decoration:none}
+.brand em{color:var(--red);font-style:normal}
+.brand-note{font-family:'Caveat',cursive;font-size:1.15rem;color:var(--ink-soft);transform:rotate(-1.2deg)}
+.hero{margin-top:24px;position:relative}
+.kicker{display:inline-block;font-size:.72rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--red);border:1.5px solid var(--red);padding:4px 12px;border-radius:999px;background:var(--paper)}
+h1{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:clamp(2.2rem,5.2vw,3.5rem);line-height:1.08;margin-top:14px;max-width:20ch}
+h1 .u{position:relative;white-space:nowrap}
+h1 .u::after{content:"";position:absolute;left:0;right:-4px;bottom:6px;height:.34em;z-index:-1;background:linear-gradient(104deg, rgba(200,48,58,.28) 0%, rgba(200,48,58,.16) 100%);transform:rotate(-1deg);border-radius:2px}
+.hero p.lede{margin-top:14px;max-width:60ch;color:var(--ink-soft);font-size:1.02rem}
+.hero .scribble{font-family:'Caveat',cursive;color:var(--red);font-size:1.35rem;margin-top:12px;transform:rotate(-1.5deg);display:inline-block}
+
+/* ---------- bandeau d'avertissement principal ---------- */
+.mainwarn{
+  max-width:1080px;margin:22px auto 0;padding:0 22px;
+}
+.mainwarn .inner{
+  background:var(--cat-safety-soft);border:1.5px dashed var(--cat-safety);
+  border-radius:14px 4px 14px 4px;padding:14px 18px;display:flex;gap:12px;align-items:flex-start;
+}
+.mainwarn .bang{font-size:1.4rem;line-height:1;flex-shrink:0;margin-top:2px}
+.mainwarn .txt{font-size:.92rem;color:var(--ink)}
+.mainwarn .txt b{color:var(--cat-safety)}
+
+/* ---------- nav ---------- */
+nav.groups{position:sticky;top:0;z-index:50;background:rgba(250,246,238,.94);backdrop-filter:blur(6px);border-bottom:1.5px solid var(--line);padding:9px 22px;transition:background .3s}
+[data-theme="dark"] nav.groups{background:rgba(28,26,23,.94)}
+.nav-inner{max-width:1080px;margin:0 auto;display:flex;flex-wrap:wrap;gap:7px;align-items:center}
+.chip{font-family:'DM Sans',sans-serif;font-size:.78rem;font-weight:500;letter-spacing:.01em;border:1.5px solid var(--ink);background:var(--paper);color:var(--ink);padding:5px 12px;border-radius:var(--sketch-radius);cursor:pointer;text-decoration:none;transition:background .15s,color .15s}
+.chip:hover{background:var(--ink);color:var(--paper)}
+.chip.active{background:var(--red);border-color:var(--red);color:#fff}
+.tools{margin-left:auto;display:flex;gap:6px;align-items:center;flex-wrap:wrap}
+.tbtn{font-family:'DM Sans',sans-serif;font-size:.74rem;font-weight:600;border:1.5px solid var(--ink);background:var(--paper);color:var(--ink);padding:5px 11px;border-radius:var(--sketch-radius);cursor:pointer;display:inline-flex;align-items:center;gap:5px;transition:background .15s,color .15s}
+.tbtn:hover{background:var(--ink);color:var(--paper)}
+.tbtn.on{background:var(--teal);border-color:var(--teal);color:#fff}
+
+/* ---------- layout ---------- */
+main{max-width:1080px;margin:0 auto;padding:30px 22px 90px}
+section.group{margin-top:52px;scroll-margin-top:120px}
+section.group:first-of-type{margin-top:24px}
+.group-head{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;margin-bottom:4px}
+.group-head .num{font-family:'Caveat',cursive;font-size:1.5rem;color:var(--red);font-weight:700}
+.group-head h2{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:clamp(1.55rem,3vw,2.05rem)}
+.group-head .count{font-family:'Caveat',cursive;font-size:1.1rem;color:var(--ink-soft)}
+.group-lede{color:var(--ink-soft);font-size:.95rem;max-width:66ch;margin-bottom:18px}
+
+.cards{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+@media (max-width:860px){.cards{grid-template-columns:1fr}}
+
+/* ---------- card ---------- */
+article.card{background:var(--paper);border:1.5px solid var(--ink);border-radius:var(--sketch-radius);padding:22px 22px 18px;box-shadow:var(--shadow);position:relative;display:flex;flex-direction:column;gap:12px}
+article.card.wide{grid-column:1 / -1}
+.card-top{display:flex;align-items:flex-start;justify-content:space-between;gap:10px}
+.card h3{font-family:'Cormorant Garamond',serif;font-weight:700;font-size:1.4rem;line-height:1.15}
+.card h4{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:1.08rem;margin-top:2px}
+.tag{flex-shrink:0;font-size:.62rem;font-weight:700;letter-spacing:.13em;text-transform:uppercase;padding:3px 9px;border-radius:999px;border:1.5px solid var(--ink);color:var(--ink);background:var(--parchment);white-space:nowrap;margin-top:4px}
+.tag.t-emergency{border-color:var(--cat-emergency);color:var(--cat-emergency);background:var(--cat-emergency-soft)}
+.tag.t-diag{border-color:var(--cat-diag);color:var(--cat-diag);background:var(--cat-diag-soft)}
+.tag.t-hypo{border-color:var(--cat-hypo);color:var(--cat-hypo);background:var(--cat-hypo-soft)}
+.tag.t-eu{border-color:var(--cat-eu);color:var(--cat-eu);background:var(--cat-eu-soft)}
+.tag.t-hyper{border-color:var(--cat-hyper);color:var(--cat-hyper);background:var(--cat-hyper-soft)}
+.tag.t-safety{border-color:var(--cat-safety);color:var(--cat-safety);background:var(--cat-safety-soft)}
+.card p.why{color:var(--ink-soft);font-size:.92rem;margin-top:-4px}
+
+/* liseré de couleur de catégorie sur le bord gauche des cartes */
+article.card.edge-emergency{border-left:5px solid var(--cat-emergency)}
+article.card.edge-diag{border-left:5px solid var(--cat-diag)}
+article.card.edge-hypo{border-left:5px solid var(--cat-hypo)}
+article.card.edge-eu{border-left:5px solid var(--cat-eu)}
+article.card.edge-hyper{border-left:5px solid var(--cat-hyper)}
+article.card.edge-safety{border-left:5px solid var(--cat-safety)}
+
+/* listes à cocher (style croquis) */
+ul.check{list-style:none;display:flex;flex-direction:column;gap:7px}
+ul.check li{position:relative;padding-left:26px;font-size:.94rem}
+ul.check li::before{content:"";position:absolute;left:2px;top:6px;width:11px;height:11px;border:1.5px solid var(--ink);border-radius:3px 4px 3px 4px;background:var(--paper);transform:rotate(-3deg)}
+ul.check li strong{font-weight:700}
+ul.check li .sub{display:block;color:var(--ink-soft);font-size:.86rem;margin-top:1px}
+
+/* liste "cause / signe" simple à puces */
+ul.plain{list-style:none;display:flex;flex-direction:column;gap:5px}
+ul.plain li{position:relative;padding-left:18px;font-size:.9rem}
+ul.plain li::before{content:"–";position:absolute;left:2px;top:0;color:var(--red);font-weight:700}
+
+.subhead{font-size:.66rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--ink-soft);margin:6px 0 2px}
+
+/* encart explicatif en français (langue de raisonnement) */
+.explain{
+  background:var(--paper);border-left:4px solid var(--teal);padding:11px 15px;
+  border-radius:0 12px 12px 0;font-size:.95rem;color:var(--ink);
+}
+.explain .who{font-family:'Caveat',cursive;font-size:1.05rem;color:var(--teal);margin-bottom:2px}
+
+/* red flags */
+.flags{background:var(--red-soft);border:1.5px dashed var(--red);border-radius:14px 4px 14px 4px;padding:12px 14px}
+.flags .flags-title{font-size:.68rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--red);display:flex;align-items:center;gap:6px;margin-bottom:6px}
+.flags ul{list-style:none;display:flex;flex-direction:column;gap:4px}
+.flags li{position:relative;padding-left:18px;font-size:.88rem}
+.flags li::before{content:"⚑";position:absolute;left:0;top:0;color:var(--red);font-size:.8rem}
+.flags li strong{color:var(--red)}
+
+.pearl{background:var(--amber-soft);border:1.5px dashed var(--amber);border-radius:4px 14px 4px 14px;padding:10px 14px;font-size:.88rem}
+.pearl .pearl-title{font-size:.66rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--amber);margin-bottom:4px}
+
+/* Merksatz — carte manuscrite scotchée (signature diastola) */
+.merk{margin-top:auto;position:relative;background:#fdfaf1;border:1.5px solid var(--ink);border-radius:225px 15px 255px 15px / 15px 255px 15px 225px;padding:12px 16px 10px;transform:rotate(-.6deg)}
+[data-theme="dark"] .merk{background:#2e2a22}
+.merk::before{content:"";position:absolute;top:-9px;left:50%;transform:translateX(-50%) rotate(2deg);width:74px;height:18px;background:rgba(200,48,58,.18);border-left:1px solid rgba(200,48,58,.25);border-right:1px solid rgba(200,48,58,.25)}
+.merk .m-label{font-size:.62rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-soft)}
+.merk .m-text{font-family:'Caveat',cursive;font-size:1.4rem;line-height:1.25;color:var(--red);font-weight:600}
+
+/* terme médical allemand : léger surlignage LTR */
+.de{font-style:normal;white-space:normal}
+
+/* ================= ALGORITHME (boîtes + flèches SVG ondulées) ============= */
+.algo{position:relative;display:flex;flex-direction:column;align-items:center;gap:0;margin-top:8px}
+.node{
+  width:100%;max-width:560px;background:var(--paper);border:1.5px solid var(--ink);
+  border-radius:var(--sketch-radius);padding:14px 18px;box-shadow:var(--shadow);position:relative;z-index:2;
+}
+.node .nlabel{font-size:.6rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:3px}
+.node h4{font-family:'Cormorant Garamond',serif;font-weight:700;font-size:1.12rem}
+.node p{font-size:.88rem;color:var(--ink-soft);margin-top:3px}
+.node.n-emergency{border-left:5px solid var(--cat-emergency);background:var(--cat-emergency-soft)}
+.node.n-diag{border-left:5px solid var(--cat-diag);background:var(--cat-diag-soft)}
+.node.n-hypo{border-left:5px solid var(--cat-hypo);background:var(--cat-hypo-soft)}
+.node.n-eu{border-left:5px solid var(--cat-eu);background:var(--cat-eu-soft)}
+.node.n-hyper{border-left:5px solid var(--cat-hyper);background:var(--cat-hyper-soft)}
+.connector{width:60px;height:52px;display:block;margin:-2px 0}
+.branch{display:flex;gap:18px;width:100%;justify-content:center;flex-wrap:wrap;margin-top:2px}
+.branch .lane{flex:1 1 240px;max-width:300px;display:flex;flex-direction:column;align-items:center}
+.branch-label{font-family:'Caveat',cursive;font-size:1.15rem;color:var(--red);font-weight:600;margin:2px 0}
+
+/* ================= CALCULATEUR ============= */
+.calc-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media (max-width:720px){.calc-grid{grid-template-columns:1fr}}
+.field{display:flex;flex-direction:column;gap:4px}
+.field label{font-size:.78rem;font-weight:600;color:var(--ink)}
+.field .hint{font-size:.72rem;color:var(--ink-soft)}
+.field input,.field select{font-family:'DM Sans',sans-serif;font-size:.92rem;color:var(--ink);border:1.5px solid var(--ink);border-radius:10px 4px 10px 4px;background:var(--paper);padding:8px 12px;outline:none;width:100%}
+.field input:focus,.field select:focus{border-color:var(--red);box-shadow:0 0 0 3px rgba(200,48,58,.15)}
+.checks{display:flex;flex-direction:column;gap:6px}
+.checks label{display:flex;gap:8px;align-items:center;font-size:.88rem;cursor:pointer}
+.checks input{width:16px;height:16px;accent-color:var(--red)}
+
+.result{margin-top:6px;border:1.5px solid var(--ink);border-radius:var(--sketch-radius);padding:16px 18px;background:var(--paper)}
+.result .rrow{display:flex;justify-content:space-between;gap:12px;padding:6px 0;border-bottom:1px dashed var(--line);font-size:.92rem}
+.result .rrow:last-of-type{border-bottom:none}
+.result .rrow .rk{color:var(--ink-soft)}
+.result .rrow .rv{font-weight:700;font-variant-numeric:tabular-nums}
+.verdict{margin-top:12px;padding:12px 16px;border-radius:12px 4px 12px 4px;font-weight:600;font-size:.95rem;border:1.5px solid}
+.verdict.v-green{background:var(--cat-hyper-soft);border-color:var(--cat-hyper);color:var(--cat-hyper)}
+.verdict.v-amber{background:var(--amber-soft);border-color:var(--amber);color:var(--amber)}
+.verdict.v-red{background:var(--cat-safety-soft);border-color:var(--cat-safety);color:var(--cat-safety)}
+.calc-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+
+/* ================= CAS / QUIZ ============= */
+.case{border:1.5px solid var(--ink);border-radius:var(--sketch-radius);padding:14px 16px;background:var(--paper);display:flex;flex-direction:column;gap:8px}
+.case .cq{font-size:.92rem}
+.case .cq b{color:var(--ink)}
+.reveal-btn{align-self:flex-start;font-family:'DM Sans',sans-serif;font-size:.78rem;font-weight:600;border:1.5px solid var(--ink);background:var(--paper);color:var(--ink);padding:5px 12px;border-radius:var(--sketch-radius);cursor:pointer}
+.reveal-btn:hover{background:var(--ink);color:var(--paper)}
+.answer{display:none;background:var(--teal-soft);border-left:4px solid var(--teal);border-radius:0 10px 10px 0;padding:10px 14px;font-size:.9rem}
+.answer.show{display:block}
+.answer .verd{font-family:'Caveat',cursive;font-size:1.2rem;color:var(--teal);font-weight:700}
+
+/* ================= schémas SVG "mental model" ============= */
+.mm{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+@media (max-width:820px){.mm{grid-template-columns:1fr}}
+.mm-card{border:1.5px solid var(--ink);border-radius:var(--sketch-radius);padding:16px;background:var(--paper);display:flex;flex-direction:column;gap:8px;align-items:center;text-align:center}
+.mm-card svg{width:100%;max-width:150px;height:auto}
+.mm-card .flow{font-size:.85rem;color:var(--ink-soft)}
+.mm-card .flow b{color:var(--ink)}
+
+/* détails repliables (mode simple/avancé) */
+.adv-only{}
+body.simple .adv-only{display:none!important}
+.mode-note{font-family:'Caveat',cursive;font-size:1.05rem;color:var(--ink-soft)}
+
+/* pattern BGA */
+.bga{border:1.5px solid var(--ink);border-radius:14px 4px 14px 4px;padding:12px 14px;background:var(--paper);display:flex;flex-direction:column;gap:6px}
+.bga .bga-vals{font-family:'DM Sans',sans-serif;font-weight:700;font-size:.9rem;color:var(--cat-diag)}
+.bga .bga-mean{font-size:.88rem}
+.bga .bga-act{font-size:.85rem;color:var(--red);font-weight:600}
+
+/* checklist interactive (labos) */
+.labchk{display:grid;grid-template-columns:1fr 1fr;gap:6px 20px}
+@media (max-width:720px){.labchk{grid-template-columns:1fr}}
+.labchk label{display:flex;gap:9px;align-items:flex-start;font-size:.9rem;cursor:pointer;padding:3px 0}
+.labchk input{width:15px;height:15px;margin-top:3px;accent-color:var(--red);flex-shrink:0}
+.labchk label .l-sub{display:block;color:var(--ink-soft);font-size:.8rem}
+.labchk label.done span.l-main{text-decoration:line-through;color:var(--ink-soft)}
+
+footer{border-top:1.5px solid var(--line);margin-top:70px;padding:26px 22px 50px;text-align:center;color:var(--ink-soft);font-size:.85rem}
+footer .fbrand{font-family:'Cormorant Garamond',serif;font-weight:700;color:var(--ink)}
+footer .fbrand em{color:var(--red);font-style:normal}
+footer .fnote{font-family:'Caveat',cursive;font-size:1.1rem;margin-top:6px}
+.toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(20px);background:var(--ink);color:var(--paper);padding:10px 20px;border-radius:var(--sketch-radius);font-size:.85rem;opacity:0;pointer-events:none;transition:.25s;z-index:200}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+
+@media (max-width:600px){
+  .tools{margin-left:0;width:100%}
+  header.site{padding-top:28px}
+}
+@media print{
+  nav.groups,.tools,.reveal-btn,.calc-actions,.toast{display:none!important}
+  body{background:#fff;color:#000}
+  body.simple .adv-only{display:block!important}
+  .answer{display:block!important}
+  article.card,.node,.case,.bga{break-inside:avoid;box-shadow:none}
+  .mainwarn .inner{border-style:solid}
+}
+</style>
+</head>
+<body class="simple">
+<div class="toast" id="toast"></div>
+
+<header class="site">
+  <div class="brand-row">
+    <a class="brand" href="index.html">diastola<em>.de</em></a>
+    <span class="brand-note">Klinisches Skizzenbuch · Weiterbildung Kardiologie</span>
+  </div>
+  <div class="hero">
+    <span class="kicker">Normalstation · Elektrolyte</span>
+    <h1><span class="de" dir="ltr">Hyponatriämie</span> : <span class="u">penser juste</span>, corriger doucement.</h1>
+    <p class="lede">Un raisonnement pas à pas pour l'interne de cardiologie : confirmer, classer par <span class="de" dir="ltr">Volumenstatus</span>, reconnaître le <span class="de" dir="ltr">SIADH</span> et l'<span class="de" dir="ltr">Herzinsuffizienz</span>, lire une <span class="de" dir="ltr">BGA</span> en <span class="de" dir="ltr">COPD</span> — et estimer une correction sans jamais aller trop vite. Le texte est en français ; les termes cliniques restent en allemand, comme sur le terrain.</p>
+    <span class="scribble">→ D'abord la sécurité, ensuite le diagnostic, enfin la correction.</span>
+  </div>
+</header>
+
+<!-- ================= AVERTISSEMENT PRINCIPAL ================= -->
+<div class="mainwarn">
+  <div class="inner">
+    <span class="bang">⚠️</span>
+    <div class="txt">
+      Outil <b>pédagogique</b> d'aide à la décision — il ne remplace pas le jugement du senior.
+      <b>Bei <span class="de" dir="ltr">Na ≤ 120 mmol/L</span>, neurologischen Symptomen, Krampfanfall, Koma, schwerer Verwirrtheit oder schneller Korrektur : sofort Oberarzt / Intensiv / Nephrologie kontaktieren.</b>
+      Ne pas utiliser comme seule décision thérapeutique (<span class="de" dir="ltr">nicht als alleinige Therapieentscheidung verwenden</span>).
+    </div>
+  </div>
+</div>
+
+<!-- ================= NAVIGATION ================= -->
+<nav class="groups" aria-label="Sections">
+  <div class="nav-inner">
+    <a class="chip active" href="#s1">1 · Triage</a>
+    <a class="chip" href="#s2">2 · Confirmer</a>
+    <a class="chip" href="#s3">3 · Urin-Osm</a>
+    <a class="chip" href="#s4">4 · Volumenstatus</a>
+    <a class="chip" href="#s5">5 · Bilan</a>
+    <a class="chip" href="#s6">6 · BGA/COPD</a>
+    <a class="chip" href="#s7">7 · NaHCO₃</a>
+    <a class="chip" href="#s8">8 · Calcul</a>
+    <a class="chip" href="#s9">9 · Modèles</a>
+    <a class="chip" href="#s10">10 · Cas</a>
+    <a class="chip" href="#s11">11 · Aide-mémoire</a>
+    <div class="tools">
+      <button class="tbtn" id="modeBtn" title="Basculer simple / avancé">📖 Mode simple</button>
+      <button class="tbtn" id="themeBtn" title="Mode clair / sombre">🌙 Sombre</button>
+      <button class="tbtn" id="printBtn" title="Imprimer / PDF">🖨️ PDF</button>
+    </div>
+  </div>
+</nav>
+
+<main>
+
+<!-- ============ SECTION 1 · TRIAGE D'URGENCE ============ -->
+<section class="group" id="s1" data-group="s1">
+  <div class="group-head">
+    <span class="num">01</span>
+    <h2>Triage : d'abord, est-ce grave ?</h2>
+    <span class="count">— la sécurité avant tout</span>
+  </div>
+  <p class="group-lede">Devant un <span class="de" dir="ltr">Na</span> bas, la toute première question n'est pas « quelle cause ? » mais « le patient a-t-il des symptômes graves maintenant ? ». Ce sont eux qui décident du rythme d'urgence.</p>
+  <div class="cards">
+
+    <article class="card wide edge-emergency" data-tags="triage urgence symptome grave krampfanfall koma">
+      <div class="card-top">
+        <h3><span class="de" dir="ltr">Na</span> bas ? Symptômes graves ?</h3>
+        <span class="tag t-emergency">Urgence</span>
+      </div>
+      <p class="why">Cherche activement ces signes. Un seul suffit à déclencher la voie d'urgence.</p>
+      <div class="calc-grid">
+        <div>
+          <div class="subhead">Symptômes graves (schwer)</div>
+          <ul class="plain">
+            <li><span class="de" dir="ltr">Krampfanfall</span></li>
+            <li><span class="de" dir="ltr">Koma</span></li>
+            <li><span class="de" dir="ltr">schwere Somnolenz</span></li>
+            <li><span class="de" dir="ltr">schwere Verwirrtheit</span></li>
+            <li><span class="de" dir="ltr">Zeichen von Hirnödem</span></li>
+            <li><span class="de" dir="ltr">akute neurologische Symptome</span></li>
+          </ul>
+        </div>
+        <div>
+          <div class="subhead">Le patient a-t-il l'un de ces signes ?</div>
+          <div class="checks" style="margin-bottom:12px">
+            <label style="font-weight:600"><input type="radio" name="triage" id="tri-yes"> Oui — au moins un signe grave</label>
+            <label style="font-weight:600"><input type="radio" name="triage" id="tri-no"> Non — pas de signe grave</label>
+          </div>
+
+          <div id="tri-emergency" style="display:none">
+            <div class="flags">
+              <div class="flags-title">⚑ Voie d'urgence</div>
+              <ul>
+                <li><strong><span class="de" dir="ltr">Oberarzt sofort</span></strong> — appeler le senior immédiatement.</li>
+                <li><span class="de" dir="ltr">Monitoring / Intensiv erwägen</span>.</li>
+                <li><span class="de" dir="ltr">NaCl 3% hyperton nach Hausstandard</span>.</li>
+                <li>Objectif : une première hausse <strong>prudente de 4–6 mmol/L</strong>, <span class="de" dir="ltr">nicht normalisieren</span>.</li>
+                <li><span class="de" dir="ltr">Na</span>-Kontrolle alle 2–4 h.</li>
+                <li>Arrêter / ajuster si la correction va <strong>trop vite</strong>.</li>
+              </ul>
+            </div>
+          </div>
+
+          <div id="tri-continue" style="display:none">
+            <div class="explain">
+              <div class="who">Pas de signe grave</div>
+              Bien — on garde du temps. On passe à l'algorithme diagnostique tranquillement, sans <span class="de" dir="ltr">NaCl 3%</span> en réflexe. La règle « ne pas corriger vite » reste valable.
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="merk">
+        <div class="m-label">Merksatz</div>
+        <div class="m-text">Symptômes graves = urgence &amp; Oberarzt. Pas de symptôme = du temps pour réfléchir.</div>
+      </div>
+    </article>
+
+  </div>
+</section>
+
+<!-- ============ SECTION 2 + 3 · ALGORITHME ============ -->
+<section class="group" id="s2" data-group="s2">
+  <div class="group-head">
+    <span class="num">02</span>
+    <h2>Confirmer une vraie <span class="de" dir="ltr">hypotone Hyponatriämie</span></h2>
+    <span class="count">— Osmolalität d'abord, sinon on se trompe</span>
+  </div>
+  <p class="group-lede">Avant de classer par volume, il faut prouver que c'est une hyponatrémie <em>hypotonique</em> vraie. Un <span class="de" dir="ltr">Na</span> bas peut être un artefact (Pseudo) ou une dilution osmotique (Glucose, Mannitol).</p>
+
+  <article class="card wide edge-diag">
+    <div class="algo">
+
+      <div class="node n-diag">
+        <div class="nlabel">Étape 1</div>
+        <h4><span class="de" dir="ltr">Serum-Na &lt; 135 mmol/L</span></h4>
+        <p>Point de départ. On note aussi si c'est aigu (&lt; 48 h) ou chronique — le chronique se corrige encore plus doucement.</p>
+      </div>
+
+      <svg class="connector" viewBox="0 0 60 52" fill="none" aria-hidden="true">
+        <path d="M30 2 C 46 14, 14 28, 30 46" stroke="var(--ink)" stroke-width="1.6" stroke-linecap="round"/>
+        <path d="M23 39 L30 48 L37 39" stroke="var(--ink)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+
+      <div class="node n-diag">
+        <div class="nlabel">Étape 2 · <span class="de" dir="ltr">Glucose</span></div>
+        <h4>Corriger le <span class="de" dir="ltr">Na</span> si <span class="de" dir="ltr">Hyperglykämie</span></h4>
+        <p>Le glucose attire l'eau et dilue le <span class="de" dir="ltr">Na</span> (fausse baisse). <span class="de" dir="ltr">Korrigiertes Na ≈ gemessenes Na + 2,4 × (Glucose[mmol/L] − 5,5)</span>.</p>
+      </div>
+
+      <svg class="connector" viewBox="0 0 60 52" fill="none" aria-hidden="true">
+        <path d="M30 2 C 14 14, 46 28, 30 46" stroke="var(--ink)" stroke-width="1.6" stroke-linecap="round"/>
+        <path d="M23 39 L30 48 L37 39" stroke="var(--ink)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+
+      <div class="node n-diag">
+        <div class="nlabel">Étape 3 · <span class="de" dir="ltr">Serum-Osmolalität</span></div>
+        <h4>Basse = vraie <span class="de" dir="ltr">hypotone Hyponatriämie</span></h4>
+        <p><b>Normale / haute</b> → penser <span class="de" dir="ltr">Pseudohyponatriämie</span>, <span class="de" dir="ltr">Hyperglykämie</span>, <span class="de" dir="ltr">Mannitol</span>, produit de contraste. On s'arrête là, ce n'est pas hypotonique.</p>
+      </div>
+
+    </div>
+
+    <div class="explain" style="margin-top:14px">
+      <div class="who">L'idée en une phrase</div>
+      L'<span class="de" dir="ltr">Hyponatriämie</span> signifie le plus souvent un <b>excès d'eau par rapport au sel</b> : le <span class="de" dir="ltr">Na</span> se dilue. La question n'est presque jamais « manque-t-il du sel ? » mais « y a-t-il trop d'eau libre ? ».
+    </div>
+  </article>
+</section>
+
+<!-- SECTION 3 · branche Urin-Osmolalität -->
+<section class="group" id="s3" data-group="s3">
+  <div class="group-head">
+    <span class="num">03</span>
+    <h2>Branche <span class="de" dir="ltr">Urin-Osmolalität</span></h2>
+    <span class="count">— l'ADH travaille-t-il, oui ou non ?</span>
+  </div>
+  <p class="group-lede">Une fois l'hyponatrémie hypotonique confirmée, l'osmolalité urinaire dit si le rein dilue correctement (ADH éteint) ou concentre malgré tout (ADH actif).</p>
+
+  <article class="card wide edge-diag">
+    <div class="algo">
+      <div class="node n-diag" style="max-width:420px">
+        <div class="nlabel">Question</div>
+        <h4><span class="de" dir="ltr">Urin-Osmolalität</span> : &lt; 100 ou &gt; 100 mOsm/kg ?</h4>
+      </div>
+
+      <div class="branch" style="margin-top:8px">
+        <div class="lane">
+          <svg class="connector" viewBox="0 0 60 52" fill="none" aria-hidden="true">
+            <path d="M52 2 C 30 16, 40 30, 22 46" stroke="var(--ink)" stroke-width="1.6" stroke-linecap="round"/>
+            <path d="M15 39 L21 48 L28 40" stroke="var(--ink)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <div class="branch-label">&lt; 100 mOsm/kg</div>
+          <div class="node n-eu" style="max-width:320px">
+            <div class="nlabel"><span class="de" dir="ltr">ADH supprimé</span></div>
+            <h4>Le rein élimine bien l'eau</h4>
+            <p>Penser : <span class="de" dir="ltr">primäre Polydipsie</span> · faible apport en solutés (<span class="de" dir="ltr">beer potomania</span>, « tea-and-toast »).</p>
+            <div class="explain" style="margin-top:8px">
+              <div class="who">Explication</div>
+              Le rein <b>arrive</b> à éliminer l'eau, les urines sont diluées. Le problème vient d'un apport d'eau trop grand pour ce que le rein peut évacuer.
+            </div>
+          </div>
+        </div>
+
+        <div class="lane">
+          <svg class="connector" viewBox="0 0 60 52" fill="none" aria-hidden="true">
+            <path d="M8 2 C 30 16, 20 30, 38 46" stroke="var(--ink)" stroke-width="1.6" stroke-linecap="round"/>
+            <path d="M31 40 L39 48 L45 39" stroke="var(--ink)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <div class="branch-label">&gt; 100 mOsm/kg</div>
+          <div class="node n-diag" style="max-width:320px">
+            <div class="nlabel"><span class="de" dir="ltr">ADH aktiv</span></div>
+            <h4>Continuer vers Volumenstatus + <span class="de" dir="ltr">Urin-Na</span></h4>
+            <p>Le plus fréquent à l'hôpital. On passe à la classification par volume (section 4).</p>
+            <div class="explain" style="margin-top:8px">
+              <div class="who">Explication</div>
+              L'<span class="de" dir="ltr">ADH</span> travaille : les urines sont <b>concentrées</b> alors que le sang est dilué. Reste à savoir si l'ADH est <em>approprié</em> (volume bas / HF) ou <em>inapproprié</em> (SIADH).
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </article>
+</section>
+
+<!-- ============ SECTION 4 · VOLUMENSTATUS ============ -->
+<section class="group" id="s4" data-group="s4">
+  <div class="group-head">
+    <span class="num">04</span>
+    <h2>Classer par <span class="de" dir="ltr">Volumenstatus</span></h2>
+    <span class="count">— sec, ni-ni, ou œdématié</span>
+  </div>
+  <p class="group-lede">Trois familles. L'examen clinique (volémie) tranche, aidé par le <span class="de" dir="ltr">Urin-Na</span>. C'est le cœur du raisonnement : la thérapie découle directement de la famille.</p>
+
+  <div class="cards" style="grid-template-columns:1fr 1fr 1fr">
+
+    <!-- A · hypovolämisch -->
+    <article class="card edge-hypo" data-tags="hypovolämisch exsikkose diuretika">
+      <div class="card-top">
+        <h3>A · <span class="de" dir="ltr">Hypovolämisch</span></h3>
+        <span class="tag t-hypo">Sec</span>
+      </div>
+      <div class="explain">
+        <div class="who">Le patient est sec</div>
+        Il a perdu <b>eau ET sel</b> ; le corps retient l'eau via l'<span class="de" dir="ltr">ADH</span> (approprié) pour défendre le volume. Résultat : <span class="de" dir="ltr">Na</span> dilué.
+      </div>
+      <div class="subhead">Signes cliniques</div>
+      <ul class="plain">
+        <li><span class="de" dir="ltr">Exsikkose</span></li>
+        <li><span class="de" dir="ltr">trockene Schleimhäute</span></li>
+        <li><span class="de" dir="ltr">Hypotonie</span> · <span class="de" dir="ltr">Orthostase</span></li>
+        <li><span class="de" dir="ltr">Tachykardie</span></li>
+        <li><span class="de" dir="ltr">Gewichtsverlust</span></li>
+      </ul>
+      <div class="subhead">Causes</div>
+      <ul class="plain">
+        <li><span class="de" dir="ltr">Erbrechen</span> · <span class="de" dir="ltr">Durchfall</span></li>
+        <li><span class="de" dir="ltr">Diuretika</span>, surtout <span class="de" dir="ltr">Thiazide</span></li>
+        <li><span class="de" dir="ltr">Nebenniereninsuffizienz / Addison</span></li>
+        <li>Perte de sel rénale · apport oral pauvre</li>
+      </ul>
+      <div class="pearl adv-only">
+        <div class="pearl-title">Logique du <span class="de" dir="ltr">Urin-Na</span></div>
+        <span class="de" dir="ltr">Urin-Na &lt; 30</span> → perte extrarénale / déplétion volémique. <span class="de" dir="ltr">Urin-Na &gt; 30</span> → possible perte rénale de sel ou <span class="de" dir="ltr">Diuretika</span>.
+      </div>
+      <div class="flags">
+        <div class="flags-title">⚑ Principe thérapeutique</div>
+        <ul>
+          <li>Traiter la <strong>cause</strong>, arrêter les médicaments en cause.</li>
+          <li><span class="de" dir="ltr">Isotone NaCl 0,9%</span> si hypovolémie vraie, <span class="de" dir="ltr">abhängig von Klinik und Verlauf</span>.</li>
+          <li>Surveiller de près : après remplissage, l'ADH chute et le <span class="de" dir="ltr">Na</span> peut <strong>remonter vite</strong>.</li>
+        </ul>
+      </div>
+    </article>
+
+    <!-- B · euvolämisch / SIADH -->
+    <article class="card edge-eu" data-tags="euvolämisch siadh adh">
+      <div class="card-top">
+        <h3>B · <span class="de" dir="ltr">Euvolämisch / SIADH</span></h3>
+        <span class="tag t-eu">Ni-ni</span>
+      </div>
+      <div class="explain">
+        <div class="who">Ni sec, ni œdématié</div>
+        Le problème vient souvent d'un <b>excès d'ADH sans raison</b> : le rein retient l'eau, le sang se dilue, le <span class="de" dir="ltr">Na</span> chute.
+      </div>
+      <div class="subhead">Causes</div>
+      <ul class="plain">
+        <li><span class="de" dir="ltr">SIADH</span></li>
+        <li><span class="de" dir="ltr">Pneumonie</span> · <span class="de" dir="ltr">COPD-Exazerbation</span>, <span class="de" dir="ltr">Hypoxie</span></li>
+        <li><span class="de" dir="ltr">ZNS-Erkrankung</span></li>
+        <li><span class="de" dir="ltr">Tumor</span>, surtout <span class="de" dir="ltr">kleinzelliges Bronchialkarzinom</span></li>
+        <li><span class="de" dir="ltr">Medikamente</span> : SSRI, Carbamazepin, Oxcarbazepin, Antipsychotika, Opiate, NSAID</li>
+        <li><span class="de" dir="ltr">Hypothyreose</span> · <span class="de" dir="ltr">Cortisolmangel</span></li>
+      </ul>
+      <div class="pearl adv-only">
+        <div class="pearl-title">Pattern biologique</div>
+        <span class="de" dir="ltr">Serum-Osm</span> basse · <span class="de" dir="ltr">Urin-Osm &gt; 100</span> · <span class="de" dir="ltr">Urin-Na</span> souvent &gt; 30 · ni œdème, ni déshydratation nette.
+      </div>
+      <div class="flags">
+        <div class="flags-title">⚑ Principe thérapeutique</div>
+        <ul>
+          <li><span class="de" dir="ltr">Flüssigkeitsrestriktion</span> si approprié ; traiter la cause.</li>
+          <li>Arrêter le médicament déclencheur si possible.</li>
+          <li>Contrôler <span class="de" dir="ltr">TSH</span> et <span class="de" dir="ltr">Morgen-Cortisol</span>.</li>
+          <li><span class="de" dir="ltr">Hypertone NaCl</span> seulement si symptômes graves, <span class="de" dir="ltr">unter Oberarzt</span>.</li>
+        </ul>
+      </div>
+    </article>
+
+    <!-- C · hypervolämisch / HF -->
+    <article class="card edge-hyper" data-tags="hypervolämisch herzinsuffizienz ödem stauung">
+      <div class="card-top">
+        <h3>C · <span class="de" dir="ltr">Hypervolämisch</span></h3>
+        <span class="tag t-hyper">Œdématié</span>
+      </div>
+      <div class="explain">
+        <div class="who">Le patient est œdématié</div>
+        Il y a un excès d'eau <b>et</b> de sel — mais l'eau est en excès <b>plus</b> que le sel. D'où un <span class="de" dir="ltr">Na</span> dilué malgré la surcharge.
+      </div>
+      <div class="subhead">Causes</div>
+      <ul class="plain">
+        <li><span class="de" dir="ltr">Herzinsuffizienz</span></li>
+        <li><span class="de" dir="ltr">Leberzirrhose</span></li>
+        <li><span class="de" dir="ltr">Nephrotisches Syndrom</span></li>
+        <li><span class="de" dir="ltr">Niereninsuffizienz</span></li>
+      </ul>
+      <div class="subhead">Signes cliniques</div>
+      <ul class="plain">
+        <li><span class="de" dir="ltr">Ödeme</span> · <span class="de" dir="ltr">Gewichtszunahme</span></li>
+        <li><span class="de" dir="ltr">Halsvenenstauung</span></li>
+        <li><span class="de" dir="ltr">Lungenstauung</span> · <span class="de" dir="ltr">Pleuraerguss</span></li>
+        <li><span class="de" dir="ltr">Aszites</span></li>
+      </ul>
+      <div class="pearl adv-only">
+        <div class="pearl-title">Physiopathologie</div>
+        Dans l'<span class="de" dir="ltr">Herzinsuffizienz</span>, le cœur est faible : le rein perçoit un <span class="de" dir="ltr">effektives arterielles Volumen</span> diminué → active <span class="de" dir="ltr">RAAS</span> et <span class="de" dir="ltr">ADH</span> → retient l'eau. <span class="de" dir="ltr">Na</span> abaissé par dilution.
+      </div>
+      <div class="flags">
+        <div class="flags-title">⚑ Principe thérapeutique</div>
+        <ul>
+          <li><span class="de" dir="ltr">Flüssigkeitsrestriktion</span> ; restriction sodée selon le cas.</li>
+          <li><span class="de" dir="ltr">Diuretika</span> si congestion, surtout en <span class="de" dir="ltr">Herzinsuffizienz</span>, <span class="de" dir="ltr">nach Oberarzt-Plan</span>.</li>
+          <li>Traiter le fond (HF / cirrhose / rein) ; éviter la correction rapide.</li>
+        </ul>
+      </div>
+    </article>
+
+  </div>
+
+  <!-- carte analogie SIADH -->
+  <div class="cards" style="margin-top:20px">
+    <article class="card wide edge-eu" data-tags="siadh analogie verre eau salée">
+      <div class="card-top">
+        <h3>Comprendre le <span class="de" dir="ltr">SIADH</span> : le verre d'eau salée</h3>
+        <span class="tag t-eu">Analogie</span>
+      </div>
+      <div class="explain">
+        <div class="who">L'image à garder en tête</div>
+        Imagine le sang comme un <b>verre d'eau salée</b>. Dans le <span class="de" dir="ltr">SIADH</span>, l'<span class="de" dir="ltr">ADH</span> ajoute de l'eau au verre ; le sel lui-même ne change pas, mais il se <b>dilue</b>, donc le <span class="de" dir="ltr">Na</span> baisse. Et les urines restent <b>concentrées</b> parce que l'<span class="de" dir="ltr">ADH</span> retient l'eau : c'est ce qui distingue le SIADH d'une simple polydipsie.
+      </div>
+      <div class="merk">
+        <div class="m-label">Merksatz</div>
+        <div class="m-text"><span class="de" dir="ltr">SIADH</span> = sang dilué, urines concentrées, pas d'œdème.</div>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- ============ SECTION 5 · BILAN À DEMANDER ============ -->
+<section class="group" id="s5" data-group="s5">
+  <div class="group-head">
+    <span class="num">05</span>
+    <h2>« <span class="de" dir="ltr">Was soll ich anfordern?</span> »</h2>
+    <span class="count">— la check-list du bilan</span>
+  </div>
+  <p class="group-lede">Coche au fur et à mesure ce que tu demandes. Le trio <span class="de" dir="ltr">Serum-Osm</span> / <span class="de" dir="ltr">Urin-Osm</span> / <span class="de" dir="ltr">Urin-Na</span> est le minimum qui débloque tout l'algorithme.</p>
+
+  <div class="cards">
+    <article class="card edge-diag" data-tags="bilan labo basic">
+      <div class="card-top">
+        <h3>Bilan de base</h3>
+        <span class="tag t-diag">Labor</span>
+      </div>
+      <div class="labchk">
+        <label><input type="checkbox"><span><span class="l-main"><span class="de" dir="ltr">Serum-Na, K, Cl</span></span></span></label>
+        <label><input type="checkbox"><span><span class="l-main"><span class="de" dir="ltr">Kreatinin / eGFR, Harnstoff</span></span></span></label>
+        <label><input type="checkbox"><span><span class="l-main"><span class="de" dir="ltr">Glucose</span></span></span></label>
+        <label><input type="checkbox"><span><span class="l-main"><span class="de" dir="ltr">Serum-Osmolalität</span></span></span></label>
+        <label><input type="checkbox"><span><span class="l-main"><span class="de" dir="ltr">Urin-Osmolalität</span></span></span></label>
+        <label><input type="checkbox"><span><span class="l-main"><span class="de" dir="ltr">Urin-Natrium</span></span></span></label>
+        <label><input type="checkbox"><span><span class="l-main"><span class="de" dir="ltr">BGA</span></span><span class="l-sub">si COPD, dyspnée, trouble acido-basique ou usage de bicarbonate</span></span></label>
+        <label><input type="checkbox"><span><span class="l-main"><span class="de" dir="ltr">CRP / Leukozyten</span></span><span class="l-sub">si infection suspectée</span></span></label>
+        <label><input type="checkbox"><span><span class="l-main"><span class="de" dir="ltr">TSH</span></span></span></label>
+        <label><input type="checkbox"><span><span class="l-main"><span class="de" dir="ltr">Morgen-Cortisol</span></span></span></label>
+        <label><input type="checkbox"><span><span class="l-main"><span class="de" dir="ltr">Medikamentencheck</span></span><span class="l-sub">Thiazide, SSRI, Carbamazepin, Antipsychotika, Diuretika</span></span></label>
+      </div>
+    </article>
+
+    <article class="card edge-hyper" data-tags="bilan cardiologie copd context">
+      <div class="card-top">
+        <h3>Contexte cardio / COPD</h3>
+        <span class="tag t-hyper">Station</span>
+      </div>
+      <div class="labchk" style="grid-template-columns:1fr">
+        <label><input type="checkbox"><span><span class="l-main"><span class="de" dir="ltr">Gewicht, Bilanz, Ein-/Ausfuhr</span></span></span></label>
+        <label><input type="checkbox"><span><span class="l-main"><span class="de" dir="ltr">Ödeme, Halsvenen, Lungenauskultation</span></span></span></label>
+        <label><input type="checkbox"><span><span class="l-main"><span class="de" dir="ltr">Röntgen Thorax</span></span><span class="l-sub">si Stauung / Pneumonie suspectée</span></span></label>
+        <label><input type="checkbox"><span><span class="l-main"><span class="de" dir="ltr">NT-proBNP</span></span><span class="l-sub">si HF incertaine</span></span></label>
+        <label><input type="checkbox"><span><span class="l-main"><span class="de" dir="ltr">Echokardiographie</span></span><span class="l-sub">si décompensation cardiaque incertaine</span></span></label>
+      </div>
+      <div class="merk">
+        <div class="m-label">Merksatz</div>
+        <div class="m-text">Sans <span class="de" dir="ltr">Serum-Osm</span>, <span class="de" dir="ltr">Urin-Osm</span> et <span class="de" dir="ltr">Urin-Na</span>, tu devines. Avec, tu classes.</div>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- ============ SECTION 6 · BGA en COPD ============ -->
+<section class="group" id="s6" data-group="s6">
+  <div class="group-head">
+    <span class="num">06</span>
+    <h2><span class="de" dir="ltr">COPD + BGA</span> : comment la lire ?</h2>
+    <span class="count">— quatre patterns à reconnaître</span>
+  </div>
+  <p class="group-lede">Utile parce qu'une <span class="de" dir="ltr">COPD-Exazerbation</span> ou une hypoxie peuvent causer un <span class="de" dir="ltr">SIADH</span>, et parce que le bicarbonate influence la ventilation. Lis toujours pH d'abord, puis pCO₂, puis HCO₃⁻.</p>
+
+  <div class="cards">
+    <article class="card edge-diag" data-tags="bga copd chronique compensée">
+      <div class="card-top"><h3>1 · COPD chronique compensée</h3><span class="tag t-diag">BGA</span></div>
+      <div class="bga">
+        <div class="bga-vals">pH normal · pCO₂ ↑ · HCO₃⁻ ↑</div>
+        <div class="bga-mean"><span class="de" dir="ltr">Chronische respiratorische Azidose, kompensiert</span> — le rein a eu le temps de retenir du bicarbonate.</div>
+        <div class="bga-vals" style="color:var(--ink-soft)">Ex. : pH 7.37 / pCO₂ 60 / HCO₃⁻ 34</div>
+      </div>
+    </article>
+
+    <article class="card edge-emergency" data-tags="bga acute on chronic hypercapnie niv">
+      <div class="card-top"><h3>2 · Acute-on-chronic hypercapnique</h3><span class="tag t-emergency">Alerte</span></div>
+      <div class="bga">
+        <div class="bga-vals">pH ↓ · pCO₂ ↑↑ · HCO₃⁻ ↑ ou normal</div>
+        <div class="bga-mean"><span class="de" dir="ltr">Akute hyperkapnische respiratorische Insuffizienz</span> — la compensation ne suit plus.</div>
+        <div class="bga-act">→ <span class="de" dir="ltr">NIV denken, Oberarzt informieren</span>.</div>
+        <div class="bga-vals" style="color:var(--ink-soft)">Ex. : pH 7.25 / pCO₂ 80 / HCO₃⁻ 35</div>
+      </div>
+    </article>
+
+    <article class="card edge-diag" data-tags="bga respiratorische alkalose hyperventilation">
+      <div class="card-top"><h3>3 · Alcalose respiratoire</h3><span class="tag t-diag">BGA</span></div>
+      <div class="bga">
+        <div class="bga-vals">pH ↑ · pCO₂ ↓</div>
+        <div class="bga-mean"><span class="de" dir="ltr">Hyperventilation</span>. Causes : <span class="de" dir="ltr">Hypoxie, Pneumonie, Lungenembolie, Angst, Schmerz, Sepsis, Herzinsuffizienz</span>.</div>
+        <div class="bga-vals" style="color:var(--ink-soft)">Ex. : pH 7.50 / pCO₂ 26</div>
+      </div>
+      <div class="pearl">
+        <div class="pearl-title">Piège fréquent</div>
+        pCO₂ <b>bas</b> ≠ rétention. Ici le patient hyperventile — chercher la cause (embolie, hypoxie), pas donner du CO₂ ni du bicarbonate.
+      </div>
+    </article>
+
+    <article class="card edge-hypo adv-only" data-tags="bga metabolische alkalose diuretika">
+      <div class="card-top"><h3>4 · Alcalose métabolique surajoutée</h3><span class="tag t-hypo">BGA</span></div>
+      <div class="bga">
+        <div class="bga-vals">pH ↑ · HCO₃⁻ ↑ · BE ↑</div>
+        <div class="bga-mean">Souvent : <span class="de" dir="ltr">Diuretika, Erbrechen, Hypokaliämie, Hypochlorämie</span>, apport de bicarbonate.</div>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- ============ SECTION 7 · NaHCO3 vs NaCl 3% ============ -->
+<section class="group" id="s7" data-group="s7">
+  <div class="group-head">
+    <span class="num">07</span>
+    <h2><span class="de" dir="ltr">Natriumhydrogencarbonat 8,4%</span> vs <span class="de" dir="ltr">NaCl 3%</span></h2>
+    <span class="count">— ne pas confondre les deux</span>
+  </div>
+  <div class="cards">
+    <article class="card wide edge-safety" data-tags="nahco3 bicarbonat nacl 3% warnung">
+      <div class="card-top">
+        <h3>Bicarbonate en <span class="de" dir="ltr">Hyponatriämie</span></h3>
+        <span class="tag t-safety">Sécurité</span>
+      </div>
+      <ul class="check">
+        <li><span class="de" dir="ltr">NaHCO₃ 8,4%</span> contient du sodium et est <strong>hypertone</strong>.</li>
+        <li><strong>50 mL de <span class="de" dir="ltr">NaHCO₃ 8,4%</span> ≈ 50 mmol de sodium.</strong> <span class="sub">Il peut faire monter le <span class="de" dir="ltr">Na</span>, mais ce n'est pas le traitement standard.</span></li>
+        <li>Le standard des hyponatrémies sévères symptomatiques reste <strong><span class="de" dir="ltr">NaCl 3% hyperton nach Protokoll</span></strong>.</li>
+        <li>En <span class="de" dir="ltr">COPD / Hyperkapnie</span>, le bicarbonate peut <strong>augmenter la charge en CO₂</strong> et aggraver la ventilation.</li>
+        <li>Si le pH est déjà alcalotique (ex. pH 7.50), <strong>grande prudence</strong>.</li>
+        <li>Toujours monitorer <span class="de" dir="ltr">BGA, pCO₂, HCO₃⁻, Na, K</span> et l'état clinique.</li>
+      </ul>
+      <div class="flags">
+        <div class="flags-title">⚑ Avertissement</div>
+        <ul>
+          <li><strong><span class="de" dir="ltr">NaHCO₃ 8,4%</span> ne s'utilise pas comme <span class="de" dir="ltr">Bicarbonat-Therapie</span></strong> si le problème est une <span class="de" dir="ltr">respiratorische Alkalose</span> ou une <span class="de" dir="ltr">kompensierte COPD</span>.</li>
+          <li>S'il est utilisé comme <span class="de" dir="ltr">Natrium-Load</span>, cela doit se faire <strong><span class="de" dir="ltr">unter Oberarzt und Monitoring</span></strong>.</li>
+        </ul>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- ============ SECTION 8 · CALCULATEUR ============ -->
+<section class="group" id="s8" data-group="s8">
+  <div class="group-head">
+    <span class="num">08</span>
+    <h2>Calculateur de correction <span style="font-family:'Caveat',cursive;color:var(--red);font-weight:700;font-size:1.4rem">(Schätzung)</span></h2>
+    <span class="count">— une estimation, pas une prescription</span>
+  </div>
+  <p class="group-lede">Formule d'<span class="de" dir="ltr">Adrogué-Madias</span> : elle estime la variation de <span class="de" dir="ltr">Na</span> par litre de perfusé. C'est un ordre de grandeur — <strong>le contrôle du <span class="de" dir="ltr">Na</span> toutes les 2–4 h prime toujours</strong>.</p>
+
+  <div class="cards">
+    <article class="card wide edge-safety" data-tags="calculateur adrogue madias correction">
+      <div class="card-top">
+        <h3>Estimer ΔNa et la vitesse</h3>
+        <span class="tag t-safety">Schätzung</span>
+      </div>
+
+      <div class="calc-grid">
+        <div class="field">
+          <label for="c-na"><span class="de" dir="ltr">Serum-Na</span> actuel (mmol/L)</label>
+          <input type="number" id="c-na" value="118" step="0.1" inputmode="decimal">
+        </div>
+        <div class="field">
+          <label for="c-target">Hausse visée (mmol/L)</label>
+          <input type="number" id="c-target" value="5" step="0.5" inputmode="decimal">
+          <span class="hint">défaut 4–6 pour la 1ʳᵉ étape</span>
+        </div>
+        <div class="field">
+          <label for="c-weight">Poids (kg)</label>
+          <input type="number" id="c-weight" value="70" step="1" inputmode="decimal">
+        </div>
+        <div class="field">
+          <label for="c-sex">Sexe / TBW</label>
+          <select id="c-sex">
+            <option value="0.6">Homme (0,6 × poids)</option>
+            <option value="0.5">Femme (0,5 × poids)</option>
+            <option value="0.5">Homme âgé / fragile (0,5 ×)</option>
+            <option value="0.45">Femme âgée / fragile (0,45 ×)</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="c-fluid">Perfusé</label>
+          <select id="c-fluid">
+            <option value="513">NaCl 3% — 513 mmol/L</option>
+            <option value="154">NaCl 0,9% — 154 mmol/L</option>
+            <option value="1000">NaHCO₃ 8,4% — 1000 mmol/L (Na-équiv.)</option>
+            <option value="0">G5% / D5W — 0 mmol/L</option>
+            <option value="custom">Concentration personnalisée…</option>
+          </select>
+        </div>
+        <div class="field" id="custom-wrap" style="display:none">
+          <label for="c-custom">Na du perfusé personnalisé (mmol/L)</label>
+          <input type="number" id="c-custom" value="513" step="1" inputmode="decimal">
+        </div>
+        <div class="field">
+          <label for="c-vol">Volume prévu (mL)</label>
+          <input type="number" id="c-vol" value="500" step="10" inputmode="decimal">
+        </div>
+        <div class="field">
+          <label for="c-time">Durée de perfusion (h)</label>
+          <input type="number" id="c-time" value="6" step="0.5" inputmode="decimal">
+        </div>
+      </div>
+
+      <div class="subhead" style="margin-top:12px">Facteurs de risque d'<span class="de" dir="ltr">ODS</span> (osmotisches Demyelinisierungssyndrom)</div>
+      <div class="checks" style="display:grid;grid-template-columns:1fr 1fr;gap:4px 20px">
+        <label><input type="checkbox" class="ods"> <span class="de" dir="ltr">Na ≤ 105</span></label>
+        <label><input type="checkbox" class="ods"> <span class="de" dir="ltr">Alkoholismus</span></label>
+        <label><input type="checkbox" class="ods"> <span class="de" dir="ltr">Malnutrition</span></label>
+        <label><input type="checkbox" class="ods"> <span class="de" dir="ltr">Lebererkrankung</span></label>
+        <label><input type="checkbox" class="ods"> <span class="de" dir="ltr">Hypokaliämie</span></label>
+        <label><input type="checkbox" class="ods"> Durée chronique / inconnue</label>
+      </div>
+
+      <div class="result" id="calc-result">
+        <div class="rrow"><span class="rk"><span class="de" dir="ltr">TBW</span> estimée</span><span class="rv" id="r-tbw">—</span></div>
+        <div class="rrow"><span class="rk">ΔNa par litre (Adrogué-Madias)</span><span class="rv" id="r-per-l">—</span></div>
+        <div class="rrow"><span class="rk">ΔNa pour le volume prévu</span><span class="rv" id="r-dvol">—</span></div>
+        <div class="rrow"><span class="rk">Vitesse estimée</span><span class="rv" id="r-rate">—</span></div>
+        <div class="rrow"><span class="rk">Projection sur 24 h (même vitesse)</span><span class="rv" id="r-24">—</span></div>
+        <div class="rrow"><span class="rk">Volume pour atteindre la hausse visée</span><span class="rv" id="r-need">—</span></div>
+        <div class="verdict v-green" id="r-verdict">Renseigne les champs…</div>
+      </div>
+
+      <div class="calc-actions">
+        <button class="tbtn" id="copyBtn">📋 Copier le résumé</button>
+        <button class="tbtn" id="resetBtn">↺ Réinitialiser</button>
+      </div>
+
+      <div class="pearl" style="margin-top:12px">
+        <div class="pearl-title">Rappel</div>
+        La formule n'est qu'une <span class="de" dir="ltr">Schätzung</span>. Recontrôler le <span class="de" dir="ltr">Serum-Na</span> toutes les 2–4 h pendant la correction active. Une reprise de diurèse peut faire <b>monter le <span class="de" dir="ltr">Na</span> plus vite que prévu</b>.
+      </div>
+
+      <div class="flags" style="margin-top:10px">
+        <div class="flags-title">⚑ Alerte <span class="de" dir="ltr">Desmopressin</span> / re-baisse</div>
+        <ul>
+          <li>Si la correction est trop rapide ou si le <span class="de" dir="ltr">Na</span> a déjà trop monté :</li>
+          <li>Arrêter la perfusion hypertone / isotone.</li>
+          <li>Appeler <span class="de" dir="ltr">Oberarzt / Nephrologie</span>.</li>
+          <li>Envisager <span class="de" dir="ltr">Desmopressin</span> et/ou <span class="de" dir="ltr">G5%</span>, <span class="de" dir="ltr">nach lokalem Protokoll</span>.</li>
+        </ul>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- ============ SECTION 9 · MODÈLES MENTAUX ============ -->
+<section class="group" id="s9" data-group="s9">
+  <div class="group-head">
+    <span class="num">09</span>
+    <h2>Trois modèles mentaux</h2>
+    <span class="count">— une image par mécanisme</span>
+  </div>
+  <p class="group-lede">Le même symptôme (<span class="de" dir="ltr">Na</span> bas), trois histoires différentes. Retenir le mécanisme évite d'appliquer le mauvais traitement.</p>
+
+  <div class="mm">
+    <!-- SIADH -->
+    <div class="mm-card">
+      <svg viewBox="0 0 120 90" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Rein et goutte">
+        <path d="M40 20 C22 20 18 42 26 58 C32 70 46 72 48 58 C50 46 44 46 46 34 C48 24 52 20 40 20Z" stroke="var(--cat-eu)" stroke-width="2.2" fill="var(--cat-eu-soft)"/>
+        <circle cx="37" cy="46" r="3" fill="var(--cat-eu)"/>
+        <path d="M84 24 C84 24 74 38 74 47 a10 10 0 1 0 20 0 C94 38 84 24 84 24Z" stroke="var(--cat-eu)" stroke-width="2.2" fill="var(--cat-eu-soft)"/>
+        <path d="M60 46 h8 M64 42 l6 4 l-6 4" stroke="var(--ink)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <h4><span class="de" dir="ltr">SIADH</span></h4>
+      <div class="flow"><b>ADH inapproprié</b> → l'eau est retenue → sang <b>dilué</b> → urines <b>concentrées</b>.</div>
+    </div>
+
+    <!-- Herzinsuffizienz -->
+    <div class="mm-card">
+      <svg viewBox="0 0 120 90" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Cœur faible">
+        <path d="M40 32 C40 22 26 20 22 32 C18 44 40 60 44 64 C48 60 70 44 66 32 C62 20 48 22 48 32" stroke="var(--cat-hyper)" stroke-width="2.4" fill="var(--cat-hyper-soft)"/>
+        <path d="M30 40 l6 -4 l4 8 l6 -12 l5 8 h6" stroke="var(--red)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+        <path d="M80 30 v34 M80 30 l-5 6 M80 30 l5 6" stroke="var(--cat-hyper)" stroke-width="2" stroke-linecap="round"/>
+        <ellipse cx="80" cy="70" rx="14" ry="5" fill="var(--cat-hyper-soft)" stroke="var(--cat-hyper)" stroke-width="1.6"/>
+      </svg>
+      <h4><span class="de" dir="ltr">Herzinsuffizienz</span></h4>
+      <div class="flow">cœur faible → le rein perçoit une <b>perfusion basse</b> → <b>RAAS/ADH</b> → eau + <span class="de" dir="ltr">Ödeme</span> → <span class="de" dir="ltr">Na</span> dilué.</div>
+    </div>
+
+    <!-- Hypovolämie -->
+    <div class="mm-card">
+      <svg viewBox="0 0 120 90" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Perte de volume, poche d'urine">
+        <path d="M46 20 h20 v6 l-4 4 v34 a6 6 0 0 1 -12 0 v-34 l-4 -4 Z" stroke="var(--cat-hypo)" stroke-width="2.2" fill="var(--cat-hypo-soft)"/>
+        <path d="M50 44 h12 v18 a6 6 0 0 1 -12 0 Z" fill="var(--cat-hypo)" opacity="0.35"/>
+        <path d="M84 30 C84 30 76 42 76 50 a8 8 0 1 0 16 0 C92 42 84 30 84 30Z" stroke="var(--cat-hypo)" stroke-width="2.2" fill="var(--cat-hypo-soft)"/>
+        <path d="M20 34 l6 4 M26 34 l-6 4" stroke="var(--red)" stroke-width="2" stroke-linecap="round"/>
+        <path d="M18 48 l6 4 M24 48 l-6 4" stroke="var(--red)" stroke-width="2" stroke-linecap="round"/>
+      </svg>
+      <h4><span class="de" dir="ltr">Hypovolämie</span></h4>
+      <div class="flow">perte de volume → <b>ADH approprié</b> → l'eau est retenue → le <span class="de" dir="ltr">Na</span> baisse.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SECTION 10 · CAS ============ -->
+<section class="group" id="s10" data-group="s10">
+  <div class="group-head">
+    <span class="num">10</span>
+    <h2>Cas pratiques</h2>
+    <span class="count">— raisonne, puis vérifie</span>
+  </div>
+  <p class="group-lede">Lis le cas, décide de la famille, puis clique pour voir le raisonnement.</p>
+
+  <div class="cards">
+    <article class="card" data-tags="cas quiz siadh">
+      <div class="card-top"><h3>Cas 1</h3><span class="tag t-eu">Ni-ni</span></div>
+      <div class="case">
+        <div class="cq"><span class="de" dir="ltr">Na 119</span> · <span class="de" dir="ltr">Serum-Osm</span> basse · <span class="de" dir="ltr">Urin-Osm 500</span> · <span class="de" dir="ltr">Urin-Na 55</span> · pas d'œdème · <span class="de" dir="ltr">Pneumonie</span>.</div>
+        <button class="reveal-btn">Voir le raisonnement</button>
+        <div class="answer">
+          <div class="verd"><span class="de" dir="ltr">SIADH</span> probable.</div>
+          Euvolémique, urines concentrées (<span class="de" dir="ltr">Urin-Osm</span> haute) avec <span class="de" dir="ltr">Urin-Na</span> &gt; 30, sang dilué, pas d'œdème — et une pneumonie comme déclencheur. Restriction hydrique, traiter l'infection.
+        </div>
+      </div>
+    </article>
+
+    <article class="card" data-tags="cas quiz herzinsuffizienz hypervolämisch">
+      <div class="card-top"><h3>Cas 2</h3><span class="tag t-hyper">Œdématié</span></div>
+      <div class="case">
+        <div class="cq"><span class="de" dir="ltr">Na 124</span> · <span class="de" dir="ltr">Ödeme</span> · râles · <span class="de" dir="ltr">JVP</span> haute · <span class="de" dir="ltr">HF</span> connue.</div>
+        <button class="reveal-btn">Voir le raisonnement</button>
+        <div class="answer">
+          <div class="verd"><span class="de" dir="ltr">Hypervolämische Hyponatriämie</span> sur <span class="de" dir="ltr">Herzinsuffizienz</span>.</div>
+          Surcharge évidente (œdèmes, congestion, JVP). Dilution par rétention d'eau (RAAS/ADH). Restriction hydrique + <span class="de" dir="ltr">Diuretika</span> selon le plan du senior ; pas de correction rapide.
+        </div>
+      </div>
+    </article>
+
+    <article class="card" data-tags="cas quiz hypovolämisch">
+      <div class="card-top"><h3>Cas 3</h3><span class="tag t-hypo">Sec</span></div>
+      <div class="case">
+        <div class="cq"><span class="de" dir="ltr">Na 126</span> · vomissements · muqueuses sèches · <span class="de" dir="ltr">orthostatische Hypotonie</span> · <span class="de" dir="ltr">Urin-Na</span> bas.</div>
+        <button class="reveal-btn">Voir le raisonnement</button>
+        <div class="answer">
+          <div class="verd"><span class="de" dir="ltr">Hypovolämische Hyponatriämie</span>.</div>
+          Sec cliniquement, <span class="de" dir="ltr">Urin-Na &lt; 30</span> → perte extrarénale (vomissements). <span class="de" dir="ltr">NaCl 0,9%</span> prudent selon la clinique ; attention, le <span class="de" dir="ltr">Na</span> peut remonter vite après remplissage.
+        </div>
+      </div>
+    </article>
+
+    <article class="card" data-tags="cas quiz bga respiratorische alkalose">
+      <div class="card-top"><h3>Cas 4</h3><span class="tag t-diag">BGA</span></div>
+      <div class="case">
+        <div class="cq">Patient <span class="de" dir="ltr">COPD</span> : pH 7.50 · pCO₂ 26.</div>
+        <button class="reveal-btn">Voir le raisonnement</button>
+        <div class="answer">
+          <div class="verd"><span class="de" dir="ltr">Respiratorische Alkalose</span> / hyperventilation.</div>
+          Ce n'est <b>pas</b> une rétention de CO₂. Chercher la cause de l'hyperventilation : <span class="de" dir="ltr">Hypoxie, Lungenembolie, Pneumonie, Schmerz, Angst, Sepsis, Herzinsuffizienz</span>. Surtout pas de bicarbonate.
+        </div>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- ============ SECTION 11 · AIDE-MÉMOIRE ============ -->
+<section class="group" id="s11" data-group="s11">
+  <div class="group-head">
+    <span class="num">11</span>
+    <h2>Aide-mémoire de station</h2>
+    <span class="count">— <span class="de" dir="ltr">Station cheat sheet</span></span>
+  </div>
+  <div class="cards">
+    <article class="card wide edge-safety" data-tags="cheat sheet resume">
+      <div class="card-top"><h3>Les dix réflexes</h3><span class="tag t-safety">Résumé</span></div>
+      <ul class="check">
+        <li><strong><span class="de" dir="ltr">Na ≤ 120</span> ou symptômes neuro = <span class="de" dir="ltr">Oberarzt</span>.</strong></li>
+        <li><strong>Ne pas corriger vite.</strong></li>
+        <li>Toujours demander <span class="de" dir="ltr">Serum-Osm</span>, <span class="de" dir="ltr">Urin-Osm</span>, <span class="de" dir="ltr">Urin-Na</span>.</li>
+        <li>Classer par volume : <span class="de" dir="ltr">hypovolämisch / euvolämisch / hypervolämisch</span>.</li>
+        <li><span class="de" dir="ltr">SIADH</span> = sang dilué, urines concentrées, en général sans œdème.</li>
+        <li><span class="de" dir="ltr">Herzinsuffizienz</span> = surcharge en eau avec <span class="de" dir="ltr">Ödeme / Stauung</span>.</li>
+        <li><span class="de" dir="ltr">COPD + BGA</span> : pCO₂ haut = rétention ; pCO₂ bas = hyperventilation.</li>
+        <li>Le bicarbonate en <span class="de" dir="ltr">COPD</span> peut aggraver la charge en CO₂ ; monitorer la <span class="de" dir="ltr">BGA</span>.</li>
+        <li>Recontrôler le <span class="de" dir="ltr">Na</span> toutes les 2–4 h en correction active.</li>
+        <li>La formule est une <span class="de" dir="ltr">Schätzung</span> ; le monitoring clinique compte davantage.</li>
+      </ul>
+      <div class="merk">
+        <div class="m-label">Merksatz</div>
+        <div class="m-text">Confirmer → classer par volume → corriger doucement, contrôler souvent.</div>
+      </div>
+    </article>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="fbrand">diastola<em>.de</em></div>
+  <div>Outil pédagogique · <span class="de" dir="ltr">Hyponatriämie-Algorithmus für die Normalstation</span></div>
+  <div class="fnote">Pas une décision thérapeutique isolée — <span class="de" dir="ltr">immer im Kontext und mit dem Oberarzt</span>.</div>
+</footer>
+
+<script>
+(function(){
+  "use strict";
+  var $  = function(s,c){return (c||document).querySelector(s);};
+  var $$ = function(s,c){return Array.prototype.slice.call((c||document).querySelectorAll(s));};
+  var toast = $('#toast');
+  function flash(msg){ toast.textContent = msg; toast.classList.add('show'); setTimeout(function(){toast.classList.remove('show');},1600); }
+
+  /* ---------- SECTION 1 · triage interactif ---------- */
+  var triYes = $('#tri-yes'), triNo = $('#tri-no');
+  var triEmerg = $('#tri-emergency'), triCont = $('#tri-continue');
+  function updTriage(){
+    triEmerg.style.display = triYes.checked ? 'block' : 'none';
+    triCont.style.display  = triNo.checked  ? 'block' : 'none';
+  }
+  triYes.addEventListener('change', updTriage);
+  triNo.addEventListener('change', updTriage);
+
+  /* ---------- mode simple / avancé ---------- */
+  var modeBtn = $('#modeBtn'), body = document.body;
+  modeBtn.addEventListener('click', function(){
+    var simple = body.classList.toggle('simple');
+    modeBtn.textContent = simple ? '📖 Mode simple' : '📚 Mode avancé';
+    modeBtn.classList.toggle('on', !simple);
+  });
+
+  /* ---------- mode clair / sombre ---------- */
+  var themeBtn = $('#themeBtn'), root = document.documentElement;
+  themeBtn.addEventListener('click', function(){
+    var dark = root.getAttribute('data-theme') === 'dark';
+    if(dark){ root.removeAttribute('data-theme'); themeBtn.textContent = '🌙 Sombre'; themeBtn.classList.remove('on'); }
+    else    { root.setAttribute('data-theme','dark'); themeBtn.textContent = '☀️ Clair'; themeBtn.classList.add('on'); }
+  });
+
+  /* ---------- imprimer / PDF ---------- */
+  $('#printBtn').addEventListener('click', function(){ window.print(); });
+
+  /* ---------- cases : révéler le raisonnement ---------- */
+  $$('.reveal-btn').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var ans = btn.parentNode.querySelector('.answer');
+      var shown = ans.classList.toggle('show');
+      btn.textContent = shown ? 'Masquer' : 'Voir le raisonnement';
+    });
+  });
+
+  /* ---------- check-list labos : barrer quand coché ---------- */
+  $$('.labchk label input').forEach(function(cb){
+    cb.addEventListener('change', function(){ cb.closest('label').classList.toggle('done', cb.checked); });
+  });
+
+  /* ---------- navigation : chip actif au défilement ---------- */
+  var chips = $$('nav.groups .chip');
+  var chipMap = {};
+  chips.forEach(function(c){ chipMap[c.getAttribute('href').slice(1)] = c; });
+  if('IntersectionObserver' in window){
+    var obs = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if(e.isIntersecting){
+          chips.forEach(function(c){ c.classList.remove('active'); });
+          var c = chipMap[e.target.id]; if(c) c.classList.add('active');
+        }
+      });
+    }, { rootMargin:'-45% 0px -50% 0px' });
+    $$('section.group').forEach(function(sec){ obs.observe(sec); });
+  }
+
+  /* ==================================================================
+     SECTION 8 · Calculateur (Adrogué-Madias) — Schätzung
+     ================================================================== */
+  var el = {
+    na:$('#c-na'), target:$('#c-target'), weight:$('#c-weight'), sex:$('#c-sex'),
+    fluid:$('#c-fluid'), custom:$('#c-custom'), customWrap:$('#custom-wrap'),
+    vol:$('#c-vol'), time:$('#c-time'),
+    tbw:$('#r-tbw'), perL:$('#r-per-l'), dvol:$('#r-dvol'), rate:$('#r-rate'),
+    p24:$('#r-24'), need:$('#r-need'), verdict:$('#r-verdict')
+  };
+  var odsBoxes = $$('.ods');
+  var num = function(v){ var n = parseFloat(v); return isNaN(n) ? null : n; };
+  var fmt = function(n,d){ return (n===null||!isFinite(n)) ? '—' : n.toFixed(d===undefined?1:d); };
+  var lastSummary = '';
+
+  function infusateNa(){
+    if(el.fluid.value === 'custom') return num(el.custom.value);
+    return num(el.fluid.value);
+  }
+
+  function calc(){
+    // afficher / masquer le champ personnalisé
+    el.customWrap.style.display = (el.fluid.value === 'custom') ? 'flex' : 'none';
+
+    var na = num(el.na.value), w = num(el.weight.value), f = parseFloat(el.sex.value);
+    var inf = infusateNa(), vol = num(el.vol.value), t = num(el.time.value), targ = num(el.target.value);
+    var highRisk = odsBoxes.some(function(b){ return b.checked; });
+
+    if(na===null || w===null || inf===null){
+      el.tbw.textContent = el.perL.textContent = el.dvol.textContent = '—';
+      el.rate.textContent = el.p24.textContent = el.need.textContent = '—';
+      el.verdict.className = 'verdict v-green';
+      el.verdict.textContent = 'Renseigne au moins Na, poids et perfusé…';
+      return;
+    }
+
+    // 1) TBW
+    var tbw = f * w;
+    // 2) ΔNa par litre (Adrogué-Madias)
+    var perL = (inf - na) / (tbw + 1);
+    // 3) ΔNa pour le volume prévu
+    var dvol = (vol !== null) ? perL * (vol/1000) : null;
+    // 4) vitesse
+    var rate = (dvol !== null && t) ? dvol / t : null;
+    // 5) projection 24 h
+    var p24 = (rate !== null) ? rate * 24 : null;
+    // 6) volume nécessaire pour la hausse visée
+    var needMl = (targ !== null && perL > 0) ? (targ / perL) * 1000 : null;
+
+    el.tbw.textContent  = fmt(tbw,1) + ' L';
+    el.perL.textContent = (perL>=0?'+':'') + fmt(perL,2) + ' mmol/L par L';
+    el.dvol.textContent = (dvol===null)?'—':((dvol>=0?'+':'') + fmt(dvol,2) + ' mmol/L');
+    el.rate.textContent = (rate===null)?'—':((rate>=0?'+':'') + fmt(rate,2) + ' mmol/L/h');
+    el.p24.textContent  = (p24===null)?'—':((p24>=0?'+':'') + fmt(p24,1) + ' mmol/L / 24 h');
+    el.need.textContent = (needMl===null)?'—':(Math.round(needMl) + ' mL');
+
+    // ---- verdict de sécurité ----
+    var v = el.verdict, cls = 'v-green', msg;
+    if(perL <= 0){
+      cls = 'v-green';
+      msg = 'Perfusé abaissant le Na (usage de sauvetage / dilution). Vérifier l\u2019indication avec le senior.';
+    } else if(p24 === null){
+      cls = 'v-green'; msg = 'Complète le volume et la durée pour estimer la vitesse.';
+    } else {
+      var proj = Math.abs(p24);
+      if(proj <= 6){ cls='v-green'; msg = 'Dans la cible prudente (\u2264 6 mmol/L/24 h). Recontrôler quand même le Na toutes les 2\u20134 h.'; }
+      else if((highRisk && proj > 8) || proj > 10){ cls='v-red'; msg = 'Trop rapide' + (highRisk?' (haut risque ODS)':'') + ' : projection ' + fmt(p24,1) + ' mmol/24 h. Ralentir, prévenir l\u2019Oberarzt, envisager Desmopressin / G5%.'; }
+      else { cls='v-amber'; msg = 'Vigilance : projection ' + fmt(p24,1) + ' mmol/24 h approche la limite. Ne pas dépasser ' + (highRisk?'6\u20138':'8\u201310') + ' mmol/24 h.'; }
+    }
+    v.className = 'verdict ' + cls;
+    v.textContent = msg;
+
+    // ---- résumé pour le presse-papiers ----
+    lastSummary =
+      'Hyponatriämie — estimation de correction (Schätzung, diastola)\n' +
+      'Serum-Na: ' + fmt(na,1) + ' mmol/L | Poids: ' + fmt(w,0) + ' kg | TBW: ' + fmt(tbw,1) + ' L\n' +
+      'Perfusé (Na): ' + fmt(inf,0) + ' mmol/L | Volume: ' + (vol!==null?vol:'—') + ' mL sur ' + (t!==null?t:'—') + ' h\n' +
+      'ΔNa/L: ' + (perL>=0?'+':'') + fmt(perL,2) + ' mmol/L\n' +
+      'ΔNa (volume prévu): ' + (dvol===null?'—':((dvol>=0?'+':'')+fmt(dvol,2))) + ' mmol/L\n' +
+      'Vitesse: ' + (rate===null?'—':((rate>=0?'+':'')+fmt(rate,2)+' mmol/L/h')) + '\n' +
+      'Projection 24 h: ' + (p24===null?'—':((p24>=0?'+':'')+fmt(p24,1)+' mmol/24 h')) + '\n' +
+      'Haut risque ODS: ' + (highRisk?'oui':'non') + '\n' +
+      '⚠️ Schätzung — recontrôler le Na toutes les 2–4 h. Ne remplace pas la décision du senior.';
+  }
+
+  // recalcul en direct
+  ['input','change'].forEach(function(ev){
+    [el.na,el.target,el.weight,el.sex,el.fluid,el.custom,el.vol,el.time].forEach(function(f){ f.addEventListener(ev, calc); });
+    odsBoxes.forEach(function(b){ b.addEventListener(ev, calc); });
+  });
+
+  // copier
+  $('#copyBtn').addEventListener('click', function(){
+    var done = function(){ flash('Résumé copié'); };
+    if(navigator.clipboard && navigator.clipboard.writeText){
+      navigator.clipboard.writeText(lastSummary).then(done).catch(function(){ fallbackCopy(lastSummary); done(); });
+    } else { fallbackCopy(lastSummary); done(); }
+  });
+  function fallbackCopy(txt){
+    var ta = document.createElement('textarea'); ta.value = txt;
+    ta.style.position='fixed'; ta.style.opacity='0'; document.body.appendChild(ta);
+    ta.select(); try{ document.execCommand('copy'); }catch(e){} document.body.removeChild(ta);
+  }
+
+  // réinitialiser
+  $('#resetBtn').addEventListener('click', function(){
+    el.na.value=118; el.target.value=5; el.weight.value=70; el.sex.value='0.6';
+    el.fluid.value='513'; el.custom.value=513; el.vol.value=500; el.time.value=6;
+    odsBoxes.forEach(function(b){ b.checked=false; });
+    calc(); flash('Réinitialisé');
+  });
+
+  calc(); // premier rendu
+})();
+</script>
+
+</body>
+</html>
