@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Dressler-Syndrom · Weiterbildung · diastola.de</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400&family=Caveat:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --parchment:#faf6ee; --paper:#fffdf7; --ink:#2b2620; --ink-soft:#5c544a;
+  --red:#c8303a; --red-deep:#a8262f; --red-soft:#fdf0f0; --red-line:#e8c2c4;
+  --amber:#b07d2b; --amber-soft:#fbf3e2;
+  --teal:#2f6f6a; --teal-soft:#e9f2f1;
+  --navy:#2d4a6b; --navy-soft:#eaf0f6;
+  --line:#d8cfbf;
+  --shadow:0 2px 0 rgba(43,38,32,.08), 0 12px 28px -18px rgba(43,38,32,.28);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:20px}
+body{
+  font-family:'DM Sans',system-ui,sans-serif;
+  background-color:var(--parchment);
+  background-image:radial-gradient(rgba(43,38,32,.10) 1px, transparent 1.5px);
+  background-size:22px 22px;
+  color:var(--ink); line-height:1.62; -webkit-font-smoothing:antialiased;
+  padding:22px 16px 70px;
+}
+::selection{background:var(--red);color:#fff}
+.wrap{max-width:920px;margin:0 auto}
+.backlink{display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:600;color:var(--ink-soft);text-decoration:none;margin-bottom:14px}
+.backlink:hover{color:var(--red)}
+.eyebrow{font-size:11px;letter-spacing:2.4px;text-transform:uppercase;color:var(--ink-soft);font-weight:700}
+h1{font-family:'Cormorant Garamond',serif;font-weight:500;font-size:40px;line-height:1.05;margin:4px 0 0}
+h1 em{font-style:italic;color:var(--red)}
+.lead{margin:8px 0 0;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:19px;color:var(--ink-soft)}
+.disclaimer{margin:16px 0 6px;background:var(--amber-soft);border:1px solid var(--line);border-left:4px solid var(--amber);border-radius:8px;padding:10px 14px;font-size:13px;color:#6a4d18}
+
+section{background:var(--paper);border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow);padding:26px 30px;margin-top:22px}
+h2{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:26px;margin:0 0 4px;display:flex;align-items:baseline;gap:10px}
+h2 .num{font-family:'Caveat',cursive;font-size:26px;color:var(--red)}
+h2 + .sub{color:var(--ink-soft);font-size:14px;margin-bottom:14px}
+h3{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:20px;margin:18px 0 8px}
+p{margin:0 0 10px}
+.hl{background:rgba(200,48,58,.12);padding:0 3px;border-radius:3px;font-weight:600}
+.def{background:var(--red-soft);border:1px solid var(--red-line);border-radius:10px;padding:14px 16px;margin:10px 0}
+.def b{color:var(--red)}
+
+ul{list-style:none;margin:0 0 10px;padding:0}
+li{position:relative;padding:3px 0 3px 18px;color:var(--ink-soft)}
+li::before{content:"";position:absolute;left:2px;top:12px;width:7px;height:2px;background:var(--red);border-radius:2px}
+li b{color:var(--ink)}
+
+table{width:100%;border-collapse:collapse;margin:10px 0 6px;font-size:13.5px}
+th,td{border:1px solid var(--line);padding:8px 10px;text-align:left;vertical-align:top}
+th{background:var(--navy-soft);font-weight:700;color:var(--navy)}
+tr:nth-child(even) td{background:#fbf8f1}
+
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:10px 0}
+.box{border:1px dashed var(--line);border-radius:10px;padding:12px 14px}
+.box h4{font-size:13.5px;font-weight:700;margin:0 0 6px}
+.box.red{border-color:var(--red-line);background:var(--red-soft)}
+.box.teal{border-color:#bcdad6;background:var(--teal-soft)}
+.box.amber{border-color:#e8d3a6;background:var(--amber-soft)}
+
+.merk{margin-top:16px;background:var(--paper);border:1.5px solid var(--ink);border-radius:225px 12px 200px 12px / 12px 200px 12px 225px;padding:12px 16px}
+.merk .m-label{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--ink-soft);font-weight:700;margin-bottom:3px}
+.merk .m-text{font-family:'Cormorant Garamond',serif;font-size:18px;font-style:italic}
+.case{background:#fbf3e2;border:1px solid var(--line);border-left:4px solid var(--amber);border-radius:10px;padding:16px 18px;margin-top:12px}
+.case .badge{font-family:'Caveat',cursive;font-size:19px;color:var(--amber);font-weight:700}
+
+.foot{margin:28px auto 0;font-size:11.5px;color:var(--ink-soft);text-align:center;line-height:1.6}
+.brand{font-family:'Caveat',cursive;font-size:18px;color:var(--red);font-weight:700}
+@media (max-width:640px){.grid{grid-template-columns:1fr}h1{font-size:32px}section{padding:20px 18px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <a class="backlink" href="station_gelernt.html">&larr; Zurück zu Aus der Station gelernt</a>
+  <div class="eyebrow">diastola.de · Weiterbildung · Perikard</div>
+  <h1>Dressler-Syndrom <em>/ Post-cardiac injury syndrome</em></h1>
+  <p class="lead">Die verzögerte Perikarditis nach Herzschädigung — Klinik, Differenzialdiagnosen, Therapie und der Stationsfall dahinter.</p>
+  <div class="disclaimer">Lernnotiz zur eigenen Weiterbildung. Orientierung an den ESC-Leitlinien zu Perikarderkrankungen. Dosierung und Therapiedauer vor Anwendung an aktuelle Leitlinie und Fachinformation anpassen.</div>
+
+  <!-- 1 -->
+  <section>
+    <h2><span class="num">1.</span> Definition &amp; Einordnung</h2>
+    <div class="def">
+      <p style="margin:0"><b>Dressler-Syndrom</b> = <b>Post-cardiac injury syndrome (PCIS)</b>: eine <span class="hl">verzögerte, meist autoimmun vermittelte Perikarditis</span> nach einer Schädigung des Herzens.</p>
+    </div>
+    <p>Der Mechanismus ist immunologisch: Durch die Myokard-/Perikardschädigung werden kardiale Antigene freigesetzt, gegen die sich eine verzögerte Autoimmunreaktion richtet. Deshalb tritt es typischerweise nicht sofort, sondern mit einer Latenz von Tagen bis Wochen nach dem auslösenden Ereignis auf.</p>
+    <h3>Auslöser (kardiale Schädigung)</h3>
+    <ul>
+      <li>nach <b>Myokardinfarkt</b> (klassisch)</li>
+      <li>nach <b>Herzoperation</b> (Postperikardiotomie-Syndrom)</li>
+      <li>nach <b>TAVI</b></li>
+      <li>nach <b>Ablation</b> / kardialen Interventionen</li>
+      <li>nach <b>Trauma</b> (Thoraxtrauma, Device-Implantation)</li>
+    </ul>
+  </section>
+
+  <!-- 2 -->
+  <section>
+    <h2><span class="num">2.</span> Klinik</h2>
+    <div class="grid">
+      <div class="box red">
+        <h4>Leitsymptome</h4>
+        <ul style="margin:0">
+          <li><b>Thorakale Schmerzen</b> — oft <b>pleuritisch</b> und <b>lageabhängig</b> (Besserung beim Vorbeugen, Verstärkung im Liegen)</li>
+          <li><b>Fieber</b></li>
+          <li><b>Erhöhte Entzündungswerte</b> (CRP↑, Leukozyten↑, BSG↑)</li>
+        </ul>
+      </div>
+      <div class="box teal">
+        <h4>Mögliche Befunde</h4>
+        <ul style="margin:0">
+          <li><b>Perikarderguss</b></li>
+          <li><b>Pleuraerguss</b></li>
+          <li>ggf. Perikardreiben in der Auskultation</li>
+          <li>EKG: diffuse ST-Hebungen, PQ-Senkung</li>
+        </ul>
+      </div>
+    </div>
+    <p style="font-size:13px;color:var(--ink-soft);margin-top:4px">Die Latenz zum Indexereignis (Tage bis Wochen) ist ein wichtiger anamnestischer Hinweis, der das Dressler-Syndrom von einer frühen Peri-Infarkt-Perikarditis abgrenzt.</p>
+  </section>
+
+  <!-- 3 -->
+  <section>
+    <h2><span class="num">3.</span> Differenzialdiagnosen</h2>
+    <p class="sub">Alle müssen bedacht (und ausgeschlossen) werden, bevor die Diagnose steht — mehrere sind unmittelbar lebensbedrohlich.</p>
+    <table>
+      <tr><th>DD</th><th>abgrenzendes Merkmal</th></tr>
+      <tr><td><b>ACS / Reinfarkt</b></td><td>belastungsabhängiger Schmerz, Troponin-<b>Dynamik</b>, neue regionale Wandbewegungsstörung, territoriale EKG-Veränderung</td></tr>
+      <tr><td><b>Lungenembolie</b></td><td>akute Dyspnoe, D-Dimere, Rechtsherzbelastung, ggf. Beinvenenthrombose; CT-Angiographie</td></tr>
+      <tr><td><b>Aortendissektion</b></td><td>Vernichtungsschmerz mit Ausstrahlung in den Rücken, Blutdruckdifferenz; CT-Angiographie</td></tr>
+      <tr><td><b>Pneumonie / Pleuritis</b></td><td>Infiltrat im Röntgen, produktiver Husten, fokaler Auskultationsbefund</td></tr>
+      <tr><td><b>Perikardtamponade</b></td><td>Hypotonie, Halsvenenstauung, Pulsus paradoxus, echokardiographische Kompressionszeichen — <b>Notfall</b></td></tr>
+    </table>
+    <div class="box amber"><h4>Sicherheits-Reflex</h4><p style="margin:0;font-size:13px">Bei Thoraxschmerz nach kardialem Eingriff zuerst die tödlichen DDs abklopfen (ACS, LE, Dissektion, Tamponade), erst dann Dressler diagnostizieren. Die Tamponade kann sich auch aus einem zunächst kleinen Erguss verzögert entwickeln.</p></div>
+  </section>
+
+  <!-- 4 -->
+  <section>
+    <h2><span class="num">4.</span> Therapie</h2>
+    <p class="sub">Antiinflammatorisch — die Kombination aus ASS/NSAID und Colchicin ist Standard.</p>
+    <ul>
+      <li><b>Hochdosiertes ASS oder NSAID:</b> bis zur <span class="hl">klinischen Beschwerdefreiheit und Normalisierung des CRP</span>, anschließend <b>ausschleichen</b> (nicht abrupt absetzen).</li>
+      <li><b>Colchicin:</b> bei der ersten Episode meist <span class="hl">für etwa 3 Monate</span> — senkt Rezidivrate und Beschwerdedauer.</li>
+      <li><b>Magenschutz:</b> PPI für die Dauer der antiinflammatorischen Therapie.</li>
+      <li><b>Kortikosteroide:</b> nur als Reserve (Kontraindikation/Unverträglichkeit von ASS/NSAID + Colchicin) — begünstigen Rezidive.</li>
+    </ul>
+    <div class="box red"><h4>Nach Myokardinfarkt beachten</h4><p style="margin:0;font-size:13px">Hier wird <b>ASS bevorzugt</b>; klassische NSAID (z. B. Ibuprofen) und v. a. Kortikosteroide werden nach frischem Infarkt möglichst vermieden (ungünstig für die Infarktheilung).</p></div>
+    <div class="merk"><div class="m-label">Merksatz</div><div class="m-text">ASS/NSAID bis CRP normal, dann ausschleichen — Colchicin 3 Monate. Steroide nur als Reserve.</div></div>
+  </section>
+
+  <!-- 5 -->
+  <section>
+    <h2><span class="num">5.</span> Aus dem Stationsverlauf</h2>
+    <div class="case">
+      <div class="badge">Verlaufsnotiz</div>
+      <p style="margin-top:6px">Bei der Patientin zeigten sich <b>erhöhte Leberparameter</b>. Zur weiteren Abklärung wurde eine <b>Abdomen-Sonographie</b> durchgeführt. Diese ergab <b>keinen pathologischen Befund</b>. Die Leberparameter sollen im <b>Verlauf kontrolliert</b> werden.</p>
+    </div>
+    <p style="font-size:13px;color:var(--ink-soft);margin-top:10px">Praktischer Bezug: erhöhte Transaminasen sind unter antiinflammatorischer Therapie (ASS/NSAID, Colchicin) mitzubedenken — daher lohnt der bildgebende Ausschluss einer hepatischen Ursache und die laborchemische Verlaufskontrolle.</p>
+  </section>
+
+  <div class="foot"><span class="brand">diastola.de</span><br>Weiterbildung Kardiologie · Orientierung an ESC-Leitlinien Perikarderkrankungen. Dosierung und Dauer vor Anwendung prüfen.</div>
+</div>
+</body>
+</html>

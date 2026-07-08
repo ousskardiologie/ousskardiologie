@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Aus der Station gelernt · diastola.de</title>
+<meta name="description" content="Sammelmappe für kurze klinische Lernnotizen aus der kardiologischen Normalstation: Hyponatriämie, pulmonale Hypertonie, Dressler-Syndrom und weitere Fälle.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500;600;700&family=Caveat:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#faf6ee; --paper2:#f3ecdd; --card:#fffdf8; --line:#e7ddc9; --line2:#ddd1b8;
+  --ink:#2a241c; --ink2:#6e6354; --ink3:#a3957f;
+  --red:#c8303a; --blue:#2456a6; --green:#1f7a5c; --gold:#97742e; --navy:#1d2b50; --teal:#11756c;
+  --hl:#ffe9a3; --serif:'Cormorant Garamond',Georgia,serif; --sans:'DM Sans',system-ui,sans-serif; --hand:'Caveat',cursive;
+  --r:14px; --r-sketch:255px 15px 225px 15px / 15px 225px 15px 255px;
+  --sh:0 1px 3px rgba(74,60,38,.07),0 4px 14px rgba(74,60,38,.06);
+  --sh-md:0 2px 6px rgba(74,60,38,.08),0 10px 28px rgba(74,60,38,.10);
+  --wave-gold:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='7'%3E%3Cpath d='M0 3.5Q5 .5 10 3.5T20 3.5T30 3.5T40 3.5' fill='none' stroke='%2397742e' stroke-width='1.7' stroke-linecap='round'/%3E%3C/svg%3E");
+  --wave-red:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='7'%3E%3Cpath d='M0 3.5Q5 .5 10 3.5T20 3.5T30 3.5T40 3.5' fill='none' stroke='%23c8303a' stroke-width='1.7' stroke-linecap='round'/%3E%3C/svg%3E");
+  --wave-teal:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='7'%3E%3Cpath d='M0 3.5Q5 .5 10 3.5T20 3.5T30 3.5T40 3.5' fill='none' stroke='%2311756c' stroke-width='1.7' stroke-linecap='round'/%3E%3C/svg%3E");
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);color:var(--ink);font-size:15px;line-height:1.7;overflow-x:hidden;background-color:var(--paper);background-image:radial-gradient(rgba(67,54,32,.055) 1px,transparent 1.2px);background-size:23px 23px}
+body::after{content:'';position:fixed;top:0;bottom:0;left:34px;width:1.5px;background:rgba(200,48,58,.20);pointer-events:none;z-index:1}
+::selection{background:var(--hl);color:var(--ink)}
+.topnav{position:sticky;top:0;z-index:200;height:58px;background:rgba(250,246,238,.94);backdrop-filter:blur(14px);border-bottom:1.5px solid var(--line2);display:flex;align-items:center;padding:0 2.5rem;gap:6px}
+.brand{font-family:var(--serif);font-size:1.35rem;font-weight:600;letter-spacing:.01em;color:var(--ink);text-decoration:none;display:flex;align-items:center;gap:.55rem;white-space:nowrap}
+.brand em{font-style:italic;font-weight:400;color:var(--red)}
+.nav-links{display:flex;gap:2px;margin-left:.5rem}.nav-links a{padding:7px 12px;border-radius:8px;text-decoration:none;color:var(--ink2);font-size:.88rem;font-weight:500}.nav-links a:hover{background:var(--paper2);color:var(--ink)}
+.spacer{flex:1}.nav-badge{font-family:var(--hand);font-size:1.05rem;font-weight:700;padding:4px 15px;background:transparent;color:var(--red);border:1.8px solid var(--red);border-radius:var(--r-sketch);transform:rotate(-1.2deg);white-space:nowrap}
+.hero{padding:3.2rem 2.5rem 2.6rem;border-bottom:1.5px solid var(--line);position:relative}
+.hero-eyebrow{font-size:.68rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--ink3);margin-bottom:1rem}
+h1{font-family:var(--serif);font-size:clamp(3rem,5vw,5rem);font-weight:300;line-height:1.02;letter-spacing:-.01em;margin-bottom:.4rem}h1 em{font-style:italic;color:var(--red)}
+.hero-sub{font-family:var(--serif);font-style:italic;font-size:clamp(1.15rem,1.6vw,1.45rem);color:var(--ink2);margin-bottom:1.3rem;max-width:780px}
+.hero-desc{font-size:1rem;color:var(--ink2);max-width:720px;line-height:1.85;margin-bottom:1.5rem}.annot{font-family:var(--hand);font-weight:600;color:var(--red);font-size:1.25rem;transform:rotate(-1.2deg);display:inline-block}
+.btn-row{display:flex;gap:.75rem;flex-wrap:wrap}.btn{display:inline-flex;align-items:center;gap:.4rem;background:var(--card);font-size:.85rem;font-weight:700;letter-spacing:.025em;padding:.72rem 1.4rem;border-radius:var(--r-sketch);text-decoration:none;border:1.5px solid var(--line2);box-shadow:0 1px 2px rgba(74,60,38,.06);transition:.2s}.btn:hover{transform:translateY(-2px) rotate(-.4deg);box-shadow:var(--sh)}.btn.primary{background:var(--red);color:#fffdf8;border-color:var(--red);box-shadow:2px 3px 0 rgba(200,48,58,.22)}.btn.gold{color:var(--gold);border-color:rgba(151,116,46,.48);background:#fdf6e4}
+.section{padding:2.6rem 2.5rem;border-bottom:1.5px solid var(--line)}.section-head{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:1.5rem;gap:1rem;flex-wrap:wrap}.section-head h2{font-family:var(--serif);font-size:clamp(1.6rem,2.6vw,2.3rem);font-weight:300}.section-head h2 em{font-style:italic;color:var(--red)}.section-count{font-family:var(--hand);font-size:1.15rem;font-weight:600;color:var(--ink3);transform:rotate(-1deg)}
+.cards-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px}.kcard{border:1.5px solid var(--line2);border-radius:var(--r);background:var(--card);padding:1.5rem;text-decoration:none;color:var(--ink);display:flex;flex-direction:column;gap:.55rem;transition:box-shadow .22s,transform .22s;position:relative;overflow:hidden;box-shadow:var(--sh);min-height:250px}.kcard::before{content:'';position:absolute;top:7px;left:1.3rem;right:1.3rem;height:7px;background-repeat:repeat-x;background-size:40px 7px;opacity:0;transition:opacity .3s}.kcard:hover{box-shadow:var(--sh-md);transform:translateY(-3px) rotate(-.3deg)}.kcard:hover::before{opacity:1}.kcard.c-gold::before{background-image:var(--wave-gold)}.kcard.c-red::before{background-image:var(--wave-red)}.kcard.c-teal::before{background-image:var(--wave-teal)}
+.kcard-icon{width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0;border:1px solid rgba(74,60,38,.08)}.kcard-title{font-family:var(--serif);font-size:1.35rem;font-weight:400;line-height:1.2}.kcard-desc{font-size:.84rem;color:var(--ink2);line-height:1.7;flex:1}.kcard-tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:.3rem}.tag{display:inline-flex;align-items:center;padding:2px 10px;border-radius:var(--r-sketch);font-size:.71rem;font-weight:700;border:1.2px solid;background:transparent}.tag.red{color:var(--red);border-color:rgba(200,48,58,.40)}.tag.gold{color:var(--gold);border-color:rgba(151,116,46,.45)}.tag.teal{color:var(--teal);border-color:rgba(17,117,108,.42)}.tag.gray{color:var(--ink2);border-color:var(--line2)}
+.note{margin-top:22px;background:#fff4bd;border:1.5px dashed rgba(151,116,46,.55);border-radius:8px;padding:1rem 1.2rem;color:var(--ink2);max-width:760px}.note b{color:var(--ink)}
+footer{padding:2rem 2.5rem;display:flex;align-items:center;justify-content:space-between;font-size:.78rem;color:var(--ink3)}footer strong{color:var(--red);font-weight:600}
+@media(max-width:860px){body::after{display:none}.nav-links{display:none}.nav-badge{display:none}}@media(max-width:600px){.topnav{padding:0 1rem}.hero,.section{padding-left:1rem;padding-right:1rem}h1{font-size:2.65rem}footer{flex-direction:column;gap:.5rem;text-align:center}}
+</style>
+</head>
+<body>
+<nav class="topnav">
+  <a href="index.html" class="brand">Dia<em>stola</em></a>
+  <div class="nav-links">
+    <a href="index.html#module">Module</a>
+    <a href="station_gelernt.html" style="color:var(--gold);font-weight:700">🧠 Aus der Station</a>
+    <a href="kardiologie_sop.html">📋 SOPs</a>
+    <a href="arztbrief_hub.html">📝 Arztbrief</a>
+  </div>
+  <div class="spacer"></div>
+  <span class="nav-badge">Stationsnotizen</span>
+</nav>
+
+<section class="hero">
+  <div class="hero-eyebrow">Klinische Sammelmappe · Weiterbildung Kardiologie</div>
+  <h1>Aus der <em>Station</em> gelernt</h1>
+  <p class="hero-sub">Kurze klinische Themen aus Visite, Befunden und Nachtdienst — gesammelt an einem Ort, damit die Startseite ruhig bleibt.</p>
+  <p class="hero-desc">Hier kommen Themen rein, die wichtig sind, aber nicht jedes Mal ein eigenes Hauptmodul brauchen: ein Fall, eine Differenzialdiagnose, ein Algorithmus, ein therapeutischer Merksatz.</p>
+  <span class="annot">→ kleine Themen, großer Nutzen im Alltag.</span>
+  <div class="btn-row" style="margin-top:1.3rem">
+    <a class="btn primary" href="index.html">← Zurück zu diastola</a>
+    <a class="btn gold" href="#karten">Karten ansehen</a>
+  </div>
+</section>
+
+<section class="section" id="karten">
+  <div class="section-head">
+    <h2>Aktuelle <em>Lernkarten</em></h2>
+    <span class="section-count">3 Themen — wächst weiter ↗</span>
+  </div>
+  <div class="cards-grid">
+    <a href="hyponatriaemie.html" class="kcard c-gold">
+      <div class="kcard-icon" style="background:#faf4e3">
+        <svg width="22" height="22" viewBox="0 0 22 22" fill="none" aria-hidden="true">
+          <path d="M7 3h8M9 3v5.2l-4.7 7.6A3 3 0 0 0 6.9 20h8.2a3 3 0 0 0 2.6-4.2L13 8.2V3" stroke="var(--gold)" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M6.5 15h9" stroke="var(--red)" stroke-width="1.2" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <h3 class="kcard-title">Hyponatriämie</h3>
+      <p class="kcard-desc">Algorithmus für die Normalstation: Triage, echte hypotone Hyponatriämie bestätigen, Volumenstatus, SIADH vs. Herzinsuffizienz, COPD/BGA und Korrektur-Rechner.</p>
+      <div class="kcard-tags"><span class="tag gold">Elektrolyte</span><span class="tag gray">Algorithmus</span><span class="tag red">Sicherheit</span></div>
+    </a>
+
+    <a href="pulmonale_hypertonie.html" class="kcard c-teal">
+      <div class="kcard-icon" style="background:#eef6f2">
+        <svg width="22" height="22" viewBox="0 0 22 22" fill="none" aria-hidden="true">
+          <path d="M11 3c-2.3 0-3.6 1.7-3.6 3.6 0 1.3.7 2.2 1.5 3.1.9 1 1.4 1.8 1.4 3v5.2M11 3c2.3 0 3.6 1.7 3.6 3.6 0 1.3-.7 2.2-1.5 3.1-.9 1-1.4 1.8-1.4 3v5.2" stroke="var(--teal)" stroke-width="1.4" stroke-linecap="round"/>
+          <path d="M5.5 8.5c-1.4.4-2.4 1.3-2.4 2.6 0 1.1.7 1.7 1.4 2.3M16.5 8.5c1.4.4 2.4 1.3 2.4 2.6 0 1.1-.7 1.7-1.4 2.3" stroke="var(--teal)" stroke-width="1.3" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <h3 class="kcard-title">Pulmonale Hypertonie</h3>
+      <p class="kcard-desc">Definition, prä- vs. postkapillär, ESC/ERS-Gruppen, COPD vs. CTEPH, Diagnostik-Algorithmus und Therapieprinzipien mit Stationsfall.</p>
+      <div class="kcard-tags"><span class="tag teal">Rechtsherz</span><span class="tag gray">CTEPH</span><span class="tag teal">RHK</span></div>
+    </a>
+
+    <a href="dressler_syndrom.html" class="kcard c-red">
+      <div class="kcard-icon" style="background:#fdf3ef">
+        <svg width="22" height="22" viewBox="0 0 22 22" fill="none" aria-hidden="true">
+          <path d="M11 18.5S3.5 13.5 3.5 8.2C3.5 5.6 5.4 4 7.4 4c1.5 0 2.8.9 3.6 2.3C11.8 4.9 13.1 4 14.6 4c2 0 3.9 1.6 3.9 4.2 0 1.3-.5 2.5-1.2 3.6" stroke="var(--red)" stroke-width="1.4" stroke-linejoin="round"/>
+          <path d="M12.5 12.5h2l1.3 3 1.7-6 1.2 3h1.3" stroke="var(--red)" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+        </svg>
+      </div>
+      <h3 class="kcard-title">Dressler-Syndrom</h3>
+      <p class="kcard-desc">Post-cardiac injury syndrome: verzögerte autoimmune Perikarditis nach MI, OP, TAVI, Ablation oder Trauma — Klinik, Differenzialdiagnosen und Therapie.</p>
+      <div class="kcard-tags"><span class="tag red">Perikard</span><span class="tag gray">DD-Reflex</span><span class="tag red">Colchicin</span></div>
+    </a>
+  </div>
+  <div class="note"><b>Prinzip:</b> Neue kleine Themen später einfach als weitere Karte hier hinzufügen — zum Beispiel Leberwerte, COPD &amp; Herz, CTEPH, Rechtsherzbelastung oder Stations-Conduites.</div>
+</section>
+
+<footer>
+  <span>Dia<em style="color:var(--red);font-style:italic">stola</em> · aus der Weiterbildung</span>
+  <span><strong>Aus der Station gelernt</strong> · wächst mit jedem Fall</span>
+</footer>
+</body>
+</html>

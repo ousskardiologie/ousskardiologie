@@ -622,6 +622,7 @@ a:focus-visible, button:focus-visible {
   <a href="ekg/index.html" onclick="mobClose()" style="display:flex;align-items:center;gap:12px;padding:13px 1.3rem;font-size:15px;font-weight:500;color:var(--ink);text-decoration:none;border-bottom:1px solid var(--line);min-height:50px">📈 EKG-Tachykardien</a>
   <a href="doppler/index.html" onclick="mobClose()" style="display:flex;align-items:center;gap:12px;padding:13px 1.3rem;font-size:15px;font-weight:500;color:var(--ink);text-decoration:none;border-bottom:1px solid var(--line);min-height:50px">🔊 Doppler Guide</a>
   <a href="notes/index.html" onclick="mobClose()" style="display:flex;align-items:center;gap:12px;padding:13px 1.3rem;font-size:15px;font-weight:500;color:var(--ink);text-decoration:none;border-bottom:1px solid var(--line);min-height:50px">✏️ Meine Notizen</a>
+  <a href="station_gelernt.html" onclick="mobClose()" style="display:flex;align-items:center;gap:12px;padding:13px 1.3rem;font-size:15px;font-weight:600;color:var(--gold);text-decoration:none;border-bottom:1px solid var(--line);min-height:50px;background:#fdf6e4">🧠 Aus der Station gelernt</a>
   <a href="usic_cheatsheet_de.html" onclick="mobClose()" style="display:flex;align-items:center;gap:12px;padding:13px 1.3rem;font-size:15px;font-weight:700;color:var(--red);text-decoration:none;border-bottom:1px solid var(--line);min-height:50px;background:#fdf3ef">🫀 USIC Intensivstation</a>
   <a href="notfall.html" onclick="mobClose()" style="display:flex;align-items:center;gap:12px;padding:13px 1.3rem;font-size:15px;font-weight:600;color:var(--red);text-decoration:none;border-bottom:1px solid var(--line);min-height:50px">🚨 Notfallmedikamente</a>
   <a href="arztbrief_hub.html" onclick="mobClose()" style="display:flex;align-items:center;gap:12px;padding:13px 1.3rem;font-size:15px;font-weight:600;color:var(--navy);text-decoration:none;border-bottom:1px solid var(--line);min-height:50px">📝 Arztbrief-Hub</a>
@@ -704,6 +705,7 @@ window.addEventListener('resize',function(){if(window.innerWidth>860)mobClose();
     <a href="doppler/index.html"        class="hbtn hbtn-navy">🔊 Doppler</a>
     <a href="ekg/index.html"            class="hbtn hbtn-blue">📈 EKG-Tachykardien</a>
     <a href="notes/index.html"          class="hbtn hbtn-gold">✏️ Notizen</a>
+    <a href="station_gelernt.html"      class="hbtn hbtn-gold">🧠 Aus der Station</a>
     <a href="kardiologie_sop.html"      class="hbtn hbtn-sop">📋 Kardio-SOPs</a>
     <a href="kardiometabolik.html"      class="hbtn hbtn-teal">🩺 Kardiometabolik</a>
     <a href="arztbrief_hub.html"        class="hbtn hbtn-navy">📝 Arztbrief-Hub</a>
@@ -715,8 +717,8 @@ window.addEventListener('resize',function(){if(window.innerWidth>860)mobClose();
   <div class="section-lbl">Überblick</div>
   <div class="stats-grid">
     <div class="stat-card">
-      <span class="stat-val r">11</span>
-      <span class="stat-lbl">Module</span>
+      <span class="stat-val r">16</span>
+      <span class="stat-lbl">Bereiche</span>
     </div>
     <div class="stat-card">
       <span class="stat-val">20+</span>
@@ -731,8 +733,8 @@ window.addEventListener('resize',function(){if(window.innerWidth>860)mobClose();
       <span class="stat-lbl">Leitlinien 2024</span>
     </div>
     <div class="stat-card">
-      <span class="stat-val">🇩🇪</span>
-      <span class="stat-lbl">Sprache</span>
+      <span class="stat-val">🇩🇿🇩🇪</span>
+      <span class="stat-lbl">Sprachen</span>
     </div>
   </div>
 </div>
@@ -741,7 +743,7 @@ window.addEventListener('resize',function(){if(window.innerWidth>860)mobClose();
 <div class="section" id="module">
   <div class="section-head reveal">
     <h2>Klinische <em>Module</em></h2>
-    <span class="section-count">15 Module — wächst weiter ↗</span>
+    <span class="section-count">16 Bereiche — wächst weiter ↗</span>
   </div>
   <div class="cards-grid">
 
@@ -1025,24 +1027,25 @@ window.addEventListener('resize',function(){if(window.innerWidth>860)mobClose();
         <span class="tag navy">Kopieren &amp; Drucken</span>
       </div>
     </a>
-
-    <!-- Hyponatriämie — Stations-Algorithmus -->
-    <a href="hyponatriaemie.html" id="card-hyponatriaemie" class="kcard c-teal reveal" style="animation-delay:.66s">
-      <div class="kcard-icon" style="background:#eef6f2">
-        <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
-          <path d="M11 2.5c0 0-6 7.2-6 11.1a6 6 0 0 0 12 0c0-3.9-6-11.1-6-11.1z" stroke="var(--teal)" stroke-width="1.4" fill="#eef6f2"/>
-          <path d="M11 8.8v5.6" stroke="var(--teal)" stroke-width="1.4" stroke-linecap="round"/>
-          <path d="M8.6 12 11 14.6 13.4 12" stroke="var(--teal)" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+    <!-- Aus der Station gelernt — Sammelmappe -->
+    <a href="station_gelernt.html" id="card-station-gelernt" class="kcard c-gold reveal" style="animation-delay:.66s">
+      <div class="kcard-icon" style="background:#faf4e3">
+        <svg width="22" height="22" viewBox="0 0 22 22" fill="none" aria-hidden="true">
+          <path d="M5 3.5h9.5a2.5 2.5 0 0 1 2.5 2.5v12.5H6.5A2.5 2.5 0 0 1 4 16V4.5c0-.55.45-1 1-1Z" stroke="var(--gold)" stroke-width="1.4" fill="none"/>
+          <path d="M7 7h7M7 10h6M7 13h4" stroke="var(--gold)" stroke-width="1.2" stroke-linecap="round"/>
+          <path d="M15.5 15.5c1.2-.8 2-1.85 2-3.15A3.25 3.25 0 0 0 14.25 9" stroke="var(--red)" stroke-width="1.25" stroke-linecap="round"/>
+          <path d="M14.2 8.9l1.1-.9M14.2 8.9l1 .95" stroke="var(--red)" stroke-width="1.25" stroke-linecap="round"/>
         </svg>
       </div>
-      <h3 class="kcard-title">Hyponatriämie — Algorithmus</h3>
-      <p class="kcard-desc">Stations-Algorithmus zur Hyponatriämie: Notfall-Triage, Bestätigung der hypotonen Form, Klassifikation nach Volumenstatus (hypo-/eu-/hypervoläm), SIADH vs. Herzinsuffizienz, BGA-Muster bei COPD und ein Adrogué-Madias-Korrekturrechner (Schätzung). Erklärtext auf Französisch, Fachbegriffe deutsch.</p>
+      <h3 class="kcard-title">Aus der Station gelernt</h3>
+      <p class="kcard-desc">Sammelmappe für kurze klinische Lernnotizen aus Visite, Befunden und Diensten — aktuell: Hyponatriämie, pulmonale Hypertonie und Dressler-Syndrom. Hier kannst du später neue Themen hinzufügen, ohne die Startseite zu überladen.</p>
       <div class="kcard-tags">
-        <span class="tag teal">Volumenstatus</span>
-        <span class="tag gray">Adrogué-Madias</span>
-        <span class="tag teal">Rechner</span>
+        <span class="tag gold">3 Notizen</span>
+        <span class="tag gray">Station</span>
+        <span class="tag gold">wächst weiter</span>
       </div>
     </a>
+
 
   </div>
 </div>

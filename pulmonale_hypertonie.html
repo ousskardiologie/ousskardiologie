@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pulmonale Hypertonie · Weiterbildung · diastola.de</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400&family=Caveat:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --parchment:#faf6ee; --paper:#fffdf7; --ink:#2b2620; --ink-soft:#5c544a;
+  --red:#c8303a; --red-soft:#fdf0f0; --red-line:#e8c2c4;
+  --amber:#b07d2b; --amber-soft:#fbf3e2;
+  --teal:#2f6f6a; --teal-soft:#e9f2f1;
+  --navy:#2d4a6b; --navy-soft:#eaf0f6;
+  --line:#d8cfbf;
+  --shadow:0 2px 0 rgba(43,38,32,.08), 0 12px 28px -18px rgba(43,38,32,.28);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:20px}
+body{
+  font-family:'DM Sans',system-ui,sans-serif;
+  background-color:var(--parchment);
+  background-image:radial-gradient(rgba(43,38,32,.10) 1px, transparent 1.5px);
+  background-size:22px 22px;
+  color:var(--ink); line-height:1.62; -webkit-font-smoothing:antialiased;
+  padding:22px 16px 70px;
+}
+::selection{background:var(--red);color:#fff}
+.wrap{max-width:920px;margin:0 auto}
+.sketch{border:1.5px solid var(--ink);border-radius:255px 15px 225px 15px / 15px 225px 15px 255px}
+
+.backlink{display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:600;color:var(--ink-soft);text-decoration:none;margin-bottom:14px}
+.backlink:hover{color:var(--red)}
+.eyebrow{font-size:11px;letter-spacing:2.4px;text-transform:uppercase;color:var(--ink-soft);font-weight:700}
+h1{font-family:'Cormorant Garamond',serif;font-weight:500;font-size:40px;line-height:1.05;margin:4px 0 0}
+h1 em{font-style:italic;color:var(--red)}
+.lead{margin:8px 0 0;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:19px;color:var(--ink-soft)}
+.disclaimer{margin:16px 0 6px;background:var(--amber-soft);border:1px solid var(--line);border-left:4px solid var(--amber);border-radius:8px;padding:10px 14px;font-size:13px;color:#6a4d18}
+
+section{background:var(--paper);border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow);padding:26px 30px;margin-top:22px}
+h2{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:26px;margin:0 0 4px;display:flex;align-items:baseline;gap:10px}
+h2 .num{font-family:'Caveat',cursive;font-size:26px;color:var(--red)}
+h2 + .sub{color:var(--ink-soft);font-size:14px;margin-bottom:14px}
+h3{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:20px;margin:18px 0 8px;color:var(--ink)}
+p{margin:0 0 10px}
+.hl{background:rgba(200,48,58,.12);padding:0 3px;border-radius:3px;font-weight:600}
+.def{background:var(--red-soft);border:1px solid var(--red-line);border-radius:10px;padding:14px 16px;margin:10px 0}
+.def b{color:var(--red)}
+
+ul{list-style:none;margin:0 0 10px;padding:0}
+li{position:relative;padding:3px 0 3px 18px;color:var(--ink-soft)}
+li::before{content:"";position:absolute;left:2px;top:12px;width:7px;height:2px;background:var(--red);border-radius:2px}
+li b{color:var(--ink)}
+
+table{width:100%;border-collapse:collapse;margin:10px 0 6px;font-size:13.5px}
+th,td{border:1px solid var(--line);padding:8px 10px;text-align:left;vertical-align:top}
+th{background:var(--navy-soft);font-weight:700;color:var(--navy);font-family:'DM Sans',sans-serif}
+tr:nth-child(even) td{background:#fbf8f1}
+.tag{display:inline-block;font-size:11px;font-weight:700;padding:2px 9px;border-radius:999px;margin:2px 3px 2px 0}
+.tag.g1{background:#e9f2f1;color:var(--teal)}
+.tag.g2{background:var(--navy-soft);color:var(--navy)}
+.tag.g3{background:var(--amber-soft);color:var(--amber)}
+.tag.g4{background:var(--red-soft);color:var(--red-deep,#a8262f)}
+.tag.g5{background:#efeae0;color:var(--ink-soft)}
+
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:10px 0}
+.box{border:1px dashed var(--line);border-radius:10px;padding:12px 14px}
+.box h4{font-size:13.5px;font-weight:700;margin:0 0 6px}
+.box.red{border-color:var(--red-line);background:var(--red-soft)}
+.box.teal{border-color:#bcdad6;background:var(--teal-soft)}
+
+.case{background:#fbf3e2;border:1px solid var(--line);border-left:4px solid var(--amber);border-radius:10px;padding:16px 18px;margin-top:12px}
+.case .badge{font-family:'Caveat',cursive;font-size:19px;color:var(--amber);font-weight:700}
+.merk{margin-top:16px;background:var(--paper);border:1.5px solid var(--ink);border-radius:225px 12px 200px 12px / 12px 200px 12px 225px;padding:12px 16px}
+.merk .m-label{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--ink-soft);font-weight:700;margin-bottom:3px}
+.merk .m-text{font-family:'Cormorant Garamond',serif;font-size:18px;font-style:italic}
+
+.foot{margin:28px auto 0;font-size:11.5px;color:var(--ink-soft);text-align:center;line-height:1.6}
+.brand{font-family:'Caveat',cursive;font-size:18px;color:var(--red);font-weight:700}
+@media (max-width:640px){.grid{grid-template-columns:1fr}h1{font-size:32px}section{padding:20px 18px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <a class="backlink" href="station_gelernt.html">&larr; Zurück zu Aus der Station gelernt</a>
+  <div class="eyebrow">diastola.de · Weiterbildung · Rechtsherz &amp; Kreislauf</div>
+  <h1>Pulmonale <em>Hypertonie</em></h1>
+  <p class="lead">Definition, Klassifikation, Diagnostik-Algorithmus und Therapieprinzipien — mit dem Stationsfall, der dahintersteht.</p>
+  <div class="disclaimer">Lernnotiz zur eigenen Weiterbildung. Orientierung an den ESC/ERS-Leitlinien 2022. Grenzwerte und Therapie vor klinischer Anwendung an aktuelle Leitlinie und Fachinformation anpassen.</div>
+
+  <!-- 1 Definition -->
+  <section>
+    <h2><span class="num">1.</span> Definition</h2>
+    <div class="def">
+      <p><b>Pulmonale Hypertonie (PH):</b> Ruhe-Mitteldruck in der Pulmonalarterie <span class="hl">mPAP &gt; 20 mmHg</span> (invasiv im Rechtsherzkatheter gemessen; ESC/ERS 2022, zuvor ≥ 25 mmHg).</p>
+      <p style="margin:0"><b>Pulmonale arterielle Hypertonie (PAH), präkapillär:</b> mPAP &gt; 20 mmHg <b>und</b> PAWP ≤ 15 mmHg <b>und</b> PVR &gt; 2 Wood-Einheiten.</p>
+    </div>
+    <p>Der entscheidende Trennschnitt ist prä- vs. postkapillär — er entscheidet über die gesamte weitere Abklärung und Therapie und lässt sich nur invasiv sicher treffen.</p>
+    <h3>Prä- vs. postkapillär</h3>
+    <table>
+      <tr><th>Parameter</th><th>präkapillär</th><th>isoliert postkapillär</th><th>kombiniert prä-/postkapillär</th></tr>
+      <tr><td>mPAP</td><td>&gt; 20 mmHg</td><td>&gt; 20 mmHg</td><td>&gt; 20 mmHg</td></tr>
+      <tr><td>PAWP</td><td><b>≤ 15</b></td><td><b>&gt; 15</b></td><td><b>&gt; 15</b></td></tr>
+      <tr><td>PVR</td><td><b>&gt; 2 WU</b></td><td>≤ 2 WU</td><td>&gt; 2 WU</td></tr>
+      <tr><td>Grundproblem</td><td>Lungengefäße / Lunge / Thromben</td><td>Linksherz (Rückstau)</td><td>Linksherz + Gefäßumbau</td></tr>
+    </table>
+    <p style="font-size:13px;color:var(--ink-soft)"><b>Merke:</b> PAWP (Wedge-Druck) ist der Stellvertreter für den linksatrialen Druck. Niedrig = das Problem sitzt <em>vor</em> den Kapillaren (Lunge/Gefäße); hoch = das Problem sitzt <em>dahinter</em> (Linksherz).</p>
+  </section>
+
+  <!-- 2 Klassifikation -->
+  <section>
+    <h2><span class="num">2.</span> Klassifikation — die 5 Gruppen</h2>
+    <p class="sub">Nach ESC/ERS. Die Gruppe bestimmt die Therapie — deshalb steht die Zuordnung am Anfang, nicht am Ende.</p>
+    <table>
+      <tr><th>Gruppe</th><th>Entität</th><th>Hämodynamik</th><th>Beispiele</th></tr>
+      <tr><td><span class="tag g1">1</span></td><td>PAH (pulmonal-arteriell)</td><td>präkapillär</td><td>idiopathisch, hereditär, bei Bindegewebserkrankung (z. B. Sklerodermie), HIV, portopulmonal, Medikamente/Toxine</td></tr>
+      <tr><td><span class="tag g2">2</span></td><td>PH bei Linksherzerkrankung</td><td>postkapillär</td><td>HFrEF, HFpEF, Klappenvitien — <b>häufigste Ursache</b></td></tr>
+      <tr><td><span class="tag g3">3</span></td><td>PH bei Lungenerkrankung / Hypoxie</td><td>präkapillär</td><td>COPD, Lungenfibrose, Schlafapnoe, Höhe</td></tr>
+      <tr><td><span class="tag g4">4</span></td><td>CTEPH &amp; Pulmonalarterien-Obstruktion</td><td>präkapillär</td><td>chronisch-thromboembolisch nach Lungenembolie</td></tr>
+      <tr><td><span class="tag g5">5</span></td><td>unklar / multifaktoriell</td><td>variabel</td><td>Sarkoidose, hämolytische Anämien, metabolisch, chronische Niereninsuffizienz</td></tr>
+    </table>
+    <div class="grid">
+      <div class="box red"><h4>Nicht verwechseln</h4><p style="margin:0;font-size:13px">Gruppe 2 (Linksherz) ist <b>postkapillär</b> (PAWP &gt; 15). Nur die Gruppen 1, 3, 4 sind klassisch <b>präkapillär</b>. Bei präkapillärer PH ist die Linksherzursache also bereits ausgeschlossen.</p></div>
+      <div class="box teal"><h4>Warum die Gruppe alles entscheidet</h4><p style="margin:0;font-size:13px">Spezifische PAH-Medikamente wirken nur bei Gruppe 1 (und teils 4). Bei Gruppe 2/3 wird die <b>Grunderkrankung</b> behandelt — PAH-Therapeutika können hier sogar schaden.</p></div>
+    </div>
+  </section>
+
+  <!-- 3 Diagnostik -->
+  <section>
+    <h2><span class="num">3.</span> Diagnostischer Algorithmus</h2>
+    <p class="sub">Vom Verdacht zum Rechtsherzkatheter — Echo triggert, RHK bestätigt.</p>
+    <ul>
+      <li><b>Verdacht:</b> Belastungsdyspnoe, Leistungsminderung, später Zeichen der Rechtsherzbelastung (Beinödeme, Halsvenenstauung, betonter 2. Herzton).</li>
+      <li><b>Echokardiographie (Screening):</b> geschätzter sPAP, RV-Dilatation, TAPSE, Trikuspidalinsuffizienz, D-Shape des LV. Legt die PH-Wahrscheinlichkeit fest — beweist die PH aber nicht.</li>
+      <li><b>Basis-Abklärung:</b> EKG (Rechtsherzbelastung), Röntgen-Thorax, Lungenfunktion mit <b>DLCO</b>, BGA, NT-proBNP, Labor (inkl. Autoimmun-Serologie, HIV, Leber).</li>
+      <li><b>V/Q-Szintigraphie:</b> Pflicht zum <b>CTEPH-Ausschluss (Gruppe 4)</b> — sensitiver als CT; ein normales Szintigramm schließt CTEPH praktisch aus.</li>
+      <li><b>Rechtsherzkatheter (Goldstandard):</b> misst mPAP, PAWP, PVR, HZV — trennt prä-/postkapillär und sichert die Diagnose. Ggf. Vasoreagibilitätstest bei V. a. idiopathische PAH.</li>
+    </ul>
+    <div class="merk"><div class="m-label">Reflex</div><div class="m-text">Echo stellt den Verdacht, der Rechtsherzkatheter stellt die Diagnose. Und: keine präkapilläre PH ohne V/Q-Szintigraphie.</div></div>
+  </section>
+
+  <!-- 4 Therapie -->
+  <section>
+    <h2><span class="num">4.</span> Therapieprinzipien</h2>
+    <ul>
+      <li><b>Gruppe 1 (PAH):</b> spezifische Therapie entlang von 3 Signalwegen — Endothelin-Rezeptor-Antagonisten (z. B. Macitentan), PDE-5-Hemmer / sGC-Stimulator (Sildenafil / Riociguat), Prostazyklin-Analoga (z. B. Treprostinil). Risiko-adaptierte initiale Kombinationstherapie.</li>
+      <li><b>Gruppe 2 (Linksherz):</b> <b>keine</b> PAH-Medikamente — Optimierung der Herzinsuffizienz-/Klappentherapie.</li>
+      <li><b>Gruppe 3 (Lunge):</b> Behandlung der Grunderkrankung, Sauerstoff-Langzeittherapie bei Hypoxämie.</li>
+      <li><b>Gruppe 4 (CTEPH):</b> <b>dauerhafte Antikoagulation</b>; kurative Option pulmonale Endarteriektomie (PEA), sonst Ballon-Pulmonalangioplastie (BPA) und/oder Riociguat.</li>
+      <li><b>Allgemein:</b> Diuretika bei Rechtsherzstauung, Rehabilitation, Impfungen, Vorstellung im <b>PH-Zentrum</b> zur Einordnung und Therapiesteuerung.</li>
+    </ul>
+    <div class="box red"><h4>Wichtigste Weiche</h4><p style="margin:0;font-size:13px">Vor jeder spezifischen PAH-Therapie muss die Gruppe feststehen. Gruppe 2/3 sind <b>keine</b> Indikation für PAH-Medikamente — die Zuordnung ist eine Zentrumsentscheidung.</p></div>
+  </section>
+
+  <!-- 5 Stationsfall -->
+  <section>
+    <h2><span class="num">5.</span> Der Stationsfall dahinter</h2>
+    <p class="sub">Die Patientin, an der ich das gelernt habe.</p>
+    <div class="case">
+      <div class="badge">Fallvignette</div>
+      <p style="margin-top:6px"><b>Vorgeschichte:</b> Z. n. Lungenembolie, Z. n. Nierenzellkarzinom, Z. n. Mammakarzinom, COPD, Struma nodosa, Steatosis hepatis.</p>
+      <p><b>Echo 1:</b> Zeichen der Rechtsherzbelastung; Mitralklappe mittelgradig insuffizient, Aortenklappe leichtgradig insuffizient, Trikuspidalklappe mittelgradig insuffizient.</p>
+      <p><b>Echo 2 (Verlauf):</b> erneut Rechtsherzbelastung, zusätzlich sklerosiertes Moderatorband.</p>
+      <p style="margin:0"><b>Rechtsherzkatheter:</b> Nachweis einer <span class="hl">präkapillären pulmonalen Hypertonie</span>.</p>
+    </div>
+    <h3>Wie ich den Fall einordne</h3>
+    <ul>
+      <li>Präkapillär = Linksherz (Gruppe 2) als führende Ursache <b>ausgeschlossen</b> (PAWP ≤ 15).</li>
+      <li>Bei <b>Z. n. Lungenembolie</b> steht die <b>CTEPH (Gruppe 4)</b> ganz oben → <b>V/Q-Szintigraphie</b> ist der nächste Schritt; die dauerhafte Antikoagulation wird fortgeführt.</li>
+      <li>Bei bekannter <b>COPD</b> zusätzlich möglicher <b>Gruppe-3-Anteil</b> → Lungenfunktion mit DLCO zur Gewichtung.</li>
+      <li>Das <b>sklerosierte Moderatorband</b> und die RV-Belastung sind Ausdruck des chronisch erhöhten Nachlast-Drucks im rechten Ventrikel, nicht die Ursache.</li>
+      <li>Konsequenz: <b>keine</b> spezifische PAH-Therapie im Haus — Einordnung (Gruppe 4 vs. 3) und Therapieentscheidung im <b>PH-Zentrum</b>.</li>
+    </ul>
+    <div class="merk"><div class="m-label">Take-home</div><div class="m-text">Präkapilläre PH + Z. n. Lungenembolie = an CTEPH denken, V/Q-Szintigraphie anfordern, antikoagulieren, ins PH-Zentrum.</div></div>
+  </section>
+
+  <div class="foot"><span class="brand">diastola.de</span><br>Weiterbildung Kardiologie · Orientierung an ESC/ERS-Leitlinien 2022. Grenzwerte und Therapie vor Anwendung prüfen.</div>
+</div>
+</body>
+</html>
