@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Aus der Station gelernt · diastola.de</title>
-<meta name="description" content="Sammelmappe für kurze klinische Lernnotizen aus der kardiologischen Normalstation: Hyponatriämie, pulmonale Hypertonie, Dressler-Syndrom und weitere Fälle.">
+<meta name="description" content="Sammelmappe für kurze klinische Lernnotizen aus der kardiologischen Normalstation: Hyponatriämie, pulmonale Hypertonie, Dressler-Syndrom, TAVI Heart-Team, Myokardbiopsie und Synkope/Schrittmacher.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500;600;700&family=Caveat:wght@500;600;700&display=swap" rel="stylesheet">
@@ -41,6 +41,10 @@ h1{font-family:var(--serif);font-size:clamp(3rem,5vw,5rem);font-weight:300;line-
 .cards-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px}.kcard{border:1.5px solid var(--line2);border-radius:var(--r);background:var(--card);padding:1.5rem;text-decoration:none;color:var(--ink);display:flex;flex-direction:column;gap:.55rem;transition:box-shadow .22s,transform .22s;position:relative;overflow:hidden;box-shadow:var(--sh);min-height:250px}.kcard::before{content:'';position:absolute;top:7px;left:1.3rem;right:1.3rem;height:7px;background-repeat:repeat-x;background-size:40px 7px;opacity:0;transition:opacity .3s}.kcard:hover{box-shadow:var(--sh-md);transform:translateY(-3px) rotate(-.3deg)}.kcard:hover::before{opacity:1}.kcard.c-gold::before{background-image:var(--wave-gold)}.kcard.c-red::before{background-image:var(--wave-red)}.kcard.c-teal::before{background-image:var(--wave-teal)}
 .kcard-icon{width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0;border:1px solid rgba(74,60,38,.08)}.kcard-title{font-family:var(--serif);font-size:1.35rem;font-weight:400;line-height:1.2}.kcard-desc{font-size:.84rem;color:var(--ink2);line-height:1.7;flex:1}.kcard-tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:.3rem}.tag{display:inline-flex;align-items:center;padding:2px 10px;border-radius:var(--r-sketch);font-size:.71rem;font-weight:700;border:1.2px solid;background:transparent}.tag.red{color:var(--red);border-color:rgba(200,48,58,.40)}.tag.gold{color:var(--gold);border-color:rgba(151,116,46,.45)}.tag.teal{color:var(--teal);border-color:rgba(17,117,108,.42)}.tag.gray{color:var(--ink2);border-color:var(--line2)}
 .note{margin-top:22px;background:#fff4bd;border:1.5px dashed rgba(151,116,46,.55);border-radius:8px;padding:1rem 1.2rem;color:var(--ink2);max-width:760px}.note b{color:var(--ink)}
+
+.station-notes{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:18px;margin-top:22px}.station-note{background:var(--card);border:1.5px solid var(--line2);border-radius:var(--r);box-shadow:var(--sh);padding:1.45rem;position:relative;overflow:hidden}.station-note::before{content:'';position:absolute;top:7px;left:1.3rem;right:1.3rem;height:7px;background:var(--wave-gold) repeat-x;background-size:40px 7px;opacity:.85}.station-note.red::before{background-image:var(--wave-red)}.station-note.teal::before{background-image:var(--wave-teal)}.station-note.wide{grid-column:1 / -1}.station-note h3{font-family:var(--serif);font-size:1.35rem;font-weight:400;line-height:1.2;margin-top:.35rem}.station-note .sub{font-size:.84rem;color:var(--ink2);line-height:1.7;margin:.45rem 0 1rem}.reason-list{display:grid;gap:10px;margin-top:.6rem}.reason-item{border:1px solid var(--line);border-radius:10px;background:#fffaf0;padding:.78rem .9rem}.reason-item b{display:block;color:var(--ink);font-size:.86rem;margin-bottom:.2rem}.reason-item span{display:block;color:var(--ink2);font-size:.82rem;line-height:1.55}.two-col{display:grid;grid-template-columns:1fr 1fr;gap:12px}.mini-box{border:1.3px dashed var(--line2);border-radius:12px;padding:.9rem;background:rgba(250,246,238,.55)}.mini-box h4{font-size:.78rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--gold);margin-bottom:.35rem}.mini-box ul{list-style:none;display:grid;gap:.25rem}.mini-box li{font-size:.83rem;color:var(--ink2);line-height:1.55;padding-left:1rem;position:relative}.mini-box li::before{content:'–';position:absolute;left:0;color:var(--red);font-weight:800}.warn-note{margin-top:1rem;border:1.5px dashed rgba(200,48,58,.5);background:#fdf3ef;border-radius:12px;padding:.85rem 1rem;color:var(--ink2);font-size:.84rem}.warn-note b{color:var(--red)}
+@media(max-width:760px){.two-col{grid-template-columns:1fr}.station-note.wide{grid-column:auto}.station-notes{grid-template-columns:1fr}}
+
 footer{padding:2rem 2.5rem;display:flex;align-items:center;justify-content:space-between;font-size:.78rem;color:var(--ink3)}footer strong{color:var(--red);font-weight:600}
 @media(max-width:860px){body::after{display:none}.nav-links{display:none}.nav-badge{display:none}}@media(max-width:600px){.topnav{padding:0 1rem}.hero,.section{padding-left:1rem;padding-right:1rem}h1{font-size:2.65rem}footer{flex-direction:column;gap:.5rem;text-align:center}}
 </style>
@@ -73,7 +77,7 @@ footer{padding:2rem 2.5rem;display:flex;align-items:center;justify-content:space
 <section class="section" id="karten">
   <div class="section-head">
     <h2>Aktuelle <em>Lernkarten</em></h2>
-    <span class="section-count">3 Themen — wächst weiter ↗</span>
+    <span class="section-count">6 Themen — wächst weiter ↗</span>
   </div>
   <div class="cards-grid">
     <a href="hyponatriaemie.html" class="kcard c-gold">
@@ -111,8 +115,174 @@ footer{padding:2rem 2.5rem;display:flex;align-items:center;justify-content:space
       <p class="kcard-desc">Post-cardiac injury syndrome: verzögerte autoimmune Perikarditis nach MI, OP, TAVI, Ablation oder Trauma — Klinik, Differenzialdiagnosen und Therapie.</p>
       <div class="kcard-tags"><span class="tag red">Perikard</span><span class="tag gray">DD-Reflex</span><span class="tag red">Colchicin</span></div>
     </a>
+
+    <a href="#tavi-heart-team" class="kcard c-gold">
+      <div class="kcard-icon" style="background:#faf4e3">
+        <svg width="22" height="22" viewBox="0 0 22 22" fill="none" aria-hidden="true">
+          <path d="M4 17h14M7 17V8l4-3 4 3v9" stroke="var(--gold)" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M8.5 11h5M8.5 14h5" stroke="var(--red)" stroke-width="1.2" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <h3 class="kcard-title">TAVI Heart-Team</h3>
+      <p class="kcard-desc">Was vorzustellen ist: Symptome, Dringlichkeit, Echo-Werte, EF, Koronaren, Vorerkrankungen, Kardio-CT-Messungen, Anatomie und Mobilität/Frailty.</p>
+      <div class="kcard-tags"><span class="tag gold">TAVI</span><span class="tag gray">Heart-Team</span><span class="tag red">Synkope</span></div>
+    </a>
+
+    <a href="#myokardbiopsie" class="kcard c-red">
+      <div class="kcard-icon" style="background:#fdf3ef">
+        <svg width="22" height="22" viewBox="0 0 22 22" fill="none" aria-hidden="true">
+          <path d="M11 18.5S4 13.8 4 8.3C4 5.8 5.8 4.2 7.8 4.2c1.4 0 2.5.8 3.2 2 0.7-1.2 1.8-2 3.2-2 2 0 3.8 1.6 3.8 4.1" stroke="var(--red)" stroke-width="1.4" stroke-linejoin="round"/>
+          <path d="M13 13h5M15.5 10.5v5" stroke="var(--red)" stroke-width="1.3" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <h3 class="kcard-title">Nach Myokardbiopsie</h3>
+      <p class="kcard-desc">PE-Ausschluss/Echo nach Hausstandard, gezielte Laborkontrolle mit BB, Krea, K und Na — Troponin nicht routinemäßig ohne klare Fragestellung.</p>
+      <div class="kcard-tags"><span class="tag red">Biopsie</span><span class="tag gray">Kontrolle</span><span class="tag red">kein Troponin</span></div>
+    </a>
+
+    <a href="#synkope-schrittmacher" class="kcard c-teal">
+      <div class="kcard-icon" style="background:#eef6f2">
+        <svg width="22" height="22" viewBox="0 0 22 22" fill="none" aria-hidden="true">
+          <rect x="5" y="4" width="12" height="14" rx="3" stroke="var(--teal)" stroke-width="1.4"/>
+          <path d="M9 8h4M9 11h4M11 18v2" stroke="var(--teal)" stroke-width="1.2" stroke-linecap="round"/>
+          <path d="M3 10c-1.2 1.3-1.2 3.1 0 4.4M19 10c1.2 1.3 1.2 3.1 0 4.4" stroke="var(--red)" stroke-width="1.1" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <h3 class="kcard-title">Synkope &amp; Schrittmacher</h3>
+      <p class="kcard-desc">Bei Synkope mit Device: Schrittmacherabfrage, Austestung, gespeicherte Episoden, EKG, Orthostase und Echo/TEE nur bei gezielter Fragestellung.</p>
+      <div class="kcard-tags"><span class="tag teal">Synkope</span><span class="tag gray">Device</span><span class="tag teal">Austestung</span></div>
+    </a>
   </div>
   <div class="note"><b>Prinzip:</b> Neue kleine Themen später einfach als weitere Karte hier hinzufügen — zum Beispiel Leberwerte, COPD &amp; Herz, CTEPH, Rechtsherzbelastung oder Stations-Conduites.</div>
+
+  <div class="section-head" style="margin-top:2.4rem">
+    <h2>Neue <em>Stationsnotizen</em></h2>
+    <span class="section-count">ohne eigene Detailseite</span>
+  </div>
+  <div class="station-notes">
+
+    <article class="station-note wide" id="tavi-heart-team">
+      <h3>Heart-Team Vorbereitung vor TAVI</h3>
+      <p class="sub">Ziel: im Heart-Team nicht nur „TAVI ja/nein“ sagen, sondern die Indikation, Dringlichkeit, Anatomie, Zugangsweg und Risiken kurz und vollständig präsentieren.</p>
+
+      <div class="reason-list">
+        <div class="reason-item">
+          <b>Warum Symptome zuerst?</b>
+          <span>Symptome zeigen, ob die Aortenstenose klinisch relevant ist. Dyspnoe, Angina, Belastungslimitierung und besonders Synkope machen die Vorstellung dringlicher.</span>
+        </div>
+        <div class="reason-item">
+          <b>Warum TTE/TOE- bzw. Echo-Werte?</b>
+          <span>TTE/TOE-Befunde beweisen die Schwere der Aortenstenose und zeigt das hämodynamische Muster: Aortenklappenöffnungsfläche (AVA), Pmean / mittlerer Gradient, Vmax, LVEF und ggf. low-flow-low-gradient-Konstellation.</span>
+        </div>
+        <div class="reason-item">
+          <b>Warum EF?</b>
+          <span>Die EF beeinflusst Risiko, Dringlichkeit und Interpretation der Gradienten. Bei niedriger EF kann eine schwere AS trotz niedrigerem Gradienten vorliegen.</span>
+        </div>
+        <div class="reason-item">
+          <b>Warum Koronargefäße?</b>
+          <span>Relevante KHK muss vor TAVI erkannt werden: Hauptstamm/proximale Läsionen, mögliche PCI-Indikation und spätere Koronarzugänglichkeit nach Klappenimplantation.</span>
+        </div>
+        <div class="reason-item">
+          <b>Warum Vorerkrankungen?</b>
+          <span>COPD, Niereninsuffizienz/Krea, Frailty, Demenz, Infekt, Blutungsrisiko, Antikoagulation und frühere Herz-OPs verändern Risiko, Narkose, Kontrastmittelstrategie und Entscheidung TAVI vs. OP vs. konservativ.</span>
+        </div>
+        <div class="reason-item">
+          <b>Warum Kardio-CT-Messungen?</b>
+          <span>CT entscheidet, ob die Anatomie geeignet ist und welche Klappengröße passt: Annulus-Fläche/Perimeter, abgeleiteter Diameter, Sinus Valsalva, STJ, Koronarostien-Höhe, Verkalkung, Aortenwurzel und Zugangsgefäße.</span>
+        </div>
+        <div class="reason-item">
+          <b>Warum Anatomie „geeignet / nicht geeignet“?</b>
+          <span>Bicuspidie, sehr niedrige Koronarostien, starke LVOT-/Annulus-Verkalkung, ungünstige Aortenwurzel, kleine/verkalkte Gefäße oder extreme Tortuosität können TAVI erschweren oder eine OP/Alternative nötig machen.</span>
+        </div>
+        <div class="reason-item">
+          <b>Warum Mobilität / „bewegt?“</b>
+          <span>Mobilität und Frailty zeigen, ob der Patient vom Eingriff funktionell profitiert. Nicht nur Überleben zählt, sondern auch Lebensqualität, Rehabilitation und realistisches Therapieziel.</span>
+        </div>
+      </div>
+
+      <div class="two-col" style="margin-top:1rem">
+        <div class="mini-box">
+          <h4>Vor Heart-Team vorbereiten</h4>
+          <ul>
+            <li>Symptome: Dyspnoe, Angina, Synkope, NYHA, Verlauf.</li>
+            <li>Dringlichkeit: Synkope / Dekompensation / instabile Klinik.</li>
+            <li>TTE/TOE: AVA/Öffnungsfläche, Pmean, Vmax, EF, weitere Vitien.</li>
+            <li>Koronarstatus: Koro/CT, relevante Stenosen, PCI-Frage.</li>
+            <li>Vorerkrankungen: COPD, Krea/CKD, Frailty, Infekt, Antikoagulation.</li>
+          </ul>
+        </div>
+        <div class="mini-box">
+          <h4>Kardio-CT für OP/TAVI-Planung</h4>
+          <ul>
+            <li>Annulus: Fläche, Perimeter, Diameter.</li>
+            <li>Sinus Valsalva, STJ, Aorta ascendens.</li>
+            <li>Koronarostien-Höhe und Risiko für Koronarobstruktion.</li>
+            <li>Kalzifikation: Klappe, Annulus, LVOT.</li>
+            <li>Zugang: Femoralgefäße, Durchmesser, Kalk, Tortuosität.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="warn-note"><b>Merke:</b> Synkope bei schwerer Aortenstenose = im Bericht/Heart-Team aktiv erwähnen und Dringlichkeit klar machen.</div>
+    </article>
+
+    <article class="station-note red" id="myokardbiopsie">
+      <h3>Nach Myokardbiopsie</h3>
+      <p class="sub">Kurznotiz für die Nachsorge nach Prozedur: nicht blind Labor bestimmen, sondern gezielt das kontrollieren, was die Entscheidung ändert.</p>
+      <div class="reason-list">
+        <div class="reason-item">
+          <b>Warum PE-Ausschluss anfordern?</b>
+          <span>Nach Myokardbiopsie soll ein Perikarderguss / eine relevante Komplikation aktiv ausgeschlossen werden. Deshalb gezielt Echo/PE-Ausschluss nach Hausstandard veranlassen.</span>
+        </div>
+        <div class="reason-item">
+          <b>Warum BB, Krea, K, Na?</b>
+          <span>BB zeigt Blutung/Entzündung, Krea ist wichtig nach Kontrastmittel/Prozedur und für Medikamente, Kalium und Natrium sind für Rhythmus, Diuretika und klinische Stabilität wichtig.</span>
+        </div>
+        <div class="reason-item">
+          <b>Warum kein Troponin routinemäßig?</b>
+          <span>Troponin kann nach Myokardbiopsie prozedurbedingt erhöht sein. Wenn man es bestimmt, muss man die Erhöhung erklären und von Ischämie abgrenzen — ohne konkrete Fragestellung bringt es meist keinen Nutzen.</span>
+        </div>
+      </div>
+      <div class="warn-note"><b>Merke:</b> Troponin nur bestimmen, wenn es eine klare klinische Frage gibt, z. B. neue Ischämiezeichen, Thoraxschmerz, hämodynamische Instabilität oder neue EKG-Veränderungen.</div>
+    </article>
+
+    <article class="station-note teal" id="synkope-schrittmacher">
+      <h3>Synkope-Patient mit Schrittmacher</h3>
+      <p class="sub">Bei Synkope nicht nur „neurologisch“ denken: Rhythmus, Device-Funktion, Klappenvitien und strukturelle Ursachen aktiv prüfen.</p>
+      <div class="reason-list">
+        <div class="reason-item">
+          <b>Warum Device-Abfrage?</b>
+          <span>Ein Schrittmacher kann Bradykardien verhindern, aber nicht alle Ursachen einer Synkope ausschließen. Abfrage zeigt Batterie, Sensing/Pacing, Elektrodenprobleme, Arrhythmien und gespeicherte Episoden.</span>
+        </div>
+        <div class="reason-item">
+          <b>Warum Schrittmacher-Austestung?</b>
+          <span>Austestung prüft, ob Capture, Sensing und Reizschwellen sicher sind. Das ist wichtig bei Verdacht auf intermittierende Fehlfunktion, Elektrodenproblem oder inadäquate Programmierung.</span>
+        </div>
+        <div class="reason-item">
+          <b>Warum Echo / ggf. TEE?</b>
+          <span>TTE sucht strukturelle Ursachen wie schwere Aortenstenose, reduzierte EF, Perikarderguss oder Rechtsherzbelastung. TEE nur gezielt, wenn TTE nicht reicht oder eine spezielle Frage besteht, z. B. Klappe/Endokarditis/Thrombus.</span>
+        </div>
+      </div>
+      <div class="two-col" style="margin-top:1rem">
+        <div class="mini-box">
+          <h4>Basis bei Synkope</h4>
+          <ul>
+            <li>Anamnese: Situation, Prodromi, Sturz, Belastung, Palpitationen.</li>
+            <li>Vitalwerte, Orthostase/Schellong, 12-Kanal-EKG.</li>
+            <li>Labor gezielt: BB, Elektrolyte, Krea, ggf. Entzündung/Blutung.</li>
+          </ul>
+        </div>
+        <div class="mini-box">
+          <h4>Wenn Schrittmacher vorhanden</h4>
+          <ul>
+            <li>Device-Abfrage mit Episoden-Speicher.</li>
+            <li>Schrittmacher-Austestung: Sensing, Capture, Schwellen.</li>
+            <li>Programmierung / Mode / PM-Abhängigkeit prüfen.</li>
+          </ul>
+        </div>
+      </div>
+    </article>
+
+  </div>
 </section>
 
 <footer>
