@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Aus der Station gelernt · diastola.de</title>
-<meta name="description" content="Sammelmappe für kurze klinische Lernnotizen aus der kardiologischen Normalstation: Hyponatriämie, pulmonale Hypertonie, Dressler-Syndrom, TAVI Heart-Team, Myokardbiopsie und Synkope/Schrittmacher.">
+<meta name="description" content="Sammelmappe für kurze klinische Lernnotizen aus der kardiologischen Normalstation: Hyponatriämie, pulmonale Hypertonie, Dressler-Syndrom, TAVI Heart-Team, Peak-to-peak-Gradient, Myokardbiopsie und Synkope/Schrittmacher.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500;600;700&family=Caveat:wght@500;600;700&display=swap" rel="stylesheet">
@@ -77,7 +77,7 @@ footer{padding:2rem 2.5rem;display:flex;align-items:center;justify-content:space
 <section class="section" id="karten">
   <div class="section-head">
     <h2>Aktuelle <em>Lernkarten</em></h2>
-    <span class="section-count">6 Themen — wächst weiter ↗</span>
+    <span class="section-count">7 Themen — wächst weiter ↗</span>
   </div>
   <div class="cards-grid">
     <a href="hyponatriaemie.html" class="kcard c-gold">
@@ -126,6 +126,18 @@ footer{padding:2rem 2.5rem;display:flex;align-items:center;justify-content:space
       <h3 class="kcard-title">TAVI Heart-Team</h3>
       <p class="kcard-desc">Was vorzustellen ist: Symptome, Dringlichkeit, Echo-Werte, EF, Koronaren, Vorerkrankungen, Kardio-CT-Messungen, Anatomie und Mobilität/Frailty.</p>
       <div class="kcard-tags"><span class="tag gold">TAVI</span><span class="tag gray">Heart-Team</span><span class="tag red">Synkope</span></div>
+    </a>
+
+    <a href="#peak-to-peak-as" class="kcard c-red">
+      <div class="kcard-icon" style="background:#fdf3ef">
+        <svg width="22" height="22" viewBox="0 0 22 22" fill="none" aria-hidden="true">
+          <path d="M4 12h3l1.2-3.5 2.2 7 1.8-6 1.6 2.5H18" stroke="var(--red)" stroke-width="1.45" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M5 18h12M7 4h8" stroke="var(--gold)" stroke-width="1.2" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <h3 class="kcard-title">Peak-to-peak bei AS</h3>
+      <p class="kcard-desc">Invasiver LV-Aorta-Druckgradient im Herzkatheter: wann er hilft, warum er nicht dem Echo-Doppler entspricht und wie man ihn nach TAVI/BAV interpretiert.</p>
+      <div class="kcard-tags"><span class="tag red">Aortenstenose</span><span class="tag gray">Herzkatheter</span><span class="tag gold">TAVI</span></div>
     </a>
 
     <a href="#myokardbiopsie" class="kcard c-red">
@@ -223,6 +235,61 @@ footer{padding:2rem 2.5rem;display:flex;align-items:center;justify-content:space
         </div>
       </div>
       <div class="warn-note"><b>Merke:</b> Synkope bei schwerer Aortenstenose = im Bericht/Heart-Team aktiv erwähnen und Dringlichkeit klar machen.</div>
+    </article>
+
+
+    <article class="station-note wide red" id="peak-to-peak-as">
+      <h3>Peak-to-peak-Gradient bei Aortenklappenstenose</h3>
+      <p class="sub">Kurznotiz für Herzkatheter, TAVI-Besprechung und unklare Aortenstenose: was der invasive Gradient bedeutet — und was er nicht bedeutet.</p>
+
+      <div class="reason-list">
+        <div class="reason-item">
+          <b>Warum messen wir überhaupt einen Druckgradienten?</b>
+          <span>Bei Aortenklappenstenose muss der linke Ventrikel einen höheren systolischen Druck aufbauen, um Blut durch die verengte Aortenklappe auszuwerfen. Dadurch entsteht ein Druckunterschied zwischen linkem Ventrikel und Aorta.</span>
+        </div>
+        <div class="reason-item">
+          <b>Warum heißt es „peak-to-peak“?</b>
+          <span>Gemeint ist die Differenz zwischen dem maximalen systolischen LV-Druck und dem maximalen systolischen Aortendruck im Herzkatheter. Beispiel: LV systolisch 190 mmHg minus Aorta systolisch 130 mmHg = peak-to-peak-Gradient 60 mmHg.</span>
+        </div>
+        <div class="reason-item">
+          <b>Warum nicht direkt mit Echo-Doppler vergleichen?</b>
+          <span>Peak-to-peak ist nicht identisch mit dem maximalen Doppler-Gradienten in der Echokardiographie. Die maximalen Druckwerte in LV und Aorta treten nicht zwingend gleichzeitig auf; deshalb darf man beide Werte nicht 1:1 vergleichen.</span>
+        </div>
+        <div class="reason-item">
+          <b>Warum bleibt Echo trotzdem die wichtigste Untersuchung?</b>
+          <span>Die Schwere der Aortenstenose wird primär echokardiographisch beurteilt: Vmax, mittlerer Gradient / Pmean, Aortenklappenöffnungsfläche / AVA, EF, Stroke Volume und Low-flow-Konstellation.</span>
+        </div>
+        <div class="reason-item">
+          <b>Wann hilft der invasive peak-to-peak-Gradient?</b>
+          <span>Er hilft, wenn Klinik und Echo nicht zusammenpassen: typische Symptome wie Dyspnoe, Angina pectoris oder Synkope, aber keine eindeutig schwere AS im Echo — oder AVA klein, aber Pmean nicht hoch, z. B. bei Verdacht auf Low-flow-low-gradient-Aortenstenose.</span>
+        </div>
+        <div class="reason-item">
+          <b>Warum vor und nach TAVI / Ballonvalvuloplastie?</b>
+          <span>Vor und nach Intervention kann der Gradient zeigen, ob eine hämodynamische Entlastung erreicht wurde. Beispiel: vor TAVI 60 mmHg, nach TAVI 5–10 mmHg spricht für eine gute Entlastung.</span>
+        </div>
+      </div>
+
+      <div class="two-col" style="margin-top:1rem">
+        <div class="mini-box">
+          <h4>Berechnung</h4>
+          <ul>
+            <li>Peak-to-peak = maximaler systolischer LV-Druck − maximaler systolischer Aortendruck.</li>
+            <li>Beispiel: LV 190 mmHg, Aorta 130 mmHg → 60 mmHg.</li>
+            <li>Invasiv gemessen im Herzkatheter zwischen LV und Aorta.</li>
+          </ul>
+        </div>
+        <div class="mini-box">
+          <h4>Echo-Parameter für AS</h4>
+          <ul>
+            <li>Vmax.</li>
+            <li>Mittlerer Gradient / Pmean.</li>
+            <li>Aortenklappenöffnungsfläche / AVA.</li>
+            <li>EF, Stroke Volume, Low-flow-Konstellation.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="warn-note"><b>Merke:</b> Peak-to-peak-Gradient = invasiver Druckgradient zwischen LV und Aorta im Herzkatheter. Er hilft bei unklarer Aortenklappenstenose und zur Kontrolle des Ergebnisses nach TAVI oder Ballonvalvuloplastie — immer zusammen mit Echo, Klinik, EF, Stroke Volume, CT-Kalziumscore und Gesamtsituation beurteilen.</div>
     </article>
 
     <article class="station-note red" id="myokardbiopsie">
