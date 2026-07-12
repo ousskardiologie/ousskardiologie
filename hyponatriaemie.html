@@ -169,11 +169,148 @@ main{padding:35px 0 90px}
 .pearl{margin-top:18px;border:1.5px dashed var(--teal);background:var(--teal-soft);padding:14px 17px;border-radius:14px 5px 14px 5px;font-size:.9rem;color:var(--ink-soft)}
 .pearl b{color:var(--teal)}
 
-/* focus mode */
-body.case-mode .node,body.case-mode .branch-mark{opacity:.16;filter:saturate(.35)}
-body.case-mode [data-case="1"]{opacity:1;filter:none;transform:translateY(-1px)}
-body.case-mode .node[data-case="1"]{border-color:var(--red);box-shadow:0 0 0 3px color-mix(in srgb,var(--red) 18%,transparent),var(--shadow)}
-body.case-mode .flowboard{background:color-mix(in srgb,var(--red-soft) 18%,var(--paper))}
+/* interactive algorithm + route focus */
+.patient-evaluator{margin:22px 0 28px;background:var(--paper);border:1.7px solid var(--ink);border-radius:var(--sketch);padding:24px;box-shadow:var(--shadow);scroll-margin-top:92px}
+.eval-head{display:flex;justify-content:space-between;align-items:flex-start;gap:18px;flex-wrap:wrap}
+.eval-head h2{font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:600;line-height:1.02}
+.eval-head p{max-width:780px;color:var(--ink-soft);font-size:.92rem;margin-top:6px}
+.eval-stamp{font-family:'Caveat',cursive;color:var(--red);font-size:1.15rem;border:1.5px dashed var(--red);border-radius:999px;padding:4px 12px;transform:rotate(1deg);white-space:nowrap}
+.eval-topbar{display:grid;grid-template-columns:minmax(180px,.7fr) minmax(0,1.3fr);gap:14px;margin-top:18px;align-items:end}
+.eval-id label{display:block;font-size:.74rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--ink-soft);margin-bottom:6px}
+.eval-id input,.eval-step input,.eval-step select{width:100%;background:var(--parchment);color:var(--ink);border:1.4px solid var(--line);border-radius:10px 4px 10px 4px;padding:10px 11px;font:inherit;font-size:.91rem;outline:none}
+.eval-id input:focus,.eval-step input:focus,.eval-step select:focus{border-color:var(--red);box-shadow:0 0 0 3px color-mix(in srgb,var(--red) 13%,transparent)}
+.privacy-note{font-size:.79rem;color:var(--ink-soft);padding:8px 11px;border-left:3px solid var(--gold);background:var(--gold-soft);border-radius:4px 10px 10px 4px}
+.eval-steps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:18px}
+.eval-step{background:var(--parchment);border:1.35px solid var(--line);border-radius:14px 5px 14px 5px;padding:14px;position:relative;min-width:0;transition:.22s opacity,.22s transform,.22s border-color,.22s box-shadow}
+.eval-step.hidden{display:none}
+.eval-step.active{border-color:var(--red);box-shadow:0 0 0 3px color-mix(in srgb,var(--red) 10%,transparent)}
+.eval-step.done{border-color:var(--teal)}
+.eval-step .step-no{font-family:'Caveat',cursive;color:var(--red);font-size:1rem}
+.eval-step h3{font-family:'Cormorant Garamond',serif;font-size:1.2rem;line-height:1.05;margin:1px 0 5px}
+.eval-step p{font-size:.77rem;color:var(--ink-soft);margin-bottom:9px}
+.eval-unit{position:relative}
+.eval-unit input{padding-right:76px}
+.eval-unit span{position:absolute;right:10px;top:50%;transform:translateY(-50%);font-size:.76rem;color:var(--ink-soft);pointer-events:none}
+.eval-result{margin-top:18px;border:1.5px solid var(--teal);background:var(--teal-soft);border-radius:17px 6px 17px 6px;padding:16px 17px;display:grid;grid-template-columns:auto 1fr;gap:13px;align-items:start}
+.eval-result.orange{border-color:var(--orange);background:var(--orange-soft)}
+.eval-result.red{border-color:var(--red);background:var(--red-soft)}
+.eval-result.violet{border-color:var(--violet);background:var(--violet-soft)}
+.eval-result.green{border-color:var(--green);background:var(--green-soft)}
+.eval-result .result-icon{font-size:1.45rem;line-height:1}
+.eval-result h3{font-family:'Cormorant Garamond',serif;font-size:1.45rem;line-height:1.03}
+.eval-result p{font-size:.87rem;color:var(--ink-soft);margin-top:5px}
+.eval-result .next-test{display:inline-block;margin-top:8px;font-size:.78rem;font-weight:700;color:var(--red)}
+.eval-path-wrap{margin-top:18px}
+.eval-path-head{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:8px}
+.eval-path-head h3{font-family:'Cormorant Garamond',serif;font-size:1.35rem}
+.eval-path-head span{font-family:'Caveat',cursive;color:var(--red);font-size:1.02rem}
+.eval-empty{font-size:.84rem;color:var(--ink-soft);border:1.3px dashed var(--line);border-radius:12px;padding:13px 15px}
+.eval-actions{display:flex;gap:9px;flex-wrap:wrap;margin-top:16px}
+.eval-actions .pill-btn{background:var(--parchment)}
+.case-history{margin-top:18px;border-top:1px dashed var(--line);padding-top:16px}
+.case-history-head{display:flex;justify-content:space-between;gap:12px;align-items:center;flex-wrap:wrap}
+.case-history-head h3{font-family:'Cormorant Garamond',serif;font-size:1.25rem}
+.case-history-head span{font-size:.75rem;color:var(--ink-soft)}
+.case-history-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px;margin-top:10px}
+.saved-case{display:grid;grid-template-columns:1fr auto;gap:10px;align-items:center;background:var(--parchment);border:1.2px solid var(--line);border-radius:11px 4px 11px 4px;padding:10px 11px}
+.saved-case b{display:block;font-size:.86rem}
+.saved-case small{display:block;color:var(--ink-soft);font-size:.72rem;margin-top:2px}
+.saved-case .case-btns{display:flex;gap:5px}
+.mini-icon-btn{border:1px solid var(--line);background:var(--paper);color:var(--ink);border-radius:8px;padding:5px 8px;cursor:pointer;font-size:.78rem}
+.mini-icon-btn:hover{border-color:var(--red);color:var(--red)}
+
+body.route-mode #flow .node,body.route-mode #flow .branch-mark{opacity:.13;filter:saturate(.3);transition:.2s opacity,.2s filter,.2s transform,.2s box-shadow}
+body.route-mode #flow .route-hit{opacity:1;filter:none;transform:translateY(-1px)}
+body.route-mode #flow .node.route-hit{border-color:var(--red);box-shadow:0 0 0 3px color-mix(in srgb,var(--red) 18%,transparent),var(--shadow)}
+body.route-mode #flow{background:color-mix(in srgb,var(--red-soft) 14%,var(--paper))}
+
+@media(max-width:900px){.eval-steps{grid-template-columns:1fr 1fr}.eval-topbar{grid-template-columns:1fr}.case-history-list{grid-template-columns:1fr}}
+@media(max-width:620px){.eval-steps{grid-template-columns:1fr}.patient-evaluator{padding:17px}.eval-result{grid-template-columns:1fr}.eval-stamp{white-space:normal}}
+
+/* NaCl 3% preparation + correction calculator */
+.nacl-lab{margin-top:56px;scroll-margin-top:82px}
+.safety-ribbon{display:grid;grid-template-columns:auto 1fr;gap:13px;align-items:start;background:var(--red-soft);border:1.6px solid var(--red);border-radius:18px 6px 18px 6px;padding:15px 17px;margin:14px 0 20px;box-shadow:var(--shadow)}
+.safety-ribbon .ico{font-size:1.45rem;line-height:1}
+.safety-ribbon strong{color:var(--red);display:block;margin-bottom:3px}
+.safety-ribbon p{color:var(--ink-soft);font-size:.88rem}
+.calc-layout{display:grid;grid-template-columns:minmax(0,.93fr) minmax(0,1.07fr);gap:20px;align-items:start}
+.calc-card{background:var(--paper);border:1.6px solid var(--ink);border-radius:var(--sketch);padding:20px;box-shadow:var(--shadow);min-width:0}
+.calc-card + .calc-card{margin-top:0}
+.calc-head{display:flex;justify-content:space-between;gap:12px;align-items:flex-start;flex-wrap:wrap;margin-bottom:15px}
+.calc-head h3{font-family:'Cormorant Garamond',serif;font-size:1.7rem;line-height:1.02;font-weight:600}
+.calc-head p{color:var(--ink-soft);font-size:.84rem;margin-top:5px;max-width:590px}
+.calc-stamp{font-family:'Caveat',cursive;font-size:1.05rem;color:var(--red);border:1.4px dashed var(--red);border-radius:999px;padding:3px 10px;transform:rotate(1deg);white-space:nowrap}
+.form-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:11px}
+.field{display:flex;flex-direction:column;gap:5px;min-width:0}
+.field.span2{grid-column:1/-1}
+.field label,.field .label{font-size:.73rem;font-weight:700;letter-spacing:.03em;color:var(--ink-soft)}
+.field input,.field select{width:100%;border:1.4px solid var(--line);background:var(--parchment);color:var(--ink);border-radius:10px 4px 10px 4px;padding:10px 11px;font:600 .9rem 'DM Sans',sans-serif;outline:none;transition:.15s border-color,.15s box-shadow}
+.field input:focus,.field select:focus{border-color:var(--blue);box-shadow:0 0 0 3px color-mix(in srgb,var(--blue) 14%,transparent)}
+.field small{font-size:.67rem;color:var(--ink-soft);line-height:1.3}
+.inline-unit{position:relative}.inline-unit input{padding-right:60px}.inline-unit span{position:absolute;right:10px;bottom:10px;color:var(--ink-soft);font-size:.72rem;font-weight:700;pointer-events:none}
+.recipe-result{margin-top:15px;background:var(--blue-soft);border:1.5px solid var(--blue);border-radius:16px 5px 16px 5px;padding:16px}
+.recipe-title{font-family:'Caveat',cursive;color:var(--blue);font-size:1.15rem;margin-bottom:7px}
+.recipe-big{display:grid;grid-template-columns:1fr auto 1fr;gap:10px;align-items:center}
+.recipe-vol{background:var(--paper);border:1.3px solid var(--line);border-radius:12px 4px 12px 4px;padding:12px;text-align:center}
+.recipe-vol b{display:block;font-family:'Cormorant Garamond',serif;font-size:1.75rem;line-height:1;color:var(--ink)}
+.recipe-vol span{font-size:.72rem;color:var(--ink-soft)}
+.recipe-plus{font-family:'Caveat',cursive;color:var(--red);font-size:1.7rem;font-weight:700}
+.recipe-instruction{margin-top:12px;border-left:4px solid var(--blue);padding:9px 11px;background:color-mix(in srgb,var(--paper) 74%,transparent);border-radius:4px 9px 9px 4px;font-size:.86rem;color:var(--ink-soft)}
+.recipe-instruction b{color:var(--ink)}
+.recipe-meta{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:11px}
+.meta-chip{border:1px dashed var(--line);border-radius:10px;padding:8px;text-align:center;font-size:.68rem;color:var(--ink-soft)}
+.meta-chip b{display:block;color:var(--ink);font-size:.83rem}
+.quick-recipes{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin-top:14px}
+.quick-recipe{border:1.3px solid var(--line);background:var(--parchment);border-radius:11px 4px 11px 4px;padding:10px;cursor:pointer;color:var(--ink);text-align:left;transition:.15s transform,.15s border-color}
+.quick-recipe:hover{transform:translateY(-1px);border-color:var(--red)}
+.quick-recipe b{font-family:'Cormorant Garamond',serif;font-size:1.03rem;display:block}
+.quick-recipe span{font-size:.69rem;color:var(--ink-soft)}
+.aseptic-note{margin-top:13px;border:1.3px dashed var(--gold);background:var(--gold-soft);border-radius:12px 4px 12px 4px;padding:11px 12px;font-size:.76rem;color:var(--ink-soft)}
+.aseptic-note strong{color:var(--gold)}
+.protocols{display:flex;gap:7px;flex-wrap:wrap;margin:2px 0 14px}
+.protocol-btn{font:600 .7rem 'DM Sans',sans-serif;border:1.3px solid var(--line);background:var(--parchment);color:var(--ink);border-radius:999px;padding:6px 9px;cursor:pointer;transition:.15s}
+.protocol-btn:hover,.protocol-btn.active{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.risk-box{grid-column:1/-1;border:1.3px dashed var(--line);border-radius:13px 5px 13px 5px;padding:10px 11px}
+.risk-box .risk-title{font-size:.73rem;font-weight:700;color:var(--ink-soft);margin-bottom:7px}
+.risk-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px 9px}
+.risk-grid label{font-size:.74rem;color:var(--ink-soft);display:flex;gap:7px;align-items:flex-start;cursor:pointer}
+.risk-grid input{accent-color:var(--red);margin-top:2px}
+.status-banner{margin-top:15px;border:1.6px solid var(--green);background:var(--green-soft);border-radius:15px 5px 15px 5px;padding:13px 15px;display:flex;gap:11px;align-items:flex-start}
+.status-banner.orange{border-color:var(--orange);background:var(--orange-soft)}
+.status-banner.red{border-color:var(--red);background:var(--red-soft)}
+.status-banner .status-icon{font-size:1.4rem;line-height:1}
+.status-banner strong{display:block;color:var(--green);font-size:.9rem}
+.status-banner.orange strong{color:var(--orange)}.status-banner.red strong{color:var(--red)}
+.status-banner p{color:var(--ink-soft);font-size:.77rem;margin-top:2px}
+.result-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:10px}
+.result-box{background:var(--parchment);border:1.2px solid var(--line);border-radius:12px 4px 12px 4px;padding:11px;min-width:0}
+.result-box .rlabel{font-size:.64rem;text-transform:uppercase;letter-spacing:.08em;color:var(--ink-soft);font-weight:700}
+.result-box b{display:block;font-family:'Cormorant Garamond',serif;font-size:1.5rem;line-height:1.05;margin-top:3px;white-space:nowrap}
+.result-box small{font-size:.64rem;color:var(--ink-soft)}
+.correction-gauge{margin-top:13px;border:1.3px solid var(--line);border-radius:13px;padding:11px;background:var(--paper)}
+.gauge-head{display:flex;justify-content:space-between;gap:8px;align-items:baseline;font-size:.72rem;color:var(--ink-soft)}
+.gauge-head b{color:var(--ink)}
+.gauge-track{height:14px;border-radius:999px;background:var(--parchment);border:1px solid var(--line);margin-top:8px;position:relative;overflow:hidden}
+.gauge-fill{height:100%;width:0;background:var(--green);transition:.2s width,.2s background}
+.gauge-fill.orange{background:var(--orange)}.gauge-fill.red{background:var(--red)}
+.gauge-marks{display:flex;justify-content:space-between;font-size:.62rem;color:var(--ink-soft);margin-top:4px}
+.warning-stack{display:grid;gap:7px;margin-top:11px}
+.calc-warning{border-left:4px solid var(--gold);background:var(--gold-soft);border-radius:4px 9px 9px 4px;padding:9px 10px;font-size:.73rem;color:var(--ink-soft)}
+.calc-warning.red{border-color:var(--red);background:var(--red-soft)}
+.calc-warning.orange{border-color:var(--orange);background:var(--orange-soft)}
+.calc-warning.teal{border-color:var(--teal);background:var(--teal-soft)}
+.calc-warning b{color:var(--ink)}
+.formula-note{margin-top:11px;font-size:.68rem;color:var(--ink-soft);border-top:1px dashed var(--line);padding-top:9px}
+.monitor-strip{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:17px}
+.monitor-card{border:1.3px solid var(--line);background:var(--paper);border-radius:13px 4px 13px 4px;padding:12px}
+.monitor-card .mnum{font-family:'Caveat',cursive;color:var(--red);font-size:1.1rem}
+.monitor-card b{display:block;font-size:.82rem;margin:2px 0 4px}
+.monitor-card p{font-size:.7rem;color:var(--ink-soft)}
+.hidden{display:none!important}
+@media(max-width:960px){.calc-layout{grid-template-columns:1fr}.monitor-strip{grid-template-columns:1fr 1fr}.quick-recipes{grid-template-columns:1fr 1fr}}
+@media(max-width:610px){.form-grid,.result-grid,.risk-grid,.recipe-meta{grid-template-columns:1fr}.recipe-big{grid-template-columns:1fr}.recipe-plus{transform:rotate(90deg);text-align:center}.quick-recipes,.monitor-strip{grid-template-columns:1fr}.calc-card{padding:15px}.result-box b{white-space:normal}}
+@media print{.protocols,.quick-recipes{display:none!important}.calc-layout{grid-template-columns:1fr}.calc-card{break-inside:avoid}.nacl-lab{break-before:page}}
+
 
 /* reference */
 .refs{margin-top:45px;border-top:1.5px solid var(--line);padding-top:23px;color:var(--ink-soft);font-size:.79rem}
@@ -232,8 +369,9 @@ footer{border-top:1.5px solid var(--line);padding:27px 22px 48px;text-align:cent
 
 <div class="toolbar">
   <div class="toolbar-in">
-    <button class="pill-btn case" id="caseBtn">🫀 Deine Patientin</button>
+    <button class="pill-btn case" id="evalBtn">🧭 Patient auswerten</button>
     <button class="pill-btn" id="allBtn">↺ Gesamtbaum</button>
+    <a class="pill-btn" href="#nacl3" style="text-decoration:none">🧂 NaCl-3%-Rechner</a>
     <div class="legend-mini">
       <span><i class="dot" style="background:var(--blue)"></i> Messung</span>
       <span><i class="dot" style="background:var(--green)"></i> kardial / Stauung</span>
@@ -252,204 +390,353 @@ footer{border-top:1.5px solid var(--line);padding:27px 22px 48px;text-align:cent
   </div>
   <div class="intro-note"><b>Praktische Regel:</b> Blut und Spot-Urin möglichst gleichzeitig abnehmen. Die Zahlen werden sonst leicht aus verschiedenen hämodynamischen Situationen miteinander vermischt.</div>
 
-  <section class="flowboard" id="flow">
-    <div class="flow-step">
-      <article class="node red" data-case="1">
-        <div class="eyebrow">Start · Triage</div>
-        <h3>Schwere neurologische Symptome?</h3>
-        <p>Krampfanfall, Koma oder schwere Bewusstseinsstörung, die plausibel zur Hyponatriämie passt.</p>
+  <section class="patient-evaluator" id="patientEvaluator">
+    <div class="eval-head">
+      <div>
+        <h2>Patient auswerten — der Baum läuft selbst.</h2>
+        <p>Du gibst nur den aktuellen Befund ein. Der Algorithmus öffnet automatisch den nächsten relevanten Schritt, markiert den Weg im Diagnostikbaum und baut unten den individuellen Denkpfad bis zur wahrscheinlichsten Arbeitsdiagnose auf.</p>
+      </div>
+      <span class="eval-stamp">ein Fall → ein Weg ✎</span>
+    </div>
+
+    <div class="eval-topbar">
+      <div class="eval-id">
+        <label for="evalCaseId">Fall-ID / Kürzel · optional</label>
+        <input id="evalCaseId" type="text" maxlength="32" placeholder="z. B. Fall A, Zimmer 12 — keine Klarnamen">
+      </div>
+      <div class="privacy-note"><b>Mehrere Fälle möglich:</b> Mit „Fall lokal merken“ speicherst du die Auswertung nur in diesem Browser. Verwende keine Klarnamen oder andere direkt identifizierende Patientendaten.</div>
+    </div>
+
+    <div class="eval-steps">
+      <article class="eval-step active" id="stepSymptoms">
+        <span class="step-no">1.</span><h3>Schwere neurologische Symptome?</h3>
+        <p>Krampfanfall, Koma oder schwere Bewusstseinsstörung plausibel durch Hyponatriämie.</p>
+        <select id="evalSymptoms">
+          <option value="">— auswählen —</option>
+          <option value="no">Nein / stabil</option>
+          <option value="yes">Ja</option>
+        </select>
+      </article>
+
+      <article class="eval-step hidden" id="stepSerumOsm">
+        <span class="step-no">2.</span><h3>Serum-Osmolalität</h3>
+        <p>&lt;275 mOsm/kg = hypotone Hyponatriämie.</p>
+        <div class="eval-unit"><input id="evalSerumOsm" type="number" inputmode="decimal" min="150" max="400" step="1" placeholder="z. B. 268"><span>mOsm/kg</span></div>
+      </article>
+
+      <article class="eval-step hidden" id="stepUrineOsm">
+        <span class="step-no">3.</span><h3>Urin-Osmolalität</h3>
+        <p>≤100 = maximal verdünnt; &gt;100 = Antidiurese vorhanden.</p>
+        <div class="eval-unit"><input id="evalUrineOsm" type="number" inputmode="decimal" min="20" max="1500" step="1" placeholder="z. B. 420"><span>mOsm/kg</span></div>
+      </article>
+
+      <article class="eval-step hidden" id="stepUrineNa">
+        <span class="step-no">4.</span><h3>Urin-Natrium</h3>
+        <p>≤30 mmol/L spricht für niedriges effektives arterielles Volumen.</p>
+        <div class="eval-unit"><input id="evalUrineNa" type="number" inputmode="decimal" min="0" max="300" step="1" placeholder="z. B. 22"><span>mmol/L</span></div>
+      </article>
+
+      <article class="eval-step hidden" id="stepCongestion">
+        <span class="step-no">5.</span><h3>Stauung / Volumenexpansion?</h3>
+        <p>Ödeme, JVD, Pleuraergüsse, Aszites, Gewichtszunahme oder klinische Dekompensation.</p>
+        <select id="evalCongestion">
+          <option value="">— auswählen —</option>
+          <option value="yes">Ja</option>
+          <option value="no">Nein</option>
+          <option value="unclear">Unklar</option>
+        </select>
+      </article>
+
+      <article class="eval-step hidden" id="stepDiuretics">
+        <span class="step-no">5.</span><h3>Recent Diuretika?</h3>
+        <p>Schleifendiuretika oder Thiazide können den Urin-Na-Ast verfälschen.</p>
+        <select id="evalDiuretics">
+          <option value="">— auswählen —</option>
+          <option value="yes">Ja</option>
+          <option value="no">Nein</option>
+          <option value="unclear">Unklar / Zeitpunkt unbekannt</option>
+        </select>
+      </article>
+
+      <article class="eval-step hidden" id="stepVolume">
+        <span class="step-no">6.</span><h3>Klinischer Volumenstatus</h3>
+        <p>Für den SIAD-Ast muss die Konstellation klinisch euvolämisch sein.</p>
+        <select id="evalVolume">
+          <option value="">— auswählen —</option>
+          <option value="eu">Euvolämisch</option>
+          <option value="hypo">Hypovolämisch</option>
+          <option value="hyper">Hypervolämisch / gestaut</option>
+          <option value="unclear">Unklar</option>
+        </select>
+      </article>
+
+      <article class="eval-step hidden" id="stepRenal">
+        <span class="step-no">7.</span><h3>Nierenfunktion ausreichend?</h3>
+        <p>Eine relevante Niereninsuffizienz kann die Urinverdünnung und Urin-Na-Interpretation stören.</p>
+        <select id="evalRenal">
+          <option value="">— auswählen —</option>
+          <option value="yes">Ja / keine relevante Einschränkung</option>
+          <option value="no">Nein / relevante Niereninsuffizienz</option>
+          <option value="unclear">Unklar</option>
+        </select>
+      </article>
+
+      <article class="eval-step hidden" id="stepCortisol">
+        <span class="step-no">8.</span><h3>Cortisol / Nebennierenachse</h3>
+        <p>Hypocortisolismus kann biochemisch wie SIAD aussehen.</p>
+        <select id="evalCortisol">
+          <option value="">— auswählen —</option>
+          <option value="normal">Unauffällig / ausgeschlossen</option>
+          <option value="abnormal">Niedrig oder verdächtig</option>
+          <option value="unknown">Noch nicht bestimmt</option>
+        </select>
+      </article>
+
+      <article class="eval-step hidden" id="stepThyroid">
+        <span class="step-no">9.</span><h3>TSH + fT4</h3>
+        <p>Relevante Hypothyreose als endokrine Ursache ausschließen.</p>
+        <select id="evalThyroid">
+          <option value="">— auswählen —</option>
+          <option value="normal">Unauffällig / ausgeschlossen</option>
+          <option value="abnormal">Relevante Hypothyreose</option>
+          <option value="unknown">Noch nicht bestimmt</option>
+        </select>
       </article>
     </div>
 
-    <div class="fork">
-      <div class="branch">
-        <span class="branch-mark yes">JA</span>
-        <div class="lane">
-          <article class="node red soft-red">
-            <div class="eyebrow">Notfall-Ast</div>
-            <h3>Akut behandeln — Diagnostik parallel</h3>
-            <p>Symptomorientierte Notfallstrategie hat Vorrang. Ursachenklärung läuft gleichzeitig weiter.</p>
-            <div class="tagrow"><span class="tag red">Oberarzt / Monitoring</span><span class="tag red">Korrektur-Sicherheit</span></div>
-          </article>
-        </div>
-      </div>
-
-      <div class="branch">
-        <span class="branch-mark no" data-case="1">NEIN / stabil</span>
-        <div class="lane">
-          <article class="node blue" data-case="1">
-            <div class="eyebrow">Frage 1</div>
-            <h3>Serum-Osmolalität?</h3>
-            <span class="value">Ist die Hyponatriämie wirklich hypoton?</span>
-          </article>
-
-          <div class="mini-fork">
-            <div class="mini-branch">
-              <span class="branch-mark orange">≥ 275</span>
-              <article class="node orange soft-orange">
-                <div class="eyebrow">Abbiegen</div>
-                <h3>Nicht-hypotone Hyponatriämie</h3>
-                <p>Zuerst Hyperglykämie bzw. andere nicht-hypotone Konstellationen klären. Dieser Baum endet hier.</p>
-              </article>
-            </div>
-            <div class="mini-branch">
-              <span class="branch-mark blue" data-case="1">&lt; 275</span>
-              <article class="node blue soft-blue" data-case="1">
-                <div class="eyebrow">Echte hypotone Hyponatriämie</div>
-                <h3>→ Jetzt Urin-Osmolalität</h3>
-                <p>Die Niere beantwortet die nächste Frage: ist die Wasserausscheidung maximal verdünnt oder läuft Antidiurese?</p>
-              </article>
-            </div>
-          </div>
-
-          <div class="down"><span class="branch-label-center">hypoton</span></div>
-
-          <article class="node blue" data-case="1">
-            <div class="eyebrow">Frage 2 · Schlüsselast</div>
-            <h3>Urin-Osmolalität?</h3>
-            <p><b>≤100</b> bedeutet sehr verdünnten Urin. <b>&gt;100</b> bedeutet: freie Wasserausscheidung ist gebremst.</p>
-          </article>
-
-          <div class="mini-fork">
-            <div class="mini-branch">
-              <span class="branch-mark orange">≤ 100</span>
-              <article class="node orange soft-orange">
-                <div class="eyebrow">Wasser relativ zu Soluten zu viel</div>
-                <h3>Exzessive Wasserzufuhr / Low-solute</h3>
-                <p>Denke an Polydipsie oder geringe Solutzufuhr. Die Niere verdünnt — das Problem liegt eher bei Wasserzufuhr bzw. Osmol-Last.</p>
-                <div class="tagrow"><span class="tag">Polydipsie</span><span class="tag">Low-solute intake</span></div>
-              </article>
-            </div>
-            <div class="mini-branch">
-              <span class="branch-mark blue" data-case="1">&gt; 100</span>
-              <article class="node blue" data-case="1">
-                <div class="eyebrow">Antidiurese vorhanden</div>
-                <h3>→ Jetzt Urin-Natrium</h3>
-                <p>Jetzt fragst du: spart die Niere Natrium wegen niedrigem effektivem arteriellem Volumen — oder nicht?</p>
-              </article>
-            </div>
-          </div>
-
-          <div class="down"></div>
-
-          <article class="node teal" data-case="1">
-            <div class="eyebrow">Frage 3 · Richtungsgeber</div>
-            <h3>Urin-Na ≤30 oder &gt;30 mmol/l?</h3>
-            <p>Der Cut-off trennt den Ast „low effective arterial volume“ vom Ast, der weiter nach Diuretika, Euvolämie und SIAD fragt.</p>
-          </article>
-        </div>
-      </div>
+    <div class="eval-result" id="evalResult">
+      <div class="result-icon" id="evalResultIcon">🧭</div>
+      <div><h3 id="evalResultTitle">Startfrage beantworten</h3><p id="evalResultText">Der Algorithmus zeigt danach nur den nächsten relevanten Schritt.</p><span class="next-test" id="evalNextTest">Nächster Schritt: neurologische Symptomatik einordnen.</span></div>
     </div>
 
-    <!-- Main etiologic split, visually independent -->
-    <div style="height:78px;position:relative">
-      <div style="position:absolute;left:50%;top:0;height:52px;border-left:2px solid var(--ink)"></div>
-      <div style="position:absolute;left:50%;top:51px;transform:translateX(-50%);font-size:1.3rem;font-weight:700">↓</div>
+    <div class="eval-path-wrap">
+      <div class="eval-path-head"><h3>Aktueller Denkpfad</h3><span id="evalPathStamp">noch kein Ast gewählt</span></div>
+      <div class="case-chain" id="evalPath"><div class="eval-empty">Sobald du einen Befund auswählst, erscheint hier der individuelle Weg Box für Box.</div></div>
     </div>
 
-    <div class="flow-step">
-      <article class="node teal" data-case="1">
-        <div class="eyebrow">Urin-Na-Entscheidung</div>
-        <h3>Welche Seite?</h3>
-        <p>Ab hier denkst du nicht mehr „Hyponatriämie allgemein“, sondern folgst nur noch deinem Ast.</p>
-      </article>
+    <div class="eval-actions">
+      <button class="pill-btn case" id="saveEvalCase" type="button">＋ Fall lokal merken</button>
+      <button class="pill-btn" id="resetEvalCase" type="button">↺ Neuer Patient / neuer Fall</button>
+      <button class="pill-btn" id="showFullTree" type="button">🌳 Gesamtbaum zeigen</button>
     </div>
 
-    <div class="fork" style="margin-top:55px">
-      <!-- LOW EABV -->
-      <div class="branch">
-        <span class="branch-mark green" data-case="1">Urin-Na ≤ 30</span>
-        <div class="lane">
-          <article class="node green soft-green" data-case="1">
-            <div class="eyebrow">Low effective arterial volume</div>
-            <h3>Die Niere spart Natrium.</h3>
-            <p>Jetzt nicht sofort „dehydriert“ sagen. Ein gestauter Herzinsuffizienz-Patient kann total viel Wasser haben und trotzdem ein niedriges effektives arterielles Volumen.</p>
-          </article>
-          <div class="down"></div>
-          <article class="node green" data-case="1">
-            <div class="eyebrow">Frage 4A</div>
-            <h3>Zeichen der Stauung / Volumenexpansion?</h3>
-            <p>Ödeme, Halsvenenstauung, Pleuraergüsse, Aszites, Gewichtszunahme, klinische Dekompensation.</p>
-          </article>
-          <div class="mini-fork">
-            <div class="mini-branch">
-              <span class="branch-mark yes" data-case="1">JA</span>
-              <article class="node green soft-green" data-case="1">
-                <div class="eyebrow">Ziel-Diagnose</div>
-                <h3>Hypervolämische Verdünnungshyponatriämie</h3>
-                <p><b>Bei kardialer Dekompensation:</b> low effective arterial volume → neurohumorale Aktivierung / Antidiurese → Wasserretention → Na wird verdünnt.</p>
-                <div class="tagrow"><span class="tag green">Herzinsuffizienz</span><span class="tag green">Stauung</span></div>
-              </article>
-            </div>
-            <div class="mini-branch">
-              <span class="branch-mark no">NEIN</span>
-              <article class="node orange soft-orange">
-                <div class="eyebrow">Alternativer Ast</div>
-                <h3>Hypovolämische Hyponatriämie</h3>
-                <p>Suche GI-Verluste, Third spacing oder andere Ursachen eines echten Volumenverlustes; Medikamente und Verlauf mitdenken.</p>
-              </article>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- HIGH URINE NA -->
-      <div class="branch">
-        <span class="branch-mark violet">Urin-Na &gt; 30</span>
-        <div class="lane">
-          <article class="node violet soft-violet">
-            <div class="eyebrow">Nicht direkt SIAD sagen</div>
-            <h3>Erst: Diuretika? Nierenfunktion? Volumenstatus?</h3>
-            <p>Ein Urin-Na &gt;30 ist unter Diuretika deutlich schlechter spezifisch. Der Zeitpunkt der letzten Dosis gehört in die Interpretation.</p>
-          </article>
-          <div class="down"></div>
-          <article class="node violet">
-            <div class="eyebrow">Frage 4B</div>
-            <h3>Recent Diuretika?</h3>
-            <p>Vor allem Schleifendiuretika oder Thiazide können den Urin-Na-Ast verfälschen.</p>
-          </article>
-          <div class="mini-fork">
-            <div class="mini-branch">
-              <span class="branch-mark yes">JA</span>
-              <article class="node gold">
-                <div class="eyebrow">Cave</div>
-                <h3>Urin-Na mit Vorsicht</h3>
-                <p>Gesamtkontext nutzen. <b>FEUA</b> kann ergänzend helfen: &gt;12% stützt SIAD, &lt;12% eher reduziertes effektives Volumen — kein isolierter Diagnoseschalter.</p>
-              </article>
-            </div>
-            <div class="mini-branch">
-              <span class="branch-mark no">NEIN</span>
-              <article class="node violet">
-                <div class="eyebrow">Weiterdenken</div>
-                <h3>Euvolämisch und Niere ausreichend?</h3>
-                <p>Wenn keine manifeste Volumenexpansion: endokrine und renale Mimics vor SIAD ausschließen.</p>
-              </article>
-            </div>
-          </div>
-          <div class="down"></div>
-          <article class="node violet soft-violet">
-            <div class="eyebrow">Vor SIAD zwingend prüfen</div>
-            <h3>Cortisol · Schilddrüse · Hypophyse · Niere</h3>
-            <p>Insbesondere sekundäre Nebenniereninsuffizienz kann biochemisch wie SIAD aussehen: Hypocortisolismus → Vasopressin nicht supprimiert.</p>
-            <div class="tagrow"><span class="tag violet">8-Uhr-Cortisol</span><span class="tag violet">TSH + fT4</span><span class="tag violet">Krea/eGFR</span></div>
-          </article>
-          <div class="down"></div>
-          <article class="node violet soft-violet">
-            <div class="eyebrow">Ziel-Diagnose</div>
-            <h3>SIAD — Diagnose der Ausschlussdiagnose</h3>
-            <p>Typisches Muster: hypotone Hyponatriämie + Urin-Osm &gt;100 + klinische Euvolämie + Urin-Na &gt;30, ohne passende endokrine/renale Ursache und ohne recent Diuretika.</p>
-            <div class="tagrow"><span class="tag violet">pulmonaler Trigger möglich</span><span class="tag violet">Nausea / Schmerz / Stress</span></div>
-          </article>
-        </div>
-      </div>
+    <div class="case-history" id="caseHistory">
+      <div class="case-history-head"><h3>Gemerkte Fälle</h3><span>lokal in diesem Browser · pseudonymisiert</span></div>
+      <div class="case-history-list" id="caseHistoryList"><div class="eval-empty">Noch kein Fall gespeichert.</div></div>
     </div>
   </section>
+
+  <section class="flowboard" id="flow">
+<div class="flow-step">
+<article class="node red" data-flow-key="triage">
+<div class="eyebrow">Start · Triage</div>
+<h3>Schwere neurologische Symptome?</h3>
+<p>Krampfanfall, Koma oder schwere Bewusstseinsstörung, die plausibel zur Hyponatriämie passt.</p>
+</article>
+</div>
+<div class="fork">
+<div class="branch">
+<span class="branch-mark yes" data-flow-key="triage_yes">JA</span>
+<div class="lane">
+<article class="node red soft-red" data-flow-key="urgent">
+<div class="eyebrow">Notfall-Ast</div>
+<h3>Akut behandeln — Diagnostik parallel</h3>
+<p>Symptomorientierte Notfallstrategie hat Vorrang. Ursachenklärung läuft gleichzeitig weiter.</p>
+<div class="tagrow"><span class="tag red">Oberarzt / Monitoring</span><span class="tag red">Korrektur-Sicherheit</span></div>
+</article>
+</div>
+</div>
+<div class="branch">
+<span class="branch-mark no" data-flow-key="triage_no">NEIN / stabil</span>
+<div class="lane">
+<article class="node blue" data-flow-key="serum_q">
+<div class="eyebrow">Frage 1</div>
+<h3>Serum-Osmolalität?</h3>
+<span class="value">Ist die Hyponatriämie wirklich hypoton?</span>
+</article>
+<div class="mini-fork">
+<div class="mini-branch">
+<span class="branch-mark orange" data-flow-key="serum_high">≥ 275</span>
+<article class="node orange soft-orange" data-flow-key="nonhyp">
+<div class="eyebrow">Abbiegen</div>
+<h3>Nicht-hypotone Hyponatriämie</h3>
+<p>Zuerst Hyperglykämie bzw. andere nicht-hypotone Konstellationen klären. Dieser Baum endet hier.</p>
+</article>
+</div>
+<div class="mini-branch">
+<span class="branch-mark blue" data-flow-key="serum_low">&lt; 275</span>
+<article class="node blue soft-blue" data-flow-key="hypotonic">
+<div class="eyebrow">Echte hypotone Hyponatriämie</div>
+<h3>→ Jetzt Urin-Osmolalität</h3>
+<p>Die Niere beantwortet die nächste Frage: ist die Wasserausscheidung maximal verdünnt oder läuft Antidiurese?</p>
+</article>
+</div>
+</div>
+<div class="down"><span class="branch-label-center">hypoton</span></div>
+<article class="node blue" data-flow-key="urine_osm_q">
+<div class="eyebrow">Frage 2 · Schlüsselast</div>
+<h3>Urin-Osmolalität?</h3>
+<p><b>≤100</b> bedeutet sehr verdünnten Urin. <b>&gt;100</b> bedeutet: freie Wasserausscheidung ist gebremst.</p>
+</article>
+<div class="mini-fork">
+<div class="mini-branch">
+<span class="branch-mark orange" data-flow-key="uosm_low">≤ 100</span>
+<article class="node orange soft-orange" data-flow-key="low_solute">
+<div class="eyebrow">Wasser relativ zu Soluten zu viel</div>
+<h3>Exzessive Wasserzufuhr / Low-solute</h3>
+<p>Denke an Polydipsie oder geringe Solutzufuhr. Die Niere verdünnt — das Problem liegt eher bei Wasserzufuhr bzw. Osmol-Last.</p>
+<div class="tagrow"><span class="tag">Polydipsie</span><span class="tag">Low-solute intake</span></div>
+</article>
+</div>
+<div class="mini-branch">
+<span class="branch-mark blue" data-flow-key="uosm_high">&gt; 100</span>
+<article class="node blue" data-flow-key="urine_na_next">
+<div class="eyebrow">Antidiurese vorhanden</div>
+<h3>→ Jetzt Urin-Natrium</h3>
+<p>Jetzt fragst du: spart die Niere Natrium wegen niedrigem effektivem arteriellem Volumen — oder nicht?</p>
+</article>
+</div>
+</div>
+<div class="down"></div>
+<article class="node teal" data-flow-key="urine_na_q">
+<div class="eyebrow">Frage 3 · Richtungsgeber</div>
+<h3>Urin-Na ≤30 oder &gt;30 mmol/l?</h3>
+<p>Der Cut-off trennt den Ast „low effective arterial volume“ vom Ast, der weiter nach Diuretika, Euvolämie und SIAD fragt.</p>
+</article>
+</div>
+</div>
+</div>
+<!-- Main etiologic split, visually independent -->
+<div style="height:78px;position:relative">
+<div style="position:absolute;left:50%;top:0;height:52px;border-left:2px solid var(--ink)"></div>
+<div style="position:absolute;left:50%;top:51px;transform:translateX(-50%);font-size:1.3rem;font-weight:700">↓</div>
+</div>
+<div class="flow-step">
+<article class="node teal" data-flow-key="urine_na_decision">
+<div class="eyebrow">Urin-Na-Entscheidung</div>
+<h3>Welche Seite?</h3>
+<p>Ab hier denkst du nicht mehr „Hyponatriämie allgemein“, sondern folgst nur noch deinem Ast.</p>
+</article>
+</div>
+<div class="fork" style="margin-top:55px">
+<!-- LOW EABV -->
+<div class="branch">
+<span class="branch-mark green" data-flow-key="una_low">Urin-Na ≤ 30</span>
+<div class="lane">
+<article class="node green soft-green" data-flow-key="low_eabv">
+<div class="eyebrow">Low effective arterial volume</div>
+<h3>Die Niere spart Natrium.</h3>
+<p>Jetzt nicht sofort „dehydriert“ sagen. Ein gestauter Herzinsuffizienz-Patient kann total viel Wasser haben und trotzdem ein niedriges effektives arterielles Volumen.</p>
+</article>
+<div class="down"></div>
+<article class="node green" data-flow-key="congestion_q">
+<div class="eyebrow">Frage 4A</div>
+<h3>Zeichen der Stauung / Volumenexpansion?</h3>
+<p>Ödeme, Halsvenenstauung, Pleuraergüsse, Aszites, Gewichtszunahme, klinische Dekompensation.</p>
+</article>
+<div class="mini-fork">
+<div class="mini-branch">
+<span class="branch-mark yes" data-flow-key="congestion_yes">JA</span>
+<article class="node green soft-green" data-flow-key="hypervolemic">
+<div class="eyebrow">Ziel-Diagnose</div>
+<h3>Hypervolämische Verdünnungshyponatriämie</h3>
+<p><b>Bei niedrigem effektivem arteriellem Volumen:</b> neurohumorale Aktivierung / Antidiurese → Wasserretention → Na wird verdünnt. Häufig bei Herzinsuffizienz; auch andere hypervolämische Zustände mitdenken.</p>
+<div class="tagrow"><span class="tag green">Herzinsuffizienz</span><span class="tag green">Stauung</span><span class="tag green">andere Hypervolämie</span></div>
+</article>
+</div>
+<div class="mini-branch">
+<span class="branch-mark no" data-flow-key="congestion_no">NEIN</span>
+<article class="node orange soft-orange" data-flow-key="hypovolemic">
+<div class="eyebrow">Alternativer Ast</div>
+<h3>Hypovolämische Hyponatriämie</h3>
+<p>Suche GI-Verluste, Third spacing oder andere Ursachen eines echten Volumenverlustes; Medikamente und Verlauf mitdenken.</p>
+</article>
+</div>
+</div>
+</div>
+</div>
+<!-- HIGH URINE NA -->
+<div class="branch">
+<span class="branch-mark violet" data-flow-key="una_high">Urin-Na &gt; 30</span>
+<div class="lane">
+<article class="node violet soft-violet" data-flow-key="high_una_intro">
+<div class="eyebrow">Nicht direkt SIAD sagen</div>
+<h3>Erst: Diuretika? Nierenfunktion? Volumenstatus?</h3>
+<p>Ein Urin-Na &gt;30 ist unter Diuretika deutlich schlechter spezifisch. Der Zeitpunkt der letzten Dosis gehört in die Interpretation.</p>
+</article>
+<div class="down"></div>
+<article class="node violet" data-flow-key="diuretic_q">
+<div class="eyebrow">Frage 4B</div>
+<h3>Recent Diuretika?</h3>
+<p>Vor allem Schleifendiuretika oder Thiazide können den Urin-Na-Ast verfälschen.</p>
+</article>
+<div class="mini-fork">
+<div class="mini-branch">
+<span class="branch-mark yes" data-flow-key="diuretic_yes">JA</span>
+<article class="node gold" data-flow-key="diuretic_cave">
+<div class="eyebrow">Cave · eigener Ast</div>
+<h3>Diuretika-Ast: Urin-Na nicht isoliert werten</h3>
+<p>Gesamtkontext, Zeitpunkt der letzten Dosis und Verlauf nutzen. <b>FEUA</b> kann ergänzend helfen: &gt;12% stützt SIAD, &lt;12% eher reduziertes effektives Volumen — kein isolierter Diagnoseschalter.</p>
+<div class="tagrow"><span class="tag">Dosis + Zeitpunkt</span><span class="tag">Volumenstatus</span><span class="tag">ggf. FEUA</span></div>
+</article>
+</div>
+<div class="mini-branch">
+<span class="branch-mark no" data-flow-key="diuretic_no">NEIN</span>
+<article class="node violet" data-flow-key="euvolemia_q">
+<div class="eyebrow">Weiterdenken</div>
+<h3>Euvolämisch und Niere ausreichend?</h3>
+<p>Für den SIAD-Ast braucht es klinische Euvolämie und eine Nierenfunktion, die die Urinwerte sinnvoll interpretierbar lässt.</p>
+</article>
+<div class="mini-fork" style="margin-top:26px">
+<div class="mini-branch">
+<span class="branch-mark orange" data-flow-key="euvol_no">NEIN</span>
+<article class="node orange soft-orange" data-flow-key="non_siad">
+<div class="eyebrow">Nicht-SIAD-Ast</div>
+<h3>Volämische oder renale Ursache weiterverfolgen</h3>
+<p>Bei Hypovolämie an renale Salzverluste oder endokrine Ursachen denken; bei Hypervolämie bzw. relevanter Niereninsuffizienz die entsprechende Grundkrankheit priorisieren.</p>
+</article>
+</div>
+<div class="mini-branch">
+<span class="branch-mark violet" data-flow-key="euvol_yes">JA · euvolämisch</span>
+<article class="node violet soft-violet" data-flow-key="mimic_q">
+<div class="eyebrow">Vor SIAD zwingend prüfen</div>
+<h3>Cortisol · Schilddrüse · Hypophyse · Niere</h3>
+<p>Insbesondere sekundäre Nebenniereninsuffizienz kann biochemisch wie SIAD aussehen: Hypocortisolismus → Vasopressin nicht supprimiert.</p>
+<div class="tagrow"><span class="tag violet">8-Uhr-Cortisol</span><span class="tag violet">TSH + fT4</span><span class="tag violet">Krea/eGFR</span></div>
+</article>
+<div class="mini-fork" style="margin-top:26px">
+<div class="mini-branch">
+<span class="branch-mark orange" data-flow-key="mimic_abnormal">AUFFÄLLIG</span>
+<article class="node orange soft-orange" data-flow-key="secondary_cause">
+<div class="eyebrow">Sekundäre Ursache</div>
+<h3>Endokrine / renale Ursache identifiziert</h3>
+<p>Kein SIAD-Etikett vergeben. Die gefundene Ursache gezielt bestätigen und behandeln — besonders Nebenniereninsuffizienz nicht übersehen.</p>
+</article>
+</div>
+<div class="mini-branch">
+<span class="branch-mark violet" data-flow-key="mimic_excluded">AUSGESCHLOSSEN</span>
+<article class="node violet soft-violet" data-flow-key="siad">
+<div class="eyebrow">Ziel-Diagnose</div>
+<h3>SIAD — Diagnose der Ausschlussdiagnose</h3>
+<p>Typisches Muster: hypotone Hyponatriämie + Urin-Osm &gt;100 + klinische Euvolämie + Urin-Na &gt;30, ohne passende endokrine/renale Ursache und ohne recent Diuretika.</p>
+<div class="tagrow"><span class="tag violet">pulmonaler Trigger möglich</span><span class="tag violet">Nausea / Schmerz / Stress</span></div>
+</article>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
 
   <div class="mental">
     <article class="paper-note">
       <h4>Das Bild im Kopf: Herzinsuffizienz</h4>
       <p><b>Außen voll — arteriell „zu wenig“.</b> Ödeme bedeuten nicht, dass die Niere eine gute effektive Perfusion wahrnimmt. Sie spart Na und Wasser; das zusätzliche Wasser verdünnt den Serum-Na.</p>
-      <p>La patiente est en surcharge hydrique avec des œdèmes, mais le rein perçoit un volume artériel efficace diminué → rétention d’eau accrue → dilution du sodium.</p>
+      <p>En situation d’hypervolémie, le patient peut être en surcharge hydrique avec des œdèmes, alors que le rein perçoit un volume artériel efficace diminué → rétention d’eau accrue → dilution du sodium.</p>
     </article>
     <article class="paper-note">
       <h4>Das Bild im Kopf: SIAD</h4>
@@ -457,24 +744,6 @@ footer{border-top:1.5px solid var(--line);padding:27px 22px 48px;text-align:cent
       <p>Ici, il n’y a pas de congestion évidente, mais l’ADH n’est pas supprimée : les urines restent concentrées et l’eau est retenue. Le SIAD ne doit être retenu qu’après exclusion des autres causes.</p>
     </article>
   </div>
-
-  <section class="patient-panel" id="patient">
-    <div class="patient-head">
-      <div>
-        <h2>Deine Patientin: so läuft der Kopf.</h2>
-        <p>Chronische Hyponatriämie + kardiale Dekompensation + AECOPD; bekanntes Urin-Na 22 mmol/l. Der entscheidende fehlende Wert für den sauberen Baum ist aktuell die Urin-Osmolalität — plus bestätigte Serum-Osmolalität.</p>
-      </div>
-      <span class="case-badge">Na 119 · Urin-Na 22</span>
-    </div>
-    <div class="case-chain" aria-label="Patientinnen-Pfad">
-      <div class="case-step"><span class="n">1.</span><b>Serum-Osm</b><small>&lt;275? → echte hypotone Hyponatriämie</small></div>
-      <div class="case-step"><span class="n">2.</span><b>Urin-Osm</b><small>&gt;100? → Antidiurese / Wasserausscheidung gebremst</small></div>
-      <div class="case-step"><span class="n">3.</span><b>Urin-Na 22</b><small>≤30 → low effective arterial volume</small></div>
-      <div class="case-step"><span class="n">4.</span><b>Stauung?</b><small>kardiale Dekompensation, Ödeme / Ergüsse / JVD?</small></div>
-      <div class="case-step"><span class="n">5.</span><b>→ kardial</b><small>hypervolämische Verdünnungshyponatriämie wahrscheinlich</small></div>
-    </div>
-    <div class="case-conclusion"><strong>Arbeitsdiagnose, wenn Serum-Osm &lt;275 und Urin-Osm &gt;100 bestätigt sind:</strong><p>Hypervolämische hypotone Hyponatriämie bei niedrigem effektivem arteriellem Blutvolumen im Rahmen der kardialen Dekompensation. Die AECOPD bzw. pulmonal getriggerte Vasopressinfreisetzung kann zusätzlich verstärken, erklärt aber bei Urin-Na 22 + Stauung nicht automatisch ein SIAD.</p></div>
-  </section>
 
   <section class="labs" id="labs">
     <div class="section-title"><span class="num">02</span><h2>Was du praktisch abnimmst</h2><span class="sub">eine Blut- und Urin-Situation</span></div>
@@ -509,9 +778,199 @@ footer{border-top:1.5px solid var(--line);padding:27px 22px 48px;text-align:cent
     <div class="pearl"><b>Stations-Perle:</b> Urin-Na ≤30 spricht auch bei Diuretika für ein niedriges effektives arterielles Volumen. Problematischer ist die Gegenrichtung: <b>Urin-Na &gt;30 unter Diuretika</b> — dort nicht vorschnell „SIAD“ schreiben.</div>
   </section>
 
+
+  <section class="nacl-lab" id="nacl3">
+    <div class="section-title"><span class="num">03</span><h2>NaCl 3 %: herstellen &amp; sicher planen</h2><span class="sub">Mischung → Rate → Korrekturgrenze</span></div>
+    <div class="safety-ribbon">
+      <div class="ico">⚠️</div>
+      <div><strong>Hypertones NaCl ist eine Notfall-/Spezialtherapie — nicht nur den Natriumwert behandeln, sondern Symptome + Ursache behandeln.</strong><p>Bei schwer symptomatischer Hyponatriämie zielt die Initialtherapie auf einen begrenzten frühen Anstieg von etwa 4–6 mmol/l. Die rechnerische Korrektur darf klinische Kontrollen, Urinmenge und wiederholte sNa-Messungen niemals ersetzen. En cas d’hyponatrémie chronique hypervolémique avec insuffisance cardiaque, le NaCl 3 % n’est pas un traitement de routine du seul chiffre de sodium.</p></div>
+    </div>
+
+    <div class="calc-layout">
+      <article class="calc-card" id="prepCard">
+        <div class="calc-head">
+          <div><h3>1. NaCl 3 % herstellen</h3><p>Beliebige Ausgangslösung unter 3 % mit einem NaCl-Konzentrat über 3 % kombinieren. Vordefiniert sind klinisch relevante IV-Konzentrationen; für Hauspräparate gibt es „individuell“.</p></div>
+          <span class="calc-stamp">C₁V₁ + C₂V₂ = CₜVₜ</span>
+        </div>
+
+        <div class="form-grid">
+          <div class="field">
+            <label for="finalVol">Zielvolumen</label>
+            <div class="inline-unit"><input id="finalVol" type="number" min="10" max="2000" step="10" value="100"><span>mL</span></div>
+          </div>
+          <div class="field">
+            <label for="targetConc">Zielkonzentration</label>
+            <div class="inline-unit"><input id="targetConc" type="number" value="3" min="0.1" max="20" step="0.1"><span>%</span></div>
+          </div>
+          <div class="field">
+            <label for="baseConc">Ausgangslösung / Träger</label>
+            <select id="baseConc">
+              <option value="0">Aqua ad iniectabilia · 0 %</option>
+              <option value="0.45">NaCl 0,45 %</option>
+              <option value="0.9" selected>NaCl 0,9 %</option>
+              <option value="custom">Individuell …</option>
+            </select>
+          </div>
+          <div class="field hidden" id="baseCustomWrap">
+            <label for="baseCustom">Ausgangskonzentration individuell</label>
+            <div class="inline-unit"><input id="baseCustom" type="number" min="0" max="20" step="0.01" value="0.9"><span>%</span></div>
+          </div>
+          <div class="field">
+            <label for="stockConc">NaCl-Konzentrat</label>
+            <select id="stockConc">
+              <option value="3">NaCl 3 % fertig / Apotheke</option>
+              <option value="5.85">NaCl 5,85 %</option>
+              <option value="10" selected>NaCl 10 %</option>
+              <option value="20">NaCl 20 %</option>
+              <option value="custom">Individuell …</option>
+            </select>
+          </div>
+          <div class="field hidden" id="stockCustomWrap">
+            <label for="stockCustom">Konzentrat individuell</label>
+            <div class="inline-unit"><input id="stockCustom" type="number" min="0" max="50" step="0.01" value="10"><span>%</span></div>
+          </div>
+          <div class="field">
+            <label for="ampSize">Ampullengröße des Konzentrats</label>
+            <select id="ampSize"><option value="10">10 mL</option><option value="20" selected>20 mL</option><option value="50">50 mL</option><option value="100">100 mL</option></select>
+          </div>
+        </div>
+
+        <div class="recipe-result" id="recipeResult">
+          <div class="recipe-title">Dein Mischweg für 100 mL NaCl 3 %</div>
+          <div class="recipe-big">
+            <div class="recipe-vol"><b id="baseVolOut">76,9 mL</b><span id="baseNameOut">NaCl 0,9 %</span></div>
+            <div class="recipe-plus">+</div>
+            <div class="recipe-vol"><b id="stockVolOut">23,1 mL</b><span id="stockNameOut">NaCl 10 %</span></div>
+          </div>
+          <div class="recipe-instruction" id="bagInstruction"><b>100-mL-Beutel-Methode:</b> 23,1 mL aus dem NaCl-0,9%-Beutel entnehmen → 23,1 mL NaCl 10 % zusetzen → Endvolumen 100 mL.</div>
+          <div class="recipe-meta">
+            <div class="meta-chip"><b id="ampOut">1 × 20 mL + 3,1 mL</b>Ampullenbedarf</div>
+            <div class="meta-chip"><b id="naMolOut">≈ 513 mmol/L Na⁺</b>Endkonzentration</div>
+            <div class="meta-chip"><b id="saltMassOut">3,0 g NaCl</b>im Endvolumen</div>
+          </div>
+        </div>
+
+        <div class="quick-recipes" aria-label="Schnellrezepte für 100 ml NaCl 3 Prozent">
+          <button class="quick-recipe" type="button" data-stock="5.85"><b>0,9 % + 5,85 %</b><span>57,6 mL + 42,4 mL</span></button>
+          <button class="quick-recipe" type="button" data-stock="10"><b>0,9 % + 10 %</b><span>76,9 mL + 23,1 mL</span></button>
+          <button class="quick-recipe" type="button" data-stock="20"><b>0,9 % + 20 %</b><span>89,0 mL + 11,0 mL</span></button>
+        </div>
+        <div class="aseptic-note"><strong>Cave Herstellung:</strong> Elektrolytkonzentrat nicht unverdünnt applizieren. Herstellung/Zusatz nur aseptisch und nach Fachinformation, Krankenhausapotheke bzw. Hausstandard; die Markt- und Lagerverfügbarkeit einzelner Konzentrationen kann sich ändern. Le calcul donne le rapport de mélange — il ne remplace pas la procédure locale de préparation stérile.</div>
+      </article>
+
+      <article class="calc-card" id="therapyCard">
+        <div class="calc-head">
+          <div><h3>2. Korrektur- &amp; Lauf­raten-Rechner</h3><p>Adrogué–Madias als <b>Schätzung</b> plus bereits erfolgter sNa-Anstieg im aktuellen 24-h-Fenster. Der Rechner warnt vor dem mathematischen Überschreiten der Korrekturgrenze.</p></div>
+          <span class="calc-stamp">3 % ≈ 513 mmol/L Na⁺</span>
+        </div>
+
+        <div class="protocols" aria-label="Protokoll-Schnellwahl">
+          <button type="button" class="protocol-btn" data-protocol="100-20">100 mL / 20 min</button>
+          <button type="button" class="protocol-btn" data-protocol="150-20">150 mL / 20 min</button>
+          <button type="button" class="protocol-btn" data-protocol="2kg-20">2 mL/kg / 20 min</button>
+          <button type="button" class="protocol-btn" data-protocol="20h">20 mL/h</button>
+          <button type="button" class="protocol-btn" data-protocol="05kg">0,5 mL/kg/h</button>
+          <button type="button" class="protocol-btn" data-protocol="1kg">1 mL/kg/h</button>
+        </div>
+
+        <div class="form-grid">
+          <div class="field span2">
+            <label for="symptomMode">Klinische Situation</label>
+            <select id="symptomMode">
+              <option value="severe">Schwere Symptome · Krampfanfall / Koma / schwere Bewusstseinsstörung</option>
+              <option value="moderate">Mäßig schwere Symptome</option>
+              <option value="stable" selected>Keine schweren Symptome / chronisch-stabil</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="windowMode">Aktuelles Korrekturfenster</label>
+            <select id="windowMode"><option value="first" selected>Erste 24 h</option><option value="next">Jedes weitere 24-h-Fenster</option></select>
+          </div>
+          <div class="field">
+            <label for="elapsedHours">Seit Beginn dieses Fensters</label>
+            <div class="inline-unit"><input id="elapsedHours" type="number" min="0" max="24" step="0.5" value="0"><span>h</span></div>
+          </div>
+          <div class="field">
+            <label for="baselineNa">sNa zu Beginn des 24-h-Fensters</label>
+            <div class="inline-unit"><input id="baselineNa" type="number" min="90" max="170" step="0.1" value="119"><span>mmol/L</span></div>
+          </div>
+          <div class="field">
+            <label for="latestNa">Aktuelles sNa</label>
+            <div class="inline-unit"><input id="latestNa" type="number" min="90" max="170" step="0.1" value="119"><span>mmol/L</span></div>
+          </div>
+          <div class="field">
+            <label for="weightKg">Körpergewicht</label>
+            <div class="inline-unit"><input id="weightKg" type="number" min="25" max="250" step="0.5" value="70"><span>kg</span></div>
+          </div>
+          <div class="field">
+            <label for="tbwFactor">TBW-Faktor</label>
+            <select id="tbwFactor">
+              <option value="0.6">Mann · 0,60</option>
+              <option value="0.5" selected>Frau · 0,50</option>
+              <option value="0.5m">Älterer Mann · 0,50</option>
+              <option value="0.45">Ältere Frau · 0,45</option>
+              <option value="custom">Individuell …</option>
+            </select>
+          </div>
+          <div class="field hidden" id="tbwCustomWrap">
+            <label for="tbwCustom">TBW-Faktor individuell</label>
+            <input id="tbwCustom" type="number" min="0.3" max="0.8" step="0.01" value="0.5">
+          </div>
+          <div class="field">
+            <label for="planVol">Geplantes Volumen NaCl 3 %</label>
+            <div class="inline-unit"><input id="planVol" type="number" min="1" max="2000" step="1" value="100"><span>mL</span></div>
+          </div>
+          <div class="field">
+            <label for="planTime">Infusionsdauer</label>
+            <div class="inline-unit"><input id="planTime" type="number" min="1" max="1440" step="1" value="60"><span>min</span></div>
+          </div>
+
+          <div class="risk-box">
+            <div class="risk-title">ODS-/Overcorrection-Risiko &amp; klinische Verstärker</div>
+            <div class="risk-grid">
+              <label><input class="riskCheck" id="riskHypoK" type="checkbox"> Hypokaliämie</label>
+              <label><input class="riskCheck" id="riskAlcohol" type="checkbox"> Alkoholabhängigkeit</label>
+              <label><input class="riskCheck" id="riskMalnutrition" type="checkbox"> Mangelernährung</label>
+              <label><input class="riskCheck" id="riskLiver" type="checkbox"> Fortgeschrittene Lebererkrankung</label>
+              <label><input class="riskCheck" id="riskWaterDiuresis" type="checkbox"> Neue starke Wasserdiurese / Urinmenge ↑</label>
+              <label><input class="riskCheck" id="riskHF" type="checkbox" checked> Herzinsuffizienz / Stauung</label>
+            </div>
+          </div>
+        </div>
+
+        <div class="status-banner" id="statusBanner"><div class="status-icon" id="statusIcon">✓</div><div><strong id="statusTitle">Rechner bereit</strong><p id="statusText">Werte prüfen — die Korrektur wird sofort neu geschätzt.</p></div></div>
+
+        <div class="result-grid">
+          <div class="result-box"><span class="rlabel">Laufrate</span><b id="rateOut">100 mL/h</b><small id="rateSub">100 mL über 60 min</small></div>
+          <div class="result-box"><span class="rlabel">geschätztes ΔNa</span><b id="deltaOut">+1,1 mmol/L</b><small>für das geplante Volumen</small></div>
+          <div class="result-box"><span class="rlabel">projiziertes sNa</span><b id="projectedNaOut">120,1 mmol/L</b><small>Adrogué–Madias-Schätzung</small></div>
+          <div class="result-box"><span class="rlabel">bereits korrigiert</span><b id="actualRiseOut">+0,0 mmol/L</b><small>im aktuellen 24-h-Fenster</small></div>
+          <div class="result-box"><span class="rlabel">Rest bis Grenze</span><b id="remainingOut">10,0 mmol/L</b><small id="limitSub">Grenze 10 mmol/L / 24 h</small></div>
+          <div class="result-box"><span class="rlabel">rechn. Max.-Volumen</span><b id="maxVolOut">≈ 912 mL</b><small>bis mathematischer Tagesgrenze</small></div>
+        </div>
+
+        <div class="correction-gauge">
+          <div class="gauge-head"><span>Korrektur im aktuellen 24-h-Fenster</span><b id="gaugeLabel">projiziert +1,1 / max. 10 mmol/L</b></div>
+          <div class="gauge-track"><div class="gauge-fill" id="gaugeFill"></div></div>
+          <div class="gauge-marks"><span>0</span><span>Ziel früh +4–6</span><span id="gaugeMax">10 mmol/L</span></div>
+        </div>
+
+        <div class="warning-stack" id="warningStack"></div>
+        <div class="formula-note" id="formulaNote">Schätzung: ΔsNa pro 1 L ≈ (Na<sub>Infusat</sub> − sNa) / (TBW + 1); TBW = Körpergewicht × Faktor. Die Formel berücksichtigt spontane Wasserdiurese, laufende Verluste, Korrektur einer Hypokaliämie und wechselnde ADH-Aktivität nicht zuverlässig.</div>
+      </article>
+    </div>
+
+    <div class="monitor-strip">
+      <article class="monitor-card"><span class="mnum">A.</span><b>Schwere Symptome: frühes Ziel</b><p>3 % NaCl als 100–150-mL-Bolus bzw. 2–4 mL/kg über 20–40 min; wiederholen nur nach klinischem und biochemischem Reassessment bis etwa +4–6 mmol/L bzw. Symptomverbesserung.</p></article>
+      <article class="monitor-card"><span class="mnum">B.</span><b>Na engmaschig kontrollieren</b><p>Bei akut schwer symptomatischer Therapie initial etwa stündlich bzw. nach Bolus kontrollieren; nach Zielerreichung können die Intervalle auf 6–12 h erweitert werden. Urinmenge mitdenken.</p></article>
+      <article class="monitor-card"><span class="mnum">C.</span><b>STOPP vor ODS</b><p>Europäische Leitlinie: maximal +10 mmol/L in den ersten 24 h und danach +8 mmol/L je 24 h. Bei ODS-Hochrisiko setzt der Rechner konservativ +8 mmol/L/24 h als Warnschwelle.</p></article>
+    </div>
+  </section>
+
+
   <section class="refs">
     <h3>Grundlage des Diagnostikbaums</h3>
-    <p>Spasovski G, Vanholder R, Allolio B, et al. <i>Clinical practice guideline on diagnosis and treatment of hyponatraemia.</i> European Journal of Endocrinology. 2014;170(3):G1–G47. <a href="https://academic.oup.com/ejendo/article/170/3/G1/6668028" target="_blank" rel="noopener">Guideline öffnen</a>. Der Flowchart übernimmt die Reihenfolge Urin-Osm → Urin-Na und die diagnostischen Kriterien für SIAD.</p>
+    <p>Spasovski G, Vanholder R, Allolio B, et al. <i>Clinical practice guideline on diagnosis and treatment of hyponatraemia.</i> European Journal of Endocrinology. 2014;170(3):G1–G47. <a href="https://academic.oup.com/ejendo/article/170/3/G1/6668028" target="_blank" rel="noopener">Guideline öffnen</a>. Der Flowchart übernimmt die Reihenfolge Urin-Osm → Urin-Na; der Therapie-Rechner nutzt die Korrekturgrenzen und das 3%-NaCl-Boluskonzept dieser Leitlinie. Ergänzend: Spasovski G. <i>Hyponatraemia—treatment standard 2024.</i> Nephrology Dialysis Transplantation. 2024;39(10):1583–1592. <a href="https://academic.oup.com/ndt/article/39/10/1583/7713921" target="_blank" rel="noopener">Treatment Standard öffnen</a> — frühes Ziel +4–6 mmol/l, 100–150 ml bzw. 2–4 ml/kg 3% HSS über 20–40 min und engmaschige Kontrollen. Der Adrogué–Madias-Wert ist ausschließlich eine Schätzung.</p>
   </section>
 </div>
 </main>
@@ -526,18 +985,9 @@ footer{border-top:1.5px solid var(--line);padding:27px 22px 48px;text-align:cent
 (function(){
   'use strict';
   const body=document.body, root=document.documentElement;
-  const caseBtn=document.getElementById('caseBtn');
+  const evalBtn=document.getElementById('evalBtn');
   const allBtn=document.getElementById('allBtn');
   const themeBtn=document.getElementById('themeBtn');
-
-  function setCase(on){
-    body.classList.toggle('case-mode',on);
-    caseBtn.classList.toggle('on',on);
-    allBtn.classList.toggle('on',!on);
-    if(on) document.getElementById('flow').scrollIntoView({behavior:'smooth',block:'start'});
-  }
-  caseBtn.addEventListener('click',()=>setCase(true));
-  allBtn.addEventListener('click',()=>setCase(false));
 
   function safeGet(key){ try{return localStorage.getItem(key);}catch(e){return null;} }
   function safeSet(key,value){ try{localStorage.setItem(key,value);}catch(e){} }
@@ -556,10 +1006,381 @@ footer{border-top:1.5px solid var(--line);padding:27px 22px 48px;text-align:cent
     syncTheme();
   });
 
+
+  // NaCl 3% mixing calculator
+  const $=id=>document.getElementById(id);
+
+
+  // Reusable interactive hyponatraemia algorithm
+  const EVAL_CASES_KEY='diastola-hypona-evaluations-v1';
+  const evalInputIds=['evalSymptoms','evalSerumOsm','evalUrineOsm','evalUrineNa','evalCongestion','evalDiuretics','evalVolume','evalRenal','evalCortisol','evalThyroid'];
+  const evalStepIds=['stepSymptoms','stepSerumOsm','stepUrineOsm','stepUrineNa','stepCongestion','stepDiuretics','stepVolume','stepRenal','stepCortisol','stepThyroid'];
+  let lastEvaluation=null;
+
+  function clearRoute(){
+    body.classList.remove('route-mode');
+    document.querySelectorAll('#flow .route-hit').forEach(el=>el.classList.remove('route-hit'));
+    allBtn.classList.add('on');
+  }
+  function showRoute(keys){
+    clearRoute();
+    if(!keys.length) return;
+    body.classList.add('route-mode');
+    allBtn.classList.remove('on');
+    keys.forEach(key=>document.querySelectorAll(`#flow [data-flow-key="${key}"]`).forEach(el=>el.classList.add('route-hit')));
+  }
+  function hideEvalSteps(){
+    evalStepIds.forEach((id,idx)=>{
+      const el=$(id); el.classList.toggle('hidden',idx!==0); el.classList.remove('active','done');
+    });
+    $('stepSymptoms').classList.add('active');
+  }
+  function revealStep(id){
+    const el=$(id); el.classList.remove('hidden');
+    document.querySelectorAll('.eval-step').forEach(s=>s.classList.remove('active'));
+    el.classList.add('active');
+  }
+  function markDone(id){
+    const el=$(id); el.classList.remove('active'); el.classList.add('done');
+  }
+  function resultTone(tone,icon,title,text,next=''){
+    const box=$('evalResult'); box.className='eval-result'+(tone?' '+tone:'');
+    $('evalResultIcon').textContent=icon; $('evalResultTitle').textContent=title; $('evalResultText').textContent=text;
+    $('evalNextTest').textContent=next; $('evalNextTest').style.display=next?'inline-block':'none';
+  }
+  function renderPath(path){
+    const host=$('evalPath');
+    if(!path.length){host.innerHTML='<div class="eval-empty">Sobald du einen Befund auswählst, erscheint hier der individuelle Weg Box für Box.</div>'; $('evalPathStamp').textContent='noch kein Ast gewählt'; return;}
+    host.innerHTML=path.map((step,i)=>`<div class="case-step"><span class="n">${i+1}.</span><b>${step.title}</b><small>${step.detail}</small></div>`).join('');
+    $('evalPathStamp').textContent=`${path.length} ${path.length===1?'Schritt':'Schritte'} · live ausgewertet`;
+  }
+  function nval(id){const v=parseFloat($(id).value);return Number.isFinite(v)?v:null;}
+  function labelVal(id){const el=$(id); const opt=el.options&&el.selectedIndex>=0?el.options[el.selectedIndex]:null; return opt?opt.textContent.trim():'';}
+  function snapshotInputs(){
+    const obj={caseId:$('evalCaseId').value.trim()};
+    evalInputIds.forEach(id=>obj[id]=$(id).value);
+    return obj;
+  }
+  function setEvalStatus({route,path,tone='',icon='🧭',title,text,next='',status='pending'}){
+    showRoute(route); renderPath(path); resultTone(tone,icon,title,text,next);
+    lastEvaluation={route,path,tone,icon,title,text,next,status,inputs:snapshotInputs()};
+  }
+
+  function evaluatePatient(){
+    hideEvalSteps();
+    const route=['triage'], path=[];
+    const symptoms=$('evalSymptoms').value;
+    if(!symptoms){
+      setEvalStatus({route,path,title:'Startfrage beantworten',text:'Der Algorithmus zeigt danach nur den nächsten relevanten Schritt.',next:'Nächster Schritt: neurologische Symptomatik einordnen.'}); return;
+    }
+    markDone('stepSymptoms');
+    path.push({title:symptoms==='yes'?'Schwere Symptome: JA':'Neurologisch stabil',detail:symptoms==='yes'?'Notfall-Ast zuerst':'Diagnostikbaum kann systematisch durchlaufen werden'});
+    if(symptoms==='yes'){
+      route.push('triage_yes','urgent');
+      setEvalStatus({route,path,tone:'red',icon:'⛑️',title:'Akut symptomatische Hyponatriämie: Notfall-Ast',text:'Symptomorientierte Akuttherapie und Monitoring haben Priorität. Die Ursachenklärung läuft parallel, aber dieser interaktive Diagnostikpfad stoppt hier bewusst.',next:'Parallel: Serum-/Urin-Diagnostik abnehmen und nach Stabilisierung den ätiologischen Baum erneut durchlaufen.',status:'result'}); return;
+    }
+    route.push('triage_no','serum_q'); revealStep('stepSerumOsm');
+    const sOsm=nval('evalSerumOsm');
+    if(sOsm===null){setEvalStatus({route,path,title:'Serum-Osmolalität fehlt',text:'Ohne Tonizität darfst du nicht in den hypotone-Hyponatriämie-Baum einsteigen.',next:'Jetzt Serum-Osmolalität bestimmen.'});return;}
+    markDone('stepSerumOsm');
+    path.push({title:`Serum-Osm ${Math.round(sOsm)}`,detail:sOsm<275?'<275 → hypotone Hyponatriämie':'≥275 → nicht-hypotone Konstellation'});
+    if(sOsm>=275){
+      route.push('serum_high','nonhyp');
+      setEvalStatus({route,path,tone:'orange',icon:'↪️',title:'Nicht-hypotone Hyponatriämie',text:'Der klassische hypotone Diagnostikbaum endet hier. Zuerst Hyperglykämie und andere nicht-hypotone Ursachen klären.',next:'Nächster Schritt: Glukose / korrigiertes Na und Ursache der erhöhten oder normalen Tonizität prüfen.',status:'result'});return;
+    }
+    route.push('serum_low','hypotonic','urine_osm_q'); revealStep('stepUrineOsm');
+    const uOsm=nval('evalUrineOsm');
+    if(uOsm===null){setEvalStatus({route,path,title:'Hypoton bestätigt — jetzt spricht die Niere',text:'Der nächste Richtungsgeber ist die Urin-Osmolalität.',next:'Spot-Urin: Urin-Osmolalität bestimmen.'});return;}
+    markDone('stepUrineOsm');
+    path.push({title:`Urin-Osm ${Math.round(uOsm)}`,detail:uOsm<=100?'≤100 → maximal verdünnter Urin':'>100 → Antidiurese / Wasserausscheidung gebremst'});
+    if(uOsm<=100){
+      route.push('uosm_low','low_solute');
+      setEvalStatus({route,path,tone:'orange',icon:'💧',title:'Exzessive Wasserzufuhr / Low-solute-Ast',text:'Die Niere kann maximal verdünnen. Das Problem liegt eher bei zu viel freiem Wasser relativ zur Osmol-/Solutzufuhr.',next:'Anamnese: Polydipsie, sehr geringe Protein-/Salzzufuhr, Beer potomania / Tea-and-toast-Konstellation.',status:'result'});return;
+    }
+    route.push('uosm_high','urine_na_next','urine_na_q','urine_na_decision'); revealStep('stepUrineNa');
+    const uNa=nval('evalUrineNa');
+    if(uNa===null){setEvalStatus({route,path,title:'Antidiurese vorhanden — jetzt Urin-Na',text:'Urin-Na entscheidet, ob die Niere Natrium wegen niedrigem effektivem arteriellem Volumen spart.',next:'Spot-Urin: Urin-Natrium bestimmen und Diuretika-Zeitpunkt notieren.'});return;}
+    markDone('stepUrineNa');
+    path.push({title:`Urin-Na ${Math.round(uNa)}`,detail:uNa<=30?'≤30 → low effective arterial volume':'>30 → Diuretika / Volumenstatus / SIAD-Ast prüfen'});
+    if(uNa<=30){
+      route.push('una_low','low_eabv','congestion_q'); revealStep('stepCongestion');
+      const congestion=$('evalCongestion').value;
+      if(!congestion){setEvalStatus({route,path,title:'Low effective arterial volume — jetzt Stauung suchen',text:'Urin-Na ≤30 bedeutet nicht automatisch Dehydratation. Jetzt entscheidet die klinische Volumenexpansion.',next:'Ödeme, Halsvenenstauung, Ergüsse, Aszites und Gewichtsverlauf prüfen.'});return;}
+      markDone('stepCongestion');
+      path.push({title:congestion==='yes'?'Stauung: JA':congestion==='no'?'Keine Stauung':'Stauung unklar',detail:congestion==='yes'?'Volumenexpansion trotz niedrigem effektivem arteriellen Volumen':congestion==='no'?'echter Volumenverlust wahrscheinlicher':'klinische Einordnung noch nicht sicher'});
+      if(congestion==='yes'){
+        route.push('congestion_yes','hypervolemic');
+        setEvalStatus({route,path,tone:'green',icon:'🫀',title:'Hypervolämische hypotone Verdünnungshyponatriämie wahrscheinlich',text:'Das Muster passt zu niedrigem effektivem arteriellem Volumen bei Volumenexpansion: Antidiurese und Wasserretention verdünnen das Serum-Natrium. Bei Stauung ist Herzinsuffizienz eine häufige Ursache.',next:'Grundkrankheit und Stauung quantifizieren; Verlauf unter Rekompensation und Medikamente mitbeurteilen.',status:'result'});return;
+      }
+      if(congestion==='no'){
+        route.push('congestion_no','hypovolemic');
+        setEvalStatus({route,path,tone:'orange',icon:'↘️',title:'Hypovolämische hypotone Hyponatriämie wahrscheinlich',text:'Urin-Na ≤30 ohne Stauung passt zu echtem Volumenverlust beziehungsweise extrarenalem Natriumverlust oder Third spacing.',next:'GI-Verluste, geringe Zufuhr, Third spacing, Orthostase und Medikamentenverlauf prüfen.',status:'result'});return;
+      }
+      setEvalStatus({route,path,tone:'orange',icon:'?',title:'Volumenstatus noch unklar',text:'Der Baum kann zwischen hypervolämischem und hypovolämischem Ast noch nicht sauber abbiegen.',next:'POCUS/Echo-Kontext, JVD, Ödeme, Gewicht, Ergüsse, Orthostase und Verlauf zusammenführen.'});return;
+    }
+
+    route.push('una_high','high_una_intro','diuretic_q'); revealStep('stepDiuretics');
+    const diur=$('evalDiuretics').value;
+    if(!diur){setEvalStatus({route,path,title:'Urin-Na >30 — zuerst Diuretika klären',text:'SIAD ist hier noch keine Diagnose. Recent Diuretika können den Urin-Na-Ast verfälschen.',next:'Letzte Dosis, Präparat und Zeitpunkt dokumentieren.'});return;}
+    markDone('stepDiuretics');
+    path.push({title:diur==='yes'?'Diuretika: JA':diur==='no'?'Keine recent Diuretika':'Diuretika-Zeitpunkt unklar',detail:diur==='yes'?'Urin-Na schlechter spezifisch':diur==='no'?'Urin-Na besser interpretierbar':'Interpretation aktuell eingeschränkt'});
+    if(diur==='yes' || diur==='unclear'){
+      route.push('diuretic_yes','diuretic_cave');
+      setEvalStatus({route,path,tone:'orange',icon:'⚠️',title:'Diuretika-Ast — SIAD noch nicht diagnostizierbar',text:'Urin-Na >30 ist unter recent Diuretika nicht ausreichend spezifisch. Gesamtkontext, Volumenstatus und der zeitliche Verlauf sind entscheidend; FEUA kann ergänzend helfen.',next:'Dosis + Zeitpunkt sichern, Volumenstatus neu bewerten und ggf. FEUA / Verlauf nach klinischem Kontext nutzen.',status:'result'});return;
+    }
+
+    route.push('diuretic_no','euvolemia_q'); revealStep('stepVolume');
+    const volume=$('evalVolume').value;
+    if(!volume){setEvalStatus({route,path,title:'Keine recent Diuretika — jetzt Volumenstatus',text:'Für SIAD braucht es eine klinisch euvolämische Konstellation.',next:'Euvolämie, Hypovolämie oder Hypervolämie klinisch einordnen.'});return;}
+    markDone('stepVolume');
+    path.push({title:`Volumenstatus: ${labelVal('evalVolume')}`,detail:volume==='eu'?'euvolämisch → SIAD-Ast weiter':volume==='hypo'?'nicht euvolämisch → renaler Salzverlust/endokrin mitdenken':volume==='hyper'?'nicht euvolämisch → hypervolämische/renale Ursache':'noch nicht sicher einzuordnen'});
+    if(volume!=='eu'){
+      route.push('euvol_no','non_siad');
+      const title=volume==='hypo'?'Nicht-SIAD-Ast: hypovolämische Konstellation mit Urin-Na >30':volume==='hyper'?'Nicht-SIAD-Ast: hypervolämische / renale Konstellation':'Volumenstatus unklar — SIAD nicht stellen';
+      const txt=volume==='hypo'?'Bei Hypovolämie und Urin-Na >30 an renalen Salzverlust, Nebenniereninsuffizienz oder andere renale Ursachen denken.':volume==='hyper'?'Bei Hypervolämie und Urin-Na >30 Nierenfunktion, Diuretika-Exposition und die Grundkrankheit erneut prüfen.':'Ohne belastbare Euvolämie darf der SIAD-Ast nicht abgeschlossen werden.';
+      setEvalStatus({route,path,tone:'orange',icon:'↪️',title,text:txt,next:'Volumenstatus und renale/endokrine Ursachen gezielt weiter abklären.',status:'result'});return;
+    }
+
+    revealStep('stepRenal');
+    const renal=$('evalRenal').value;
+    if(!renal){setEvalStatus({route,path,title:'Euvolämisch — Nierenfunktion prüfen',text:'Eine relevante Niereninsuffizienz kann Urinverdünnung und Urin-Na-Interpretation stören.',next:'Kreatinin/eGFR und klinische Relevanz der Niereninsuffizienz einordnen.'});return;}
+    markDone('stepRenal');
+    path.push({title:renal==='yes'?'Nierenfunktion ausreichend':'Nierenfunktion nicht ausreichend / unklar',detail:renal==='yes'?'renaler Mimic weniger wahrscheinlich':'SIAD-Ast nicht sicher abschließbar'});
+    if(renal!=='yes'){
+      route.push('euvol_no','non_siad');
+      setEvalStatus({route,path,tone:'orange',icon:'🧪',title:'Renale Ursache / eingeschränkte Interpretierbarkeit',text:'Bei relevanter Niereninsuffizienz ist das SIAD-Muster weniger spezifisch. Die renale Ursache und Wasserexkretion müssen im Vordergrund bewertet werden.',next:'Nierenfunktion, Urinbefunde und Volumenstatus nephrologisch/klinisch zusammenführen.',status:'result'});return;
+    }
+
+    route.push('euvol_yes','mimic_q'); revealStep('stepCortisol');
+    const cort=$('evalCortisol').value;
+    if(!cort || cort==='unknown'){
+      if(cort==='unknown'){markDone('stepCortisol');path.push({title:'Cortisol noch offen',detail:'Nebenniereninsuffizienz nicht ausgeschlossen'});}
+      setEvalStatus({route,path,title:'Vor SIAD: Cortisol fehlt',text:'Hypocortisolismus kann praktisch wie SIAD aussehen. Solange die Nebennierenachse nicht geklärt ist, bleibt SIAD unvollständig abgesichert.',next:'8-Uhr-Cortisol; bei unklarem/niedrigem Befund ACTH und ggf. Synacthen-Test.'});return;
+    }
+    markDone('stepCortisol');
+    path.push({title:cort==='normal'?'Cortisol unauffällig':'Cortisol niedrig / verdächtig',detail:cort==='normal'?'Nebenniereninsuffizienz weniger wahrscheinlich':'endokriner Mimic gefunden'});
+    if(cort==='abnormal'){
+      route.push('mimic_abnormal','secondary_cause');
+      setEvalStatus({route,path,tone:'orange',icon:'🧠',title:'Nebenniereninsuffizienz / Hypocortisolismus wahrscheinlich',text:'Die Konstellation kann biochemisch SIAD imitieren. SIAD jetzt nicht als Enddiagnose vergeben.',next:'ACTH, Dynamiktest je nach Befund und endokrinologische Einordnung.',status:'result'});return;
+    }
+
+    revealStep('stepThyroid');
+    const thyroid=$('evalThyroid').value;
+    if(!thyroid || thyroid==='unknown'){
+      if(thyroid==='unknown'){markDone('stepThyroid');path.push({title:'TSH/fT4 noch offen',detail:'Hypothyreose nicht ausgeschlossen'});}
+      setEvalStatus({route,path,title:'Letzter Ausschluss vor SIAD: Schilddrüse',text:'Die endokrinen Mimics sind noch nicht vollständig ausgeschlossen.',next:'TSH + fT4 bestimmen und relevante Hypothyreose einordnen.'});return;
+    }
+    markDone('stepThyroid');
+    path.push({title:thyroid==='normal'?'TSH/fT4 unauffällig':'Relevante Hypothyreose',detail:thyroid==='normal'?'endokrine Mimics ausgeschlossen':'sekundäre Ursache identifiziert'});
+    if(thyroid==='abnormal'){
+      route.push('mimic_abnormal','secondary_cause');
+      setEvalStatus({route,path,tone:'orange',icon:'🦋',title:'Endokrine Ursache identifiziert: relevante Hypothyreose',text:'Die Schilddrüsenstörung muss als mögliche Ursache beziehungsweise Mitursache priorisiert werden. SIAD ist damit nicht die saubere Ausschlussdiagnose.',next:'Schweregrad und Kausalität der Hypothyreose klinisch/endokrinologisch einordnen.',status:'result'});return;
+    }
+
+    route.push('mimic_excluded','siad');
+    setEvalStatus({route,path,tone:'violet',icon:'🟣',title:'SIAD wahrscheinlich — Ausschlussmuster erfüllt',text:'Hypotone Hyponatriämie, Urin-Osm >100, Urin-Na >30, klinische Euvolämie, ausreichende Nierenfunktion, keine recent Diuretika und endokrine Mimics ausgeschlossen: dieses Muster stützt SIAD.',next:'Jetzt den SIAD-Trigger suchen: Medikamente, pulmonale/ZNS-Ursachen, Nausea, Schmerz oder Stress.',status:'result'});
+  }
+
+  function resetEvaluator(scroll=true){
+    $('evalCaseId').value='';
+    evalInputIds.forEach(id=>$(id).value='');
+    hideEvalSteps(); clearRoute(); lastEvaluation=null; renderPath([]);
+    resultTone('','🧭','Startfrage beantworten','Der Algorithmus zeigt danach nur den nächsten relevanten Schritt.','Nächster Schritt: neurologische Symptomatik einordnen.');
+    if(scroll) $('patientEvaluator').scrollIntoView({behavior:'smooth',block:'start'});
+  }
+  function readSavedCases(){
+    try{const raw=safeGet(EVAL_CASES_KEY);const parsed=raw?JSON.parse(raw):[];return Array.isArray(parsed)?parsed:[];}catch(e){return [];}
+  }
+  function writeSavedCases(items){safeSet(EVAL_CASES_KEY,JSON.stringify(items.slice(0,20)));}
+  function renderCaseHistory(){
+    const items=readSavedCases(), host=$('caseHistoryList');
+    if(!items.length){host.innerHTML='<div class="eval-empty">Noch kein Fall gespeichert.</div>';return;}
+    host.innerHTML=items.map((item,i)=>`<div class="saved-case"><div><b>${item.caseId||'Anonymer Fall'}</b><small>${item.title} · ${item.savedAt}</small></div><div class="case-btns"><button class="mini-icon-btn" type="button" data-load-case="${i}">öffnen</button><button class="mini-icon-btn" type="button" data-delete-case="${i}">×</button></div></div>`).join('');
+    host.querySelectorAll('[data-load-case]').forEach(btn=>btn.addEventListener('click',()=>loadSavedCase(Number(btn.dataset.loadCase))));
+    host.querySelectorAll('[data-delete-case]').forEach(btn=>btn.addEventListener('click',()=>deleteSavedCase(Number(btn.dataset.deleteCase))));
+  }
+  function saveCurrentCase(){
+    if(!lastEvaluation || lastEvaluation.status!=='result'){
+      resultTone('orange','⚠️','Noch keine abgeschlossene Auswertung','Bitte den aktuellen Ast bis zu einer Arbeitsdiagnose oder einem klaren Stop-Punkt durchlaufen.','Danach kann der Fall lokal gemerkt werden.'); return;
+    }
+    const items=readSavedCases();
+    const now=new Date();
+    items.unshift({caseId:$('evalCaseId').value.trim()||`Fall ${items.length+1}`,savedAt:now.toLocaleString('de-DE'),title:lastEvaluation.title,inputs:snapshotInputs()});
+    writeSavedCases(items); renderCaseHistory();
+    resultTone(lastEvaluation.tone,'✓','Fall lokal gemerkt',`${items[0].caseId}: ${lastEvaluation.title}`,'Nur pseudonymisierte Angaben verwenden.');
+  }
+  function loadSavedCase(index){
+    const item=readSavedCases()[index]; if(!item)return;
+    $('evalCaseId').value=item.inputs.caseId||item.caseId||'';
+    evalInputIds.forEach(id=>$(id).value=item.inputs[id]||'');
+    evaluatePatient(); $('patientEvaluator').scrollIntoView({behavior:'smooth',block:'start'});
+  }
+  function deleteSavedCase(index){
+    const items=readSavedCases(); items.splice(index,1); writeSavedCases(items); renderCaseHistory();
+  }
+
+  evalInputIds.forEach(id=>$(id).addEventListener('input',evaluatePatient));
+  evalBtn.addEventListener('click',()=>{$('patientEvaluator').scrollIntoView({behavior:'smooth',block:'start'});evaluatePatient();});
+  allBtn.addEventListener('click',clearRoute);
+  $('showFullTree').addEventListener('click',()=>{clearRoute();$('flow').scrollIntoView({behavior:'smooth',block:'start'});});
+  $('resetEvalCase').addEventListener('click',()=>resetEvaluator(true));
+  $('saveEvalCase').addEventListener('click',saveCurrentCase);
+  const fmt=(n,d=1)=>Number.isFinite(n)?n.toLocaleString('de-DE',{minimumFractionDigits:d,maximumFractionDigits:d}):'—';
+  const concName=(c)=>c===0?'Aqua ad iniectabilia':`NaCl ${fmt(c,c%1?2:0)} %`;
+  function selectedConc(selectId, customId){
+    const sel=$(selectId);
+    return sel.value==='custom'?parseFloat($(customId).value):parseFloat(sel.value);
+  }
+  function ampouleText(volume,size){
+    if(!Number.isFinite(volume)||volume<=0||!Number.isFinite(size)||size<=0) return '—';
+    const full=Math.floor((volume+1e-9)/size);
+    const rest=volume-full*size;
+    if(rest<0.05) return `${full} × ${fmt(size,0)} mL`;
+    if(full===0) return `${fmt(rest,1)} mL aus 1 × ${fmt(size,0)} mL`;
+    return `${full} × ${fmt(size,0)} mL + ${fmt(rest,1)} mL`;
+  }
+  function toggleCustoms(){
+    $('baseCustomWrap').classList.toggle('hidden',$('baseConc').value!=='custom');
+    $('stockCustomWrap').classList.toggle('hidden',$('stockConc').value!=='custom');
+    $('tbwCustomWrap').classList.toggle('hidden',$('tbwFactor').value!=='custom');
+  }
+  function calcMix(){
+    toggleCustoms();
+    const V=parseFloat($('finalVol').value), Ct=parseFloat($('targetConc').value);
+    const Cb=selectedConc('baseConc','baseCustom'), Cs=selectedConc('stockConc','stockCustom');
+    const amp=parseFloat($('ampSize').value);
+    const title=$('recipeResult').querySelector('.recipe-title');
+    if(![V,Ct,Cb,Cs].every(Number.isFinite)||V<=0||Ct<=0){
+      title.textContent='Bitte gültige Konzentrationen eingeben.'; return;
+    }
+    if(Math.abs(Cs-Ct)<1e-9){
+      $('baseVolOut').textContent='0,0 mL'; $('stockVolOut').textContent=`${fmt(V,1)} mL`;
+      $('baseNameOut').textContent='keine Zumischung'; $('stockNameOut').textContent=concName(Cs)+' fertig';
+      $('bagInstruction').innerHTML='<b>Fertige 3%-Lösung:</b> Keine rechnerische Mischung erforderlich. Präparat/Apothekenzubereitung und Hausstandard prüfen.';
+      $('ampOut').textContent='fertige Lösung';
+      $('naMolOut').textContent=`≈ ${fmt(Ct*171.115,0)} mmol/L Na⁺`;
+      $('saltMassOut').textContent=`${fmt(Ct*V/100,1)} g NaCl`;
+      title.textContent=`Dein Mischweg für ${fmt(V,0)} mL NaCl ${fmt(Ct,1)} %`;
+      return;
+    }
+    if(!(Cb<Ct && Cs>Ct)){
+      title.textContent='Diese beiden Konzentrationen können das Ziel nicht durch Mischen erreichen.';
+      $('baseVolOut').textContent='—'; $('stockVolOut').textContent='—';
+      $('baseNameOut').textContent='Ausgangslösung < Ziel nötig'; $('stockNameOut').textContent='Konzentrat > Ziel nötig';
+      $('bagInstruction').innerHTML='<b>Rechen-Cave:</b> Wähle eine Ausgangslösung unterhalb und ein Konzentrat oberhalb der Zielkonzentration.';
+      $('ampOut').textContent='—'; $('naMolOut').textContent='—'; $('saltMassOut').textContent='—';
+      return;
+    }
+    const Vs=(Ct-Cb)*V/(Cs-Cb), Vb=V-Vs;
+    title.textContent=`Dein Mischweg für ${fmt(V,0)} mL NaCl ${fmt(Ct,1)} %`;
+    $('baseVolOut').textContent=`${fmt(Vb,1)} mL`; $('stockVolOut').textContent=`${fmt(Vs,1)} mL`;
+    $('baseNameOut').textContent=concName(Cb); $('stockNameOut').textContent=concName(Cs);
+    $('ampOut').textContent=ampouleText(Vs,amp);
+    $('naMolOut').textContent=`≈ ${fmt(Ct*171.115,0)} mmol/L Na⁺`;
+    $('saltMassOut').textContent=`${fmt(Ct*V/100,1)} g NaCl`;
+    if(Math.abs(V-100)<0.01 && Math.abs(Cb-0.9)<0.001){
+      $('bagInstruction').innerHTML=`<b>100-mL-Beutel-Methode:</b> ${fmt(Vs,1)} mL aus dem NaCl-0,9%-Beutel entnehmen → ${fmt(Vs,1)} mL ${concName(Cs)} zusetzen → Endvolumen 100 mL.`;
+    }else{
+      $('bagInstruction').innerHTML=`<b>Mischung:</b> ${fmt(Vb,1)} mL ${concName(Cb)} + ${fmt(Vs,1)} mL ${concName(Cs)} → Endvolumen ${fmt(V,1)} mL.`;
+    }
+  }
+
+  const riskIds=['riskHypoK','riskAlcohol','riskMalnutrition','riskLiver'];
+  function getTBWFactor(){
+    const v=$('tbwFactor').value;
+    if(v==='custom') return parseFloat($('tbwCustom').value);
+    return parseFloat(v.replace('m',''));
+  }
+  function setProtocol(code){
+    const w=parseFloat($('weightKg').value)||70;
+    let vol=100,min=60;
+    if(code==='100-20'){vol=100;min=20;}
+    if(code==='150-20'){vol=150;min=20;}
+    if(code==='2kg-20'){vol=2*w;min=20;}
+    if(code==='20h'){vol=100;min=300;}
+    if(code==='05kg'){vol=100;min=100/(0.5*w)*60;}
+    if(code==='1kg'){vol=100;min=100/(1*w)*60;}
+    $('planVol').value=Math.round(vol*10)/10;
+    $('planTime').value=Math.round(min);
+    document.querySelectorAll('.protocol-btn').forEach(b=>b.classList.toggle('active',b.dataset.protocol===code));
+    calcTherapy();
+  }
+  function warning(type,html){return `<div class="calc-warning ${type}">${html}</div>`;}
+  function calcTherapy(){
+    toggleCustoms();
+    const baseline=parseFloat($('baselineNa').value), latest=parseFloat($('latestNa').value), w=parseFloat($('weightKg').value);
+    const f=getTBWFactor(), vol=parseFloat($('planVol').value), min=parseFloat($('planTime').value), elapsed=parseFloat($('elapsedHours').value);
+    const first=$('windowMode').value==='first', symptoms=$('symptomMode').value;
+    const highRisk=riskIds.some(id=>$(id).checked), waterDiuresis=$('riskWaterDiuresis').checked, hf=$('riskHF').checked;
+    const vals=[baseline,latest,w,f,vol,min,elapsed];
+    if(!vals.every(Number.isFinite)||w<=0||f<=0||vol<=0||min<=0||elapsed<0){return;}
+    const tbw=w*f, naInf=3*171.115;
+    const perL=(naInf-latest)/(tbw+1);
+    const plannedDelta=perL*(vol/1000);
+    const predicted=latest+plannedDelta;
+    const actualRise=latest-baseline;
+    const limit=highRisk?8:(first?10:8);
+    const remaining=limit-actualRise;
+    const projectedTotal=actualRise+plannedDelta;
+    const maxVol=remaining>0&&perL>0?remaining/perL*1000:0;
+    const remainingHours=Math.max(.01,24-elapsed);
+    const maxAvgRate=maxVol/remainingHours;
+    const rate=vol/(min/60);
+    const hourly=plannedDelta/(min/60);
+    const targetAdditional=Math.max(0,Math.min(5-actualRise,remaining));
+    const targetVol=targetAdditional>0&&perL>0?targetAdditional/perL*1000:0;
+
+    $('rateOut').textContent=`${fmt(rate,0)} mL/h`;
+    $('rateSub').textContent=`${fmt(vol,0)} mL über ${fmt(min,0)} min · rechnerisch ${fmt(hourly,2)} mmol/L/h`;
+    $('deltaOut').textContent=`${plannedDelta>=0?'+':''}${fmt(plannedDelta,1)} mmol/L`;
+    $('projectedNaOut').textContent=`${fmt(predicted,1)} mmol/L`;
+    $('actualRiseOut').textContent=`${actualRise>=0?'+':''}${fmt(actualRise,1)} mmol/L`;
+    $('remainingOut').textContent=`${fmt(Math.max(0,remaining),1)} mmol/L`;
+    $('limitSub').textContent=`Warnschwelle ${fmt(limit,0)} mmol/L / 24 h${highRisk?' · ODS-Hochrisiko':''}`;
+    $('maxVolOut').textContent=`≈ ${fmt(Math.max(0,maxVol),0)} mL`;
+    $('gaugeLabel').textContent=`projiziert ${projectedTotal>=0?'+':''}${fmt(projectedTotal,1)} / max. ${fmt(limit,0)} mmol/L`;
+    $('gaugeMax').textContent=`${fmt(limit,0)} mmol/L`;
+    const pct=Math.max(0,Math.min(100,projectedTotal/limit*100));
+    const fill=$('gaugeFill'); fill.style.width=pct+'%'; fill.className='gauge-fill';
+
+    let level='green', icon='✓', title='Rechnerisch innerhalb der Warnschwelle';
+    let text=`Geplante Gabe: geschätztes ΔsNa ${plannedDelta>=0?'+':''}${fmt(plannedDelta,1)} mmol/L; projizierter Gesamtanstieg im Fenster ${projectedTotal>=0?'+':''}${fmt(projectedTotal,1)} mmol/L.`;
+    if(latest>=130){level='red';icon='⛔';title='3 % NaCl stoppen / Indikation neu prüfen';text='Die europäische Leitlinie empfiehlt, hypertones NaCl zu stoppen, wenn sNa 130 mmol/L erreicht.';}
+    else if(actualRise>=limit){level='red';icon='⛔';title='Korrekturgrenze bereits erreicht oder überschritten';text=`Der dokumentierte Anstieg beträgt ${fmt(actualRise,1)} mmol/L bei einer Warnschwelle von ${fmt(limit,0)} mmol/L/24 h. Keine weitere automatische Korrekturplanung.`;}
+    else if(projectedTotal>limit){level='red';icon='⛔';title='STOPP: Plan überschreitet die 24-h-Korrekturgrenze';text=`Projiziert ${fmt(projectedTotal,1)} mmol/L Anstieg im Fenster > ${fmt(limit,0)} mmol/L. Volumen/Rate nicht so fortführen; sofort neu bewerten und engmaschig sNa/Urinmenge kontrollieren.`;}
+    else if(projectedTotal>6 && elapsed+min/60<=6){level='orange';icon='⚠️';title='Frühes +4–6-mmol/L-Ziel wird rechnerisch überschritten';text='Mehr Korrektur bringt nach Erreichen des frühen symptomatischen Ziels keinen zusätzlichen Nutzen, erhöht aber das Overcorrection-Risiko.';}
+    else if(highRisk||waterDiuresis){level='orange';icon='⚠️';title='Hohes Overcorrection-/ODS-Risiko';text=`Konservative Warnschwelle ${fmt(limit,0)} mmol/L/24 h. Formel besonders vorsichtig interpretieren und sNa/Urinmenge enger kontrollieren.`;}
+    else if(symptoms==='stable'){level='orange';icon='⚠️';title='Keine schweren Symptome: Indikation für NaCl 3 % zuerst prüfen';text='Bei chronisch-stabiler Hyponatriämie ist die ursachenspezifische Therapie entscheidend; hypertones NaCl nicht nur wegen des Natriumwertes geben.';}
+    const banner=$('statusBanner'); banner.className='status-banner'+(level==='green'?'':' '+level);
+    $('statusIcon').textContent=icon; $('statusTitle').textContent=title; $('statusText').textContent=text;
+    fill.classList.add(level==='red'?'red':level==='orange'?'orange':'');
+
+    let warns='';
+    if(symptoms==='severe') warns+=warning('teal','<b>Schwere Symptome:</b> frühes Ziel etwa +4–6 mmol/L; 3% HSS 100–150 mL bzw. 2–4 mL/kg über 20–40 min kann nach klinischem und biochemischem Reassessment wiederholt werden. Symptome und sNa-Verlauf steuern die nächste Gabe.');
+    if(symptoms==='moderate') warns+=warning('orange','<b>Mäßig schwere Symptome:</b> ESE 2014 nennt eine einzelne Gabe von 150 mL NaCl 3 % über 20 min; gleichzeitig Ursachenklärung und engmaschige Kontrolle.');
+    if(symptoms==='stable') warns+=warning('orange','<b>Chronisch/stabil:</b> keine „Zahlentherapie“. Bei kardialer Dekompensation zuerst Volumen-/Ursachenstrategie; NaCl 3 % ist keine routinemäßige Salzsubstitution.');
+    if(highRisk) warns+=warning('red','<b>ODS-Hochrisiko:</b> Hypokaliämie, Alkoholabhängigkeit, Mangelernährung oder fortgeschrittene Lebererkrankung → konservative Warnschwelle +8 mmol/L/24 h.');
+    if($('riskHypoK').checked) warns+=warning('red','<b>Hypokaliämie:</b> Kaliumkorrektur kann sNa zusätzlich anheben. Adrogué–Madias ohne diesen Effekt kann den realen Anstieg unterschätzen.');
+    if(waterDiuresis) warns+=warning('red','<b>Neue Wasserdiurese:</b> plötzlicher Abfall der ADH-Wirkung kann sNa rasch „davonlaufen“ lassen. Formel jetzt unzuverlässig → Urinmenge und sNa sehr engmaschig; Braking-/Relowering-Protokoll nach Oberarzt/Intensiv-/Nephrostandard bereithalten.');
+    if(hf) warns+=warning('teal','<b>Herzinsuffizienz / Stauung:</b> schwere neurologische Symptome können hypertones NaCl trotzdem rechtfertigen. Ohne schwere Symptome ist die hypervolämische Verdünnungshyponatriämie primär keine Indikation, einfach NaCl 3 % „nachzufüllen“.');
+    if(maxVol>0) warns+=warning('',`<b>Nur rechnerische Orientierung:</b> Bis zur mathematischen Warnschwelle verbleiben nach Adrogué–Madias etwa ${fmt(maxVol,0)} mL NaCl 3 %. Über die verbleibenden ${fmt(remainingHours,1)} h entspräche das im Mittel ${fmt(maxAvgRate,0)} mL/h. <b>Das ist keine Dosierungsempfehlung</b> und darf bei Bolustherapie nicht als Pumpenlimit missverstanden werden.`);
+    if(targetAdditional>0) warns+=warning('teal',`<b>+5-mmol/L-Merker:</b> Für einen Gesamtanstieg von etwa +5 mmol/L im aktuellen Fenster wären rechnerisch noch ≈ ${fmt(targetVol,0)} mL NaCl 3 % nötig. Nach jedem klinischen/biochemischen Reassessment neu rechnen.`);
+    $('warningStack').innerHTML=warns;
+  }
+
+  ['finalVol','targetConc','baseConc','baseCustom','stockConc','stockCustom','ampSize'].forEach(id=>$(id).addEventListener('input',calcMix));
+  document.querySelectorAll('.quick-recipe').forEach(btn=>btn.addEventListener('click',()=>{
+    $('finalVol').value=100; $('targetConc').value=3; $('baseConc').value='0.9'; $('stockConc').value=btn.dataset.stock; calcMix();
+  }));
+  ['symptomMode','windowMode','elapsedHours','baselineNa','latestNa','weightKg','tbwFactor','tbwCustom','planVol','planTime','riskHypoK','riskAlcohol','riskMalnutrition','riskLiver','riskWaterDiuresis','riskHF'].forEach(id=>$(id).addEventListener('input',calcTherapy));
+  document.querySelectorAll('.protocol-btn').forEach(btn=>btn.addEventListener('click',()=>setProtocol(btn.dataset.protocol)));
+  calcMix(); calcTherapy();
+
+
   document.querySelectorAll('.lab-list input').forEach(cb=>{
     cb.addEventListener('change',()=>cb.closest('label').classList.toggle('done',cb.checked));
   });
-  setCase(false);
+  resetEvaluator(false); renderCaseHistory();
 })();
 </script>
 </body>
