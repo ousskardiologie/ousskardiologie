@@ -1,0 +1,754 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Bradyarrhythmia absoluta · Schrittmacher-Algorithmus — diastola</title>
+<meta name="description" content="Interaktiver Diastola-Lernalgorithmus zur Schrittmacherentscheidung bei Vorhofflimmern mit langsamer Kammeraktion: AV-Block, Symptom-Korrelation, reversible Ursachen, TTE/LVEF und Pacing-Strategie.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,600&family=DM+Sans:wght@400;500;600;700&family=Caveat:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --parchment:#faf6ee; --paper:#fffdf7; --ink:#2b2620; --ink-soft:#625a50;
+  --red:#c8303a; --red-soft:#fdf0f0; --red-line:#e8c2c4;
+  --gold:#b07d2b; --gold-soft:#fbf3e2; --teal:#2f6f6a; --teal-soft:#e9f2f1;
+  --blue:#2c5c8a; --blue-soft:#eaf1f8; --violet:#7a4a9c; --violet-soft:#f3ecf8;
+  --green:#3a7d4e; --green-soft:#eaf5ee; --orange:#bf6f1b; --orange-soft:#fbf0e2;
+  --line:#d8cfbf; --shadow:0 2px 0 rgba(43,38,32,.08),0 14px 30px -18px rgba(43,38,32,.30);
+  --sketch:255px 15px 225px 15px / 15px 225px 15px 255px;
+}
+[data-theme="dark"]{
+  --parchment:#1c1a17; --paper:#26231e; --ink:#efe9dc; --ink-soft:#b7ae9d;
+  --red:#f0656d; --red-soft:#3a2422; --red-line:#6a3b3d;
+  --gold:#e0aa5c; --gold-soft:#332a1c; --teal:#68b3ad; --teal-soft:#1f2e2c;
+  --blue:#7fb0dd; --blue-soft:#1e2a36; --violet:#c19ce0; --violet-soft:#2a2033;
+  --green:#75c48c; --green-soft:#1c2d22; --orange:#e0a45c; --orange-soft:#332818;
+  --line:#453f34; --shadow:0 2px 0 rgba(0,0,0,.3),0 16px 34px -18px rgba(0,0,0,.65);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:90px}
+body{
+  font-family:'DM Sans',system-ui,sans-serif; color:var(--ink); line-height:1.5;
+  background-color:var(--parchment);
+  background-image:radial-gradient(rgba(43,38,32,.10) 1px,transparent 1.5px); background-size:22px 22px;
+  -webkit-font-smoothing:antialiased; transition:.25s background-color,.25s color;
+}
+[data-theme="dark"] body{background-image:radial-gradient(rgba(255,255,255,.06) 1px,transparent 1.5px)}
+::selection{background:var(--red);color:white}
+a{color:inherit}
+.wrap{max-width:1180px;margin:0 auto;padding:0 22px}
+
+/* header */
+.site-head{padding:38px 0 18px}
+.brand-row{display:flex;align-items:baseline;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.brand{font-family:'Cormorant Garamond',serif;font-weight:700;font-size:1.38rem;text-decoration:none}
+.brand em{color:var(--red);font-style:italic}
+.brand-note{font-family:'Caveat',cursive;font-size:1.15rem;color:var(--ink-soft);transform:rotate(-1deg)}
+.hero{padding-top:24px;position:relative}
+.kicker{display:inline-flex;gap:8px;align-items:center;font-size:.72rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--red);border:1.5px solid var(--red);padding:5px 12px;border-radius:999px;background:var(--paper)}
+h1{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:clamp(2.45rem,6vw,4.7rem);line-height:.98;max-width:850px;margin-top:16px}
+h1 em{color:var(--red);font-style:italic}
+.lede{max-width:760px;color:var(--ink-soft);font-size:1.02rem;margin-top:16px}
+.scribble{font-family:'Caveat',cursive;color:var(--red);font-size:1.35rem;margin-top:10px;display:inline-block;transform:rotate(-1deg)}
+
+/* sticky toolbar */
+.toolbar{position:sticky;top:0;z-index:50;border-top:1px solid var(--line);border-bottom:1.5px solid var(--line);background:rgba(250,246,238,.94);backdrop-filter:blur(9px)}
+[data-theme="dark"] .toolbar{background:rgba(28,26,23,.94)}
+.toolbar-in{max-width:1180px;margin:auto;padding:9px 22px;display:flex;align-items:center;gap:7px;flex-wrap:wrap}
+.pill-btn{font:600 .76rem 'DM Sans',sans-serif;color:var(--ink);background:var(--paper);border:1.5px solid var(--ink);padding:6px 11px;border-radius:var(--sketch);cursor:pointer;transition:.15s;display:inline-flex;gap:6px;align-items:center}
+.pill-btn:hover,.pill-btn.on{background:var(--ink);color:var(--paper)}
+.pill-btn.case.on{background:var(--red);border-color:var(--red);color:white}
+.spacer{flex:1}
+.legend-mini{font-size:.72rem;color:var(--ink-soft);display:flex;gap:8px;flex-wrap:wrap}
+.legend-mini span{display:flex;align-items:center;gap:5px}
+.dot{width:8px;height:8px;border-radius:50%;display:inline-block}
+
+/* main */
+main{padding:35px 0 90px}
+.section-title{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin-bottom:10px}
+.section-title .num{font-family:'Caveat',cursive;color:var(--red);font-size:1.55rem;font-weight:700}
+.section-title h2{font-family:'Cormorant Garamond',serif;font-size:clamp(1.7rem,3vw,2.3rem);font-weight:600}
+.section-title .sub{font-family:'Caveat',cursive;color:var(--ink-soft);font-size:1.14rem}
+.intro-note{background:var(--gold-soft);border:1.5px dashed var(--gold);border-radius:16px 5px 16px 5px;padding:13px 17px;margin-bottom:26px;color:var(--ink-soft);font-size:.93rem}
+.intro-note b{color:var(--ink)}
+
+/* flow */
+.flowboard{position:relative;background:color-mix(in srgb,var(--paper) 76%,transparent);border:1.5px solid var(--line);border-radius:24px 8px 24px 8px;padding:28px 20px 34px;box-shadow:var(--shadow);overflow:hidden}
+.flowboard:before{content:"DIAGNOSTIK";position:absolute;right:14px;top:12px;font-family:'Caveat',cursive;color:var(--line);font-size:3rem;font-weight:700;transform:rotate(-4deg);pointer-events:none}
+.flow-step{position:relative;display:flex;justify-content:center;margin:0 auto}
+.node{position:relative;width:min(100%,620px);background:var(--paper);border:1.7px solid var(--ink);border-radius:var(--sketch);padding:16px 18px;box-shadow:var(--shadow);transition:.2s opacity,.2s transform,.2s box-shadow,.2s border-color}
+.node .eyebrow{font-size:.64rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;margin-bottom:4px;color:var(--ink-soft)}
+.node h3{font-family:'Cormorant Garamond',serif;font-weight:700;font-size:1.38rem;line-height:1.13}
+.node p{font-size:.88rem;color:var(--ink-soft);margin-top:6px}
+.node .value{display:inline-block;font-weight:700;color:var(--ink);font-size:.94rem;margin-top:6px}
+.node.blue{border-left:6px solid var(--blue)} .node.blue .eyebrow{color:var(--blue)}
+.node.red{border-left:6px solid var(--red)} .node.red .eyebrow{color:var(--red)}
+.node.teal{border-left:6px solid var(--teal)} .node.teal .eyebrow{color:var(--teal)}
+.node.green{border-left:6px solid var(--green)} .node.green .eyebrow{color:var(--green)}
+.node.violet{border-left:6px solid var(--violet)} .node.violet .eyebrow{color:var(--violet)}
+.node.orange{border-left:6px solid var(--orange)} .node.orange .eyebrow{color:var(--orange)}
+.node.gold{border-left:6px solid var(--gold)} .node.gold .eyebrow{color:var(--gold)}
+.node.soft-red{background:var(--red-soft);border-color:var(--red)}
+.node.soft-green{background:var(--green-soft);border-color:var(--green)}
+.node.soft-violet{background:var(--violet-soft);border-color:var(--violet)}
+.node.soft-orange{background:var(--orange-soft);border-color:var(--orange)}
+.node.soft-blue{background:var(--blue-soft);border-color:var(--blue)}
+.node .tagrow{display:flex;flex-wrap:wrap;gap:6px;margin-top:9px}
+.tag{font-size:.65rem;font-weight:700;border:1.3px solid var(--line);border-radius:999px;padding:3px 8px;background:var(--parchment);color:var(--ink-soft)}
+.tag.red{color:var(--red);border-color:var(--red-line);background:var(--red-soft)}
+.tag.green{color:var(--green);border-color:var(--green);background:var(--green-soft)}
+.tag.violet{color:var(--violet);border-color:var(--violet);background:var(--violet-soft)}
+.tag.blue{color:var(--blue);border-color:var(--blue);background:var(--blue-soft)}
+
+.down{height:48px;position:relative}
+.down:before{content:"";position:absolute;left:50%;top:0;bottom:13px;border-left:2px solid var(--ink);transform:translateX(-50%)}
+.down:after{content:"↓";position:absolute;left:50%;bottom:-2px;transform:translateX(-50%);font-size:1.3rem;font-weight:700;color:var(--ink)}
+.branch-label-center{position:absolute;left:calc(50% + 14px);top:13px;background:var(--parchment);padding:1px 6px;font-family:'Caveat',cursive;color:var(--red);font-size:1.05rem;z-index:2}
+
+.fork{display:grid;grid-template-columns:1fr 1fr;gap:56px;position:relative;margin-top:48px}
+.fork:before{content:"";position:absolute;left:25%;right:25%;top:-25px;border-top:2px solid var(--ink)}
+.fork:after{content:"";position:absolute;left:50%;top:-49px;height:25px;border-left:2px solid var(--ink);transform:translateX(-50%)}
+.branch{position:relative;display:flex;justify-content:center}
+.branch:before{content:"";position:absolute;left:50%;top:-25px;height:25px;border-left:2px solid var(--ink);transform:translateX(-50%)}
+.branch-mark{position:absolute;top:-47px;left:50%;transform:translateX(-50%) rotate(-1deg);z-index:3;background:var(--parchment);border:1.3px solid var(--ink);border-radius:999px;padding:3px 9px;font-family:'Caveat',cursive;font-size:1.02rem;font-weight:700;white-space:nowrap}
+.branch-mark.yes{color:var(--green);border-color:var(--green)}
+.branch-mark.no{color:var(--red);border-color:var(--red)}
+.branch-mark.blue{color:var(--blue);border-color:var(--blue)}
+.branch-mark.violet{color:var(--violet);border-color:var(--violet)}
+.branch-mark.orange{color:var(--orange);border-color:var(--orange)}
+
+/* sub branch cards inside a branch */
+.lane{display:flex;flex-direction:column;align-items:center;width:100%}
+.lane .down{width:100%}
+.lane .node{width:min(100%,510px)}
+.mini-fork{display:grid;grid-template-columns:1fr 1fr;gap:22px;position:relative;width:100%;margin-top:43px}
+.mini-fork:before{content:"";position:absolute;left:25%;right:25%;top:-22px;border-top:1.7px solid var(--ink)}
+.mini-fork:after{content:"";position:absolute;left:50%;top:-43px;height:21px;border-left:1.7px solid var(--ink);transform:translateX(-50%)}
+.mini-branch{position:relative;display:flex;justify-content:center}
+.mini-branch:before{content:"";position:absolute;left:50%;top:-22px;height:22px;border-left:1.7px solid var(--ink);transform:translateX(-50%)}
+.mini-branch .branch-mark{top:-43px;font-size:.9rem;padding:2px 7px}
+.mini-branch .node{padding:14px 14px}
+.mini-branch .node h3{font-size:1.15rem}
+
+/* callouts */
+.mental{margin:34px auto 0;max-width:920px;display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.paper-note{position:relative;background:var(--paper);border:1.5px solid var(--ink);border-radius:6px 16px 5px 14px;padding:18px 18px 16px;box-shadow:var(--shadow);transform:rotate(-.4deg)}
+.paper-note:nth-child(2){transform:rotate(.45deg)}
+.paper-note:before{content:"";position:absolute;width:84px;height:19px;top:-10px;left:50%;transform:translateX(-50%) rotate(-2deg);background:color-mix(in srgb,var(--gold-soft) 82%,transparent);border-left:1px solid var(--line);border-right:1px solid var(--line);opacity:.85}
+.paper-note h4{font-family:'Caveat',cursive;color:var(--red);font-size:1.35rem;margin-bottom:7px}
+.paper-note p{font-size:.9rem;color:var(--ink-soft)}
+.paper-note .rtl{direction:rtl;text-align:right;font-size:1rem;color:var(--ink);margin-top:8px}
+
+/* patient path */
+.patient-panel{margin-top:48px;background:var(--paper);border:1.7px solid var(--ink);border-radius:var(--sketch);padding:24px;box-shadow:var(--shadow)}
+.patient-head{display:flex;justify-content:space-between;align-items:flex-start;gap:18px;flex-wrap:wrap}
+.patient-head h2{font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:600}
+.patient-head p{max-width:760px;color:var(--ink-soft);font-size:.94rem;margin-top:5px}
+.case-badge{font-family:'Caveat',cursive;color:var(--red);font-size:1.25rem;border:1.5px dashed var(--red);border-radius:999px;padding:4px 12px;transform:rotate(1deg)}
+.case-chain{display:flex;align-items:stretch;gap:10px;margin-top:23px;overflow-x:auto;padding:2px 2px 13px}
+.case-step{min-width:172px;flex:1;background:var(--parchment);border:1.4px solid var(--line);border-radius:14px 5px 14px 5px;padding:13px 14px;position:relative}
+.case-step:not(:last-child):after{content:"→";position:absolute;right:-13px;top:50%;transform:translateY(-50%);font-weight:700;color:var(--red);z-index:4;background:var(--paper);border-radius:50%;padding:0 2px}
+.case-step .n{font-family:'Caveat',cursive;color:var(--red);font-size:1rem}
+.case-step b{display:block;font-family:'Cormorant Garamond',serif;font-size:1.16rem;line-height:1.05;margin:2px 0 5px}
+.case-step small{color:var(--ink-soft);font-size:.76rem}
+.case-conclusion{margin-top:18px;background:var(--green-soft);border-left:5px solid var(--green);border-radius:5px 13px 13px 5px;padding:15px 17px}
+.case-conclusion strong{color:var(--green)}
+.case-conclusion p{font-size:.9rem;color:var(--ink-soft);margin-top:3px}
+
+/* lab checklist */
+.labs{margin-top:48px}
+.lab-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:16px}
+.lab-card{background:var(--paper);border:1.5px solid var(--ink);border-radius:var(--sketch);padding:19px;box-shadow:var(--shadow)}
+.lab-card h3{font-family:'Cormorant Garamond',serif;font-size:1.4rem;margin-bottom:10px}
+.lab-list{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.lab-list label{display:flex;align-items:flex-start;gap:8px;font-size:.86rem;color:var(--ink-soft);cursor:pointer;padding:5px 6px;border-radius:8px}
+.lab-list label:hover{background:var(--parchment)}
+.lab-list input{accent-color:var(--red);margin-top:3px}
+.lab-list label.done{text-decoration:line-through;opacity:.55}
+.pearl{margin-top:18px;border:1.5px dashed var(--teal);background:var(--teal-soft);padding:14px 17px;border-radius:14px 5px 14px 5px;font-size:.9rem;color:var(--ink-soft)}
+.pearl b{color:var(--teal)}
+
+/* interactive algorithm + route focus */
+.patient-evaluator{margin:22px 0 28px;background:var(--paper);border:1.7px solid var(--ink);border-radius:var(--sketch);padding:24px;box-shadow:var(--shadow);scroll-margin-top:92px}
+.eval-head{display:flex;justify-content:space-between;align-items:flex-start;gap:18px;flex-wrap:wrap}
+.eval-head h2{font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:600;line-height:1.02}
+.eval-head p{max-width:780px;color:var(--ink-soft);font-size:.92rem;margin-top:6px}
+.eval-stamp{font-family:'Caveat',cursive;color:var(--red);font-size:1.15rem;border:1.5px dashed var(--red);border-radius:999px;padding:4px 12px;transform:rotate(1deg);white-space:nowrap}
+.eval-topbar{display:grid;grid-template-columns:minmax(180px,.7fr) minmax(0,1.3fr);gap:14px;margin-top:18px;align-items:end}
+.eval-id label{display:block;font-size:.74rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--ink-soft);margin-bottom:6px}
+.eval-id input,.eval-step input,.eval-step select{width:100%;background:var(--parchment);color:var(--ink);border:1.4px solid var(--line);border-radius:10px 4px 10px 4px;padding:10px 11px;font:inherit;font-size:.91rem;outline:none}
+.eval-id input:focus,.eval-step input:focus,.eval-step select:focus{border-color:var(--red);box-shadow:0 0 0 3px color-mix(in srgb,var(--red) 13%,transparent)}
+.privacy-note{font-size:.79rem;color:var(--ink-soft);padding:8px 11px;border-left:3px solid var(--gold);background:var(--gold-soft);border-radius:4px 10px 10px 4px}
+.eval-steps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:18px}
+.eval-step{background:var(--parchment);border:1.35px solid var(--line);border-radius:14px 5px 14px 5px;padding:14px;position:relative;min-width:0;transition:.22s opacity,.22s transform,.22s border-color,.22s box-shadow}
+.eval-step.hidden{display:none}
+.eval-step.active{border-color:var(--red);box-shadow:0 0 0 3px color-mix(in srgb,var(--red) 10%,transparent)}
+.eval-step.done{border-color:var(--teal)}
+.eval-step .step-no{font-family:'Caveat',cursive;color:var(--red);font-size:1rem}
+.eval-step h3{font-family:'Cormorant Garamond',serif;font-size:1.2rem;line-height:1.05;margin:1px 0 5px}
+.eval-step p{font-size:.77rem;color:var(--ink-soft);margin-bottom:9px}
+.eval-unit{position:relative}
+.eval-unit input{padding-right:76px}
+.eval-unit span{position:absolute;right:10px;top:50%;transform:translateY(-50%);font-size:.76rem;color:var(--ink-soft);pointer-events:none}
+.eval-result{margin-top:18px;border:1.5px solid var(--teal);background:var(--teal-soft);border-radius:17px 6px 17px 6px;padding:16px 17px;display:grid;grid-template-columns:auto 1fr;gap:13px;align-items:start}
+.eval-result.orange{border-color:var(--orange);background:var(--orange-soft)}
+.eval-result.red{border-color:var(--red);background:var(--red-soft)}
+.eval-result.violet{border-color:var(--violet);background:var(--violet-soft)}
+.eval-result.green{border-color:var(--green);background:var(--green-soft)}
+.eval-result .result-icon{font-size:1.45rem;line-height:1}
+.eval-result h3{font-family:'Cormorant Garamond',serif;font-size:1.45rem;line-height:1.03}
+.eval-result p{font-size:.87rem;color:var(--ink-soft);margin-top:5px}
+.eval-result .next-test{display:inline-block;margin-top:8px;font-size:.78rem;font-weight:700;color:var(--red)}
+.eval-path-wrap{margin-top:18px}
+.eval-path-head{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:8px}
+.eval-path-head h3{font-family:'Cormorant Garamond',serif;font-size:1.35rem}
+.eval-path-head span{font-family:'Caveat',cursive;color:var(--red);font-size:1.02rem}
+.eval-empty{font-size:.84rem;color:var(--ink-soft);border:1.3px dashed var(--line);border-radius:12px;padding:13px 15px}
+.eval-actions{display:flex;gap:9px;flex-wrap:wrap;margin-top:16px}
+.eval-actions .pill-btn{background:var(--parchment)}
+.case-history{margin-top:18px;border-top:1px dashed var(--line);padding-top:16px}
+.case-history-head{display:flex;justify-content:space-between;gap:12px;align-items:center;flex-wrap:wrap}
+.case-history-head h3{font-family:'Cormorant Garamond',serif;font-size:1.25rem}
+.case-history-head span{font-size:.75rem;color:var(--ink-soft)}
+.case-history-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px;margin-top:10px}
+.saved-case{display:grid;grid-template-columns:1fr auto;gap:10px;align-items:center;background:var(--parchment);border:1.2px solid var(--line);border-radius:11px 4px 11px 4px;padding:10px 11px}
+.saved-case b{display:block;font-size:.86rem}
+.saved-case small{display:block;color:var(--ink-soft);font-size:.72rem;margin-top:2px}
+.saved-case .case-btns{display:flex;gap:5px}
+.mini-icon-btn{border:1px solid var(--line);background:var(--paper);color:var(--ink);border-radius:8px;padding:5px 8px;cursor:pointer;font-size:.78rem}
+.mini-icon-btn:hover{border-color:var(--red);color:var(--red)}
+
+body.route-mode #flow .node,body.route-mode #flow .branch-mark{opacity:.13;filter:saturate(.3);transition:.2s opacity,.2s filter,.2s transform,.2s box-shadow}
+body.route-mode #flow .route-hit{opacity:1;filter:none;transform:translateY(-1px)}
+body.route-mode #flow .node.route-hit{border-color:var(--red);box-shadow:0 0 0 3px color-mix(in srgb,var(--red) 18%,transparent),var(--shadow)}
+body.route-mode #flow{background:color-mix(in srgb,var(--red-soft) 14%,var(--paper))}
+
+@media(max-width:900px){.eval-steps{grid-template-columns:1fr 1fr}.eval-topbar{grid-template-columns:1fr}.case-history-list{grid-template-columns:1fr}}
+@media(max-width:620px){.eval-steps{grid-template-columns:1fr}.patient-evaluator{padding:17px}.eval-result{grid-template-columns:1fr}.eval-stamp{white-space:normal}}
+
+/* NaCl 3% preparation + correction calculator */
+.nacl-lab{margin-top:56px;scroll-margin-top:82px}
+.safety-ribbon{display:grid;grid-template-columns:auto 1fr;gap:13px;align-items:start;background:var(--red-soft);border:1.6px solid var(--red);border-radius:18px 6px 18px 6px;padding:15px 17px;margin:14px 0 20px;box-shadow:var(--shadow)}
+.safety-ribbon .ico{font-size:1.45rem;line-height:1}
+.safety-ribbon strong{color:var(--red);display:block;margin-bottom:3px}
+.safety-ribbon p{color:var(--ink-soft);font-size:.88rem}
+.calc-layout{display:grid;grid-template-columns:minmax(0,.93fr) minmax(0,1.07fr);gap:20px;align-items:start}
+.calc-card{background:var(--paper);border:1.6px solid var(--ink);border-radius:var(--sketch);padding:20px;box-shadow:var(--shadow);min-width:0}
+.calc-card + .calc-card{margin-top:0}
+.calc-head{display:flex;justify-content:space-between;gap:12px;align-items:flex-start;flex-wrap:wrap;margin-bottom:15px}
+.calc-head h3{font-family:'Cormorant Garamond',serif;font-size:1.7rem;line-height:1.02;font-weight:600}
+.calc-head p{color:var(--ink-soft);font-size:.84rem;margin-top:5px;max-width:590px}
+.calc-stamp{font-family:'Caveat',cursive;font-size:1.05rem;color:var(--red);border:1.4px dashed var(--red);border-radius:999px;padding:3px 10px;transform:rotate(1deg);white-space:nowrap}
+.form-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:11px}
+.field{display:flex;flex-direction:column;gap:5px;min-width:0}
+.field.span2{grid-column:1/-1}
+.field label,.field .label{font-size:.73rem;font-weight:700;letter-spacing:.03em;color:var(--ink-soft)}
+.field input,.field select{width:100%;border:1.4px solid var(--line);background:var(--parchment);color:var(--ink);border-radius:10px 4px 10px 4px;padding:10px 11px;font:600 .9rem 'DM Sans',sans-serif;outline:none;transition:.15s border-color,.15s box-shadow}
+.field input:focus,.field select:focus{border-color:var(--blue);box-shadow:0 0 0 3px color-mix(in srgb,var(--blue) 14%,transparent)}
+.field small{font-size:.67rem;color:var(--ink-soft);line-height:1.3}
+.inline-unit{position:relative}.inline-unit input{padding-right:60px}.inline-unit span{position:absolute;right:10px;bottom:10px;color:var(--ink-soft);font-size:.72rem;font-weight:700;pointer-events:none}
+.recipe-result{margin-top:15px;background:var(--blue-soft);border:1.5px solid var(--blue);border-radius:16px 5px 16px 5px;padding:16px}
+.recipe-title{font-family:'Caveat',cursive;color:var(--blue);font-size:1.15rem;margin-bottom:7px}
+.recipe-big{display:grid;grid-template-columns:1fr auto 1fr;gap:10px;align-items:center}
+.recipe-vol{background:var(--paper);border:1.3px solid var(--line);border-radius:12px 4px 12px 4px;padding:12px;text-align:center}
+.recipe-vol b{display:block;font-family:'Cormorant Garamond',serif;font-size:1.75rem;line-height:1;color:var(--ink)}
+.recipe-vol span{font-size:.72rem;color:var(--ink-soft)}
+.recipe-plus{font-family:'Caveat',cursive;color:var(--red);font-size:1.7rem;font-weight:700}
+.recipe-instruction{margin-top:12px;border-left:4px solid var(--blue);padding:9px 11px;background:color-mix(in srgb,var(--paper) 74%,transparent);border-radius:4px 9px 9px 4px;font-size:.86rem;color:var(--ink-soft)}
+.recipe-instruction b{color:var(--ink)}
+.recipe-meta{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:11px}
+.meta-chip{border:1px dashed var(--line);border-radius:10px;padding:8px;text-align:center;font-size:.68rem;color:var(--ink-soft)}
+.meta-chip b{display:block;color:var(--ink);font-size:.83rem}
+.quick-recipes{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin-top:14px}
+.quick-recipe{border:1.3px solid var(--line);background:var(--parchment);border-radius:11px 4px 11px 4px;padding:10px;cursor:pointer;color:var(--ink);text-align:left;transition:.15s transform,.15s border-color}
+.quick-recipe:hover{transform:translateY(-1px);border-color:var(--red)}
+.quick-recipe b{font-family:'Cormorant Garamond',serif;font-size:1.03rem;display:block}
+.quick-recipe span{font-size:.69rem;color:var(--ink-soft)}
+.aseptic-note{margin-top:13px;border:1.3px dashed var(--gold);background:var(--gold-soft);border-radius:12px 4px 12px 4px;padding:11px 12px;font-size:.76rem;color:var(--ink-soft)}
+.aseptic-note strong{color:var(--gold)}
+.protocols{display:flex;gap:7px;flex-wrap:wrap;margin:2px 0 14px}
+.protocol-btn{font:600 .7rem 'DM Sans',sans-serif;border:1.3px solid var(--line);background:var(--parchment);color:var(--ink);border-radius:999px;padding:6px 9px;cursor:pointer;transition:.15s}
+.protocol-btn:hover,.protocol-btn.active{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.risk-box{grid-column:1/-1;border:1.3px dashed var(--line);border-radius:13px 5px 13px 5px;padding:10px 11px}
+.risk-box .risk-title{font-size:.73rem;font-weight:700;color:var(--ink-soft);margin-bottom:7px}
+.risk-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px 9px}
+.risk-grid label{font-size:.74rem;color:var(--ink-soft);display:flex;gap:7px;align-items:flex-start;cursor:pointer}
+.risk-grid input{accent-color:var(--red);margin-top:2px}
+.status-banner{margin-top:15px;border:1.6px solid var(--green);background:var(--green-soft);border-radius:15px 5px 15px 5px;padding:13px 15px;display:flex;gap:11px;align-items:flex-start}
+.status-banner.orange{border-color:var(--orange);background:var(--orange-soft)}
+.status-banner.red{border-color:var(--red);background:var(--red-soft)}
+.status-banner .status-icon{font-size:1.4rem;line-height:1}
+.status-banner strong{display:block;color:var(--green);font-size:.9rem}
+.status-banner.orange strong{color:var(--orange)}.status-banner.red strong{color:var(--red)}
+.status-banner p{color:var(--ink-soft);font-size:.77rem;margin-top:2px}
+.result-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:10px}
+.result-box{background:var(--parchment);border:1.2px solid var(--line);border-radius:12px 4px 12px 4px;padding:11px;min-width:0}
+.result-box .rlabel{font-size:.64rem;text-transform:uppercase;letter-spacing:.08em;color:var(--ink-soft);font-weight:700}
+.result-box b{display:block;font-family:'Cormorant Garamond',serif;font-size:1.5rem;line-height:1.05;margin-top:3px;white-space:nowrap}
+.result-box small{font-size:.64rem;color:var(--ink-soft)}
+.correction-gauge{margin-top:13px;border:1.3px solid var(--line);border-radius:13px;padding:11px;background:var(--paper)}
+.gauge-head{display:flex;justify-content:space-between;gap:8px;align-items:baseline;font-size:.72rem;color:var(--ink-soft)}
+.gauge-head b{color:var(--ink)}
+.gauge-track{height:14px;border-radius:999px;background:var(--parchment);border:1px solid var(--line);margin-top:8px;position:relative;overflow:hidden}
+.gauge-fill{height:100%;width:0;background:var(--green);transition:.2s width,.2s background}
+.gauge-fill.orange{background:var(--orange)}.gauge-fill.red{background:var(--red)}
+.gauge-marks{display:flex;justify-content:space-between;font-size:.62rem;color:var(--ink-soft);margin-top:4px}
+.warning-stack{display:grid;gap:7px;margin-top:11px}
+.calc-warning{border-left:4px solid var(--gold);background:var(--gold-soft);border-radius:4px 9px 9px 4px;padding:9px 10px;font-size:.73rem;color:var(--ink-soft)}
+.calc-warning.red{border-color:var(--red);background:var(--red-soft)}
+.calc-warning.orange{border-color:var(--orange);background:var(--orange-soft)}
+.calc-warning.teal{border-color:var(--teal);background:var(--teal-soft)}
+.calc-warning b{color:var(--ink)}
+.formula-note{margin-top:11px;font-size:.68rem;color:var(--ink-soft);border-top:1px dashed var(--line);padding-top:9px}
+.monitor-strip{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:17px}
+.monitor-card{border:1.3px solid var(--line);background:var(--paper);border-radius:13px 4px 13px 4px;padding:12px}
+.monitor-card .mnum{font-family:'Caveat',cursive;color:var(--red);font-size:1.1rem}
+.monitor-card b{display:block;font-size:.82rem;margin:2px 0 4px}
+.monitor-card p{font-size:.7rem;color:var(--ink-soft)}
+.hidden{display:none!important}
+@media(max-width:960px){.calc-layout{grid-template-columns:1fr}.monitor-strip{grid-template-columns:1fr 1fr}.quick-recipes{grid-template-columns:1fr 1fr}}
+@media(max-width:610px){.form-grid,.result-grid,.risk-grid,.recipe-meta{grid-template-columns:1fr}.recipe-big{grid-template-columns:1fr}.recipe-plus{transform:rotate(90deg);text-align:center}.quick-recipes,.monitor-strip{grid-template-columns:1fr}.calc-card{padding:15px}.result-box b{white-space:normal}}
+@media print{.protocols,.quick-recipes{display:none!important}.calc-layout{grid-template-columns:1fr}.calc-card{break-inside:avoid}.nacl-lab{break-before:page}}
+
+
+/* reference */
+.refs{margin-top:45px;border-top:1.5px solid var(--line);padding-top:23px;color:var(--ink-soft);font-size:.79rem}
+.refs h3{font-family:'Cormorant Garamond',serif;color:var(--ink);font-size:1.22rem;margin-bottom:7px}
+.refs a{color:var(--blue);text-decoration-thickness:1px;text-underline-offset:2px}
+
+footer{border-top:1.5px solid var(--line);padding:27px 22px 48px;text-align:center;color:var(--ink-soft);font-size:.84rem}
+.fbrand{font-family:'Cormorant Garamond',serif;font-weight:700;color:var(--ink);font-size:1.1rem}.fbrand em{color:var(--red);font-style:italic}
+.fnote{font-family:'Caveat',cursive;font-size:1.08rem;margin-top:5px}
+
+@media(max-width:860px){
+  .fork{grid-template-columns:1fr;gap:56px;margin-top:42px}
+  .fork:before{display:none}.fork:after{top:-42px;height:42px}
+  .branch:before{top:-18px;height:18px}
+  .branch{margin-top:18px}
+  .branch:first-child{margin-top:0}
+  .branch-mark{top:-37px}
+  .mental,.lab-grid{grid-template-columns:1fr}
+  .legend-mini{display:none}
+  .flowboard:before{font-size:2.2rem}
+}
+@media(max-width:610px){
+  .wrap{padding:0 14px}.toolbar-in{padding:8px 14px}.site-head{padding-top:25px}
+  h1{font-size:2.65rem}.flowboard{padding:24px 10px 30px}
+  .node{padding:14px 14px}.node h3{font-size:1.25rem}
+  .mini-fork{grid-template-columns:1fr;gap:47px}
+  .mini-fork:before{display:none}.mini-fork:after{top:-41px;height:41px}
+  .mini-branch:before{top:-18px;height:18px}.mini-branch .branch-mark{top:-37px}
+  .lab-list{grid-template-columns:1fr}.spacer{display:none}
+}
+@media print{
+  .toolbar,.pill-btn,.scribble{display:none!important}
+  body{background:white!important;color:#111!important}
+  .wrap{max-width:none;padding:0 10mm}.site-head{padding-top:5mm}
+  .flowboard,.node,.patient-panel,.lab-card{box-shadow:none;break-inside:avoid}
+  .flowboard{overflow:visible}
+  .refs{font-size:8pt}
+}
+
+
+/* brady / pacing page */
+.rhythm-strip{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:18px}
+.rhythm-card{background:var(--paper);border:1.5px solid var(--ink);border-radius:var(--sketch);padding:18px;box-shadow:var(--shadow)}
+.rhythm-card h3{font-family:'Cormorant Garamond',serif;font-size:1.4rem;line-height:1.05}
+.rhythm-card p{font-size:.84rem;color:var(--ink-soft);margin-top:7px}
+.rr-demo{font-family:'DM Sans',monospace;font-weight:700;letter-spacing:.03em;margin-top:13px;padding:11px 10px;border:1.2px dashed var(--line);border-radius:10px;background:var(--parchment);white-space:nowrap;overflow:auto}
+.rr-demo .q{color:var(--red)}
+.logic-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:16px}
+.logic-card{background:var(--paper);border:1.5px solid var(--ink);border-radius:var(--sketch);padding:18px;box-shadow:var(--shadow)}
+.logic-card h3{font-family:'Cormorant Garamond',serif;font-size:1.4rem;line-height:1.05}
+.logic-card p{color:var(--ink-soft);font-size:.86rem;margin-top:7px}
+.logic-card.yes{border-left:6px solid var(--green)}
+.logic-card.no{border-left:6px solid var(--orange)}
+.logic-card.red{border-left:6px solid var(--red)}
+.device-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;margin-top:16px}
+.device-card{background:var(--paper);border:1.5px solid var(--ink);border-radius:var(--sketch);padding:20px;box-shadow:var(--shadow)}
+.device-card h3{font-family:'Cormorant Garamond',serif;font-size:1.55rem;line-height:1.05}
+.device-card p{color:var(--ink-soft);font-size:.87rem;margin-top:8px}
+.device-mode{display:inline-block;margin-top:11px;font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:700;color:var(--red)}
+.check-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:15px;margin-top:16px}
+.check-card{background:var(--paper);border:1.5px solid var(--ink);border-radius:var(--sketch);padding:18px;box-shadow:var(--shadow)}
+.check-card h3{font-family:'Cormorant Garamond',serif;font-size:1.35rem}
+.check-card ul{margin:10px 0 0 20px;color:var(--ink-soft);font-size:.85rem}
+.check-card li{margin:6px 0}
+.warning-ribbon{background:var(--red-soft);border:1.5px solid var(--red);border-radius:16px 6px 16px 6px;padding:14px 16px;margin:18px 0;color:var(--ink-soft);font-size:.88rem}
+.warning-ribbon b{color:var(--red)}
+.mini-note{font-family:'Caveat',cursive;color:var(--red);font-size:1.12rem;margin-top:9px}
+.sep-title{margin-top:56px}
+.ref-list{display:grid;gap:8px;margin-top:10px}
+.ref-list a{color:var(--blue);text-decoration-thickness:1px;text-underline-offset:2px}
+.eval-step p b{color:var(--ink)}
+.small-muted{font-size:.75rem;color:var(--ink-soft)}
+.route-summary{margin-top:14px;border:1.4px dashed var(--gold);background:var(--gold-soft);border-radius:13px 5px 13px 5px;padding:12px 14px;color:var(--ink-soft);font-size:.82rem}
+.route-summary b{color:var(--gold)}
+@media(max-width:900px){.rhythm-strip,.logic-grid{grid-template-columns:1fr}.device-grid,.check-grid{grid-template-columns:1fr}}
+@media print{.rhythm-card,.logic-card,.device-card,.check-card{box-shadow:none;break-inside:avoid}.sep-title{margin-top:10mm}.patient-evaluator{break-inside:auto}}
+</style>
+</head>
+<body>
+<header class="site-head">
+  <div class="wrap">
+    <div class="brand-row">
+      <a class="brand" href="#">Dia<em>stola</em></a>
+      <span class="brand-note">aus der Station gelernt ✎</span>
+    </div>
+    <div class="hero">
+      <span class="kicker">Rhythmologie · Pacing-Entscheidungsbaum</span>
+      <h1>Bradyarrhythmie bei VHF <em>richtig abbiegen.</em></h1>
+      <p class="lede">Nicht „HF 35 = Schrittmacher“. Erst den <b>ventrikulären Rhythmus lesen</b>, dann <b>reversible Ursachen</b>, dann <b>AV-Block oder Symptom-Korrelation</b>. Erst wenn die Pacing-Indikation steht, entscheidet die FDE mit über das Device-Konzept.</p>
+      <span class="scribble">→ Erst Indikation. Dann Modus. Dann Implantation.</span>
+    </div>
+  </div>
+</header>
+
+<div class="toolbar">
+  <div class="toolbar-in">
+    <button class="pill-btn case" id="evalBtn">🧭 Patient auswerten</button>
+    <button class="pill-btn" id="allBtn">↺ Gesamtbaum</button>
+    <a class="pill-btn" href="#device" style="text-decoration:none">⚡ Device wählen</a>
+    <a class="pill-btn" href="#implant" style="text-decoration:none">🫀 Bis Implantation</a>
+    <span class="spacer"></span>
+    <button class="pill-btn" id="themeBtn">🌙 Dunkel</button>
+    <button class="pill-btn" onclick="window.print()">⎙ Drucken / PDF</button>
+  </div>
+</div>
+
+<main><div class="wrap">
+  <div class="section-title">
+    <span class="num">01</span><h2>Patient auswerten</h2><span class="sub">der Baum läuft selbst</span>
+  </div>
+  <div class="intro-note"><b>Didaktisches Lernschema:</b> Dieses Tool ist ein eigener Stations-Algorithmus und kein offizieller ESC-Flowchart. Entscheidungen immer mit 12-Kanal-EKG/Monitorstreifen, klinischem Kontext, Device-Team und hausinterner SOP zusammenführen.</div>
+
+  <section class="patient-evaluator" id="patientEvaluator">
+    <div class="eval-head">
+      <div>
+        <h2>Ein Fall → ein Pacing-Weg.</h2>
+        <p>Du gibst die Befunde ein. Der Algorithmus trennt zuerst <b>Notfall vs. stabil</b>, dann <b>regelmäßige vs. unregelmäßige Kammeraktion</b>, prüft <b>reversible Ursachen und Symptom-Korrelation</b> und führt bei bestehender Pacing-Indikation weiter zur Device-Strategie.</p>
+      </div>
+      <span class="eval-stamp">Rhythmus → Indikation → Device ✎</span>
+    </div>
+
+    <div class="eval-topbar">
+      <div class="eval-id">
+        <label for="evalCaseId">Fall-ID / Kürzel · optional</label>
+        <input id="evalCaseId" type="text" maxlength="32" placeholder="z. B. Fall A, Zimmer 12 — keine Klarnamen">
+      </div>
+      <div class="privacy-note"><b>Mehrere Fälle möglich:</b> Mit „Fall lokal merken“ speicherst du die Auswertung nur in diesem Browser. Keine Klarnamen oder direkt identifizierenden Patientendaten verwenden.</div>
+    </div>
+
+    <div class="eval-steps">
+      <article class="eval-step active" id="stepUnstable">
+        <span class="step-no">1.</span><h3>Aktuell hämodynamisch instabil?</h3>
+        <p>Bradyarrhythmie mit aktueller Synkope/Bewusstseinsstörung, Hypotonie, Schock/Minderperfusion oder anderer akuter hämodynamischer Beeinträchtigung.</p>
+        <select id="evalUnstable"><option value="">— auswählen —</option><option value="no">Nein / aktuell stabil</option><option value="yes">Ja</option></select>
+      </article>
+
+      <article class="eval-step hidden" id="stepAF">
+        <span class="step-no">2.</span><h3>Vorhofflimmern im Brady-EKG?</h3>
+        <p>Die folgende Logik gilt für <b>VHF mit langsamer Kammeraktion</b>. Immer die Brady-Episode selbst beurteilen, nicht nur ein späteres Aufnahme-EKG.</p>
+        <select id="evalAF"><option value="">— auswählen —</option><option value="yes">Ja, VHF dokumentiert</option><option value="no">Nein</option><option value="unclear">Unklar / Episode nicht vorliegend</option></select>
+      </article>
+
+      <article class="eval-step hidden" id="stepRegularity">
+        <span class="step-no">3.</span><h3>Kammeraktion während der Brady-Episode?</h3>
+        <p><b>Langsam + regelmäßig</b> bei VHF → AV-Block/Ersatzrhythmus verdächtig. <b>Langsam + unregelmäßig</b> → BAA / langsame AV-Überleitung.</p>
+        <select id="evalRegularity"><option value="">— auswählen —</option><option value="regular">Langsam + regelmäßig</option><option value="irregular">Langsam + absolut arrhythmisch</option><option value="unclear">Nicht sicher beurteilbar</option></select>
+      </article>
+
+      <article class="eval-step hidden" id="stepAVB">
+        <span class="step-no">4.</span><h3>Höhergradiger / infranodaler AV-Block dokumentiert?</h3>
+        <p>Zum Beispiel high-grade AVB, Mobitz II, kompletter AVB oder klarer regelmäßiger Ersatzrhythmus mit entsprechender Dokumentation.</p>
+        <select id="evalAVB"><option value="">— auswählen —</option><option value="yes">Ja</option><option value="no">Nein</option><option value="unclear">Verdacht, aber nicht sicher dokumentiert</option></select>
+      </article>
+
+      <article class="eval-step hidden" id="stepReversible">
+        <span class="step-no">5.</span><h3>Potentiell reversible Ursache?</h3>
+        <p>Negativ dromotrope Medikamente, Elektrolytstörung, Ischämie/MI, Intoxikation, Infektion/Entzündung oder andere reversible Auslöser.</p>
+        <select id="evalReversible"><option value="">— auswählen —</option><option value="active">Ja, noch aktiv / nicht korrigiert</option><option value="corrected">Korrigiert — Bradyarrhythmie persistiert</option><option value="none">Keine plausible reversible Ursache</option><option value="unclear">Noch unklar</option></select>
+      </article>
+
+      <article class="eval-step hidden" id="stepSymptoms">
+        <span class="step-no">6.</span><h3>Wie stark passt die Symptomatik zur Bradyarrhythmie?</h3>
+        <p>Direkte Korrelation ist am stärksten. Auch eine plötzlich aufgetretene, plausible Synkope kann mit einem objektiv dokumentierten bradyarrhythmischen Mechanismus klinisch sinnvoll korrelieren.</p>
+        <select id="evalSymptoms"><option value="">— auswählen —</option><option value="direct">Direkt: Symptom zeitgleich mit Brady/Pause dokumentiert</option><option value="plausible">Plausible frühere Synkope: plötzlich, wenig/keine Prodromi, rasche Erholung</option><option value="nonspecific">Unspezifische Symptome / unklare Synkope</option><option value="none">Keine Bradykardie-Symptome</option></select>
+      </article>
+
+      <article class="eval-step hidden" id="stepObjective">
+        <span class="step-no">7.</span><h3>Objektiver Brady-Befund</h3>
+        <p>Die Zahl allein entscheidet nicht. Sie zeigt aber, ob überhaupt ein relevanter Mechanismus dokumentiert ist.</p>
+        <div class="eval-unit"><input id="evalMinHR" type="number" min="10" max="120" step="1" placeholder="minimale HF, z. B. 35"><span>/min</span></div>
+        <div class="eval-unit" style="margin-top:8px"><input id="evalPause" type="number" min="0" max="60" step="0.1" placeholder="max. Pause, z. B. 5.8"><span>s</span></div>
+      </article>
+
+      <article class="eval-step hidden" id="stepPauseContext">
+        <span class="step-no">8.</span><h3>Kontext der Pause/Bradykardie?</h3>
+        <p>Tagsüber/wach und repetitiv ist klinisch anders zu werten als eine isolierte nächtliche asymptomatische Episode.</p>
+        <select id="evalPauseContext"><option value="">— auswählen —</option><option value="symptom">Zeitgleich symptomatisch</option><option value="awake">Wach/tagsüber, aber ohne Symptom</option><option value="night">Nur nachts / im Schlaf</option><option value="repetitive">Repetitiv tagsüber / sehr langsame Kammeraktion</option><option value="none">Keine relevante Pause dokumentiert</option></select>
+      </article>
+
+      <article class="eval-step hidden" id="stepAFStrategy">
+        <span class="step-no">9.</span><h3>Ist das Vorhofflimmern permanent?</h3>
+        <p>Die Frage entscheidet vor allem über <b>VVIR vs. atrialen Kanal</b>, nicht über die Pacing-Indikation selbst.</p>
+        <select id="evalAFStrategy"><option value="">— auswählen —</option><option value="permanent">Permanentes VHF / keine Rhythmuskontrolle geplant</option><option value="nonpermanent">Paroxysmal/persistierend mit möglichem Sinusrhythmus</option><option value="unclear">Unklar</option></select>
+      </article>
+
+      <article class="eval-step hidden" id="stepEF">
+        <span class="step-no">10.</span><h3>LVEF in der FDE/TTE?</h3>
+        <p>Die FDE bestätigt nicht die BAA. Sie beurteilt Struktur und LV-Funktion und beeinflusst das Pacing-Konzept.</p>
+        <div class="eval-unit"><input id="evalEF" type="number" min="5" max="80" step="1" placeholder="z. B. 60"><span>%</span></div>
+      </article>
+
+      <article class="eval-step hidden" id="stepPacingBurden">
+        <span class="step-no">11.</span><h3>Hoher ventrikulärer Pacing-Anteil zu erwarten?</h3>
+        <p>Zum Beispiel bei komplettem/high-grade AVB und fehlender eigener zuverlässiger Überleitung.</p>
+        <select id="evalPacingBurden"><option value="">— auswählen —</option><option value="high">Ja / wahrscheinlich &gt;20%</option><option value="low">Nein / eher seltenes Backup-Pacing</option><option value="unclear">Unklar</option></select>
+      </article>
+    </div>
+
+    <div class="eval-result" id="evalResult">
+      <div class="result-icon" id="evalResultIcon">🧭</div>
+      <div><h3 id="evalResultTitle">Startfrage beantworten</h3><p id="evalResultText">Der Algorithmus öffnet danach nur den nächsten relevanten Schritt.</p><span class="next-test" id="evalNextTest">Nächster Schritt: Stabilität einordnen.</span></div>
+    </div>
+
+    <div class="eval-path-wrap">
+      <div class="eval-path-head"><h3>Aktueller Denkpfad</h3><span id="evalPathStamp">noch kein Ast gewählt</span></div>
+      <div class="case-chain" id="evalPath"><div class="eval-empty">Sobald du einen Befund auswählst, erscheint hier der individuelle Weg Box für Box.</div></div>
+    </div>
+
+    <div class="eval-actions">
+      <button class="pill-btn case" id="saveEvalCase" type="button">＋ Fall lokal merken</button>
+      <button class="pill-btn" id="resetEvalCase" type="button">↺ Neuer Patient / neuer Fall</button>
+      <button class="pill-btn" id="showFullTree" type="button">🌳 Gesamtbaum zeigen</button>
+    </div>
+
+    <div class="case-history" id="caseHistory">
+      <div class="case-history-head"><h3>Gemerkte Fälle</h3><span>lokal in diesem Browser · pseudonymisiert</span></div>
+      <div class="case-history-list" id="caseHistoryList"><div class="eval-empty">Noch kein Fall gespeichert.</div></div>
+    </div>
+  </section>
+
+  <div class="section-title sep-title"><span class="num">02</span><h2>Der Gesamtbaum</h2><span class="sub">von Synkope bis Pacing-Indikation</span></div>
+  <div class="warning-ribbon"><b>Der wichtigste Satz:</b> Bei VHF ohne permanenten AV-Block und ohne bradykardiebezogene Symptome existiert keine einzelne minimale Pausendauer, die allein automatisch eine Schrittmacherindikation erzeugt.</div>
+
+  <section class="flowboard" id="flow">
+    <div class="flow-step"><article class="node red" data-flow-key="triage"><div class="eyebrow">Start · Triage</div><h3>Aktuell instabile Bradyarrhythmie?</h3><p>Synkope/Bewusstseinsstörung, Hypotonie, Schock/Minderperfusion oder akute hämodynamische Beeinträchtigung.</p></article></div>
+    <div class="fork">
+      <div class="branch"><span class="branch-mark yes" data-flow-key="unstable_yes">JA</span><div class="lane">
+        <article class="node red soft-red" data-flow-key="acute"><div class="eyebrow">Notfall-Ast</div><h3>Akut-Bradykardiepfad</h3><p>Monitoring/Defi-Pads, 12-Kanal-EKG, Oberarzt/Device-Team, reversible Ursachen parallel. Chronotrope Therapie nach lokaler SOP; bei schwerer refraktärer Bradyarrhythmie akutes temporäres Pacing als Bridge.</p><div class="tagrow"><span class="tag red">Akut</span><span class="tag red">temporäres Pacing nur wenn nötig</span></div></article>
+        <div class="down"></div><article class="node red" data-flow-key="prompt_ppm"><div class="eyebrow">Sobald möglich</div><h3>Dauerhafte Indikation? → permanente Lösung prompt</h3><p>Temporäres Pacing ist kein Wochenend-Parkplatz. Wenn die Kriterien für einen permanenten Schrittmacher erfüllt sind, soll die definitive Implantation zeitnah erfolgen.</p></article>
+      </div></div>
+      <div class="branch"><span class="branch-mark no" data-flow-key="unstable_no">NEIN / stabil</span><div class="lane">
+        <article class="node blue" data-flow-key="af_q"><div class="eyebrow">Frage 1</div><h3>Brady-Episode wirklich bei VHF?</h3><p>Die Episode selbst lesen: f-Wellen/fehlende organisierte P-Wellen + absolut arrhythmische oder auffällig regelmäßige Kammeraktion.</p></article>
+        <div class="down"></div><article class="node blue" data-flow-key="regularity_q"><div class="eyebrow">Frage 2 · Schlüsselast</div><h3>Langsame Kammeraktion: regelmäßig oder unregelmäßig?</h3><p>Bei VHF ist Unregelmäßigkeit normal. Wird die langsame Kammeraktion regelmäßig, frage: führt ein Ersatzrhythmus wegen AV-Block?</p></article>
+      </div></div>
+    </div>
+
+    <div style="height:78px;position:relative"><div style="position:absolute;left:50%;top:0;height:52px;border-left:2px solid var(--ink)"></div><div style="position:absolute;left:50%;top:51px;transform:translateX(-50%);font-size:1.3rem;font-weight:700">↓</div></div>
+    <div class="flow-step"><article class="node teal" data-flow-key="rhythm_split"><div class="eyebrow">Rhythmusentscheidung</div><h3>Welche Seite?</h3><p>Ab hier trennst du AV-Block/Ersatzrhythmus von BAA mit langsamer AV-Überleitung.</p></article></div>
+    <div class="fork" style="margin-top:55px">
+      <div class="branch"><span class="branch-mark violet" data-flow-key="regular">LANGSAM + REGELMÄSSIG</span><div class="lane">
+        <article class="node violet soft-violet" data-flow-key="avb_suspect"><div class="eyebrow">Red flag bei VHF</div><h3>AV-Block / Ersatzrhythmus vermuten</h3><p>Langsamer regelmäßiger ventrikulärer Rhythmus bei VHF ist verdächtig auf fehlende normale AV-Überleitung. QRS schmal → höherer Escape möglich; QRS breit → tiefer Escape möglich. Vor-EKG mitdenken.</p></article>
+        <div class="down"></div><article class="node violet" data-flow-key="avb_document"><div class="eyebrow">Dokumentation</div><h3>High-grade / infranodaler AV-Block gesichert?</h3><p>Monitorstreifen, 12-Kanal-EKG; bei ausgewählten unklaren Fällen weiterführende Diagnostik.</p></article>
+        <div class="mini-fork">
+          <div class="mini-branch"><span class="branch-mark yes" data-flow-key="avb_yes">JA</span><article class="node green soft-green" data-flow-key="avb_pacing"><div class="eyebrow">Pacing-Indikation</div><h3>Nach Ausschluss reversibler Ursache → Schrittmacher</h3><p>High-grade oder infranodaler AV-Block ist eine Pacing-Indikation auch ohne erneute Synkope während der Aufzeichnung.</p></article></div>
+          <div class="mini-branch"><span class="branch-mark no" data-flow-key="avb_unclear">NICHT GESICHERT</span><article class="node orange soft-orange" data-flow-key="more_diag"><div class="eyebrow">Nicht blind implantieren</div><h3>Rhythmus genauer dokumentieren</h3><p>Telemetrie/LZ-EKG abhängig von Symptomfrequenz; bei seltenen Ereignissen längeres Monitoring/ILR, bei ausgewählten Konstellationen EPS.</p></article></div>
+        </div>
+      </div></div>
+
+      <div class="branch"><span class="branch-mark blue" data-flow-key="irregular">LANGSAM + UNREGELMÄSSIG</span><div class="lane">
+        <article class="node blue soft-blue" data-flow-key="baa"><div class="eyebrow">BAA / langsame Überleitung</div><h3>VHF mit langsamer AV-Überleitung</h3><p>Der Ventrikel wird weiterhin unregelmäßig aktiviert, aber zu selten. Eine HF von 35/min allein ist noch kein automatischer SM-Schalter.</p></article>
+        <div class="down"></div><article class="node gold" data-flow-key="reversible"><div class="eyebrow">Zuerst reversibel?</div><h3>Medikamente, Elektrolyte, Ischämie, Toxine, Infektion …</h3><p>Negativ dromotrope Medikamente pausieren/reduzieren, wenn klinisch sinnvoll; gezielte Labor-/Ursachendiagnostik. Danach Rhythmus erneut beurteilen.</p></article>
+        <div class="down"></div><article class="node teal" data-flow-key="correlation"><div class="eyebrow">Dann klinische Korrelation</div><h3>Kann der dokumentierte Brady-Mechanismus die Synkope plausibel erklären?</h3><p>Direkte Zeitgleichheit ist am stärksten. Aber auch eine typische frühere plötzliche Synkope plus objektiv relevante persistierende Bradyarrhythmie kann eine vernünftige klinische Korrelation ergeben.</p></article>
+        <div class="mini-fork">
+          <div class="mini-branch"><span class="branch-mark yes" data-flow-key="corr_yes">JA</span><article class="node green soft-green" data-flow-key="sympt_pacing"><div class="eyebrow">Symptomatische Bradyarrhythmie</div><h3>Schrittmacher-Indikation</h3><p>Wenn keine reversible Ursache die Bradyarrhythmie erklärt und Symptome direkt oder vernünftig dem Brady-Mechanismus zugeordnet werden können.</p></article></div>
+          <div class="mini-branch"><span class="branch-mark no" data-flow-key="corr_no">NEIN / asymptomatisch</span><article class="node orange soft-orange" data-flow-key="no_auto_pacing"><div class="eyebrow">Kein Automatismus</div><h3>Nicht nur wegen HF 35 oder einer Pause implantieren</h3><p>Ohne high-grade/infranodalen AV-Block und ohne bradykardiebezogene Symptome ist Pacing in der Regel nicht angezeigt. Weiterführende Dokumentation nach Symptomfrequenz.</p></article></div>
+        </div>
+      </div></div>
+    </div>
+
+    <div style="height:78px;position:relative"><div style="position:absolute;left:50%;top:0;height:52px;border-left:2px solid var(--ink)"></div><div style="position:absolute;left:50%;top:51px;transform:translateX(-50%);font-size:1.3rem;font-weight:700">↓</div></div>
+    <div class="flow-step"><article class="node green soft-green" data-flow-key="pacing_yes"><div class="eyebrow">Pacing-Indikation steht</div><h3>Jetzt erst: TTE/FDE + Device-Konzept</h3><p>Strukturelle Herzerkrankung und LV-Funktion bestimmen. Dann AF-Strategie und erwarteten ventrikulären Pacing-Anteil in die Device-Auswahl einbeziehen.</p></article></div>
+  </section>
+
+  <div class="section-title sep-title"><span class="num">03</span><h2>Rhythmus in drei Bildern</h2><span class="sub">was der Monitor dir eigentlich sagt</span></div>
+  <div class="rhythm-strip">
+    <article class="rhythm-card"><span class="kicker">VHF · normale/schnelle Überleitung</span><h3>Unregelmäßig</h3><div class="rr-demo"><span class="q">QRS</span> — <span class="q">QRS</span> —— <span class="q">QRS</span> ——— <span class="q">QRS</span> — <span class="q">QRS</span></div><p>Chaotische Vorhofimpulse werden unregelmäßig über den AV-Knoten auf die Kammer geleitet.</p></article>
+    <article class="rhythm-card"><span class="kicker">BAA · langsame AV-Überleitung</span><h3>Langsam + unregelmäßig</h3><div class="rr-demo"><span class="q">QRS</span> ————— <span class="q">QRS</span> ——— <span class="q">QRS</span> ——————— <span class="q">QRS</span></div><p>Weiterhin absolut arrhythmisch, aber zu wenig Impulse erreichen die Kammer. Medikamentös oder intrinsisch möglich.</p></article>
+    <article class="rhythm-card"><span class="kicker">VHF + AV-Block / Escape</span><h3>Langsam + regelmäßig</h3><div class="rr-demo"><span class="q">QRS</span> ————— <span class="q">QRS</span> ————— <span class="q">QRS</span> ————— <span class="q">QRS</span></div><p>Der Ventrikel folgt möglicherweise nicht mehr den chaotischen Vorhofimpulsen, sondern einem eigenen Ersatzrhythmus.</p></article>
+  </div>
+  <div class="mental">
+    <div class="paper-note"><h4>QRS schmal oder breit?</h4><p><b>Schmal</b> kann zu einem höher gelegenen/junktionalen Escape passen, weil das His-Purkinje-System genutzt wird. <b>Breit</b> kann zu einem tieferen ventrikulären Escape passen. Aber: vorbestehender Schenkelblock kann einen Escape ebenfalls verbreitern.</p></div>
+    <div class="paper-note"><h4>Die Monitorfrage</h4><p>Nicht nur „HF 35?“. Immer fragen: <b>regelmäßig oder unregelmäßig?</b> <b>Pausen?</b> <b>wach oder nachts?</b> <b>Symptom gleichzeitig?</b> <b>QRS schmal oder breit?</b></p></div>
+  </div>
+
+  <div class="section-title sep-title"><span class="num">04</span><h2>Was entscheidet die SM-Indikation?</h2><span class="sub">drei Situationen sauber trennen</span></div>
+  <div class="logic-grid">
+    <article class="logic-card yes"><h3>1 · High-grade / infranodaler AV-Block</h3><p>Nach Ausschluss einer reversiblen Ursache ist die Pacing-Indikation stark und besteht bei high-grade oder infranodalem Block auch ohne erneute Synkope im LZ-EKG.</p><span class="mini-note">→ AV-Block selbst ist der gefährliche Mechanismus.</span></article>
+    <article class="logic-card yes"><h3>2 · Symptomatische Bradyarrhythmie</h3><p>Bradykardie oder Pause ist direkt mit Synkope/Präsynkope korreliert oder der dokumentierte Mechanismus erklärt die typische frühere Synkope vernünftig und andere reversible Ursachen sind ausgeschlossen.</p><span class="mini-note">→ Rhythmus + Klinik ergeben gemeinsam die Korrelation.</span></article>
+    <article class="logic-card no"><h3>3 · Asymptomatische BAA ohne high-grade AVB</h3><p>Kein automatischer Pacemaker nur wegen HF 35/min oder einer einzelnen Pausenzahl. Die weitere Überwachung richtet sich nach Häufigkeit und Art der Symptome.</p><span class="mini-note">→ Zahl allein ≠ Indikation.</span></article>
+  </div>
+
+  <div class="section-title sep-title" id="device"><span class="num">05</span><h2>Wenn Pacing ja: welches Device?</h2><span class="sub">jetzt kommt die FDE ins Spiel</span></div>
+  <div class="intro-note"><b>Merksatz:</b> Das LZ-EKG/Monitoring beantwortet „Braucht er Pacing?“. Die FDE/TTE beantwortet „Wie sieht das Herz aus, das ich langfristig pace?“.</div>
+  <div class="device-grid">
+    <article class="device-card"><span class="kicker">Permanentes VHF</span><h3>Kein sinnvoller atrialer Kanal</h3><span class="device-mode">VVIR</span><p>Bei permanentem VHF und Pacing-Bedarf ist eine single-lead ventrikuläre, rate-adaptive Strategie typisch. Das „R“ erlaubt eine belastungsabhängige Frequenzanpassung. Fixed-rate VVI ist eher eine Ausnahme bei sehr alten, stark sedentären Patienten.</p></article>
+    <article class="device-card"><span class="kicker">Sinusrhythmus kann wiederkommen</span><h3>Atriale Information bleibt relevant</h3><span class="device-mode">DDD(R)</span><p>Bei paroxysmalem/persistierendem VHF mit möglichem Sinusrhythmus muss die atriale Aktivität weiter mitgedacht werden. Dann ist ein dual-chamber Konzept häufig sinnvoller als ein reines VVI-System.</p></article>
+    <article class="device-card"><span class="kicker">High-grade AVB + HFrEF</span><h3>LVEF &lt;40% und viel Pacing</h3><span class="device-mode">CRT statt nur RV-Pacing</span><p>Bei high-grade AV-Block mit Pacing-Indikation und HFrEF soll eine reine chronische RV-Stimulation nicht reflexhaft gewählt werden. Die Resynchronisationsstrategie wird priorisiert.</p></article>
+    <article class="device-card"><span class="kicker">LVEF &gt;40% + hoher Pacing-Anteil</span><h3>Physiologisches Pacing mitdenken</h3><span class="device-mode">CSP / HBP erwägen</span><p>Wenn ein relevanter ventrikulärer Pacing-Anteil zu erwarten ist, kann eine physiologischere Aktivierung über das Reizleitungssystem im Device-Team erwogen werden. Die konkrete Technik hängt von Patient, Anatomie und Zentrum ab.</p></article>
+  </div>
+
+  <div class="section-title sep-title"><span class="num">06</span><h2>Warum TTE/FDE vor Device?</h2><span class="sub">nicht zur Diagnose der BAA</span></div>
+  <div class="flowboard">
+    <div class="flow-step"><article class="node blue"><div class="eyebrow">Rhythmusdiagnostik</div><h3>EKG / Monitor / LZ-EKG</h3><p>Diagnostiziert Bradyarrhythmie, Pausen, Regelmäßigkeit und AV-Block. Das ist der Kern für die Pacing-Indikation.</p></article></div>
+    <div class="down"></div>
+    <div class="flow-step"><article class="node teal"><div class="eyebrow">Bildgebung</div><h3>TTE/FDE</h3><p>Sucht strukturelle Herzerkrankung, bestimmt die LV-Funktion und kann Hinweise auf Ursachen einer Leitungsstörung liefern.</p></article></div>
+    <div class="down"></div>
+    <div class="flow-step"><article class="node green soft-green"><div class="eyebrow">Device-Planung</div><h3>LVEF + erwarteter Pacing-Anteil</h3><p>Ein bereits schwacher LV, der voraussichtlich sehr häufig ventrikulär stimuliert wird, braucht eine andere Pacing-Überlegung als ein Patient mit erhaltener LV-Funktion und seltenem Backup-Pacing.</p></article></div>
+  </div>
+
+  <div class="section-title sep-title" id="implant"><span class="num">07</span><h2>Von der Indikation bis zur Implantation</h2><span class="sub">Stations-Check vor Device</span></div>
+  <div class="check-grid">
+    <article class="check-card"><h3>1 · Indikation dokumentieren</h3><ul><li>Brady-Episode/Monitorstreifen sichern.</li><li>Regelmäßigkeit, minimale HF, maximale RR-Pause dokumentieren.</li><li>AV-Block ja/nein; Symptom-Korrelation oder klinische Plausibilität beschreiben.</li><li>Reversible Ursachen abgearbeitet.</li></ul></article>
+    <article class="check-card"><h3>2 · Basisdiagnostik vor Device</h3><ul><li>12-Kanal-EKG und FDE/TTE.</li><li>Blutbild, Kreatinin/Nierenfunktion, Elektrolyte.</li><li>Gerinnungsstatus entsprechend klinischem Kontext.</li><li>Gezielt: TSH, Digitalis-Spiegel, Ischämie-/Infektabklärung, wenn klinisch verdächtig.</li></ul></article>
+    <article class="check-card"><h3>3 · Device-Konzept festlegen</h3><ul><li>Permanentes VHF → VVIR/single-lead ventrikulär typischer Weg.</li><li>Möglicher Sinusrhythmus → dual-chamber Konzept mitdenken.</li><li>High-grade AVB + LVEF &lt;40% → CRT statt reinem RV-Pacing priorisieren.</li><li>Hoher erwarteter Pacing-Anteil → physiologisches Pacing/CSP im Device-Team prüfen.</li></ul></article>
+    <article class="check-card"><h3>4 · Implantationsbereitschaft</h3><ul><li>Aktive Infektion/Fieber ausschließen bzw. definitive Implantation wenn möglich verschieben.</li><li>Periprozedurales Antikoagulationsmanagement nach Device-SOP; Heparin-Bridging nicht reflexhaft.</li><li>Präoperative Antibiotikaprophylaxe und sterile Implantationsbedingungen.</li><li>Aufklärung, Device-Team, Zugangs-/Seitenplanung und Termin.</li></ul></article>
+  </div>
+  <div class="case-conclusion"><strong>Endpunkt des Baums:</strong><p>Wenn die permanente Pacing-Indikation steht und das passende Device-Konzept festgelegt ist, folgt die definitive Schrittmacher-/CRT-Implantation. Akutes temporäres Pacing bleibt eine Bridge bei schwerer, hämodynamisch relevanter Bradyarrhythmie oder wenn die definitive Implantation nicht sofort möglich ist.</p></div>
+
+  <div class="section-title sep-title"><span class="num">08</span><h2>Monitoring nach Symptomfrequenz</h2><span class="sub">wenn die Diagnose noch nicht gesichert ist</span></div>
+  <div class="monitor-strip">
+    <div class="monitor-card"><span class="mnum">täglich</span><b>Telemetrie / 24-h-Holter</b><p>Bei häufigen Episoden ist die Chance auf direkte Rhythmus-Symptom-Korrelation hoch.</p></div>
+    <div class="monitor-card"><span class="mnum">alle 48–72 h</span><b>24–72-h-Holter</b><p>Monitoringdauer an die Ereignisfrequenz anpassen.</p></div>
+    <div class="monitor-card"><span class="mnum">wöchentlich</span><b>7-Tage-Holter / externer Loop</b><p>Wenn kurze Aufzeichnungen die intermittierende Bradyarrhythmie verpassen.</p></div>
+    <div class="monitor-card"><span class="mnum">monatlich</span><b>Externer Loop / Patch</b><p>Bei selteneren Symptomen längere externe Dokumentation.</p></div>
+    <div class="monitor-card"><span class="mnum">&lt;1× / Monat</span><b>ILR</b><p>Bei seltenen, ungeklärten Ereignissen kann ein implantierbarer Loop-Recorder die Langzeitkorrelation ermöglichen.</p></div>
+  </div>
+
+  <section class="refs">
+    <h3>Quellen & Einordnung</h3>
+    <p>Didaktische Zusammenfassung für den Stationsalltag. Die Seite reproduziert keinen offiziellen ESC-Algorithmus und ersetzt keine lokale Device-SOP oder individuelle fachärztliche Entscheidung.</p>
+    <div class="ref-list">
+      <a href="https://doi.org/10.1093/eurheartj/ehab364" target="_blank" rel="noopener">2021 ESC Guidelines on cardiac pacing and cardiac resynchronization therapy · European Heart Journal</a>
+      <a href="https://www.escardio.org/guidelines/clinical-practice-guidelines/all-esc-practice-guidelines/cardiac-pacing-and-cardiac-resynchronization-therapy/" target="_blank" rel="noopener">ESC guideline hub · Cardiac pacing and CRT</a>
+    </div>
+  </section>
+</div></main>
+
+<footer><div class="fbrand">Dia<em>stola</em></div><div class="fnote">Rhythmus lesen. Mechanismus verstehen. Dann erst implantieren. ✎</div></footer>
+
+<script>
+(function(){
+'use strict';
+const body=document.body, root=document.documentElement;
+const $=id=>document.getElementById(id);
+function safeGet(key){try{return localStorage.getItem(key);}catch(e){return null;}}
+function safeSet(key,value){try{localStorage.setItem(key,value);}catch(e){}}
+const themeBtn=$('themeBtn');
+if(safeGet('diastola-theme')==='dark') root.setAttribute('data-theme','dark');
+function syncTheme(){const dark=root.getAttribute('data-theme')==='dark';themeBtn.textContent=dark?'☀️ Hell':'🌙 Dunkel';themeBtn.classList.toggle('on',dark);}
+syncTheme();
+themeBtn.addEventListener('click',()=>{const dark=root.getAttribute('data-theme')==='dark';if(dark){root.removeAttribute('data-theme');safeSet('diastola-theme','light');}else{root.setAttribute('data-theme','dark');safeSet('diastola-theme','dark');}syncTheme();});
+
+const EVAL_CASES_KEY='diastola-brady-vhf-evaluations-v1';
+const evalInputIds=['evalUnstable','evalAF','evalRegularity','evalAVB','evalReversible','evalSymptoms','evalMinHR','evalPause','evalPauseContext','evalAFStrategy','evalEF','evalPacingBurden'];
+const evalStepIds=['stepUnstable','stepAF','stepRegularity','stepAVB','stepReversible','stepSymptoms','stepObjective','stepPauseContext','stepAFStrategy','stepEF','stepPacingBurden'];
+let lastEvaluation=null;
+function clearRoute(){body.classList.remove('route-mode');document.querySelectorAll('#flow .route-hit').forEach(el=>el.classList.remove('route-hit'));$('allBtn').classList.add('on');}
+function showRoute(keys){clearRoute();if(!keys.length)return;body.classList.add('route-mode');$('allBtn').classList.remove('on');keys.forEach(key=>document.querySelectorAll(`#flow [data-flow-key="${key}"]`).forEach(el=>el.classList.add('route-hit')));}
+function hideEvalSteps(){evalStepIds.forEach((id,idx)=>{const el=$(id);el.classList.toggle('hidden',idx!==0);el.classList.remove('active','done');});$('stepUnstable').classList.add('active');}
+function revealStep(id){const el=$(id);el.classList.remove('hidden');document.querySelectorAll('.eval-step').forEach(s=>s.classList.remove('active'));el.classList.add('active');}
+function markDone(id){const el=$(id);el.classList.remove('active');el.classList.add('done');}
+function resultTone(tone,icon,title,text,next=''){const box=$('evalResult');box.className='eval-result'+(tone?' '+tone:'');$('evalResultIcon').textContent=icon;$('evalResultTitle').textContent=title;$('evalResultText').textContent=text;$('evalNextTest').textContent=next;$('evalNextTest').style.display=next?'inline-block':'none';}
+function renderPath(path){const host=$('evalPath');if(!path.length){host.innerHTML='<div class="eval-empty">Sobald du einen Befund auswählst, erscheint hier der individuelle Weg Box für Box.</div>';$('evalPathStamp').textContent='noch kein Ast gewählt';return;}host.innerHTML=path.map((step,i)=>`<div class="case-step"><span class="n">${i+1}.</span><b>${step.title}</b><small>${step.detail}</small></div>`).join('');$('evalPathStamp').textContent=`${path.length} ${path.length===1?'Schritt':'Schritte'} · live ausgewertet`;}
+function nval(id){const v=parseFloat($(id).value);return Number.isFinite(v)?v:null;}
+function snapshotInputs(){const obj={caseId:$('evalCaseId').value.trim()};evalInputIds.forEach(id=>obj[id]=$(id).value);return obj;}
+function setEvalStatus({route,path,tone='',icon='🧭',title,text,next='',status='pending'}){showRoute(route);renderPath(path);resultTone(tone,icon,title,text,next);lastEvaluation={route,path,tone,icon,title,text,next,status,inputs:snapshotInputs()};}
+function continueDevice(route,path){
+  route.push('pacing_yes');revealStep('stepAFStrategy');
+  const afs=$('evalAFStrategy').value;
+  if(!afs){setEvalStatus({route,path,tone:'green',icon:'✓',title:'Pacing-Indikation steht — jetzt Device-Konzept',text:'Erst jetzt entscheidet die AF-Strategie über die Frage nach einem atrialen Kanal.',next:'Ist das Vorhofflimmern permanent?'});return;}
+  markDone('stepAFStrategy');path.push({title:afs==='permanent'?'Permanentes VHF':afs==='nonpermanent'?'Sinusrhythmus kann wiederkommen':'AF-Strategie unklar',detail:afs==='permanent'?'single-lead ventrikuläre Strategie typisch':afs==='nonpermanent'?'atrialer Kanal bleibt relevant':'vor Device-Festlegung klären'});
+  revealStep('stepEF');const ef=nval('evalEF');
+  if(ef===null){setEvalStatus({route,path,tone:'green',icon:'🫀',title:afs==='permanent'?'VVIR wahrscheinlich — FDE fehlt noch':'Dual-chamber Konzept mitdenken — FDE fehlt noch',text:'Die Pacing-Indikation ist bereits geklärt. Jetzt LV-Funktion und strukturelle Herzerkrankung beurteilen.',next:'LVEF aus TTE/FDE eintragen.'});return;}
+  markDone('stepEF');path.push({title:`LVEF ${Math.round(ef)}%`,detail:ef<40?'HFrEF → Pacing-Strategie besonders relevant':'LVEF >40%'});
+  revealStep('stepPacingBurden');const burden=$('evalPacingBurden').value;
+  if(!burden){setEvalStatus({route,path,tone:'green',icon:'⚡',title:'Letzte Device-Frage: wie viel ventrikuläres Pacing?',text:'LVEF und erwarteter Pacing-Anteil zusammenführen, bevor du dich mit „simplem RV-Pacing“ zufriedengibst.',next:'Erwarteten ventrikulären Pacing-Anteil einordnen.'});return;}
+  markDone('stepPacingBurden');path.push({title:burden==='high'?'Hoher Pacing-Anteil erwartet':burden==='low'?'Eher seltenes Backup-Pacing':'Pacing-Anteil unklar',detail:burden==='high'?'>20% bzw. bei AVB oft deutlich höher':burden==='low'?'geringere chronische RV-Pacing-Last':'Device-Team muss abschätzen'});
+  let mode=afs==='permanent'?'VVIR / single-lead ventrikulär':'DDD(R) häufig sinnvoll';
+  let text='Pacing-Indikation steht. ';
+  if(ef<40 && burden==='high'){mode='CRT statt reinem RV-Pacing priorisieren';text+='Bei high-grade AVB/HFrEF und hohem Pacing-Bedarf sollte die Resynchronisationsstrategie statt chronischem isoliertem RV-Pacing priorisiert werden.';}
+  else if(ef>40 && burden==='high'){mode=(afs==='permanent'?'VVIR-Strategie + CSP/HBP mitdenken':'DDD(R)-Konzept + CSP/HBP mitdenken');text+='Bei LVEF >40% und erwartet relevantem ventrikulärem Pacing-Anteil kann physiologisches Pacing über das Reizleitungssystem im Device-Team erwogen werden.';}
+  else{text+=afs==='permanent'?'Bei permanentem VHF ist eine rate-adaptive single-lead ventrikuläre Strategie typisch.':'Wenn Sinusrhythmus wieder möglich ist, bleibt ein atrialer Kanal relevant; ein dual-chamber Konzept ist häufig sinnvoll.';}
+  setEvalStatus({route,path,tone:'green',icon:'🫀',title:`Device-Plan: ${mode}`,text,next:'Nächster Schritt: Implantationsvorbereitung — Indikation dokumentieren, FDE/Labor, Infektstatus, Antikoagulations- und Device-SOP.',status:'result'});
+}
+function evaluatePatient(){
+  hideEvalSteps();const route=['triage'],path=[];
+  const unstable=$('evalUnstable').value;
+  if(!unstable){setEvalStatus({route,path,title:'Startfrage beantworten',text:'Der Algorithmus öffnet danach nur den nächsten relevanten Schritt.',next:'Nächster Schritt: Stabilität einordnen.'});return;}
+  markDone('stepUnstable');path.push({title:unstable==='yes'?'Aktuell instabil':'Aktuell stabil',detail:unstable==='yes'?'Akut-Bradykardiepfad zuerst':'systematische Rhythmusanalyse möglich'});
+  if(unstable==='yes'){
+    route.push('unstable_yes','acute','prompt_ppm');setEvalStatus({route,path,tone:'red',icon:'⛑️',title:'Akut-Bradykardiepfad — nicht auf das Wochenend-LZ-EKG warten',text:'Monitoring/Defi-Pads, 12-Kanal-EKG, Oberarzt/Device-Team und reversible Ursachen parallel. Bei schwerer refraktärer Bradyarrhythmie kann temporäres Pacing als Bridge nötig sein; bei bestehender permanenter Pacing-Indikation definitive Implantation prompt.',next:'Nach Stabilisierung: Mechanismus und permanente Pacing-Indikation dokumentieren.',status:'result'});return;
+  }
+  route.push('unstable_no','af_q');revealStep('stepAF');const af=$('evalAF').value;
+  if(!af){setEvalStatus({route,path,title:'Jetzt die Brady-Episode selbst lesen',text:'Nicht das spätere Aufnahme-EKG mit HF 78 beurteilen, sondern den Streifen der langsamen Episode.',next:'Ist während der Brady-Episode Vorhofflimmern dokumentiert?'});return;}
+  markDone('stepAF');path.push({title:af==='yes'?'VHF dokumentiert':af==='no'?'Kein VHF in der Episode':'Rhythmus unklar',detail:af==='yes'?'VHF-spezifischer Baum kann weiterlaufen':'dieser Algorithmus ist nicht der richtige Endpfad'});
+  if(af!=='yes'){setEvalStatus({route,path,tone:'orange',icon:'↪️',title:'VHF nicht sicher — erst Rhythmusdiagnose sichern',text:'Dieser Baum ist speziell für VHF mit langsamer Kammeraktion. Ohne dokumentiertes VHF musst du in den allgemeinen Bradykardie-/Synkopenpfad zurück.',next:'12-Kanal-EKG/Monitorstreifen sichern und Rhythmus klassifizieren.',status:'result'});return;}
+  route.push('regularity_q','rhythm_split');revealStep('stepRegularity');const reg=$('evalRegularity').value;
+  if(!reg){setEvalStatus({route,path,title:'Schlüsselbefund fehlt: RR-Regelmäßigkeit',text:'Bei VHF ist die Frage „langsam + regelmäßig oder langsam + unregelmäßig?“ entscheidender als die Zahl 35/min allein.',next:'RR-Abstände der Brady-Episode beurteilen.'});return;}
+  markDone('stepRegularity');path.push({title:reg==='regular'?'Langsam + regelmäßig':reg==='irregular'?'Langsam + unregelmäßig':'Regelmäßigkeit unklar',detail:reg==='regular'?'AV-Block/Ersatzrhythmus verdächtig':reg==='irregular'?'BAA / langsame AV-Überleitung':'mehr Rhythmusdokumentation nötig'});
+  if(reg==='unclear'){route.push('more_diag');setEvalStatus({route,path,tone:'orange',icon:'🔍',title:'Rhythmus noch nicht sauber klassifiziert',text:'Ohne die Brady-Episode selbst lässt sich AV-Block/Escape nicht von langsamer unregelmäßiger AV-Überleitung trennen.',next:'Telemetrie/LZ-EKG und relevante Streifen sichern.',status:'result'});return;}
+  if(reg==='regular'){
+    route.push('regular','avb_suspect','avb_document');revealStep('stepAVB');const avb=$('evalAVB').value;
+    if(!avb){setEvalStatus({route,path,tone:'violet',icon:'🚧',title:'AV-Block/Ersatzrhythmus ist jetzt die Kernfrage',text:'Langsame regelmäßige Kammeraktion bei VHF ist verdächtig. Jetzt musst du dokumentieren, ob ein high-grade/infranodaler AV-Block vorliegt.',next:'Monitorstreifen/12-Kanal-EKG: AV-Block gesichert?'});return;}
+    markDone('stepAVB');path.push({title:avb==='yes'?'High-grade/infranodaler AVB gesichert':avb==='no'?'Kein high-grade AVB dokumentiert':'AVB nur verdächtig',detail:avb==='yes'?'starke Pacing-Indikation nach Reversibilitätscheck':'Diagnostik noch nicht abgeschlossen'});
+    revealStep('stepReversible');const rev=$('evalReversible').value;
+    if(!rev){setEvalStatus({route,path,tone:'violet',icon:'🧪',title:'Vor permanentem Pacing: reversible Ursache prüfen',text:'Auch bei verdächtigem oder dokumentiertem AV-Block müssen Medikamente, Elektrolyte, Ischämie, Toxine und klinisch passende Ursachen geprüft werden.',next:'Reversible Ursache einordnen.'});return;}
+    markDone('stepReversible');path.push({title:rev==='active'?'Reversible Ursache noch aktiv':rev==='corrected'?'Ursache korrigiert, Brady persistiert':rev==='none'?'Keine reversible Ursache':'Reversibilität unklar',detail:rev==='active'?'zuerst korrigieren und neu beurteilen':rev==='corrected'?'persistierender Mechanismus':rev==='none'?'intrinsische Leitungsstörung wahrscheinlicher':'Pacing-Entscheidung noch nicht sauber'});
+    if(rev==='active'||rev==='unclear'){setEvalStatus({route,path,tone:'orange',icon:'↺',title:'Noch keine definitive permanente Device-Entscheidung',text:'Die plausible reversible Ursache ist noch aktiv oder nicht geklärt. Ursache behandeln/korrigieren und den Rhythmus danach erneut beurteilen. Bei akuter Instabilität gilt parallel der Notfallpfad.',next:'Nach Korrektur: AV-Block/Bradyarrhythmie erneut dokumentieren.',status:'result'});return;}
+    if(avb==='yes'){
+      route.push('avb_yes','avb_pacing','pacing_yes');path.push({title:'Pacing-Indikation',detail:'high-grade/infranodaler AVB ohne reversible Ursache → unabhängig von erneuter Synkope'});continueDevice(route,path);return;
+    }
+    route.push('avb_unclear','more_diag');setEvalStatus({route,path,tone:'orange',icon:'🔍',title:'Regelmäßige langsame Kammeraktion, aber high-grade AVB nicht gesichert',text:'Der Verdacht ist relevant, reicht aber für diesen Lernbaum nicht zur automatischen Device-Festlegung. Rhythmus genauer dokumentieren; bei ausgewählten unklaren Fällen weiterführende Diagnostik.',next:'Telemetrie/LZ-EKG passend zur Symptomfrequenz; ggf. Device-/EP-Team.',status:'result'});return;
+  }
+
+  route.push('irregular','baa','reversible');revealStep('stepReversible');const rev=$('evalReversible').value;
+  if(!rev){setEvalStatus({route,path,tone:'blue',icon:'💊',title:'BAA / langsame AV-Überleitung — zuerst reversible Ursachen',text:'Vor der Symptom-Korrelation musst du klären, ob AV-knotenbremsende Medikamente oder andere reversible Faktoren die langsame Kammeraktion erklären.',next:'Reversible Ursache einordnen.'});return;}
+  markDone('stepReversible');path.push({title:rev==='active'?'Reversible Ursache noch aktiv':rev==='corrected'?'Korrigiert, BAA persistiert':rev==='none'?'Keine reversible Ursache':'Reversibilität unklar',detail:rev==='active'?'zuerst behandeln/pausieren und re-evaluieren':rev==='corrected'?'intrinsische Bradyarrhythmie bleibt dokumentiert':rev==='none'?'Symptom-Korrelation jetzt zentral':'noch nicht sauber entscheidbar'});
+  if(rev==='active'||rev==='unclear'){setEvalStatus({route,path,tone:'orange',icon:'↺',title:'Zuerst reversible Ursache abarbeiten',text:'Eine noch aktive oder unklare reversible Ursache kann die langsame AV-Überleitung erklären. Nach Korrektur Rhythmus erneut beurteilen.',next:'Medikamente/Ursachen korrigieren und Monitor/LZ-EKG erneut auswerten.',status:'result'});return;}
+  route.push('correlation');revealStep('stepSymptoms');const sx=$('evalSymptoms').value;
+  if(!sx){setEvalStatus({route,path,title:'Jetzt kommt die klinische Korrelation',text:'Bei BAA ohne high-grade AV-Block entscheidet nicht eine einzelne HF-Zahl, sondern ob der dokumentierte Brady-Mechanismus die Symptomatik erklärt.',next:'Symptomatik einordnen.'});return;}
+  markDone('stepSymptoms');path.push({title:sx==='direct'?'Direkte Rhythmus-Symptom-Korrelation':sx==='plausible'?'Plausible plötzliche Synkope':sx==='nonspecific'?'Unspezifische/unklare Symptomatik':'Keine Brady-Symptome',detail:sx==='direct'?'stärkste Korrelation':sx==='plausible'?'klinische Plausibilität muss mit objektivem Mechanismus zusammenpassen':sx==='nonspecific'?'weiter dokumentieren':'ohne high-grade AVB kein automatisches Pacing'});
+  revealStep('stepObjective');const hr=nval('evalMinHR'), pause=nval('evalPause');
+  if(hr===null && pause===null){setEvalStatus({route,path,title:'Objektiver Brady-Befund fehlt',text:'Eine plausible Synkope allein reicht nicht. Du brauchst einen dokumentierten Rhythmusmechanismus: relevante Bradykardie, Pause oder Leitungsstörung.',next:'Minimale HF und/oder maximale Pause aus Monitor/LZ-EKG eintragen.'});return;}
+  markDone('stepObjective');path.push({title:`Objektiv: ${hr!==null?'min. HF '+Math.round(hr)+'/min':''}${hr!==null&&pause!==null?' · ':''}${pause!==null?'Pause '+pause.toFixed(1)+' s':''}`,detail:'Zahl beschreibt den Mechanismus, ist aber allein kein universeller Pacing-Cut-off bei AF'});
+  revealStep('stepPauseContext');const pc=$('evalPauseContext').value;
+  if(!pc){setEvalStatus({route,path,title:'Kontext des Brady-Befunds fehlt',text:'Eine isolierte nächtliche asymptomatische Episode wird anders eingeordnet als eine tagsüber repetitive Bradyarrhythmie oder ein zeitgleiches Symptom.',next:'Kontext der Bradykardie/Pause auswählen.'});return;}
+  markDone('stepPauseContext');path.push({title:pc==='symptom'?'Brady/Pause zeitgleich symptomatisch':pc==='awake'?'Wach/tagsüber asymptomatisch':pc==='night'?'Nur nachts/im Schlaf':pc==='repetitive'?'Repetitiv tagsüber / sehr langsam':'Keine relevante Pause',detail:pc==='symptom'?'direkte Korrelation':pc==='repetitive'?'objektiv persistierender plausibler Mechanismus':pc==='night'?'isolierte Nachtbefunde vorsichtig interpretieren':'Gesamtkontext nötig'});
+  const direct = sx==='direct' || pc==='symptom';
+  const plausible = sx==='plausible' && (pc==='repetitive' || pc==='awake' || (hr!==null && hr<40) || (pause!==null && pause>0));
+  if(direct || plausible){route.push('corr_yes','sympt_pacing','pacing_yes');path.push({title:'Korrelation klinisch bejaht',detail:direct?'direkte Zeitgleichheit':'typische Synkope + objektiv dokumentierter plausibler Brady-Mechanismus'});continueDevice(route,path);return;}
+  route.push('corr_no','no_auto_pacing');
+  const msg = pc==='night'?'Isolierte nächtliche/asymptomatische Bradyarrhythmien verlangen zunächst Kontext einschließlich möglicher schlafbezogener Ursachen.':'Ohne high-grade/infranodalen AV-Block und ohne bradykardiebezogene Symptom-Korrelation gibt es keine automatische Schrittmacherindikation allein aus HF 35/min oder einer Pausenzahl.';
+  setEvalStatus({route,path,tone:'orange',icon:'⏱️',title:'Keine automatische SM-Indikation aus diesem Befund allein',text:msg,next:'Monitoring an Symptomfrequenz anpassen; bei seltenen ungeklärten Ereignissen längere externe Aufzeichnung oder ILR erwägen.',status:'result'});
+}
+function resetEvaluator(scroll=true){$('evalCaseId').value='';evalInputIds.forEach(id=>$(id).value='');hideEvalSteps();clearRoute();lastEvaluation=null;renderPath([]);resultTone('','🧭','Startfrage beantworten','Der Algorithmus öffnet danach nur den nächsten relevanten Schritt.','Nächster Schritt: Stabilität einordnen.');if(scroll)$('patientEvaluator').scrollIntoView({behavior:'smooth',block:'start'});}
+function readSavedCases(){try{const raw=safeGet(EVAL_CASES_KEY);const parsed=raw?JSON.parse(raw):[];return Array.isArray(parsed)?parsed:[];}catch(e){return[];}}
+function writeSavedCases(items){safeSet(EVAL_CASES_KEY,JSON.stringify(items.slice(0,20)));}
+function renderCaseHistory(){const items=readSavedCases(),host=$('caseHistoryList');if(!items.length){host.innerHTML='<div class="eval-empty">Noch kein Fall gespeichert.</div>';return;}host.innerHTML=items.map((item,i)=>`<div class="saved-case"><div><b>${item.caseId||'Anonymer Fall'}</b><small>${item.title} · ${item.savedAt}</small></div><div class="case-btns"><button class="mini-icon-btn" type="button" data-load-case="${i}">öffnen</button><button class="mini-icon-btn" type="button" data-delete-case="${i}">×</button></div></div>`).join('');host.querySelectorAll('[data-load-case]').forEach(btn=>btn.addEventListener('click',()=>loadSavedCase(Number(btn.dataset.loadCase))));host.querySelectorAll('[data-delete-case]').forEach(btn=>btn.addEventListener('click',()=>deleteSavedCase(Number(btn.dataset.deleteCase))));}
+function saveCurrentCase(){if(!lastEvaluation||lastEvaluation.status!=='result'){resultTone('orange','⚠️','Noch keine abgeschlossene Auswertung','Bitte den aktuellen Ast bis zu einem klaren Stop-Punkt oder Device-Plan durchlaufen.','Danach kann der Fall lokal gemerkt werden.');return;}const items=readSavedCases(),now=new Date();items.unshift({caseId:$('evalCaseId').value.trim()||`Fall ${items.length+1}`,savedAt:now.toLocaleString('de-DE'),title:lastEvaluation.title,inputs:snapshotInputs()});writeSavedCases(items);renderCaseHistory();resultTone(lastEvaluation.tone,'✓','Fall lokal gemerkt',`${items[0].caseId}: ${lastEvaluation.title}`,'Nur pseudonymisierte Angaben verwenden.');}
+function loadSavedCase(index){const item=readSavedCases()[index];if(!item)return;$('evalCaseId').value=item.inputs.caseId||item.caseId||'';evalInputIds.forEach(id=>$(id).value=item.inputs[id]||'');evaluatePatient();$('patientEvaluator').scrollIntoView({behavior:'smooth',block:'start'});}
+function deleteSavedCase(index){const items=readSavedCases();items.splice(index,1);writeSavedCases(items);renderCaseHistory();}
+evalInputIds.forEach(id=>$(id).addEventListener('input',evaluatePatient));
+$('evalBtn').addEventListener('click',()=>{$('patientEvaluator').scrollIntoView({behavior:'smooth',block:'start'});evaluatePatient();});
+$('allBtn').addEventListener('click',clearRoute);
+$('showFullTree').addEventListener('click',()=>{clearRoute();$('flow').scrollIntoView({behavior:'smooth',block:'start'});});
+$('resetEvalCase').addEventListener('click',()=>resetEvaluator(true));
+$('saveEvalCase').addEventListener('click',saveCurrentCase);
+renderCaseHistory();evaluatePatient();
+})();
+</script>
+</body></html>
