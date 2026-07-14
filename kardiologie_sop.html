@@ -132,6 +132,27 @@ body{font-family:var(--sans);background:var(--bg);color:var(--text);font-size:15
 .tip-box svg{flex-shrink:0;margin-top:2px}
 
 /* PILLS */
+/* SCORE-RECHNER */
+.calc-box{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:.75rem;font-size:.8rem}
+.calc-row{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:.42rem .55rem;border-radius:7px;border:1.5px solid var(--border);background:var(--bg);cursor:pointer;user-select:none;transition:background .15s,border-color .15s;margin-bottom:5px}
+.calc-row:last-of-type{margin-bottom:0}
+.calc-row:hover{background:var(--surface2)}
+.calc-row .calc-label{font-weight:500;color:var(--text);line-height:1.4;font-size:.8rem}
+.calc-row .calc-pts{font-weight:700;color:var(--text3);font-size:.78rem;white-space:nowrap;flex-shrink:0}
+.calc-row.on{border-color:var(--navy);background:#f0f2f8}
+.calc-row.on .calc-pts{color:var(--navy)}
+.calc-row.on .calc-label{font-weight:600}
+.calc-hint{font-size:.7rem;color:var(--text3);margin:.3rem 0 .55rem;line-height:1.5}
+.calc-result{margin-top:.7rem;border-top:1px solid var(--border);padding-top:.65rem;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.calc-score{font-family:var(--serif);font-size:2rem;font-weight:300;line-height:1;min-width:88px}
+.calc-score small{font-size:.85rem;color:var(--text3);font-weight:400}
+.calc-verdict{flex:1;min-width:180px;font-size:.8rem;line-height:1.5;color:var(--text2)}
+.calc-verdict strong{display:block;font-size:.82rem}
+.calc-verdict.v-green strong{color:var(--green)}
+.calc-verdict.v-gold strong{color:var(--gold)}
+.calc-verdict.v-red strong{color:var(--red)}
+.calc-reset{font-size:.7rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:5px 11px;border-radius:6px;border:1.5px solid var(--border);background:var(--bg);color:var(--text2);cursor:pointer;transition:background .15s,color .15s}
+.calc-reset:hover{background:var(--surface2);color:var(--text)}
 .pill{display:inline-block;font-size:.72rem;font-weight:700;padding:1px 8px;border-radius:4px;margin:0 2px}
 .pill-green{background:#dcfce7;color:#166534}
 .pill-red{background:#fee2e2;color:#991b1b}
@@ -753,8 +774,8 @@ footer strong{color:var(--navy);font-weight:600}
     <div class="scard-info">
       <div class="scard-title">Vorhofflimmern — Antikoagulation &amp; Rhythmuskontrolle</div>
       <div class="scard-badges">
-        <span class="badge purple">VHF · ESC 2020</span>
-        <span class="badge gray">CHA₂DS₂-VASc · HAS-BLED</span>
+        <span class="badge purple">VHF · ESC 2024</span>
+        <span class="badge gray">CHA₂DS₂-VA · HAS-BLED · Rechner</span>
         <span class="badge gray">PVI · EAST-AFNET 4</span>
       </div>
     </div>
@@ -763,48 +784,64 @@ footer strong{color:var(--navy);font-weight:600}
   <div class="scard-inner">
 
     <div class="sop-section">
-      <div class="sop-section-title">CHA₂DS₂-VASc-Score — Antikoagulationsindikation</div>
+      <div class="sop-section-title">CHA₂DS₂-VA-Rechner — Antikoagulationsindikation (ESC 2024)</div>
       <div class="two-col">
-        <div class="score-box">
-          <div class="score-box-title">CHA₂DS₂-VASc</div>
-          <table>
-            <tr><td>Herzinsuffizienz / LVEF &lt;40% (C)</td><td>1</td></tr>
-            <tr><td>Hypertonie (H)</td><td>1</td></tr>
-            <tr><td>Alter ≥75 J. (A₂)</td><td><strong>2</strong></td></tr>
-            <tr><td>Diabetes mellitus (D)</td><td>1</td></tr>
-            <tr><td>Stroke / TIA / Embolie (S₂)</td><td><strong>2</strong></td></tr>
-            <tr><td>Vaskuläre Erkrankung (V)</td><td>1</td></tr>
-            <tr><td>Alter 65–74 J. (A)</td><td>1</td></tr>
-            <tr><td>Weibliches Geschlecht (Sc)</td><td>1</td></tr>
-          </table>
+        <div class="calc-box">
+          <div class="score-box-title">CHA₂DS₂-VA — Kriterien antippen</div>
+          <div class="calc-hint">Neuer Score der ESC-VHF-Leitlinie 2024 — <strong>ohne Geschlechtskriterium (Sc entfällt)</strong>, max. 8 Punkte. Alterskategorien schließen sich gegenseitig aus.</div>
+          <div class="calc-row" data-calc="chadsva" data-pts="1" onclick="calcToggle(this)"><span class="calc-label"><strong>C</strong> — Herzinsuffizienz / LVEF &lt;40%</span><span class="calc-pts">+1</span></div>
+          <div class="calc-row" data-calc="chadsva" data-pts="1" onclick="calcToggle(this)"><span class="calc-label"><strong>H</strong> — Hypertonie</span><span class="calc-pts">+1</span></div>
+          <div class="calc-row" data-calc="chadsva" data-pts="2" data-group="age" onclick="calcToggle(this)"><span class="calc-label"><strong>A₂</strong> — Alter ≥75 Jahre</span><span class="calc-pts">+2</span></div>
+          <div class="calc-row" data-calc="chadsva" data-pts="1" onclick="calcToggle(this)"><span class="calc-label"><strong>D</strong> — Diabetes mellitus</span><span class="calc-pts">+1</span></div>
+          <div class="calc-row" data-calc="chadsva" data-pts="2" onclick="calcToggle(this)"><span class="calc-label"><strong>S₂</strong> — Stroke / TIA / Thromboembolie</span><span class="calc-pts">+2</span></div>
+          <div class="calc-row" data-calc="chadsva" data-pts="1" onclick="calcToggle(this)"><span class="calc-label"><strong>V</strong> — Vaskuläre Erkrankung (KHK, pAVK, Aortenplaque)</span><span class="calc-pts">+1</span></div>
+          <div class="calc-row" data-calc="chadsva" data-pts="1" data-group="age" onclick="calcToggle(this)"><span class="calc-label"><strong>A</strong> — Alter 65–74 Jahre</span><span class="calc-pts">+1</span></div>
+          <div class="calc-result">
+            <div class="calc-score"><span id="chadsva-score">0</span><small> / 8</small></div>
+            <div class="calc-verdict" id="chadsva-verdict"><strong>Kein OAK-Bedarf</strong>Score 0 — keine orale Antikoagulation empfohlen. Reevaluation im Verlauf.</div>
+            <button class="calc-reset" onclick="calcReset('chadsva')">Reset</button>
+          </div>
         </div>
         <div class="score-box">
-          <div class="score-box-title">OAK-Entscheid</div>
+          <div class="score-box-title">OAK-Entscheid (ESC 2024)</div>
           <table>
-            <tr><td>Männer ≥2 / Frauen ≥3</td><td><span class="pill pill-green">OAK Kl. I</span></td></tr>
-            <tr><td>Männer 1 / Frauen 2</td><td><span class="pill pill-gold">OAK IIa</span></td></tr>
-            <tr><td>Männer 0 / Frauen 1</td><td><span class="pill pill-red">Kein OAK</span></td></tr>
+            <tr><td>Score ≥2</td><td><span class="pill pill-green">OAK Kl. I</span></td></tr>
+            <tr><td>Score 1</td><td><span class="pill pill-gold">OAK erwägen IIa</span></td></tr>
+            <tr><td>Score 0</td><td><span class="pill pill-red">Kein OAK</span></td></tr>
           </table>
           <div style="margin-top:.6rem;font-size:.78rem;color:var(--text2)">
             <strong>DOAC bevorzugt</strong> (Apixaban, Rivaroxaban, Edoxaban, Dabigatran).<br>
             <span class="pill pill-red">Ausnahmen: Mechanische Klappe + MS (rheumatisch) → Phenprocoumon zwingend! DOAC kontraindiziert!</span>
+            <div style="margin-top:.5rem">Geschlechtsunabhängige Schwellen — das frühere Sc-Kriterium (weibliches Geschlecht) wurde in der ESC-Leitlinie 2024 gestrichen.</div>
           </div>
         </div>
       </div>
     </div>
 
     <div class="sop-section">
-      <div class="sop-section-title">HAS-BLED — Blutungsrisiko (kein Grund OAK abzusetzen!)</div>
-      <table class="crit-table">
-        <tr><td>H — Hypertonie (RR syst. &gt;160)</td><td class="val">1 Pkt</td></tr>
-        <tr><td>A — Abnorm. Nieren- oder Leberfunktion</td><td class="val">je 1 Pkt (max. 2)</td></tr>
-        <tr><td>S — Schlaganfall in Anamnese</td><td class="val">1 Pkt</td></tr>
-        <tr><td>B — Blutung (Anamnese / Prädisposition)</td><td class="val">1 Pkt</td></tr>
-        <tr><td>L — Labile INR (TTR &lt;60%, nur bei VKA)</td><td class="val">1 Pkt</td></tr>
-        <tr><td>E — Elderly (&gt;65 Jahre)</td><td class="val">1 Pkt</td></tr>
-        <tr><td>D — Drugs (Antikoagulanzien/NSAR, Alkohol)</td><td class="val">je 1 Pkt (max. 2)</td></tr>
-        <tr><td><strong>Score ≥3</strong></td><td class="val"><span class="pill pill-red">Hohes Blutungsrisiko</span> → <strong>kein Grund OAK abzusetzen!</strong> Stattdessen: korrigierbare Risikofaktoren beheben (RR &lt;140, NSAR absetzen, Alkohol reduzieren, INR stabilisieren).</td></tr>
-      </table>
+      <div class="sop-section-title">HAS-BLED-Rechner — Blutungsrisiko (kein Grund OAK abzusetzen!)</div>
+      <div class="calc-box">
+        <div class="score-box-title">HAS-BLED — Kriterien antippen</div>
+        <div class="calc-hint">Max. 9 Punkte. Nieren-/Leberfunktion und Drugs/Alkohol zählen jeweils separat (je +1).</div>
+        <div class="calc-row" data-calc="hasbled" data-pts="1" onclick="calcToggle(this)"><span class="calc-label"><strong>H</strong> — Hypertonie unkontrolliert (RR syst. &gt;160 mmHg)</span><span class="calc-pts">+1</span></div>
+        <div class="calc-row" data-calc="hasbled" data-pts="1" onclick="calcToggle(this)"><span class="calc-label"><strong>A</strong> — Abnorme Nierenfunktion (Dialyse, NTx, Krea &gt;200 µmol/l ≈ &gt;2,3 mg/dl)</span><span class="calc-pts">+1</span></div>
+        <div class="calc-row" data-calc="hasbled" data-pts="1" onclick="calcToggle(this)"><span class="calc-label"><strong>A</strong> — Abnorme Leberfunktion (Zirrhose, Bili &gt;2×, Transaminasen &gt;3× ULN)</span><span class="calc-pts">+1</span></div>
+        <div class="calc-row" data-calc="hasbled" data-pts="1" onclick="calcToggle(this)"><span class="calc-label"><strong>S</strong> — Schlaganfall in der Anamnese</span><span class="calc-pts">+1</span></div>
+        <div class="calc-row" data-calc="hasbled" data-pts="1" onclick="calcToggle(this)"><span class="calc-label"><strong>B</strong> — Blutungsanamnese oder -prädisposition (z. B. Anämie)</span><span class="calc-pts">+1</span></div>
+        <div class="calc-row" data-calc="hasbled" data-pts="1" onclick="calcToggle(this)"><span class="calc-label"><strong>L</strong> — Labile INR (TTR &lt;60%, nur bei VKA)</span><span class="calc-pts">+1</span></div>
+        <div class="calc-row" data-calc="hasbled" data-pts="1" onclick="calcToggle(this)"><span class="calc-label"><strong>E</strong> — Elderly: Alter &gt;65 Jahre</span><span class="calc-pts">+1</span></div>
+        <div class="calc-row" data-calc="hasbled" data-pts="1" onclick="calcToggle(this)"><span class="calc-label"><strong>D</strong> — Drugs: TAH / NSAR begleitend</span><span class="calc-pts">+1</span></div>
+        <div class="calc-row" data-calc="hasbled" data-pts="1" onclick="calcToggle(this)"><span class="calc-label"><strong>D</strong> — Alkohol (≥8 Einheiten/Woche)</span><span class="calc-pts">+1</span></div>
+        <div class="calc-result">
+          <div class="calc-score"><span id="hasbled-score">0</span><small> / 9</small></div>
+          <div class="calc-verdict" id="hasbled-verdict"><strong>Niedriges Blutungsrisiko</strong>Score 0–2 — Standard-Nachsorge unter OAK.</div>
+          <button class="calc-reset" onclick="calcReset('hasbled')">Reset</button>
+        </div>
+      </div>
+      <div class="tip-box">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
+        <span><strong>Score ≥3 = hohes Blutungsrisiko → kein Grund OAK abzusetzen!</strong> Stattdessen: korrigierbare Risikofaktoren beheben (RR &lt;140 mmHg, NSAR absetzen, Alkohol reduzieren, INR stabilisieren) + engmaschigere Kontrollen.</span>
+      </div>
     </div>
 
     <div class="sop-section">
@@ -1132,6 +1169,54 @@ document.querySelectorAll('.chip').forEach(function(chip) {
 /* Auto-open first */
 var first = document.querySelector('.scard');
 if (first) first.classList.add('open');
+
+/* ═══ SCORE-RECHNER ═══ */
+function calcToggle(row) {
+  // Exklusive Gruppen (z. B. Alterskategorien CHA₂DS₂-VA)
+  if (row.dataset.group && !row.classList.contains('on')) {
+    document.querySelectorAll('.calc-row[data-calc="' + row.dataset.calc + '"][data-group="' + row.dataset.group + '"]')
+      .forEach(function(r){ r.classList.remove('on'); });
+  }
+  row.classList.toggle('on');
+  calcUpdate(row.dataset.calc);
+}
+
+function calcReset(id) {
+  document.querySelectorAll('.calc-row[data-calc="' + id + '"]').forEach(function(r){ r.classList.remove('on'); });
+  calcUpdate(id);
+}
+
+function calcUpdate(id) {
+  var sum = 0;
+  document.querySelectorAll('.calc-row[data-calc="' + id + '"].on').forEach(function(r){
+    sum += parseInt(r.dataset.pts, 10);
+  });
+  document.getElementById(id + '-score').textContent = sum;
+  var v = document.getElementById(id + '-verdict');
+
+  if (id === 'chadsva') {
+    if (sum >= 2) {
+      v.className = 'calc-verdict v-green';
+      v.innerHTML = '<strong>OAK empfohlen — Klasse I</strong>Score ≥2: Orale Antikoagulation indiziert. DOAC bevorzugt (ESC 2024).';
+    } else if (sum === 1) {
+      v.className = 'calc-verdict v-gold';
+      v.innerHTML = '<strong>OAK erwägen — Klasse IIa</strong>Score 1: OAK sollte erwogen werden — individuelle Nutzen-Risiko-Abwägung.';
+    } else {
+      v.className = 'calc-verdict';
+      v.innerHTML = '<strong>Kein OAK-Bedarf</strong>Score 0 — keine orale Antikoagulation empfohlen. Reevaluation im Verlauf.';
+    }
+  }
+
+  if (id === 'hasbled') {
+    if (sum >= 3) {
+      v.className = 'calc-verdict v-red';
+      v.innerHTML = '<strong>Hohes Blutungsrisiko (≥3)</strong>Kein Grund, OAK abzusetzen! Korrigierbare Faktoren beheben + engmaschige Kontrollen.';
+    } else {
+      v.className = 'calc-verdict v-green';
+      v.innerHTML = '<strong>Niedriges Blutungsrisiko</strong>Score 0–2 — Standard-Nachsorge unter OAK.';
+    }
+  }
+}
 </script>
 </body>
 </html>
